@@ -54,6 +54,17 @@ def construct(capture,output,provenance,allow_synthetic=False):
             from shapely.geometry import Point
             need(any(polygon(p).distance(Point(o['position_m']))<=o['uncertainty_m']+1e-8 for p in o['occupancy'][0]['alternatives_m']),'HYPOTHESIS_CONFLICT','Position conflicts with initial occupancy')
     need(all(abs(capture['ego'][k])<1e-8 for k in ('x_m','y_m','yaw_rad')),'EGO_FRAME','ego_at_reference requires center position and yaw zero; rebase from measured ego state')
+    if 'acquisition_metadata' in capture:
+        import numpy as np
+        a=capture['acquisition_metadata']
+        need(abs(a['center_offset_assumption_m']-capture['vehicle']['center_to_rear_axle_m'])<1e-8,'CALIBRATION_REFERENCE','Camera and vehicle center offsets disagree')
+        pairs={(f['id'],f['time_id']) for f in frames}
+        need(len(a['ego_history'])==len(frames) and {(x['frame_id'],x['time_id']) for x in a['ego_history']}==pairs,'EGO_HISTORY','Ego history does not match acquisition records')
+        need(all(max(abs(x['center_xy_m'][0]),abs(x['center_xy_m'][1]),abs(x['yaw_rad']))<1e-8 for x in a['ego_history'] if x['time_id']==m['reference_time_id']),'EGO_HISTORY','Reference-time ego history must be rebased to center zero')
+        need(all(f['camera_id'] in a['calibrations'] for f in frames),'CALIBRATION_MISSING','A captured camera has no calibration')
+        for cal in a['calibrations'].values():
+            R=np.asarray(cal['camera_to_center_rotation']);K=np.asarray(cal['camera_intrinsic'])
+            need(np.allclose(R.T@R,np.eye(3),atol=1e-6) and abs(np.linalg.det(R)-1)<1e-6 and abs(np.linalg.det(K))>1e-9,'CALIBRATION','Invalid rotation or camera intrinsics')
     need(capture['vehicle']['center_to_rear_axle_m']<=capture['vehicle']['rear_m'],'VEHICLE','Rear axle outside vehicle')
     return dict(metadata=deepcopy(m),capture=deepcopy(capture),decision=deepcopy(d),hypotheses=deepcopy(h),provenance=deepcopy(provenance),
                 claim='conditional_on_model_hypotheses_and_whole_interval_coverage; uncertainty is not calibrated probability')

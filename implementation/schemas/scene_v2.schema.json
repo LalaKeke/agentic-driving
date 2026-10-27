@@ -273,6 +273,123 @@
             "prefix_s"
           ],
           "additionalProperties": false
+        },
+        "acquisition_metadata": {
+          "type": "object",
+          "properties": {
+            "dataset": {
+              "const": "nuScenes"
+            },
+            "native_ego_reference": {
+              "const": "rear_axle"
+            },
+            "center_offset_assumption_m": {
+              "type": "number",
+              "minimum": 0
+            },
+            "calibrations": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "camera_intrinsic": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "camera_to_center_rotation": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "camera_to_center_translation_m": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "camera_intrinsic",
+                  "camera_to_center_rotation",
+                  "camera_to_center_translation_m"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "ego_history": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "frame_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "time_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "center_xy_m": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "yaw_rad": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "frame_id",
+                  "time_id",
+                  "center_xy_m",
+                  "yaw_rad"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "ego_speed_source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "vehicle_parameters_source": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "dataset",
+            "native_ego_reference",
+            "center_offset_assumption_m",
+            "calibrations",
+            "ego_history",
+            "ego_speed_source",
+            "vehicle_parameters_source"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

@@ -3,6 +3,7 @@ from collections import defaultdict
 import math
 import statistics
 from shapely.ops import unary_union
+from shapely.geometry import shape,box
 from .contracts import need,validate,digest
 from .geometry import polygon
 
@@ -19,11 +20,20 @@ def evaluate(records,truth,config):
         h=record['output']['hypotheses'];need(h['reference_time_id']==gt['reference_time_id'],'G2_TIME','Truth reference mismatch')
         need(h['coordinate_frame']==gt['coordinate_frame']=='ego_at_reference','G2_FRAME','Truth coordinate mismatch')
         road_error=None
-        if h['road'] is not None:road_error=polygon(h['road']['polygon_m']).boundary.hausdorff_distance(polygon(gt['road_polygon_m']).boundary)
+        road_iou=None
+        if h['road'] is not None:
+            actual_road=shape(gt['road_geometry_geojson']) if gt.get('road_geometry_geojson') is not None else polygon(gt['road_polygon_m']) if gt.get('road_polygon_m') is not None else None
+            if actual_road is not None:
+                predicted_road=polygon(h['road']['polygon_m'])
+                if gt.get('evaluation_roi_m') is not None:
+                    roi=box(*gt['evaluation_roi_m']);actual_road=actual_road.intersection(roi);predicted_road=predicted_road.intersection(roi)
+                if not actual_road.is_empty and not predicted_road.is_empty:road_error=predicted_road.boundary.hausdorff_distance(actual_road.boundary)
+                union_area=actual_road.union(predicted_road).area
+                road_iou=actual_road.intersection(predicted_road).area/union_area if union_area else None
         actors={o['id']:o for o in h['objects']}
         # Ground-truth actor IDs must use the explicitly reviewed offline association.
         association=gt['model_object_ids']
-        scene_rows.append(dict(sample_id=key,road_hausdorff_m=road_error,unassociated_model_object_count=len(set(actors)-set(association.values()))))
+        scene_rows.append(dict(sample_id=key,road_hausdorff_m=road_error,road_area_iou=road_iou,unassociated_model_object_count=len(set(actors)-set(association.values()))))
         for actor in gt['objects']:
             covered_until=0.
             for interval in actor['occupancy']:
