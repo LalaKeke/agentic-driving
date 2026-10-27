@@ -1,9 +1,9 @@
 from copy import deepcopy
-from .contracts import validate,need,grid,digest
+from .contracts import validate,need,grid,digest,model_contract
 from .geometry import polygon
 
 def construct(capture,output,provenance,allow_synthetic=False):
-    validate('capture_v2.schema.json',capture);validate('agent_output_v2.schema.json',output)
+    validate('capture_v2.schema.json',capture);validate(model_contract(provenance.get('agent_output_contract','2.0.0'))[0],output)
     m=capture['metadata'];h=output['hypotheses'];d=output['decision'];times=grid(m)
     need(provenance['source']=='online_model' or (allow_synthetic and provenance['source']=='synthetic_fixture'),'SOURCE','Synthetic input requires explicit test mode')
     need(provenance.get('output_digest')==digest(output),'SOURCE','Output does not match provenance')
@@ -46,6 +46,7 @@ def construct(capture,output,provenance,allow_synthetic=False):
         evidence(o)
         need(m['reference_time_id'] in o['time_ids'],'DYNAMIC_ALIGNMENT','Dynamic state lacks reference-time evidence')
         need(o['uncertainty_m'] is not None,'UNKNOWN_UNCERTAINTY','Unknown uncertainty extent blocks planning','tool_infeasible')
+        need(o['occupancy'] is not None,'OCCUPANCY_UNKNOWN','Model explicitly lacks whole-interval occupancy; supply additional evidence','tool_infeasible')
         need(len(o['occupancy'])==len(times)-1,'OCCUPANCY_GAP','Missing whole-interval occupancy')
         for k,c in enumerate(o['occupancy']):
             need(abs(c['start_s']-times[k])<1e-8 and abs(c['end_s']-times[k+1])<1e-8,'OCCUPANCY_GAP','Occupancy times do not cover grid')

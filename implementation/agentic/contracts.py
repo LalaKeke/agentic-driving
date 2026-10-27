@@ -35,3 +35,8 @@ def grid(meta):
     q=meta['horizon_s']/meta['step_s']
     need(abs(q-round(q))<1e-8 and 1<=q<=500,'TIME_GRID','Horizon must be an integer number of steps (1..500)')
     return [i*meta['step_s'] for i in range(round(q)+1)]
+
+
+def model_contract(version='2.0.0'):
+    need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown explicit model output contract')
+    return ('agent_output_v2.schema.json','driving_v2') if version=='2.0.0' else ('agent_output_v2_1.schema.json','driving_v2_1')

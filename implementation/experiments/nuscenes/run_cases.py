@@ -23,7 +23,8 @@ def inspect_capture(cap):
     return dict(status='ACQUISITION_CHECKS_PASS',frames=len(ids),image_bytes=total,image_sha256=hashes)
 
 
-def run(index_path,runs,repeats=3,backend=None,model=None):
+def run(index_path,runs,repeats=3,backend=None,model=None,max_revisions=2):
+    need(0<=max_revisions<=2,'REVISIONS','Use 0..2 revisions per observation')
     need(1<=repeats<=10,'REPEATS','Use 1..10 calls per case')
     index_path=Path(index_path).resolve();root=index_path.parent;index=json.loads(index_path.read_text());log=RunLog(runs)
     # Capability/config failure is recorded for all cases, with no substituted response.
@@ -46,15 +47,15 @@ def run(index_path,runs,repeats=3,backend=None,model=None):
                 # A fresh mandatory agent call begins the planning round. Failures cause
                 # fresh image-conditioned revisions, not replay of a cached model result.
                 before=log.count
-                result=ClosedLoop(agent,log).round(cap)
+                result=ClosedLoop(agent,log,max_revisions=max_revisions).round(cap)
                 row.update(status=result['status'],planning_status=result['status'],planning_log_start=before+1)
             except Failure as exc:
                 row.update(status='MODEL_OR_TOOL_FAILURE',reason=exc.record)
-                if exc.record['code'] in ('CODEX_TIMEOUT','CODEX_TRANSPORT','CODEX_MODEL_UNAVAILABLE','CODEX_PROCESS','CODEX_CLI_STATE'):
+                if exc.record['code'] in ('CODEX_TRANSPORT','CODEX_MODEL_UNAVAILABLE','CODEX_PROCESS','CODEX_CLI_STATE'):
                     blocked=exc.record;agent=None
         log.write('case-result',row);results.append(row)
     summary=dict(status='BLOCKED' if blocked else 'COMPLETED_WITH_PER_CASE_RESULTS',cases=results,
-                 repeated_calls_requested=repeats,actual_repeated_model_calls=sum(r['model_calls'] for r in results),
+                 repeated_calls_requested=repeats,max_revisions_per_observation=max_revisions,actual_repeated_model_calls=sum(r['model_calls'] for r in results),
                  planning_agent_calls='See per-round agent logs; not included in repeated-call count',
                  truth_access=False,execution='SIMULATED_PREFIX_ONLY',
                  claim='No method feasibility or G2 pass claim from acquisition checks')
@@ -63,9 +64,9 @@ def run(index_path,runs,repeats=3,backend=None,model=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--index',required=True);p.add_argument('--runs',default='runs');p.add_argument('--repeats',type=int,default=3)
-    p.add_argument('--backend',choices=['http','codex_cli']);p.add_argument('--model')
+    p.add_argument('--backend',choices=['http','codex_cli']);p.add_argument('--model');p.add_argument('--max-revisions',type=int,default=2)
     a=p.parse_args()
     try:
-        path,summary=run(a.index,a.runs,a.repeats,a.backend,a.model);print(json.dumps(dict(run=str(path),**summary),ensure_ascii=False,indent=2))
+        path,summary=run(a.index,a.runs,a.repeats,a.backend,a.model,a.max_revisions);print(json.dumps(dict(run=str(path),**summary),ensure_ascii=False,indent=2))
         raise SystemExit(2 if summary['status']=='BLOCKED' else 0)
     except Failure as e:print(json.dumps(e.record,ensure_ascii=False));raise SystemExit(2)

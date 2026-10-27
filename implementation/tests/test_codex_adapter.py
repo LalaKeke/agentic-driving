@@ -43,6 +43,15 @@ class CodexAdapterTests(unittest.TestCase):
     def test_events_reject_substitution_and_missing_completion(self):
         with self.assertRaises(Failure):parse_events(json.dumps(dict(type='thread.started',model='other-model')),'gpt-6.1-sol')
         with self.assertRaises(Failure):parse_events(json.dumps(dict(type='thread.started')),'gpt-6.1-sol')
+    def test_disabled_code_mode_notice_is_not_a_tool_call(self):
+        text='\n'.join(json.dumps(e) for e in [dict(type='item.completed',item=dict(type='error',message='Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed.')),dict(type='item.completed',item=dict(type='agent_message',text='{"ok":true}')),dict(type='turn.completed',usage={})])
+        out,events=parse_events(text,'gpt-6.1-sol')
+        self.assertEqual(out,{'ok':True});self.assertEqual(events['tool_calls'],0)
+        self.assertEqual(events['disabled_capability_notices'],['code_mode_host_disabled'])
+    def test_other_error_items_remain_fail_closed(self):
+        text=json.dumps(dict(type='item.completed',item=dict(type='error',message='An input image could not be loaded')))
+        with self.assertRaises(Failure) as ctx:parse_events(text,'gpt-6.1-sol')
+        self.assertEqual(ctx.exception.record['code'],'CODEX_RUNTIME_DIAGNOSTIC')
     def test_real_image_attachment_protocol_with_mock_response(self):
         a=self.agent()
         with tempfile.TemporaryDirectory() as folder:
