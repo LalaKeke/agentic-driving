@@ -51,3 +51,13 @@ class OnlineAgent:
             # Never log HTTP bodies, headers, endpoint URLs or image bytes.
             provenance=dict(source=self.source,requested_model=self.model,model_id=data.get('model',self.model),output_digest=digest(output),image_sha256=hashes,prompt_version='driving_v2',prompt_sha256=__import__('hashlib').sha256(prompt.encode()).hexdigest(),attempts=attempt+1,output_mode=self.mode)
             return output,provenance
+
+
+def make_agent(backend=None,model=None):
+    backend=backend or os.environ.get('DRIVING_BACKEND','http')
+    if backend=='codex_cli':
+        from .codex_adapter import CodexSubscriptionAgent
+        return CodexSubscriptionAgent(model=model)
+    need(backend=='http','MODEL_BACKEND','Use http or codex_cli')
+    need(model is None,'MODEL_CONFIGURATION','HTTP model is configured through DRIVING_MODEL')
+    return OnlineAgent()

@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from agentic.contracts import validate,need,Failure
-from agentic.adapter import OnlineAgent
+from agentic.adapter import make_agent
 from agentic.runtime import RunLog,ClosedLoop
 
 
@@ -23,11 +23,11 @@ def inspect_capture(cap):
     return dict(status='ACQUISITION_CHECKS_PASS',frames=len(ids),image_bytes=total,image_sha256=hashes)
 
 
-def run(index_path,runs,repeats=3):
+def run(index_path,runs,repeats=3,backend=None,model=None):
     need(1<=repeats<=10,'REPEATS','Use 1..10 calls per case')
     index_path=Path(index_path).resolve();root=index_path.parent;index=json.loads(index_path.read_text());log=RunLog(runs)
     # Capability/config failure is recorded for all cases, with no substituted response.
-    try:agent=OnlineAgent();blocked=None
+    try:agent=make_agent(backend,model);blocked=None
     except Failure as exc:agent=None;blocked=exc.record
     results=[]
     for item in index['cases']:
@@ -36,7 +36,7 @@ def run(index_path,runs,repeats=3):
         cap=json.loads(path.read_text());audit=inspect_capture(cap);log.write('capture-audit',dict(sample_id=item['sample_id'],**audit))
         row=dict(sample_id=item['sample_id'],acquisition_status=audit['status'],model_calls=0,planning_status='NOT_RUN')
         if agent is None:
-            row.update(status='BLOCKED_MISSING_MODEL_CONFIGURATION',reason=blocked)
+            row.update(status='BLOCKED_MODEL_ACCESS',reason=blocked)
         else:
             log.write('adapter-config',agent.public_config);log.write('capture',cap)
             try:
@@ -48,7 +48,10 @@ def run(index_path,runs,repeats=3):
                 before=log.count
                 result=ClosedLoop(agent,log).round(cap)
                 row.update(status=result['status'],planning_status=result['status'],planning_log_start=before+1)
-            except Failure as exc:row.update(status='MODEL_OR_TOOL_FAILURE',reason=exc.record)
+            except Failure as exc:
+                row.update(status='MODEL_OR_TOOL_FAILURE',reason=exc.record)
+                if exc.record['code'] in ('CODEX_TIMEOUT','CODEX_TRANSPORT','CODEX_MODEL_UNAVAILABLE','CODEX_PROCESS','CODEX_CLI_STATE'):
+                    blocked=exc.record;agent=None
         log.write('case-result',row);results.append(row)
     summary=dict(status='BLOCKED' if blocked else 'COMPLETED_WITH_PER_CASE_RESULTS',cases=results,
                  repeated_calls_requested=repeats,actual_repeated_model_calls=sum(r['model_calls'] for r in results),
@@ -60,8 +63,9 @@ def run(index_path,runs,repeats=3):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--index',required=True);p.add_argument('--runs',default='runs');p.add_argument('--repeats',type=int,default=3)
+    p.add_argument('--backend',choices=['http','codex_cli']);p.add_argument('--model')
     a=p.parse_args()
     try:
-        path,summary=run(a.index,a.runs,a.repeats);print(json.dumps(dict(run=str(path),**summary),ensure_ascii=False,indent=2))
+        path,summary=run(a.index,a.runs,a.repeats,a.backend,a.model);print(json.dumps(dict(run=str(path),**summary),ensure_ascii=False,indent=2))
         raise SystemExit(2 if summary['status']=='BLOCKED' else 0)
     except Failure as e:print(json.dumps(e.record,ensure_ascii=False));raise SystemExit(2)

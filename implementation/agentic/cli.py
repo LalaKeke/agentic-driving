@@ -33,8 +33,8 @@ def main():
             need(min(x['speed_mps'] for x in results)<1e-5 and speed>1.,'DEMO_STOP_RESUME','Default demo must fully stop then resume')
         print(json.dumps(dict(run=str(log.path),source='synthetic_fixture',agent_calls=agent.calls,rounds=len(results),first_round_revisions=results[0]['revisions'],minimum_speed_mps=min(x['speed_mps'] for x in results),final_speed_mps=speed)))
     elif args.command=='online':
-        from .adapter import OnlineAgent
-        agent=OnlineAgent();log.write('adapter-config',agent.public_config);cap=load(args.capture);need(1<=args.calls<=20,'CALL_COUNT','calls must be 1..20')
+        from .adapter import make_agent
+        agent=make_agent();log.write('adapter-config',agent.public_config);cap=load(args.capture);need(1<=args.calls<=20,'CALL_COUNT','calls must be 1..20')
         if args.plan:
             result=ClosedLoop(agent,log).round(cap);log.write('summary',dict(status=result['status']))
         else:

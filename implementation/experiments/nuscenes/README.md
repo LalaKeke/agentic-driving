@@ -69,3 +69,16 @@ cd implementation
 当前真实模型配置/认证缺失，因此尚无模型米制误差、未来占用覆盖得分、四例规划成功率或 G2 可行性结论。已完成的是实际数据准备、解码、时间与坐标检查及软件回归。不能将这些通过项解读为视觉驾驶方案通过。
 
 官方依据：[nuScenes 数据格式](https://www.nuscenes.org/data-format)、[官方 schema](https://github.com/nutonomy/nuscenes-devkit/blob/master/docs/schema_nuscenes.md)、[官方插值实现](https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/nuscenes.py)。本次也读取了服务器上的官方 devkit schema。
+
+## ChatGPT 会员登录路径（GPT-6.1）
+
+已新增官方 Codex CLI 适配，无需 API Key。当前服务器 `codex login status` 已是 ChatGPT 登录；调用固定模型并禁用工具，保留采集输入/真值隔离。
+
+```bash
+DRIVING_CODEX_TIMEOUT_S=180 .venv/bin/python \
+  implementation/experiments/nuscenes/run_cases.py \
+  --index runs/nuscenes_cases_20261027/runtime_index.json --runs runs \
+  --repeats 3 --backend codex_cli --model gpt-6.1-sol
+```
+
+当前实际尝试因 chatgpt.com 连接超时/现有代理不可用而阻塞，没有有效 GPT-6.1 输出。CLI 当前模型目录较旧，账号是否接受该具体模型尚未确认。状态与测试证据见 [GPT-6.1 会员验证记录](../../results/gpt61_subscription/GPT61_SUBSCRIPTION_VALIDATION.md)。历史报告中的“缺少 API Key”仅描述当时 HTTP 路径的状态，不是会员路径的要求。
