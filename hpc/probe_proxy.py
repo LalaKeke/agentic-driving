@@ -19,11 +19,11 @@ def main():
     if not os.environ.get('SLURM_JOB_ID'):p.error('Run this probe through Slurm.')
     proxy=f'http://127.0.0.1:{args.port}'
     # The explicit ready file is written after SSH has established its forward.
-    for _ in range(210):
+    for _ in range(420):
         if (args.run_dir/'forward_ready').is_file():break
         time.sleep(1)
     else:
-        print('No authenticated compute tunnel was marked ready within 210 seconds.',flush=True)
+        print('No authenticated compute tunnel was marked ready within 420 seconds.',flush=True)
         return 2
     result={'job_id':os.environ['SLURM_JOB_ID'],'hostname':socket.gethostname(),
             'proxy':proxy,'timestamp_utc':datetime.now(timezone.utc).isoformat(),

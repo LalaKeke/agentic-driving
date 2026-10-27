@@ -12,7 +12,9 @@ param(
     [string]$RemoteUser = 'u21012',
     [ValidateRange(1,65535)]
     [int]$NodeSshPort = 10022,
-    [string]$ComputeKnownHostsFile = ''
+    [string]$ComputeKnownHostsFile = '',
+    [ValidateRange(15,120)]
+    [int]$ConnectTimeoutSeconds = 60
 )
 $ErrorActionPreference = 'Stop'
 $client = [System.Net.Sockets.TcpClient]::new()
@@ -23,7 +25,7 @@ try {
     }
 } finally { $client.Dispose() }
 $arguments = @('-tt','-o','StrictHostKeyChecking=yes','-o','ExitOnForwardFailure=yes',
-    '-o','ConnectTimeout=15','-o','ServerAliveInterval=30','-o','ServerAliveCountMax=3',
+    '-o',"ConnectTimeout=$ConnectTimeoutSeconds",'-o','ServerAliveInterval=30','-o','ServerAliveCountMax=3',
     '-R',"127.0.0.1:${RemoteProxyPort}:127.0.0.1:${LocalProxyPort}")
 if ($ComputeNode) {
     if (-not $ComputeKnownHostsFile -or -not (Test-Path -LiteralPath $ComputeKnownHostsFile)) {

@@ -45,7 +45,7 @@ sbatch --parsable --account=p_p21012 --partition=intel --export=NONE \
   --chdir="$PWD" hpc/proxy_probe.sbatch "$PWD" 17891
 ```
 
-记下新作业号。该作业仅占 1 CPU、1 GB、最多 5 分钟，在所分配节点等待 210 秒以便建立隧道，不申请 GPU。
+记下新作业号。该作业仅占 1 CPU、1 GB、最多 10 分钟，在所分配节点等待 420 秒以便完成两段交互认证并建立隧道，不申请 GPU。
 
 读取 `runs/<job_id>/compute_node.txt`、`compute_ssh_port.txt`、`compute_host_key.txt`。主机公钥由这个已认证调度路径中的作业从计算节点自己的回环 SSH 服务取得，不能用随意扫描到的外部公钥替代。
 
