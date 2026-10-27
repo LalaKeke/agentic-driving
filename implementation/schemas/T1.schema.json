@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/T1.schema.json",
+  "title": "T1 request and response contract",
+  "definitions": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T1"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "request"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "metadata": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/metadata"
+            },
+            "observations": {
+              "type": "array",
+              "items": {
+                "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/frame"
+              },
+              "minItems": 1
+            },
+            "ego": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/ego"
+            },
+            "vehicle": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/vehicle"
+            },
+            "decision": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/decision"
+            },
+            "model_hypotheses": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/model_hypotheses"
+            }
+          },
+          "required": [
+            "metadata",
+            "observations",
+            "ego",
+            "vehicle",
+            "decision",
+            "model_hypotheses"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "success_response": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T1"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "response"
+        },
+        "status": {
+          "const": "ok"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/scene"
+            }
+          },
+          "required": [
+            "scene"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "status",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "error_response": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T1"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "response"
+        },
+        "status": {
+          "const": "error"
+        },
+        "error": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/error"
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "status",
+        "error"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/definitions/request"
+    },
+    {
+      "$ref": "#/definitions/success_response"
+    },
+    {
+      "$ref": "#/definitions/error_response"
+    }
+  ]
+}

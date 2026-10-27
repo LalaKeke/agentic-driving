@@ -1,0 +1,340 @@
+{
+  "kind": "request",
+  "tool": "T1",
+  "request_id": "agent-revision-t1",
+  "payload": {
+    "metadata": {
+      "schema_version": "1.0.0",
+      "scene_id": "pedestrian_crossing_001",
+      "revision": 1,
+      "reference_time_s": 100.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "data_origin": "synthetic_fixture",
+      "model_id": "synthetic-not-a-model-call",
+      "calibration_id": "fixture-metric-native-no-projection"
+    },
+    "observations": [
+      {
+        "id": "front_100",
+        "camera_id": "front",
+        "capture_time_s": 100.0,
+        "image_uri": "fixture://front_100"
+      }
+    ],
+    "ego": {
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "yaw_rad": 0.0,
+      "speed_mps": 6.0
+    },
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "max_speed_mps": 12.0,
+      "max_brake_mps2": 3.0,
+      "max_accel_mps2": 2.0,
+      "max_curvature_per_m": 0.2
+    },
+    "decision": {
+      "scene_id": "pedestrian_crossing_001",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "desired_speed_mps": 6.0,
+      "lane_center_y_m": 0.0,
+      "max_lateral_deviation_m": 0.2,
+      "yield_to": [
+        "pedestrian_1"
+      ],
+      "stop_before_x_m": 10.0,
+      "stop_deadline_s": 4.0,
+      "valid_until_s": 105.0
+    },
+    "model_hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "observed_at_s": 100.0,
+      "road_bounds": {
+        "xmin_m": -5,
+        "xmax_m": 40,
+        "ymin_m": -2,
+        "ymax_m": 2
+      },
+      "road_uncertainty_m": 0.1,
+      "road_evidence_frame_ids": [
+        "front_100"
+      ],
+      "objects": [
+        {
+          "id": "pedestrian_1",
+          "evidence_frame_ids": [
+            "front_100"
+          ],
+          "position": {
+            "x_m": 18.0,
+            "y_m": -3.0
+          },
+          "velocity_mps": {
+            "x": 0.0,
+            "y": 1.5
+          },
+          "position_uncertainty_m": 0.2,
+          "occupancy_intervals": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -3.35,
+                "ymax_m": -2.35
+              }
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -3.0500000000000003,
+                "ymax_m": -2.05
+              }
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -2.75,
+                "ymax_m": -1.75
+              }
+            },
+            {
+              "start_s": 0.6,
+              "end_s": 0.8,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -2.45,
+                "ymax_m": -1.4499999999999997
+              }
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -2.15,
+                "ymax_m": -1.15
+              }
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -1.85,
+                "ymax_m": -0.8500000000000002
+              }
+            },
+            {
+              "start_s": 1.2,
+              "end_s": 1.4,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -1.5500000000000003,
+                "ymax_m": -0.5500000000000004
+              }
+            },
+            {
+              "start_s": 1.4,
+              "end_s": 1.6,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -1.2500000000000004,
+                "ymax_m": -0.24999999999999967
+              }
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -0.9499999999999996,
+                "ymax_m": 0.050000000000000155
+              }
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -0.6499999999999998,
+                "ymax_m": 0.35
+              }
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 2.2,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -0.35,
+                "ymax_m": 0.6500000000000002
+              }
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": -0.04999999999999971,
+                "ymax_m": 0.9499999999999996
+              }
+            },
+            {
+              "start_s": 2.4,
+              "end_s": 2.6,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 0.24999999999999967,
+                "ymax_m": 1.2500000000000004
+              }
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 0.5500000000000004,
+                "ymax_m": 1.5499999999999994
+              }
+            },
+            {
+              "start_s": 2.8,
+              "end_s": 3.0,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 0.8499999999999993,
+                "ymax_m": 1.85
+              }
+            },
+            {
+              "start_s": 3.0,
+              "end_s": 3.2,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 1.15,
+                "ymax_m": 2.150000000000001
+              }
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 1.4500000000000006,
+                "ymax_m": 2.4499999999999997
+              }
+            },
+            {
+              "start_s": 3.4,
+              "end_s": 3.6,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 1.7499999999999996,
+                "ymax_m": 2.7500000000000004
+              }
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 2.0500000000000003,
+                "ymax_m": 3.0499999999999994
+              }
+            },
+            {
+              "start_s": 3.8,
+              "end_s": 4.0,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 2.349999999999999,
+                "ymax_m": 3.35
+              }
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 4.2,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 2.65,
+                "ymax_m": 3.650000000000001
+              }
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 2.9500000000000006,
+                "ymax_m": 3.9500000000000006
+              }
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 3.2500000000000004,
+                "ymax_m": 4.249999999999999
+              }
+            },
+            {
+              "start_s": 4.6,
+              "end_s": 4.8,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 3.5499999999999994,
+                "ymax_m": 4.549999999999999
+              }
+            },
+            {
+              "start_s": 4.8,
+              "end_s": 5.0,
+              "bounds": {
+                "xmin_m": 17.6,
+                "xmax_m": 18.4,
+                "ymin_m": 3.849999999999999,
+                "ymax_m": 4.85
+              }
+            }
+          ]
+        }
+      ],
+      "unknown_regions": []
+    }
+  }
+}

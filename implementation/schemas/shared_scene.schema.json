@@ -1,0 +1,758 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/shared_scene.schema.json",
+  "title": "Driving V1.0 shared metric scene / straight-road prototype profile",
+  "definitions": {
+    "rect": {
+      "type": "object",
+      "properties": {
+        "xmin_m": {
+          "type": "number"
+        },
+        "xmax_m": {
+          "type": "number"
+        },
+        "ymin_m": {
+          "type": "number"
+        },
+        "ymax_m": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "xmin_m",
+        "xmax_m",
+        "ymin_m",
+        "ymax_m"
+      ],
+      "additionalProperties": false
+    },
+    "point": {
+      "type": "object",
+      "properties": {
+        "x_m": {
+          "type": "number"
+        },
+        "y_m": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x_m",
+        "y_m"
+      ],
+      "additionalProperties": false
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "camera_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_time_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "image_uri": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "camera_id",
+        "capture_time_s",
+        "image_uri"
+      ],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reference_time_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "coordinate_frame": {
+          "const": "ego_at_reference"
+        },
+        "horizon_s": {
+          "type": "number",
+          "minimum": 0.2,
+          "maximum": 10
+        },
+        "step_s": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 1
+        },
+        "data_origin": {
+          "enum": [
+            "synthetic_fixture",
+            "foundation_model"
+          ]
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "calibration_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "scene_id",
+        "revision",
+        "reference_time_s",
+        "coordinate_frame",
+        "horizon_s",
+        "step_s",
+        "data_origin",
+        "model_id",
+        "calibration_id"
+      ],
+      "additionalProperties": false
+    },
+    "ego": {
+      "type": "object",
+      "properties": {
+        "x_m": {
+          "type": "number"
+        },
+        "y_m": {
+          "type": "number"
+        },
+        "yaw_rad": {
+          "type": "number"
+        },
+        "speed_mps": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "x_m",
+        "y_m",
+        "yaw_rad",
+        "speed_mps"
+      ],
+      "additionalProperties": false
+    },
+    "vehicle": {
+      "type": "object",
+      "properties": {
+        "front_m": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "rear_m": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "half_width_m": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "max_speed_mps": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "max_brake_mps2": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "max_accel_mps2": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "max_curvature_per_m": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "front_m",
+        "rear_m",
+        "half_width_m",
+        "max_speed_mps",
+        "max_brake_mps2",
+        "max_accel_mps2",
+        "max_curvature_per_m"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "behavior": {
+          "enum": [
+            "stop_yield",
+            "hold_lane",
+            "resume"
+          ]
+        },
+        "desired_speed_mps": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lane_center_y_m": {
+          "type": "number"
+        },
+        "max_lateral_deviation_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "yield_to": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "stop_before_x_m": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stop_deadline_s": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "valid_until_s": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "scene_id",
+        "revision",
+        "behavior",
+        "desired_speed_mps",
+        "lane_center_y_m",
+        "max_lateral_deviation_m",
+        "yield_to",
+        "stop_before_x_m",
+        "stop_deadline_s",
+        "valid_until_s"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "behavior": {
+                "const": "stop_yield"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "stop_before_x_m": {
+                "type": "number"
+              },
+              "stop_deadline_s": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "stop_before_x_m": {
+                "type": "null"
+              },
+              "stop_deadline_s": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "occupancy_interval": {
+      "type": "object",
+      "properties": {
+        "start_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "bounds": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+        }
+      },
+      "required": [
+        "start_s",
+        "end_s",
+        "bounds"
+      ],
+      "additionalProperties": false
+    },
+    "object": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_frame_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "position": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/point"
+        },
+        "velocity_mps": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        },
+        "position_uncertainty_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "occupancy_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/occupancy_interval"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "evidence_frame_ids",
+        "position",
+        "velocity_mps",
+        "position_uncertainty_m",
+        "occupancy_intervals"
+      ],
+      "additionalProperties": false
+    },
+    "model_hypotheses": {
+      "type": "object",
+      "properties": {
+        "coordinate_frame": {
+          "const": "ego_at_reference"
+        },
+        "observed_at_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "road_bounds": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+        },
+        "road_uncertainty_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "road_evidence_frame_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/object"
+          },
+          "minItems": 0
+        },
+        "unknown_regions": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "coordinate_frame",
+        "observed_at_s",
+        "road_bounds",
+        "road_uncertainty_m",
+        "road_evidence_frame_ids",
+        "objects",
+        "unknown_regions"
+      ],
+      "additionalProperties": false
+    },
+    "scene": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/metadata"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/frame"
+          },
+          "minItems": 1
+        },
+        "ego": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/ego"
+        },
+        "vehicle": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/vehicle"
+        },
+        "road_bounds": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+        },
+        "road_uncertainty_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "road_evidence_frame_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/object"
+          },
+          "minItems": 0
+        },
+        "unknown_regions": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+          },
+          "minItems": 0
+        },
+        "valid_until_s": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "metadata",
+        "observations",
+        "ego",
+        "vehicle",
+        "road_bounds",
+        "road_uncertainty_m",
+        "road_evidence_frame_ids",
+        "objects",
+        "unknown_regions",
+        "valid_until_s"
+      ],
+      "additionalProperties": false
+    },
+    "corridor_cell": {
+      "type": "object",
+      "properties": {
+        "start_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "allowed_rectangles": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/rect"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "start_s",
+        "end_s",
+        "allowed_rectangles"
+      ],
+      "additionalProperties": false
+    },
+    "corridor": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/metadata"
+        },
+        "safety_margin_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/corridor_cell"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "metadata",
+        "safety_margin_m",
+        "cells"
+      ],
+      "additionalProperties": false
+    },
+    "trajectory_point": {
+      "type": "object",
+      "properties": {
+        "time_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "x_m": {
+          "type": "number"
+        },
+        "y_m": {
+          "type": "number"
+        },
+        "yaw_rad": {
+          "type": "number"
+        },
+        "speed_mps": {
+          "type": "number",
+          "minimum": 0
+        },
+        "acceleration_mps2": {
+          "type": "number"
+        },
+        "curvature_per_m": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "time_s",
+        "x_m",
+        "y_m",
+        "yaw_rad",
+        "speed_mps",
+        "acceleration_mps2",
+        "curvature_per_m"
+      ],
+      "additionalProperties": false
+    },
+    "trajectory": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/metadata"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/trajectory_point"
+          },
+          "minItems": 2
+        },
+        "solver": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "const": "straight_longitudinal_candidate_search"
+            },
+            "candidate_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "objective": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "candidate_count",
+            "objective"
+          ],
+          "additionalProperties": false
+        },
+        "requested_prefix_s": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "metadata",
+        "points",
+        "solver",
+        "requested_prefix_s"
+      ],
+      "additionalProperties": false
+    },
+    "violation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "object_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "time_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "position": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/point"
+        },
+        "measured": {
+          "type": "number"
+        },
+        "required": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repair_request": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "code",
+        "object_id",
+        "time_s",
+        "position",
+        "measured",
+        "required",
+        "unit",
+        "message",
+        "repair_request"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/metadata"
+        },
+        "verdict": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/violation"
+          },
+          "minItems": 0
+        },
+        "minimum_clearance_m": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "checked_until_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "released_prefix_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "claim": {
+          "const": "conditional_on_supplied_scene_and_bounds"
+        }
+      },
+      "required": [
+        "metadata",
+        "verdict",
+        "violations",
+        "minimum_clearance_m",
+        "checked_until_s",
+        "released_prefix_s",
+        "claim"
+      ],
+      "additionalProperties": false
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "details": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "details"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$ref": "#/definitions/scene"
+}

@@ -1,0 +1,338 @@
+{
+  "kind": "request",
+  "tool": "T1",
+  "request_id": "ped-001-resume-t1",
+  "payload": {
+    "metadata": {
+      "schema_version": "1.0.0",
+      "scene_id": "pedestrian_crossing_001",
+      "revision": 2,
+      "reference_time_s": 104.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "data_origin": "synthetic_fixture",
+      "model_id": "synthetic-not-a-model-call",
+      "calibration_id": "fixture-metric-native-no-projection"
+    },
+    "observations": [
+      {
+        "id": "front_104",
+        "camera_id": "front",
+        "capture_time_s": 104.0,
+        "image_uri": "fixture://front_104"
+      }
+    ],
+    "ego": {
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "yaw_rad": 0.0,
+      "speed_mps": 0.0
+    },
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "max_speed_mps": 12.0,
+      "max_brake_mps2": 3.0,
+      "max_accel_mps2": 2.0,
+      "max_curvature_per_m": 0.2
+    },
+    "decision": {
+      "scene_id": "pedestrian_crossing_001",
+      "revision": 2,
+      "behavior": "resume",
+      "desired_speed_mps": 3.0,
+      "lane_center_y_m": 0.0,
+      "max_lateral_deviation_m": 0.2,
+      "yield_to": [],
+      "stop_before_x_m": null,
+      "stop_deadline_s": null,
+      "valid_until_s": 109.0
+    },
+    "model_hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "observed_at_s": 104.0,
+      "road_bounds": {
+        "xmin_m": -17,
+        "xmax_m": 28,
+        "ymin_m": -2,
+        "ymax_m": 2
+      },
+      "road_uncertainty_m": 0.1,
+      "road_evidence_frame_ids": [
+        "front_104"
+      ],
+      "objects": [
+        {
+          "id": "pedestrian_1",
+          "evidence_frame_ids": [
+            "front_104"
+          ],
+          "position": {
+            "x_m": 6.0,
+            "y_m": 3.0
+          },
+          "velocity_mps": {
+            "x": 0.0,
+            "y": 1.5
+          },
+          "position_uncertainty_m": 0.2,
+          "occupancy_intervals": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 2.65,
+                "ymax_m": 3.65
+              }
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 2.9499999999999997,
+                "ymax_m": 3.95
+              }
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 3.25,
+                "ymax_m": 4.25
+              }
+            },
+            {
+              "start_s": 0.6,
+              "end_s": 0.8,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 3.55,
+                "ymax_m": 4.55
+              }
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 3.85,
+                "ymax_m": 4.85
+              }
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 4.15,
+                "ymax_m": 5.1499999999999995
+              }
+            },
+            {
+              "start_s": 1.2,
+              "end_s": 1.4,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 4.45,
+                "ymax_m": 5.449999999999999
+              }
+            },
+            {
+              "start_s": 1.4,
+              "end_s": 1.6,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 4.75,
+                "ymax_m": 5.75
+              }
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 5.050000000000001,
+                "ymax_m": 6.05
+              }
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 5.3500000000000005,
+                "ymax_m": 6.35
+              }
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 2.2,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 5.65,
+                "ymax_m": 6.65
+              }
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 5.950000000000001,
+                "ymax_m": 6.949999999999999
+              }
+            },
+            {
+              "start_s": 2.4,
+              "end_s": 2.6,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 6.25,
+                "ymax_m": 7.25
+              }
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 6.550000000000001,
+                "ymax_m": 7.549999999999999
+              }
+            },
+            {
+              "start_s": 2.8,
+              "end_s": 3.0,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 6.85,
+                "ymax_m": 7.85
+              }
+            },
+            {
+              "start_s": 3.0,
+              "end_s": 3.2,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 7.15,
+                "ymax_m": 8.15
+              }
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 7.450000000000001,
+                "ymax_m": 8.45
+              }
+            },
+            {
+              "start_s": 3.4,
+              "end_s": 3.6,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 7.75,
+                "ymax_m": 8.75
+              }
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 8.05,
+                "ymax_m": 9.049999999999999
+              }
+            },
+            {
+              "start_s": 3.8,
+              "end_s": 4.0,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 8.35,
+                "ymax_m": 9.35
+              }
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 4.2,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 8.65,
+                "ymax_m": 9.65
+              }
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 8.950000000000001,
+                "ymax_m": 9.950000000000001
+              }
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 9.250000000000002,
+                "ymax_m": 10.249999999999998
+              }
+            },
+            {
+              "start_s": 4.6,
+              "end_s": 4.8,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 9.549999999999999,
+                "ymax_m": 10.549999999999999
+              }
+            },
+            {
+              "start_s": 4.8,
+              "end_s": 5.0,
+              "bounds": {
+                "xmin_m": 5.6,
+                "xmax_m": 6.4,
+                "ymin_m": 9.85,
+                "ymax_m": 10.85
+              }
+            }
+          ]
+        }
+      ],
+      "unknown_regions": []
+    }
+  }
+}

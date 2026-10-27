@@ -1,0 +1,39 @@
+{
+  "scenario": "synthetic pedestrian crossing; straight-road profile",
+  "normal": {
+    "verdict": "PASS",
+    "stop_x_m": 12.0,
+    "released_prefix_s": 0.2,
+    "minimum_clearance_m": 3.2709937327974226
+  },
+  "injected_fault": {
+    "verdict": "FAIL",
+    "codes": [
+      "CORRIDOR_BOUNDARY",
+      "OBSTACLE_CLEARANCE",
+      "STOP_BOUNDARY",
+      "STOP_DEADLINE"
+    ],
+    "released_prefix_s": 0.0
+  },
+  "scripted_agent_revision": {
+    "verdict": "PASS",
+    "stop_x_m": 9.0,
+    "revision": 1
+  },
+  "next_observation_resume": {
+    "verdict": "PASS",
+    "reference_time_s": 104.0,
+    "revision": 2,
+    "forward_distance_m": 6.25,
+    "final_speed_mps": 2.5,
+    "released_prefix_s": 0.2,
+    "source": "scripted fresh observation after normal stopping branch"
+  },
+  "limitations": [
+    "No live model call, images or vehicle execution.",
+    "No G2 metric-grounding validation.",
+    "New observation and Agent decisions are synthetic test doubles, not inferred from images.",
+    "No general nonlinear solver, curved-road support or safety certification."
+  ]
+}

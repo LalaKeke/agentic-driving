@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/T3.schema.json",
+  "title": "T3 request and response contract",
+  "definitions": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T3"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "request"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/scene"
+            },
+            "decision": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/decision"
+            },
+            "corridor": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/corridor"
+            }
+          },
+          "required": [
+            "scene",
+            "decision",
+            "corridor"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "success_response": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T3"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "response"
+        },
+        "status": {
+          "const": "ok"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "trajectory": {
+              "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/trajectory"
+            }
+          },
+          "required": [
+            "trajectory"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "status",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "error_response": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "const": "T3"
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "response"
+        },
+        "status": {
+          "const": "error"
+        },
+        "error": {
+          "$ref": "https://driving-v1.local/schemas/shared_scene.schema.json#/definitions/error"
+        }
+      },
+      "required": [
+        "tool",
+        "request_id",
+        "kind",
+        "status",
+        "error"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/definitions/request"
+    },
+    {
+      "$ref": "#/definitions/success_response"
+    },
+    {
+      "$ref": "#/definitions/error_response"
+    }
+  ]
+}
