@@ -29,5 +29,5 @@ jobs:
         run: python run_demo.py
       - name: Check HPC entrypoints
         run: |
-          bash -n ../hpc/bootstrap_env.sh ../hpc/submit_smoke.sh ../hpc/smoke.sbatch
-          python -m py_compile ../hpc/run_smoke.py
+          bash -n ../hpc/bootstrap_env.sh ../hpc/submit_smoke.sh ../hpc/smoke.sbatch ../hpc/use_proxy.sh ../hpc/proxy_probe.sbatch
+          python -m py_compile ../hpc/run_smoke.py ../hpc/probe_proxy.py

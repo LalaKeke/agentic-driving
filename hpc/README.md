@@ -68,3 +68,5 @@ bash hpc/submit_smoke.sh
 若仍无法联网，传入一个新命名的 bundle，然后在已清洁的仓库执行 `git fetch /完整路径/新bundle main`、`git merge --ff-only FETCH_HEAD`。不要在服务器仓库中配置 Windows 的 `127.0.0.1:7890` 代理。
 
 下一阶段接入真实基座模型时，API 密钥只使用本机权限受限的环境配置，不能提交 Git；另行确认计算节点的网络连通性。现有人工测试通过不等于 G2 验证通过。
+
+本地代理经 SSH 转发的具体流程见 [NETWORK.md](NETWORK.md)，包含登录节点转发、计算节点跳转与不携带密钥的 Slurm 网络探针。
