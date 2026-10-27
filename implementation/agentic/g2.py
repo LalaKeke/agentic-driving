@@ -8,6 +8,8 @@ from .contracts import need,validate,digest,model_contract
 from .geometry import polygon
 
 def evaluate(records,truth,config):
+    output_contracts={r['provenance'].get('agent_output_contract','2.0.0') for r in records}
+    need(len(output_contracts)<=1,'G2_MIXED_CONTRACT','Evaluate model output contracts separately; do not pool protocols')
     need('distance_edges_m' in config and sorted(config['distance_edges_m'])==config['distance_edges_m'],'G2_CONFIG','Provide sorted distance bin edges; no built-in acceptance thresholds')
     need(config.get('evaluation_horizon_s',0)>0,'G2_CONFIG','Provide explicit positive evaluation_horizon_s')
     rows=[];scene_rows=[];repeats=defaultdict(list)
@@ -72,4 +74,4 @@ def evaluate(records,truth,config):
     stability=[]
     for key,positions in repeats.items():
         stability.append(dict(sample_id=key[0],actor_id=key[1],calls=len(positions),position_std_m=[statistics.pstdev(p[j] for p in positions) if len(positions)>1 else None for j in (0,1)]))
-    return dict(metric_version='g2_availability_v2',status='measured_no_acceptance_claim',scene_metrics=scene_rows,metrics=summary(rows),strata={k:summary(v) for k,v in groups.items()},rows=rows,repeated_call_stability=stability,experiment_config=config,thresholds_applied=False,note='Raw hypothesis coverage; not calibrated safety probability. Thresholds require reviewed experiment criteria.')
+    return dict(metric_version='g2_availability_v2',agent_output_contract=next(iter(output_contracts),None),status='measured_no_acceptance_claim',scene_metrics=scene_rows,metrics=summary(rows),strata={k:summary(v) for k,v in groups.items()},rows=rows,repeated_call_stability=stability,experiment_config=config,thresholds_applied=False,note='Raw hypothesis coverage; not calibrated safety probability. Thresholds require reviewed experiment criteria.')

@@ -36,3 +36,9 @@ class G2AvailabilityTests(unittest.TestCase):
         record['provenance'].update(agent_output_contract='2.1.0',output_digest=digest(record['output']))
         row=evaluate([record],truth,config)['rows'][0]
         self.assertEqual(row['occupancy_status'],'unknown_occupancy');self.assertIsNone(row['minimum_interval_area_coverage']);self.assertEqual(row['supplied_time_intervals'],0)
+
+    def test_protocol_versions_cannot_be_silently_pooled(self):
+        record,truth,config=self.inputs();other=deepcopy(record);other['record_id']='r2';other['provenance']['agent_output_contract']='2.1.0'
+        from agentic.contracts import Failure
+        with self.assertRaises(Failure) as ctx:evaluate([record,other],truth,config)
+        self.assertEqual(ctx.exception.record['code'],'G2_MIXED_CONTRACT')
