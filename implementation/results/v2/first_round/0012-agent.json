@@ -1,0 +1,741 @@
+{
+  "output": {
+    "decision": {
+      "scene_id": "artificial_pedestrian",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -8,
+          -3
+        ],
+        [
+          45,
+          -3
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          -8,
+          3
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 10.0,
+        "deadline_s": 4.0
+      },
+      "priority": 1,
+      "valid_until_s": 105.0,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road",
+        "stop",
+        "yield"
+      ],
+      "preferences": {
+        "speed_weight": 1.0,
+        "acceleration_weight": 1.0,
+        "steering_weight": 1.0,
+        "smoothness_weight": 0.1
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "t100.000",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -10,
+            -6
+          ],
+          [
+            50,
+            -6
+          ],
+          [
+            50,
+            6
+          ],
+          [
+            -10,
+            6
+          ]
+        ],
+        "uncertainty_m": 0.1,
+        "frame_ids": [
+          "fixture100.000"
+        ],
+        "time_ids": [
+          "t100.000"
+        ]
+      },
+      "objects": [
+        {
+          "id": "pedestrian",
+          "position_m": [
+            18.0,
+            -3.0
+          ],
+          "velocity_mps": [
+            0.0,
+            2.5
+          ],
+          "uncertainty_m": 0.2,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -2.0
+                  ],
+                  [
+                    17.6,
+                    -2.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.0
+                  ],
+                  [
+                    18.4,
+                    -3.0
+                  ],
+                  [
+                    18.4,
+                    -1.5
+                  ],
+                  [
+                    17.6,
+                    -1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -2.5
+                  ],
+                  [
+                    18.4,
+                    -2.5
+                  ],
+                  [
+                    18.4,
+                    -0.9999999999999998
+                  ],
+                  [
+                    17.6,
+                    -0.9999999999999998
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -1.9999999999999998
+                  ],
+                  [
+                    18.4,
+                    -1.9999999999999998
+                  ],
+                  [
+                    18.4,
+                    -0.4999999999999999
+                  ],
+                  [
+                    17.6,
+                    -0.4999999999999999
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -1.5
+                  ],
+                  [
+                    18.4,
+                    -1.5
+                  ],
+                  [
+                    18.4,
+                    -1.1102230246251565e-16
+                  ],
+                  [
+                    17.6,
+                    -1.1102230246251565e-16
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -1.0
+                  ],
+                  [
+                    18.4,
+                    -1.0
+                  ],
+                  [
+                    18.4,
+                    0.5000000000000004
+                  ],
+                  [
+                    17.6,
+                    0.5000000000000004
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -0.49999999999999956
+                  ],
+                  [
+                    18.4,
+                    -0.49999999999999956
+                  ],
+                  [
+                    18.4,
+                    1.0000000000000004
+                  ],
+                  [
+                    17.6,
+                    1.0000000000000004
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    4.440892098500626e-16
+                  ],
+                  [
+                    18.4,
+                    4.440892098500626e-16
+                  ],
+                  [
+                    18.4,
+                    1.5000000000000004
+                  ],
+                  [
+                    17.6,
+                    1.5000000000000004
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    0.5
+                  ],
+                  [
+                    18.4,
+                    0.5
+                  ],
+                  [
+                    18.4,
+                    2.0
+                  ],
+                  [
+                    17.6,
+                    2.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    1.0
+                  ],
+                  [
+                    18.4,
+                    1.0
+                  ],
+                  [
+                    18.4,
+                    2.5
+                  ],
+                  [
+                    17.6,
+                    2.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 2.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    1.5
+                  ],
+                  [
+                    18.4,
+                    1.5
+                  ],
+                  [
+                    18.4,
+                    3.0000000000000004
+                  ],
+                  [
+                    17.6,
+                    3.0000000000000004
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    2.0
+                  ],
+                  [
+                    18.4,
+                    2.0
+                  ],
+                  [
+                    18.4,
+                    3.5000000000000004
+                  ],
+                  [
+                    17.6,
+                    3.5000000000000004
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.4000000000000004,
+              "end_s": 2.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    2.500000000000001
+                  ],
+                  [
+                    18.4,
+                    2.500000000000001
+                  ],
+                  [
+                    18.4,
+                    4.0
+                  ],
+                  [
+                    17.6,
+                    4.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    3.0
+                  ],
+                  [
+                    18.4,
+                    3.0
+                  ],
+                  [
+                    18.4,
+                    4.5
+                  ],
+                  [
+                    17.6,
+                    4.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.8000000000000003,
+              "end_s": 3.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    3.500000000000001
+                  ],
+                  [
+                    18.4,
+                    3.500000000000001
+                  ],
+                  [
+                    18.4,
+                    5.0
+                  ],
+                  [
+                    17.6,
+                    5.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.0,
+              "end_s": 3.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    4.0
+                  ],
+                  [
+                    18.4,
+                    4.0
+                  ],
+                  [
+                    18.4,
+                    5.5
+                  ],
+                  [
+                    17.6,
+                    5.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    4.5
+                  ],
+                  [
+                    18.4,
+                    4.5
+                  ],
+                  [
+                    18.4,
+                    6.0
+                  ],
+                  [
+                    17.6,
+                    6.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.4000000000000004,
+              "end_s": 3.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    5.0
+                  ],
+                  [
+                    18.4,
+                    5.0
+                  ],
+                  [
+                    18.4,
+                    6.499999999999999
+                  ],
+                  [
+                    17.6,
+                    6.499999999999999
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    5.5
+                  ],
+                  [
+                    18.4,
+                    5.5
+                  ],
+                  [
+                    18.4,
+                    7.0
+                  ],
+                  [
+                    17.6,
+                    7.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.8000000000000003,
+              "end_s": 4.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    6.0
+                  ],
+                  [
+                    18.4,
+                    6.0
+                  ],
+                  [
+                    18.4,
+                    7.499999999999999
+                  ],
+                  [
+                    17.6,
+                    7.499999999999999
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 4.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    6.5
+                  ],
+                  [
+                    18.4,
+                    6.5
+                  ],
+                  [
+                    18.4,
+                    8.0
+                  ],
+                  [
+                    17.6,
+                    8.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    7.0
+                  ],
+                  [
+                    18.4,
+                    7.0
+                  ],
+                  [
+                    18.4,
+                    8.5
+                  ],
+                  [
+                    17.6,
+                    8.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6000000000000005,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    7.5
+                  ],
+                  [
+                    18.4,
+                    7.5
+                  ],
+                  [
+                    18.4,
+                    9.0
+                  ],
+                  [
+                    17.6,
+                    9.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.6000000000000005,
+              "end_s": 4.800000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    8.000000000000002
+                  ],
+                  [
+                    18.4,
+                    8.000000000000002
+                  ],
+                  [
+                    18.4,
+                    9.500000000000002
+                  ],
+                  [
+                    17.6,
+                    9.500000000000002
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.800000000000001,
+              "end_s": 5.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    8.500000000000002
+                  ],
+                  [
+                    18.4,
+                    8.500000000000002
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "fixture100.000"
+          ],
+          "time_ids": [
+            "t100.000"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "Artificial fixture; uncertainty is not calibrated"
+    }
+  },
+  "provenance": {
+    "source": "synthetic_fixture",
+    "model_id": "scripted-not-a-model-call",
+    "prompt_version": "fixture_v2",
+    "output_digest": "3be6f12f606d474689309b0ee70399af591a7f83613eace3108a09827566ecc3"
+  }
+}

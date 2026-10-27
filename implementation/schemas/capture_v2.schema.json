@@ -1,0 +1,228 @@
+{
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "const": "convex_disk_bicycle_v2"
+        },
+        "schema_version": {
+          "const": "2.0.0"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reference_time_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_time_s": {
+          "type": "number"
+        },
+        "coordinate_frame": {
+          "const": "ego_at_reference"
+        },
+        "horizon_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "step_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "history_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "valid_until_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "profile",
+        "schema_version",
+        "scene_id",
+        "revision",
+        "reference_time_id",
+        "reference_time_s",
+        "coordinate_frame",
+        "horizon_s",
+        "step_s",
+        "history_s",
+        "valid_until_s"
+      ],
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capture_time_s": {
+            "type": "number"
+          },
+          "capture_utc": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "camera_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "time_id",
+          "capture_time_s",
+          "capture_utc",
+          "camera_id",
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "ego": {
+      "type": "object",
+      "properties": {
+        "x_m": {
+          "type": "number"
+        },
+        "y_m": {
+          "type": "number"
+        },
+        "yaw_rad": {
+          "type": "number"
+        },
+        "speed_mps": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "x_m",
+        "y_m",
+        "yaw_rad",
+        "speed_mps"
+      ],
+      "additionalProperties": false
+    },
+    "vehicle": {
+      "type": "object",
+      "properties": {
+        "front_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rear_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "half_width_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "center_to_rear_axle_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "wheelbase_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_accel_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_brake_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_steer_rad": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 0.7
+        },
+        "max_curvature_per_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "front_m",
+        "rear_m",
+        "half_width_m",
+        "center_to_rear_axle_m",
+        "wheelbase_m",
+        "max_speed_mps",
+        "max_accel_mps2",
+        "max_brake_mps2",
+        "max_steer_rad",
+        "max_curvature_per_m"
+      ],
+      "additionalProperties": false
+    },
+    "navigation_intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "margin_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "prefix_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "margin_m",
+        "prefix_s"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "metadata",
+    "observations",
+    "ego",
+    "vehicle",
+    "navigation_intent",
+    "safety"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/capture_v2.schema.json"
+}

@@ -1,0 +1,22 @@
+{
+  "missing_api_configuration": {
+    "exit_code": 2,
+    "stdout": "{\"code\": \"API_CONFIGURATION\", \"message\": \"Set HTTPS DRIVING_API_BASE, DRIVING_MODEL and DRIVING_API_KEY\", \"category\": \"interface_error\", \"details\": {}, \"repair_request\": \"Revise decision or evidence-backed hypotheses; never relax safety silently.\"}\n",
+    "stderr": ""
+  },
+  "reject_synthetic_g2": {
+    "exit_code": 2,
+    "stdout": "{\"code\": \"G2_REAL_ONLY\", \"message\": \"G2 requires actual model output with image hashes\", \"category\": \"interface_error\", \"details\": {}, \"repair_request\": \"Revise decision or evidence-backed hypotheses; never relax safety silently.\"}\n",
+    "stderr": ""
+  },
+  "file_replay": {
+    "exit_code": 0,
+    "stdout": "../runs/20261027T105942Z-acae0c23\n",
+    "stderr": ""
+  },
+  "legacy_demo_in_isolated_copy": {
+    "exit_code": 0,
+    "stdout": "{\n  \"scenario\": \"synthetic pedestrian crossing; straight-road profile\",\n  \"normal\": {\n    \"verdict\": \"PASS\",\n    \"stop_x_m\": 12.0,\n    \"released_prefix_s\": 0.2,\n    \"minimum_clearance_m\": 3.2709937327974226\n  },\n  \"injected_fault\": {\n    \"verdict\": \"FAIL\",\n    \"codes\": [\n      \"CORRIDOR_BOUNDARY\",\n      \"OBSTACLE_CLEARANCE\",\n      \"STOP_BOUNDARY\",\n      \"STOP_DEADLINE\"\n    ],\n    \"released_prefix_s\": 0.0\n  },\n  \"scripted_agent_revision\": {\n    \"verdict\": \"PASS\",\n    \"stop_x_m\": 9.0,\n    \"revision\": 1\n  },\n  \"next_observation_resume\": {\n    \"verdict\": \"PASS\",\n    \"reference_time_s\": 104.0,\n    \"revision\": 2,\n    \"forward_distance_m\": 6.25,\n    \"final_speed_mps\": 2.5,\n    \"released_prefix_s\": 0.2,\n    \"source\": \"scripted fresh observation after normal stopping branch\"\n  },\n  \"limitations\": [\n    \"No live model call, images or vehicle execution.\",\n    \"No G2 metric-grounding validation.\",\n    \"New observation and Agent decisions are synthetic test doubles, not inferred from images.\",\n    \"No general nonlinear solver, curved-road support or safety certification.\"\n  ]\n}\n",
+    "stderr": ""
+  }
+}
