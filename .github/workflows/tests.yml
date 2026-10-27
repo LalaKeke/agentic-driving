@@ -27,3 +27,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Run synthetic pedestrian crossing
         run: python run_demo.py
+      - name: Check HPC entrypoints
+        run: |
+          bash -n ../hpc/bootstrap_env.sh ../hpc/submit_smoke.sh ../hpc/smoke.sbatch
+          python -m py_compile ../hpc/run_smoke.py

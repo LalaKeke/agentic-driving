@@ -20,6 +20,7 @@ implementation/       四工具接口、共享场景格式、参考代码、样�
 docs/reports/         A4 汇报方案
 paper/                研究参考论文
 .github/workflows/    GitHub Actions 自动测试
+hpc/                  HPC 环境安装、Slurm 提交和结果记录
 ```
 
 `paper_audit/` 是本地论文审阅过程生成的中间文件，已从 Git 跟踪范围排除。原始研究草稿保留在仓库根目录。
@@ -36,6 +37,8 @@ python run_demo.py
 ```
 
 详细字段、四份工具接口和结果日志见 [实现包说明](implementation/README.md)。完整案例覆盖停车让行、故障拒绝、反馈重规划与新观测起步。
+
+服务器部署与运行见 [HPC 使用说明](hpc/README.md)。登录节点仅准备环境，测试通过 Slurm CPU 作业执行。
 
 ## 当前阶段
 
