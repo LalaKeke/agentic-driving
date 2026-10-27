@@ -45,10 +45,13 @@ def evaluate(records,truth,config):
             o=actors.get(association.get(actor['id']));dist=math.hypot(*actor['position_m']);edges=config['distance_edges_m'];bucket=sum(dist>=x for x in edges)
             position_error=speed_error=coverage=None
             expected_intervals=sum(x['start_s']<config['evaluation_horizon_s'] for x in actor['occupancy'])
-            covered_intervals=0;available_intervals=0;coverage_status='unassociated';cover=[]
+            covered_intervals=0;available_intervals=0;coverage_status='unassociated';cover=[];area_ratios=[]
+            explicitly_unsupported=actor['id'] in truth.get('unsupported_occupancy',{}).get(record.get('record_id'),[])
+            position_within_extent=None
             if o:
                 if o['position_m'] is not None:
                     position_error=math.dist(o['position_m'],actor['position_m']);repeats[(key,actor['id'])].append(o['position_m'])
+                if position_error is not None and o['uncertainty_m'] is not None:position_within_extent=position_error<=o['uncertainty_m']+1e-9
                 if o['velocity_mps'] is not None and actor['velocity_mps'] is not None:speed_error=math.dist(o['velocity_mps'],actor['velocity_mps'])
                 cover=[]
                 for interval in actor['occupancy']:
@@ -59,10 +62,10 @@ def evaluate(records,truth,config):
                     if o['uncertainty_m'] is None:continue
                     available_intervals+=1
                     pred_shape=unary_union([polygon(p) for x in pred for p in x['alternatives_m']]).buffer(o['uncertainty_m'])
-                    actual=polygon(interval['polygon_m']);cover.append(pred_shape.intersection(actual).area/actual.area)
-                coverage=min(cover) if cover and available_intervals==expected_intervals else None
-                coverage_status='unknown_occupancy' if o['occupancy'] is None else 'complete' if available_intervals==expected_intervals else 'unknown_uncertainty' if o['uncertainty_m'] is None else 'partial_or_missing_time_coverage'
-            rows.append(dict(sample_id=key,record_id=record.get('record_id'),actor_id=actor['id'],distance_m=dist,distance_bucket=bucket,occlusion=actor['occlusion'],scene_type=gt['scene_type'],matched=o is not None,position_error_m=position_error,velocity_error_mps=speed_error,road_hausdorff_m=road_error,minimum_interval_area_coverage=coverage,occupancy_status=coverage_status,expected_intervals=expected_intervals,supplied_time_intervals=covered_intervals,evaluable_intervals=available_intervals,minimum_available_interval_area_coverage=min(cover) if o and cover else None))
+                    actual=polygon(interval['polygon_m']);cover.append(pred_shape.intersection(actual).area/actual.area);area_ratios.append(pred_shape.area/actual.area)
+                coverage=min(cover) if cover and available_intervals==expected_intervals and not explicitly_unsupported else None
+                coverage_status='model_disclaimed_placeholder' if explicitly_unsupported else 'unknown_occupancy' if o['occupancy'] is None else 'complete' if available_intervals==expected_intervals else 'unknown_uncertainty' if o['uncertainty_m'] is None else 'partial_or_missing_time_coverage'
+            rows.append(dict(sample_id=key,record_id=record.get('record_id'),actor_id=actor['id'],distance_m=dist,distance_bucket=bucket,occlusion=actor['occlusion'],scene_type=gt['scene_type'],matched=o is not None,position_error_m=position_error,velocity_error_mps=speed_error,road_hausdorff_m=road_error,minimum_interval_area_coverage=coverage,occupancy_status=coverage_status,expected_intervals=expected_intervals,supplied_time_intervals=covered_intervals,evaluable_intervals=0 if explicitly_unsupported else available_intervals,numerically_defined_intervals=available_intervals,raw_minimum_interval_area_overlap=min(cover) if cover else None,mean_raw_envelope_area_ratio=statistics.mean(area_ratios) if area_ratios else None,position_within_reported_extent=position_within_extent,minimum_available_interval_area_coverage=min(cover) if cover and not explicitly_unsupported else None))
     def summary(items):
         result={'count':len(items),'matched_count':sum(x['matched'] for x in items)}
         for metric in ['position_error_m','velocity_error_mps','road_hausdorff_m','minimum_interval_area_coverage']:

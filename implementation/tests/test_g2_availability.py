@@ -42,3 +42,14 @@ class G2AvailabilityTests(unittest.TestCase):
         from agentic.contracts import Failure
         with self.assertRaises(Failure) as ctx:evaluate([record,other],truth,config)
         self.assertEqual(ctx.exception.record['code'],'G2_MIXED_CONTRACT')
+
+    def test_disclaimed_placeholder_keeps_raw_overlap_but_not_forecast_score(self):
+        record,truth,config=self.inputs();truth['unsupported_occupancy']={'r1':['truth_actor']}
+        row=evaluate([record],truth,config)['rows'][0]
+        self.assertIsNone(row['minimum_interval_area_coverage']);self.assertEqual(row['evaluable_intervals'],0)
+        self.assertEqual(row['occupancy_status'],'model_disclaimed_placeholder');self.assertAlmostEqual(row['raw_minimum_interval_area_overlap'],.8)
+        self.assertGreater(row['mean_raw_envelope_area_ratio'],0)
+    def test_reported_position_extent_is_checked_without_probability_claim(self):
+        record,truth,config=self.inputs();truth['samples']['unit']['objects'][0]['position_m']=[17.,-3.]
+        row=evaluate([record],truth,config)['rows'][0]
+        self.assertFalse(row['position_within_reported_extent'])
