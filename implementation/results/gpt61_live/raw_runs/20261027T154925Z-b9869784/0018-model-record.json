@@ -1,0 +1,429 @@
+{
+  "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+  "output": {
+    "decision": {
+      "scene_id": "nusc_c537fef0b4b241df92f44daa976fe5b3",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -0.1,
+          -0.1
+        ],
+        [
+          0.1,
+          -0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          -0.1,
+          0.1
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "crossing_van",
+        "crossing_dump_truck",
+        "crossing_sedan",
+        "cyclist"
+      ],
+      "stop": {
+        "center_x_max_m": 0,
+        "deadline_s": 0
+      },
+      "priority": 100,
+      "valid_until_s": 1535657123.6124039,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 0,
+        "acceleration_weight": 1,
+        "steering_weight": 1,
+        "smoothness_weight": 1
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1535657118612404",
+      "units": "m_s_rad",
+      "scale_basis": "calibrated_ground_plane",
+      "road": null,
+      "objects": [
+        {
+          "id": "crossing_van",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    8,
+                    -30
+                  ],
+                  [
+                    16,
+                    -30
+                  ],
+                  [
+                    16,
+                    15
+                  ],
+                  [
+                    8,
+                    15
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "76542abab799469cbfb7b293c83192aa",
+            "0a7aef80edbc4854bcd781a3becb943c",
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657117612404",
+            "nusc_us_1535657118112404",
+            "nusc_us_1535657118612404"
+          ]
+        },
+        {
+          "id": "crossing_dump_truck",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    15,
+                    -12
+                  ],
+                  [
+                    24,
+                    -12
+                  ],
+                  [
+                    24,
+                    45
+                  ],
+                  [
+                    15,
+                    45
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "3cd43f6baa4e444999eef6cb1c89416a",
+            "76542abab799469cbfb7b293c83192aa",
+            "0a7aef80edbc4854bcd781a3becb943c",
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657117112404",
+            "nusc_us_1535657117612404",
+            "nusc_us_1535657118112404",
+            "nusc_us_1535657118612404"
+          ]
+        },
+        {
+          "id": "crossing_sedan",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    15,
+                    12
+                  ],
+                  [
+                    24,
+                    12
+                  ],
+                  [
+                    24,
+                    65
+                  ],
+                  [
+                    15,
+                    65
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "e30d5ecf0fd6418089112b4e4811737c",
+            "76542abab799469cbfb7b293c83192aa",
+            "5aec7d61c787414c879acd56a3b67a88",
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657116612404",
+            "nusc_us_1535657117612404",
+            "nusc_us_1535657118604799",
+            "nusc_us_1535657118612404"
+          ]
+        },
+        {
+          "id": "cyclist",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    10,
+                    -40
+                  ],
+                  [
+                    27,
+                    -40
+                  ],
+                  [
+                    27,
+                    15
+                  ],
+                  [
+                    10,
+                    15
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "6e2f6101c888435caab0496ba43dea39"
+          ],
+          "time_ids": [
+            "nusc_us_1535657118520482"
+          ]
+        },
+        {
+          "id": "bus_ahead",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -3
+                  ],
+                  [
+                    100,
+                    -3
+                  ],
+                  [
+                    100,
+                    12
+                  ],
+                  [
+                    20,
+                    12
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "e30d5ecf0fd6418089112b4e4811737c",
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657116612404",
+            "nusc_us_1535657118612404"
+          ]
+        },
+        {
+          "id": "minivan_behind",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -15,
+                    -3
+                  ],
+                  [
+                    -2,
+                    -3
+                  ],
+                  [
+                    -2,
+                    4
+                  ],
+                  [
+                    -15,
+                    4
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "5820521017df4802b5f6fb25706f48db"
+          ],
+          "time_ids": [
+            "nusc_us_1535657118537558"
+          ]
+        },
+        {
+          "id": "delivery_truck_behind",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -35,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    8
+                  ],
+                  [
+                    -35,
+                    8
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "5820521017df4802b5f6fb25706f48db"
+          ],
+          "time_ids": [
+            "nusc_us_1535657118537558"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "stop_required",
+          "state": "active",
+          "frame_ids": [
+            "e30d5ecf0fd6418089112b4e4811737c",
+            "0a7aef80edbc4854bcd781a3becb943c",
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657116612404",
+            "nusc_us_1535657118112404",
+            "nusc_us_1535657118612404"
+          ]
+        },
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "deb67484315f4ba8b56ea8f03ef3d444"
+          ],
+          "time_ids": [
+            "nusc_us_1535657118612404"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Forward-facing signals remain red; ego is stationary. The van crosses left to right and the dump truck and sedan cross right to left. Maintain the current stop. Calibration supports ground-plane reconstruction in principle, but a conservative metric road boundary and whole-interval actor envelopes are not established here. Empty occupancies indicate missing coverage, not absence of actors; collision and road feasibility require further evidence. Side and rear observations precede the reference and their dynamic states are not assumed unchanged."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "979c51105c81a8ecfa23f122c6c191c0ef40e4c20cc0063fb3c226e131fa8e23",
+    "image_sha256": {
+      "e30d5ecf0fd6418089112b4e4811737c": "0764379a278f6a78bc31937db75c7e419997a4318053b4179cb322e3a9d6e266",
+      "3cd43f6baa4e444999eef6cb1c89416a": "5f0559b215cb1c26754ccef0439a5619c96665c65453e561bad3b557e3f8e985",
+      "76542abab799469cbfb7b293c83192aa": "8ed4636b5b5543154bcb12e104171d12f02ff47b4069b600e5d1d09658f5477d",
+      "0a7aef80edbc4854bcd781a3becb943c": "7d667b736c3329733ec8867dc4c17bf9f628d45dc43fecccffb7fcb4fba1078a",
+      "6e2f6101c888435caab0496ba43dea39": "51b5e18b4e66ee325aa8002bf5e73f0061112e38221d71cca0d066c5a8d19a4d",
+      "82f695e6b3ca4a98b1d06b423bb34867": "19ebd9f0d03743baf8f8ebe753cc0e075c1b99a35023c0cb33a33d6a1beaf6bc",
+      "5820521017df4802b5f6fb25706f48db": "0528d72f4caeea7dc137cedc0fc4d070ca9483479a70903c068023c834bdfafa",
+      "0f28c30434a7400d9d212d680831b2d2": "44e25b45371186db6b227f25256f132498438a8b24313b3db1534c0fdd4a62f4",
+      "5aec7d61c787414c879acd56a3b67a88": "47e5d03da054b936aebb8a74c58ecb5952aee50f1be97820131ae6e14a83d9e1",
+      "deb67484315f4ba8b56ea8f03ef3d444": "87c3b033e71d9fa2eeb7af2ce899de5151e0c4368c9324bc82914faef869a9bf"
+    },
+    "prompt_version": "driving_v2",
+    "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+    "attempts": 1,
+    "elapsed_s": 55.47795811481774,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 31802,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1870,
+      "reasoning_output_tokens": 310
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

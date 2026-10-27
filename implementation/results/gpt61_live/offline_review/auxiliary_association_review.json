@@ -1,0 +1,45 @@
+{
+  "reviewer": "assistant_visual_review_not_independent_human_adjudication",
+  "method": "raw images plus offline projected annotation IDs; no nearest-residual matching",
+  "primary_focal_policy": "Preselected focal actors only; ambiguous overlap or grouped bodies are not assigned a point score",
+  "auxiliary_policy": "Exploratory distinctive actors, selected after viewing outputs; not a pre-registered benchmark",
+  "auxiliary_targets": {
+    "ac452a60e8b34a7080c938c904b23057": [
+      "2397a588f42e4195bf7fb0148aa7a3d6"
+    ],
+    "88449a5cb1644a199c1c11f6ac034867": [
+      "c1958768d48640948f6053d04cffd35b"
+    ]
+  },
+  "record_associations": {
+    "20261027T153851Z-7d14c064:0006-model-record.json": {
+      "2397a588f42e4195bf7fb0148aa7a3d6": "pedestrian_trailing"
+    },
+    "20261027T153851Z-7d14c064:0009-agent.json": {
+      "2397a588f42e4195bf7fb0148aa7a3d6": "pedestrian_left"
+    },
+    "20261027T154925Z-b9869784:0006-model-record.json": {
+      "c1958768d48640948f6053d04cffd35b": "lead_mpv"
+    },
+    "20261027T154925Z-b9869784:0009-agent.json": {
+      "c1958768d48640948f6053d04cffd35b": "lead_minivan"
+    }
+  },
+  "exclusions": [
+    {
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "reason": "Two overlapping foreground adults; focal point association left unresolved rather than selecting by numerical proximity"
+    },
+    {
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "reason": "Model groups barriers and excavator; no unique single-body point for the focal construction vehicle"
+    }
+  ],
+  "unsupported_occupancy": {
+    "20261027T154925Z-b9869784:0009-agent.json": [
+      "c1958768d48640948f6053d04cffd35b"
+    ]
+  },
+  "placeholder_review_note": "The original model explicitly calls these five-second envelopes unsupported placeholders and says to reject them. Raw overlap is retained as a size/conservatism diagnostic, not as valid future-prediction coverage.",
+  "model_disclaimer_original": "Stop request is precautionary and is not a certified feasible trajectory. Road and approximate minivan position use supplied calibration with an assumed locally level ground plane; uncertainty extents are conditional hypotheses. The minivan proceeds leftward along the bend, but metric velocity is unresolved. Five-second actor envelopes cannot be justified from these images; the supplied broad envelopes are unsupported placeholders and must be rejected, not treated as verified coverage. Occluded junction approaches and future entrants have unbounded extent. Visible green signals cannot confidently be assigned to the ego slip lane; the visible give-way sign requires yielding."
+}

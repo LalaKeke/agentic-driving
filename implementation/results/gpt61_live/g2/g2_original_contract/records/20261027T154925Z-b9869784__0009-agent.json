@@ -1,0 +1,375 @@
+{
+  "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+  "record_id": "20261027T154925Z-b9869784:0009-agent.json",
+  "output": {
+    "decision": {
+      "scene_id": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          4.3,
+          -0.3
+        ],
+        [
+          5.5,
+          -0.3
+        ],
+        [
+          5.5,
+          0.8
+        ],
+        [
+          4.3,
+          0.8
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "lead_minivan",
+        "right_side_pedestrians",
+        "left_side_pedestrians",
+        "junction_traffic"
+      ],
+      "stop": {
+        "center_x_max_m": 5.5,
+        "deadline_s": 2.2
+      },
+      "priority": 100,
+      "valid_until_s": 1532402940.66246,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 2,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1532402935662460",
+      "units": "m_s_rad",
+      "scale_basis": "calibrated_ground_plane",
+      "road": {
+        "polygon_m": [
+          [
+            -4,
+            -3.5
+          ],
+          [
+            5,
+            -3.5
+          ],
+          [
+            9,
+            -1.8
+          ],
+          [
+            9,
+            4.5
+          ],
+          [
+            -4,
+            3.5
+          ]
+        ],
+        "uncertainty_m": 1,
+        "frame_ids": [
+          "0b2eb9c1cd1b45f0b1664a01684c5767",
+          "b558073505fa411798d4dc174e1bdaea",
+          "66441c4e1ab64d7d916e6108c478f052"
+        ],
+        "time_ids": [
+          "nusc_us_1532402935662460",
+          "nusc_us_1532402935654844",
+          "nusc_us_1532402935637525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "lead_minivan",
+          "position_m": [
+            16,
+            6
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 2.5,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -10,
+                    -15
+                  ],
+                  [
+                    45,
+                    -15
+                  ],
+                  [
+                    45,
+                    30
+                  ],
+                  [
+                    -10,
+                    30
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "331f6292bb4240d7a259cc9845b323c2",
+            "3338348b245c4deca43d3983489a42fb",
+            "5941e77ca4bd478e99e17114ca8759ab",
+            "e0bc3ff06fe348fdb56039c640be0ac3",
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402933762460",
+            "nusc_us_1532402934162460",
+            "nusc_us_1532402934662484",
+            "nusc_us_1532402935162463",
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "id": "right_side_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -10,
+                    -25
+                  ],
+                  [
+                    40,
+                    -25
+                  ],
+                  [
+                    40,
+                    20
+                  ],
+                  [
+                    -10,
+                    20
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767",
+            "8bfbc893ff1544c2b03d6a4f7240c13a",
+            "8e86b6898f57446d8557d675b07fb38c"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460",
+            "nusc_us_1532402935620339",
+            "nusc_us_1532402935627893"
+          ]
+        },
+        {
+          "id": "left_side_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -15,
+                    -10
+                  ],
+                  [
+                    30,
+                    -10
+                  ],
+                  [
+                    30,
+                    25
+                  ],
+                  [
+                    -15,
+                    25
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "b558073505fa411798d4dc174e1bdaea"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935654844"
+          ]
+        },
+        {
+          "id": "junction_traffic",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    -20,
+                    -40
+                  ],
+                  [
+                    60,
+                    -40
+                  ],
+                  [
+                    60,
+                    40
+                  ],
+                  [
+                    -20,
+                    40
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767",
+            "8bfbc893ff1544c2b03d6a4f7240c13a",
+            "8e86b6898f57446d8557d675b07fb38c"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460",
+            "nusc_us_1532402935620339",
+            "nusc_us_1532402935627893"
+          ]
+        },
+        {
+          "id": "construction_barriers",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    13,
+                    -10
+                  ],
+                  [
+                    23,
+                    -10
+                  ],
+                  [
+                    23,
+                    5
+                  ],
+                  [
+                    13,
+                    5
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767",
+            "e0bc3ff06fe348fdb56039c640be0ac3"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460",
+            "nusc_us_1532402935162463"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Stop request is precautionary and is not a certified feasible trajectory. Road and approximate minivan position use supplied calibration with an assumed locally level ground plane; uncertainty extents are conditional hypotheses. The minivan proceeds leftward along the bend, but metric velocity is unresolved. Five-second actor envelopes cannot be justified from these images; the supplied broad envelopes are unsupported placeholders and must be rejected, not treated as verified coverage. Occluded junction approaches and future entrants have unbounded extent. Visible green signals cannot confidently be assigned to the ego slip lane; the visible give-way sign requires yielding."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "4b54a87b8f270fa9ed6e876b32230809dbcc11d200003ec6a025e16e0d839d93",
+    "image_sha256": {
+      "331f6292bb4240d7a259cc9845b323c2": "0e290b04c7e720fd68aa9aef2b8298b2f2b029984f2bb1f60248c6d73847f91c",
+      "3338348b245c4deca43d3983489a42fb": "189a0e5eaf559049d5b868690116e545575643589bf3c083baca1552026fde37",
+      "5941e77ca4bd478e99e17114ca8759ab": "dd27df927249dad941dfc055717d5f16333de83b9d28b5b3fc34e33cbabeb3d1",
+      "e0bc3ff06fe348fdb56039c640be0ac3": "b59238f9f5b96bb73d3f3c162473ff953bc4877f2aee2ce2bbdb3bae05b9b3af",
+      "8bfbc893ff1544c2b03d6a4f7240c13a": "f92bd11cea955aaeb972ad5dcfedc7e9cdb241509b0d8eb70bf0bdb47da503fe",
+      "8e86b6898f57446d8557d675b07fb38c": "3f331dd6e3e2509646ccb574d47d4376994bea10d301c47ffa8e2f69c2da4d6e",
+      "66441c4e1ab64d7d916e6108c478f052": "b228b9885617cedd088ddd63506f1540c6031b6421a2005afcc18106001de380",
+      "ea5422c6aacf41869cc5122dad1c6e8a": "c756e2e6707e46615e64e80be4501aa770c9a03ebadf6dca54c4c3a1aa6f9ffc",
+      "b558073505fa411798d4dc174e1bdaea": "4f7d6fa4a39815cdaf81ea3f09faa8dac1f58ff353cf911f91fdb7e4f4a2c07c",
+      "0b2eb9c1cd1b45f0b1664a01684c5767": "10e75c9a10dfaa74c2faf6be73e836c1cdf6d9df5e8b56fb219fe9322fe8ccb6"
+    },
+    "prompt_version": "driving_v2",
+    "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+    "attempts": 1,
+    "elapsed_s": 62.28254877589643,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 31809,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1819,
+      "reasoning_output_tokens": 408
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

@@ -42,7 +42,7 @@ python run_demo.py
 
 ## 新增可运行 v2 剖面
 
-独立环境、实际 CasADi/IPOPT 自行车优化、在线多模态适配、失败反馈闭环、短前缀模拟执行和 G2 入口见 [v2 运行说明](implementation/README_V2.md)。原数据契约和枚举基线保留。真实模型与 G2 尚缺认证及数据，不能用离线测试替代实验。
+独立环境、实际 CasADi/IPOPT 自行车优化、在线多模态适配、失败反馈闭环、短前缀模拟执行和 G2 入口见 [v2 运行说明](implementation/README_V2.md)。原数据契约和枚举基线保留。已实际使用 ChatGPT 会员路径调用 GPT-6.1 并评价 nuScenes 样例，见 [真实试验报告](implementation/results/gpt61_live/README.md)：图像调用跑通，但尺度与未来占用不足，完整物理闭环未验证通过。
 
 ## 原 v1 基线边界
 

@@ -66,7 +66,7 @@ cd implementation
   --config examples/v2/g2_config.json --out /tmp/nuscenes-g2.json
 ```
 
-当前真实模型配置/认证缺失，因此尚无模型米制误差、未来占用覆盖得分、四例规划成功率或 G2 可行性结论。已完成的是实际数据准备、解码、时间与坐标检查及软件回归。不能将这些通过项解读为视觉驾驶方案通过。
+最初的数据准备阶段没有模型配置；此后已实际完成 GPT-6.1 调用与部分 G2 评价。最新证据见 [真实试验报告](../../results/gpt61_live/README.md)：原协议三个窗口共 9 份有效响应，夜间另以 2.1 做一次格式复核；工具均未释放轨迹，不能解读为视觉驾驶方案通过。
 
 官方依据：[nuScenes 数据格式](https://www.nuscenes.org/data-format)、[官方 schema](https://github.com/nutonomy/nuscenes-devkit/blob/master/docs/schema_nuscenes.md)、[官方插值实现](https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/nuscenes.py)。本次也读取了服务器上的官方 devkit schema。
 
@@ -81,4 +81,4 @@ DRIVING_CODEX_TIMEOUT_S=180 .venv/bin/python \
   --repeats 3 --backend codex_cli --model gpt-6.1-sol
 ```
 
-当前实际尝试因 chatgpt.com 连接超时/现有代理不可用而阻塞，没有有效 GPT-6.1 输出。CLI 当前模型目录较旧，账号是否接受该具体模型尚未确认。状态与测试证据见 [GPT-6.1 会员验证记录](../../results/gpt61_subscription/GPT61_SUBSCRIPTION_VALIDATION.md)。历史报告中的“缺少 API Key”仅描述当时 HTTP 路径的状态，不是会员路径的要求。
+用户提供的 17891 代理已打通模型接口。系统 CLI 0.147.0 返回 model_not_found；项目内独立固定客户端 0.164.0 已完成同模型真实调用，未替换系统客户端。先运行 `.venv/bin/python implementation/experiments/nuscenes/install_codex_client.py`（项目根目录），适配器默认优先选择该项目客户端。使用 `DRIVING_OUTPUT_CONTRACT=2.0.0` 或显式 `2.1.0` 选择版本，结果分开评价；`--max-revisions` 设置最多反馈修订次数。完整命令、原失败及最终结果见 [真实试验报告](../../results/gpt61_live/README.md)。历史“缺少 API Key”仅描述当时 HTTP 路径，不是会员路径要求。
