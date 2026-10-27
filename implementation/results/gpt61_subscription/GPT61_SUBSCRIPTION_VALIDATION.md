@@ -43,3 +43,11 @@ DRIVING_CODEX_TIMEOUT_S=180 .venv/bin/python \
 也可设置 DRIVING_BACKEND=codex_cli、DRIVING_MODEL=gpt-6.1-sol 后使用原有 online 命令。不要给该模式配置 API Key。网络恢复后仍须取得真实结构化输出、执行工具链、审定 GT 对象关联，才能开展 G2 评价。既有 nuScenes 数据及真值隔离保持。
 
 官方依据：[Codex ChatGPT 认证](https://learn.chatgpt.com/docs/auth)、[非交互与结构化输出](https://learn.chatgpt.com/docs/non-interactive-mode)、[GPT-6.1 模型目录](https://developers.openai.com/api/docs/models/all)。官方文档支持该使用路径，不代表本账号权限或网络已实际通过。
+
+## 2026-10-27 22:55 后续代理复核
+
+用户终端已显示 ChatGPT 登录，访问首页经代理返回 `200 Connection established` 后收到 `403` / `cf-mitigated: challenge`。这是首页挑战响应，不能据此断定 Codex 推理端点被拒绝；没有保存用户输出中的 Cookie。
+
+本次保留执行环境的现有代理设置重新请求 gpt-6.1-sol，返回 CODEX_TRANSPORT / connection_error，仍无有效模型输出。实际工具环境主机名同为 gaoteamA800，但 HTTPS_PROXY=http://127.0.0.1:17890 端口返回 ConnectionRefusedError，curl 退出码 7、没有 HTTP 响应。这与用户终端成功建立代理连接的证据不同，需要核对实际代理协议/主机/端口，暂不要求重新登录。
+
+新的原始结构化结果、开始时刻和脱敏网络状态单独保存在 [proxy_recheck_20261027](proxy_recheck_20261027/comparison.json)。原记录不改写；未更改网络配置、认证、模型或已有数据。G2 仍未运行。
