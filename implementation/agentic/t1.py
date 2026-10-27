@@ -20,6 +20,8 @@ def construct(capture,output,provenance,allow_synthetic=False):
     need(h['reference_time_id']==m['reference_time_id'],'DYNAMIC_ALIGNMENT','Dynamic states must be model-aligned to current acquisition record; ego compensation alone is insufficient')
     need(h['coordinate_frame']==m['coordinate_frame'],'COORDINATES','Unsupported frame')
     need(h['scale_basis']!='unknown','MISSING_SCALE','Metric scale unsupported; supply grounded hypothesis/calibration')
+    need(h['scale_basis']!='calibrated_ground_plane','CALIBRATED_PROJECTION_UNVERIFIED',
+         'This native-metric profile has no verified ground-plane/pixel-projection contract; calibration parameters alone do not establish metric scale','tool_infeasible')
     need(h['road'] is not None and not h['unbounded_unknown'],'UNBOUNDED_UNKNOWN','Unknown road/extent blocks planning','tool_infeasible')
     need(d['scene_id']==m['scene_id'] and d['revision']==m['revision'],'SCENE_VERSION_MISMATCH','Decision belongs to another round')
     need(d['valid_until_s']>=m['reference_time_s']+m['horizon_s'],'DECISION_EXPIRED','Decision does not cover horizon')

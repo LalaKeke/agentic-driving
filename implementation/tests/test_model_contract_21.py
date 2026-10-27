@@ -26,3 +26,8 @@ class ModelContract21Tests(unittest.TestCase):
         for field in ['metadata','hypotheses','decision']:self.assertEqual(before[field],after[field])
     def test_unknown_version_is_rejected(self):
         with self.assertRaises(Failure):model_contract('future-unknown-version')
+
+    def test_calibrated_label_is_not_a_verified_plane_or_projection(self):
+        cap=capture();out,prov=ScriptedAgent().decide(cap);out['hypotheses']['scale_basis']='calibrated_ground_plane';prov['output_digest']=digest(out)
+        with self.assertRaises(Failure) as ctx:t1.construct(cap,out,prov,True)
+        self.assertEqual(ctx.exception.record['code'],'CALIBRATED_PROJECTION_UNVERIFIED')
