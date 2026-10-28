@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "case": "existing",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "-B",
+        "implementation/experiments/prepare_exp2_wire_trial.py",
+        "--out",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/wire_schema_compatibility_20261028_v1/offline"
+      ],
+      "exit_code": 2,
+      "diagnostic": {
+        "code": "OUTPUT_EXISTS",
+        "message": "Destination already exists; choose a new output path. Evidence is never refreshed in place.",
+        "category": "interface_error",
+        "details": {
+          "path": "/data2/hzy/MAP/agentic-driving/implementation/results/wire_schema_compatibility_20261028_v1/offline"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "existing_offline_bytes_unchanged": true,
+      "real_model_calls": 0
+    },
+    {
+      "case": "sealed",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "-B",
+        "implementation/experiments/prepare_exp2_wire_trial.py",
+        "--out",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/exp2_single_day_pilot_20261028_v1/forbidden_wire_preparation"
+      ],
+      "exit_code": 2,
+      "diagnostic": {
+        "code": "SEALED_EVIDENCE",
+        "message": "Destination is inside sealed or historical evidence; choose a new independent directory.",
+        "category": "interface_error",
+        "details": {
+          "path": "/data2/hzy/MAP/agentic-driving/implementation/results/exp2_single_day_pilot_20261028_v1/forbidden_wire_preparation",
+          "sealed_ancestor": "/data2/hzy/MAP/agentic-driving/implementation/results/exp2_single_day_pilot_20261028_v1"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "existing_offline_bytes_unchanged": true,
+      "real_model_calls": 0
+    }
+  ],
+  "actual_model_invocations": 0
+}
