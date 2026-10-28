@@ -1,0 +1,54 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "charged_requests": 2,
+  "budget_limit": 4,
+  "remaining_unused": 2,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "BODY_ENVELOPE_CONFLICT",
+        "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "curbside_bus",
+          "scenario_id": "bus_stationary"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "attempt": 2,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null
+    }
+  ],
+  "fatal": null,
+  "prototype_conditional_success": true,
+  "prefix_consumed": true,
+  "source_commit": "a59e2d200ad78fc2b0d905538fb0afe08a3b244a",
+  "mode": "online",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

@@ -1,0 +1,67 @@
+{
+  "source": "real_images_online_model_single_window",
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "sample_id": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+  "source_commit": "a59e2d200ad78fc2b0d905538fb0afe08a3b244a",
+  "real_model_requests": 2,
+  "max_requests": 4,
+  "ended": true,
+  "old_strict_success": false,
+  "g2_evaluated": false,
+  "stages": {
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "independent_acceptor": "PASS",
+    "simulated_prefix": "PASS"
+  },
+  "motion_class": "MOVING_PREFIX",
+  "initial_speed_mps": 6.397871741498098,
+  "planned_horizon_s": 2.0,
+  "planned_endpoint_center_m": [
+    12.205032566262414,
+    -2.679036808694495e-06
+  ],
+  "planned_terminal_speed_mps": 5.918106183192007,
+  "simulated_execution": {
+    "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+    "elapsed_s": 0.2,
+    "center_displacement_m": [
+      1.271865021097903,
+      -1.1148946266523916e-07
+    ],
+    "yaw_delta_rad": -6.072634044260337e-08,
+    "speed_mps": 6.320778469480963
+  },
+  "minimum_clearance_lower_bound_m": 1.7471976193024976,
+  "replay_extra_model_calls": 0,
+  "replay_matched": true,
+  "server_model_snapshot": null,
+  "conditional_scope_premise": {
+    "id": "prototype_local_scope",
+    "object_ids": [],
+    "scenario_ids": [],
+    "start_s": 0,
+    "end_s": 2,
+    "space_polygon_m": [
+      [
+        -12,
+        -7
+      ],
+      [
+        44,
+        -7
+      ],
+      [
+        44,
+        16
+      ],
+      [
+        -12,
+        16
+      ]
+    ],
+    "statement": "Model only this finite local street-and-curb interaction domain for two seconds, including the road patch x=-8..32, y=-6.5..9 and surrounding declared obstacle envelopes. Adopt no additional unobserved entrant, no parking-lot vehicle crossing the sidewalk into this domain, no distant oncoming vehicle reaching this domain and no rear follower reaching its rear boundary. Retain the bus, silver sedan, two utility trucks, cone cluster and sidewalk pedestrian explicitly. Other world traffic and futures beyond two seconds are excluded; these are falsifiable conditional restrictions, not absence claims."
+  }
+}

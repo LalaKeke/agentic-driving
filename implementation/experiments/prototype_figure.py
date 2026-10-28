@@ -66,6 +66,24 @@ def body_corners(actor):
              (-body['length_m']/2, body['width_m']/2)]]
 
 
+def short_actor_name(identifier):
+    """Display labels only; never change saved actor identities or geometry."""
+    words = identifier.lower()
+    if 'bus' in words:
+        return 'Bus'
+    if 'sedan' in words:
+        return 'Sedan'
+    if 'sideways' in words and 'truck' in words:
+        return 'Side truck'
+    if 'truck' in words:
+        return 'Truck'
+    if 'cone' in words:
+        return 'Cones'
+    if 'ped' in words:
+        return 'Pedestrian'
+    return identifier.replace('_', ' ')[:18]
+
+
 def render(run, destination):
     destination = check_new_destination(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -110,7 +128,7 @@ def render(run, destination):
             ax_image.text(.5, .5, 'Original front image unavailable', ha='center',
                           transform=ax_image.transAxes)
         ax_image.axis('off')
-        ax_image.set_title('Original camera + model object locations (display projection)')
+        ax_image.set_title('Original front view / numbered model objects (display projection)')
         calibration = cap.get('acquisition_metadata', {}).get('calibrations', {}).get('CAM_FRONT')
         can_project = (image_size and calibration and frame['time_id'] == cap.get('metadata', {}).get('reference_time_id'))
 
@@ -137,8 +155,12 @@ def render(run, destination):
                                   lw=.7, label='T2 rear-axle corridor' if index == 0 else None))
         palette = plt.get_cmap('tab10')
         actors = native_h.get('objects', [])
+        image_offsets = [(12, -20), (-18, -36), (-18, -20), (20, -40), (26, 24), (-22, 28)]
+        bev_offsets = [(4, -14), (4, 8), (-48, 12), (6, -14), (-38, 29), (5, 7)]
         for index, actor in enumerate(actors):
             color = palette(index % 10)
+            number = index + 1
+            actor_label = f"{number} {short_actor_name(actor['id'])}"
             polygons = list(occupancy_polygons(actor))
             # Repeated legacy grid cells need not darken the same set 10 times.
             seen = set()
@@ -148,21 +170,24 @@ def render(run, destination):
                     continue
                 seen.add(key)
                 ax_bev.add_patch(Patch(polygon, fc=color, ec=color, alpha=.14, lw=.9,
-                                      label=f"{actor['id']} future BODY" if len(seen) == 1 else None))
+                                      label=f'{number} BODY' if len(seen) == 1 else None))
             corners = body_corners(actor)
             if corners:
                 ax_bev.add_patch(Patch(corners, fc=color, ec=color, alpha=.8))
             if actor.get('position_m') is not None:
                 x, y = actor['position_m']
                 ax_bev.scatter(x, y, c=[color], s=35)
-                ax_bev.annotate(actor['id'], (x, y), xytext=(4, 6), textcoords='offset points', fontsize=8, color=color)
+                ax_bev.annotate(actor_label, (x, y), xytext=bev_offsets[index % len(bev_offsets)],
+                                textcoords='offset points', fontsize=8, color=color,
+                                arrowprops=dict(arrowstyle='-', color=color, lw=.6))
                 projected = project([[x, y]])
                 if projected is not None and projected[1][0]:
                     uv = projected[0][0]
                     ax_image.scatter(*uv, c=[color], s=55, ec='white', lw=.8)
-                    ax_image.annotate(actor['id'], uv, xytext=(5, -12), textcoords='offset points',
-                                      color='white', fontsize=9,
-                                      bbox=dict(fc=color, alpha=.9, boxstyle='round,pad=.2'))
+                    ax_image.annotate(str(number), uv, xytext=image_offsets[index % len(image_offsets)],
+                                      textcoords='offset points', color='white', fontsize=10, weight='bold',
+                                      arrowprops=dict(arrowstyle='-', color=color, lw=1),
+                                      bbox=dict(fc=color, ec='white', lw=.5, alpha=.95, boxstyle='circle,pad=.25'))
         vehicle = cap.get('vehicle', {})
         if vehicle:
             ax_bev.add_patch(Patch([[-vehicle['rear_m'], -vehicle['half_width_m']],
@@ -202,10 +227,19 @@ def render(run, destination):
                    title='Model scene / T2 corridor / T3 trajectory')
         ax_bev.set_aspect('equal', adjustable='datalim'); ax_bev.autoscale_view(); ax_bev.grid(alpha=.2)
         if ax_bev.get_legend_handles_labels()[0]:
-            ax_bev.legend(loc='upper right', fontsize=7)
+            ax_bev.legend(loc='upper left', bbox_to_anchor=(.01, .99), ncol=3,
+                          fontsize=6.8, framealpha=.92, handlelength=1.4,
+                          columnspacing=.8, borderpad=.35, labelspacing=.3)
         ax_text.axis('off')
         real = source.get('source') == 'online_model'
-        label = 'REAL IMAGES / ONLINE MODEL / SINGLE WINDOW' if real else 'AUTHORED OR OFFLINE SOFTWARE RESULT'
+        profile = result.get('experiment_profile', source.get('experiment_profile', ''))
+        prototype = profile == 'local_conditional_2s_prototype_v1'
+        if real and result.get('fresh_online_model_call') is False:
+            label = 'LOCAL CONDITIONAL 2s PROTOTYPE / OFFLINE REPLAY OF REAL MODEL' if prototype else 'OFFLINE REPLAY OF REAL MODEL'
+        elif real and prototype:
+            label = 'LOCAL CONDITIONAL 2s PROTOTYPE / REAL MODEL'
+        else:
+            label = 'REAL IMAGES / ONLINE MODEL / SINGLE WINDOW' if real else 'AUTHORED OR OFFLINE SOFTWARE RESULT'
         displacement = execution.get('center_displacement_m')
         lines = [label, f"Scene: {cap.get('metadata', {}).get('scene_id', 'unknown')}",
                  f"Requested/CLI alias: {source.get('model_id', source.get('requested_model', 'unknown'))} | source: {source.get('source', 'unknown')}",
