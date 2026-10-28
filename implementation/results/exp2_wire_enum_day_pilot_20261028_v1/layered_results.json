@@ -1,0 +1,179 @@
+{
+  "experiment_id": "exp2_wire_enum_day_pilot_20261028_v1",
+  "runtime_source_commit": "23280fcce39b928760ebd91763bae940a6acb8f1",
+  "runtime_seal_sha256": "cd3c94f820998c351099a31d5cf149bfae16f240d9b34ee9da44d177e14eea8e",
+  "unique_windows": 1,
+  "budget": {
+    "limit": 2,
+    "charged": 2,
+    "turn_start_requests": 2,
+    "unused": 0,
+    "inherited_old_allowance": 0
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "revision": 0,
+      "source": "online_model",
+      "stages": {
+        "SERVICE_NOTIFICATION": {
+          "status": "COMPLETED_NATIVE_GENERATION",
+          "error_notifications": 0,
+          "turn_start_requests": 1,
+          "cli_resolved_alias": "gpt-6.1-sol",
+          "server_reported_snapshot": null
+        },
+        "NATIVE_OUTPUT": {
+          "status": "PASS",
+          "raw_text_path": "runtime/transport/attempt_01/final_agent_message.txt",
+          "raw_text_sha256": "84d428c35c4931984196124acda1a1812b9ab9e2dcde9210ca7c240282d7ff8f",
+          "parsed_json_path": "runtime/transport/attempt_01/native_output.json"
+        },
+        "BUSINESS_VALIDATION": {
+          "status": "PASS",
+          "schema": "implementation/schemas/agent_output_v3_exp2.schema.json",
+          "schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+          "no_response_repair": true
+        },
+        "T1": {
+          "status": "FAIL",
+          "started_at_utc": "2026-10-28T10:22:09.060827+00:00",
+          "elapsed_s": 0.008679812774062157,
+          "failure": {
+            "code": "UNBOUNDED_UNKNOWN",
+            "message": "Unknown road/extent blocks planning",
+            "category": "tool_infeasible",
+            "details": {},
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+            "failed_stage": "T1"
+          }
+        },
+        "T2": {
+          "status": "NOT_REACHED"
+        },
+        "T3": {
+          "status": "NOT_REACHED"
+        },
+        "T4": {
+          "status": "NOT_REACHED"
+        },
+        "ACCEPTOR": {
+          "status": "NOT_REACHED"
+        },
+        "EXECUTION": {
+          "status": "NOT_REACHED"
+        },
+        "PREFIX_INTEGRATION": {
+          "status": "NOT_REACHED",
+          "receipt_exists": false,
+          "trajectory_exists": false,
+          "motion_class": "NOT_REACHED"
+        }
+      },
+      "all_diagnostics_path": "runtime/attempt_01/all_contract_diagnostics.json",
+      "diagnostics": {
+        "checks": 336,
+        "statuses": {
+          "PASS": 302,
+          "FAIL": 25,
+          "NOT_EVALUABLE": 9
+        },
+        "failed_by_code": {
+          "UNBOUNDED_UNKNOWN": 2,
+          "UNSUPPORTED_TRAFFIC_RULE": 3,
+          "UNKNOWN_TRAFFIC_CONDITION": 3,
+          "TYPED_UNKNOWN_BLOCKING": 5,
+          "CONDITIONAL_SCOPE": 4,
+          "SCENARIO_INCOMPLETE": 4,
+          "OCCUPANCY_UNKNOWN": 4
+        },
+        "additional_T1_acceptance_runs": 0
+      },
+      "declared_objects": 4
+    },
+    {
+      "attempt": 2,
+      "revision": 1,
+      "source": "online_model",
+      "stages": {
+        "SERVICE_NOTIFICATION": {
+          "status": "COMPLETED_NATIVE_GENERATION",
+          "error_notifications": 0,
+          "turn_start_requests": 1,
+          "cli_resolved_alias": "gpt-6.1-sol",
+          "server_reported_snapshot": null
+        },
+        "NATIVE_OUTPUT": {
+          "status": "PASS",
+          "raw_text_path": "runtime/transport/attempt_02/final_agent_message.txt",
+          "raw_text_sha256": "c8fc83ab67f0eea460812f00515e5744bfd3a8fc07daf889e386ee6e2cf45be2",
+          "parsed_json_path": "runtime/transport/attempt_02/native_output.json"
+        },
+        "BUSINESS_VALIDATION": {
+          "status": "PASS",
+          "schema": "implementation/schemas/agent_output_v3_exp2.schema.json",
+          "schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+          "no_response_repair": true
+        },
+        "T1": {
+          "status": "FAIL",
+          "started_at_utc": "2026-10-28T10:23:17.470814+00:00",
+          "elapsed_s": 0.007383503019809723,
+          "failure": {
+            "code": "UNBOUNDED_UNKNOWN",
+            "message": "Unknown road/extent blocks planning",
+            "category": "tool_infeasible",
+            "details": {},
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+            "failed_stage": "T1"
+          }
+        },
+        "T2": {
+          "status": "NOT_REACHED"
+        },
+        "T3": {
+          "status": "NOT_REACHED"
+        },
+        "T4": {
+          "status": "NOT_REACHED"
+        },
+        "ACCEPTOR": {
+          "status": "NOT_REACHED"
+        },
+        "EXECUTION": {
+          "status": "NOT_REACHED"
+        },
+        "PREFIX_INTEGRATION": {
+          "status": "NOT_REACHED",
+          "receipt_exists": false,
+          "trajectory_exists": false,
+          "motion_class": "NOT_REACHED"
+        }
+      },
+      "all_diagnostics_path": "runtime/attempt_02/all_contract_diagnostics.json",
+      "diagnostics": {
+        "checks": 334,
+        "statuses": {
+          "PASS": 306,
+          "FAIL": 19,
+          "NOT_EVALUABLE": 9
+        },
+        "failed_by_code": {
+          "UNBOUNDED_UNKNOWN": 2,
+          "TYPED_UNKNOWN_BLOCKING": 5,
+          "CONDITIONAL_SCOPE": 4,
+          "SCENARIO_INCOMPLETE": 4,
+          "OCCUPANCY_UNKNOWN": 4
+        },
+        "additional_T1_acceptance_runs": 0
+      },
+      "declared_objects": 4
+    }
+  ],
+  "ended": true,
+  "six_window_batch_launched": false,
+  "conditional_single_window_success": false,
+  "prefix_consumed": false,
+  "real_vehicle_control": false,
+  "server_snapshot_status": "UNKNOWN_NOT_EXPOSED"
+}

@@ -1,0 +1,62 @@
+{
+  "record_id": "exp2_wire_enum_day_pilot_20261028_v1/attempt_02",
+  "semantic_view_digest": "04c72e01e923b4f475ab0f7877f6039d89d5840e9fe8f8c87e9ae7d962f9e5f1",
+  "frozen_before_metric_unsealing": true,
+  "frozen_at_utc": "2026-10-28T10:25:53.945529+00:00",
+  "reviewer": "Independent assistant agent enum_pilot_g2; historical exposure explicitly disclosed",
+  "inputs_read_before_freeze": [
+    "fixed-vocabulary semantic_view.json only, not original model record or alias-map contents",
+    "actually cited original CAM_FRONT image",
+    "official SDK projection for exactly the same frame and its annotation index"
+  ],
+  "model_metric_values_read_before_freeze": false,
+  "claim_of_full_blindness": false,
+  "associations": {
+    "actor_A": {
+      "status": "unique_reviewed",
+      "gt_id": "afd097377c71479ea8349eeae83b8143",
+      "single_actor_not_group": true,
+      "review_frame_ids": [
+        "defde01fa5594f18b24be8fe68e6f2c4"
+      ],
+      "evidence": [
+        "Original cited CAM_FRONT image: single foreground crossing adult with conspicuous red trousers at right/center, distinguished from the other foreground crossing pedestrians",
+        "Official SDK projection label31 encloses that individual in the same frame; label31 instance identity is in the frozen projection index"
+      ],
+      "reason": "The red-clothing cue and right/center crossing location uniquely identify the red-trouser adult in this image. No position/velocity/BODY/occupancy estimates or errors were inspected. The frozen focal identity is not replaced."
+    },
+    "actor_B": {
+      "status": "ambiguous_visual_identity",
+      "gt_id": null,
+      "review_frame_ids": [
+        "defde01fa5594f18b24be8fe68e6f2c4"
+      ],
+      "evidence": [
+        "White clothing is visible on more than one crossing adult, including shirt or trousers; the whitelisted tokens do not specify a unique body or clothing part"
+      ],
+      "reason": "White/front/right or center hints do not uniquely distinguish the overlapping foreground pedestrians. Do not select by model metric coordinates or inference from another unmatched alias."
+    },
+    "actor_C": {
+      "status": "ambiguous_visual_identity",
+      "gt_id": null,
+      "review_frame_ids": [
+        "defde01fa5594f18b24be8fe68e6f2c4"
+      ],
+      "evidence": [
+        "Multiple adult pedestrians cross in the front image; generic front/right/center and crossing hints are not unique"
+      ],
+      "reason": "No unique appearance cue survives the preregistered numerical-value-free view; retain unmatched without inspecting unrestricted prose or metric quantities."
+    },
+    "actor_D": {
+      "status": "ambiguous_visual_identity",
+      "gt_id": null,
+      "review_frame_ids": [
+        "defde01fa5594f18b24be8fe68e6f2c4"
+      ],
+      "evidence": [
+        "Multiple adult pedestrians cross in the front image; generic front/right/center and crossing hints are not unique"
+      ],
+      "reason": "No unique appearance cue survives the preregistered numerical-value-free view; do not force a one-to-one assignment by elimination."
+    }
+  }
+}

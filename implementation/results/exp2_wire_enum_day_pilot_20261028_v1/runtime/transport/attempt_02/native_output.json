@@ -1,0 +1,467 @@
+{
+  "decision": {
+    "scene_id": "nusc_ac452a60e8b34a7080c938c904b23057",
+    "revision": 1,
+    "behavior": "stop_yield",
+    "target_region": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0,
+        -0.1
+      ],
+      [
+        0,
+        0.1
+      ],
+      [
+        -0.1,
+        0.1
+      ]
+    ],
+    "desired_speed_mps": 0,
+    "yield_to": [
+      "ped_red",
+      "ped_white",
+      "ped_cart",
+      "ped_dark"
+    ],
+    "stop": {
+      "center_x_max_m": 0,
+      "deadline_s": 0
+    },
+    "priority": 100,
+    "valid_until_s": 1535489311.4124038,
+    "hard_requirements": [
+      "target_region",
+      "stop",
+      "yield",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 0,
+      "acceleration_weight": 1,
+      "steering_weight": 1,
+      "smoothness_weight": 1
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1535489306412404",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": null,
+    "objects": [
+      {
+        "id": "ped_red",
+        "position_m": [
+          7.2,
+          0
+        ],
+        "velocity_mps": null,
+        "uncertainty_m": 0.8,
+        "occupancy": null,
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ],
+        "state_time_id": "nusc_us_1535489306412404",
+        "body_geometry": {
+          "length_m": 0.65,
+          "width_m": 0.55,
+          "yaw_rad": -1.57
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "p_ped_states"
+          ],
+          "residual_m": 0.8,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "defde01fa5594f18b24be8fe68e6f2c4",
+              "time_id": "nusc_us_1535489306412404",
+              "position_m": [
+                7.2,
+                0
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "red_continue",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "red_stop_or_turn",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": false
+      },
+      {
+        "id": "ped_white",
+        "position_m": [
+          7.7,
+          0.4
+        ],
+        "velocity_mps": null,
+        "uncertainty_m": 1,
+        "occupancy": null,
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ],
+        "state_time_id": "nusc_us_1535489306412404",
+        "body_geometry": {
+          "length_m": 0.65,
+          "width_m": 0.55,
+          "yaw_rad": -1.57
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "p_ped_states"
+          ],
+          "residual_m": 1,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "defde01fa5594f18b24be8fe68e6f2c4",
+              "time_id": "nusc_us_1535489306412404",
+              "position_m": [
+                7.7,
+                0.4
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "white_continue",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "white_stop_or_turn",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": false
+      },
+      {
+        "id": "ped_cart",
+        "position_m": [
+          8.7,
+          1.5
+        ],
+        "velocity_mps": null,
+        "uncertainty_m": 1,
+        "occupancy": null,
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ],
+        "state_time_id": "nusc_us_1535489306412404",
+        "body_geometry": {
+          "length_m": 0.65,
+          "width_m": 0.55,
+          "yaw_rad": -1.57
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "p_ped_states"
+          ],
+          "residual_m": 1,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "defde01fa5594f18b24be8fe68e6f2c4",
+              "time_id": "nusc_us_1535489306412404",
+              "position_m": [
+                8.7,
+                1.5
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "cart_ped_continue",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "cart_ped_stop_or_turn",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": false
+      },
+      {
+        "id": "ped_dark",
+        "position_m": [
+          8.6,
+          4.2
+        ],
+        "velocity_mps": null,
+        "uncertainty_m": 1,
+        "occupancy": null,
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ],
+        "state_time_id": "nusc_us_1535489306412404",
+        "body_geometry": {
+          "length_m": 0.65,
+          "width_m": 0.55,
+          "yaw_rad": -1.57
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "p_ped_states"
+          ],
+          "residual_m": 1,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "defde01fa5594f18b24be8fe68e6f2c4",
+              "time_id": "nusc_us_1535489306412404",
+              "position_m": [
+                8.6,
+                4.2
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "dark_continue",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "dark_stop_or_turn",
+            "premise_ids": [
+              "p_ped_modes"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": false
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [
+      {
+        "rule": "stop_required",
+        "state": "active",
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ]
+      },
+      {
+        "rule": "yield_required",
+        "state": "active",
+        "frame_ids": [
+          "defde01fa5594f18b24be8fe68e6f2c4"
+        ],
+        "time_ids": [
+          "nusc_us_1535489306412404"
+        ]
+      }
+    ],
+    "unbounded_unknown": true,
+    "confidence_note": "Remain stopped for visible red signals and crossing pedestrians; the posted no-turn-on-red restriction also remains applicable. Revision corrects traffic-rule encoding, not missing environmental support. Road, additional actors, asynchronous alignment and complete future coverage remain unresolved and block planning acceptance. No certified collision-free trajectory is asserted.",
+    "premises": [
+      {
+        "id": "p_ped_states",
+        "object_ids": [
+          "ped_red",
+          "ped_white",
+          "ped_cart",
+          "ped_dark"
+        ],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 0,
+        "space_polygon_m": null,
+        "statement": "Reference-front-image individual pedestrian body-center estimates are retained as conditional native metric hypotheses. Adopt adult body-box dimensions of 0.65 m length and 0.55 m width, excluding carried belongings and the separate cart. Apparent proportions, perspective and crosswalk context support approximate depth; supplied camera geometry assists orientation but does not verify scale. Partial occlusion motivates the larger residuals for the white-shirted and cart-pushing pedestrians. Residual radii are noncalibrated hypotheses, not verified error bounds."
+      },
+      {
+        "id": "p_ped_modes",
+        "object_ids": [
+          "ped_red",
+          "ped_white",
+          "ped_cart",
+          "ped_dark"
+        ],
+        "scenario_ids": [
+          "red_continue",
+          "red_stop_or_turn",
+          "white_continue",
+          "white_stop_or_turn",
+          "cart_ped_continue",
+          "cart_ped_stop_or_turn",
+          "dark_continue",
+          "dark_stop_or_turn"
+        ],
+        "start_s": 0,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "statement": "Observed crossing supports continued movement toward reference-frame right. Stopping, starting again, turning, reversing or interacting with companions remain reasonable unresolved adverse possibilities. These qualitative branches provide neither a complete bounded inventory nor supported whole-interval body envelopes."
+      }
+    ],
+    "unknowns": [
+      {
+        "id": "u_ped_future",
+        "object_ids": [
+          "ped_red",
+          "ped_white",
+          "ped_cart",
+          "ped_dark"
+        ],
+        "scenario_ids": [
+          "red_continue",
+          "red_stop_or_turn",
+          "white_continue",
+          "white_stop_or_turn",
+          "cart_ped_continue",
+          "cart_ped_stop_or_turn",
+          "dark_continue",
+          "dark_stop_or_turn"
+        ],
+        "start_s": 0,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "kind": "no_finite_bound",
+        "premise_ids": [
+          "p_ped_modes"
+        ],
+        "detail": "Complete supported five-second body coverage remains unavailable for every retained branch. Historical crossing does not establish a future speed or turning bound. Occupancy remains null and scenario inventories remain incomplete."
+      },
+      {
+        "id": "u_other_actors",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": -2,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "kind": "not_provided",
+        "premise_ids": [],
+        "detail": "Individual states and future coverage remain missing for the separate cart and carried belongings, cross-traffic cars and shuttle in front/right views, pickup and large truck in rear frame 39874064e74049dba341a7014335ee45 at nusc_us_1535489306387558, close left sedan in frames 464e1a23df874e0c903038255d4605f0 at nusc_us_1535489306397405 and a9b270a6886847dd9ea7bf81b521c8c6 at nusc_us_1535489306404799, and additional pedestrians and background vehicles in the front-left image. No group box or distance-based pruning substitutes for these missing hypotheses."
+      },
+      {
+        "id": "u_async_alignment",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": -0.041921,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "kind": "not_provided",
+        "premise_ids": [],
+        "detail": "Actors observed only in asynchronous side/rear images lack supported reference-time body states, paired native evidence positions and all-scenario evidence-to-reference motion bounds. Small acquisition offsets and stationary ego do not establish actor alignment."
+      },
+      {
+        "id": "u_road",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "kind": "not_provided",
+        "premise_ids": [],
+        "detail": "Supported metric road extent, curb boundaries and exact stop-line location remain unavailable. Visible pavement and calibration alone do not justify filling or enlarging a road polygon to repair the rejection."
+      },
+      {
+        "id": "u_occlusion",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 5,
+        "space_polygon_m": null,
+        "kind": "no_finite_bound",
+        "premise_ids": [],
+        "detail": "Glare, occlusion, cropped bodies and unseen approaches leave actor-entry coverage unresolved. No supported finite metric polygon bounds this uncertainty; an empty unknown_regions list does not mean those areas are free."
+      }
+    ],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "defde01fa5594f18b24be8fe68e6f2c4"
+      ],
+      "time_ids": [
+        "nusc_us_1535489306412404"
+      ],
+      "premise_ids": [
+        "p_ped_states"
+      ],
+      "anchors": [
+        {
+          "object_id": "ped_red",
+          "dimension": "length_m",
+          "value_m": 0.65,
+          "rationale": "Conditional adult longitudinal body-box prior for the individually visible red-trousered pedestrian, excluding carried belongings; equals the native body length."
+        },
+        {
+          "object_id": "ped_red",
+          "dimension": "width_m",
+          "value_m": 0.55,
+          "rationale": "Conditional adult shoulder/body-width prior for that pedestrian; equals the native body width and is not a measured dimension."
+        }
+      ],
+      "metric_reasoning": "The reference front image shows an individual adult crossing laterally. Apparent body proportions and perspective, interpreted under the explicit body-size priors, support the retained approximate seven-meter-forward body-center hypothesis. Calibration supports reference axes but independently verifies neither scale nor ground-plane contact. This falsifiable native metric hypothesis does not resolve road extent, adverse motion or future coverage."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}
