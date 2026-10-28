@@ -28,6 +28,24 @@ def read(p):return json.loads(Path(p).read_text())
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
+def body_feedback(output):
+    """Only diagnose model geometry; never edit it or generate a prediction."""
+    from shapely.geometry import Polygon
+    from agentic.metric_contract import _body
+    conflicts=[]
+    for actor in output.get('hypotheses',{}).get('objects',[]):
+        if actor.get('position_m') is None or actor.get('body_geometry') is None:continue
+        body=_body(actor)
+        for src in actor.get('occupancy') or []:
+            if src['start_s']!=0:continue
+            for alt in src['alternatives']:
+                if not Polygon(alt['polygon_m']).covers(body):
+                    conflicts.append(dict(object_id=actor['id'],source_id=src['id'],scenario_id=alt['scenario_id'],
+                        computed_initial_body_corners_m=[list(x) for x in body.exterior.coords][:-1],
+                        instruction='Model must enclose its complete oriented BODY. Round justified envelope coordinates outward with numerical room; uncertainty is not a substitute. No tool has changed this polygon.'))
+    return conflicts
+
+
 def physical(cap,out,prov,initial,revision,folder):
     data={};stages={k:'NOT_REACHED' for k in ('T1','T2','T3','T4','EXECUTION','ACCEPTOR')}
     failure=None
@@ -62,12 +80,14 @@ def physical(cap,out,prov,initial,revision,folder):
 
 
 def main(args):
+    limit=getattr(args,'max_requests',4)
+    need(type(limit) is int and 1<=limit<=4,'PROTOTYPE_BUDGET','Per-case request limit must be 1..4')
     root=reserve_directory(args.out);initial=read(args.capture)
     need(initial['metadata']['horizon_s']==2 and initial['metadata']['step_s']==.2 and initial['safety']['prefix_s']==.2,
          'PROTOTYPE_CONFIG','Separate 2s/.2s prototype only')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
-        wire_bundle=str(args.wire),source_commit=commit,max_requests=4,deadline_utc=args.deadline_utc,
+        wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,
         horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in [Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']}))
     budget=[];feedback=None;result=None;rows=[];fatal=None
@@ -86,7 +106,7 @@ def main(args):
             wire_schema_bundle=args.wire,prompt_version='driving_prototype_v1',max_calls=4,experiment_profile=PROFILE)
         try:
             agent.preflight()
-            for revision in range(4):
+            for revision in range(limit):
                 remaining=deadline-time.time()
                 if remaining<100:break
                 agent.timeout=min(args.timeout_s,remaining-90)
@@ -104,6 +124,7 @@ def main(args):
                     print(json.dumps(dict(attempt=revision+1,stages=stages,failure=failure),ensure_ascii=False),flush=True)
                     if result:break # Any consumed prefix ends this observation.
                     feedback=dict(failure=failure,previous_native_output=out,
+                        all_initial_body_envelope_conflicts=body_feedback(out),
                         concrete_repair_request='Supply the specific missing native road polygon/scale support or whole BODY two-second occupancy, under justified local motion conditions. Repair actual evidence/premise/residual/geometry errors. Never fabricate numbers, remove obstacles or relax physical checks. If a conservative corridor fails, revise a justified decision/target region or report the conflict; do not merely explain refusal.')
                 except Failure as exc:
                     failure=exc.record;write_json_new(folder/'failure.json',failure)
@@ -111,7 +132,7 @@ def main(args):
                     break # Service/interface failure is terminal; no retry.
         except Failure as exc:fatal=exc.record
     if result:write_json_new(root/'round_result.json',result)
-    summary=dict(profile=PROFILE,charged_requests=len(budget),budget_limit=4,remaining_unused=4-len(budget),
+    summary=dict(profile=PROFILE,charged_requests=len(budget),budget_limit=limit,remaining_unused=limit-len(budget),
         ended=True,attempts=rows,fatal=fatal,prototype_conditional_success=bool(result and result['prototype_conditional_success']),
         prefix_consumed=bool(result),source_commit=commit,mode='replay' if args.replay else 'online',
         old_strict_experiment_success=False,g2_evaluated=False,real_vehicle_control=False)
@@ -123,5 +144,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--capture',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
+    p.add_argument('--max-requests',type=int,default=4)
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')
     sys.exit(main(p.parse_args()))
