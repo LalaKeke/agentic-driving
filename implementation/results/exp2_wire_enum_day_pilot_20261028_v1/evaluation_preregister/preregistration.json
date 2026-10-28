@@ -1,0 +1,111 @@
+{
+  "version": "controlled_single_window_exp2_wire_enum_g2_preregistration_v1",
+  "sample_id": "ac452a60e8b34a7080c938c904b23057",
+  "original_cohort": "original_four",
+  "unique_windows": 1,
+  "previous_exposure": "This window, earlier model quantities, nuScenes labels and prior nonblind associations were already inspected historically. This is not fully blind or an independent held-out sample.",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  },
+  "reference_time_id": "nusc_us_1535489306412404",
+  "reference_time_s": 1535489306.4124038,
+  "ego_center_to_rear_axle_m": 1.2,
+  "evaluation_horizon_s": 5.0,
+  "evaluation_domain": {
+    "id": "pilot_original_day_fixed_common_domain_v1",
+    "polygon_m": [
+      [
+        -5.0,
+        -12.0
+      ],
+      [
+        45.0,
+        -12.0
+      ],
+      [
+        45.0,
+        12.0
+      ],
+      [
+        -5.0,
+        12.0
+      ]
+    ],
+    "purpose": "current_actor_and_entire_future_body_no_clipping"
+  },
+  "image_sha256": {
+    "36287d40e88a4ac9bb64cf4e8c166d1f": "a28feee634a24a682bdfeee4f60c92968de209254b9b78e54ec833ab0a7d25be",
+    "29cfc6babdba4e7ebad782f6d551033f": "677093fe34c9b4d0c0f67211188067f04a8d819dc5546057c1ba5d0cc22a1426",
+    "5479effa00bf4d01b96e1ec77065c977": "bc917c947ca4614726f5bba212ebb68cbdfec5d0844b28d6d0641a2810b769b3",
+    "836281904290463cafe2059d05d2b474": "bcab4cdf4d48f246a940584278375a7735cbec0b8fbaf8abe7422aa54354d0db",
+    "e4f2f36b2a3e406e8bff7f4d8d2b38c9": "4a5517ce903782d4547b541fbdb3e846a974d34f92927dbf11fcf7f7b91386a2",
+    "e21961136d834859877064a2156298ec": "3e9144479ed3156e049e37a644a75548af32431667d12440de7696858c831a52",
+    "39874064e74049dba341a7014335ee45": "b2ebbc1d632e947a43c4fd0301ebf2499dc67e49426c69f219699a4e8bd2dbaa",
+    "464e1a23df874e0c903038255d4605f0": "6e9d8515f21844437315c27831522cfb2d276be4a1d3c0f9deceb10f8f6f0fd5",
+    "a9b270a6886847dd9ea7bf81b521c8c6": "285a2a12a36316f74b15272e376c4c002fdef7c5a9050606a8cebad9c27732f7",
+    "defde01fa5594f18b24be8fe68e6f2c4": "cc377d2fb0836d52698926e1b5619d7d8841d1f496b5d7b093ece5a19a152014"
+  },
+  "fixed_focal_instance": "afd097377c71479ea8349eeae83b8143",
+  "identity_review": {
+    "inputs": [
+      "original cited images",
+      "official SDK annotation projections linked by image SHA",
+      "fixed-vocabulary numerical-value-free semantic view"
+    ],
+    "blocked_inputs": [
+      "model position/velocity/BODY/uncertainty/occupancy values",
+      "numerical error tables",
+      "unrestricted model prose",
+      "nearest-GT or lowest-error selection"
+    ],
+    "method": "Freeze aliases-to-instance associations from visible category/appearance/camera evidence before unsealing model numbers. Require unique single actor and at least one valid actually cited image. Preserve ambiguous, group, invalid citation and duplicate-GT rows unmatched. Review every declared actor; never replace the original focal target.",
+    "prior_association_reuse": "Prior labels may guide visual identity, but original model actor IDs are not copied to new responses. New IDs require fresh frozen semantic-view review.",
+    "historical_front_frame_rule": "If no frozen latest-frame projection matches an actually cited frame, either use official SDK projection for that original frame under this same rule before reviewing quantities, or retain unmatched; never add a frame to model evidence.",
+    "grouping": "Initial and revision are repeated observations of one unique window. Missing output/service failure gets its own attempt row; absence of actors is not a zero-error score."
+  },
+  "scoring": {
+    "position": "Report Euclidean XY difference only for semantically matching, uniquely associated native values within frozen domain. Reference is annotation-linear interpolation, not exact measured instantaneous truth.",
+    "velocity": "No instantaneous-velocity accuracy score from annotation displacement slopes; preserve provided/missing and proxy status.",
+    "road": "No road-boundary accuracy score: model local patch has no predeclared correspondence to full-map drivable extent.",
+    "future": "Evaluate every declared scenario and all source intervals against complete annotation-linear circumscribed-body surrogate only. Require entire GT body within domain; do not clip. Report coverage, area inflation, missing, gaps, unmatched and no-calibrated-guarantee caveat together.",
+    "planning": "Report sealed real tool/acceptor/execution evidence separately. Overlap never implies planning usability.",
+    "thresholds_applied": false,
+    "g2_pass_claim": false
+  },
+  "runtime_separation": "Offline GT and identity review only. None of these files or labels are model/T1-T4 inputs.",
+  "lifecycle": "Freeze this plan before viewing new model metric values. Seal runtime outputs first; freeze identity review next; then evaluate. Do not mutate sealed sources or rerun into existing directories.",
+  "input_sha256": {
+    "runs/nuscenes_cases_20261027/runtime_inputs/ac452a60e8b34a7080c938c904b23057.json": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+    "implementation/results/t1_unknown_diagnosis/g2/truth.json": "d5cc619a211628339910604c0034fbf1b5be29e95cd048f9a2390a7f3dd187d1",
+    "implementation/results/t1_unknown_diagnosis/g2/associations.json": "c030c0d724b0cb297a4b3ef4cf437d9c10181b1af7d78b308de527916fd69e66",
+    "implementation/results/t1_unknown_diagnosis/g2/projection_index.json": "d666a0726d223dab34050f6fdd09f7c126d2d62b29cde015701bf0639586655a",
+    "implementation/results/t1_unknown_diagnosis/g2/prepare_provenance.json": "3d32a2ad55472aa808d0671eeeca7427e56357e9a45fb89ce6a51fae4441051f",
+    "implementation/experiments/nuscenes/t1_diagnosis_g2.py": "278c37111355a1161cdefa1ccec22fcd365572181588017c354b594404f004a5",
+    "implementation/experiments/nuscenes/prepare.py": "8d2b10c349346cd64783ddc15513c1a79330437643d69942cbf860eaecd9a4f7",
+    "implementation/agentic/g2_metric.py": "6163a61d87aad2f98b67cb81ce369bcfadb3a930a9f021b398edcfaa726841fe",
+    "implementation/experiments/pilot_g2.py": "47b8fa4847f1d51ef5fba05df61dda44766f9ab0770b1f5d14b76ae970cdcad1",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_BACK.jpg": "680bb3adf005f2f71b392881c0f5079ab6c90b4e0217aff8df36726e2b603e8c",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_BACK_LEFT.jpg": "8410cb348672727bb192d1f03342f5fdb93c057043786c08815005e20887757f",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_BACK_RIGHT.jpg": "895114874f48a04e295ea2e6199d79fece29485feac022f26c0a8ad1d458379c",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_FRONT.jpg": "f577e4c785ac17306c3c1f1c9bb3276b3352a05707fab5fb99f675114ce65dc9",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_FRONT_LEFT.jpg": "9033adf2f106ea62647f28e7f65301559e08f421160eccb8b454fe79ef6d51e8",
+    "implementation/results/t1_unknown_diagnosis/g2/review_images/ac452a60e8b34a7080c938c904b23057_CAM_FRONT_RIGHT.jpg": "edb0371be5bff5e584422d48da1931019c93c68d855b40d51c68d49f672d8e09"
+  },
+  "real_model_calls": 0,
+  "launched": false,
+  "experiment_id": "exp2_wire_enum_day_pilot_20261028_v1",
+  "parent_preregistration_sha256": "2c6e34e03cec70ebc6efd590c29c1d4eac53486f12d8c7d96f98c594d8e99b6a",
+  "parent_preregistration_path": "implementation/results/exp2_single_day_pilot_20261028_v1/evaluation_preregister/preregistration.json",
+  "measurement_and_identity_rules_changed": false,
+  "output_contract": "3.0.0-exp2",
+  "prompt_version": "driving_v3_exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "wire_schema_version": "so_const_string_enum_type_v2",
+  "new_trial_group": "Redundant transport type annotations only; preserve original pilot failure and never transfer its unused call.",
+  "preregistration_timing": "Prepared before any new generation request or inspection of new metric values; root freezes these files in Git before invocation."
+}

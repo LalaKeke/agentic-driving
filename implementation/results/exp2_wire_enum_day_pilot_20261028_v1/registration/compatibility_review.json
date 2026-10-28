@@ -1,0 +1,3789 @@
+{
+  "review_version": "so_documented_subset_review_v1",
+  "reviewed_on": "2026-10-28",
+  "official_guide": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+  "model_family_fine_tuned": null,
+  "scope": "Documented general API subset plus prior observed failure; not a service capability test.",
+  "offline_review_completed": true,
+  "service_acceptance_established": false,
+  "automatic_transforms_applied": 0,
+  "checks": [
+    {
+      "json_pointer": "",
+      "rule": "ROOT_OBJECT_NO_ANYOF",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "type": "object",
+        "anyOf": null
+      },
+      "basis": "Guide: root object requirement.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "decision",
+        "hypotheses",
+        "contract_version",
+        "coverage_profile",
+        "measurement_semantics"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "decision",
+        "hypotheses",
+        "contract_version",
+        "coverage_profile",
+        "measurement_semantics"
+      ]
+    },
+    {
+      "json_pointer": "/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/$schema",
+      "rule": "ANNOTATION_OR_DIALECT_FORM",
+      "status": "UNCONFIRMED",
+      "value": "http://json-schema.org/draft-07/schema#",
+      "basis": "No deployment-specific acceptance established for this annotation or dialect marker.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/$id",
+      "rule": "ANNOTATION_OR_DIALECT_FORM",
+      "status": "UNCONFIRMED",
+      "value": "https://agentic-driving.local/schemas/agent_output_v3_exp2.schema.json",
+      "basis": "No deployment-specific acceptance established for this annotation or dialect marker.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/title",
+      "rule": "ANNOTATION_OR_DIALECT_FORM",
+      "status": "UNCONFIRMED",
+      "value": "Experimental metric, conditional scale support and whole-interval source contract 3.0.0-exp2",
+      "basis": "No deployment-specific acceptance established for this annotation or dialect marker.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "scene_id",
+        "revision",
+        "behavior",
+        "target_region",
+        "desired_speed_mps",
+        "yield_to",
+        "stop",
+        "priority",
+        "valid_until_s",
+        "hard_requirements",
+        "preferences"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "scene_id",
+        "revision",
+        "behavior",
+        "target_region",
+        "desired_speed_mps",
+        "yield_to",
+        "stop",
+        "priority",
+        "valid_until_s",
+        "hard_requirements",
+        "preferences"
+      ]
+    },
+    {
+      "json_pointer": "/properties/decision/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/scene_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/scene_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/revision/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "integer",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/revision/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/behavior/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/behavior/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 3,
+        "string_characters": 25,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/behavior/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "stop_yield",
+          "hold_lane",
+          "resume"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/target_region/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/desired_speed_mps/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/desired_speed_mps/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/yield_to/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/yield_to/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/yield_to/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/yield_to/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "center_x_max_m",
+        "deadline_s"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "center_x_max_m",
+        "deadline_s"
+      ]
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/properties/center_x_max_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/properties/deadline_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/0/properties/deadline_s/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/stop/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/priority/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "integer",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/priority/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/valid_until_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/hard_requirements/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/hard_requirements/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/hard_requirements/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/hard_requirements/items/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 6,
+        "string_characters": 54,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/hard_requirements/items/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "target_region",
+          "stop",
+          "yield",
+          "vehicle_limits",
+          "collision_free",
+          "road"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "speed_weight",
+        "acceleration_weight",
+        "steering_weight",
+        "smoothness_weight"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "speed_weight",
+        "acceleration_weight",
+        "steering_weight",
+        "smoothness_weight"
+      ]
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/speed_weight/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/speed_weight/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/acceleration_weight/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/acceleration_weight/exclusiveMinimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/steering_weight/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/steering_weight/exclusiveMinimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/smoothness_weight/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/decision/properties/preferences/properties/smoothness_weight/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "coordinate_frame",
+        "reference_time_id",
+        "units",
+        "scale_basis",
+        "road",
+        "objects",
+        "unknown_regions",
+        "traffic_evidence",
+        "unbounded_unknown",
+        "confidence_note",
+        "premises",
+        "unknowns",
+        "metric_scale_support"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "coordinate_frame",
+        "reference_time_id",
+        "units",
+        "scale_basis",
+        "road",
+        "objects",
+        "unknown_regions",
+        "traffic_evidence",
+        "unbounded_unknown",
+        "confidence_note",
+        "premises",
+        "unknowns",
+        "metric_scale_support"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/coordinate_frame/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/coordinate_frame",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "ego_at_reference",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/reference_time_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/reference_time_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/units/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/units",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "m_s_rad",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/scale_basis/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/scale_basis/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 3,
+        "string_characters": 53,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/scale_basis/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "model_metric_hypothesis",
+          "calibrated_ground_plane",
+          "unknown"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "polygon_m",
+        "uncertainty_m",
+        "frame_ids",
+        "time_ids"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "polygon_m",
+        "uncertainty_m",
+        "frame_ids",
+        "time_ids"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/polygon_m/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/uncertainty_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/uncertainty_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/uncertainty_m/anyOf/0/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/uncertainty_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/0/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/road/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "id",
+        "position_m",
+        "velocity_mps",
+        "uncertainty_m",
+        "occupancy",
+        "frame_ids",
+        "time_ids",
+        "state_time_id",
+        "body_geometry",
+        "alignment",
+        "scenarios",
+        "scenario_inventory_complete"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "id",
+        "position_m",
+        "velocity_mps",
+        "uncertainty_m",
+        "occupancy",
+        "frame_ids",
+        "time_ids",
+        "state_time_id",
+        "body_geometry",
+        "alignment",
+        "scenarios",
+        "scenario_inventory_complete"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf/0/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf/0/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf/0/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/position_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf/0/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf/0/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf/0/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/velocity_mps/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/uncertainty_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/uncertainty_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/uncertainty_m/anyOf/0/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/uncertainty_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "id",
+        "start_s",
+        "end_s",
+        "kind",
+        "status",
+        "frame_ids",
+        "time_ids",
+        "premise_ids",
+        "residual_m",
+        "alternatives"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "id",
+        "start_s",
+        "end_s",
+        "kind",
+        "status",
+        "frame_ids",
+        "time_ids",
+        "premise_ids",
+        "residual_m",
+        "alternatives"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/start_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/start_s/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/end_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/end_s/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/kind/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/kind",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "whole_interval_body_envelope",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/status/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/status/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 2,
+        "string_characters": 20,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/status/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "supported",
+          "placeholder"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/premise_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/premise_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/premise_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/premise_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/residual_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/residual_m/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "scenario_id",
+        "polygon_m"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "scenario_id",
+        "polygon_m"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/scenario_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/scenario_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/alternatives/items/properties/polygon_m/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/state_time_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/state_time_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "length_m",
+        "width_m",
+        "yaw_rad"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "length_m",
+        "width_m",
+        "yaw_rad"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/properties/length_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/properties/length_m/exclusiveMinimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/properties/width_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/properties/width_m/exclusiveMinimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/0/properties/yaw_rad/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/body_geometry/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "method",
+        "premise_ids",
+        "residual_m",
+        "motion_bound",
+        "evidence_positions"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "method",
+        "premise_ids",
+        "residual_m",
+        "motion_bound",
+        "evidence_positions"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/method/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/method/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 2,
+        "string_characters": 46,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/method/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "direct_reference_observation",
+          "model_motion_bound"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/premise_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/premise_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/premise_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/premise_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/residual_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/residual_m/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "max_speed_mps",
+        "displacement_bound_m",
+        "covers_all_declared_scenarios"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "max_speed_mps",
+        "displacement_bound_m",
+        "covers_all_declared_scenarios"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/properties/max_speed_mps/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/properties/max_speed_mps/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/properties/displacement_bound_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/properties/displacement_bound_m/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/0/properties/covers_all_declared_scenarios/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "boolean",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/motion_bound/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "frame_id",
+        "time_id",
+        "position_m",
+        "observed_actor"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "frame_id",
+        "time_id",
+        "position_m",
+        "observed_actor"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/frame_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/frame_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/time_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/time_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/position_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/position_m/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/position_m/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/position_m/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/alignment/properties/evidence_positions/items/properties/observed_actor/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "boolean",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "id",
+        "premise_ids",
+        "role"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "id",
+        "premise_ids",
+        "role"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/premise_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/premise_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/premise_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/premise_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/role/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/role/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 2,
+        "string_characters": 25,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenarios/items/properties/role/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "adopted",
+          "reasonable_adverse"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/scenario_inventory_complete/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "boolean",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "polygon_m",
+        "uncertainty_m",
+        "frame_ids",
+        "time_ids"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "polygon_m",
+        "uncertainty_m",
+        "frame_ids",
+        "time_ids"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/polygon_m/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/uncertainty_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/uncertainty_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/uncertainty_m/anyOf/0/minimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/uncertainty_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknown_regions/items/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "rule",
+        "state",
+        "frame_ids",
+        "time_ids"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "rule",
+        "state",
+        "frame_ids",
+        "time_ids"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/rule/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/rule/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/state/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/state/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/state/anyOf/0/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/state/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/traffic_evidence/items/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unbounded_unknown/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "boolean",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/confidence_note/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/confidence_note/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/confidence_note/anyOf/0/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/confidence_note/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "id",
+        "object_ids",
+        "scenario_ids",
+        "start_s",
+        "end_s",
+        "space_polygon_m",
+        "statement"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "id",
+        "object_ids",
+        "scenario_ids",
+        "start_s",
+        "end_s",
+        "space_polygon_m",
+        "statement"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/object_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/object_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/object_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/object_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/scenario_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/scenario_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/scenario_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/scenario_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/start_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/end_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/0/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/space_polygon_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/statement/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/premises/items/properties/statement/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "id",
+        "object_ids",
+        "scenario_ids",
+        "start_s",
+        "end_s",
+        "space_polygon_m",
+        "kind",
+        "premise_ids",
+        "detail"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "id",
+        "object_ids",
+        "scenario_ids",
+        "start_s",
+        "end_s",
+        "space_polygon_m",
+        "kind",
+        "premise_ids",
+        "detail"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/object_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/object_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/object_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/object_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/scenario_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/scenario_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/scenario_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/scenario_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/start_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/end_s/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 3,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/items/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/items/maxItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/0/items/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/space_polygon_m/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/kind/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/kind/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 4,
+        "string_characters": 63,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/kind/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "not_provided",
+          "not_expressible",
+          "multiple_conditionals",
+          "no_finite_bound"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/premise_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/premise_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/premise_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/premise_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/detail/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/unknowns/items/properties/detail/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf",
+      "rule": "ANYOF_BRANCHES_REVIEWED_SEPARATELY",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 2,
+      "basis": "Guide: nested anyOf; every branch must also satisfy the subset.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "method",
+        "frame_ids",
+        "time_ids",
+        "premise_ids",
+        "anchors",
+        "metric_reasoning"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "method",
+        "frame_ids",
+        "time_ids",
+        "premise_ids",
+        "anchors",
+        "metric_reasoning"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/method/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/method",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "conditional_body_dimension_prior",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/frame_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/frame_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/frame_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/frame_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/time_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/time_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/time_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/time_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/premise_ids/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/premise_ids/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/premise_ids/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/premise_ids/items/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "array",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/minItems",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 1,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "object_id",
+        "dimension",
+        "value_m",
+        "rationale"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "object_id",
+        "dimension",
+        "value_m",
+        "rationale"
+      ]
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/object_id/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/object_id/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/dimension/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/dimension/enum",
+      "rule": "SINGLE_ENUM_STRING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "count": 2,
+        "string_characters": 15,
+        "large_enum_limit": 15000
+      },
+      "basis": "Guide: large string enum limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/dimension/enum",
+      "rule": "ENUM_EXPLICIT_TYPE",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "enum": [
+          "length_m",
+          "width_m"
+        ],
+        "type": "string"
+      },
+      "basis": "Guide supports enum; illustrated explicit-type form does not establish enum-only acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/value_m/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "number",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/value_m/exclusiveMinimum",
+      "rule": "DOCUMENTED_TYPED_CONSTRAINT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 0,
+      "basis": "Guide: general-model typed constraint; fine-tuned exclusions remain conditional.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/rationale/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/anchors/items/properties/rationale/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/metric_reasoning/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/metric_reasoning/minLength",
+      "rule": "MODEL_SPECIFIC_KEYWORD",
+      "status": "UNCONFIRMED",
+      "value": 1,
+      "basis": "Guide explicitly excludes this for fine-tuned models; general support is not explicitly established.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "fine_tuned": null
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/1/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "null",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/contract_version/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/contract_version",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "3.0.0-exp2",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/coverage_profile/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/coverage_profile",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "whole_interval_sources_v3_exp2",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "object",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/required",
+      "rule": "ALL_PROPERTIES_REQUIRED",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": [
+        "coordinate_frame",
+        "origin",
+        "axes",
+        "actor_reference_point",
+        "velocity_semantics",
+        "uncertainty_semantics"
+      ],
+      "basis": "Guide: required fields, including nullable fields.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "property_names": [
+        "coordinate_frame",
+        "origin",
+        "axes",
+        "actor_reference_point",
+        "velocity_semantics",
+        "uncertainty_semantics"
+      ]
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/additionalProperties",
+      "rule": "CLOSED_OBJECT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": false,
+      "basis": "Guide: additionalProperties=false.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/coordinate_frame/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/coordinate_frame",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "ego_at_reference",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/origin/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/origin",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "ego_body_center_at_reference",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/axes/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/axes",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "x_forward_y_left_fixed_at_reference",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/actor_reference_point/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/actor_reference_point",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "annotation_box_center_ground_xy",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/velocity_semantics/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/velocity_semantics",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "absolute_ground_velocity_in_fixed_reference_axes",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/uncertainty_semantics/type",
+      "rule": "TYPE_FORM",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": "string",
+      "basis": "Guide: named types and nullable union examples.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/uncertainty_semantics",
+      "rule": "CONST_FORM_UNCONFIRMED",
+      "status": "UNCONFIRMED",
+      "value": {
+        "const": "noncalibrated_total_residual_radius_once",
+        "type": "string"
+      },
+      "basis": "Guide mentions const string budget but does not fully specify accepted const forms.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "TOTAL_PROPERTIES",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "observed": 121,
+        "limit": 5000
+      },
+      "basis": "Guide: published structural limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "TOTAL_ENUM_VALUES",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "observed": 24,
+        "limit": 1000
+      },
+      "basis": "Guide: published structural limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "TRACKED_STRING_CHARACTERS",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": {
+        "observed": 1892,
+        "limit": 120000
+      },
+      "basis": "Guide: published structural limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "PUBLISHED_NESTING_LIMIT",
+      "status": "CONFIRMED_SUPPORTED",
+      "value": 10,
+      "basis": "Guide: published nesting limit.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "SYNTACTIC_CONTAINER_DEPTH",
+      "status": "UNCONFIRMED",
+      "value": {
+        "object_array_path_bound": 10,
+        "published_limit": 10,
+        "refs_expanded": false
+      },
+      "basis": "Exact backend counter is not documented; this is only a conservative syntactic object/array path inventory.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "PINNED_CLI_BACKEND_SUBSET",
+      "status": "UNCONFIRMED",
+      "value": {
+        "cli_version": "0.164.0"
+      },
+      "basis": "RPC outputSchema generic JSON shape only establishes a client parameter, not backend schema acceptance.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    },
+    {
+      "json_pointer": "",
+      "rule": "DEPLOYMENT_MODEL_AND_ACCOUNT",
+      "status": "UNCONFIRMED",
+      "value": {
+        "requested_alias": "gpt-6.1-sol"
+      },
+      "basis": "No generation request is sent; model snapshot, entitlement and deployment subset are unverified.",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses"
+    }
+  ],
+  "status_counts": {
+    "CONFIRMED_SUPPORTED": 340,
+    "EXPLICIT_CONFLICT": 0,
+    "UNCONFIRMED": 59
+  },
+  "metrics": {
+    "schema_nodes": 221,
+    "total_properties": 121,
+    "total_enum_values": 24,
+    "tracked_string_characters": 1892,
+    "syntactic_container_depth": 10,
+    "references": []
+  },
+  "limitations": [
+    "Unconfirmed nodes remain unchanged and visible.",
+    "General API documentation does not certify the Codex backend deployment.",
+    "No runtime acceptance rule is changed by this inventory."
+  ]
+}
