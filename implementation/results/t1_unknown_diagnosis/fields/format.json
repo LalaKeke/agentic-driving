@@ -1,0 +1,19 @@
+{
+  "version": "t1_field_table_v1",
+  "table_format": "checks.jsonl.gz is deterministic gzip-compressed JSON Lines; one independent check per line. issues.jsonl and issues.csv contain failures only.",
+  "original_value": "raw_value is the exact original JSON value at input/json_pointer. Null is JSON null, never empty occupancy.",
+  "references": {
+    "source_rule_ref": "reference_catalog.json /rules/{id}: frozen source archive, commit, SHA, source line, original predicate, message and category",
+    "contract_clause_ref": "reference_catalog.json /clauses/{id}: frozen Git document, SHA, line and exact clause",
+    "capture_source_ref": "reference_catalog.json /sources/{id}: capture file path, SHA and bytes",
+    "feedback_source_ref": "reference_catalog.json /sources/{id}: original feedback file path, SHA and bytes"
+  },
+  "statuses": {
+    "PASS": "Predicate holds on original values; not acceptance or calibrated coverage",
+    "FAIL": "Independent predicate fails; actual_execution distinguishes first refusal from masked or downstream-only issues",
+    "NOT_EVALUABLE": "A required value/branch prerequisite is absent; not a proven extra violation",
+    "NOT_APPLICABLE": "The explicit guard does not apply, e.g. position=null skips the conflict test",
+    "INFORMATIONAL": "Original field preserved; no independent rejection or no machine-parsed semantics"
+  },
+  "coverage": "All source guard families, all declared nonnull interval cells, every supplied alternative polygon and every object state/evidence field; no missing fields are filled."
+}

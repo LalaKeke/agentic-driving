@@ -1,0 +1,56 @@
+{
+  "analysis": "offline_t1_field_diagnosis_v1",
+  "created_at_utc": "2026-10-28T05:46:08.897420+00:00",
+  "source_commit": "9d828decc499de06385b108f52f39e58f8819f92",
+  "analysis_source": {
+    "path": "implementation/experiments/nuscenes/t1_field_diagnosis.py",
+    "sha256": "1ad17c4e9360eb75916b17cf4c5a30c81b8f76f4811e7302835c9c1e06e3b2bd",
+    "bytes": 54038
+  },
+  "source_tree_dirty": true,
+  "valid_responses": 27,
+  "unique_windows": 6,
+  "original_four_unique_windows": 4,
+  "recorded_first_codes": {
+    "MISSING_SCALE": 11,
+    "UNBOUNDED_UNKNOWN": 16
+  },
+  "field_checks": 6184,
+  "failed_T1_predicates": 422,
+  "latent_and_first_failed_T1_codes": {
+    "MISSING_SCALE": 11,
+    "UNBOUNDED_UNKNOWN": 38,
+    "INVALID_GEOMETRY": 8,
+    "UNSUPPORTED_TRAFFIC_RULE": 4,
+    "UNKNOWN_UNCERTAINTY": 117,
+    "OCCUPANCY_UNKNOWN": 147,
+    "DYNAMIC_ALIGNMENT": 84,
+    "UNKNOWN_TRAFFIC_CONDITION": 13
+  },
+  "failure_response_counts": {
+    "DYNAMIC_ALIGNMENT": 25,
+    "INVALID_GEOMETRY": 8,
+    "MISSING_SCALE": 11,
+    "OCCUPANCY_UNKNOWN": 27,
+    "UNBOUNDED_UNKNOWN": 27,
+    "UNKNOWN_TRAFFIC_CONDITION": 11,
+    "UNKNOWN_UNCERTAINTY": 20,
+    "UNSUPPORTED_TRAFFIC_RULE": 3
+  },
+  "downstream_potential_failures": 13,
+  "frozen_files_checked": 384,
+  "frozen_byte_preservation": true,
+  "online_model_calls": 0,
+  "tool_calls": 0,
+  "acceptance_recomputed": false,
+  "original_acceptance_changed": false,
+  "category_notes": {
+    "first_vs_latent": "Recorded feedback is the actual first failure. Independent additional failed predicates are latent diagnostics, never extra recorded tool calls.",
+    "combined_guard": "Road-null and global unbounded-unknown are separate field components of one historical UNBOUNDED_UNKNOWN guard, not two historical failures.",
+    "nulls": "Null instantaneous position or velocity alone does not reject T1. Null occupancy and uncertainty have separate hard guards.",
+    "bounds": "A whole_interval_envelope label, finite polygon and self-reported uncertainty do not establish calibrated probability or empirical coverage.",
+    "relevance": "All declared objects are universally required by T1; no candidate corridor or geometric irrelevance proof is computed here.",
+    "free_text": "confidence_note is preserved verbatim but never parsed by T1. Missing-vs-unbounded and scenario premises are not typed per object.",
+    "causality": "No T3 code is run or used to explain these historical T1 failures. No artificial examples enter any online numerator or denominator."
+  }
+}

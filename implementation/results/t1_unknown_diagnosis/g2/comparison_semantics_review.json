@@ -1,0 +1,35 @@
+{
+  "status": "CONDITIONAL_NUMERIC_CONTRASTS_SEMANTIC_COMPARABILITY_NOT_FULLY_ESTABLISHED",
+  "analysis_source_commit": "9d828decc499de06385b108f52f39e58f8819f92",
+  "scope": "Post-computation interpretation review; original responses and sealed numerical tables unchanged",
+  "identity_matching": "51 unique instance associations based on non-blind appearance/camera/semantic review, not minimum residual; 27 position and 12 velocity numerical contrasts available",
+  "evaluation_assumptions": {
+    "position_m": "Model XY is interpreted as the annotation box center projected to ground XY",
+    "velocity_mps": "Model vector is interpreted as target ground absolute velocity rotated into fixed ego_at_reference axes; ego velocity is not subtracted",
+    "gt_current_velocity": "Slope of bracketing same-instance annotation centers, not an instantaneous measurement",
+    "ego_reference_point": "Original configured 1.2m center offset from native rear axle, not measured in this audit"
+  },
+  "frozen_contract_confirms_actor_center_point_uniquely": false,
+  "frozen_contract_confirms_absolute_versus_ego_relative_velocity_uniquely": false,
+  "evidence": [
+    "implementation/schemas/agent_output_v2_1.schema.json:222,237 specify nullable XY values but no actor body point or relative-velocity definition",
+    "implementation/prompts/driving_v2_3.txt:14-15 define fixed ego CENTER origin and acquisition reference; line45 center statement explicitly concerns target_region/trajectory",
+    "implementation/experiments/nuscenes/t1_diagnosis_g2.py:129-130 define GT annotation-center XY and ground velocity rotated into reference axes",
+    "implementation/experiments/nuscenes/t1_diagnosis_g2.py:253-257 compute direct numeric differences"
+  ],
+  "scored_velocity_rows": {
+    "near_stationary_ego_windows": 10,
+    "parking_window_with_ego_speed_approximately_4_065_mps": 2,
+    "warning": "Near-stationary ego reduces the absolute/relative numerical difference; it does not establish the missing semantic definition"
+  },
+  "interpretation": "Published error-named statistics are arithmetic contrasts under the above assumptions, not unconditionally validated model accuracy. Reference-point or velocity-definition mismatch may contribute. No alternate interpretation is chosen to minimize errors.",
+  "requirements_for_confirmatory_grounding_score": [
+    "Preregister explicit actor body reference point and absolute/relative velocity semantics in a versioned output contract",
+    "Freeze legal per-instance matching and temporal/coordinate transforms independently of residuals",
+    "Keep missing, unmatched and semantically ambiguous denominators; do not retroactively force an interpretation on these 27 outputs"
+  ],
+  "acceptance_thresholds": null,
+  "g2_pass_claim": false,
+  "online_model_calls": 0,
+  "runtime_input_writes": 0
+}

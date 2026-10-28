@@ -1,6 +1,6 @@
 # T1 相关未知与条件占用：独立只读审查
 
-本审查基于提交 `bb1124d6134cdcfea6a888a2ad56ed282a0e50e2`。没有真实模型调用；没有修改核心代码、原图、原始输出、配置、提示或接受器结论。下述人工反例只说明软件语义，不进入在线成功率。输入SHA见 `t1_relevance_input_sha.json`；27份逐响应原文与异步引用见 `t1_relevance_real27.json`。T1当前文件SHA `b5483a631242dfe3b813857d6f46b82da811eaa2958c985fe8b04badb72f1b45` 与五组冻结ZIP内的T1逐字相同；因此以下T1代码行也可追溯到当时源。后续T3修复不涉及这些结论，不能归因到这些在线试验。
+本子审查基于提交 `bb1124d6134cdcfea6a888a2ad56ed282a0e50e2`，在最小分类修复前完成。没有真实模型调用；子审查没有修改核心代码、原图、原始输出、配置、提示或接受器结论。下述人工反例只说明软件语义，不进入在线成功率。输入SHA见 [inputs.json](inputs.json)；27份逐响应原文与异步引用见 [real27_async_evidence.json](real27_async_evidence.json)。基线T1文件SHA `b5483a631242dfe3b813857d6f46b82da811eaa2958c985fe8b04badb72f1b45` 与五组冻结ZIP内的T1逐字相同，原字节保存在 [baseline_sources/t1.py](../baseline_sources/t1.py)；因此以下T1代码行也可追溯到当时源。分类修复及27份拒绝不变的复核见 [主报告](../README.md)。后续T3修复不涉及这些结论，不能归因到这些在线试验。
 
 ## 1. 结论与证据边界
 
@@ -65,4 +65,4 @@
 
 ## 7. 实际人工检查
 
-`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python /tmp/t1_relevance_counterexamples.py` 在未修改T1的基线执行，15项unittest全部通过，0.146s。`t1_relevance_counterexamples.json`保留所有合成输入、结果、源码SHA、T1SHA；`t1_relevance_counterexamples.log`保留命令输出。包括基线通过、未知速度合法、多备选保留与不利未来T2拒绝、null拒绝、globalunknown无链接、远处未知不按距离删除、真实证据异步误拒、错配/错参考拒绝、粗包络表示限制与等值细化、缺段拒绝、尺度分类。脚本故意断言**基线**分类interface_error来证明现状；最小分类修复后该历史反例应在冻结baseline源码执行，主线另用新期望回归，不能改写这份旧结果。
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python /tmp/t1_relevance_counterexamples.py` 在未修改T1的基线执行，15项unittest全部通过，0.146s。[frozen_counterexamples.json](frozen_counterexamples.json) 保留所有合成输入、结果、源码SHA、T1SHA；[frozen_counterexamples.log](frozen_counterexamples.log) 保留实际输出。包括基线通过、未知速度合法、多备选保留与不利未来T2拒绝、null拒绝、globalunknown无链接、远处未知不按距离删除、真实证据异步误拒、错配/错参考拒绝、粗包络表示限制与等值细化、缺段拒绝、尺度分类。脚本故意断言**基线**分类interface_error来证明现状；最小分类修复后该历史反例应在冻结baseline源码执行，主线另用新期望回归，不能改写这份旧结果。[显式冻结版复跑入口](../../../experiments/nuscenes/replay_frozen_t1_counterexamples.py) 将构造函数绑定到保留的基线，复跑结果另写 [replay](replay/replay.json)，未改原结果。

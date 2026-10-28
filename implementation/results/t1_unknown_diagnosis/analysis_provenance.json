@@ -1,0 +1,60 @@
+{
+  "analysis_source_commit": "9d828decc499de06385b108f52f39e58f8819f92",
+  "analysis_sources": {
+    "implementation/experiments/nuscenes/t1_field_diagnosis.py": {
+      "sha256": "1ad17c4e9360eb75916b17cf4c5a30c81b8f76f4811e7302835c9c1e06e3b2bd",
+      "bytes": 54038
+    },
+    "implementation/experiments/nuscenes/t1_diagnosis_g2.py": {
+      "sha256": "59d046ef04266c550960d72d07290492565ff129fe19e2a93cc008ab92bed6e6",
+      "bytes": 28467
+    },
+    "implementation/experiments/nuscenes/finalize_t1_diagnosis.py": {
+      "sha256": "8d767ab2376026b08e7401e464bbbc22bfd1005aafa230155d543e4f1a1869fe",
+      "bytes": 6391
+    },
+    "implementation/experiments/nuscenes/replay_frozen_t1_counterexamples.py": {
+      "sha256": "e056a790e720b37ceaffda4d81b2426b31417c980789976f499f384b7c23117a",
+      "bytes": 2519
+    },
+    "implementation/experiments/nuscenes/prepare.py": {
+      "sha256": "8d2b10c349346cd64783ddc15513c1a79330437643d69942cbf860eaecd9a4f7",
+      "bytes": 10065
+    },
+    "implementation/agentic/datasets/nuscenes_capture.py": {
+      "sha256": "8beb8b563b67e7db5ceec82bad58f7117d93d449e83f861c332ba0c00adfeef8",
+      "bytes": 7165
+    },
+    "implementation/agentic/t1.py": {
+      "sha256": "475aafd146a2e69bd6b42421d287444790f51b29262e2654e797e242cd769fb5",
+      "bytes": 7391
+    },
+    "implementation/agentic/contracts.py": {
+      "sha256": "684100058ea34b4955d24969408fd6cc6593622af5b8d77bd14791bc7c6f316e",
+      "bytes": 3708
+    },
+    "implementation/agentic/geometry.py": {
+      "sha256": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+      "bytes": 2815
+    }
+  },
+  "baseline_commit": "bb1124d6134cdcfea6a888a2ad56ed282a0e50e2",
+  "input_manifest": "baseline_protection.json",
+  "protected_unchanged_files": 776,
+  "explicit_code_changes": [
+    {
+      "path": "implementation/agentic/t1.py",
+      "before_sha256": "b5483a631242dfe3b813857d6f46b82da811eaa2958c985fe8b04badb72f1b45",
+      "after_sha256": "475aafd146a2e69bd6b42421d287444790f51b29262e2654e797e242cd769fb5",
+      "kind": "AUTHORIZED_CODE_TAXONOMY_FIX_ONLY",
+      "frozen_input_preserved": "baseline_sources/t1.py"
+    }
+  ],
+  "scope": "Previously tracked results, prompts, schemas, experiment/config sources plus current T1/G2 and all referenced real image bytes; not a full-filesystem audit",
+  "online_model_calls": 0,
+  "new_runtime_trials": 0,
+  "original_acceptance_changed": false,
+  "original_four_denominators_changed": false,
+  "t3_causal_attribution": false,
+  "ground_truth_scope": "Offline g2 products only; no runtime/model input writes"
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PROPOSAL_ONLY_REQUIRES_USER_CONFIRMATION",
+  "launched": false,
+  "new_model_calls_this_audit": 0,
+  "question": "Can an explicit per-entity unknown-reason ledger distinguish unavailable evidence from profile-expression limits, without changing acceptance?",
+  "unique_observation_windows": 6,
+  "cohorts_reported_separately": {
+    "original_four": ["ac452a60e8b34a7080c938c904b23057", "88449a5cb1644a199c1c11f6ac034867", "c537fef0b4b241df92f44daa976fe5b3", "b4c279e61abf49bd871ff2ec4b13e115"],
+    "exploratory_two": ["6af01b48aec7475eac1f8e9add0276ff", "ac8b4d49731d43289579f014cb7c97ef"]
+  },
+  "arms": [
+    {"id": "control", "prompt": "driving_v2_3", "image_input": "original ten-frame capture for each window"},
+    {"id": "diagnostic_ledger", "prompt": "driving_v2_3 plus only the preregistered unknown-reason ledger instruction", "image_input": "identical capture bytes as control"}
+  ],
+  "only_changed_variable": "Prompt instruction asking the base model to encode a per-object/road/traffic diagnostic ledger inside the existing confidence_note string; no runtime acceptance or schema changes",
+  "ledger": {
+    "format": "JSON text in existing confidence_note; ordinary hypothesis premises preserved under premises_text",
+    "fields": ["original_object_or_rule_id", "field_path", "acquisition_frame_ids", "acquisition_time_ids", "relative_interval_s", "status", "missing_information", "premises_text"],
+    "statuses": ["FINITE_ENVELOPE_PROVIDED", "INSTANT_STATE_UNKNOWN_ENVELOPE_PROVIDED", "PREDICTION_NOT_PROVIDED", "NO_FINITE_BOUND_SUPPORTED", "NOT_EXPRESSIBLE_IN_CURRENT_PROFILE", "UNRESOLVED_REASON"],
+    "restrictions": "Self-reported reasons are not established facts or calibrated guarantees. Do not clear unknowns, invent bounds, delete adverse modes, relabel unsupported scale, or add unrelated frames to obtain acceptance.",
+    "runtime_use": "NONE; offline diagnosis only; existing T1 does not parse the ledger"
+  },
+  "fixed_conditions": {
+    "model_requested": "gpt-6.1-sol; actual returned identity must be recorded; no silent fallback",
+    "output_contract": "2.1.0",
+    "horizon_s": 5,
+    "step_s": 0.2,
+    "prefix_s": 0.2,
+    "history_s": 2,
+    "vehicle_safety_target_capture": "Original frozen capture/config bytes for the corresponding window",
+    "corridor_policy": "moving_seed",
+    "tool_rules": "Current committed source, including category-only MISSING_SCALE fix; freeze exact source and prompts before any calls",
+    "truth_runtime_input": false,
+    "evaluation_extra_calls": 0,
+    "arm_order": "Interleave by window, alternating control-first and diagnostic-first in the listed cohort order; record timestamps; do not claim deterministic model pairing"
+  },
+  "budget": {
+    "arm_window_trials": 12,
+    "initial_calls": 12,
+    "maximum_semantic_revisions_per_arm_window": 1,
+    "maximum_total_model_invocations_including_transport_retries": 24,
+    "automatic_transport_retries": 0,
+    "timeout_s_per_invocation": 600,
+    "total_batch_wall_limit_s": 18000,
+    "failed_invocations_consume_budget": true
+  },
+  "primary_diagnostic_outputs": [
+    "All ledger reason slots with absence/parse-failure rates and source pointers; model assertions remain unverified",
+    "Original-field changes and all independently evaluable T1 predicates; no posthoc object identity assumption",
+    "Actual first-stage rejection, first-call and within-one-revision full-chain outcomes, separately for original four and exploratory two"
+  ],
+  "full_chain_conditional_success": "Fresh real image/model record with valid provenance; T1/T2/T3 pass; independent raw-scene continuous T4 pass; strict acceptor passes; verified 0.2s prefix receipt agrees with integration. Label MOVING_PREFIX versus STATIONARY_HOLD. Model-scene assumptions/coverage remain conditions; single-window replay is not multi-round counterfactual driving.",
+  "g2": {
+    "phase": "Offline after runtime artifacts are sealed; no feedback into model/tools",
+    "report": "All missing/unmatched denominators, fixed focal targets, current positions/speeds/road extent and future annotation-surrogate metrics separately",
+    "thresholds": "NOT_SET_NO_G2_PASS_CLAIM; scientifically meaningful numerical acceptance thresholds require separate confirmation before registration"
+  },
+  "stops": [
+    "No launch without explicit user confirmation and frozen prompt/source/config hashes",
+    "Stop an arm-window after success, at most one semantic revision, or service/timeout failure; no replacement calls",
+    "Stop the whole batch on authentication/quota/model-unavailable failures, unexpected model identity, immutable input/source hash mismatch, any GT access from runtime, total invocation or wall budget exhaustion",
+    "Do not replace windows, enlarge budgets, alter unknown/safety requirements, change models, or start a follow-up batch automatically"
+  ]
+}
