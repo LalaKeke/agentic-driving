@@ -39,7 +39,22 @@ def _check_capture(cap, provenance, output, allow_synthetic):
     validate('agent_output_v3_exp2.schema.json', output)
     need(provenance.get('agent_output_contract') == VERSION, 'MODEL_CONTRACT', 'v3 requires explicit provenance contract version')
     need(provenance.get('source') == 'online_model' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'SOURCE', 'Synthetic input requires explicit test mode')
-    need(provenance.get('prompt_version') == 'driving_v3_exp2' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'PROMPT_CONTRACT', 'v3 prompt and output contract are recorded separately and must be compatible')
+    prototype = provenance.get('experiment_profile') == 'local_conditional_2s_prototype_v1'
+    need(provenance.get('prompt_version') != 'driving_prototype_v1' or prototype,
+         'PROMPT_CONTRACT', 'Prototype prompt cannot masquerade as the strict profile')
+    if prototype:
+        need(provenance.get('prompt_version') == 'driving_prototype_v1'
+             and capture_horizon_is_two(cap), 'PROMPT_CONTRACT', 'Prototype profile requires its real prompt and a two-second horizon')
+        scope = next((p for p in output['hypotheses']['premises'] if p['id']=='prototype_local_scope'), None)
+        need(scope is not None and scope['space_polygon_m'] is not None
+             and scope['start_s']==0 and scope['end_s']==2 and bool(scope['statement'].strip()),
+             'PROTOTYPE_SCOPE', 'Prototype needs a model-declared finite local domain and explicit two-second conditions', 'tool_infeasible')
+        domain = polygon(scope['space_polygon_m'], True)
+        road = output['hypotheses']['road']
+        need(road is None or domain.covers(polygon(road['polygon_m'])),
+             'PROTOTYPE_SCOPE', 'Model road must lie inside its declared prototype domain', 'tool_infeasible')
+    else:
+        need(provenance.get('prompt_version') == 'driving_v3_exp2' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'PROMPT_CONTRACT', 'v3 prompt and output contract are recorded separately and must be compatible')
     need(provenance.get('output_digest') == digest(output), 'SOURCE', 'Output does not match provenance')
     m=cap['metadata']; frames=cap['observations']; ids={f['id'] for f in frames}; clock={}
     need(len(ids)==len(frames), 'DUPLICATE_ID', 'Duplicate frame id')
@@ -64,6 +79,10 @@ def _check_capture(cap, provenance, output, allow_synthetic):
             R=np.asarray(cal['camera_to_center_rotation']); K=np.asarray(cal['camera_intrinsic'])
             need(np.allclose(R.T@R,np.eye(3),atol=1e-6) and abs(np.linalg.det(R)-1)<1e-6 and abs(np.linalg.det(K))>1e-9, 'CALIBRATION', 'Invalid camera calibration')
     return {f['id']:f for f in frames}
+
+
+def capture_horizon_is_two(cap):
+    return cap['metadata']['horizon_s'] == 2.0 and cap['metadata']['step_s'] == .2 and cap['safety']['prefix_s'] == .2
 
 
 def _evidence(item, frames):
@@ -280,6 +299,8 @@ def construct(capture, output, provenance, allow_synthetic=False):
     p=deepcopy(provenance);p['metric_contract_trace']=trace
     scene=dict(metadata=deepcopy(capture['metadata']),capture=deepcopy(capture),decision=lower['decision'],hypotheses=lower['hypotheses'],provenance=p,
                claim='conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability')
+    if provenance.get('experiment_profile') == 'local_conditional_2s_prototype_v1':
+        scene['claim'] = 'LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; '+scene['claim']
     validate('scene_v2.schema.json',scene)
     return scene
 

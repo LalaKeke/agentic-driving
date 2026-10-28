@@ -186,7 +186,15 @@ class PilotProtocol:
 class PilotSubscriptionAgent:
     def __init__(self, *, evidence_dir, model='gpt-6.1-sol', timeout_s=600,
                  binary=None, expected_cli_version='0.164.0', process_factory=None,
-                 wire_schema_bundle=None):
+                 wire_schema_bundle=None, prompt_version=PROMPT, max_calls=2,
+                 experiment_profile=None):
+        prototype = experiment_profile == 'local_conditional_2s_prototype_v1'
+        need((prompt_version == PROMPT and experiment_profile is None and max_calls == 2)
+             or (prototype and prompt_version == 'driving_prototype_v1' and max_calls == 4),
+             'PILOT_CONFIGURATION', 'Explicit prototype prompt/profile required for the separate four-call budget')
+        self.prompt_version = prompt_version
+        self.max_calls = max_calls
+        self.experiment_profile = experiment_profile
         self.model = model
         self.timeout = float(timeout_s)
         need(model and 1 <= self.timeout <= 600, 'PILOT_CONFIGURATION',
@@ -216,11 +224,13 @@ class PilotSubscriptionAgent:
             authentication='chatgpt_subscription', timeout_s=self.timeout,
             adapter_retries=0, request_max_retries=0, stream_max_retries=0,
             websocket_enabled=False, tool_access=False, model_substitution=False,
-            prompt_version=PROMPT, agent_output_contract=CONTRACT,
+            prompt_version=self.prompt_version, agent_output_contract=CONTRACT,
             provider=PROVIDER, api_base=OFFICIAL_BASE,
             model_identity_basis='thread/start CLI-resolved alias; server snapshot unexposed')
         if self.schema_transport is not None:
             self.public_config['schema_transport'] = self.schema_transport
+        if self.experiment_profile is not None:
+            self.public_config.update(experiment_profile=self.experiment_profile, max_calls=self.max_calls)
 
     def _transport_schema(self):
         business_path = ROOT / 'schemas' / SCHEMA
@@ -410,7 +420,7 @@ class PilotSubscriptionAgent:
 
     def decide(self, capture, feedback=None):
         need(self.preflight_ok, 'PILOT_PREFLIGHT_REQUIRED', 'Call zero-inference preflight first')
-        need(self.call_count < 2, 'PILOT_BUDGET', 'Transport supports at most two decide calls')
+        need(self.call_count < self.max_calls, 'PILOT_BUDGET', 'Explicit transport call budget exhausted')
         validate('capture_v2.schema.json', capture)
         schema, schema_transport = self._transport_schema()
         need(schema_transport == self.schema_transport, 'WIRE_SCHEMA_CHANGED',
@@ -422,7 +432,7 @@ class PilotSubscriptionAgent:
         start = time.monotonic()
         try:
             safe = deepcopy(capture)
-            prompt = (ROOT / 'prompts' / (PROMPT + '.txt')).read_text()
+            prompt = (ROOT / 'prompts' / (self.prompt_version + '.txt')).read_text()
             hashes = {}
             with tempfile.TemporaryDirectory(prefix='driving-pilot-images-') as directory:
                 work = Path(directory)
@@ -439,11 +449,15 @@ class PilotSubscriptionAgent:
                     images.append(dict(type='localImage', path=str(path)))
                     metadata['path'] = 'attached:' + path.name
                     hashes[original['id']] = hashlib.sha256(data).hexdigest()
+                contract = planning_contract(capture, CONTRACT)
+                if self.experiment_profile is not None:
+                    contract['experiment_profile'] = self.experiment_profile
+                    contract['scope_interpretation'] = 'Coverage is conditional on the MODEL-declared finite local domain and adopted two-second motion conditions; not exhaustive whole-world futures. All declared obstacles and local unknowns retain the same checks; tools never delete, forecast or fill them.'
                 text = prompt + '\n' + json.dumps(dict(capture=safe, feedback=feedback,
-                    tool_contract=planning_contract(capture, CONTRACT)), ensure_ascii=False)
+                    tool_contract=contract), ensure_ascii=False)
                 write_text_new(folder / 'model_input.txt', text)
                 input_manifest = dict(image_sha256=hashes,
-                    prompt_version=PROMPT, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                    prompt_version=self.prompt_version, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
                     output_contract=CONTRACT, schema_sha256=hashlib.sha256((ROOT / 'schemas' / SCHEMA).read_bytes()).hexdigest())
                 if schema_transport is not None:
                     input_manifest['schema_transport'] = schema_transport
@@ -466,11 +480,13 @@ class PilotSubscriptionAgent:
                 server_reported_snapshot=None, model_reroute_observed=False,
                 cli_version=getattr(self, 'version', None), attempts=1, adapter_retries=0,
                 request_max_retries=0, stream_max_retries=0, supports_websockets=False,
-                prompt_version=PROMPT, agent_output_contract=CONTRACT,
+                prompt_version=self.prompt_version, agent_output_contract=CONTRACT,
                 prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(), image_sha256=hashes,
                 output_digest=digest(output), tool_calls=0, elapsed_s=time.monotonic() - start)
             if schema_transport is not None:
                 provenance['schema_transport'] = schema_transport
+            if self.experiment_profile is not None:
+                provenance['experiment_profile'] = self.experiment_profile
             write_json_new(folder / 'provenance.json', provenance)
             self.last_attempt_summary.update(native_json_returned=True,
                                              cli_resolved_alias=protocol.resolved_model)
