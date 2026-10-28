@@ -1,0 +1,949 @@
+{
+  "purpose": "Targeted new independent construction initial request after zero-call planner diagnosis; not an old-budget retry.",
+  "prior_native_record": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/record.json",
+  "prior_native_record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+  "previous_native_output": {
+    "decision": {
+      "scene_id": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "revision": 2,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -1,
+          -1
+        ],
+        [
+          5.5,
+          -1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "lead_minivan",
+        "left_curb_pedestrian",
+        "right_worker"
+      ],
+      "stop": {
+        "center_x_max_m": 4.7,
+        "deadline_s": 1.9
+      },
+      "priority": 1,
+      "valid_until_s": 1532402937.6624599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 2,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1532402935662460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -4,
+            -3
+          ],
+          [
+            7,
+            -3
+          ],
+          [
+            17,
+            0
+          ],
+          [
+            17,
+            9
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            -4,
+            3
+          ]
+        ],
+        "uncertainty_m": 0.7,
+        "frame_ids": [
+          "0b2eb9c1cd1b45f0b1664a01684c5767",
+          "b558073505fa411798d4dc174e1bdaea"
+        ],
+        "time_ids": [
+          "nusc_us_1532402935662460",
+          "nusc_us_1532402935654844"
+        ]
+      },
+      "objects": [
+        {
+          "id": "lead_minivan",
+          "position_m": [
+            14,
+            5.4
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 1.7,
+          "occupancy": [
+            {
+              "id": "van_two_second_body",
+              "start_s": 0,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "0b2eb9c1cd1b45f0b1664a01684c5767"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935662460"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "van_motion"
+              ],
+              "residual_m": 0.5,
+              "alternatives": [
+                {
+                  "scenario_id": "van_continues",
+                  "polygon_m": [
+                    [
+                      11,
+                      3
+                    ],
+                    [
+                      26.5,
+                      3
+                    ],
+                    [
+                      26.5,
+                      16
+                    ],
+                    [
+                      11,
+                      16
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "van_brakes",
+                  "polygon_m": [
+                    [
+                      11,
+                      3
+                    ],
+                    [
+                      22.5,
+                      3
+                    ],
+                    [
+                      22.5,
+                      13
+                    ],
+                    [
+                      11,
+                      13
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ],
+          "state_time_id": "nusc_us_1532402935662460",
+          "body_geometry": {
+            "length_m": 4.7,
+            "width_m": 1.85,
+            "yaw_rad": 0.55
+          },
+          "alignment": {
+            "method": "direct_reference_observation",
+            "premise_ids": [
+              "metric_geometry"
+            ],
+            "residual_m": 1.2,
+            "motion_bound": null,
+            "evidence_positions": [
+              {
+                "frame_id": "0b2eb9c1cd1b45f0b1664a01684c5767",
+                "time_id": "nusc_us_1532402935662460",
+                "position_m": [
+                  14,
+                  5.4
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "van_continues",
+              "premise_ids": [
+                "van_motion"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "van_brakes",
+              "premise_ids": [
+                "van_motion"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        },
+        {
+          "id": "construction_barrier",
+          "position_m": [
+            18,
+            -1
+          ],
+          "velocity_mps": [
+            0,
+            0
+          ],
+          "uncertainty_m": 1.6,
+          "occupancy": [
+            {
+              "id": "barrier_two_second_body",
+              "start_s": 0,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "0b2eb9c1cd1b45f0b1664a01684c5767"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935662460"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "barrier_stationary"
+              ],
+              "residual_m": 0.4,
+              "alternatives": [
+                {
+                  "scenario_id": "barrier_fixed",
+                  "polygon_m": [
+                    [
+                      17.299,
+                      -10.001
+                    ],
+                    [
+                      18.701,
+                      -10.001
+                    ],
+                    [
+                      18.701,
+                      8.001
+                    ],
+                    [
+                      17.299,
+                      8.001
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "barrier_small_shift",
+                  "polygon_m": [
+                    [
+                      16.999,
+                      -10.301
+                    ],
+                    [
+                      19.001,
+                      -10.301
+                    ],
+                    [
+                      19.001,
+                      8.301
+                    ],
+                    [
+                      16.999,
+                      8.301
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ],
+          "state_time_id": "nusc_us_1532402935662460",
+          "body_geometry": {
+            "length_m": 18,
+            "width_m": 1.4,
+            "yaw_rad": 1.5708
+          },
+          "alignment": {
+            "method": "direct_reference_observation",
+            "premise_ids": [
+              "metric_geometry",
+              "barrier_stationary"
+            ],
+            "residual_m": 1.2,
+            "motion_bound": null,
+            "evidence_positions": [
+              {
+                "frame_id": "0b2eb9c1cd1b45f0b1664a01684c5767",
+                "time_id": "nusc_us_1532402935662460",
+                "position_m": [
+                  18,
+                  -1
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "barrier_fixed",
+              "premise_ids": [
+                "barrier_stationary"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "barrier_small_shift",
+              "premise_ids": [
+                "barrier_stationary"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        },
+        {
+          "id": "right_worker",
+          "position_m": [
+            10,
+            -4.8
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 1.3,
+          "occupancy": [
+            {
+              "id": "worker_two_second_body",
+              "start_s": 0,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "0b2eb9c1cd1b45f0b1664a01684c5767"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935662460"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "worker_motion"
+              ],
+              "residual_m": 0.3,
+              "alternatives": [
+                {
+                  "scenario_id": "worker_waits",
+                  "polygon_m": [
+                    [
+                      9.3,
+                      -5.5
+                    ],
+                    [
+                      10.7,
+                      -5.5
+                    ],
+                    [
+                      10.7,
+                      -4.1
+                    ],
+                    [
+                      9.3,
+                      -4.1
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "worker_steps_toward_road",
+                  "polygon_m": [
+                    [
+                      7.5,
+                      -5.5
+                    ],
+                    [
+                      12.5,
+                      -5.5
+                    ],
+                    [
+                      12.5,
+                      -2
+                    ],
+                    [
+                      7.5,
+                      -2
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ],
+          "state_time_id": "nusc_us_1532402935662460",
+          "body_geometry": {
+            "length_m": 0.7,
+            "width_m": 0.7,
+            "yaw_rad": 0
+          },
+          "alignment": {
+            "method": "direct_reference_observation",
+            "premise_ids": [
+              "metric_geometry"
+            ],
+            "residual_m": 1,
+            "motion_bound": null,
+            "evidence_positions": [
+              {
+                "frame_id": "0b2eb9c1cd1b45f0b1664a01684c5767",
+                "time_id": "nusc_us_1532402935662460",
+                "position_m": [
+                  10,
+                  -4.8
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "worker_waits",
+              "premise_ids": [
+                "worker_motion"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "worker_steps_toward_road",
+              "premise_ids": [
+                "worker_motion"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        },
+        {
+          "id": "left_curb_pedestrian",
+          "position_m": [
+            6,
+            5.2
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 1.3,
+          "occupancy": [
+            {
+              "id": "left_pedestrian_body_0_04",
+              "start_s": 0,
+              "end_s": 0.4,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "b558073505fa411798d4dc174e1bdaea"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935654844"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "left_pedestrian_motion"
+              ],
+              "residual_m": 0.3,
+              "alternatives": [
+                {
+                  "scenario_id": "left_pedestrian_waits",
+                  "polygon_m": [
+                    [
+                      5.2,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      6
+                    ],
+                    [
+                      5.2,
+                      6
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "left_pedestrian_steps_out",
+                  "polygon_m": [
+                    [
+                      5.038,
+                      4.238
+                    ],
+                    [
+                      6.962,
+                      4.238
+                    ],
+                    [
+                      6.962,
+                      6
+                    ],
+                    [
+                      5.038,
+                      6
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "left_pedestrian_body_04_10",
+              "start_s": 0.4,
+              "end_s": 1,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "b558073505fa411798d4dc174e1bdaea"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935654844"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "left_pedestrian_motion"
+              ],
+              "residual_m": 0.3,
+              "alternatives": [
+                {
+                  "scenario_id": "left_pedestrian_waits",
+                  "polygon_m": [
+                    [
+                      5.2,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      6
+                    ],
+                    [
+                      5.2,
+                      6
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "left_pedestrian_steps_out",
+                  "polygon_m": [
+                    [
+                      4.138,
+                      3.338
+                    ],
+                    [
+                      7.862,
+                      3.338
+                    ],
+                    [
+                      7.862,
+                      6
+                    ],
+                    [
+                      4.138,
+                      6
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "left_pedestrian_body_10_20",
+              "start_s": 1,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "b558073505fa411798d4dc174e1bdaea"
+              ],
+              "time_ids": [
+                "nusc_us_1532402935654844"
+              ],
+              "premise_ids": [
+                "metric_geometry",
+                "left_pedestrian_motion"
+              ],
+              "residual_m": 0.3,
+              "alternatives": [
+                {
+                  "scenario_id": "left_pedestrian_waits",
+                  "polygon_m": [
+                    [
+                      5.2,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      4.4
+                    ],
+                    [
+                      6.8,
+                      6
+                    ],
+                    [
+                      5.2,
+                      6
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "left_pedestrian_steps_out",
+                  "polygon_m": [
+                    [
+                      3.5,
+                      2.3
+                    ],
+                    [
+                      8.5,
+                      2.3
+                    ],
+                    [
+                      8.5,
+                      6
+                    ],
+                    [
+                      3.5,
+                      6
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "b558073505fa411798d4dc174e1bdaea"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935654844"
+          ],
+          "state_time_id": "nusc_us_1532402935662460",
+          "body_geometry": {
+            "length_m": 0.7,
+            "width_m": 0.7,
+            "yaw_rad": 0
+          },
+          "alignment": {
+            "method": "model_motion_bound",
+            "premise_ids": [
+              "metric_geometry",
+              "left_pedestrian_motion"
+            ],
+            "residual_m": 1,
+            "motion_bound": {
+              "max_speed_mps": 1.5,
+              "displacement_bound_m": 0.012,
+              "covers_all_declared_scenarios": true
+            },
+            "evidence_positions": [
+              {
+                "frame_id": "b558073505fa411798d4dc174e1bdaea",
+                "time_id": "nusc_us_1532402935654844",
+                "position_m": [
+                  6,
+                  5.2
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "left_pedestrian_waits",
+              "premise_ids": [
+                "left_pedestrian_motion"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "left_pedestrian_steps_out",
+              "premise_ids": [
+                "left_pedestrian_motion"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ]
+        }
+      ],
+      "unbounded_unknown": false,
+      "confidence_note": "Repair addresses temporal overapproximation, not actor removal: the left pedestrian's full two-second reach was previously applied to the initial 0.2 seconds. Its replacement sources use the already adopted 1.5 m/s bound over genuine closed intervals; the final adverse envelope, position, body, residual and movement conditions are retained. No claim is made that this resolves every corridor conflict. The observed entrance remains approximately 6 m wide near ego, incompatible with a road-contained 3.61 m rear-axle disk plus uncertainty and safety margin. Target erosion may also exclude the initial state. These are unresolved expression/feasibility conflicts, not missing environmental coverage; no executable prefix is certified. Braking from 4.981 m/s at 2.7 m/s^2 would stop in approximately 1.845 s and 4.594 m longitudinally, but does not establish collision or road feasibility. The proposal retains braking and all four declared obstacles without reducing safety. Other junction vehicles, sidewalk occupants, the parked motorcycle and machinery are excluded only under the explicit no-entry conditions, not asserted absent. Geometry and movement bounds are falsifiable monocular hypotheses, not calibrated guarantees or whole-world safety.",
+      "premises": [
+        {
+          "id": "prototype_local_scope",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": [
+            [
+              -4,
+              -3
+            ],
+            [
+              7,
+              -3
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              17,
+              9
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              -4,
+              3
+            ]
+          ],
+          "statement": "The local domain is this convex portion of visible paved slip road and crosswalk, including the current ego footprint and proposed braking route. Adopt no new unobserved entrant during two seconds. Retain the declared van, barrier and both pedestrians, including sources extending outside the domain that could threaten it. Other visible junction traffic, sidewalk occupants, parked motorcycle and machinery outside this patch are conditionally assumed not to enter it; machinery behind the barrier does not cross into it. This excludes world conditions rather than asserting their absence. This finite scope does not spatially restrict the separate actor-motion premises or their full-body envelopes."
+        },
+        {
+          "id": "metric_geometry",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": -0.008,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Common metric hypothesis uses the individually observed white minivan's conditional 4.7 m length and 1.85 m width. Its rear-quarter perspective supports an approximate center [14,5.4] and leftward yaw 0.55 rad. Visible left curb, right island and construction-facing pavement edge support the convex tapered road polygon; nearby pavement continuity is inferred from surrounding views. The road includes the physical current ego footprint, not necessarily the larger solver disk. Supplied camera geometry establishes axes but does not certify monocular ground depth. Positions, dimensions and nonzero residuals are model estimates."
+        },
+        {
+          "id": "van_motion",
+          "object_ids": [
+            "lead_minivan"
+          ],
+          "scenario_ids": [
+            "van_continues",
+            "van_brakes"
+          ],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Van body and travel heading remain within [0.35,0.9] rad without reversing. Continuing speed is 2 to 5 m/s; adverse braking speed is 0 to 3 m/s and may reach zero immediately. These modes exhaust the adopted conditions. Continuing displacement lies within [0,9.394] in x and [0,7.834] in y; braking displacement lies within [0,5.637] and [0,4.700]. Rotated body half-extents are bounded by 2.527 m in x and 2.417 m in y. Sources enclose every intermediate body placement."
+        },
+        {
+          "id": "barrier_stationary",
+          "object_ids": [
+            "construction_barrier"
+          ],
+          "scenario_ids": [
+            "barrier_fixed",
+            "barrier_small_shift"
+          ],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Represent the visible connected barrier row by an 18 by 1.4 m body at [18,-1], yaw 1.5708. Adopt no removal or rotation. Nominal mode is fixed; adverse mode permits translation of at most 0.3 m in either axis throughout the interval. Sources include the entire rotated body and translations with outward rounding; residual inflation remains separate."
+        },
+        {
+          "id": "worker_motion",
+          "object_ids": [
+            "right_worker"
+          ],
+          "scenario_ids": [
+            "worker_waits",
+            "worker_steps_toward_road"
+          ],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Nearest yellow-helmet worker either waits within 0.3 m or walks at no more than 1.2 m/s, with x displacement bounded by 2 m in magnitude and y displacement between -0.3 and 2.4 m. Adopt no running or farther excursion. Body yaw remains zero for this box approximation. These modes exhaust the adopted conditions and their sources include the entire body."
+        },
+        {
+          "id": "left_pedestrian_motion",
+          "object_ids": [
+            "left_curb_pedestrian"
+          ],
+          "scenario_ids": [
+            "left_pedestrian_waits",
+            "left_pedestrian_steps_out"
+          ],
+          "start_s": -0.008,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "The striped-shirt phone-holding pedestrian observed in the front-left image has speed at most 1.5 m/s, including its actual 0.007616 s evidence age, permitting at most 0.012 m displacement before reference. Either waits within 0.4 m, or steps toward the crosswalk with x displacement at most 2 m in magnitude and y displacement between -2.5 and 0.4 m. No running or farther excursion is adopted; body yaw remains zero. At reference elapsed time t, each displacement component is additionally bounded in magnitude by 1.5t, with the evidence-age displacement added separately. For an interval ending at b, an enclosing step-out box has x half-span min(2,1.5b)+0.362, lower y 5.2-min(2.5,1.5b)-0.362, and upper y no greater than 6.0. Here 0.362 includes 0.35 m body half-size and 0.012 m evidence-age movement, not residual inflation. The final source deliberately retains the previous larger envelope. The three sources cover both modes without gaps and do not permit instantaneous arrival at the two-second extremity."
+        }
+      ],
+      "unknowns": [],
+      "metric_scale_support": {
+        "method": "conditional_body_dimension_prior",
+        "frame_ids": [
+          "0b2eb9c1cd1b45f0b1664a01684c5767"
+        ],
+        "time_ids": [
+          "nusc_us_1532402935662460"
+        ],
+        "premise_ids": [
+          "metric_geometry"
+        ],
+        "anchors": [
+          {
+            "object_id": "lead_minivan",
+            "dimension": "length_m",
+            "value_m": 4.7,
+            "rationale": "Conditional passenger-minivan length prior for this individually visible white vehicle; not a measured model identity."
+          },
+          {
+            "object_id": "lead_minivan",
+            "dimension": "width_m",
+            "value_m": 1.85,
+            "rationale": "Conditional body-width prior consistent with this vehicle's visible rear-quarter appearance, excluding mirrors."
+          }
+        ],
+        "metric_reasoning": "The individual minivan spans roughly 330 horizontal pixels in the reference image, with substantial visible side length. A 4.7 by 1.85 m body at approximately 0.55 rad leftward heading has a several-meter transverse projection, supporting a low-teens-meter range and approximate center [14,5.4]. Tire vicinity and pavement perspective provide coarse consistency checks rather than calibrated depth. At that conditional scale, the visible curbs and island suggest an approximately 6 m entrance widening and bending left toward the barrier-facing road. The finite convex polygon follows that patch without expanding it to fit the solver disk."
+      }
+    },
+    "contract_version": "3.0.0-exp2",
+    "coverage_profile": "whole_interval_sources_v3_exp2",
+    "measurement_semantics": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    }
+  },
+  "targeted_objects": [
+    {
+      "object_id": "left_curb_pedestrian",
+      "actual_cited_frame_ids": [
+        "b558073505fa411798d4dc174e1bdaea"
+      ],
+      "actual_cited_time_ids": [
+        "nusc_us_1532402935654844"
+      ],
+      "supplied_camera_history": "CAM_FRONT_LEFT: now three actual causal frames",
+      "source_intervals": [
+        {
+          "source_id": "left_pedestrian_body_0_04",
+          "interval_s": [
+            0,
+            0.4
+          ],
+          "scenario_ids": [
+            "left_pedestrian_waits",
+            "left_pedestrian_steps_out"
+          ]
+        },
+        {
+          "source_id": "left_pedestrian_body_04_10",
+          "interval_s": [
+            0.4,
+            1
+          ],
+          "scenario_ids": [
+            "left_pedestrian_waits",
+            "left_pedestrian_steps_out"
+          ]
+        },
+        {
+          "source_id": "left_pedestrian_body_10_20",
+          "interval_s": [
+            1,
+            2
+          ],
+          "scenario_ids": [
+            "left_pedestrian_waits",
+            "left_pedestrian_steps_out"
+          ]
+        }
+      ],
+      "conflict": "The frozen native scene creates an empty conservative corridor at [0.2,0.4]s with the original yaw-bounded box planner. This alone is NOT proof that every trajectory is physically infeasible.",
+      "request": "Use the actually visible history to reassess this actor BODY center, dimensions, yaw, state-time alignment, short-time motion conditions and residual evidence. Provide genuinely supported whole-interval BODY bounds for all retained reasonable adverse scenarios; otherwise retain unknown and explain the missing evidence. Keep ID stable. Do not move the actor, shrink residuals, omit an adverse scenario or enlarge the road merely to make a corridor pass."
+    },
+    {
+      "object_id": "right_worker",
+      "actual_cited_frame_ids": [
+        "0b2eb9c1cd1b45f0b1664a01684c5767"
+      ],
+      "actual_cited_time_ids": [
+        "nusc_us_1532402935662460"
+      ],
+      "supplied_camera_history": "CAM_FRONT: original five actual causal frames",
+      "source_intervals": [
+        {
+          "source_id": "worker_two_second_body",
+          "interval_s": [
+            0,
+            2
+          ],
+          "scenario_ids": [
+            "worker_waits",
+            "worker_steps_toward_road"
+          ]
+        }
+      ],
+      "conflict": "The frozen native scene creates an empty conservative corridor at [0.2,0.4]s with the original yaw-bounded box planner. This alone is NOT proof that every trajectory is physically infeasible.",
+      "request": "Use the actually visible history to reassess this actor BODY center, dimensions, yaw, state-time alignment, short-time motion conditions and residual evidence. Provide genuinely supported whole-interval BODY bounds for all retained reasonable adverse scenarios; otherwise retain unknown and explain the missing evidence. Keep ID stable. Do not move the actor, shrink residuals, omit an adverse scenario or enlarge the road merely to make a corridor pass."
+    }
+  ],
+  "preserve_evidence": "Only attached images and acquisition/ego metadata are runtime evidence. No GT, annotations, future frames, map or other perception model was supplied.",
+  "output_metadata": "This is a new trial; use current capture metadata scene_id/revision/time, not the prior response revision.",
+  "boundary": "Do not repair planner approximations by editing the scene. Revise a metric estimate only when additional actual image evidence warrants it. Explain ID additions/disappearances and retain all declared obstacles and reasonable adverse modes."
+}

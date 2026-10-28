@@ -1,0 +1,65 @@
+{
+  "launched": false,
+  "execution_owner": "root_serial_runner",
+  "independent_budget": true,
+  "inherits_old_remaining_budget": false,
+  "max_real_requests": 4,
+  "per_case_maximum": {
+    "construction_yield": 2,
+    "redlight_crossflow": 2
+  },
+  "execution_order": [
+    "construction_yield",
+    "redlight_crossflow"
+  ],
+  "maximum_parallel_requests": 1,
+  "count_failures_and_generation_compatibility_probes": true,
+  "automatic_transport_retries": 0,
+  "service_or_schema_auth_quota_error": "Immediately stop external requests; continue frozen-output offline work.",
+  "generation_requests_sent_by_preparation": 0,
+  "horizon_s": 2,
+  "step_s": 0.2,
+  "prefix_s": 0.2,
+  "safety_margin_m": 1,
+  "vehicle": {
+    "front_m": 2.3,
+    "rear_m": 2.3,
+    "half_width_m": 0.9,
+    "center_to_rear_axle_m": 1.2,
+    "wheelbase_m": 2.7,
+    "max_speed_mps": 12.0,
+    "max_accel_mps2": 2.0,
+    "max_brake_mps2": 3.0,
+    "max_steer_rad": 0.5,
+    "max_curvature_per_m": 0.2
+  },
+  "business_contract": "3.0.0-exp2",
+  "prompt_version": "driving_prototype_v1",
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "wire_bundle": "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle",
+  "quota_preflight": "../quota_preflight/result.json",
+  "cases": [
+    {
+      "label": "construction_yield",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "capture": "construction_capture.json",
+      "capture_sha256": "88c964d00869e16ea600dbe651f612b0cca58555d60a5033d19ba59734a27f04",
+      "image_count": 12,
+      "max_requests": 2,
+      "initial_feedback": "construction_initial_feedback.json",
+      "requires_root_confirmed_model_information_blocker_before_call": true
+    },
+    {
+      "label": "redlight_crossflow",
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "capture": "redlight_capture.json",
+      "capture_sha256": "ecc5a4917f0d0e9eb00bc8e251b23ab43f67b259ff2d8c598d7ce1ca21f191bd",
+      "image_count": 10,
+      "max_requests": 2,
+      "label_is_not_a_signal_fact": true,
+      "stationary_hold_is_valid": true
+    }
+  ],
+  "planner_profile": "ROOT_TO_PIN_AFTER_OFFLINE_ITERATIONS_BEFORE_LAUNCH",
+  "source_freeze": "ROOT_TO_COMMIT_ACTUAL_RUNNER_AND_CONFIGURATION_BEFORE_LAUNCH"
+}

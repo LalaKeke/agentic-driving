@@ -1,0 +1,102 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "planner_profile": "bounded_seed_candidates_v1",
+  "charged_requests": 2,
+  "budget_limit": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.8,
+            1.0
+          ],
+          "policy": "yaw_bounded_box_v1"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "attempt": 2,
+      "stages": {
+        "SERVICE": "NOT_REACHED",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "Reconnecting... waiting for network",
+              "codexErrorInfo": {
+                "responseStreamDisconnected": {
+                  "httpStatusCode": null
+                }
+              },
+              "additionalDetails": "Connection failed: error sending request",
+              "misalignment": null
+            },
+            "willRetry": true,
+            "threadId": "01a18368-3d03-7b82-9935-c8a7c3ffa1d1",
+            "turnId": "01a18368-3d4b-7ac1-9d16-55bf00c06365"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "fatal": {
+    "code": "CODEX_SERVICE_FAILURE",
+    "message": "Official service reported an error; no retry",
+    "category": "interface_error",
+    "details": {
+      "diagnostic": {
+        "error": {
+          "message": "Reconnecting... waiting for network",
+          "codexErrorInfo": {
+            "responseStreamDisconnected": {
+              "httpStatusCode": null
+            }
+          },
+          "additionalDetails": "Connection failed: error sending request",
+          "misalignment": null
+        },
+        "willRetry": true,
+        "threadId": "01a18368-3d03-7b82-9935-c8a7c3ffa1d1",
+        "turnId": "01a18368-3d4b-7ac1-9d16-55bf00c06365"
+      }
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  },
+  "prototype_conditional_success": false,
+  "prefix_consumed": false,
+  "source_commit": "32adc4399af3eba851e0baece111b419f96d419b",
+  "mode": "online",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[2秒原型施工改进与前后对照](implementation/results/construction_recovery_20261029_v1/README.md)：新增有限候选、分段航向带及种子初始化；公交/停车场离线链路通过，施工推进到T3但仍不可行。新请求2/4后遇连接故障停止，红灯未调用。
+
 [流程修复与真实分组复测](implementation/results/process_recovery/README.md)：已修复工程误拒并新增严格成功判定；本轮真实完整链路仍未通过，不以软件测试代替。
 
 [案例、四工具输入输出与轨迹叠加](implementation/results/casebook/index.html)：官方 nuScenes 相机渲染、真实拒绝链路、人工停车/恢复完整链路，附十三页 PDF。

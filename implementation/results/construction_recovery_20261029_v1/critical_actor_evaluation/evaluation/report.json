@@ -1,0 +1,463 @@
+{
+  "unique_windows": 2,
+  "selected_objects": 4,
+  "matched": 3,
+  "unmatched": 1,
+  "position_missing": 0,
+  "occupancy_missing": 0,
+  "scored_current": 3,
+  "online_model_calls": 0,
+  "truth_runtime_feedback": false,
+  "source_commit": "d1e44b6d891d92ad731485128549f68afd37cdf0",
+  "source_sha256": "a7c1fb6553e9a57793f968b52f952556f556902a3196fb9ddb6b81495ce3ab8c",
+  "inputs_sha256": {
+    "implementation/experiments/critical_actor_comparison.py": "a7c1fb6553e9a57793f968b52f952556f556902a3196fb9ddb6b81495ce3ab8c",
+    "implementation/results/construction_recovery_20261029_v1/critical_actor_evaluation/identity_review.json": "cdc760657ab96112f6528aeca555907319e819d8d09533706a2f33ce424d890c",
+    "/data/nuscenes_dataset/v1.0-mini/sample_annotation.json": "49703705e98ddea281ca321aae3b7352a8b6495840fe654cf0717c5b7b721080",
+    "/data/nuscenes_dataset/v1.0-mini/sample.json": "3c47794e2e6c09af4be7907b83f50750351180008d059899f42a9d405ed68586",
+    "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/record.json": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+    "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/record.json": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a"
+  },
+  "assumptions": [
+    "Non-blind post-hoc assistant visual association; model numerical values and historical truth were already exposed.",
+    "Body geometric center ground XY, absolute reference axes, configured ego rear-to-center offset 1.2m held fixed.",
+    "Linear annotation-center/size interpolation with quaternion slerp; <=0.75s bracketing gap; annotation proxy, not exact instantaneous truth.",
+    "Future coverage uses annotation-linear-center circumscribed-body surrogate; model scenarios unioned without dropping adverse modes.",
+    "Expanded scores apply the original total object uncertainty_m once; source/alignment components are not re-added. No 1m ego safety margin in prediction evaluation.",
+    "High coverage of a large envelope is not accurate prediction, planning success, calibrated uncertainty or safety."
+  ],
+  "rows": [
+    {
+      "case": "parking_bend",
+      "object_id": "right_gray_mercedes",
+      "instance_token": "a661e4cd1f644266a8307b4948082ae7",
+      "match_status": "UNIQUE_POSTHOC_VISUAL_SEMANTIC_MATCH",
+      "match_reason": "Distinctive foreground gray Mercedes SUV, emblem/body visible; selected SDK box 18 covers that body, not rear-row box12. Reviewed selected_CAM_FRONT_RIGHT_18.jpg. No distance/error criterion.",
+      "model_position_m": [
+        1,
+        -6.7
+      ],
+      "model_body": {
+        "length_m": 4.5,
+        "width_m": 1.9,
+        "yaw_rad": 1.5707963268
+      },
+      "position_missing": false,
+      "occupancy_missing": false,
+      "center_error_m": 3.1557390273252945,
+      "length_error_m": 0.17400000000000038,
+      "width_error_m": 0.256,
+      "yaw_error_rad": 0.07218486670785726,
+      "future_surrogate_coverage": 0.26591204816221997,
+      "future_area_inflation": 1.4995794119488184,
+      "planning_use": "Frozen original online chain failed T2; offline body-profile results are separate",
+      "annotation_comparison_status": "BRACKETED_ANNOTATION_PROXY",
+      "future_intervals": [
+        {
+          "start_s": 0.0,
+          "end_s": 0.2,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.08482688063501592,
+          "raw_area_inflation": 0.6592063494007256,
+          "expanded_coverage": 0.2748543208524125,
+          "expanded_area_inflation": 1.498049509096938,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.2,
+          "end_s": 0.4,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.08272447063346516,
+          "raw_area_inflation": 0.6591967972245342,
+          "expanded_coverage": 0.2720047851894936,
+          "expanded_area_inflation": 1.498027801731911,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.4,
+          "end_s": 0.6000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.08066567343823888,
+          "raw_area_inflation": 0.6595099554555643,
+          "expanded_coverage": 0.2692824282531776,
+          "expanded_area_inflation": 1.4987394552751314,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.6000000000000001,
+          "end_s": 0.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07902007312260921,
+          "raw_area_inflation": 0.660125002031399,
+          "expanded_coverage": 0.26720520499220185,
+          "expanded_area_inflation": 1.5001371514924668,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.8,
+          "end_s": 1.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07806249639474634,
+          "raw_area_inflation": 0.6601250020314008,
+          "expanded_coverage": 0.2658714229994118,
+          "expanded_area_inflation": 1.500137151492471,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.0,
+          "end_s": 1.2000000000000002,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07710848692809678,
+          "raw_area_inflation": 0.6601270453872577,
+          "expanded_coverage": 0.2645503511257406,
+          "expanded_area_inflation": 1.5001417950282032,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.2000000000000002,
+          "end_s": 1.4000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07619671754818524,
+          "raw_area_inflation": 0.6601272875922255,
+          "expanded_coverage": 0.2632724829004047,
+          "expanded_area_inflation": 1.5001423454401241,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.4000000000000001,
+          "end_s": 1.6,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07529612330451936,
+          "raw_area_inflation": 0.6601274291430103,
+          "expanded_coverage": 0.26199947559391285,
+          "expanded_area_inflation": 1.5001426671149438,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.6,
+          "end_s": 1.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.07438362502295348,
+          "raw_area_inflation": 0.6601254288360359,
+          "expanded_coverage": 0.2607034166807027,
+          "expanded_area_inflation": 1.5001381214079983,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.8,
+          "end_s": 2.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.0734428850868073,
+          "raw_area_inflation": 0.660125428836036,
+          "expanded_coverage": 0.25937659303474114,
+          "expanded_area_inflation": 1.5001381214079987,
+          "total_model_residual_m": 0.9
+        }
+      ],
+      "gt_position_m": [
+        4.033339509296874,
+        -5.829632129543722
+      ],
+      "gt_length_m": 4.674,
+      "gt_width_m": 1.644,
+      "gt_yaw_rad": 1.4986114600921427
+    },
+    {
+      "case": "parking_bend",
+      "object_id": "left_gray_nissan",
+      "instance_token": "29f69a7cb2c544c8a5ef26437a48e021",
+      "match_status": "UNIQUE_POSTHOC_VISUAL_SEMANTIC_MATCH",
+      "match_reason": "Distinctive nearest front-facing gray Nissan with visible badge; SDK box3 covers body. Reviewed selected_CAM_FRONT_LEFT_3.jpg. No distance/error criterion.",
+      "model_position_m": [
+        0,
+        7
+      ],
+      "model_body": {
+        "length_m": 4.6,
+        "width_m": 1.9,
+        "yaw_rad": -1.5707963268
+      },
+      "position_missing": false,
+      "occupancy_missing": false,
+      "center_error_m": 2.3231406708319144,
+      "length_error_m": 0.4169999999999998,
+      "width_error_m": 0.246,
+      "yaw_error_rad": 0.07004597453609973,
+      "future_surrogate_coverage": 0.4613997155062246,
+      "future_area_inflation": 1.8465521901153366,
+      "planning_use": "Frozen original online chain failed T2; offline body-profile results are separate",
+      "annotation_comparison_status": "BRACKETED_ANNOTATION_PROXY",
+      "future_intervals": [
+        {
+          "start_s": 0.0,
+          "end_s": 0.2,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.22567691826162645,
+          "raw_area_inflation": 0.8159172816384516,
+          "expanded_coverage": 0.4702644427743653,
+          "expanded_area_inflation": 1.8455066403943363,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.2,
+          "end_s": 0.4,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.2238963934948941,
+          "raw_area_inflation": 0.8159343101262311,
+          "expanded_coverage": 0.46829221273337973,
+          "expanded_area_inflation": 1.8455451567831667,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.4,
+          "end_s": 0.6000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.2221883336573685,
+          "raw_area_inflation": 0.8161878584319134,
+          "expanded_coverage": 0.46637476384144144,
+          "expanded_area_inflation": 1.8461186525189817,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.6000000000000001,
+          "end_s": 0.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.22047631530091227,
+          "raw_area_inflation": 0.8165140678465483,
+          "expanded_coverage": 0.4643756200381299,
+          "expanded_area_inflation": 1.8468564989335827,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 0.8,
+          "end_s": 1.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.21870232036804318,
+          "raw_area_inflation": 0.8165140678465677,
+          "expanded_coverage": 0.46238513436191014,
+          "expanded_area_inflation": 1.8468564989336265,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.0,
+          "end_s": 1.2000000000000002,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.21693168995445236,
+          "raw_area_inflation": 0.8165145169649601,
+          "expanded_coverage": 0.46039532733029653,
+          "expanded_area_inflation": 1.8468575147853483,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.2000000000000002,
+          "end_s": 1.4000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.2151646955571467,
+          "raw_area_inflation": 0.8165146120055181,
+          "expanded_coverage": 0.458406324604214,
+          "expanded_area_inflation": 1.846857729755646,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.4000000000000001,
+          "end_s": 1.6,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.21340641811466754,
+          "raw_area_inflation": 0.8165363072550674,
+          "expanded_coverage": 0.45642959264319877,
+          "expanded_area_inflation": 1.84690680179764,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.6,
+          "end_s": 1.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.21167999602055476,
+          "raw_area_inflation": 0.8165811380359104,
+          "expanded_coverage": 0.45449191591838356,
+          "expanded_area_inflation": 1.847008203625499,
+          "total_model_residual_m": 0.9
+        },
+        {
+          "start_s": 1.8,
+          "end_s": 2.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.20999105475028612,
+          "raw_area_inflation": 0.8165811380359286,
+          "expanded_coverage": 0.45258182081692644,
+          "expanded_area_inflation": 1.8470082036255402,
+          "total_model_residual_m": 0.9
+        }
+      ],
+      "gt_position_m": [
+        2.2512391724215677,
+        6.426497807303223
+      ],
+      "gt_length_m": 4.183,
+      "gt_width_m": 1.654,
+      "gt_yaw_rad": -1.6408423013360998
+    },
+    {
+      "case": "construction_yield",
+      "object_id": "lead_minivan",
+      "instance_token": "c1958768d48640948f6053d04cffd35b",
+      "match_status": "UNIQUE_POSTHOC_VISUAL_SEMANTIC_MATCH",
+      "match_reason": "Unique foreground light-coloured MPV following left bend. Same image/instance as frozen earlier visual association (old label114; current sorted annotation label23), distinct from distant truck. Historical GT/model exposure disclosed.",
+      "model_position_m": [
+        14,
+        5.4
+      ],
+      "model_body": {
+        "length_m": 4.7,
+        "width_m": 1.85,
+        "yaw_rad": 0.55
+      },
+      "position_missing": false,
+      "occupancy_missing": false,
+      "center_error_m": 0.9231882068675346,
+      "length_error_m": 0.027000000000000135,
+      "width_error_m": 0.05699999999999994,
+      "yaw_error_rad": 0.15576828185913083,
+      "future_surrogate_coverage": 1.0,
+      "future_area_inflation": 12.840003835883005,
+      "planning_use": "Frozen original online chain failed T2; offline body-profile results are separate",
+      "annotation_comparison_status": "BRACKETED_ANNOTATION_PROXY",
+      "future_intervals": [
+        {
+          "start_s": 0.0,
+          "end_s": 0.2,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.9334903687156447,
+          "raw_area_inflation": 8.333251483018335,
+          "expanded_coverage": 1.000000000000001,
+          "expanded_area_inflation": 12.716098891306713,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 0.2,
+          "end_s": 0.4,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 1.0,
+          "raw_area_inflation": 8.338811972805843,
+          "expanded_coverage": 1.0,
+          "expanded_area_inflation": 12.724583903209464,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 0.4,
+          "end_s": 0.6000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.9999999999999997,
+          "raw_area_inflation": 8.33849505288127,
+          "expanded_coverage": 0.9999999999999997,
+          "expanded_area_inflation": 12.724100300247317,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 0.6000000000000001,
+          "end_s": 0.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 1.0000000000000009,
+          "raw_area_inflation": 8.339899623676734,
+          "expanded_coverage": 1.0000000000000009,
+          "expanded_area_inflation": 12.726243600635092,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 0.8,
+          "end_s": 1.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.9999999999999996,
+          "raw_area_inflation": 8.339899623677347,
+          "expanded_coverage": 0.9999999999999996,
+          "expanded_area_inflation": 12.726243600636028,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 1.0,
+          "end_s": 1.2000000000000002,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 1.0,
+          "raw_area_inflation": 8.419392312798445,
+          "expanded_coverage": 1.0,
+          "expanded_area_inflation": 12.847545219585086,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 1.2000000000000002,
+          "end_s": 1.4000000000000001,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 1.0000000000000002,
+          "raw_area_inflation": 8.438605619449671,
+          "expanded_coverage": 1.0000000000000002,
+          "expanded_area_inflation": 12.876863704441071,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 1.4000000000000001,
+          "end_s": 1.6,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.9999999999999997,
+          "raw_area_inflation": 8.476449016387832,
+          "expanded_coverage": 0.9999999999999997,
+          "expanded_area_inflation": 12.934610716976248,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 1.6,
+          "end_s": 1.8,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 0.9999999999999982,
+          "raw_area_inflation": 8.559848705908134,
+          "expanded_coverage": 0.9999999999999982,
+          "expanded_area_inflation": 13.061874210896429,
+          "total_model_residual_m": 1.7
+        },
+        {
+          "start_s": 1.8,
+          "end_s": 2.0,
+          "status": "ANNOTATION_SURROGATE_ONLY",
+          "raw_coverage": 1.0000000000000002,
+          "raw_area_inflation": 8.559848705908243,
+          "expanded_coverage": 1.0000000000000002,
+          "expanded_area_inflation": 13.061874210896596,
+          "total_model_residual_m": 1.7
+        }
+      ],
+      "gt_position_m": [
+        13.11455661794003,
+        5.1387214466024895
+      ],
+      "gt_length_m": 4.727,
+      "gt_width_m": 1.907,
+      "gt_yaw_rad": 0.7057682818591309
+    },
+    {
+      "case": "construction_yield",
+      "object_id": "construction_barrier",
+      "instance_token": null,
+      "match_status": "AGGREGATE_EXTENT_NOT_SINGLE_ANNOTATED_BODY",
+      "match_reason": "Model body is one 18m aggregate construction barrier region; image and annotations contain many individual barrier units. No uniquely corresponding single-body size/center/orientation or whole-region annotation established, so no score.",
+      "model_position_m": [
+        18,
+        -1
+      ],
+      "model_body": {
+        "length_m": 18,
+        "width_m": 1.4,
+        "yaw_rad": 1.5708
+      },
+      "position_missing": false,
+      "occupancy_missing": false,
+      "center_error_m": null,
+      "length_error_m": null,
+      "width_error_m": null,
+      "yaw_error_rad": null,
+      "future_surrogate_coverage": null,
+      "future_area_inflation": null,
+      "planning_use": "Frozen original online chain failed T2; offline body-profile results are separate",
+      "annotation_comparison_status": "UNMATCHED_NO_SCORE",
+      "future_intervals": []
+    }
+  ]
+}

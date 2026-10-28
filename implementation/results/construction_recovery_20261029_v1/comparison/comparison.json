@@ -1,0 +1,3978 @@
+{
+  "kind": "READ_ONLY_CASE_COMPARISON_NO_MODEL_CALLS",
+  "analysis_source_commit": "7a6159c3961be833d62024e3f7687dc55e9e0573",
+  "analysis_script_sha256": "76685357948c17a398305b46880efe660a9cdcc428015e22fe94512d5480e02c",
+  "new_calls_by_this_script": 0,
+  "registered_unique_windows": [
+    "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+    "nusc_8573a885a7cb41d185c05029eeb9a54e",
+    "nusc_88449a5cb1644a199c1c11f6ac034867",
+    "nusc_c537fef0b4b241df92f44daa976fe5b3"
+  ],
+  "model_output_unique_windows": [
+    "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+    "nusc_8573a885a7cb41d185c05029eeb9a54e",
+    "nusc_88449a5cb1644a199c1c11f6ac034867"
+  ],
+  "current_online_attempted_unique_windows": [
+    "nusc_88449a5cb1644a199c1c11f6ac034867"
+  ],
+  "rows": [
+    {
+      "label": "公交旧在线",
+      "case": "bus",
+      "source": "FRESH_ONLINE_CHAIN",
+      "path": "implementation/results/moving_prototype_2s_20261028_v1/runtime",
+      "unique_window": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+      "source_commit": "a59e2d200ad78fc2b0d905538fb0afe08a3b244a",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "034b1680597c53bb7fac8ad1b48a965526868941054e4f762b39ed0345d40566",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "legacy_disk_v2",
+      "charged_requests": 2,
+      "native_valid_count": 2,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_01/record.json",
+          "record_sha256": "058c8cd8e55d6f33343262f071657c325461b1b34e53697746b90aba960cc4ab",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "FAIL",
+            "T2": "NOT_REACHED",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T1",
+            "code": "BODY_ENVELOPE_CONFLICT",
+            "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+            "object_id": "curbside_bus",
+            "interval_s": null,
+            "raw": {
+              "code": "BODY_ENVELOPE_CONFLICT",
+              "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "curbside_bus",
+                "scenario_id": "bus_stationary"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 2,
+          "record_path": "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_02/record.json",
+          "record_sha256": "5b5ff30e62b081a43e6a48ea1c87b41b60811c5b1ff13008237c11aa130e7e52",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.271865021097903,
+              -1.1148946266523916e-07
+            ],
+            "displacement_m": 1.2718650210979079,
+            "end_speed_mps": 6.320778469480963,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 1.7471976193024976,
+            "max_abs_acceleration_mps2": 0.38546636008567403,
+            "rms_discrete_jerk_proxy_mps3": 0.16095904746137857,
+            "max_abs_steer_rad": 1.2891393070429188e-07,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 1.1250414491135838,
+            "verification_profile": "legacy_disk_v2",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 2,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.271865021097903,
+          -1.1148946266523916e-07
+        ],
+        "displacement_m": 1.2718650210979079,
+        "end_speed_mps": 6.320778469480963,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.7471976193024976,
+        "max_abs_acceleration_mps2": 0.38546636008567403,
+        "rms_discrete_jerk_proxy_mps3": 0.16095904746137857,
+        "max_abs_steer_rad": 1.2891393070429188e-07,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 1.1250414491135838,
+        "verification_profile": "legacy_disk_v2",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "停车旧在线",
+      "case": "parking",
+      "source": "FRESH_ONLINE_CHAIN",
+      "path": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime",
+      "unique_window": "nusc_8573a885a7cb41d185c05029eeb9a54e",
+      "source_commit": "5e98614309d7577a07015762dbee1fd204a35bc8",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "a625b4f138c3c134ba63faed4851dd50676a14042f13fb5dfb1802d3b571d561",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "legacy_disk_v2",
+      "charged_requests": 3,
+      "native_valid_count": 2,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "exceeded retry limit, last status: 429 Too Many Requests, request id: 06dfed14-d08a-4e82-8e8a-96eda5443d4c",
+              "codexErrorInfo": {
+                "responseTooManyFailedAttempts": {
+                  "httpStatusCode": 429
+                }
+              },
+              "additionalDetails": null,
+              "misalignment": null
+            },
+            "willRetry": false,
+            "threadId": "01a18325-5079-7623-b185-ff4761946552",
+            "turnId": "01a18325-50be-7eb2-8311-1c7a0171e927"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_01/record.json",
+          "record_sha256": "c5b893f7509239c817fafe650819ae81a4cdfe02b42b8927ca5fd75ec50670b8",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "FAIL",
+            "T2": "NOT_REACHED",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T1",
+            "code": "BODY_ENVELOPE_CONFLICT",
+            "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+            "object_id": "left_silver_mpv",
+            "interval_s": null,
+            "raw": {
+              "code": "BODY_ENVELOPE_CONFLICT",
+              "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "left_silver_mpv",
+                "scenario_id": "mpv_stationary"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 2,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/record.json",
+          "record_sha256": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_SEED_BLOCKED",
+            "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+            "object_id": "right_gray_mercedes",
+            "interval_s": [
+              0.0,
+              0.2
+            ],
+            "raw": {
+              "code": "CORRIDOR_SEED_BLOCKED",
+              "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "right_gray_mercedes",
+                "interval": [
+                  0.0,
+                  0.2
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 3,
+          "record_path": null,
+          "record_sha256": null,
+          "provenance_source": null,
+          "native_structured_output": false,
+          "business_schema_validation": "NOT_REACHED",
+          "service_status": "NOT_REACHED",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "NOT_REACHED",
+            "T2": "NOT_REACHED",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "SERVICE_OR_INTERFACE",
+            "code": "CODEX_SERVICE_FAILURE",
+            "message": "Official service reported an error; no retry",
+            "object_id": null,
+            "interval_s": null,
+            "raw": {
+              "code": "CODEX_SERVICE_FAILURE",
+              "message": "Official service reported an error; no retry",
+              "category": "interface_error",
+              "details": {
+                "diagnostic": {
+                  "error": {
+                    "message": "exceeded retry limit, last status: 429 Too Many Requests, request id: 06dfed14-d08a-4e82-8e8a-96eda5443d4c",
+                    "codexErrorInfo": {
+                      "responseTooManyFailedAttempts": {
+                        "httpStatusCode": 429
+                      }
+                    },
+                    "additionalDetails": null,
+                    "misalignment": null
+                  },
+                  "willRetry": false,
+                  "threadId": "01a18325-5079-7623-b185-ff4761946552",
+                  "turnId": "01a18325-50be-7eb2-8311-1c7a0171e927"
+                }
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 2,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_SEED_BLOCKED",
+        "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+        "object_id": "right_gray_mercedes",
+        "interval_s": [
+          0.0,
+          0.2
+        ],
+        "raw": {
+          "code": "CORRIDOR_SEED_BLOCKED",
+          "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+          "category": "tool_infeasible",
+          "details": {
+            "object_id": "right_gray_mercedes",
+            "interval": [
+              0.0,
+              0.2
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "施工旧在线",
+      "case": "construction",
+      "source": "FRESH_ONLINE_CHAIN",
+      "path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "5e98614309d7577a07015762dbee1fd204a35bc8",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "a625b4f138c3c134ba63faed4851dd50676a14042f13fb5dfb1802d3b571d561",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "legacy_disk_v2",
+      "charged_requests": 3,
+      "native_valid_count": 3,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_01/record.json",
+          "record_sha256": "4b3fae1209d2a64bfd13f89bb7c39514a51d1fa3e89d8831bbb1501debce8674",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "FAIL",
+            "T2": "NOT_REACHED",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T1",
+            "code": "BODY_ENVELOPE_CONFLICT",
+            "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+            "object_id": "construction_barrier",
+            "interval_s": null,
+            "raw": {
+              "code": "BODY_ENVELOPE_CONFLICT",
+              "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "construction_barrier",
+                "scenario_id": "barrier_fixed"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 2,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_02/record.json",
+          "record_sha256": "305244acbdc31a67e78be75d33bf590200d0f6949135cd37958a6daee45b835e",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_SEED_BLOCKED",
+            "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+            "object_id": "left_curb_pedestrian",
+            "interval_s": [
+              0.0,
+              0.2
+            ],
+            "raw": {
+              "code": "CORRIDOR_SEED_BLOCKED",
+              "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "left_curb_pedestrian",
+                "interval": [
+                  0.0,
+                  0.2
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 3,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/record.json",
+          "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "object_id": null,
+            "interval_s": [
+              0.0,
+              0.2
+            ],
+            "raw": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 3,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "object_id": null,
+        "interval_s": [
+          0.0,
+          0.2
+        ],
+        "raw": {
+          "code": "CORRIDOR_EMPTY",
+          "message": "Empty convex cell",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "停车旧BOX回放",
+      "case": "parking",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/yaw_box_replay",
+      "unique_window": "nusc_8573a885a7cb41d185c05029eeb9a54e",
+      "source_commit": "2883d4a9c5d3a85fd2a7da2d89a7d536ba329ccd",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "5f66ef743c883006b64d7f3e13b106660b398efeae489c0f3e7be1b6444ed64b",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "yaw_bounded_box_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/yaw_box_replay/attempt_01/record.json",
+          "record_sha256": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.0325500052109768,
+              1.1551309306968802e-07
+            ],
+            "displacement_m": 1.0325500052109833,
+            "end_speed_mps": 5.1105926970163695,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+            "max_abs_acceleration_mps2": 0.5215732903853183,
+            "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+            "max_abs_steer_rad": 1.7599365344673983e-07,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 2.05980562167918,
+            "verification_profile": "continuous_oriented_body_v1",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.0325500052109768,
+          1.1551309306968802e-07
+        ],
+        "displacement_m": 1.0325500052109833,
+        "end_speed_mps": 5.1105926970163695,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+        "max_abs_acceleration_mps2": 0.5215732903853183,
+        "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+        "max_abs_steer_rad": 1.7599365344673983e-07,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 2.05980562167918,
+        "verification_profile": "continuous_oriented_body_v1",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "施工旧BOX回放r2",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay_attempt2",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "2883d4a9c5d3a85fd2a7da2d89a7d536ba329ccd",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "5f66ef743c883006b64d7f3e13b106660b398efeae489c0f3e7be1b6444ed64b",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "yaw_bounded_box_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay_attempt2/attempt_01/record.json",
+          "record_sha256": "305244acbdc31a67e78be75d33bf590200d0f6949135cd37958a6daee45b835e",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "object_id": null,
+            "interval_s": [
+              0.0,
+              0.2
+            ],
+            "raw": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "object_id": null,
+        "interval_s": [
+          0.0,
+          0.2
+        ],
+        "raw": {
+          "code": "CORRIDOR_EMPTY",
+          "message": "Empty convex cell",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "施工旧BOX回放r3",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "2883d4a9c5d3a85fd2a7da2d89a7d536ba329ccd",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "5f66ef743c883006b64d7f3e13b106660b398efeae489c0f3e7be1b6444ed64b",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "yaw_bounded_box_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay/attempt_01/record.json",
+          "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "object_id": null,
+            "interval_s": [
+              0.2,
+              0.4
+            ],
+            "raw": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "object_id": null,
+        "interval_s": [
+          0.2,
+          0.4
+        ],
+        "raw": {
+          "code": "CORRIDOR_EMPTY",
+          "message": "Empty convex cell",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.2,
+              0.4
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "bus iteration_1五候选回放",
+      "case": "bus",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/iteration_1/bus",
+      "unique_window": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+      "source_commit": "d1e44b6d891d92ad731485128549f68afd37cdf0",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "8dce4103565627f58080afcd512c5e5cad7dff3a058d582066a9ced03d29223a",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/iteration_1/bus/attempt_01/record.json",
+          "record_sha256": "5b5ff30e62b081a43e6a48ea1c87b41b60811c5b1ff13008237c11aa130e7e52",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 1.1250414491135523,
+                "minimum_clearance_lower_bound_m": 4.461059811877046
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 1.1250414491135474,
+                "minimum_clearance_lower_bound_m": 4.461059816834561
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.0,
+                      1.2000000000000002
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.0,
+                      1.2000000000000002
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": "brake_straight",
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.2718650211051261,
+              -1.5355031089847168e-08
+            ],
+            "displacement_m": 1.2718650211051261,
+            "end_speed_mps": 6.320778469553164,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 4.461059816834561,
+            "max_abs_acceleration_mps2": 0.38546635972466814,
+            "rms_discrete_jerk_proxy_mps3": 0.16095904741954556,
+            "max_abs_steer_rad": 1.7754838587816232e-08,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 1.1250414491135474,
+            "verification_profile": "continuous_oriented_body_v1",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.2718650211051261,
+          -1.5355031089847168e-08
+        ],
+        "displacement_m": 1.2718650211051261,
+        "end_speed_mps": 6.320778469553164,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 4.461059816834561,
+        "max_abs_acceleration_mps2": 0.38546635972466814,
+        "rms_discrete_jerk_proxy_mps3": 0.16095904741954556,
+        "max_abs_steer_rad": 1.7754838587816232e-08,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 1.1250414491135474,
+        "verification_profile": "continuous_oriented_body_v1",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": "brake_straight",
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 1.1250414491135523,
+            "minimum_clearance_lower_bound_m": 4.461059811877046
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 1.1250414491135474,
+            "minimum_clearance_lower_bound_m": 4.461059816834561
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.0,
+                  1.2000000000000002
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.0,
+                  1.2000000000000002
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "brake_straight",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "parking iteration_1五候选回放",
+      "case": "parking",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/iteration_1/parking",
+      "unique_window": "nusc_8573a885a7cb41d185c05029eeb9a54e",
+      "source_commit": "d1e44b6d891d92ad731485128549f68afd37cdf0",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "8dce4103565627f58080afcd512c5e5cad7dff3a058d582066a9ced03d29223a",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/iteration_1/parking/attempt_01/record.json",
+          "record_sha256": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 2.05980562167918,
+                "minimum_clearance_lower_bound_m": 2.2979030574693393
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Maximum_Iterations_Exceeded"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.2000000000000002,
+                      1.4000000000000001
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.2000000000000002,
+                      1.4000000000000001
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": "original",
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.0325500052109768,
+              1.1551309306968802e-07
+            ],
+            "displacement_m": 1.0325500052109833,
+            "end_speed_mps": 5.1105926970163695,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+            "max_abs_acceleration_mps2": 0.5215732903853183,
+            "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+            "max_abs_steer_rad": 1.7599365344673983e-07,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 2.05980562167918,
+            "verification_profile": "continuous_oriented_body_v1",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.0325500052109768,
+          1.1551309306968802e-07
+        ],
+        "displacement_m": 1.0325500052109833,
+        "end_speed_mps": 5.1105926970163695,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+        "max_abs_acceleration_mps2": 0.5215732903853183,
+        "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+        "max_abs_steer_rad": 1.7599365344673983e-07,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 2.05980562167918,
+        "verification_profile": "continuous_oriented_body_v1",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": "original",
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 2.05980562167918,
+            "minimum_clearance_lower_bound_m": 2.2979030574693393
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Maximum_Iterations_Exceeded"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.2000000000000002,
+                  1.4000000000000001
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.2000000000000002,
+                  1.4000000000000001
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "construction iteration_1五候选回放",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/iteration_1/construction",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "d1e44b6d891d92ad731485128549f68afd37cdf0",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "73d39dc50d632624dc90b9ae5fb9f562094a27ce37e901dc3c5a39b2c0985639",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/iteration_1/construction/attempt_01/record.json",
+          "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_SEED_OUTSIDE",
+            "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+            "object_id": null,
+            "interval_s": [
+              0.8,
+              1.0
+            ],
+            "raw": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": null,
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "object_id": null,
+        "interval_s": [
+          0.8,
+          1.0
+        ],
+        "raw": {
+          "code": "CORRIDOR_SEED_OUTSIDE",
+          "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.8,
+              1.0
+            ],
+            "policy": "yaw_bounded_box_v1"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "construction iteration_2五候选回放",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/iteration_2/construction",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "32adc4399af3eba851e0baece111b419f96d419b",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "8dce4103565627f58080afcd512c5e5cad7dff3a058d582066a9ced03d29223a",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/iteration_2/construction/attempt_01/record.json",
+          "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T3",
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "object_id": null,
+            "interval_s": null,
+            "raw": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": null,
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T3",
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "object_id": null,
+        "interval_s": null,
+        "raw": {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "construction 本轮新在线",
+      "case": "construction",
+      "source": "FRESH_ONLINE_CHAIN",
+      "path": "implementation/results/construction_recovery_20261029_v1/live_construction",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "32adc4399af3eba851e0baece111b419f96d419b",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "8dce4103565627f58080afcd512c5e5cad7dff3a058d582066a9ced03d29223a",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 2,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "Reconnecting... waiting for network",
+              "codexErrorInfo": {
+                "responseStreamDisconnected": {
+                  "httpStatusCode": null
+                }
+              },
+              "additionalDetails": "Connection failed: error sending request",
+              "misalignment": null
+            },
+            "willRetry": true,
+            "threadId": "01a18368-3d03-7b82-9935-c8a7c3ffa1d1",
+            "turnId": "01a18368-3d4b-7ac1-9d16-55bf00c06365"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/live_construction/attempt_01/record.json",
+          "record_sha256": "02c7348d6bcfe23bfd934359a47ca28989f0087933c87fe73d4de05e78a789d7",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "PASS",
+          "stages": {
+            "SERVICE": "PASS",
+            "BUSINESS_SCHEMA": "PASS",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_SEED_OUTSIDE",
+            "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+            "object_id": null,
+            "interval_s": [
+              0.8,
+              1.0
+            ],
+            "raw": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_SEED_OUTSIDE",
+                  "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ],
+                    "policy": "yaw_bounded_box_v1"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": null,
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        },
+        {
+          "attempt": 2,
+          "record_path": null,
+          "record_sha256": null,
+          "provenance_source": null,
+          "native_structured_output": false,
+          "business_schema_validation": "NOT_REACHED",
+          "service_status": "NOT_REACHED",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "NOT_REACHED",
+            "T2": "NOT_REACHED",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "SERVICE_OR_INTERFACE",
+            "code": "CODEX_SERVICE_FAILURE",
+            "message": "Official service reported an error; no retry",
+            "object_id": null,
+            "interval_s": null,
+            "raw": {
+              "code": "CODEX_SERVICE_FAILURE",
+              "message": "Official service reported an error; no retry",
+              "category": "interface_error",
+              "details": {
+                "diagnostic": {
+                  "error": {
+                    "message": "Reconnecting... waiting for network",
+                    "codexErrorInfo": {
+                      "responseStreamDisconnected": {
+                        "httpStatusCode": null
+                      }
+                    },
+                    "additionalDetails": "Connection failed: error sending request",
+                    "misalignment": null
+                  },
+                  "willRetry": true,
+                  "threadId": "01a18368-3d03-7b82-9935-c8a7c3ffa1d1",
+                  "turnId": "01a18368-3d4b-7ac1-9d16-55bf00c06365"
+                }
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "object_id": null,
+        "interval_s": [
+          0.8,
+          1.0
+        ],
+        "raw": {
+          "code": "CORRIDOR_SEED_OUTSIDE",
+          "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.8,
+              1.0
+            ],
+            "policy": "yaw_bounded_box_v1"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_SEED_OUTSIDE",
+              "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ],
+                "policy": "yaw_bounded_box_v1"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "redlight 本轮新在线",
+      "case": "redlight",
+      "source": "NOT_ATTEMPTED",
+      "path": "implementation/results/construction_recovery_20261029_v1/live_redlight",
+      "unique_window": "nusc_c537fef0b4b241df92f44daa976fe5b3",
+      "charged_requests": 0,
+      "native_valid_count": 0,
+      "status": "NOT_ATTEMPTED",
+      "attempts": [],
+      "latest_native_attempt": null,
+      "metrics": {},
+      "limitation": "No model output or planning success is asserted."
+    },
+    {
+      "label": "bus 冻结最终源码回放",
+      "case": "bus",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/final_replays/bus",
+      "unique_window": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+      "source_commit": "7a6159c3961be833d62024e3f7687dc55e9e0573",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "da7b04831a84b2ac6559004e47a9e11d2390712151404cfe483d20b315acc339",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "implementation/agentic/t2.py": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "implementation/agentic/t3.py": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "implementation/agentic/t4.py": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "implementation/agentic/candidate_search.py": "0cd15e61ae3793e45146afeddeb8799ba61fbe9ecc53a1687772ac01ec301c03",
+        "implementation/agentic/acceptance.py": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "implementation/agentic/geometry.py": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+        "implementation/schemas/corridor_seed_candidates_v1.schema.json": "9a4e51d9cb63ace1e99b325090a56e7aca8022eeb271d9b60a932b91068dcb7d",
+        "implementation/schemas/trajectory_seed_candidates_v1.schema.json": "0af3aa2d2741f401885825f2746e9d63ea2118e37604043c9bf31278b4292951"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/final_replays/bus/attempt_01/record.json",
+          "record_sha256": "5b5ff30e62b081a43e6a48ea1c87b41b60811c5b1ff13008237c11aa130e7e52",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 1.1250414491135523,
+                "minimum_clearance_lower_bound_m": 4.461059811877046
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 1.1250414491135474,
+                "minimum_clearance_lower_bound_m": 4.461059816834561
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.0,
+                      1.2000000000000002
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.0,
+                      1.2000000000000002
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": "brake_straight",
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.2718650211051261,
+              -1.5355031089847168e-08
+            ],
+            "displacement_m": 1.2718650211051261,
+            "end_speed_mps": 6.320778469553164,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 4.461059816834561,
+            "max_abs_acceleration_mps2": 0.38546635972466814,
+            "rms_discrete_jerk_proxy_mps3": 0.16095904741954556,
+            "max_abs_steer_rad": 1.7754838587816232e-08,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 1.1250414491135474,
+            "verification_profile": "continuous_oriented_body_v1",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.2718650211051261,
+          -1.5355031089847168e-08
+        ],
+        "displacement_m": 1.2718650211051261,
+        "end_speed_mps": 6.320778469553164,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 4.461059816834561,
+        "max_abs_acceleration_mps2": 0.38546635972466814,
+        "rms_discrete_jerk_proxy_mps3": 0.16095904741954556,
+        "max_abs_steer_rad": 1.7754838587816232e-08,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 1.1250414491135474,
+        "verification_profile": "continuous_oriented_body_v1",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": "brake_straight",
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 1.1250414491135523,
+            "minimum_clearance_lower_bound_m": 4.461059811877046
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 1.1250414491135474,
+            "minimum_clearance_lower_bound_m": 4.461059816834561
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.0,
+                  1.2000000000000002
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.0,
+                  1.2000000000000002
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "brake_straight",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "parking 冻结最终源码回放",
+      "case": "parking",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/final_replays/parking",
+      "unique_window": "nusc_8573a885a7cb41d185c05029eeb9a54e",
+      "source_commit": "7a6159c3961be833d62024e3f7687dc55e9e0573",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "da7b04831a84b2ac6559004e47a9e11d2390712151404cfe483d20b315acc339",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "implementation/agentic/t2.py": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "implementation/agentic/t3.py": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "implementation/agentic/t4.py": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "implementation/agentic/candidate_search.py": "0cd15e61ae3793e45146afeddeb8799ba61fbe9ecc53a1687772ac01ec301c03",
+        "implementation/agentic/acceptance.py": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "implementation/agentic/geometry.py": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+        "implementation/schemas/corridor_seed_candidates_v1.schema.json": "9a4e51d9cb63ace1e99b325090a56e7aca8022eeb271d9b60a932b91068dcb7d",
+        "implementation/schemas/trajectory_seed_candidates_v1.schema.json": "0af3aa2d2741f401885825f2746e9d63ea2118e37604043c9bf31278b4292951"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/final_replays/parking/attempt_01/record.json",
+          "record_sha256": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "ACCEPTOR": "PASS",
+            "EXECUTION": "PASS"
+          },
+          "earliest_failure": null,
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "PASS",
+                "T3": "PASS",
+                "T4": "PASS",
+                "objective": 2.05980562167918,
+                "minimum_clearance_lower_bound_m": 2.2979030574693393
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Maximum_Iterations_Exceeded"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_HEADING_BOUND",
+                  "message": "Candidate leaves the unchanged global yaw cap",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      1.2000000000000002,
+                      1.4000000000000001
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": "original",
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": true,
+            "motion_class": "MOVING_PREFIX",
+            "displacement_xy_m": [
+              1.0325500052109768,
+              1.1551309306968802e-07
+            ],
+            "displacement_m": 1.0325500052109833,
+            "end_speed_mps": 5.1105926970163695,
+            "prefix_duration_s": 0.2,
+            "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+            "max_abs_acceleration_mps2": 0.5215732903853183,
+            "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+            "max_abs_steer_rad": 1.7599365344673983e-07,
+            "solver_status": "Solve_Succeeded",
+            "solver_objective": 2.05980562167918,
+            "verification_profile": "continuous_oriented_body_v1",
+            "T4_verdict": "PASS",
+            "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+            "independent_acceptor_software_success": true
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": null,
+      "metrics": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.0325500052109768,
+          1.1551309306968802e-07
+        ],
+        "displacement_m": 1.0325500052109833,
+        "end_speed_mps": 5.1105926970163695,
+        "prefix_duration_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 2.2979030574693393,
+        "max_abs_acceleration_mps2": 0.5215732903853183,
+        "rms_discrete_jerk_proxy_mps3": 0.2177931692536167,
+        "max_abs_steer_rad": 1.7599365344673983e-07,
+        "solver_status": "Solve_Succeeded",
+        "solver_objective": 2.05980562167918,
+        "verification_profile": "continuous_oriented_body_v1",
+        "T4_verdict": "PASS",
+        "independent_acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_software_success": true
+      },
+      "selected_candidate": "original",
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 2.05980562167918,
+            "minimum_clearance_lower_bound_m": 2.2979030574693393
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Maximum_Iterations_Exceeded"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  1.2000000000000002,
+                  1.4000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "construction 冻结最终源码回放",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/final_replays/construction",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "7a6159c3961be833d62024e3f7687dc55e9e0573",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "da7b04831a84b2ac6559004e47a9e11d2390712151404cfe483d20b315acc339",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "implementation/agentic/t2.py": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "implementation/agentic/t3.py": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "implementation/agentic/t4.py": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "implementation/agentic/candidate_search.py": "0cd15e61ae3793e45146afeddeb8799ba61fbe9ecc53a1687772ac01ec301c03",
+        "implementation/agentic/acceptance.py": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "implementation/agentic/geometry.py": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+        "implementation/schemas/corridor_seed_candidates_v1.schema.json": "9a4e51d9cb63ace1e99b325090a56e7aca8022eeb271d9b60a932b91068dcb7d",
+        "implementation/schemas/trajectory_seed_candidates_v1.schema.json": "0af3aa2d2741f401885825f2746e9d63ea2118e37604043c9bf31278b4292951"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/final_replays/construction/attempt_01/record.json",
+          "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T3",
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "object_id": null,
+            "interval_s": null,
+            "raw": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": null,
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T3",
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "object_id": null,
+        "interval_s": null,
+        "raw": {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "live_construction 冻结最终源码回放",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/final_replays/live_construction",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "7a6159c3961be833d62024e3f7687dc55e9e0573",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "da7b04831a84b2ac6559004e47a9e11d2390712151404cfe483d20b315acc339",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "implementation/agentic/t2.py": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "implementation/agentic/t3.py": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "implementation/agentic/t4.py": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "implementation/agentic/candidate_search.py": "0cd15e61ae3793e45146afeddeb8799ba61fbe9ecc53a1687772ac01ec301c03",
+        "implementation/agentic/acceptance.py": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "implementation/agentic/geometry.py": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+        "implementation/schemas/corridor_seed_candidates_v1.schema.json": "9a4e51d9cb63ace1e99b325090a56e7aca8022eeb271d9b60a932b91068dcb7d",
+        "implementation/schemas/trajectory_seed_candidates_v1.schema.json": "0af3aa2d2741f401885825f2746e9d63ea2118e37604043c9bf31278b4292951"
+      },
+      "planner_profile": "bounded_seed_candidates_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/final_replays/live_construction/attempt_01/record.json",
+          "record_sha256": "02c7348d6bcfe23bfd934359a47ca28989f0087933c87fe73d4de05e78a789d7",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T3",
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "object_id": null,
+            "interval_s": null,
+            "raw": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": {
+            "search_profile": "bounded_seed_candidates_v1",
+            "candidate_count": 5,
+            "candidates": [
+              {
+                "candidate_id": "original",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.2,
+                      0.4
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_straight",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_left",
+                "T2": "FAIL",
+                "T3": "NOT_REACHED",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "CORRIDOR_EMPTY",
+                  "message": "Empty convex cell",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "interval": [
+                      0.8,
+                      1.0
+                    ]
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              },
+              {
+                "candidate_id": "brake_right_strong",
+                "T2": "PASS",
+                "T3": "FAIL",
+                "T4": "NOT_REACHED",
+                "failure": {
+                  "code": "OPTIMIZATION_FAILED",
+                  "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                  "category": "tool_infeasible",
+                  "details": {
+                    "solver_status": "Infeasible_Problem_Detected"
+                  },
+                  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                }
+              }
+            ],
+            "selected_candidate": null,
+            "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+          },
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T3",
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "object_id": null,
+        "interval_s": null,
+        "raw": {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v1",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.8,
+                  1.0
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    },
+    {
+      "label": "施工新JSON→旧BOX回放",
+      "case": "construction",
+      "source": "FROZEN_REAL_OUTPUT_OFFLINE_REPLAN",
+      "path": "implementation/results/construction_recovery_20261029_v1/live_output_old_planner",
+      "unique_window": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "source_commit": "32adc4399af3eba851e0baece111b419f96d419b",
+      "actual_source_sha256": {
+        "implementation/experiments/run_local_prototype.py": "8dce4103565627f58080afcd512c5e5cad7dff3a058d582066a9ced03d29223a",
+        "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+        "implementation/agentic/metric_contract.py": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "implementation/prompts/driving_prototype_v1.txt": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2"
+      },
+      "planner_profile": "yaw_bounded_box_v1",
+      "charged_requests": 0,
+      "native_valid_count": 1,
+      "ended": true,
+      "status": "NO_COMPLETE_CHAIN",
+      "fatal_service_or_interface_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "record_path": "implementation/results/construction_recovery_20261029_v1/live_output_old_planner/attempt_01/record.json",
+          "record_sha256": "02c7348d6bcfe23bfd934359a47ca28989f0087933c87fe73d4de05e78a789d7",
+          "provenance_source": "online_model",
+          "native_structured_output": true,
+          "business_schema_validation": "PASS",
+          "service_status": "NOT_APPLICABLE_FROZEN_REPLAY",
+          "stages": {
+            "SERVICE": "NOT_REACHED",
+            "BUSINESS_SCHEMA": "NOT_REACHED",
+            "T1": "PASS",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "ACCEPTOR": "NOT_REACHED",
+            "EXECUTION": "NOT_REACHED"
+          },
+          "earliest_failure": {
+            "stage": "T2",
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "object_id": null,
+            "interval_s": [
+              0.2,
+              0.4
+            ],
+            "raw": {
+              "code": "CORRIDOR_EMPTY",
+              "message": "Empty convex cell",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.2,
+                  0.4
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          "candidate_ledger": null,
+          "metrics": {
+            "prefix_consumed": false,
+            "motion_class": "NOT_EXECUTED",
+            "displacement_xy_m": null,
+            "displacement_m": null,
+            "end_speed_mps": null,
+            "prefix_duration_s": null,
+            "minimum_conditional_clearance_lower_bound_m": null,
+            "max_abs_acceleration_mps2": null,
+            "rms_discrete_jerk_proxy_mps3": null,
+            "max_abs_steer_rad": null,
+            "solver_status": null,
+            "solver_objective": null,
+            "verification_profile": null,
+            "T4_verdict": "NOT_REACHED",
+            "independent_acceptor_status": "NOT_REACHED",
+            "independent_acceptor_software_success": false
+          }
+        }
+      ],
+      "latest_native_attempt": 1,
+      "latest_response_failure": {
+        "stage": "T2",
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "object_id": null,
+        "interval_s": [
+          0.2,
+          0.4
+        ],
+        "raw": {
+          "code": "CORRIDOR_EMPTY",
+          "message": "Empty convex cell",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.2,
+              0.4
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      },
+      "metrics": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_duration_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "solver_objective": null,
+        "verification_profile": null,
+        "T4_verdict": "NOT_REACHED",
+        "independent_acceptor_status": "NOT_REACHED",
+        "independent_acceptor_software_success": false
+      },
+      "selected_candidate": null,
+      "candidate_ledger": null,
+      "note": "Recorded Git HEAD and actual source SHA are separate observations; original provenance remains unchanged."
+    }
+  ],
+  "frozen_T1_parity": [
+    {
+      "label": "bus frozen T1 vs iteration_1 candidates",
+      "old": "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_02/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/iteration_1/bus/attempt_01/T1.json",
+      "old_file_sha256": "7b5dcb6a758318a9b5e1205fb73be2f3af2f810063c37623ded22c472141fce5",
+      "new_file_sha256": "7b5dcb6a758318a9b5e1205fb73be2f3af2f810063c37623ded22c472141fce5",
+      "old_scene_digest": "83849fd1d4f7dc8012b8756f9a6ba5006b549897963c7414bbebe4982b1d639f",
+      "new_scene_digest": "83849fd1d4f7dc8012b8756f9a6ba5006b549897963c7414bbebe4982b1d639f",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "parking frozen T1 vs iteration_1 candidates",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/iteration_1/parking/attempt_01/T1.json",
+      "old_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "new_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "old_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "new_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "construction frozen T1 vs iteration_1 candidates",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/iteration_1/construction/attempt_01/T1.json",
+      "old_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "new_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "old_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "new_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "construction frozen T1 vs iteration_2 candidates",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/iteration_2/construction/attempt_01/T1.json",
+      "old_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "new_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "old_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "new_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "parking original T1 vs old BOX replay",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/T1.json",
+      "new": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/yaw_box_replay/attempt_01/T1.json",
+      "old_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "new_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "old_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "new_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "construction 02 original T1 vs old BOX replay",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_02/T1.json",
+      "new": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay_attempt2/attempt_01/T1.json",
+      "old_file_sha256": "2be2859f2821f54e9d7130fe591df92ab6b905dd2f5c1f728cfd094af9cef5e6",
+      "new_file_sha256": "2be2859f2821f54e9d7130fe591df92ab6b905dd2f5c1f728cfd094af9cef5e6",
+      "old_scene_digest": "7fa778a605f61660d17fdc2b1af14e064d128f6b0f01bb03bdaf65e5c8cdb07b",
+      "new_scene_digest": "7fa778a605f61660d17fdc2b1af14e064d128f6b0f01bb03bdaf65e5c8cdb07b",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "construction 03 original T1 vs old BOX replay",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/T1.json",
+      "new": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/yaw_box_replay/attempt_01/T1.json",
+      "old_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "new_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "old_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "new_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "bus frozen T1 vs final-source replay",
+      "old": "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_02/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/final_replays/bus/attempt_01/T1.json",
+      "old_file_sha256": "7b5dcb6a758318a9b5e1205fb73be2f3af2f810063c37623ded22c472141fce5",
+      "new_file_sha256": "7b5dcb6a758318a9b5e1205fb73be2f3af2f810063c37623ded22c472141fce5",
+      "old_scene_digest": "83849fd1d4f7dc8012b8756f9a6ba5006b549897963c7414bbebe4982b1d639f",
+      "new_scene_digest": "83849fd1d4f7dc8012b8756f9a6ba5006b549897963c7414bbebe4982b1d639f",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "parking frozen T1 vs final-source replay",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/final_replays/parking/attempt_01/T1.json",
+      "old_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "new_file_sha256": "96f7a2f59b7c08263d7f7cdf31223d48d7b5c391f8e2f22e8506301e2dd12447",
+      "old_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "new_scene_digest": "bc98df3db7b1a45d30873b838bec479a8619f61ec2acbfc8f2bb853084160545",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "construction frozen T1 vs final-source replay",
+      "old": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/final_replays/construction/attempt_01/T1.json",
+      "old_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "new_file_sha256": "a1c54722eb96e3760a1f6e305631c4f5a5140e0627410259e94023d60a9111f9",
+      "old_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "new_scene_digest": "ef538064cf71157697fc2fb51517e595eec989fc70bb3e4c6de81c1c008064aa",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "new live JSON vs final-source replan",
+      "old": "implementation/results/construction_recovery_20261029_v1/live_construction/attempt_01/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/final_replays/live_construction/attempt_01/T1.json",
+      "old_file_sha256": "e995a62a0f7d374f1e630befc2e64028981f1e9326111908297a30b404c70002",
+      "new_file_sha256": "e995a62a0f7d374f1e630befc2e64028981f1e9326111908297a30b404c70002",
+      "old_scene_digest": "69481a9c2123a124045afc6a5dd16e6557178fc90298f095c9dc49ac47b47507",
+      "new_scene_digest": "69481a9c2123a124045afc6a5dd16e6557178fc90298f095c9dc49ac47b47507",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    },
+    {
+      "label": "new live JSON vs old BOX planner",
+      "old": "implementation/results/construction_recovery_20261029_v1/live_construction/attempt_01/T1.json",
+      "new": "implementation/results/construction_recovery_20261029_v1/live_output_old_planner/attempt_01/T1.json",
+      "old_file_sha256": "e995a62a0f7d374f1e630befc2e64028981f1e9326111908297a30b404c70002",
+      "new_file_sha256": "e995a62a0f7d374f1e630befc2e64028981f1e9326111908297a30b404c70002",
+      "old_scene_digest": "69481a9c2123a124045afc6a5dd16e6557178fc90298f095c9dc49ac47b47507",
+      "new_scene_digest": "69481a9c2123a124045afc6a5dd16e6557178fc90298f095c9dc49ac47b47507",
+      "scene_values_identical": true,
+      "status": "UNCHANGED"
+    }
+  ],
+  "caveats": [
+    "Fresh online chains and frozen real-output offline replans are separate.",
+    "The original online service failure remains visible even when an earlier native response exists.",
+    "Jerk is a discrete acceleration-difference proxy; piecewise-constant controls have jumps, not finite continuous RMS jerk.",
+    "Clearance is a conditional conservative lower bound, not GT safety.",
+    "Disk and oriented-body clearance lower bounds use different conservative enclosures; a larger lower bound is not measured real-world safety improvement.",
+    "Each window is counted once; revisions and replans are not independent samples."
+  ]
+}

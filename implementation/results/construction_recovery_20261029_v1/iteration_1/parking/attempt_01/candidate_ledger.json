@@ -1,0 +1,88 @@
+{
+  "search_profile": "bounded_seed_candidates_v1",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 2.05980562167918,
+      "minimum_clearance_lower_bound_m": 2.2979030574693393
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "FAIL",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Maximum_Iterations_Exceeded"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            1.2000000000000002,
+            1.4000000000000001
+          ],
+          "policy": "yaw_bounded_box_v1"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            1.2000000000000002,
+            1.4000000000000001
+          ],
+          "policy": "yaw_bounded_box_v1"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_SEED_OUTSIDE",
+        "message": "Ego-only seed leaves a corridor cell; not a global infeasibility proof",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.8,
+            1.0
+          ],
+          "policy": "yaw_bounded_box_v1"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

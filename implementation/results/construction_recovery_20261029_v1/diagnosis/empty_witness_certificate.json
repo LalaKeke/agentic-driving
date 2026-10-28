@@ -1,0 +1,46 @@
+{
+  "diagnosis_sha256": "70b87f09cb21edc4293291ee44889cac301a9fc2801af07cf270682db37451cc",
+  "attempt": "03",
+  "interval_s": [
+    0.2,
+    0.4
+  ],
+  "halfplanes": [
+    {
+      "label": "road:0",
+      "plane": [
+        0.0,
+        -1.0,
+        0.254422232343279
+      ]
+    },
+    {
+      "label": "road:4",
+      "plane": [
+        -0.4472135954999579,
+        0.8944271909999159,
+        2.354492104791639
+      ]
+    },
+    {
+      "label": "left_curb_pedestrian:9",
+      "plane": [
+        0.03514636364588475,
+        0.9993821757078075,
+        -0.9676485271868194
+      ]
+    }
+  ],
+  "nonnegative_weights": [
+    0.4979251263007236,
+    0.03658285841085139,
+    0.465492015288425
+  ],
+  "weighted_normal": [
+    1.7563952396951013e-20,
+    3.1748175703492554e-17
+  ],
+  "weighted_limit_m": -0.2376153895387696,
+  "conclusion": "Nonnegative combination gives 0 <= -0.2376153895 m. These three halfplanes themselves are infeasible; not a clipping-box artifact.",
+  "computation": "For three unit normals a,b,c, null weights are cross(b,c),cross(c,a),cross(a,b); choose common sign and normalize."
+}

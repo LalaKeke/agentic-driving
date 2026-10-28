@@ -1,0 +1,58 @@
+{
+  "unique_windows": 1,
+  "selected_objects": 1,
+  "matched": 0,
+  "unmatched": 1,
+  "position_missing": 0,
+  "occupancy_missing": 0,
+  "scored_current": 0,
+  "online_model_calls": 0,
+  "truth_runtime_feedback": false,
+  "source_commit": "32adc4399af3eba851e0baece111b419f96d419b",
+  "source_sha256": "cd9f8e9d580663c3c52adbe80a80ccd50d8c3f30f5410790ddc7a541eacbbf41",
+  "inputs_sha256": {
+    "implementation/experiments/critical_actor_comparison.py": "cd9f8e9d580663c3c52adbe80a80ccd50d8c3f30f5410790ddc7a541eacbbf41",
+    "implementation/results/construction_recovery_20261029_v1/critical_actor_evaluation/bus/identity_review.json": "efe5b99bb8f181d8ebeef4c73aab187c8ca906461bbcd8dfdddf2c0379b616de",
+    "/data/nuscenes_dataset/v1.0-mini/sample_annotation.json": "49703705e98ddea281ca321aae3b7352a8b6495840fe654cf0717c5b7b721080",
+    "/data/nuscenes_dataset/v1.0-mini/sample.json": "3c47794e2e6c09af4be7907b83f50750351180008d059899f42a9d405ed68586",
+    "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_02/record.json": "5b5ff30e62b081a43e6a48ea1c87b41b60811c5b1ff13008237c11aa130e7e52"
+  },
+  "assumptions": [
+    "Non-blind post-hoc assistant visual association; model numerical values and historical truth were already exposed.",
+    "Body geometric center ground XY, absolute reference axes, configured ego rear-to-center offset 1.2m held fixed.",
+    "Linear annotation-center/size interpolation with quaternion slerp; <=0.75s bracketing gap; annotation proxy, not exact instantaneous truth.",
+    "Future coverage uses annotation-linear-center circumscribed-body surrogate; model scenarios unioned without dropping adverse modes.",
+    "Additional oriented-body surrogate uses annotation-linear center/dimensions and shortest planar yaw interpolation; <=0.02s conservative swept subsegments. This is an interpolation assumption, not actual measured continuous motion.",
+    "Expanded scores apply the original total object uncertainty_m once; source/alignment components are not re-added. No 1m ego safety margin in prediction evaluation.",
+    "High coverage of a large envelope is not accurate prediction, planning success, calibrated uncertainty or safety."
+  ],
+  "rows": [
+    {
+      "case": "moving_prototype_2s_20261028_v1",
+      "object_id": "curbside_bus",
+      "instance_token": null,
+      "match_status": "BODY_GRANULARITY_AMBIGUOUS_NO_SCORE",
+      "match_reason": "One model 12m curbside_bus versus two official vehicle.bus.bendy body instances/sections in the same visible bus direction (SDK labels11/19). The dataset provides no explicit shared-vehicle grouping here. Cannot identify the model whole body with exactly one GT section or silently merge sections into a new truth body.",
+      "model_position_m": [
+        27,
+        -4.6
+      ],
+      "model_body": {
+        "length_m": 12,
+        "width_m": 2.55,
+        "yaw_rad": 0
+      },
+      "position_missing": false,
+      "occupancy_missing": false,
+      "center_error_m": null,
+      "length_error_m": null,
+      "width_error_m": null,
+      "yaw_error_rad": null,
+      "future_surrogate_coverage": null,
+      "future_area_inflation": null,
+      "planning_use": "Read separately recorded T1–T4/prefix results; GT comparison never authorizes planning",
+      "annotation_comparison_status": "UNMATCHED_NO_SCORE",
+      "future_intervals": []
+    }
+  ]
+}
