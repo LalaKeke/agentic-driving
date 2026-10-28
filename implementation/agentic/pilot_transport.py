@@ -23,7 +23,7 @@ from PIL import Image
 from .codex_adapter import DISABLED_FEATURES, subscription_environment
 from .contracts import ROOT, Failure, digest, need, planning_contract, validate
 from .evidence_io import reserve_directory, write_json_new, write_text_new
-from .wire_schema import load_wire_bundle, WireSchemaConflict
+from .wire_schema_v2 import load_versioned_wire_bundle as load_wire_bundle, WireSchemaConflict
 
 PROVIDER = 'pilot-official'
 OFFICIAL_BASE = 'https://chatgpt.com/backend-api/codex'

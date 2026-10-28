@@ -22,7 +22,7 @@ from agentic.evidence_io import reserve_directory,write_json_new
 from agentic.metric_diagnostics import diagnose_metric_output
 from agentic.pilot_transport import PilotSubscriptionAgent
 from agentic.runtime import SimulatedExecutor
-from agentic.wire_schema import load_wire_bundle, WireSchemaConflict
+from agentic.wire_schema_v2 import load_versioned_wire_bundle as load_wire_bundle, WireSchemaConflict
 
 
 def read(path):return json.loads(Path(path).read_text())
