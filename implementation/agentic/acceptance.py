@@ -152,9 +152,10 @@ def assess_round(result, capture):
         _require(isinstance(construction, dict), 'CORRIDOR_POLICY',
                  'Corridor construction metadata must be an explicit object.')
         policy = construction.get('policy', 'initial_anchor')
-        _require(policy in ('initial_anchor', 'moving_seed'), 'CORRIDOR_POLICY',
+        _require(policy in ('initial_anchor', 'moving_seed', 'yaw_bounded_box_v1'), 'CORRIDOR_POLICY',
                  'Unknown corridor construction policy cannot establish success.')
-        validate('corridor_v2.schema.json', corridor)
+        box_profile=policy=='yaw_bounded_box_v1'
+        validate('corridor_yaw_box_v1.schema.json' if box_profile else 'corridor_v2.schema.json', corridor)
         identity(scene, corridor)
         _require(t2.build(scene, policy=policy) == corridor, 'T2_RECONSTRUCTION_MISMATCH',
                  'Corridor differs from the deterministic T2 result of this scene.')
@@ -162,7 +163,11 @@ def assess_round(result, capture):
                  'CORRIDOR_COVERAGE', 'Corridor does not cover this prediction grid.')
         verdict['checks']['t1_t2_reconstructed'] = True
 
-        validate('trajectory_v2.schema.json', trajectory); identity(scene, trajectory)
+        validate('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json', trajectory); identity(scene, trajectory)
+        if box_profile:
+            _require(scene['provenance'].get('experiment_profile')=='local_conditional_2s_prototype_v1'
+                     and all(abs(p['yaw_rad'])<=corridor['heading_bound_rad']+1e-6 for p in trajectory['points']),
+                     'CORRIDOR_HEADING_BOUND', 'The orientation-bound configuration space requires the same hard heading bound.')
         solver = trajectory.get('solver', {})
         _require(solver.get('name') == 'casadi_ipopt_multiple_shooting'
                  and solver.get('status') in ('Solve_Succeeded', 'Solved_To_Acceptable_Level')

@@ -5,6 +5,29 @@ from shapely.ops import nearest_points
 from .contracts import artifact,need,grid,validate
 from .geometry import planes,polygon,obstacles,disk_radius,rear_state,integrate
 
+YAW_BOX_PROFILE='yaw_bounded_box_v1'
+YAW_BOX_BOUND_RAD=.35
+
+def yaw_point_support(point,nx,ny,bound=YAW_BOX_BOUND_RAD):
+    """Exact support of one rear-relative point rotated over [-bound,bound].
+
+    The maximum sinusoid occurs at an endpoint or an aligned interior angle.
+    This is a vehicle geometry calculation, never an actor prediction.
+    """
+    x,y=point
+    values=[nx*(x*math.cos(t)-y*math.sin(t))+ny*(x*math.sin(t)+y*math.cos(t))
+            for t in (-bound,bound)]
+    angle=math.atan2(ny,nx)-math.atan2(y,x)
+    if any(-bound<=angle+2*math.pi*k<=bound for k in (-1,0,1)):
+        values.append(math.hypot(nx,ny)*math.hypot(x,y))
+    return max(values)
+
+def yaw_box_support(v,nx,ny,bound=YAW_BOX_BOUND_RAD):
+    """Full BODY relative to rear axle; includes center offset exactly once."""
+    d=v['center_to_rear_axle_m'];w=v['half_width_m']
+    return max(yaw_point_support((x,y),nx,ny,bound)
+               for x in (d-v['rear_m'],d+v['front_m']) for y in (-w,w))
+
 def clip(domain,plane):
     if domain.is_empty:return domain
     nx,ny,b=plane
@@ -58,16 +81,22 @@ def _moving_seed(scene,times):
 
 def build(scene,policy='initial_anchor'):
     validate('scene_v2.schema.json',scene)
-    need(policy in ('initial_anchor','moving_seed'),'CORRIDOR_POLICY','Unknown explicit corridor construction policy')
+    need(policy in ('initial_anchor','moving_seed',YAW_BOX_PROFILE),'CORRIDOR_POLICY','Unknown explicit corridor construction policy')
     cap=scene['capture'];v=cap['vehicle'];m=scene['metadata'];d=scene['decision']
     r=disk_radius(v);margin=cap['safety']['margin_m'];anchor=Point(rear_state(cap['ego'],v)[:2])
     base=polygon(scene['hypotheses']['road']['polygon_m'],True)
-    hp=[[nx,ny,b-r-scene['hypotheses']['road']['uncertainty_m']] for nx,ny,b in planes(base)]
+    box=policy==YAW_BOX_PROFILE
+    if box:
+        need(abs(cap['ego']['yaw_rad'])<=YAW_BOX_BOUND_RAD,'CORRIDOR_HEADING_BOUND',
+             'Initial yaw outside explicit bounded-box planner profile','tool_infeasible')
+    support=lambda nx,ny: yaw_box_support(v,nx,ny) if box else r
+    hp=[[nx,ny,b-support(nx,ny)-scene['hypotheses']['road']['uncertainty_m']] for nx,ny,b in planes(base)]
     # Target describes CENTER region. A rear-axle disk of radius d conservatively contains center.
-    hp += [[nx,ny,b-v['center_to_rear_axle_m']] for nx,ny,b in planes(polygon(d['target_region'],True))]
+    hp += [[nx,ny,b-(yaw_point_support((v['center_to_rear_axle_m'],0),nx,ny) if box
+                     else v['center_to_rear_axle_m'])] for nx,ny,b in planes(polygon(d['target_region'],True))]
     if d['stop']:hp.append([1.,0.,d['stop']['center_x_max_m']-v['center_to_rear_axle_m']])
     times=grid(m);cells=[]
-    seed=_moving_seed(scene,times) if policy=='moving_seed' else None
+    seed=_moving_seed(scene,times) if policy in ('moving_seed',YAW_BOX_PROFILE) else None
     previous=None
     for k in range(len(times)-1):
         constraints=[p[:] for p in hp]
@@ -76,18 +105,27 @@ def build(scene,policy='initial_anchor'):
             a,b=seed[k:k+2]
             ends=[(a['rear_x_m'],a['rear_y_m']),(b['rear_x_m'],b['rear_y_m'])]
             seed_geometry=Point(ends[0]) if ends[0]==ends[1] else LineString(ends)
+        selection_geometry=seed_geometry
+        if box:
+            # Use the zero-steer seed BODY only to choose a separating normal.
+            # Safety still uses the analytic support for every allowed yaw below.
+            d0=v['center_to_rear_axle_m'];w=v['half_width_m'];angle=seed[k]['yaw_rad']
+            c0,s0=math.cos(angle),math.sin(angle)
+            selection_geometry=Polygon([(px+c0*x-s0*y,py+s0*x+c0*y)
+                for px,py in ends for x,y in ((d0-v['rear_m'],-w),(d0+v['front_m'],-w),
+                                             (d0+v['front_m'],w),(d0-v['rear_m'],w))]).convex_hull
         for oid,shape,u in obstacles(scene,k):
             hull=shape.convex_hull
-            origin,near=nearest_points(seed_geometry,hull)
+            origin,near=nearest_points(selection_geometry,hull)
             dx,dy=near.x-origin.x,near.y-origin.y;dist=math.hypot(dx,dy)
-            need(dist>r+u+margin,
+            need(dist>0 and (box or dist>r+u+margin),
                  'CORRIDOR_ANCHOR_BLOCKED' if seed is None else 'CORRIDOR_SEED_BLOCKED',
                  'Conservative corridor anchor blocked' if seed is None else
                  'Ego-only seed blocked; this does not prove all trajectories infeasible',
                  'tool_infeasible',object_id=oid,interval=[times[k],times[k+1]])
             nx,ny=dx/dist,dy/dist
             support=min(nx*x+ny*y for x,y in hull.exterior.coords)
-            constraints.append([nx,ny,support-r-u-margin])
+            constraints.append([nx,ny,support-(yaw_box_support(v,nx,ny) if box else r)-u-margin])
         domain=base
         for p in constraints:domain=clip(domain,p)
         need(not domain.is_empty and domain.area>1e-8,'CORRIDOR_EMPTY','Empty convex cell','tool_infeasible',interval=[times[k],times[k+1]])
@@ -110,10 +148,14 @@ def build(scene,policy='initial_anchor'):
     # body envelopes, obstacle occupancies, margins and the T3/T4 checks are unchanged.
     extra={}
     if seed is not None:
-        extra['construction']=dict(policy='moving_seed',
+        extra['construction']=dict(policy=policy,
             seed_source='ego_state_vehicle_limits_semantic_template_only',
             seed_dynamics='exact_constant_acceleration_zero_steer',
             target_prediction_source='model_whole_interval_occupancy_only',
             behavior=d['behavior'],seed_points=seed,seed_is_solution=False,
             limitation='A blocked seed is not a proof of global infeasibility')
+    if box:
+        return artifact(scene,cells=cells,reference_point='rear_axle',
+            body_envelope='yaw_bounded_oriented_box',planner_profile=YAW_BOX_PROFILE,
+            heading_bound_rad=YAW_BOX_BOUND_RAD,margin_m=margin,conservative=True,**extra)
     return artifact(scene,cells=cells,reference_point='rear_axle',body_envelope='orientation_independent_circumscribed_disk',body_radius_m=r,margin_m=margin,conservative=True,**extra)

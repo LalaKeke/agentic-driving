@@ -9,11 +9,18 @@ from .contracts import artifact,identity,grid,need,Failure,validate
 from .geometry import rear_state,center_state
 
 def solve(scene,corridor,max_iter=700):
-    validate('scene_v2.schema.json',scene);validate('corridor_v2.schema.json',corridor)
+    box=corridor.get('planner_profile')=='yaw_bounded_box_v1'
+    validate('scene_v2.schema.json',scene)
+    validate('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json',corridor)
     identity(scene,corridor)
     cap=scene['capture'];v=cap['vehicle'];d=scene['decision'];times=grid(scene['metadata']);N=len(times)-1;dt=times[1]
     opt=ca.Opti();X=opt.variable(4,N+1);U=opt.variable(2,N)
     initial=rear_state(cap['ego'],v);opt.subject_to(X[:,0]==initial)
+    if box:
+        # With nonnegative speed and constant curvature yaw is monotone inside
+        # each interval; endpoint bounds therefore cover its entire duration.
+        bound=corridor['heading_bound_rad']
+        opt.subject_to(opt.bounded(-bound,X[2,:],bound))
     opt.subject_to(opt.bounded(0,X[3,:],v['max_speed_mps']))
     opt.subject_to(opt.bounded(-v['max_brake_mps2'],U[0,:],v['max_accel_mps2']))
     opt.subject_to(opt.bounded(-v['max_steer_rad'],U[1,:],v['max_steer_rad']))
@@ -59,4 +66,5 @@ def solve(scene,corridor,max_iter=700):
     for k,t in enumerate(times):
         q=sol.value(X[:,k]).tolist();a=float(sol.value(U[0,min(k,N-1)]));steer=float(sol.value(U[1,min(k,N-1)]));center=center_state(q,v)
         points.append(dict(time_s=t,rear_x_m=q[0],rear_y_m=q[1],x_m=center[0],y_m=center[1],yaw_rad=q[2],speed_mps=q[3],acceleration_mps2=a,steer_rad=steer,curvature_per_m=math.tan(steer)/v['wheelbase_m']))
-    return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost))))
+    extra=dict(planner_profile='yaw_bounded_box_v1',verification_profile='continuous_oriented_body_v1') if box else {}
+    return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost))),**extra)

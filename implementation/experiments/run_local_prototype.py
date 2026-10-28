@@ -46,11 +46,11 @@ def body_feedback(output):
     return conflicts
 
 
-def physical(cap,out,prov,initial,revision,folder):
+def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
     data={};stages={k:'NOT_REACHED' for k in ('T1','T2','T3','T4','EXECUTION','ACCEPTOR')}
     failure=None
     for name,fn in [('T1',lambda:t1.construct(cap,out,prov)),
-        ('T2',lambda:t2.build(data['T1'],policy='moving_seed')),
+        ('T2',lambda:t2.build(data['T1'],policy=policy)),
         ('T3',lambda:t3.solve(data['T1'],data['T2'])),
         ('T4',lambda:t4.verify(data['T1'],data['T3']))]:
         try:
@@ -81,20 +81,23 @@ def physical(cap,out,prov,initial,revision,folder):
 
 def main(args):
     limit=getattr(args,'max_requests',4)
+    planner=getattr(args,'planner_profile','legacy_disk_v2')
+    need(planner in ('legacy_disk_v2','yaw_bounded_box_v1'),'PROTOTYPE_PLANNER','Explicit planner profile required')
+    policy='moving_seed' if planner=='legacy_disk_v2' else 'yaw_bounded_box_v1'
     need(type(limit) is int and 1<=limit<=4,'PROTOTYPE_BUDGET','Per-case request limit must be 1..4')
     root=reserve_directory(args.out);initial=read(args.capture)
     need(initial['metadata']['horizon_s']==2 and initial['metadata']['step_s']==.2 and initial['safety']['prefix_s']==.2,
          'PROTOTYPE_CONFIG','Separate 2s/.2s prototype only')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
-        wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,
+        wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
         horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in [Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']}))
     budget=[];feedback=None;result=None;rows=[];fatal=None
     if args.replay:
         record=read(args.replay);cap=record['capture'];out=record['output'];prov=record['provenance']
         folder=reserve_directory(root/'attempt_01');write_json_new(folder/'record.json',record)
-        result,failure,stages=physical(cap,out,prov,cap,0,folder)
+        result,failure,stages=physical(cap,out,prov,cap,0,folder,policy=policy)
         if result:
             result['fresh_online_model_call']=False;result['replay_of_real_response']=str(args.replay)
         rows.append(dict(attempt=1,source='OFFLINE_REPLAY_OF_REAL_MODEL',stages=stages,failure=failure))
@@ -119,7 +122,7 @@ def main(args):
                 try:
                     out,prov=agent.decide(cap,feedback);stages['SERVICE']='PASS';stages['BUSINESS_SCHEMA']='PASS'
                     write_json_new(folder/'record.json',dict(capture=cap,output=out,provenance=prov))
-                    result,failure,tools=physical(cap,out,prov,initial,revision,folder);stages.update(tools)
+                    result,failure,tools=physical(cap,out,prov,initial,revision,folder,policy=policy);stages.update(tools)
                     rows.append(dict(attempt=revision+1,stages=stages,failure=failure))
                     print(json.dumps(dict(attempt=revision+1,stages=stages,failure=failure),ensure_ascii=False),flush=True)
                     if result:break # Any consumed prefix ends this observation.
@@ -132,7 +135,7 @@ def main(args):
                     break # Service/interface failure is terminal; no retry.
         except Failure as exc:fatal=exc.record
     if result:write_json_new(root/'round_result.json',result)
-    summary=dict(profile=PROFILE,charged_requests=len(budget),budget_limit=limit,remaining_unused=limit-len(budget),
+    summary=dict(profile=PROFILE,planner_profile=planner,charged_requests=len(budget),budget_limit=0 if args.replay else limit,remaining_unused=0 if args.replay else limit-len(budget),
         ended=True,attempts=rows,fatal=fatal,prototype_conditional_success=bool(result and result['prototype_conditional_success']),
         prefix_consumed=bool(result),source_commit=commit,mode='replay' if args.replay else 'online',
         old_strict_experiment_success=False,g2_evaluated=False,real_vehicle_control=False)
@@ -145,5 +148,6 @@ if __name__=='__main__':
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--max-requests',type=int,default=4)
+    p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1'],default='legacy_disk_v2')
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')
     sys.exit(main(p.parse_args()))
