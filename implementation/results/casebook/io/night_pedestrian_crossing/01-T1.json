@@ -1,0 +1,691 @@
+{
+  "name": "T1",
+  "signature": "construct(capture, agent_output, provenance, allow_synthetic) → metric_scene / Failure",
+  "input": {
+    "capture": {
+      "metadata": {
+        "profile": "convex_disk_bicycle_v2",
+        "schema_version": "2.0.0",
+        "scene_id": "nusc_b4c279e61abf49bd871ff2ec4b13e115",
+        "revision": 0,
+        "reference_time_id": "nusc_us_1542801000412460",
+        "reference_time_s": 1542801000.4124599,
+        "coordinate_frame": "ego_at_reference",
+        "horizon_s": 5.0,
+        "step_s": 0.2,
+        "history_s": 2.0,
+        "valid_until_s": 1542801005.4124599
+      },
+      "observations": [
+        {
+          "id": "e935ea38222a46df8460a1759c3d41f7",
+          "time_id": "nusc_us_1542800998412460",
+          "capture_time_s": 1542800998.4124599,
+          "capture_utc": "2018-11-21T11:49:58.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800998412460.jpg"
+        },
+        {
+          "id": "82ea0ffe57654ac6b6a276c4f2e532d6",
+          "time_id": "nusc_us_1542800998912460",
+          "capture_time_s": 1542800998.9124599,
+          "capture_utc": "2018-11-21T11:49:58.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800998912460.jpg"
+        },
+        {
+          "id": "f3ab42238db941509fcb9a47f8df50db",
+          "time_id": "nusc_us_1542800999412460",
+          "capture_time_s": 1542800999.4124599,
+          "capture_utc": "2018-11-21T11:49:59.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800999412460.jpg"
+        },
+        {
+          "id": "9ee04d160a514511a093dd35ea6f5604",
+          "time_id": "nusc_us_1542800999912460",
+          "capture_time_s": 1542800999.9124599,
+          "capture_utc": "2018-11-21T11:49:59.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800999912460.jpg"
+        },
+        {
+          "id": "558ec873abd54151adfbd3d97ad24768",
+          "time_id": "nusc_us_1542801000370339",
+          "capture_time_s": 1542801000.370339,
+          "capture_utc": "2018-11-21T11:50:00.370339+00:00",
+          "camera_id": "CAM_FRONT_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT_RIGHT/n015-2018-11-21-19-38-26+0800__CAM_FRONT_RIGHT__1542801000370339.jpg"
+        },
+        {
+          "id": "0f022dcdc636460a980034d696b4866c",
+          "time_id": "nusc_us_1542801000377893",
+          "capture_time_s": 1542801000.377893,
+          "capture_utc": "2018-11-21T11:50:00.377893+00:00",
+          "camera_id": "CAM_BACK_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_RIGHT/n015-2018-11-21-19-38-26+0800__CAM_BACK_RIGHT__1542801000377893.jpg"
+        },
+        {
+          "id": "3559984a431749339739312928a0752c",
+          "time_id": "nusc_us_1542801000387525",
+          "capture_time_s": 1542801000.3875248,
+          "capture_utc": "2018-11-21T11:50:00.387525+00:00",
+          "camera_id": "CAM_BACK",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK/n015-2018-11-21-19-38-26+0800__CAM_BACK__1542801000387525.jpg"
+        },
+        {
+          "id": "ee8e0e75d84e4c4695bb0e5a22496d8d",
+          "time_id": "nusc_us_1542801000397423",
+          "capture_time_s": 1542801000.397423,
+          "capture_utc": "2018-11-21T11:50:00.397423+00:00",
+          "camera_id": "CAM_BACK_LEFT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_LEFT/n015-2018-11-21-19-38-26+0800__CAM_BACK_LEFT__1542801000397423.jpg"
+        },
+        {
+          "id": "036e290646344f5a93ba322777b37e15",
+          "time_id": "nusc_us_1542801000404844",
+          "capture_time_s": 1542801000.404844,
+          "capture_utc": "2018-11-21T11:50:00.404844+00:00",
+          "camera_id": "CAM_FRONT_LEFT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT_LEFT/n015-2018-11-21-19-38-26+0800__CAM_FRONT_LEFT__1542801000404844.jpg"
+        },
+        {
+          "id": "20b9db8f43d6444ea6eba0e0402dc581",
+          "time_id": "nusc_us_1542801000412460",
+          "capture_time_s": 1542801000.4124599,
+          "capture_utc": "2018-11-21T11:50:00.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542801000412460.jpg"
+        }
+      ],
+      "ego": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.11070037095250115
+      },
+      "vehicle": {
+        "front_m": 2.3,
+        "rear_m": 2.3,
+        "half_width_m": 0.9,
+        "center_to_rear_axle_m": 1.2,
+        "wheelbase_m": 2.7,
+        "max_speed_mps": 12.0,
+        "max_accel_mps2": 2.0,
+        "max_brake_mps2": 3.0,
+        "max_steer_rad": 0.5,
+        "max_curvature_per_m": 0.2
+      },
+      "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+      "safety": {
+        "margin_m": 1.0,
+        "prefix_s": 0.2
+      },
+      "acquisition_metadata": {
+        "dataset": "nuScenes",
+        "native_ego_reference": "rear_axle",
+        "center_offset_assumption_m": 1.2,
+        "calibrations": {
+          "CAM_FRONT": {
+            "camera_intrinsic": [
+              [
+                1266.417203046554,
+                0.0,
+                816.2670197447984
+              ],
+              [
+                0.0,
+                1266.417203046554,
+                491.50706579294757
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.005684778682715441,
+                -0.005636667733598166,
+                0.9999679551206578
+              ],
+              [
+                -0.9999835174398977,
+                -0.0008371152724919728,
+                0.005680148462035628
+              ],
+              [
+                0.0008050713376760443,
+                -0.9999837634756286,
+                -0.005641333641939639
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.5007911895400001,
+              0.0159456324149,
+              1.51095763913
+            ]
+          },
+          "CAM_FRONT_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1260.8474446004698,
+                0.0,
+                807.968244525554
+              ],
+              [
+                0.0,
+                1260.8474446004698,
+                495.3344268742088
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.8329295630238647,
+                -9.946037679009478e-06,
+                0.5533790228604183
+              ],
+              [
+                -0.5533049273172018,
+                0.01637881578953715,
+                -0.8328177422460685
+              ],
+              [
+                -0.009055409840580897,
+                -0.9998658581501867,
+                -0.013647903070083123
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.35084775430000015,
+              -0.493404796419,
+              1.49574800619
+            ]
+          },
+          "CAM_BACK_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1259.5137405846733,
+                0.0,
+                807.2529053838625
+              ],
+              [
+                0.0,
+                1259.5137405846733,
+                501.19579884916527
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.9347755391782981,
+                0.015875837955449834,
+                -0.3548839938953784
+              ],
+              [
+                0.3550745592741919,
+                0.011370495332615804,
+                -0.9347688319537242
+              ],
+              [
+                -0.010805031705694884,
+                -0.9998093166224766,
+                -0.016265967070410614
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.18512190120000005,
+              -0.480568219723,
+              1.56239545128
+            ]
+          },
+          "CAM_BACK": {
+            "camera_intrinsic": [
+              [
+                809.2209905677063,
+                0.0,
+                829.2196003259838
+              ],
+              [
+                0.0,
+                809.2209905677063,
+                481.77842384512485
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.002421709860318755,
+                -0.016753608478469628,
+                -0.9998567156969556
+              ],
+              [
+                0.9999890666843358,
+                -0.003959107249966065,
+                0.002488369260045864
+              ],
+              [
+                -0.004000229136375599,
+                -0.999851810056237,
+                0.016743837496914216
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -1.1716739690642,
+              0.00345136761476,
+              1.57910346144
+            ]
+          },
+          "CAM_BACK_LEFT": {
+            "camera_intrinsic": [
+              [
+                1256.7414812095406,
+                0.0,
+                792.1125740759628
+              ],
+              [
+                0.0,
+                1256.7414812095406,
+                492.7757465151356
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.9477603556843314,
+                0.008665721547931132,
+                -0.31886550999310576
+              ],
+              [
+                0.31896113144149074,
+                -0.01397629983587656,
+                0.9476647401230364
+              ],
+              [
+                0.0037556387837154315,
+                -0.9998647750135773,
+                -0.016010211253286277
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.16430899781999986,
+              0.484795032713,
+              1.59097014818
+            ]
+          },
+          "CAM_FRONT_LEFT": {
+            "camera_intrinsic": [
+              [
+                1272.5979470598488,
+                0.0,
+                826.6154927353808
+              ],
+              [
+                0.0,
+                1272.5979470598488,
+                479.75165386361925
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.8207583481515547,
+                -0.00034143667149910684,
+                0.5712754303840931
+              ],
+              [
+                -0.5712716007618155,
+                0.0032195018514856732,
+                0.8207547703003997
+              ],
+              [
+                -0.002119458082718406,
+                -0.9999947591006806,
+                0.0024473799476101288
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.3238779813500001,
+              0.494631336551,
+              1.50932822144
+            ]
+          }
+        },
+        "ego_history": [
+          {
+            "frame_id": "e935ea38222a46df8460a1759c3d41f7",
+            "time_id": "nusc_us_1542800998412460",
+            "center_xy_m": [
+              -0.8169704700573381,
+              0.08555707163256498
+            ],
+            "yaw_rad": 0.09603028692858828
+          },
+          {
+            "frame_id": "82ea0ffe57654ac6b6a276c4f2e532d6",
+            "time_id": "nusc_us_1542800998912460",
+            "center_xy_m": [
+              -0.6157593721416587,
+              0.0571143732698969
+            ],
+            "yaw_rad": 0.05895935286270326
+          },
+          {
+            "frame_id": "f3ab42238db941509fcb9a47f8df50db",
+            "time_id": "nusc_us_1542800999412460",
+            "center_xy_m": [
+              -0.2903759098567122,
+              0.020032083113275007
+            ],
+            "yaw_rad": 0.01741022993172958
+          },
+          {
+            "frame_id": "9ee04d160a514511a093dd35ea6f5604",
+            "time_id": "nusc_us_1542800999912460",
+            "center_xy_m": [
+              -0.05535018547625058,
+              -0.0012468774851395142
+            ],
+            "yaw_rad": -0.001613254707037104
+          },
+          {
+            "frame_id": "558ec873abd54151adfbd3d97ad24768",
+            "time_id": "nusc_us_1542801000370339",
+            "center_xy_m": [
+              0.0004504695503081656,
+              -5.021235882098865e-05
+            ],
+            "yaw_rad": -8.512279461969641e-05
+          },
+          {
+            "frame_id": "0f022dcdc636460a980034d696b4866c",
+            "time_id": "nusc_us_1542801000377893",
+            "center_xy_m": [
+              0.00037371657188087107,
+              -3.489965648466708e-05
+            ],
+            "yaw_rad": -6.434679511979624e-05
+          },
+          {
+            "frame_id": "3559984a431749339739312928a0752c",
+            "time_id": "nusc_us_1542801000387525",
+            "center_xy_m": [
+              0.0002748178315430845,
+              -1.883186486193418e-05
+            ],
+            "yaw_rad": -4.0569511623012033e-05
+          },
+          {
+            "frame_id": "ee8e0e75d84e4c4695bb0e5a22496d8d",
+            "time_id": "nusc_us_1542801000397423",
+            "center_xy_m": [
+              0.00017170336987303066,
+              -8.976038391040794e-06
+            ],
+            "yaw_rad": -2.2486452648351477e-05
+          },
+          {
+            "frame_id": "036e290646344f5a93ba322777b37e15",
+            "time_id": "nusc_us_1542801000404844",
+            "center_xy_m": [
+              9.411856189608777e-05,
+              -1.9216366240696996e-06
+            ],
+            "yaw_rad": -8.95556907432038e-06
+          },
+          {
+            "frame_id": "20b9db8f43d6444ea6eba0e0402dc581",
+            "time_id": "nusc_us_1542801000412460",
+            "center_xy_m": [
+              0.0,
+              0.0
+            ],
+            "yaw_rad": 0.0
+          }
+        ],
+        "ego_speed_source": "causal_backward_difference_localization_0.5s; not direct CAN speed",
+        "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+      }
+    },
+    "agent_output": {
+      "decision": {
+        "scene_id": "nusc_b4c279e61abf49bd871ff2ec4b13e115",
+        "revision": 0,
+        "behavior": "stop_yield",
+        "target_region": [
+          [
+            -0.2,
+            -0.2
+          ],
+          [
+            0.2,
+            -0.2
+          ],
+          [
+            0.2,
+            0.2
+          ],
+          [
+            -0.2,
+            0.2
+          ]
+        ],
+        "desired_speed_mps": 0,
+        "yield_to": [
+          "approaching_motorcycle",
+          "right_approach_traffic",
+          "front_sidewalk_pedestrian"
+        ],
+        "stop": {
+          "center_x_max_m": 0.2,
+          "deadline_s": 1
+        },
+        "priority": 100,
+        "valid_until_s": 1542801000.61246,
+        "hard_requirements": [
+          "target_region",
+          "stop",
+          "yield",
+          "vehicle_limits",
+          "collision_free",
+          "road"
+        ],
+        "preferences": {
+          "speed_weight": 1,
+          "acceleration_weight": 1,
+          "steering_weight": 1,
+          "smoothness_weight": 1
+        }
+      },
+      "hypotheses": {
+        "coordinate_frame": "ego_at_reference",
+        "reference_time_id": "nusc_us_1542801000412460",
+        "units": "m_s_rad",
+        "scale_basis": "unknown",
+        "road": null,
+        "objects": [
+          {
+            "id": "approaching_motorcycle",
+            "position_m": null,
+            "velocity_mps": null,
+            "uncertainty_m": null,
+            "occupancy": null,
+            "frame_ids": [
+              "9ee04d160a514511a093dd35ea6f5604",
+              "20b9db8f43d6444ea6eba0e0402dc581"
+            ],
+            "time_ids": [
+              "nusc_us_1542800999912460",
+              "nusc_us_1542801000412460"
+            ]
+          },
+          {
+            "id": "front_sidewalk_pedestrian",
+            "position_m": null,
+            "velocity_mps": null,
+            "uncertainty_m": null,
+            "occupancy": null,
+            "frame_ids": [
+              "9ee04d160a514511a093dd35ea6f5604",
+              "20b9db8f43d6444ea6eba0e0402dc581"
+            ],
+            "time_ids": [
+              "nusc_us_1542800999912460",
+              "nusc_us_1542801000412460"
+            ]
+          },
+          {
+            "id": "right_approach_traffic",
+            "position_m": null,
+            "velocity_mps": null,
+            "uncertainty_m": null,
+            "occupancy": null,
+            "frame_ids": [
+              "558ec873abd54151adfbd3d97ad24768"
+            ],
+            "time_ids": [
+              "nusc_us_1542801000370339"
+            ]
+          },
+          {
+            "id": "rear_van",
+            "position_m": null,
+            "velocity_mps": null,
+            "uncertainty_m": null,
+            "occupancy": null,
+            "frame_ids": [
+              "3559984a431749339739312928a0752c"
+            ],
+            "time_ids": [
+              "nusc_us_1542801000387525"
+            ]
+          },
+          {
+            "id": "rear_sidewalk_pedestrians",
+            "position_m": null,
+            "velocity_mps": null,
+            "uncertainty_m": null,
+            "occupancy": null,
+            "frame_ids": [
+              "3559984a431749339739312928a0752c"
+            ],
+            "time_ids": [
+              "nusc_us_1542801000387525"
+            ]
+          }
+        ],
+        "unknown_regions": [],
+        "traffic_evidence": [
+          {
+            "rule": "stop_required",
+            "state": null,
+            "frame_ids": [
+              "20b9db8f43d6444ea6eba0e0402dc581",
+              "ee8e0e75d84e4c4695bb0e5a22496d8d"
+            ],
+            "time_ids": [
+              "nusc_us_1542801000412460",
+              "nusc_us_1542801000397423"
+            ]
+          },
+          {
+            "rule": "yield_required",
+            "state": null,
+            "frame_ids": [
+              "20b9db8f43d6444ea6eba0e0402dc581",
+              "558ec873abd54151adfbd3d97ad24768"
+            ],
+            "time_ids": [
+              "nusc_us_1542801000412460",
+              "nusc_us_1542801000370339"
+            ]
+          }
+        ],
+        "unbounded_unknown": true,
+        "confidence_note": "Green and red signals are visible in different directions; applicability to the intended ego movement is unresolved. A motorcycle approaches the intersection, traffic occupies the right approach, and pedestrians are near curbs. Calibration is supplied, but no bounded metric road polygon or actor localization is asserted here. Unknown roadway and occluded space cannot be bounded reliably. Whole-interval future body envelopes are unsupported, so all occupancies are null. The target is a requested stopping region, not a certified free region; missing geometry and occupancies require fail-closed validation."
+      }
+    },
+    "provenance": {
+      "source": "online_model",
+      "transport": "official_codex_cli",
+      "authentication": "chatgpt_subscription",
+      "requested_model": "gpt-6.1-sol",
+      "model_id": "gpt-6.1-sol",
+      "model_identity_basis": "explicit CLI request; snapshot not exposed",
+      "cli_version": "codex-cli 0.164.0",
+      "output_digest": "bc72fd4d7bc566a82ddfe99fcbd8ac1752083f0277f93e7692e696c458f8fc2c",
+      "image_sha256": {
+        "e935ea38222a46df8460a1759c3d41f7": "bcd2c13d44e000ecb4fe8676529460d79c8137358208ccc98c7801d59fd99af9",
+        "82ea0ffe57654ac6b6a276c4f2e532d6": "d545a7c096887154bc75f3bfa041dab8b8f0dda97adf38eb06b4248da81eab21",
+        "f3ab42238db941509fcb9a47f8df50db": "935c823a6dfeed5b3aca5d72d171d711da5ed6b8c77335400e8406d5f9e65db1",
+        "9ee04d160a514511a093dd35ea6f5604": "5c1c91b1a8a3fe233af489d3d282133d35f377ca1d31571af6ffe85bf56316c0",
+        "558ec873abd54151adfbd3d97ad24768": "26e3f008383e4d66c0cb8cfe2d3c2d78627ed50eb76517d5c14a9989e3bf2255",
+        "0f022dcdc636460a980034d696b4866c": "2a784eecae4f3ddb44c54146408a059f488784fcd015765043b5880666752e9d",
+        "3559984a431749339739312928a0752c": "9bcc80501028e496213ee1d6d598cf8dd2ad033257b4bfcfa34851ca00aefbff",
+        "ee8e0e75d84e4c4695bb0e5a22496d8d": "3b963c6295d6a74a87f40cc30b25f22c5bd800376b25b33ec1ca11cf73ddb689",
+        "036e290646344f5a93ba322777b37e15": "66f594ebd10814defc83bc1167a8dcf1f62776b07f2d1e8cdb912174fbb97400",
+        "20b9db8f43d6444ea6eba0e0402dc581": "0c3e6b95af0bf5bdd6eb02bfc7e0e0bb8508bdb167ae1477f768bf4fa24521ad"
+      },
+      "prompt_version": "driving_v2_1",
+      "agent_output_contract": "2.1.0",
+      "prompt_sha256": "11950fc9cee45adf63b5f13361a41196f6fdca7605a0119f69f0cc004ea15190",
+      "attempts": 1,
+      "elapsed_s": 42.84414330124855,
+      "output_mode": "codex_output_schema",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "usage": {
+        "input_tokens": 31887,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1155,
+        "reasoning_output_tokens": 235
+      },
+      "tool_calls": 0,
+      "disabled_capability_notices": [
+        "code_mode_host_disabled"
+      ]
+    },
+    "allow_synthetic": false
+  },
+  "output": {
+    "status": "rejected_no_execution",
+    "failure": {
+      "code": "MISSING_SCALE",
+      "message": "Metric scale unsupported; supply grounded hypothesis/calibration",
+      "category": "interface_error",
+      "details": {},
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  },
+  "status": "offline_replay",
+  "source": "implementation/results/gpt61_live/g2/contract21_night_t1_result.json",
+  "note": "独立契约的离线复核，未进行在线 T2–T4。"
+}

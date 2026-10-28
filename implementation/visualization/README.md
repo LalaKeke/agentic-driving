@@ -24,3 +24,19 @@ PLAYWRIGHT_BROWSERS_PATH="$PWD/runs/tools/visualization/browsers" \
 ```
 
 浏览器验证工具是可选开发依赖，不属于查看报告或构建静态图表所需依赖。
+
+
+## 工具 I/O 与 nuScenes 官方渲染案例集
+
+`build_casebook.py` 是独立的离线入口，实际使用官方 nuscenes-devkit 1.2.0 的 `render_sample_data`、`transform_matrix`、`view_points`。环境与原驾驶 `.venv`、原绘图解释器分别隔离；锁定依赖见 `requirements-nuscenes.lock.txt`。
+
+```bash
+python -m venv runs/tools/nuscenes-visualization
+runs/tools/nuscenes-visualization/bin/python -m pip install \
+  -r implementation/visualization/requirements-nuscenes.lock.txt
+runs/tools/nuscenes-visualization/bin/python implementation/visualization/build_casebook.py
+PLAYWRIGHT_BROWSERS_PATH="$PWD/runs/tools/visualization/browsers" \
+  node implementation/visualization/verify_casebook.cjs
+```
+
+默认输出 `implementation/results/casebook`，包含自包含 HTML、十三页 PDF、PNG/SVG、66 份完整工具 I/O、逐点投影审计。只读取真实归档与人工已验收运行；不导入模型适配器或调用四工具。当前 T4 的三次独立复核单独记在产物中，不与渲染或新求解混称。GT 曲线只在报告中使用，不补入原工具输入；模型无可信高度的 XY 点位只画 BEV。
