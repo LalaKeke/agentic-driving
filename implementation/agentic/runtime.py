@@ -97,7 +97,7 @@ class ClosedLoop:
                 if output is not None and stage in ('T1','T2'):
                     feedback['contract_diagnostics']=diagnose(cap,output)
                 # An unavailable transport/account is not a semantic scene revision.
-                if stage=='Agent' and feedback['code'] in ('CODEX_TIMEOUT','CODEX_TRANSPORT','CODEX_MODEL_UNAVAILABLE','CODEX_PROCESS','CODEX_CLI_STATE','CODEX_CHATGPT_LOGIN_REQUIRED','API_TRANSPORT','API_HTTP','API_CONFIGURATION'):
+                if stage=='Agent' and feedback['code'] in ('CODEX_TIMEOUT','CODEX_TRANSPORT','CODEX_SERVICE_FAILURE','CODEX_MODEL_UNAVAILABLE','CODEX_PROCESS','CODEX_CLI_STATE','CODEX_CHATGPT_LOGIN_REQUIRED','API_TRANSPORT','API_HTTP','API_CONFIGURATION'):
                     self.log.write('feedback',feedback)
                     return finish(dict(status='blocked_no_execution',feedback=feedback,revisions=attempt))
             self.log.write('feedback',feedback)

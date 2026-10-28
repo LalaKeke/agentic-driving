@@ -1,0 +1,41 @@
+{
+  "code": "UNBOUNDED_UNKNOWN",
+  "message": "Unknown road/extent blocks planning",
+  "category": "tool_infeasible",
+  "details": {},
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+  "failed_stage": "T1",
+  "contract_diagnostics": [
+    {
+      "code": "TARGET_INITIAL_STATE",
+      "path": "decision.target_region",
+      "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+      "actual": [
+        [
+          -1,
+          -0.7
+        ],
+        [
+          4,
+          -0.7
+        ],
+        [
+          4,
+          0.7
+        ],
+        [
+          -1,
+          0.7
+        ]
+      ],
+      "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+    },
+    {
+      "code": "OCCUPANCY_UNKNOWN",
+      "path": "hypotheses.objects[2].occupancy",
+      "expected": "Evidence-supported whole-interval occupancy or explicit null",
+      "actual": null,
+      "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+    }
+  ]
+}

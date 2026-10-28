@@ -1,0 +1,3172 @@
+{
+  "run": "/data2/hzy/MAP/agentic-driving/runs/conditional_estimation/20261028T042504Z-4cb96ed8",
+  "snapshot_status": "FINAL_LOG_PRESENT",
+  "manifest": {
+    "code_revision": "362f45e617ceb95703ba6d82b495ac5ee585ff6c",
+    "code_dirty": false,
+    "python": "3.11.5",
+    "execution": "SIMULATION_ONLY",
+    "schema": "2.0.0"
+  },
+  "configuration": {
+    "experiment_id": "conditional_estimation_v1_same_four_windows",
+    "runtime_index": "runs/nuscenes_cases_20261027/runtime_index.json",
+    "runtime_index_sha256": "9b6a0898fb9f3c86ba562f8b4b483948e89bd812ddba2719474279870ab6d4ff",
+    "backend": "codex_cli",
+    "model": "gpt-6.1-sol",
+    "output_contract": "2.1.0",
+    "prompt_version": "driving_v2_3",
+    "corridor_policy": "moving_seed",
+    "timeout_s": 600,
+    "max_revisions": 1,
+    "evaluation_repeats": 0,
+    "cohort": [
+      {
+        "sample_id": "ac452a60e8b34a7080c938c904b23057",
+        "capture_path": "runs/nuscenes_cases_20261027/runtime_inputs/ac452a60e8b34a7080c938c904b23057.json",
+        "capture_sha256": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+        "image_sha256": {
+          "36287d40e88a4ac9bb64cf4e8c166d1f": "a28feee634a24a682bdfeee4f60c92968de209254b9b78e54ec833ab0a7d25be",
+          "29cfc6babdba4e7ebad782f6d551033f": "677093fe34c9b4d0c0f67211188067f04a8d819dc5546057c1ba5d0cc22a1426",
+          "5479effa00bf4d01b96e1ec77065c977": "bc917c947ca4614726f5bba212ebb68cbdfec5d0844b28d6d0641a2810b769b3",
+          "836281904290463cafe2059d05d2b474": "bcab4cdf4d48f246a940584278375a7735cbec0b8fbaf8abe7422aa54354d0db",
+          "e4f2f36b2a3e406e8bff7f4d8d2b38c9": "4a5517ce903782d4547b541fbdb3e846a974d34f92927dbf11fcf7f7b91386a2",
+          "e21961136d834859877064a2156298ec": "3e9144479ed3156e049e37a644a75548af32431667d12440de7696858c831a52",
+          "39874064e74049dba341a7014335ee45": "b2ebbc1d632e947a43c4fd0301ebf2499dc67e49426c69f219699a4e8bd2dbaa",
+          "464e1a23df874e0c903038255d4605f0": "6e9d8515f21844437315c27831522cfb2d276be4a1d3c0f9deceb10f8f6f0fd5",
+          "a9b270a6886847dd9ea7bf81b521c8c6": "285a2a12a36316f74b15272e376c4c002fdef7c5a9050606a8cebad9c27732f7",
+          "defde01fa5594f18b24be8fe68e6f2c4": "cc377d2fb0836d52698926e1b5619d7d8841d1f496b5d7b093ece5a19a152014"
+        }
+      },
+      {
+        "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+        "capture_path": "runs/nuscenes_cases_20261027/runtime_inputs/88449a5cb1644a199c1c11f6ac034867.json",
+        "capture_sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+        "image_sha256": {
+          "331f6292bb4240d7a259cc9845b323c2": "0e290b04c7e720fd68aa9aef2b8298b2f2b029984f2bb1f60248c6d73847f91c",
+          "3338348b245c4deca43d3983489a42fb": "189a0e5eaf559049d5b868690116e545575643589bf3c083baca1552026fde37",
+          "5941e77ca4bd478e99e17114ca8759ab": "dd27df927249dad941dfc055717d5f16333de83b9d28b5b3fc34e33cbabeb3d1",
+          "e0bc3ff06fe348fdb56039c640be0ac3": "b59238f9f5b96bb73d3f3c162473ff953bc4877f2aee2ce2bbdb3bae05b9b3af",
+          "8bfbc893ff1544c2b03d6a4f7240c13a": "f92bd11cea955aaeb972ad5dcfedc7e9cdb241509b0d8eb70bf0bdb47da503fe",
+          "8e86b6898f57446d8557d675b07fb38c": "3f331dd6e3e2509646ccb574d47d4376994bea10d301c47ffa8e2f69c2da4d6e",
+          "66441c4e1ab64d7d916e6108c478f052": "b228b9885617cedd088ddd63506f1540c6031b6421a2005afcc18106001de380",
+          "ea5422c6aacf41869cc5122dad1c6e8a": "c756e2e6707e46615e64e80be4501aa770c9a03ebadf6dca54c4c3a1aa6f9ffc",
+          "b558073505fa411798d4dc174e1bdaea": "4f7d6fa4a39815cdaf81ea3f09faa8dac1f58ff353cf911f91fdb7e4f4a2c07c",
+          "0b2eb9c1cd1b45f0b1664a01684c5767": "10e75c9a10dfaa74c2faf6be73e836c1cdf6d9df5e8b56fb219fe9322fe8ccb6"
+        }
+      },
+      {
+        "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+        "capture_path": "runs/nuscenes_cases_20261027/runtime_inputs/c537fef0b4b241df92f44daa976fe5b3.json",
+        "capture_sha256": "375379b4d9240b4c2e9a6670ace4fe75196445c7722bf6d3b1df127f47eed9cd",
+        "image_sha256": {
+          "e30d5ecf0fd6418089112b4e4811737c": "0764379a278f6a78bc31937db75c7e419997a4318053b4179cb322e3a9d6e266",
+          "3cd43f6baa4e444999eef6cb1c89416a": "5f0559b215cb1c26754ccef0439a5619c96665c65453e561bad3b557e3f8e985",
+          "76542abab799469cbfb7b293c83192aa": "8ed4636b5b5543154bcb12e104171d12f02ff47b4069b600e5d1d09658f5477d",
+          "0a7aef80edbc4854bcd781a3becb943c": "7d667b736c3329733ec8867dc4c17bf9f628d45dc43fecccffb7fcb4fba1078a",
+          "6e2f6101c888435caab0496ba43dea39": "51b5e18b4e66ee325aa8002bf5e73f0061112e38221d71cca0d066c5a8d19a4d",
+          "82f695e6b3ca4a98b1d06b423bb34867": "19ebd9f0d03743baf8f8ebe753cc0e075c1b99a35023c0cb33a33d6a1beaf6bc",
+          "5820521017df4802b5f6fb25706f48db": "0528d72f4caeea7dc137cedc0fc4d070ca9483479a70903c068023c834bdfafa",
+          "0f28c30434a7400d9d212d680831b2d2": "44e25b45371186db6b227f25256f132498438a8b24313b3db1534c0fdd4a62f4",
+          "5aec7d61c787414c879acd56a3b67a88": "47e5d03da054b936aebb8a74c58ecb5952aee50f1be97820131ae6e14a83d9e1",
+          "deb67484315f4ba8b56ea8f03ef3d444": "87c3b033e71d9fa2eeb7af2ce899de5151e0c4368c9324bc82914faef869a9bf"
+        }
+      },
+      {
+        "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+        "capture_path": "runs/nuscenes_cases_20261027/runtime_inputs/b4c279e61abf49bd871ff2ec4b13e115.json",
+        "capture_sha256": "4bed9bfb22930dac4d43b25aa8b8a2828bcb1ac6493cce4c2c10e1c1717f2c02",
+        "image_sha256": {
+          "e935ea38222a46df8460a1759c3d41f7": "bcd2c13d44e000ecb4fe8676529460d79c8137358208ccc98c7801d59fd99af9",
+          "82ea0ffe57654ac6b6a276c4f2e532d6": "d545a7c096887154bc75f3bfa041dab8b8f0dda97adf38eb06b4248da81eab21",
+          "f3ab42238db941509fcb9a47f8df50db": "935c823a6dfeed5b3aca5d72d171d711da5ed6b8c77335400e8406d5f9e65db1",
+          "9ee04d160a514511a093dd35ea6f5604": "5c1c91b1a8a3fe233af489d3d282133d35f377ca1d31571af6ffe85bf56316c0",
+          "558ec873abd54151adfbd3d97ad24768": "26e3f008383e4d66c0cb8cfe2d3c2d78627ed50eb76517d5c14a9989e3bf2255",
+          "0f022dcdc636460a980034d696b4866c": "2a784eecae4f3ddb44c54146408a059f488784fcd015765043b5880666752e9d",
+          "3559984a431749339739312928a0752c": "9bcc80501028e496213ee1d6d598cf8dd2ad033257b4bfcfa34851ca00aefbff",
+          "ee8e0e75d84e4c4695bb0e5a22496d8d": "3b963c6295d6a74a87f40cc30b25f22c5bd800376b25b33ec1ca11cf73ddb689",
+          "036e290646344f5a93ba322777b37e15": "66f594ebd10814defc83bc1167a8dcf1f62776b07f2d1e8cdb912174fbb97400",
+          "20b9db8f43d6444ea6eba0e0402dc581": "0c3e6b95af0bf5bdd6eb02bfc7e0e0bb8508bdb167ae1477f768bf4fa24521ad"
+        }
+      }
+    ],
+    "scope": "Independent conditional-estimation prompt group on the same four windows. Physical assumptions and coverage still hard; output hypotheses must remain falsifiable and evidence-grounded, not certified truth."
+  },
+  "recorded_batch_summary": {
+    "status": "COMPLETED_WITH_PER_CASE_RESULTS",
+    "cases": [
+      {
+        "sample_id": "ac452a60e8b34a7080c938c904b23057",
+        "acquisition_status": "ACQUISITION_CHECKS_PASS",
+        "model_calls": 0,
+        "evaluation_model_attempts": 0,
+        "planning_status": "blocked_no_execution",
+        "physical_success": false,
+        "status": "blocked_no_execution",
+        "planning_log_start": 7,
+        "acceptance": {
+          "acceptance_version": "single_window_physical_v1",
+          "status": "NOT_ACCEPTED",
+          "strict_live_physical_success": false,
+          "software_success": false,
+          "source": null,
+          "motion_class": "NOT_EXECUTED",
+          "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+          "multi_round_closed_loop_success": false,
+          "ground_truth_correctness": "NOT_EVALUATED",
+          "released_prefix_s": 0,
+          "checks": {},
+          "reasons": [
+            {
+              "code": "ROUND_NOT_EXECUTED",
+              "message": "The round did not consume a verified simulated prefix."
+            }
+          ],
+          "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+        },
+        "planning_statistics": {
+          "model_attempts": 2,
+          "model_responses": 2,
+          "failures": [
+            {
+              "stage": "T1",
+              "attempt": 0,
+              "code": "UNBOUNDED_UNKNOWN"
+            },
+            {
+              "stage": "T1",
+              "attempt": 1,
+              "code": "UNBOUNDED_UNKNOWN"
+            }
+          ],
+          "tool_calls": {
+            "T1": 2,
+            "T2": 0,
+            "T3": 0,
+            "T4": 0,
+            "Execute": 0
+          }
+        },
+        "all_model_attempts": 2,
+        "all_model_responses": 2
+      },
+      {
+        "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+        "acquisition_status": "ACQUISITION_CHECKS_PASS",
+        "model_calls": 0,
+        "evaluation_model_attempts": 0,
+        "planning_status": "blocked_no_execution",
+        "physical_success": false,
+        "status": "blocked_no_execution",
+        "planning_log_start": 27,
+        "acceptance": {
+          "acceptance_version": "single_window_physical_v1",
+          "status": "NOT_ACCEPTED",
+          "strict_live_physical_success": false,
+          "software_success": false,
+          "source": null,
+          "motion_class": "NOT_EXECUTED",
+          "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+          "multi_round_closed_loop_success": false,
+          "ground_truth_correctness": "NOT_EVALUATED",
+          "released_prefix_s": 0,
+          "checks": {},
+          "reasons": [
+            {
+              "code": "ROUND_NOT_EXECUTED",
+              "message": "The round did not consume a verified simulated prefix."
+            }
+          ],
+          "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+        },
+        "planning_statistics": {
+          "model_attempts": 2,
+          "model_responses": 2,
+          "failures": [
+            {
+              "stage": "T1",
+              "attempt": 0,
+              "code": "UNBOUNDED_UNKNOWN"
+            },
+            {
+              "stage": "T1",
+              "attempt": 1,
+              "code": "UNBOUNDED_UNKNOWN"
+            }
+          ],
+          "tool_calls": {
+            "T1": 2,
+            "T2": 0,
+            "T3": 0,
+            "T4": 0,
+            "Execute": 0
+          }
+        },
+        "all_model_attempts": 2,
+        "all_model_responses": 2
+      },
+      {
+        "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+        "acquisition_status": "ACQUISITION_CHECKS_PASS",
+        "model_calls": 0,
+        "evaluation_model_attempts": 0,
+        "planning_status": "blocked_no_execution",
+        "physical_success": false,
+        "status": "blocked_no_execution",
+        "planning_log_start": 47,
+        "acceptance": {
+          "acceptance_version": "single_window_physical_v1",
+          "status": "NOT_ACCEPTED",
+          "strict_live_physical_success": false,
+          "software_success": false,
+          "source": null,
+          "motion_class": "NOT_EXECUTED",
+          "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+          "multi_round_closed_loop_success": false,
+          "ground_truth_correctness": "NOT_EVALUATED",
+          "released_prefix_s": 0,
+          "checks": {},
+          "reasons": [
+            {
+              "code": "ROUND_NOT_EXECUTED",
+              "message": "The round did not consume a verified simulated prefix."
+            }
+          ],
+          "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+        },
+        "planning_statistics": {
+          "model_attempts": 2,
+          "model_responses": 2,
+          "failures": [
+            {
+              "stage": "T1",
+              "attempt": 0,
+              "code": "UNBOUNDED_UNKNOWN"
+            },
+            {
+              "stage": "T1",
+              "attempt": 1,
+              "code": "UNBOUNDED_UNKNOWN"
+            }
+          ],
+          "tool_calls": {
+            "T1": 2,
+            "T2": 0,
+            "T3": 0,
+            "T4": 0,
+            "Execute": 0
+          }
+        },
+        "all_model_attempts": 2,
+        "all_model_responses": 2
+      },
+      {
+        "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+        "acquisition_status": "ACQUISITION_CHECKS_PASS",
+        "model_calls": 0,
+        "evaluation_model_attempts": 0,
+        "planning_status": "blocked_no_execution",
+        "physical_success": false,
+        "status": "blocked_no_execution",
+        "planning_log_start": 67,
+        "acceptance": {
+          "acceptance_version": "single_window_physical_v1",
+          "status": "NOT_ACCEPTED",
+          "strict_live_physical_success": false,
+          "software_success": false,
+          "source": null,
+          "motion_class": "NOT_EXECUTED",
+          "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+          "multi_round_closed_loop_success": false,
+          "ground_truth_correctness": "NOT_EVALUATED",
+          "released_prefix_s": 0,
+          "checks": {},
+          "reasons": [
+            {
+              "code": "ROUND_NOT_EXECUTED",
+              "message": "The round did not consume a verified simulated prefix."
+            }
+          ],
+          "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+        },
+        "planning_statistics": {
+          "model_attempts": 2,
+          "model_responses": 1,
+          "failures": [
+            {
+              "stage": "Agent",
+              "attempt": 0,
+              "code": "CODEX_SERVICE_FAILURE"
+            },
+            {
+              "stage": "T1",
+              "attempt": 1,
+              "code": "UNBOUNDED_UNKNOWN"
+            }
+          ],
+          "tool_calls": {
+            "T1": 1,
+            "T2": 0,
+            "T3": 0,
+            "T4": 0,
+            "Execute": 0
+          }
+        },
+        "all_model_attempts": 2,
+        "all_model_responses": 1
+      }
+    ],
+    "experiment_verdict": "NO_PHYSICAL_SUCCESS",
+    "strict_live_physical_successes": 0,
+    "physical_success_denominator": 4,
+    "repeated_calls_requested": 0,
+    "max_revisions_per_observation": 1,
+    "actual_repeated_model_calls": 0,
+    "all_model_attempts": 8,
+    "all_model_responses": 7,
+    "truth_access": false,
+    "execution": "SIMULATED_PREFIX_ONLY",
+    "claim": "Single-window success is conditional on model hypotheses; G2/GT correctness and multi-round counterfactual closed loop are separate"
+  },
+  "cases": [
+    {
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "status": "blocked_no_execution",
+      "case_result_source_present": true,
+      "strict_live_physical_success_within_revision_budget": false,
+      "first_attempt_strict_success": false,
+      "successful_attempt_index": null,
+      "motion_class": "NOT_EXECUTED",
+      "acceptance_source": "0024-case-result.json::acceptance",
+      "acceptance": {
+        "acceptance_version": "single_window_physical_v1",
+        "status": "NOT_ACCEPTED",
+        "strict_live_physical_success": false,
+        "software_success": false,
+        "source": null,
+        "motion_class": "NOT_EXECUTED",
+        "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+        "multi_round_closed_loop_success": false,
+        "ground_truth_correctness": "NOT_EVALUATED",
+        "released_prefix_s": 0,
+        "checks": {},
+        "reasons": [
+          {
+            "code": "ROUND_NOT_EXECUTED",
+            "message": "The round did not consume a verified simulated prefix."
+          }
+        ],
+        "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+      },
+      "planning_model_attempts": 2,
+      "planning_model_responses": 2,
+      "evaluation_model_attempts": 0,
+      "evaluation_model_responses": 0,
+      "tool_attempts": {
+        "T1": 2,
+        "T2": 0,
+        "T3": 0,
+        "T4": 0,
+        "Execute": 0
+      },
+      "failures": [
+        {
+          "stage": "T1",
+          "attempt": 0,
+          "code": "UNBOUNDED_UNKNOWN"
+        },
+        {
+          "stage": "T1",
+          "attempt": 1,
+          "code": "UNBOUNDED_UNKNOWN"
+        }
+      ],
+      "responses": [
+        {
+          "file": "0011-agent.json",
+          "phase": "planning",
+          "revision": 0,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 101.85548141226172,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INITIAL_STATE",
+              "TARGET_INSET_EMPTY"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1535489311.4124038,
+                  "minimum_required": 1535489311.4124038
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "FAIL",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": false,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "FAIL",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 1,
+                  "null_actor_occupancies": 4,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 5,
+              "position_unknown": 1,
+              "velocity_unknown": 5,
+              "object_uncertainty_unknown": 1,
+              "occupancy_unknown": 4,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        },
+        {
+          "file": "0018-agent.json",
+          "phase": "planning",
+          "revision": 1,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 124.60034991428256,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INSET_EMPTY"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1535489311.4124038,
+                  "minimum_required": 1535489311.4124038
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "PASS",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": true,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "FAIL",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 1,
+                  "null_actor_occupancies": 4,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 5,
+              "position_unknown": 2,
+              "velocity_unknown": 5,
+              "object_uncertainty_unknown": 1,
+              "occupancy_unknown": 4,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        }
+      ],
+      "recorded_feedbacks": [
+        {
+          "file": "0014-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "TARGET_INITIAL_STATE",
+              "path": "decision.target_region",
+              "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+              "actual": [
+                [
+                  -2,
+                  -0.8
+                ],
+                [
+                  2,
+                  -0.8
+                ],
+                [
+                  2,
+                  0.8
+                ],
+                [
+                  -2,
+                  0.8
+                ]
+              ],
+              "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[1].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[4].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        },
+        {
+          "file": "0021-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[1].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[4].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        }
+      ],
+      "capture_audits": [
+        {
+          "sample_id": "ac452a60e8b34a7080c938c904b23057",
+          "capture_sha256": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+          "status": "ACQUISITION_CHECKS_PASS",
+          "frames": 10,
+          "image_bytes": 1200468,
+          "image_sha256": {
+            "36287d40e88a4ac9bb64cf4e8c166d1f": "a28feee634a24a682bdfeee4f60c92968de209254b9b78e54ec833ab0a7d25be",
+            "29cfc6babdba4e7ebad782f6d551033f": "677093fe34c9b4d0c0f67211188067f04a8d819dc5546057c1ba5d0cc22a1426",
+            "5479effa00bf4d01b96e1ec77065c977": "bc917c947ca4614726f5bba212ebb68cbdfec5d0844b28d6d0641a2810b769b3",
+            "836281904290463cafe2059d05d2b474": "bcab4cdf4d48f246a940584278375a7735cbec0b8fbaf8abe7422aa54354d0db",
+            "e4f2f36b2a3e406e8bff7f4d8d2b38c9": "4a5517ce903782d4547b541fbdb3e846a974d34f92927dbf11fcf7f7b91386a2",
+            "e21961136d834859877064a2156298ec": "3e9144479ed3156e049e37a644a75548af32431667d12440de7696858c831a52",
+            "39874064e74049dba341a7014335ee45": "b2ebbc1d632e947a43c4fd0301ebf2499dc67e49426c69f219699a4e8bd2dbaa",
+            "464e1a23df874e0c903038255d4605f0": "6e9d8515f21844437315c27831522cfb2d276be4a1d3c0f9deceb10f8f6f0fd5",
+            "a9b270a6886847dd9ea7bf81b521c8c6": "285a2a12a36316f74b15272e376c4c002fdef7c5a9050606a8cebad9c27732f7",
+            "defde01fa5594f18b24be8fe68e6f2c4": "cc377d2fb0836d52698926e1b5619d7d8841d1f496b5d7b093ece5a19a152014"
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "status": "blocked_no_execution",
+      "case_result_source_present": true,
+      "strict_live_physical_success_within_revision_budget": false,
+      "first_attempt_strict_success": false,
+      "successful_attempt_index": null,
+      "motion_class": "NOT_EXECUTED",
+      "acceptance_source": "0044-case-result.json::acceptance",
+      "acceptance": {
+        "acceptance_version": "single_window_physical_v1",
+        "status": "NOT_ACCEPTED",
+        "strict_live_physical_success": false,
+        "software_success": false,
+        "source": null,
+        "motion_class": "NOT_EXECUTED",
+        "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+        "multi_round_closed_loop_success": false,
+        "ground_truth_correctness": "NOT_EVALUATED",
+        "released_prefix_s": 0,
+        "checks": {},
+        "reasons": [
+          {
+            "code": "ROUND_NOT_EXECUTED",
+            "message": "The round did not consume a verified simulated prefix."
+          }
+        ],
+        "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+      },
+      "planning_model_attempts": 2,
+      "planning_model_responses": 2,
+      "evaluation_model_attempts": 0,
+      "evaluation_model_responses": 0,
+      "tool_attempts": {
+        "T1": 2,
+        "T2": 0,
+        "T3": 0,
+        "T4": 0,
+        "Execute": 0
+      },
+      "failures": [
+        {
+          "stage": "T1",
+          "attempt": 0,
+          "code": "UNBOUNDED_UNKNOWN"
+        },
+        {
+          "stage": "T1",
+          "attempt": 1,
+          "code": "UNBOUNDED_UNKNOWN"
+        }
+      ],
+      "responses": [
+        {
+          "file": "0031-agent.json",
+          "phase": "planning",
+          "revision": 0,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 150.39892009831965,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INITIAL_STATE"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1532402940.6624599,
+                  "minimum_required": 1532402940.6624599
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "FAIL",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": false,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "PASS",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 3,
+                  "null_actor_occupancies": 2,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 5,
+              "position_unknown": 2,
+              "velocity_unknown": 5,
+              "object_uncertainty_unknown": 2,
+              "occupancy_unknown": 2,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        },
+        {
+          "file": "0038-agent.json",
+          "phase": "planning",
+          "revision": 1,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 107.97176630049944,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1532402940.6624599,
+                  "minimum_required": 1532402940.6624599
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "PASS",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": true,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "PASS",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 1,
+                  "null_actor_occupancies": 3,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 4,
+              "position_unknown": 1,
+              "velocity_unknown": 4,
+              "object_uncertainty_unknown": 1,
+              "occupancy_unknown": 3,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        }
+      ],
+      "recorded_feedbacks": [
+        {
+          "file": "0034-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "TARGET_INITIAL_STATE",
+              "path": "decision.target_region",
+              "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+              "actual": [
+                [
+                  -1,
+                  -0.6
+                ],
+                [
+                  5.8,
+                  -0.6
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  7,
+                  3
+                ],
+                [
+                  -1,
+                  1.5
+                ]
+              ],
+              "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[4].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        },
+        {
+          "file": "0041-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[1].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        }
+      ],
+      "capture_audits": [
+        {
+          "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+          "capture_sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+          "status": "ACQUISITION_CHECKS_PASS",
+          "frames": 10,
+          "image_bytes": 1552770,
+          "image_sha256": {
+            "331f6292bb4240d7a259cc9845b323c2": "0e290b04c7e720fd68aa9aef2b8298b2f2b029984f2bb1f60248c6d73847f91c",
+            "3338348b245c4deca43d3983489a42fb": "189a0e5eaf559049d5b868690116e545575643589bf3c083baca1552026fde37",
+            "5941e77ca4bd478e99e17114ca8759ab": "dd27df927249dad941dfc055717d5f16333de83b9d28b5b3fc34e33cbabeb3d1",
+            "e0bc3ff06fe348fdb56039c640be0ac3": "b59238f9f5b96bb73d3f3c162473ff953bc4877f2aee2ce2bbdb3bae05b9b3af",
+            "8bfbc893ff1544c2b03d6a4f7240c13a": "f92bd11cea955aaeb972ad5dcfedc7e9cdb241509b0d8eb70bf0bdb47da503fe",
+            "8e86b6898f57446d8557d675b07fb38c": "3f331dd6e3e2509646ccb574d47d4376994bea10d301c47ffa8e2f69c2da4d6e",
+            "66441c4e1ab64d7d916e6108c478f052": "b228b9885617cedd088ddd63506f1540c6031b6421a2005afcc18106001de380",
+            "ea5422c6aacf41869cc5122dad1c6e8a": "c756e2e6707e46615e64e80be4501aa770c9a03ebadf6dca54c4c3a1aa6f9ffc",
+            "b558073505fa411798d4dc174e1bdaea": "4f7d6fa4a39815cdaf81ea3f09faa8dac1f58ff353cf911f91fdb7e4f4a2c07c",
+            "0b2eb9c1cd1b45f0b1664a01684c5767": "10e75c9a10dfaa74c2faf6be73e836c1cdf6d9df5e8b56fb219fe9322fe8ccb6"
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "status": "blocked_no_execution",
+      "case_result_source_present": true,
+      "strict_live_physical_success_within_revision_budget": false,
+      "first_attempt_strict_success": false,
+      "successful_attempt_index": null,
+      "motion_class": "NOT_EXECUTED",
+      "acceptance_source": "0064-case-result.json::acceptance",
+      "acceptance": {
+        "acceptance_version": "single_window_physical_v1",
+        "status": "NOT_ACCEPTED",
+        "strict_live_physical_success": false,
+        "software_success": false,
+        "source": null,
+        "motion_class": "NOT_EXECUTED",
+        "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+        "multi_round_closed_loop_success": false,
+        "ground_truth_correctness": "NOT_EVALUATED",
+        "released_prefix_s": 0,
+        "checks": {},
+        "reasons": [
+          {
+            "code": "ROUND_NOT_EXECUTED",
+            "message": "The round did not consume a verified simulated prefix."
+          }
+        ],
+        "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+      },
+      "planning_model_attempts": 2,
+      "planning_model_responses": 2,
+      "evaluation_model_attempts": 0,
+      "evaluation_model_responses": 0,
+      "tool_attempts": {
+        "T1": 2,
+        "T2": 0,
+        "T3": 0,
+        "T4": 0,
+        "Execute": 0
+      },
+      "failures": [
+        {
+          "stage": "T1",
+          "attempt": 0,
+          "code": "UNBOUNDED_UNKNOWN"
+        },
+        {
+          "stage": "T1",
+          "attempt": 1,
+          "code": "UNBOUNDED_UNKNOWN"
+        }
+      ],
+      "responses": [
+        {
+          "file": "0051-agent.json",
+          "phase": "planning",
+          "revision": 0,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 63.802754098549485,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INITIAL_STATE",
+              "TARGET_INSET_EMPTY"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1535657123.6124039,
+                  "minimum_required": 1535657123.6124039
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "FAIL",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": false,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "FAIL",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "NOT_APPLICABLE",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 0,
+                  "null_actor_occupancies": 5,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 5,
+              "position_unknown": 0,
+              "velocity_unknown": 3,
+              "object_uncertainty_unknown": 0,
+              "occupancy_unknown": 5,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        },
+        {
+          "file": "0058-agent.json",
+          "phase": "planning",
+          "revision": 1,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 152.74770519509912,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INITIAL_STATE",
+              "TARGET_INSET_EMPTY"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1535657123.6124039,
+                  "minimum_required": 1535657123.6124039
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "FAIL",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": false,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "FAIL",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 2,
+                  "null_actor_occupancies": 5,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 7,
+              "position_unknown": 0,
+              "velocity_unknown": 3,
+              "object_uncertainty_unknown": 0,
+              "occupancy_unknown": 5,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        }
+      ],
+      "recorded_feedbacks": [
+        {
+          "file": "0054-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "TARGET_INITIAL_STATE",
+              "path": "decision.target_region",
+              "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+              "actual": [
+                [
+                  -0.5,
+                  -0.4
+                ],
+                [
+                  0.5,
+                  -0.4
+                ],
+                [
+                  0.5,
+                  0.4
+                ],
+                [
+                  -0.5,
+                  0.4
+                ]
+              ],
+              "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[0].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[1].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[4].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        },
+        {
+          "file": "0061-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "TARGET_INITIAL_STATE",
+              "path": "decision.target_region",
+              "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+              "actual": [
+                [
+                  -4,
+                  -1
+                ],
+                [
+                  3,
+                  -1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  -4,
+                  1
+                ]
+              ],
+              "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[4].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[5].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[6].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        }
+      ],
+      "capture_audits": [
+        {
+          "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+          "capture_sha256": "375379b4d9240b4c2e9a6670ace4fe75196445c7722bf6d3b1df127f47eed9cd",
+          "status": "ACQUISITION_CHECKS_PASS",
+          "frames": 10,
+          "image_bytes": 1414490,
+          "image_sha256": {
+            "e30d5ecf0fd6418089112b4e4811737c": "0764379a278f6a78bc31937db75c7e419997a4318053b4179cb322e3a9d6e266",
+            "3cd43f6baa4e444999eef6cb1c89416a": "5f0559b215cb1c26754ccef0439a5619c96665c65453e561bad3b557e3f8e985",
+            "76542abab799469cbfb7b293c83192aa": "8ed4636b5b5543154bcb12e104171d12f02ff47b4069b600e5d1d09658f5477d",
+            "0a7aef80edbc4854bcd781a3becb943c": "7d667b736c3329733ec8867dc4c17bf9f628d45dc43fecccffb7fcb4fba1078a",
+            "6e2f6101c888435caab0496ba43dea39": "51b5e18b4e66ee325aa8002bf5e73f0061112e38221d71cca0d066c5a8d19a4d",
+            "82f695e6b3ca4a98b1d06b423bb34867": "19ebd9f0d03743baf8f8ebe753cc0e075c1b99a35023c0cb33a33d6a1beaf6bc",
+            "5820521017df4802b5f6fb25706f48db": "0528d72f4caeea7dc137cedc0fc4d070ca9483479a70903c068023c834bdfafa",
+            "0f28c30434a7400d9d212d680831b2d2": "44e25b45371186db6b227f25256f132498438a8b24313b3db1534c0fdd4a62f4",
+            "5aec7d61c787414c879acd56a3b67a88": "47e5d03da054b936aebb8a74c58ecb5952aee50f1be97820131ae6e14a83d9e1",
+            "deb67484315f4ba8b56ea8f03ef3d444": "87c3b033e71d9fa2eeb7af2ce899de5151e0c4368c9324bc82914faef869a9bf"
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+      "status": "blocked_no_execution",
+      "case_result_source_present": true,
+      "strict_live_physical_success_within_revision_budget": false,
+      "first_attempt_strict_success": false,
+      "successful_attempt_index": null,
+      "motion_class": "NOT_EXECUTED",
+      "acceptance_source": "0081-case-result.json::acceptance",
+      "acceptance": {
+        "acceptance_version": "single_window_physical_v1",
+        "status": "NOT_ACCEPTED",
+        "strict_live_physical_success": false,
+        "software_success": false,
+        "source": null,
+        "motion_class": "NOT_EXECUTED",
+        "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+        "multi_round_closed_loop_success": false,
+        "ground_truth_correctness": "NOT_EVALUATED",
+        "released_prefix_s": 0,
+        "checks": {},
+        "reasons": [
+          {
+            "code": "ROUND_NOT_EXECUTED",
+            "message": "The round did not consume a verified simulated prefix."
+          }
+        ],
+        "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+      },
+      "planning_model_attempts": 2,
+      "planning_model_responses": 1,
+      "evaluation_model_attempts": 0,
+      "evaluation_model_responses": 0,
+      "tool_attempts": {
+        "T1": 1,
+        "T2": 0,
+        "T3": 0,
+        "T4": 0,
+        "Execute": 0
+      },
+      "failures": [
+        {
+          "stage": "Agent",
+          "attempt": 0,
+          "code": "CODEX_SERVICE_FAILURE"
+        },
+        {
+          "stage": "T1",
+          "attempt": 1,
+          "code": "UNBOUNDED_UNKNOWN"
+        }
+      ],
+      "responses": [
+        {
+          "file": "0075-agent.json",
+          "phase": "planning",
+          "revision": 1,
+          "source": "online_model",
+          "model_id": "gpt-6.1-sol",
+          "requested_model": "gpt-6.1-sol",
+          "prompt_version": "driving_v2_3",
+          "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+          "output_contract": "2.1.0",
+          "elapsed_s": 101.29899582453072,
+          "behavior": "stop_yield",
+          "audit": {
+            "issues": [
+              "TARGET_INITIAL_STATE",
+              "TARGET_INSET_EMPTY"
+            ],
+            "mechanical": {
+              "DECISION_EXPIRED": {
+                "status": "PASS",
+                "details": {
+                  "actual": 1542801005.4124599,
+                  "minimum_required": 1542801005.4124599
+                }
+              },
+              "TARGET_INITIAL_STATE": {
+                "status": "FAIL",
+                "details": {
+                  "center_inside_polygon": true,
+                  "initial_rear_in_conservative_center_configuration": false,
+                  "polygon_supported_convex": true
+                }
+              },
+              "TARGET_INSET_EMPTY": {
+                "status": "FAIL",
+                "details": {
+                  "center_to_rear_axle_m": 1.2,
+                  "polygon_supported_convex": true
+                }
+              },
+              "CALIBRATED_PROJECTION_UNVERIFIED": {
+                "status": "PASS",
+                "details": {
+                  "scale_basis": "model_metric_hypothesis",
+                  "note": "Supported/unknown label is not evidence of metric grounding."
+                }
+              },
+              "OCCUPANCY_GAP": {
+                "status": "PASS",
+                "details": {
+                  "required_intervals": 25,
+                  "nonnull_actor_occupancies": 1,
+                  "null_actor_occupancies": 4,
+                  "invalid_actor_ids": [],
+                  "note": "Null occupancy is unresolved, not a repaired forecast."
+                }
+              },
+              "SCENE_VERSION_MISMATCH": {
+                "status": "PASS",
+                "details": null
+              },
+              "MISSING_EVIDENCE": {
+                "status": "PASS",
+                "details": {
+                  "invalid_item_indices": []
+                }
+              }
+            },
+            "capability_gaps": {
+              "scale_unknown": false,
+              "road_unknown": false,
+              "unbounded_unknown": true,
+              "road_uncertainty_unknown": false,
+              "objects": 5,
+              "position_unknown": 0,
+              "velocity_unknown": 5,
+              "object_uncertainty_unknown": 0,
+              "occupancy_unknown": 4,
+              "nonnull_occupancies_with_wrong_grid": 0,
+              "confidence_is_not_calibrated": true
+            },
+            "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+          }
+        }
+      ],
+      "recorded_feedbacks": [
+        {
+          "file": "0071-feedback.json",
+          "code": "CODEX_SERVICE_FAILURE",
+          "message": "Codex service rejected or failed the request; raw response suppressed",
+          "category": "interface_error",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "Agent"
+        },
+        {
+          "file": "0078-feedback.json",
+          "code": "UNBOUNDED_UNKNOWN",
+          "message": "Unknown road/extent blocks planning",
+          "category": "tool_infeasible",
+          "details": {},
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently.",
+          "failed_stage": "T1",
+          "contract_diagnostics": [
+            {
+              "code": "TARGET_INITIAL_STATE",
+              "path": "decision.target_region",
+              "expected": "All-horizon CENTER region whose rear-reference configuration contains the initial state",
+              "actual": [
+                [
+                  -1,
+                  -0.6
+                ],
+                [
+                  1,
+                  -0.6
+                ],
+                [
+                  1,
+                  0.6
+                ],
+                [
+                  -1,
+                  0.6
+                ]
+              ],
+              "repair_request": "Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[0].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[1].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[2].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            },
+            {
+              "code": "OCCUPANCY_UNKNOWN",
+              "path": "hypotheses.objects[3].occupancy",
+              "expected": "Evidence-supported whole-interval occupancy or explicit null",
+              "actual": null,
+              "repair_request": "Unknown stays unknown. Request additional evidence; never insert placeholder envelopes."
+            }
+          ]
+        }
+      ],
+      "capture_audits": [
+        {
+          "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+          "capture_sha256": "4bed9bfb22930dac4d43b25aa8b8a2828bcb1ac6493cce4c2c10e1c1717f2c02",
+          "status": "ACQUISITION_CHECKS_PASS",
+          "frames": 10,
+          "image_bytes": 2798094,
+          "image_sha256": {
+            "e935ea38222a46df8460a1759c3d41f7": "bcd2c13d44e000ecb4fe8676529460d79c8137358208ccc98c7801d59fd99af9",
+            "82ea0ffe57654ac6b6a276c4f2e532d6": "d545a7c096887154bc75f3bfa041dab8b8f0dda97adf38eb06b4248da81eab21",
+            "f3ab42238db941509fcb9a47f8df50db": "935c823a6dfeed5b3aca5d72d171d711da5ed6b8c77335400e8406d5f9e65db1",
+            "9ee04d160a514511a093dd35ea6f5604": "5c1c91b1a8a3fe233af489d3d282133d35f377ca1d31571af6ffe85bf56316c0",
+            "558ec873abd54151adfbd3d97ad24768": "26e3f008383e4d66c0cb8cfe2d3c2d78627ed50eb76517d5c14a9989e3bf2255",
+            "0f022dcdc636460a980034d696b4866c": "2a784eecae4f3ddb44c54146408a059f488784fcd015765043b5880666752e9d",
+            "3559984a431749339739312928a0752c": "9bcc80501028e496213ee1d6d598cf8dd2ad033257b4bfcfa34851ca00aefbff",
+            "ee8e0e75d84e4c4695bb0e5a22496d8d": "3b963c6295d6a74a87f40cc30b25f22c5bd800376b25b33ec1ca11cf73ddb689",
+            "036e290646344f5a93ba322777b37e15": "66f594ebd10814defc83bc1167a8dcf1f62776b07f2d1e8cdb912174fbb97400",
+            "20b9db8f43d6444ea6eba0e0402dc581": "0c3e6b95af0bf5bdd6eb02bfc7e0e0bb8508bdb167ae1477f768bf4fa24521ad"
+          }
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "input_log_files": [
+    {
+      "file": "0001-source-hashes.json",
+      "sha256": "bca6112196c36167cd50a1d73bebcd56dd014956d0438c64ebf4adeb35555a9f",
+      "bytes": 3192
+    },
+    {
+      "file": "0002-manifest.json",
+      "sha256": "23e30bb7c25f40c858dbd9fbe8cefa6273d96c20e4bad51bc4fa1aa44fa6dd34",
+      "bytes": 166
+    },
+    {
+      "file": "0003-entrypoint-provenance.json",
+      "sha256": "9f96280d6916160308f509457cebdc9af3c0ac948e2db07e97777b4966efece8",
+      "bytes": 288
+    },
+    {
+      "file": "0004-experiment-config.json",
+      "sha256": "b0355bf8710ed0c91bbb2bf8c809314e94c5001276abec283c2f70ca7d3f92f8",
+      "bytes": 6803
+    },
+    {
+      "file": "0005-capture-audit.json",
+      "sha256": "749d90826d75c0f4579717047320d269d174e7b555ede1eb0195ad3360ee93ec",
+      "bytes": 1327
+    },
+    {
+      "file": "0006-adapter-config.json",
+      "sha256": "2add304b6067ac302669f51993d0bb82481be5b36866d0306cd1ecadec8c94f0",
+      "bytes": 557
+    },
+    {
+      "file": "0007-loop-config.json",
+      "sha256": "59882aca59e4fe1f590ef31ef02f9c3e32ecedff379b6d0608e399c8bb8961fc",
+      "bytes": 733
+    },
+    {
+      "file": "0008-capture.json",
+      "sha256": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+      "bytes": 13196
+    },
+    {
+      "file": "0009-stage-event.json",
+      "sha256": "f3c19672b77e2e2b64733895fcfcfbb49f550a6ed10e9c04b5867befa262fa40",
+      "bytes": 166
+    },
+    {
+      "file": "0010-stage-event.json",
+      "sha256": "56f4beb616e47bf974ef43924e0c92ce90e629aa6593934e683edfad8803e196",
+      "bytes": 203
+    },
+    {
+      "file": "0011-agent.json",
+      "sha256": "e57fd1686be977af4e9316abd64aedbf264bbd25a8fcedeb4c71105fdfa1d8ec",
+      "bytes": 24453
+    },
+    {
+      "file": "0012-stage-event.json",
+      "sha256": "fdbfc43a82cf4bd56750860f9ad929882077677107cecd1ee657c6fd11a18131",
+      "bytes": 163
+    },
+    {
+      "file": "0013-stage-event.json",
+      "sha256": "410deb1acea2137e975ff84cbd560a377c2cff7c273e36ec36a5824338f30c79",
+      "bytes": 238
+    },
+    {
+      "file": "0014-feedback.json",
+      "sha256": "a5160642dc4d56bf9f71b76ae68376ecc9d63d6b51e1fbb931e5457b87de8f66",
+      "bytes": 2158
+    },
+    {
+      "file": "0015-capture.json",
+      "sha256": "bbc982996412a5af6f3720e077e9c38cbec3139baa9973fd703c9f89f5837466",
+      "bytes": 13196
+    },
+    {
+      "file": "0016-stage-event.json",
+      "sha256": "96378456b09b93e53dbbad90d5d97efec7f73990758502db0fe188dfd62e570e",
+      "bytes": 166
+    },
+    {
+      "file": "0017-stage-event.json",
+      "sha256": "bf73b4e39cc52b85bdbd653a3915b0c3b1a7370790b887cfafb4e8e01c334783",
+      "bytes": 203
+    },
+    {
+      "file": "0018-agent.json",
+      "sha256": "50bda3602a0c4e42c3dc381de7205d41621af63754c0c39a964607e339004f37",
+      "bytes": 25145
+    },
+    {
+      "file": "0019-stage-event.json",
+      "sha256": "9b8c246041510eb464456492d977fa4e939a4c20203ec09d84da74da7ff54e8c",
+      "bytes": 163
+    },
+    {
+      "file": "0020-stage-event.json",
+      "sha256": "dc35a500c35cb2bbf06b6c7994f6cbf51f474d0f2cca28bdb8a8f0d5fe03fcdd",
+      "bytes": 238
+    },
+    {
+      "file": "0021-feedback.json",
+      "sha256": "33ac2c4e88a14b08dad9af299408e8d0d1fdef79cbca7e4ecccf1740e689f97c",
+      "bytes": 1551
+    },
+    {
+      "file": "0022-round-acceptance.json",
+      "sha256": "7248c01cac07955702d2deb6f52689ce7b5aaff05fbc81bd3cd2850e05aecc4b",
+      "bytes": 740
+    },
+    {
+      "file": "0023-round-statistics.json",
+      "sha256": "ba729eb0ea352b1669ffcd6fc3b988fd499b1deb60318a4aee9fd0587d941fe8",
+      "bytes": 338
+    },
+    {
+      "file": "0024-case-result.json",
+      "sha256": "144d9f363bb7914530e9af9083f71ab33fdc71547e4e309032860416e07ed1e2",
+      "bytes": 1554
+    },
+    {
+      "file": "0025-capture-audit.json",
+      "sha256": "be962a09d097e32c049be13c7889113ec5905f31fa0f67772cbc6e0848889be4",
+      "bytes": 1327
+    },
+    {
+      "file": "0026-adapter-config.json",
+      "sha256": "2add304b6067ac302669f51993d0bb82481be5b36866d0306cd1ecadec8c94f0",
+      "bytes": 557
+    },
+    {
+      "file": "0027-loop-config.json",
+      "sha256": "59882aca59e4fe1f590ef31ef02f9c3e32ecedff379b6d0608e399c8bb8961fc",
+      "bytes": 733
+    },
+    {
+      "file": "0028-capture.json",
+      "sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+      "bytes": 13181
+    },
+    {
+      "file": "0029-stage-event.json",
+      "sha256": "c9ca3c4c7437f18ba510a767e9f45a9094de4ad8920bee05df6153c0988b45ee",
+      "bytes": 166
+    },
+    {
+      "file": "0030-stage-event.json",
+      "sha256": "2256c63b922d3d1d489f3eaab7f68f065a7b88f599d5ca22ab1e7628cc587ac9",
+      "bytes": 203
+    },
+    {
+      "file": "0031-agent.json",
+      "sha256": "4189fa82a119aebedaa7ac92ad8c600cbd4f570b074fdb98dc549ef6890819df",
+      "bytes": 54365
+    },
+    {
+      "file": "0032-stage-event.json",
+      "sha256": "700e9c1a1cb9d43611711c35ce7a6f3dc9d16f78a636d5d04995a286b5619238",
+      "bytes": 163
+    },
+    {
+      "file": "0033-stage-event.json",
+      "sha256": "2d86251bc8ac189c5d72a5069b261e3bf632ea29750c6802c2f2a95ab6ef5b9b",
+      "bytes": 238
+    },
+    {
+      "file": "0034-feedback.json",
+      "sha256": "b6d3f22650dbebad99f94422906ff10bbbbad94bebf0c9ef793a558ede430af3",
+      "bytes": 1574
+    },
+    {
+      "file": "0035-capture.json",
+      "sha256": "ab7c5b1bbb5ca6a29260c853879e4701b4ce22a08c8a864a83226f22c746ab63",
+      "bytes": 13181
+    },
+    {
+      "file": "0036-stage-event.json",
+      "sha256": "fc91211cfeb1be02db04ddf0cca40b779a95990aaddff7ebfff0dbf70cd6e3bb",
+      "bytes": 166
+    },
+    {
+      "file": "0037-stage-event.json",
+      "sha256": "505c920ace0daa7f9f179b6829184cafdb1defff6747cd10583aef6583fcaac7",
+      "bytes": 202
+    },
+    {
+      "file": "0038-agent.json",
+      "sha256": "b676e3b29637c900045fff89ebc14cbaf00cbd66bd852ea51d2af68c25b1397a",
+      "bytes": 24577
+    },
+    {
+      "file": "0039-stage-event.json",
+      "sha256": "75dc6d8ec0bf9f54d2fc2e07c5e8ea637cee1700f293594d5bedf4bcd33fed6a",
+      "bytes": 163
+    },
+    {
+      "file": "0040-stage-event.json",
+      "sha256": "54dcb58cae04087484e733f980a10491ace190a61015232e32e653dc00c3af6d",
+      "bytes": 238
+    },
+    {
+      "file": "0041-feedback.json",
+      "sha256": "db5cf8f11e3623704c8c13b532077b51b82a2eba7b4847705148f38f47aa11cd",
+      "bytes": 1236
+    },
+    {
+      "file": "0042-round-acceptance.json",
+      "sha256": "7248c01cac07955702d2deb6f52689ce7b5aaff05fbc81bd3cd2850e05aecc4b",
+      "bytes": 740
+    },
+    {
+      "file": "0043-round-statistics.json",
+      "sha256": "ba729eb0ea352b1669ffcd6fc3b988fd499b1deb60318a4aee9fd0587d941fe8",
+      "bytes": 338
+    },
+    {
+      "file": "0044-case-result.json",
+      "sha256": "433fed2512f0b5f626eb5e069a2e7351e06f8f93e42f34a06e12a6c4ba2e2ec4",
+      "bytes": 1555
+    },
+    {
+      "file": "0045-capture-audit.json",
+      "sha256": "a241e3ce6eac9648d027850d91028c35dd04b59a784954fefd4a5af5f8c8f227",
+      "bytes": 1327
+    },
+    {
+      "file": "0046-adapter-config.json",
+      "sha256": "2add304b6067ac302669f51993d0bb82481be5b36866d0306cd1ecadec8c94f0",
+      "bytes": 557
+    },
+    {
+      "file": "0047-loop-config.json",
+      "sha256": "59882aca59e4fe1f590ef31ef02f9c3e32ecedff379b6d0608e399c8bb8961fc",
+      "bytes": 733
+    },
+    {
+      "file": "0048-capture.json",
+      "sha256": "375379b4d9240b4c2e9a6670ace4fe75196445c7722bf6d3b1df127f47eed9cd",
+      "bytes": 13173
+    },
+    {
+      "file": "0049-stage-event.json",
+      "sha256": "7945e6c7bb727fe1ee10e957f6b9d905e0f593bf43f2d2a26b328b285f20542d",
+      "bytes": 166
+    },
+    {
+      "file": "0050-stage-event.json",
+      "sha256": "8f9c4fc7bcbe488300c5b632988945494ef3606cf0f3343fb5067876b9e4f606",
+      "bytes": 202
+    },
+    {
+      "file": "0051-agent.json",
+      "sha256": "4dd76800ca613722c8f149d92de2a677e0156849bdd3625f81111cd75fc2ec3a",
+      "bytes": 8904
+    },
+    {
+      "file": "0052-stage-event.json",
+      "sha256": "a1e042d84ce69966da5fe033c470331387464684976773b9b3cae51e94e1706f",
+      "bytes": 163
+    },
+    {
+      "file": "0053-stage-event.json",
+      "sha256": "46e34964ac6ea53fe547f7810d77eb7969fabddd5ac3731027d9403776b1867e",
+      "bytes": 238
+    },
+    {
+      "file": "0054-feedback.json",
+      "sha256": "043004de8c6eabb98991369a67f701edc16e6fb99da458935ea151710f198cd2",
+      "bytes": 2481
+    },
+    {
+      "file": "0055-capture.json",
+      "sha256": "af7729e8588b6c114f5c2ffa1c9331fc25f3f485028be8cf7f9784ae0d1c4ad7",
+      "bytes": 13173
+    },
+    {
+      "file": "0056-stage-event.json",
+      "sha256": "3e9dae3103092d1f1842109398e52c336fefdc7672551aabddf0fb92bf890417",
+      "bytes": 166
+    },
+    {
+      "file": "0057-stage-event.json",
+      "sha256": "dbb45d2680b2d32fe244b6cdcff9de41680b69654ee3a0061234f32fe40c8f0c",
+      "bytes": 202
+    },
+    {
+      "file": "0058-agent.json",
+      "sha256": "dfe0287fdbce29d7da67d541d56a00f02fd65c4b0ddae13dd65c592ae20682d0",
+      "bytes": 52382
+    },
+    {
+      "file": "0059-stage-event.json",
+      "sha256": "d6556597b98d1567d71dab1d82ee7619b5dd94457f30f801c4fea57391b447e0",
+      "bytes": 163
+    },
+    {
+      "file": "0060-stage-event.json",
+      "sha256": "b9611d4dbacb6100b83dfe5f8f336193c8cbf2d1951f10531d89040e0889b781",
+      "bytes": 238
+    },
+    {
+      "file": "0061-feedback.json",
+      "sha256": "e75c9b52e9ffe8bf8f21c302c0de10e2a7a7b9dc8a3b0656a1efd076900d428d",
+      "bytes": 2465
+    },
+    {
+      "file": "0062-round-acceptance.json",
+      "sha256": "7248c01cac07955702d2deb6f52689ce7b5aaff05fbc81bd3cd2850e05aecc4b",
+      "bytes": 740
+    },
+    {
+      "file": "0063-round-statistics.json",
+      "sha256": "ba729eb0ea352b1669ffcd6fc3b988fd499b1deb60318a4aee9fd0587d941fe8",
+      "bytes": 338
+    },
+    {
+      "file": "0064-case-result.json",
+      "sha256": "42cb18b68b5708813c1b916e229cc590522596e880e8b3442dfbb43b5fbc0ff3",
+      "bytes": 1555
+    },
+    {
+      "file": "0065-capture-audit.json",
+      "sha256": "9ef61a397388a678703d870668011c9a107939ef1a3030a587685f35797150ad",
+      "bytes": 1327
+    },
+    {
+      "file": "0066-adapter-config.json",
+      "sha256": "2add304b6067ac302669f51993d0bb82481be5b36866d0306cd1ecadec8c94f0",
+      "bytes": 557
+    },
+    {
+      "file": "0067-loop-config.json",
+      "sha256": "59882aca59e4fe1f590ef31ef02f9c3e32ecedff379b6d0608e399c8bb8961fc",
+      "bytes": 733
+    },
+    {
+      "file": "0068-capture.json",
+      "sha256": "4bed9bfb22930dac4d43b25aa8b8a2828bcb1ac6493cce4c2c10e1c1717f2c02",
+      "bytes": 13213
+    },
+    {
+      "file": "0069-stage-event.json",
+      "sha256": "295e632e74a646f7424ff2ac89565155141363a61f0d04d5edcb54e54422ab7f",
+      "bytes": 166
+    },
+    {
+      "file": "0070-stage-event.json",
+      "sha256": "6c38cd7556daacb59a1dacc21708de63cc8b2060e81a4f11cce3ed9efca3e8d4",
+      "bytes": 243
+    },
+    {
+      "file": "0071-feedback.json",
+      "sha256": "3ffc760874a7069ddf72da03deb6e63dbb1e951499e8d1e7a307446fad6734a3",
+      "bytes": 300
+    },
+    {
+      "file": "0072-capture.json",
+      "sha256": "ef3902566c4015e1f06d67fef3ee239fb5d505b8f6b17e0d5cfb13bbcb4cd47e",
+      "bytes": 13213
+    },
+    {
+      "file": "0073-stage-event.json",
+      "sha256": "26a15cb13d25c2f40219fb43705e964cca112cd082870f20da08be359430ecc4",
+      "bytes": 166
+    },
+    {
+      "file": "0074-stage-event.json",
+      "sha256": "0d98509696ee788044bd21132f67fd82b252692293730b6c1e2c0054dcefa3f2",
+      "bytes": 203
+    },
+    {
+      "file": "0075-agent.json",
+      "sha256": "808bc6979c3df935387142593ec04f4ce3f27c15788d49b5aa380a312c612f50",
+      "bytes": 24371
+    },
+    {
+      "file": "0076-stage-event.json",
+      "sha256": "e24028e8e7601dcc0397c0eebcfc85ecad3b520101a0f293d4b9492eb714b25e",
+      "bytes": 163
+    },
+    {
+      "file": "0077-stage-event.json",
+      "sha256": "f44a4f9311711892e290c5e05174962f83a76f427783ec2ce2a42304b82ede4b",
+      "bytes": 238
+    },
+    {
+      "file": "0078-feedback.json",
+      "sha256": "06241fac7874d0e5cafb8e8fa1f3f7d6e4cf404a7684345585799005c75cd89d",
+      "bytes": 2158
+    },
+    {
+      "file": "0079-round-acceptance.json",
+      "sha256": "7248c01cac07955702d2deb6f52689ce7b5aaff05fbc81bd3cd2850e05aecc4b",
+      "bytes": 740
+    },
+    {
+      "file": "0080-round-statistics.json",
+      "sha256": "0a90e5cbdbbf176590827051dfdccd70499f50236898bcb61c12d91cf7891f25",
+      "bytes": 345
+    },
+    {
+      "file": "0081-case-result.json",
+      "sha256": "b9653f212025aa325cf283fc1b5296b85465b0f68e75d07a48fdcd3b0fd5fb8d",
+      "bytes": 1562
+    },
+    {
+      "file": "0082-nuscenes-summary.json",
+      "sha256": "c89fc90d53b315c1cb533679562abe85e41e377df8f78e188920472e5a4b8be5",
+      "bytes": 7673
+    }
+  ],
+  "summary": {
+    "cohort_cases": 4,
+    "completed_cases": 4,
+    "attempted_cases": 4,
+    "strict_successes_within_budget": 0,
+    "first_attempt_strict_successes": 0,
+    "moving_prefix_successes": 0,
+    "stationary_hold_successes": 0,
+    "planning_model_attempts": 8,
+    "planning_model_responses": 7,
+    "evaluation_model_attempts": 0,
+    "evaluation_model_responses": 0,
+    "tool_attempts": {
+      "T1": 7,
+      "T2": 0,
+      "T3": 0,
+      "T4": 0,
+      "Execute": 0
+    },
+    "failure_stage_codes": {
+      "T1:UNBOUNDED_UNKNOWN": 7,
+      "Agent:CODEX_SERVICE_FAILURE": 1
+    }
+  },
+  "all_response_contract_audit": {
+    "responses": 7,
+    "mechanical": {
+      "DECISION_EXPIRED": {
+        "applicable_responses": 7,
+        "passed_responses": 7,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      },
+      "TARGET_INITIAL_STATE": {
+        "applicable_responses": 7,
+        "passed_responses": 2,
+        "failed_responses": 5,
+        "not_applicable_responses": 0
+      },
+      "TARGET_INSET_EMPTY": {
+        "applicable_responses": 7,
+        "passed_responses": 2,
+        "failed_responses": 5,
+        "not_applicable_responses": 0
+      },
+      "CALIBRATED_PROJECTION_UNVERIFIED": {
+        "applicable_responses": 7,
+        "passed_responses": 7,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      },
+      "OCCUPANCY_GAP": {
+        "applicable_responses": 6,
+        "passed_responses": 6,
+        "failed_responses": 0,
+        "not_applicable_responses": 1
+      },
+      "SCENE_VERSION_MISMATCH": {
+        "applicable_responses": 7,
+        "passed_responses": 7,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      },
+      "MISSING_EVIDENCE": {
+        "applicable_responses": 7,
+        "passed_responses": 7,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      }
+    },
+    "capability_gap_response_counts": {
+      "unbounded_unknown": 7,
+      "confidence_is_not_calibrated": 7
+    },
+    "object_entry_counts": {
+      "objects": 36,
+      "position_unknown": 6,
+      "velocity_unknown": 30,
+      "object_uncertainty_unknown": 5,
+      "occupancy_unknown": 27,
+      "nonnull_occupancies_with_wrong_grid": 0
+    },
+    "groups": [
+      {
+        "prompt_version": "driving_v2_3",
+        "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+        "output_contract": "2.1.0",
+        "model_id": "gpt-6.1-sol",
+        "responses": 7
+      }
+    ],
+    "note": "Every response/revision is included for contract diagnostics. They are not independent scene trials. Unknown occupancy is NOT_APPLICABLE, not a repaired forecast."
+  },
+  "baseline_contract_audit": {
+    "responses": 10,
+    "mechanical": {
+      "DECISION_EXPIRED": {
+        "applicable_responses": 10,
+        "passed_responses": 4,
+        "failed_responses": 6,
+        "not_applicable_responses": 0
+      },
+      "TARGET_INITIAL_STATE": {
+        "applicable_responses": 10,
+        "passed_responses": 0,
+        "failed_responses": 10,
+        "not_applicable_responses": 0
+      },
+      "TARGET_INSET_EMPTY": {
+        "applicable_responses": 10,
+        "passed_responses": 0,
+        "failed_responses": 10,
+        "not_applicable_responses": 0
+      },
+      "CALIBRATED_PROJECTION_UNVERIFIED": {
+        "applicable_responses": 10,
+        "passed_responses": 2,
+        "failed_responses": 8,
+        "not_applicable_responses": 0
+      },
+      "OCCUPANCY_GAP": {
+        "applicable_responses": 9,
+        "passed_responses": 0,
+        "failed_responses": 9,
+        "not_applicable_responses": 1
+      },
+      "SCENE_VERSION_MISMATCH": {
+        "applicable_responses": 10,
+        "passed_responses": 10,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      },
+      "MISSING_EVIDENCE": {
+        "applicable_responses": 10,
+        "passed_responses": 10,
+        "failed_responses": 0,
+        "not_applicable_responses": 0
+      }
+    },
+    "capability_gap_response_counts": {
+      "unbounded_unknown": 10,
+      "road_uncertainty_unknown": 3,
+      "confidence_is_not_calibrated": 10,
+      "road_unknown": 5,
+      "scale_unknown": 2
+    },
+    "object_entry_counts": {
+      "objects": 59,
+      "position_unknown": 46,
+      "velocity_unknown": 59,
+      "object_uncertainty_unknown": 55,
+      "occupancy_unknown": 5,
+      "nonnull_occupancies_with_wrong_grid": 54
+    },
+    "groups": [
+      {
+        "prompt_version": "driving_v2",
+        "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+        "output_contract": "2.0.0",
+        "model_id": "gpt-6.1-sol",
+        "responses": 9
+      },
+      {
+        "prompt_version": "driving_v2_1",
+        "prompt_sha256": "11950fc9cee45adf63b5f13361a41196f6fdca7605a0119f69f0cc004ea15190",
+        "output_contract": "2.1.0",
+        "model_id": "gpt-6.1-sol",
+        "responses": 1
+      }
+    ],
+    "note": "Every response/revision is included for contract diagnostics. They are not independent scene trials. Unknown occupancy is NOT_APPLICABLE, not a repaired forecast."
+  },
+  "baseline_response_records": [
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "file": "0006-model-record.json",
+      "phase": "evaluation_sampling",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 77.4012366887182,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1535489306.6124039,
+              "minimum_required": 1535489311.4124038
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 8,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "pedestrian_leading",
+                "pedestrian_middle",
+                "pedestrian_with_cart",
+                "pedestrian_trailing",
+                "cross_traffic",
+                "rear_pickup",
+                "rear_right_truck",
+                "adjacent_left_sedan"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": false,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": true,
+          "objects": 8,
+          "position_unknown": 5,
+          "velocity_unknown": 8,
+          "object_uncertainty_unknown": 8,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 8,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "file": "0009-agent.json",
+      "phase": "planning",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 55.788603600114584,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1535489306.6124039,
+              "minimum_required": 1535489311.4124038
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 8,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "pedestrian_front",
+                "pedestrian_middle",
+                "pedestrian_with_cart",
+                "pedestrian_left",
+                "cross_traffic",
+                "rear_pickup",
+                "rear_right_truck",
+                "left_adjacent_car"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": true,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 8,
+          "position_unknown": 4,
+          "velocity_unknown": 8,
+          "object_uncertainty_unknown": 8,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 8,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "file": "0012-agent.json",
+      "phase": "planning",
+      "revision": 1,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 58.237380135804415,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1535489306.6124039,
+              "minimum_required": 1535489311.4124038
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 7,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "pedestrian_group",
+                "trailing_pedestrian",
+                "additional_crossing_pedestrians",
+                "cross_traffic",
+                "rear_pickup",
+                "rear_right_truck",
+                "left_adjacent_sedan"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": false,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 7,
+          "position_unknown": 4,
+          "velocity_unknown": 7,
+          "object_uncertainty_unknown": 4,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 7,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "file": "0015-agent.json",
+      "phase": "planning",
+      "revision": 2,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 83.68717516772449,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1535489306.6124039,
+              "minimum_required": 1535489311.4124038
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 6,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "pedestrian_group_front",
+                "pedestrians_left",
+                "cross_traffic",
+                "rear_pickup",
+                "rear_right_truck",
+                "adjacent_left_sedan"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": true,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 6,
+          "position_unknown": 6,
+          "velocity_unknown": 6,
+          "object_uncertainty_unknown": 6,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 6,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "file": "0006-model-record.json",
+      "phase": "evaluation_sampling",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 70.47843304090202,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "PASS",
+            "details": {
+              "actual": 1532402940.6624599,
+              "minimum_required": 1532402940.6624599
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": false,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 4,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "lead_mpv",
+                "pedestrians_at_right_crossing",
+                "cross_traffic",
+                "construction_barriers_and_excavator"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": false,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": true,
+          "objects": 4,
+          "position_unknown": 3,
+          "velocity_unknown": 4,
+          "object_uncertainty_unknown": 4,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 4,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "file": "0009-agent.json",
+      "phase": "planning",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 62.28254877589643,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "PASS",
+            "details": {
+              "actual": 1532402940.66246,
+              "minimum_required": 1532402940.6624599
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": false,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 5,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "lead_minivan",
+                "right_side_pedestrians",
+                "left_side_pedestrians",
+                "junction_traffic",
+                "construction_barriers"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": false,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 5,
+          "position_unknown": 4,
+          "velocity_unknown": 5,
+          "object_uncertainty_unknown": 4,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 5,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "file": "0012-agent.json",
+      "phase": "planning",
+      "revision": 1,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 78.16220118664205,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "PASS",
+            "details": {
+              "actual": 1532402940.6624599,
+              "minimum_required": 1532402940.6624599
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": false,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 2,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "lead_minivan",
+                "right_pedestrians"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": false,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": true,
+          "objects": 2,
+          "position_unknown": 1,
+          "velocity_unknown": 2,
+          "object_uncertainty_unknown": 2,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 2,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784",
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "file": "0018-model-record.json",
+      "phase": "evaluation_sampling",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 55.47795811481774,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "CALIBRATED_PROJECTION_UNVERIFIED",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "PASS",
+            "details": {
+              "actual": 1535657123.6124039,
+              "minimum_required": 1535657123.6124039
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "FAIL",
+            "details": {
+              "scale_basis": "calibrated_ground_plane",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 7,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "crossing_van",
+                "crossing_dump_truck",
+                "crossing_sedan",
+                "cyclist",
+                "bus_ahead",
+                "minivan_behind",
+                "delivery_truck_behind"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": false,
+          "road_unknown": true,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 7,
+          "position_unknown": 7,
+          "velocity_unknown": 7,
+          "object_uncertainty_unknown": 7,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 7,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784",
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "file": "0021-agent.json",
+      "phase": "planning",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2",
+      "prompt_sha256": "fffdf2bcf5fff3073efb0c069474cfaa502273d7d628ed328796b69d3ad144f1",
+      "output_contract": "2.0.0",
+      "elapsed_s": 67.56678387522697,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY",
+          "OCCUPANCY_GAP"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1535657118.812404,
+              "minimum_required": 1535657123.6124039
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "PASS",
+            "details": {
+              "scale_basis": "unknown",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "FAIL",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 7,
+              "null_actor_occupancies": 0,
+              "invalid_actor_ids": [
+                "crossing_van",
+                "crossing_dump_truck",
+                "crossing_sedan",
+                "cyclist",
+                "bus_ahead",
+                "rear_minivan",
+                "rear_delivery_truck"
+              ],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": true,
+          "road_unknown": true,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 7,
+          "position_unknown": 7,
+          "velocity_unknown": 7,
+          "object_uncertainty_unknown": 7,
+          "occupancy_unknown": 0,
+          "nonnull_occupancies_with_wrong_grid": 7,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    },
+    {
+      "run": "/data2/hzy/MAP/agentic-driving/implementation/results/gpt61_live/raw_runs/20261027T161613Z-a58e5a49",
+      "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+      "file": "0005-model-record.json",
+      "phase": "evaluation_sampling",
+      "revision": 0,
+      "source": "online_model",
+      "model_id": "gpt-6.1-sol",
+      "requested_model": "gpt-6.1-sol",
+      "prompt_version": "driving_v2_1",
+      "prompt_sha256": "11950fc9cee45adf63b5f13361a41196f6fdca7605a0119f69f0cc004ea15190",
+      "output_contract": "2.1.0",
+      "elapsed_s": 42.84414330124855,
+      "behavior": "stop_yield",
+      "audit": {
+        "issues": [
+          "DECISION_EXPIRED",
+          "TARGET_INITIAL_STATE",
+          "TARGET_INSET_EMPTY"
+        ],
+        "mechanical": {
+          "DECISION_EXPIRED": {
+            "status": "FAIL",
+            "details": {
+              "actual": 1542801000.61246,
+              "minimum_required": 1542801005.4124599
+            }
+          },
+          "TARGET_INITIAL_STATE": {
+            "status": "FAIL",
+            "details": {
+              "center_inside_polygon": true,
+              "initial_rear_in_conservative_center_configuration": false,
+              "polygon_supported_convex": true
+            }
+          },
+          "TARGET_INSET_EMPTY": {
+            "status": "FAIL",
+            "details": {
+              "center_to_rear_axle_m": 1.2,
+              "polygon_supported_convex": true
+            }
+          },
+          "CALIBRATED_PROJECTION_UNVERIFIED": {
+            "status": "PASS",
+            "details": {
+              "scale_basis": "unknown",
+              "note": "Supported/unknown label is not evidence of metric grounding."
+            }
+          },
+          "OCCUPANCY_GAP": {
+            "status": "NOT_APPLICABLE",
+            "details": {
+              "required_intervals": 25,
+              "nonnull_actor_occupancies": 0,
+              "null_actor_occupancies": 5,
+              "invalid_actor_ids": [],
+              "note": "Null occupancy is unresolved, not a repaired forecast."
+            }
+          },
+          "SCENE_VERSION_MISMATCH": {
+            "status": "PASS",
+            "details": null
+          },
+          "MISSING_EVIDENCE": {
+            "status": "PASS",
+            "details": {
+              "invalid_item_indices": []
+            }
+          }
+        },
+        "capability_gaps": {
+          "scale_unknown": true,
+          "road_unknown": true,
+          "unbounded_unknown": true,
+          "road_uncertainty_unknown": false,
+          "objects": 5,
+          "position_unknown": 5,
+          "velocity_unknown": 5,
+          "object_uncertainty_unknown": 5,
+          "occupancy_unknown": 5,
+          "nonnull_occupancies_with_wrong_grid": 0,
+          "confidence_is_not_calibrated": true
+        },
+        "warning": "Mechanical PASS does not establish supported road/occupancy, grounding, or physical success."
+      }
+    }
+  ],
+  "comparison_limits": "Original model responses, contracts, prompts, evaluation pre-calls and revision budgets differ. Mechanical counts are descriptive, not a paired independent success-rate experiment.",
+  "extraction": {
+    "generated_at_utc": "2026-10-28T04:43:25.678491+00:00",
+    "source_script_sha256": "2fa67ffed28480561cc80f1e9d8460703de70c435c07e4eb20103cf27aeb49ec",
+    "truth_read": false,
+    "model_calls": 0,
+    "acceptance_recomputed": false,
+    "physical_tools_called": false,
+    "success_authority": "Only saved runtime round-acceptance/case-result acceptance; no inferred PASS from artifacts, response counts or solver status",
+    "source_scope": "Numbered JSON files in explicitly supplied run directories only",
+    "incomplete_snapshot_warning": "Rerun after nuscenes-summary is written; missing acceptance in an active run is null, not a final failure."
+  }
+}

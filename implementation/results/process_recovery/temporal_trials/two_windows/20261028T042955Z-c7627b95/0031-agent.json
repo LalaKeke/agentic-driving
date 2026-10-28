@@ -1,0 +1,1485 @@
+{
+  "output": {
+    "decision": {
+      "scene_id": "nusc_ac8b4d49731d43289579f014cb7c97ef",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -1,
+          -0.7
+        ],
+        [
+          4,
+          -0.7
+        ],
+        [
+          4,
+          0.7
+        ],
+        [
+          -1,
+          0.7
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "crossing_pedestrian",
+        "bus_stop_pedestrians"
+      ],
+      "stop": {
+        "center_x_max_m": 3.5,
+        "deadline_s": 1.8
+      },
+      "priority": 100,
+      "valid_until_s": 1538984240.4124599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 3,
+        "smoothness_weight": 2
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984235412460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -7,
+            -6
+          ],
+          [
+            16,
+            -6
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            -7,
+            4
+          ]
+        ],
+        "uncertainty_m": 0.7,
+        "frame_ids": [
+          "b08a2deaf871433fad9a4c03e6f53d32",
+          "1a7e32a8ef504f0097e9046dfa66a0d0",
+          "6a672ea8f3a3420f8a78c1b20b6445a4"
+        ],
+        "time_ids": [
+          "nusc_us_1538984235412460",
+          "nusc_us_1538984235370339",
+          "nusc_us_1538984235387525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "crossing_pedestrian",
+          "position_m": [
+            23,
+            -8
+          ],
+          "velocity_mps": [
+            0,
+            1.2
+          ],
+          "uncertainty_m": 2,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2,
+              "end_s": 2.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.4000000000000004,
+              "end_s": 2.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.8000000000000003,
+              "end_s": 3,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3,
+              "end_s": 3.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.4000000000000004,
+              "end_s": 3.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.8000000000000003,
+              "end_s": 4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4,
+              "end_s": 4.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6000000000000005,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.6000000000000005,
+              "end_s": 4.800000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.800000000000001,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    20,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    -8.5
+                  ],
+                  [
+                    26,
+                    1.5
+                  ],
+                  [
+                    20,
+                    1.5
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "d46d055d799c48cfb8d25f455aa962ce",
+            "1d1306dc17764f38b6b662d2350acac2",
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984234420339",
+            "nusc_us_1538984234912460",
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "id": "bus_stop_pedestrians",
+          "position_m": [
+            12,
+            5
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 1.2,
+          "occupancy": [
+            {
+              "start_s": 0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2,
+              "end_s": 2.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.4000000000000004,
+              "end_s": 2.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.8000000000000003,
+              "end_s": 3,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3,
+              "end_s": 3.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.4000000000000004,
+              "end_s": 3.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.8000000000000003,
+              "end_s": 4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4,
+              "end_s": 4.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6000000000000005,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.6000000000000005,
+              "end_s": 4.800000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.800000000000001,
+              "end_s": 5,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    6,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    -3.5
+                  ],
+                  [
+                    22,
+                    9
+                  ],
+                  [
+                    6,
+                    9
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "600f938dbfa24792968fb8737f6f5441",
+            "1d1306dc17764f38b6b662d2350acac2",
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984234412460",
+            "nusc_us_1538984234912460",
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "id": "rear_bus",
+          "position_m": [
+            -8,
+            4
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 2,
+          "occupancy": null,
+          "frame_ids": [
+            "978c968dbcb348299f241b81959b3f2a",
+            "6a672ea8f3a3420f8a78c1b20b6445a4"
+          ],
+          "time_ids": [
+            "nusc_us_1538984234387525",
+            "nusc_us_1538984235387525"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "rule": "stop_required",
+          "state": null,
+          "frame_ids": [
+            "1a7e32a8ef504f0097e9046dfa66a0d0"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235370339"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Conditional estimates use camera angular geometry, approximate foot contacts on an assumed locally level surface, pedestrian/bus size priors, visible curbs and supplied ego poses. Scale and road boundaries are not measured or calibrated ground-plane results. Historical views are interpreted with ego translation/rotation; actor velocities remain approximate and asynchronous views are not treated as simultaneous triangulation. Road is a short convex patch around the present stopping corridor, not a model of the junction beyond it. Crossing pedestrian appears to move from the parking side toward the shelter: the repeated whole-horizon body envelope adopts walking, pausing and modest heading changes, with lateral progress up to about 9 m and longitudinal drift about 2.5 m; it intentionally loses interval timing. The pedestrian aggregate includes the backpack walkers and shelter occupants. Its repeated whole-horizon envelope adopts waiting, walking along the frontage and entering the road at walking speed up to about 1.5 m/s; bounds include body extent, while uncertainty_m separately represents residual metric placement error. Aggregate position is representative, not an individual location. Running and unrestricted departures are not covered. The rear bus is visibly negotiating the curved road; its center estimate is rough, and its reference velocity and five-second swept path cannot be credibly resolved here. A following/turning conflict during braking remains unresolved, hence null occupancy and unbounded_unknown=true; no verified execution permission is claimed. Shelter occlusion also limits identification of additional entrants. Parked vehicles are outside the proposed short stopping corridor; their departure is not established. The visible no-entry sign appears associated with the side approach, but its applicability is unresolved, so stop_required remains null. Yielding applies to both named pedestrian objects. At 4.065 m/s, ideal maximum braking requires about 1.36 s and 2.75 m; the requested stop within 3.5 m by 1.8 s is dynamically plausible with prompt braking, subject to verification and the unresolved rear risk."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "ae5a59bbde3643df4b0ea91f4b670a0a695d2c2016a8019fc8e60e24c88d1358",
+    "image_sha256": {
+      "d6986708c5084569bf7a636968070602": "475c1dacfd3c4f5375ff9c1598c082ec65c4f3bfa0a720107522eba6cada5efe",
+      "524d443c501a4f98a14508c3fb6f6de3": "eb299dff2240c756d2d4725c6247247655be92531a1d79717ed1da461ce2e130",
+      "d6f89460954c43d39ed7c9ac91ab03d0": "6ea9d5981baa64e78b937a2a1a1cf67717a8a974043872d2db75e07fa1bfc35e",
+      "b3e53998db124133bb9cd832d78d2b11": "74ac683901d10e618323b5ebaf895ddf6bb17bb2c8532bf35eaa70a71d06b5cb",
+      "fd183c135b1f41ea8eb7a3df78d0b1ff": "a2b3399c6d1afc905a43442c82531bcf61bbfde289f5da51bc73d3956a2c8fd0",
+      "4552459a83ac4259b7592c8d7c87248f": "e48128afe5ae8fd7e06cdde2a5bab4da1f4f02d1e4b14112dc1f734b68297f8f",
+      "ac5aaa8e6e764badb77d5fa077f6e92b": "320d0d2a76fad3211d47f156ad87848fae0e2ec8ee9b5dc3bf2a956c562772c2",
+      "978c968dbcb348299f241b81959b3f2a": "12fa020cb924d2e5fa1e6c6ced670a705fd5c2986e53379ddf2371393a372fe3",
+      "4e790b605ab9447e85d23982b7e77101": "23756418a90e533adb3aab91478e9f76678ace51ccb8588161c6e1192a14cad3",
+      "158a572914564f78a17341cd0050477e": "e983ad0e4dec940b533f6465aa036d2f3587cb39bd50c148ba6c77c30527d623",
+      "600f938dbfa24792968fb8737f6f5441": "b6ddee2fdb92d3317a3750451de53370e73442873c2bef9e941f9e478cd6db3a",
+      "d46d055d799c48cfb8d25f455aa962ce": "2a23ef1599263d8ffa0f81fe8a4af644eb5e4cb6ab274fb4abf698794c0e5889",
+      "ffaa9a69c0a54bba93355a7efaeba4f5": "dfbe735bccf30e0aceb24a7402577ab287108d056ad8b33f6f534291b6b38481",
+      "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+      "1a7e32a8ef504f0097e9046dfa66a0d0": "36d7c8de32598c391dc8dade48a936c75dd5db97cc37666f69a8ae0b9359baba",
+      "03f6f518384c4fd09310894b1664e8ce": "2cc0b36a0144806a78b9aa0c994570eed2de9dd09ff337c266b3ea68f653d668",
+      "6a672ea8f3a3420f8a78c1b20b6445a4": "201c5a545adb15e03cc859784f380609f0ad1f78cbf049561b837e594ed98c74",
+      "559f77ef3cbc4246aace52f4ef6979da": "b0e3da09614407b0cfcc5b8d3e3b6bc5a0e7f8f5e12768960d526716aa9a06ea",
+      "d04e814cac724736b237834106123cc5": "e1a7b0c243e01fe70fd64cca7e9883629204a6767b5ed61ecded95a8810d1fcd",
+      "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2"
+    },
+    "prompt_version": "driving_v2_3",
+    "agent_output_contract": "2.1.0",
+    "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+    "attempts": 1,
+    "elapsed_s": 114.83728054352105,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 54078,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5731,
+      "reasoning_output_tokens": 909
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

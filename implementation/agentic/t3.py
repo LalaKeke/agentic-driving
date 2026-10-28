@@ -26,12 +26,16 @@ def solve(scene,corridor,max_iter=700):
         sinc=ca.if_else(ca.fabs(z)<1e-4,1-z*z/6+z**4/120,ca.sin(z)/ca.if_else(ca.fabs(z)<1e-4,1,z))
         nxt=ca.vertcat(x+travel*sinc*ca.cos(p+z),y+travel*sinc*ca.sin(p+z),p+2*z,speed+a*dt)
         opt.subject_to(X[:,k+1]==nxt)
-        # For any point on the arc, distance to the nearest endpoint <= travel/2.
-        # A common half-plane slack of travel/2 certifies the entire interval.
+        # Arc-length interpolation: ||d^2 rear_position / ds^2|| = |curv|.
+        # The rear arc is within |curv| * travel^2 / 8 of its endpoint chord,
+        # for the entire interval, including nonuniform time from acceleration.
+        # sqrt(curv^2 + eps^2) >= |curv| is a smooth conservative upper bound;
+        # eps=1e-10 (1/m). The closed physical half-space remains unchanged.
+        arc_pad=ca.sqrt(curv*curv+1e-20)*travel*travel/8
         for nx,ny,b in corridor['cells'][k]['halfplanes']:
             # Respect the declared closed half-space. An extra shrink rejects valid
             # stationary states on a stop boundary; physical margins are already in T2.
-            for j in (k,k+1):opt.subject_to(nx*X[0,j]+ny*X[1,j]+travel/2<=b)
+            for j in (k,k+1):opt.subject_to(nx*X[0,j]+ny*X[1,j]+arc_pad<=b)
         if d['stop']:
             deadline=d['stop']['deadline_s']
             if times[k]>=deadline-1e-8:opt.subject_to(X[3,k]==0)

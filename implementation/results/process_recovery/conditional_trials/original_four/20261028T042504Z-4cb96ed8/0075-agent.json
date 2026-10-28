@@ -1,0 +1,907 @@
+{
+  "output": {
+    "decision": {
+      "scene_id": "nusc_b4c279e61abf49bd871ff2ec4b13e115",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -1,
+          -0.6
+        ],
+        [
+          1,
+          -0.6
+        ],
+        [
+          1,
+          0.6
+        ],
+        [
+          -1,
+          0.6
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "approaching_motorcycle",
+        "right_approach_bus",
+        "front_pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 0.2,
+        "deadline_s": 0.4
+      },
+      "priority": 10,
+      "valid_until_s": 1542801005.4124599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 1,
+        "steering_weight": 2,
+        "smoothness_weight": 2
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1542801000412460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -5,
+            -4
+          ],
+          [
+            10,
+            -4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            -5,
+            4
+          ]
+        ],
+        "uncertainty_m": 1,
+        "frame_ids": [
+          "20b9db8f43d6444ea6eba0e0402dc581",
+          "036e290646344f5a93ba322777b37e15",
+          "3559984a431749339739312928a0752c"
+        ],
+        "time_ids": [
+          "nusc_us_1542801000412460",
+          "nusc_us_1542801000404844",
+          "nusc_us_1542801000387525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "approaching_motorcycle",
+          "position_m": [
+            26,
+            10
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 5,
+          "occupancy": null,
+          "frame_ids": [
+            "f3ab42238db941509fcb9a47f8df50db",
+            "9ee04d160a514511a093dd35ea6f5604",
+            "20b9db8f43d6444ea6eba0e0402dc581"
+          ],
+          "time_ids": [
+            "nusc_us_1542800999412460",
+            "nusc_us_1542800999912460",
+            "nusc_us_1542801000412460"
+          ]
+        },
+        {
+          "id": "right_approach_bus",
+          "position_m": [
+            14,
+            -22
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 5,
+          "occupancy": null,
+          "frame_ids": [
+            "558ec873abd54151adfbd3d97ad24768"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000370339"
+          ]
+        },
+        {
+          "id": "right_approach_cars",
+          "position_m": [
+            9,
+            -17
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 4,
+          "occupancy": null,
+          "frame_ids": [
+            "558ec873abd54151adfbd3d97ad24768"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000370339"
+          ]
+        },
+        {
+          "id": "rear_van",
+          "position_m": [
+            -7,
+            -1.3
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 1.5,
+          "occupancy": null,
+          "frame_ids": [
+            "3559984a431749339739312928a0752c"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000387525"
+          ]
+        },
+        {
+          "id": "front_pedestrian",
+          "position_m": [
+            23,
+            -0.5
+          ],
+          "velocity_mps": null,
+          "uncertainty_m": 3,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 2.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.4000000000000004,
+              "end_s": 2.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.8000000000000003,
+              "end_s": 3.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.0,
+              "end_s": 3.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.4000000000000004,
+              "end_s": 3.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.8000000000000003,
+              "end_s": 4.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 4.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6000000000000005,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.6000000000000005,
+              "end_s": 4.800000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.800000000000001,
+              "end_s": 5.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    12,
+                    -11
+                  ],
+                  [
+                    34,
+                    -11
+                  ],
+                  [
+                    34,
+                    10
+                  ],
+                  [
+                    12,
+                    10
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "9ee04d160a514511a093dd35ea6f5604",
+            "20b9db8f43d6444ea6eba0e0402dc581"
+          ],
+          "time_ids": [
+            "nusc_us_1542800999912460",
+            "nusc_us_1542801000412460"
+          ]
+        }
+      ],
+      "unknown_regions": [
+        {
+          "polygon_m": [
+            [
+              5,
+              -30
+            ],
+            [
+              25,
+              -30
+            ],
+            [
+              25,
+              -8
+            ],
+            [
+              5,
+              -8
+            ]
+          ],
+          "uncertainty_m": 5,
+          "frame_ids": [
+            "558ec873abd54151adfbd3d97ad24768"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000370339"
+          ]
+        }
+      ],
+      "traffic_evidence": [
+        {
+          "rule": "stop_required",
+          "state": null,
+          "frame_ids": [
+            "20b9db8f43d6444ea6eba0e0402dc581",
+            "ee8e0e75d84e4c4695bb0e5a22496d8d"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000412460",
+            "nusc_us_1542801000397423"
+          ]
+        },
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "20b9db8f43d6444ea6eba0e0402dc581",
+            "558ec873abd54151adfbd3d97ad24768"
+          ],
+          "time_ids": [
+            "nusc_us_1542801000412460",
+            "nusc_us_1542801000370339"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Conditional metric estimates use supplied camera angular geometry and heights, approximate visible tire/foot contacts on an assumed locally level surface, and vehicle/person size priors. They are not calibrated ground-plane measurements; nighttime glare, uncertain contact pixels and road slope motivate metre-scale residual uncertainties. The road polygon represents only the nearby paved intersection patch, not a lane or right of way. The center region permits a short braking path including the initial center. At the supplied 0.111 m/s, braking at 0.5 m/s^2 would stop in about 0.22 s and 0.013 m, consistent with the requested deadline and forward bound. Front history supports motorcycle approach after accounting qualitatively for ego yaw change, but does not securely resolve its metric speed, turn choice or correspondence through glare. Bus, cars and rear van have only one usable view each; approach, braking and turning/creeping modes remain unresolved. Their null occupancies explicitly leave five-second collision verification incomplete rather than assuming stationary bodies. The pedestrian envelope is an intentionally loose whole-horizon reachable-body rectangle: a roughly 0.8 m body, walking speed at most 2 m/s in any direction for five seconds, including waiting and entering the road. It excludes running; residual localization uncertainty is separate. Repetition means the same adopted whole-horizon bound applies to each exact interval. Side-camera actor states are estimates at reference with their small acquisition offsets absorbed in residual uncertainty, not dynamically measured time alignment. Visible green lights do not establish permission for ego: signal facing and movement applicability remain unresolved, including the red signal in the back-left view. Yielding is a conservative conflict-management requirement, not an asserted legal priority assignment. The right-side unknown polygon identifies bus/car occlusion but is not a bound on all possible entrants. Nearby approach intrusion and rear-van motion lack credible complete future coverage, so unbounded_unknown remains true. No verification success or safe execution is asserted."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "f218694a78a45db1805d71a9cbfe0b2cc45c06da2143b14ef94d42e48a35c564",
+    "image_sha256": {
+      "e935ea38222a46df8460a1759c3d41f7": "bcd2c13d44e000ecb4fe8676529460d79c8137358208ccc98c7801d59fd99af9",
+      "82ea0ffe57654ac6b6a276c4f2e532d6": "d545a7c096887154bc75f3bfa041dab8b8f0dda97adf38eb06b4248da81eab21",
+      "f3ab42238db941509fcb9a47f8df50db": "935c823a6dfeed5b3aca5d72d171d711da5ed6b8c77335400e8406d5f9e65db1",
+      "9ee04d160a514511a093dd35ea6f5604": "5c1c91b1a8a3fe233af489d3d282133d35f377ca1d31571af6ffe85bf56316c0",
+      "558ec873abd54151adfbd3d97ad24768": "26e3f008383e4d66c0cb8cfe2d3c2d78627ed50eb76517d5c14a9989e3bf2255",
+      "0f022dcdc636460a980034d696b4866c": "2a784eecae4f3ddb44c54146408a059f488784fcd015765043b5880666752e9d",
+      "3559984a431749339739312928a0752c": "9bcc80501028e496213ee1d6d598cf8dd2ad033257b4bfcfa34851ca00aefbff",
+      "ee8e0e75d84e4c4695bb0e5a22496d8d": "3b963c6295d6a74a87f40cc30b25f22c5bd800376b25b33ec1ca11cf73ddb689",
+      "036e290646344f5a93ba322777b37e15": "66f594ebd10814defc83bc1167a8dcf1f62776b07f2d1e8cdb912174fbb97400",
+      "20b9db8f43d6444ea6eba0e0402dc581": "0c3e6b95af0bf5bdd6eb02bfc7e0e0bb8508bdb167ae1477f768bf4fa24521ad"
+    },
+    "prompt_version": "driving_v2_3",
+    "agent_output_contract": "2.1.0",
+    "prompt_sha256": "0f95eaf7c5af75575fda50a5edc7074801530e4868490aeb9e24c1e302596980",
+    "attempts": 1,
+    "elapsed_s": 101.29899582453072,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 34680,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4129,
+      "reasoning_output_tokens": 871
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

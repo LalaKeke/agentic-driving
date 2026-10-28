@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[流程修复与真实分组复测](implementation/results/process_recovery/README.md)：已修复工程误拒并新增严格成功判定；本轮真实完整链路仍未通过，不以软件测试代替。
+
 [案例、四工具输入输出与轨迹叠加](implementation/results/casebook/index.html)：官方 nuScenes 相机渲染、真实拒绝链路、人工停车/恢复完整链路，附十三页 PDF。
 
 实验可视化：[离线交互报告](implementation/results/visual_report/index.html)，含真实图像与工具拒绝链路、G2 点位对比及单独标注的人工轨迹回放。

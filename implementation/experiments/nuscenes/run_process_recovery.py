@@ -31,7 +31,7 @@ def launch(config_path,runs):
     path,summary=run(index,runs,config['evaluation_repeats'],config['backend'],config['model'],config['max_revisions'],manifest)
     subprocess.run(['git','archive','--format=zip','--output='+str((path/'source_snapshot.zip').resolve()),revision,'implementation/agentic','implementation/schemas','implementation/prompts','implementation/experiments/nuscenes'],cwd=ROOT,check=True)
     print(json.dumps(dict(run=str(path),**summary),ensure_ascii=False,indent=2))
-    return 0 if summary['strict_live_physical_successes']==summary['physical_success_denominator'] else 3
+    return 2 if summary['status']=='BLOCKED' else 0 if summary['strict_live_physical_successes']==summary['physical_success_denominator'] else 3
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--config',default=str(Path(__file__).with_name('process_recovery_config.json')));p.add_argument('--runs',default=str(ROOT/'runs/process_recovery'))
