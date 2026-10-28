@@ -171,6 +171,49 @@ class MetricTemporalContractTests(unittest.TestCase):
         cap,out,prov=metric_case();out['hypotheses']['scale_basis']='unknown'
         self.rejects(cap,out,prov,{'MISSING_SCALE'})
 
+    def test_null_scale_support_is_explicitly_infeasible(self):
+        cap,out,prov=metric_case();out['hypotheses']['metric_scale_support']=None
+        err=self.rejects(cap,out,prov,{'MISSING_SCALE_SUPPORT'})
+        self.assertEqual(err['category'],'tool_infeasible')
+
+    def test_scale_support_must_cite_actual_paired_acquisition(self):
+        cap,out,prov=metric_case()
+        out['hypotheses']['metric_scale_support']['time_ids'][0]=cap['metadata']['reference_time_id']
+        self.rejects(cap,out,prov,{'MISSING_EVIDENCE'})
+
+    def test_scale_support_cannot_add_a_frame_not_showing_the_anchor_actor(self):
+        cap,out,prov=metric_case();front=cap['observations'][0]
+        support=out['hypotheses']['metric_scale_support']
+        support['frame_ids']=[front['id']];support['time_ids']=[front['time_id']]
+        self.rejects(cap,out,prov,{'SCALE_ANCHOR_EVIDENCE'})
+
+    def test_scale_anchor_must_identify_an_existing_actor(self):
+        cap,out,prov=metric_case()
+        out['hypotheses']['metric_scale_support']['anchors'][0]['object_id']='invented_actor'
+        self.rejects(cap,out,prov,{'SCALE_ANCHOR'})
+
+    def test_scale_anchor_dimension_value_must_match_native_body(self):
+        cap,out,prov=metric_case()
+        out['hypotheses']['metric_scale_support']['anchors'][0]['value_m']=.81
+        self.rejects(cap,out,prov,{'SCALE_ANCHOR'})
+
+    def test_scale_anchor_dimension_is_not_silently_switched(self):
+        cap,out,prov=metric_case()
+        # .8 is the stated length; width is1.0. Merely changing the label
+        # cannot reinterpret this prior to reduce a later comparison error.
+        out['hypotheses']['metric_scale_support']['anchors'][0]['dimension']='width_m'
+        self.rejects(cap,out,prov,{'SCALE_ANCHOR'})
+
+    def test_scale_anchor_whitespace_rationale_is_not_support(self):
+        cap,out,prov=metric_case()
+        out['hypotheses']['metric_scale_support']['anchors'][0]['rationale']=' \n\t '
+        self.rejects(cap,out,prov,{'MISSING_SCALE_SUPPORT'})
+
+    def test_scale_support_whitespace_reasoning_is_not_support(self):
+        cap,out,prov=metric_case()
+        out['hypotheses']['metric_scale_support']['metric_reasoning']=' \n\t '
+        self.rejects(cap,out,prov,{'MISSING_SCALE_SUPPORT'})
+
     def test_missing_declared_adverse_coverage_is_rejected(self):
         cap,out,prov=metric_case();add_adverse_scenario(out)
         out['hypotheses']['objects'][0]['occupancy'][0]['alternatives'].pop()
@@ -239,7 +282,8 @@ class MetricTemporalContractTests(unittest.TestCase):
         original=out['hypotheses']['objects'][0];second=deepcopy(original)
         second['id']='pedestrian_2';second['position_m'][0]+=10
         sid={'walk':'walk2','adverse':'adverse2'}
-        pid={'walk_premise':'walk_premise2','adverse_premise':'adverse_premise2'}
+        pid={'walk_premise':'walk_premise2','adverse_premise':'adverse_premise2',
+             'scale_size_prior':'scale_size_prior2'}
         second['alignment']['premise_ids']=[pid[x] for x in second['alignment']['premise_ids']]
         for p in second['alignment']['evidence_positions']:p['position_m'][0]+=10
         for s in second['scenarios']:
@@ -396,10 +440,14 @@ class MetricTemporalContractTests(unittest.TestCase):
 
     def test_prompt_and_output_contract_versions_are_separate(self):
         schema,prompt=resolve_prompt(VERSION)
-        self.assertEqual(schema,'agent_output_v3_exp1.schema.json')
-        self.assertEqual(prompt,'driving_v3_exp1')
-        with self.assertRaises(Failure):resolve_prompt('2.1.0','driving_v3_exp1')
+        self.assertEqual(schema,'agent_output_v3_exp2.schema.json')
+        self.assertEqual(prompt,'driving_v3_exp2')
+        with self.assertRaises(Failure):resolve_prompt('2.1.0','driving_v3_exp2')
         with self.assertRaises(Failure):resolve_prompt(VERSION,'driving_v2_3')
+
+    def test_frozen_exp1_is_not_implicitly_reinterpreted_as_exp2(self):
+        cap,out,prov=metric_case();prov['agent_output_contract']='3.0.0-exp1'
+        self.rejects(cap,out,prov,{'MODEL_CONTRACT'})
 
 
 if __name__=='__main__':unittest.main()

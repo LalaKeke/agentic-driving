@@ -1,0 +1,6671 @@
+{
+  "source": "synthetic_fixture",
+  "online_success": false,
+  "real_model_calls": 0,
+  "capture": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "reference_time_id": "t100.000",
+      "reference_time_s": 100.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 105.0
+    },
+    "observations": [
+      {
+        "id": "fixture100.000",
+        "time_id": "t100.000",
+        "capture_time_s": 100.0,
+        "capture_utc": null,
+        "camera_id": "front",
+        "path": "fixture://not-real-image"
+      },
+      {
+        "id": "authored_rear_99.800",
+        "time_id": "t99.800",
+        "capture_time_s": 99.8,
+        "capture_utc": null,
+        "camera_id": "rear",
+        "path": "fixture://authored-no-image"
+      },
+      {
+        "id": "authored_rear_99.900",
+        "time_id": "t99.900",
+        "capture_time_s": 99.9,
+        "capture_utc": null,
+        "camera_id": "rear",
+        "path": "fixture://authored-no-image"
+      }
+    ],
+    "ego": {
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "yaw_rad": 0.0,
+      "speed_mps": 0.0
+    },
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "center_to_rear_axle_m": 1.2,
+      "wheelbase_m": 2.7,
+      "max_speed_mps": 12.0,
+      "max_accel_mps2": 2.0,
+      "max_brake_mps2": 3.0,
+      "max_steer_rad": 0.5,
+      "max_curvature_per_m": 0.2
+    },
+    "navigation_intent": "Proceed ahead after yielding to crossing pedestrian",
+    "safety": {
+      "margin_m": 1.0,
+      "prefix_s": 0.2
+    }
+  },
+  "output": {
+    "decision": {
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -8,
+          -3
+        ],
+        [
+          45,
+          -3
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          -8,
+          3
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 12.0,
+        "deadline_s": 4.0
+      },
+      "priority": 1,
+      "valid_until_s": 105.0,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road",
+        "stop",
+        "yield"
+      ],
+      "preferences": {
+        "speed_weight": 1.0,
+        "acceleration_weight": 1.0,
+        "steering_weight": 1.0,
+        "smoothness_weight": 0.1
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "t100.000",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -10,
+            -6
+          ],
+          [
+            50,
+            -6
+          ],
+          [
+            50,
+            6
+          ],
+          [
+            -10,
+            6
+          ]
+        ],
+        "uncertainty_m": 0.1,
+        "frame_ids": [
+          "fixture100.000"
+        ],
+        "time_ids": [
+          "t100.000"
+        ]
+      },
+      "objects": [
+        {
+          "id": "pedestrian",
+          "position_m": [
+            18.0,
+            -3.0
+          ],
+          "velocity_mps": [
+            0.0,
+            2.5
+          ],
+          "uncertainty_m": 0.4,
+          "occupancy": [
+            {
+              "id": "safe_before_2s",
+              "start_s": 0.0,
+              "end_s": 2.0,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "authored_rear_99.800",
+                "authored_rear_99.900"
+              ],
+              "time_ids": [
+                "t99.800",
+                "t99.900"
+              ],
+              "premise_ids": [
+                "walk_premise",
+                "adverse_premise"
+              ],
+              "residual_m": 0.2,
+              "alternatives": [
+                {
+                  "scenario_id": "walk",
+                  "polygon_m": [
+                    [
+                      17.6,
+                      -3.5
+                    ],
+                    [
+                      18.4,
+                      -3.5
+                    ],
+                    [
+                      18.4,
+                      10.0
+                    ],
+                    [
+                      17.6,
+                      10.0
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "adverse",
+                  "polygon_m": [
+                    [
+                      17.6,
+                      -3.5
+                    ],
+                    [
+                      19.0,
+                      -3.5
+                    ],
+                    [
+                      19.0,
+                      10.0
+                    ],
+                    [
+                      17.6,
+                      10.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "intrusion_after_2s",
+              "start_s": 2.0,
+              "end_s": 5.0,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "authored_rear_99.800",
+                "authored_rear_99.900"
+              ],
+              "time_ids": [
+                "t99.800",
+                "t99.900"
+              ],
+              "premise_ids": [
+                "walk_premise",
+                "adverse_premise"
+              ],
+              "residual_m": 0.2,
+              "alternatives": [
+                {
+                  "scenario_id": "walk",
+                  "polygon_m": [
+                    [
+                      17.6,
+                      -3.5
+                    ],
+                    [
+                      18.4,
+                      -3.5
+                    ],
+                    [
+                      18.4,
+                      10.0
+                    ],
+                    [
+                      17.6,
+                      10.0
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "adverse",
+                  "polygon_m": [
+                    [
+                      -2,
+                      -4
+                    ],
+                    [
+                      19,
+                      -4
+                    ],
+                    [
+                      19,
+                      10
+                    ],
+                    [
+                      -2,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "authored_rear_99.800",
+            "authored_rear_99.900"
+          ],
+          "time_ids": [
+            "t99.800",
+            "t99.900"
+          ],
+          "state_time_id": "t100.000",
+          "body_geometry": {
+            "length_m": 0.8,
+            "width_m": 1.0,
+            "yaw_rad": 0.0
+          },
+          "alignment": {
+            "method": "model_motion_bound",
+            "premise_ids": [
+              "walk_premise",
+              "adverse_premise"
+            ],
+            "residual_m": 0.2,
+            "motion_bound": {
+              "max_speed_mps": 3.0,
+              "displacement_bound_m": 0.6,
+              "covers_all_declared_scenarios": true
+            },
+            "evidence_positions": [
+              {
+                "frame_id": "authored_rear_99.800",
+                "time_id": "t99.800",
+                "position_m": [
+                  18.0,
+                  -3.500000000000007
+                ],
+                "observed_actor": true
+              },
+              {
+                "frame_id": "authored_rear_99.900",
+                "time_id": "t99.900",
+                "position_m": [
+                  18.0,
+                  -3.249999999999986
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "walk",
+              "premise_ids": [
+                "walk_premise"
+              ],
+              "role": "reasonable_adverse"
+            },
+            {
+              "id": "adverse",
+              "premise_ids": [
+                "adverse_premise"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "AUTHORED SOFTWARE FIXTURE ONLY; bounds are conditional, not calibrated.",
+      "unknowns": [],
+      "premises": [
+        {
+          "id": "walk_premise",
+          "object_ids": [
+            "pedestrian"
+          ],
+          "scenario_ids": [
+            "walk"
+          ],
+          "start_s": -0.2,
+          "end_s": 5.0,
+          "space_polygon_m": [
+            [
+              17,
+              -4
+            ],
+            [
+              19,
+              -4
+            ],
+            [
+              19,
+              11
+            ],
+            [
+              17,
+              11
+            ]
+          ],
+          "statement": "AUTHORED: center walks along +Y at 2.5m/s; no additional modes in this synthetic world."
+        },
+        {
+          "id": "adverse_premise",
+          "object_ids": [
+            "pedestrian"
+          ],
+          "scenario_ids": [
+            "adverse"
+          ],
+          "start_s": -0.2,
+          "end_s": 5.0,
+          "space_polygon_m": [
+            [
+              -3,
+              -5
+            ],
+            [
+              20,
+              -5
+            ],
+            [
+              20,
+              11
+            ],
+            [
+              -3,
+              11
+            ]
+          ],
+          "statement": "AUTHORED adverse branch; included in source BODY envelope, never dropped to obtain planning."
+        }
+      ]
+    },
+    "contract_version": "3.0.0-exp1",
+    "coverage_profile": "whole_interval_sources_v3_exp1",
+    "measurement_semantics": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    }
+  },
+  "provenance": {
+    "source": "synthetic_fixture",
+    "model_id": "authored-not-a-model-call",
+    "prompt_version": "fixture_v3_exp1",
+    "agent_output_contract": "3.0.0-exp1",
+    "output_digest": "2592d20282aad104e15182e46fc725ae59fdc311c365ab523b1f6ac54b51f5b2",
+    "tool_calls": 0
+  },
+  "T1": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "reference_time_id": "t100.000",
+      "reference_time_s": 100.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 105.0
+    },
+    "capture": {
+      "metadata": {
+        "profile": "convex_disk_bicycle_v2",
+        "schema_version": "2.0.0",
+        "scene_id": "artificial_pedestrian",
+        "revision": 0,
+        "reference_time_id": "t100.000",
+        "reference_time_s": 100.0,
+        "coordinate_frame": "ego_at_reference",
+        "horizon_s": 5.0,
+        "step_s": 0.2,
+        "history_s": 2.0,
+        "valid_until_s": 105.0
+      },
+      "observations": [
+        {
+          "id": "fixture100.000",
+          "time_id": "t100.000",
+          "capture_time_s": 100.0,
+          "capture_utc": null,
+          "camera_id": "front",
+          "path": "fixture://not-real-image"
+        },
+        {
+          "id": "authored_rear_99.800",
+          "time_id": "t99.800",
+          "capture_time_s": 99.8,
+          "capture_utc": null,
+          "camera_id": "rear",
+          "path": "fixture://authored-no-image"
+        },
+        {
+          "id": "authored_rear_99.900",
+          "time_id": "t99.900",
+          "capture_time_s": 99.9,
+          "capture_utc": null,
+          "camera_id": "rear",
+          "path": "fixture://authored-no-image"
+        }
+      ],
+      "ego": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0
+      },
+      "vehicle": {
+        "front_m": 2.3,
+        "rear_m": 2.3,
+        "half_width_m": 0.9,
+        "center_to_rear_axle_m": 1.2,
+        "wheelbase_m": 2.7,
+        "max_speed_mps": 12.0,
+        "max_accel_mps2": 2.0,
+        "max_brake_mps2": 3.0,
+        "max_steer_rad": 0.5,
+        "max_curvature_per_m": 0.2
+      },
+      "navigation_intent": "Proceed ahead after yielding to crossing pedestrian",
+      "safety": {
+        "margin_m": 1.0,
+        "prefix_s": 0.2
+      }
+    },
+    "decision": {
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -8,
+          -3
+        ],
+        [
+          45,
+          -3
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          -8,
+          3
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 12.0,
+        "deadline_s": 4.0
+      },
+      "priority": 1,
+      "valid_until_s": 105.0,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road",
+        "stop",
+        "yield"
+      ],
+      "preferences": {
+        "speed_weight": 1.0,
+        "acceleration_weight": 1.0,
+        "steering_weight": 1.0,
+        "smoothness_weight": 0.1
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "t100.000",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -10,
+            -6
+          ],
+          [
+            50,
+            -6
+          ],
+          [
+            50,
+            6
+          ],
+          [
+            -10,
+            6
+          ]
+        ],
+        "uncertainty_m": 0.1,
+        "frame_ids": [
+          "fixture100.000"
+        ],
+        "time_ids": [
+          "t100.000"
+        ]
+      },
+      "objects": [
+        {
+          "id": "pedestrian",
+          "position_m": [
+            18.0,
+            -3.0
+          ],
+          "velocity_mps": [
+            0.0,
+            2.5
+          ],
+          "uncertainty_m": 0.4,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.0,
+              "end_s": 2.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    -3.5
+                  ],
+                  [
+                    19.0,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.4000000000000004,
+              "end_s": 2.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.6,
+              "end_s": 2.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 2.8000000000000003,
+              "end_s": 3.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.0,
+              "end_s": 3.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.2,
+              "end_s": 3.4000000000000004,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.4000000000000004,
+              "end_s": 3.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.6,
+              "end_s": 3.8000000000000003,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 3.8000000000000003,
+              "end_s": 4.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.0,
+              "end_s": 4.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.2,
+              "end_s": 4.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.4,
+              "end_s": 4.6000000000000005,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.6000000000000005,
+              "end_s": 4.800000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 4.800000000000001,
+              "end_s": 5.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    17.6,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    -3.5
+                  ],
+                  [
+                    18.4,
+                    10.0
+                  ],
+                  [
+                    17.6,
+                    10.0
+                  ]
+                ],
+                [
+                  [
+                    -2,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    10
+                  ],
+                  [
+                    -2,
+                    10
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "authored_rear_99.800",
+            "authored_rear_99.900"
+          ],
+          "time_ids": [
+            "t99.800",
+            "t99.900"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "AUTHORED SOFTWARE FIXTURE ONLY; bounds are conditional, not calibrated."
+    },
+    "provenance": {
+      "source": "synthetic_fixture",
+      "model_id": "authored-not-a-model-call",
+      "prompt_version": "fixture_v3_exp1",
+      "agent_output_contract": "3.0.0-exp1",
+      "output_digest": "2592d20282aad104e15182e46fc725ae59fdc311c365ab523b1f6ac54b51f5b2",
+      "tool_calls": 0,
+      "metric_contract_trace": {
+        "version": "3.0.0-exp1",
+        "coverage_profile": "whole_interval_sources_v3_exp1",
+        "measurement_semantics": {
+          "coordinate_frame": "ego_at_reference",
+          "origin": "ego_body_center_at_reference",
+          "axes": "x_forward_y_left_fixed_at_reference",
+          "actor_reference_point": "annotation_box_center_ground_xy",
+          "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+          "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+        },
+        "source_output": {
+          "decision": {
+            "scene_id": "artificial_pedestrian",
+            "revision": 0,
+            "behavior": "stop_yield",
+            "target_region": [
+              [
+                -8,
+                -3
+              ],
+              [
+                45,
+                -3
+              ],
+              [
+                45,
+                3
+              ],
+              [
+                -8,
+                3
+              ]
+            ],
+            "desired_speed_mps": 0.0,
+            "yield_to": [
+              "pedestrian"
+            ],
+            "stop": {
+              "center_x_max_m": 12.0,
+              "deadline_s": 4.0
+            },
+            "priority": 1,
+            "valid_until_s": 105.0,
+            "hard_requirements": [
+              "target_region",
+              "vehicle_limits",
+              "collision_free",
+              "road",
+              "stop",
+              "yield"
+            ],
+            "preferences": {
+              "speed_weight": 1.0,
+              "acceleration_weight": 1.0,
+              "steering_weight": 1.0,
+              "smoothness_weight": 0.1
+            }
+          },
+          "hypotheses": {
+            "coordinate_frame": "ego_at_reference",
+            "reference_time_id": "t100.000",
+            "units": "m_s_rad",
+            "scale_basis": "model_metric_hypothesis",
+            "road": {
+              "polygon_m": [
+                [
+                  -10,
+                  -6
+                ],
+                [
+                  50,
+                  -6
+                ],
+                [
+                  50,
+                  6
+                ],
+                [
+                  -10,
+                  6
+                ]
+              ],
+              "uncertainty_m": 0.1,
+              "frame_ids": [
+                "fixture100.000"
+              ],
+              "time_ids": [
+                "t100.000"
+              ]
+            },
+            "objects": [
+              {
+                "id": "pedestrian",
+                "position_m": [
+                  18.0,
+                  -3.0
+                ],
+                "velocity_mps": [
+                  0.0,
+                  2.5
+                ],
+                "uncertainty_m": 0.4,
+                "occupancy": [
+                  {
+                    "id": "safe_before_2s",
+                    "start_s": 0.0,
+                    "end_s": 2.0,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "alternatives": [
+                      {
+                        "scenario_id": "walk",
+                        "polygon_m": [
+                          [
+                            17.6,
+                            -3.5
+                          ],
+                          [
+                            18.4,
+                            -3.5
+                          ],
+                          [
+                            18.4,
+                            10.0
+                          ],
+                          [
+                            17.6,
+                            10.0
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "adverse",
+                        "polygon_m": [
+                          [
+                            17.6,
+                            -3.5
+                          ],
+                          [
+                            19.0,
+                            -3.5
+                          ],
+                          [
+                            19.0,
+                            10.0
+                          ],
+                          [
+                            17.6,
+                            10.0
+                          ]
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "intrusion_after_2s",
+                    "start_s": 2.0,
+                    "end_s": 5.0,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "alternatives": [
+                      {
+                        "scenario_id": "walk",
+                        "polygon_m": [
+                          [
+                            17.6,
+                            -3.5
+                          ],
+                          [
+                            18.4,
+                            -3.5
+                          ],
+                          [
+                            18.4,
+                            10.0
+                          ],
+                          [
+                            17.6,
+                            10.0
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "adverse",
+                        "polygon_m": [
+                          [
+                            -2,
+                            -4
+                          ],
+                          [
+                            19,
+                            -4
+                          ],
+                          [
+                            19,
+                            10
+                          ],
+                          [
+                            -2,
+                            10
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "frame_ids": [
+                  "authored_rear_99.800",
+                  "authored_rear_99.900"
+                ],
+                "time_ids": [
+                  "t99.800",
+                  "t99.900"
+                ],
+                "state_time_id": "t100.000",
+                "body_geometry": {
+                  "length_m": 0.8,
+                  "width_m": 1.0,
+                  "yaw_rad": 0.0
+                },
+                "alignment": {
+                  "method": "model_motion_bound",
+                  "premise_ids": [
+                    "walk_premise",
+                    "adverse_premise"
+                  ],
+                  "residual_m": 0.2,
+                  "motion_bound": {
+                    "max_speed_mps": 3.0,
+                    "displacement_bound_m": 0.6,
+                    "covers_all_declared_scenarios": true
+                  },
+                  "evidence_positions": [
+                    {
+                      "frame_id": "authored_rear_99.800",
+                      "time_id": "t99.800",
+                      "position_m": [
+                        18.0,
+                        -3.500000000000007
+                      ],
+                      "observed_actor": true
+                    },
+                    {
+                      "frame_id": "authored_rear_99.900",
+                      "time_id": "t99.900",
+                      "position_m": [
+                        18.0,
+                        -3.249999999999986
+                      ],
+                      "observed_actor": true
+                    }
+                  ]
+                },
+                "scenarios": [
+                  {
+                    "id": "walk",
+                    "premise_ids": [
+                      "walk_premise"
+                    ],
+                    "role": "reasonable_adverse"
+                  },
+                  {
+                    "id": "adverse",
+                    "premise_ids": [
+                      "adverse_premise"
+                    ],
+                    "role": "reasonable_adverse"
+                  }
+                ],
+                "scenario_inventory_complete": true
+              }
+            ],
+            "unknown_regions": [],
+            "traffic_evidence": [],
+            "unbounded_unknown": false,
+            "confidence_note": "AUTHORED SOFTWARE FIXTURE ONLY; bounds are conditional, not calibrated.",
+            "unknowns": [],
+            "premises": [
+              {
+                "id": "walk_premise",
+                "object_ids": [
+                  "pedestrian"
+                ],
+                "scenario_ids": [
+                  "walk"
+                ],
+                "start_s": -0.2,
+                "end_s": 5.0,
+                "space_polygon_m": [
+                  [
+                    17,
+                    -4
+                  ],
+                  [
+                    19,
+                    -4
+                  ],
+                  [
+                    19,
+                    11
+                  ],
+                  [
+                    17,
+                    11
+                  ]
+                ],
+                "statement": "AUTHORED: center walks along +Y at 2.5m/s; no additional modes in this synthetic world."
+              },
+              {
+                "id": "adverse_premise",
+                "object_ids": [
+                  "pedestrian"
+                ],
+                "scenario_ids": [
+                  "adverse"
+                ],
+                "start_s": -0.2,
+                "end_s": 5.0,
+                "space_polygon_m": [
+                  [
+                    -3,
+                    -5
+                  ],
+                  [
+                    20,
+                    -5
+                  ],
+                  [
+                    20,
+                    11
+                  ],
+                  [
+                    -3,
+                    11
+                  ]
+                ],
+                "statement": "AUTHORED adverse branch; included in source BODY envelope, never dropped to obtain planning."
+              }
+            ]
+          },
+          "contract_version": "3.0.0-exp1",
+          "coverage_profile": "whole_interval_sources_v3_exp1",
+          "measurement_semantics": {
+            "coordinate_frame": "ego_at_reference",
+            "origin": "ego_body_center_at_reference",
+            "axes": "x_forward_y_left_fixed_at_reference",
+            "actor_reference_point": "annotation_box_center_ground_xy",
+            "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+            "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+          }
+        },
+        "source_output_digest": "2592d20282aad104e15182e46fc725ae59fdc311c365ab523b1f6ac54b51f5b2",
+        "lowered_output_digest": "ff2926440139f5e1cc3fb765a3a333bab6138d12b31c2a97a157aa0bb409b1e4",
+        "objects": [
+          {
+            "object_id": "pedestrian",
+            "alignment": {
+              "method": "model_motion_bound",
+              "premise_ids": [
+                "walk_premise",
+                "adverse_premise"
+              ],
+              "residual_m": 0.2,
+              "motion_bound": {
+                "max_speed_mps": 3.0,
+                "displacement_bound_m": 0.6,
+                "covers_all_declared_scenarios": true
+              },
+              "evidence_positions": [
+                {
+                  "frame_id": "authored_rear_99.800",
+                  "time_id": "t99.800",
+                  "position_m": [
+                    18.0,
+                    -3.500000000000007
+                  ],
+                  "observed_actor": true
+                },
+                {
+                  "frame_id": "authored_rear_99.900",
+                  "time_id": "t99.900",
+                  "position_m": [
+                    18.0,
+                    -3.249999999999986
+                  ],
+                  "observed_actor": true
+                }
+              ]
+            },
+            "cell_sources": [
+              {
+                "start_s": 0.0,
+                "end_s": 0.2,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.2,
+                "end_s": 0.4,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.4,
+                "end_s": 0.6000000000000001,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.6000000000000001,
+                "end_s": 0.8,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.8,
+                "end_s": 1.0,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.0,
+                "end_s": 1.2000000000000002,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.2000000000000002,
+                "end_s": 1.4000000000000001,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.4000000000000001,
+                "end_s": 1.6,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.6,
+                "end_s": 1.8,
+                "source_ids": [
+                  "safe_before_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.8,
+                "end_s": 2.0,
+                "source_ids": [
+                  "safe_before_2s",
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 2.0,
+                "end_s": 2.2,
+                "source_ids": [
+                  "safe_before_2s",
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "safe_before_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 2.2,
+                "end_s": 2.4000000000000004,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 2.4000000000000004,
+                "end_s": 2.6,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 2.6,
+                "end_s": 2.8000000000000003,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 2.8000000000000003,
+                "end_s": 3.0,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 3.0,
+                "end_s": 3.2,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 3.2,
+                "end_s": 3.4000000000000004,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 3.4000000000000004,
+                "end_s": 3.6,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 3.6,
+                "end_s": 3.8000000000000003,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 3.8000000000000003,
+                "end_s": 4.0,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 4.0,
+                "end_s": 4.2,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 4.2,
+                "end_s": 4.4,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 4.4,
+                "end_s": 4.6000000000000005,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 4.6000000000000005,
+                "end_s": 4.800000000000001,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 4.800000000000001,
+                "end_s": 5.0,
+                "source_ids": [
+                  "intrusion_after_2s"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "walk",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  },
+                  {
+                    "source_id": "intrusion_after_2s",
+                    "scenario_id": "adverse",
+                    "source_interval_s": [
+                      2.0,
+                      5.0
+                    ],
+                    "premise_ids": [
+                      "walk_premise",
+                      "adverse_premise"
+                    ],
+                    "residual_m": 0.2,
+                    "frame_ids": [
+                      "authored_rear_99.800",
+                      "authored_rear_99.900"
+                    ],
+                    "time_ids": [
+                      "t99.800",
+                      "t99.900"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "total_residual_m": 0.4
+          }
+        ],
+        "source_intervals_closed": true,
+        "refinement": "include_all_closed_intersecting_source_sets_without_shrinking",
+        "residual_application": "one_total_object_radius >= alignment_residual + each_source_geometry_residual; never added again",
+        "assumptions": "Model-proposed premises and adverse-scenario inventory are conditional, uncalibrated and not independently certified"
+      }
+    },
+    "claim": "conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp1; uncertainty is not calibrated probability"
+  },
+  "T2_failure": {
+    "code": "CORRIDOR_SEED_BLOCKED",
+    "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+    "category": "tool_infeasible",
+    "details": {
+      "object_id": "pedestrian",
+      "interval": [
+        1.8,
+        2.0
+      ]
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  },
+  "authored_stationary_trajectory": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "reference_time_id": "t100.000",
+      "reference_time_s": 100.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 105.0
+    },
+    "scene_digest": "a6fc8966b55f007a6263cb18b216a62bba88c978e18f74a791d4db7b1ce2762c",
+    "points": [
+      {
+        "time_s": 0.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 0.2,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 0.4,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 0.6000000000000001,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 0.8,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 1.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 1.2000000000000002,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 1.4000000000000001,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 1.6,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 1.8,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 2.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 2.2,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 2.4000000000000004,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 2.6,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 2.8000000000000003,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 3.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 3.2,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 3.4000000000000004,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 3.6,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 3.8000000000000003,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 4.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 4.2,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 4.4,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 4.6000000000000005,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 4.800000000000001,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      },
+      {
+        "time_s": 5.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": 0.0,
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 0.0,
+        "acceleration_mps2": 0.0,
+        "steer_rad": 0.0,
+        "curvature_per_m": 0.0
+      }
+    ],
+    "interpolation": "exact_constant_acceleration_constant_rear_curvature",
+    "requested_prefix_s": 0.2,
+    "solver": {
+      "name": "casadi_ipopt_multiple_shooting",
+      "version": "3.7.2",
+      "status": "Solve_Succeeded",
+      "objective": 2.493330121488058e-08,
+      "fault_injection": "synthetic_coasting"
+    }
+  },
+  "T4": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "artificial_pedestrian",
+      "revision": 0,
+      "reference_time_id": "t100.000",
+      "reference_time_s": 100.0,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 105.0
+    },
+    "scene_digest": "a6fc8966b55f007a6263cb18b216a62bba88c978e18f74a791d4db7b1ce2762c",
+    "verdict": "FAIL",
+    "violations": [
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.8,
+          1.82
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.82,
+          1.84
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.84,
+          1.86
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.86,
+          1.8800000000000001
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.8800000000000001,
+          1.9
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.9,
+          1.92
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.92,
+          1.94
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.94,
+          1.96
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.96,
+          1.98
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          1.98,
+          2.0
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.0,
+          2.018181818181818
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.018181818181818,
+          2.0363636363636366
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.0363636363636366,
+          2.0545454545454547
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.0545454545454547,
+          2.0727272727272728
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.0727272727272728,
+          2.090909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.090909090909091,
+          2.1090909090909093
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.1090909090909093,
+          2.1272727272727274
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.1272727272727274,
+          2.1454545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.1454545454545455,
+          2.1636363636363636
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.1636363636363636,
+          2.181818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.181818181818182,
+          2.2
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.2,
+          2.2181818181818183
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.2181818181818183,
+          2.2363636363636368
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.2363636363636368,
+          2.254545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.254545454545455,
+          2.272727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.272727272727273,
+          2.290909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.290909090909091,
+          2.3090909090909095
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.3090909090909095,
+          2.3272727272727276
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.3272727272727276,
+          2.3454545454545457
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.3454545454545457,
+          2.3636363636363638
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.3636363636363638,
+          2.3818181818181823
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.3818181818181823,
+          2.4000000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.4000000000000004,
+          2.4200000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.4200000000000004,
+          2.4400000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.4400000000000004,
+          2.4600000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.4600000000000004,
+          2.4800000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.4800000000000004,
+          2.5
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.5,
+          2.52
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.52,
+          2.54
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.54,
+          2.56
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.56,
+          2.58
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.58,
+          2.6
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.6,
+          2.618181818181818
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.618181818181818,
+          2.6363636363636367
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.6363636363636367,
+          2.6545454545454548
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.6545454545454548,
+          2.672727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.672727272727273,
+          2.690909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.690909090909091,
+          2.7090909090909094
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.7090909090909094,
+          2.7272727272727275
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.7272727272727275,
+          2.7454545454545456
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.7454545454545456,
+          2.7636363636363637
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.7636363636363637,
+          2.781818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.781818181818182,
+          2.8000000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.8000000000000003,
+          2.8200000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.8200000000000003,
+          2.8400000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.8400000000000003,
+          2.8600000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.8600000000000003,
+          2.8800000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.8800000000000003,
+          2.9000000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.9000000000000004,
+          2.92
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.92,
+          2.94
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.94,
+          2.96
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.96,
+          2.98
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          2.98,
+          3.0
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.0,
+          3.018181818181818
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.018181818181818,
+          3.0363636363636366
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.0363636363636366,
+          3.0545454545454547
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.0545454545454547,
+          3.0727272727272728
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.0727272727272728,
+          3.090909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.090909090909091,
+          3.1090909090909093
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.1090909090909093,
+          3.1272727272727274
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.1272727272727274,
+          3.1454545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.1454545454545455,
+          3.1636363636363636
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.1636363636363636,
+          3.181818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.181818181818182,
+          3.2
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.2,
+          3.2181818181818183
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.2181818181818183,
+          3.2363636363636368
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.2363636363636368,
+          3.254545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.254545454545455,
+          3.272727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.272727272727273,
+          3.290909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.290909090909091,
+          3.3090909090909095
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.3090909090909095,
+          3.3272727272727276
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.3272727272727276,
+          3.3454545454545457
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.3454545454545457,
+          3.3636363636363638
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.3636363636363638,
+          3.3818181818181823
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.3818181818181823,
+          3.4000000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.4000000000000004,
+          3.4200000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.4200000000000004,
+          3.4400000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.4400000000000004,
+          3.4600000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.4600000000000004,
+          3.4800000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.4800000000000004,
+          3.5
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.5,
+          3.52
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.52,
+          3.54
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.54,
+          3.56
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.56,
+          3.58
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.58,
+          3.6
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.6,
+          3.618181818181818
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.618181818181818,
+          3.6363636363636367
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.6363636363636367,
+          3.6545454545454548
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.6545454545454548,
+          3.672727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.672727272727273,
+          3.690909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.690909090909091,
+          3.7090909090909094
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.7090909090909094,
+          3.7272727272727275
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.7272727272727275,
+          3.7454545454545456
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.7454545454545456,
+          3.7636363636363637
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.7636363636363637,
+          3.781818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.781818181818182,
+          3.8000000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.8000000000000003,
+          3.8200000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.8200000000000003,
+          3.8400000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.8400000000000003,
+          3.8600000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.8600000000000003,
+          3.8800000000000003
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.8800000000000003,
+          3.9000000000000004
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.9000000000000004,
+          3.92
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.92,
+          3.94
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.94,
+          3.96
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.96,
+          3.98
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          3.98,
+          4.0
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.0,
+          4.0181818181818185
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.0181818181818185,
+          4.036363636363636
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.036363636363636,
+          4.054545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.054545454545455,
+          4.072727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.072727272727273,
+          4.090909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.090909090909091,
+          4.109090909090909
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.109090909090909,
+          4.127272727272727
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.127272727272727,
+          4.1454545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.1454545454545455,
+          4.163636363636364
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.163636363636364,
+          4.181818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.181818181818182,
+          4.2
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.2,
+          4.218181818181819
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.218181818181819,
+          4.236363636363636
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.236363636363636,
+          4.254545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.254545454545455,
+          4.272727272727273
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.272727272727273,
+          4.290909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.290909090909091,
+          4.3090909090909095
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.3090909090909095,
+          4.327272727272727
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.327272727272727,
+          4.345454545454546
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.345454545454546,
+          4.363636363636364
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.363636363636364,
+          4.381818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.381818181818182,
+          4.4
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.4,
+          4.418181818181819
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.418181818181819,
+          4.4363636363636365
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.4363636363636365,
+          4.454545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.454545454545455,
+          4.4727272727272736
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.4727272727272736,
+          4.490909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.490909090909091,
+          4.50909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.50909090909091,
+          4.527272727272727
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.527272727272727,
+          4.545454545454546
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.545454545454546,
+          4.563636363636364
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.563636363636364,
+          4.581818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.581818181818182,
+          4.6000000000000005
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.6000000000000005,
+          4.618181818181819
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.618181818181819,
+          4.636363636363637
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.636363636363637,
+          4.654545454545455
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.654545454545455,
+          4.672727272727274
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.672727272727274,
+          4.690909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.690909090909091,
+          4.70909090909091
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.70909090909091,
+          4.7272727272727275
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.7272727272727275,
+          4.745454545454546
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.745454545454546,
+          4.763636363636365
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.763636363636365,
+          4.781818181818182
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.781818181818182,
+          4.800000000000001
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.800000000000001,
+          4.82
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.82,
+          4.840000000000001
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.840000000000001,
+          4.86
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.86,
+          4.880000000000001
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.880000000000001,
+          4.9
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.9,
+          4.92
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.92,
+          4.94
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.94,
+          4.96
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.96,
+          4.98
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      },
+      {
+        "code": "BODY_COLLISION",
+        "object_id": "pedestrian",
+        "time_interval_s": [
+          4.98,
+          5.0
+        ],
+        "position_m": [
+          0.0,
+          0.0
+        ],
+        "computed": -4.01386220991853,
+        "threshold": 1.0,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: BODY_COLLISION"
+      }
+    ],
+    "minimum_clearance_lower_bound_m": -4.01386220991853,
+    "checked_until_s": 5.0,
+    "released_prefix_s": 0,
+    "trajectory_digest": "5cb2f17fdaee54abdd83c47434081087275e6a37f3b607028fd352248b6c4f5f",
+    "claim": "conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp1; uncertainty is not calibrated probability"
+  },
+  "execution_released": false
+}

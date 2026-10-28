@@ -38,7 +38,7 @@ def grid(meta):
 
 
 def model_contract(version='2.0.0'):
-    if version=='3.0.0-exp1':return 'agent_output_v3_exp1.schema.json','driving_v3_exp1'
+    if version=='3.0.0-exp2':return 'agent_output_v3_exp2.schema.json','driving_v3_exp2'
     need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown explicit model output contract')
     return ('agent_output_v2.schema.json','driving_v2') if version=='2.0.0' else ('agent_output_v2_1.schema.json','driving_v2_1')
 
@@ -46,7 +46,7 @@ def model_contract(version='2.0.0'):
 def resolve_prompt(version='2.0.0',requested=None):
     """Explicit prompt-only revision; the selected output schema stays unchanged."""
     schema,default=model_contract(version)
-    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3'),'3.0.0-exp1':('driving_v3_exp1',)}
+    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3'),'3.0.0-exp2':('driving_v3_exp2',)}
     prompt=requested or default
     need(prompt in allowed[version],'PROMPT_CONTRACT','Prompt and output contract are incompatible')
     return schema,prompt
@@ -54,13 +54,14 @@ def resolve_prompt(version='2.0.0',requested=None):
 
 def planning_contract(capture,version='2.0.0'):
     """Deterministic tool requirements, never additional environment facts."""
-    if version=='3.0.0-exp1':
+    if version=='3.0.0-exp2':
         from .metric_contract import MEASUREMENT_SEMANTICS,COVERAGE_PROFILE
         result=planning_contract(capture)
         result['refinement_grid']=result.pop('occupancy_grid')
         result['source_coverage_profile']=COVERAGE_PROFILE
         result['source_coverage_kind']='whole_interval_body_envelope'
         result['measurement_semantics']=deepcopy(MEASUREMENT_SEMANTICS)
+        result['metric_scale_requirement']='A scale_basis label alone is insufficient. Supply metric_scale_support with conditional_body_dimension_prior, actual paired actor image/time citations, scoped premise IDs, positive length_m/width_m anchors matching the native actor body hypothesis, per-anchor rationale and model-native metric reasoning. This is a falsifiable conditional prior, not certified scale. Null, unrelated evidence or missing prior support still blocks planning; tools do not infer scale or project pixels from the prior.'
         result['coverage_requirement']='Sources may span coarse whole intervals. Each declared scenario must cover the entire horizon without gaps. Each source must already enclose the complete actor BODY throughout its closed source interval. The tools retain all closed-intersecting source sets during refinement and never forecast from velocity. Null, placeholders and missing adverse modes remain failures.'
         result['alignment_requirement']='Actor state_time_id equals the trusted reference. frame_ids/time_ids are index-paired original observations of that actor, not state epochs. Asynchronous evidence requires model-proposed evidence positions, motion bounds covering all declared scenarios, explicit scoped premises and a residual included in the one total actor residual; no small-dt or ego-only exemption.'
         result['unknown_requirement']='Bind unknown kind/object/space/time and premises/scenarios explicitly. No information, inexpressible coverage or no finite bound still blocks planning. No relevance pruning or arbitrary distance cutoff is enabled.'

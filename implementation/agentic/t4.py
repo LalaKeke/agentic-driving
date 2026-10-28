@@ -5,7 +5,7 @@ from .contracts import artifact,identity,need,grid,finite,validate,digest
 from .geometry import polygon,planes,disk_radius,rear_state,center_state,integrate,obstacles
 
 def verify(scene,trajectory):
-    if (scene.get('provenance',{}).get('agent_output_contract')=='3.0.0-exp1'
+    if (scene.get('provenance',{}).get('agent_output_contract')=='3.0.0-exp2'
             or 'metric_contract_trace' in scene.get('provenance',{})):
         from .metric_contract import validate_scene
         validate_scene(scene)

@@ -11,8 +11,8 @@ from shapely.geometry import Point, Polygon
 from .contracts import validate, need, digest, grid
 from .geometry import polygon
 
-VERSION = '3.0.0-exp1'
-COVERAGE_PROFILE = 'whole_interval_sources_v3_exp1'
+VERSION = '3.0.0-exp2'
+COVERAGE_PROFILE = 'whole_interval_sources_v3_exp2'
 MEASUREMENT_SEMANTICS = dict(
     coordinate_frame='ego_at_reference', origin='ego_body_center_at_reference',
     axes='x_forward_y_left_fixed_at_reference',
@@ -36,10 +36,10 @@ def synthetic_fixture(*args, **kwargs):
 
 def _check_capture(cap, provenance, output, allow_synthetic):
     validate('capture_v2.schema.json', cap)
-    validate('agent_output_v3_exp1.schema.json', output)
+    validate('agent_output_v3_exp2.schema.json', output)
     need(provenance.get('agent_output_contract') == VERSION, 'MODEL_CONTRACT', 'v3 requires explicit provenance contract version')
     need(provenance.get('source') == 'online_model' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'SOURCE', 'Synthetic input requires explicit test mode')
-    need(provenance.get('prompt_version') == 'driving_v3_exp1' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'PROMPT_CONTRACT', 'v3 prompt and output contract are recorded separately and must be compatible')
+    need(provenance.get('prompt_version') == 'driving_v3_exp2' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'PROMPT_CONTRACT', 'v3 prompt and output contract are recorded separately and must be compatible')
     need(provenance.get('output_digest') == digest(output), 'SOURCE', 'Output does not match provenance')
     m=cap['metadata']; frames=cap['observations']; ids={f['id'] for f in frames}; clock={}
     need(len(ids)==len(frames), 'DUPLICATE_ID', 'Duplicate frame id')
@@ -110,6 +110,35 @@ def _body(o):
     return Polygon([(x+c*dx-s*dy,y+s*dx+c*dy) for dx,dy in [(-b['length_m']/2,-b['width_m']/2),(b['length_m']/2,-b['width_m']/2),(b['length_m']/2,b['width_m']/2),(-b['length_m']/2,b['width_m']/2)]])
 
 
+def _scale_support(support, h, frames, premises):
+    """Validate a reviewable model-authored conditional scale argument.
+
+    This does not recover scale from pixels or certify the chosen prior. Every
+    positive dimension prior must refer to an actually cited actor and its
+    explicit native body hypothesis, rather than merely relabelling a number.
+    """
+    need(support is not None,'MISSING_SCALE_SUPPORT','A scale_basis label is insufficient: provide explicit model-native reasoning with cited conditional dimension anchors','tool_infeasible')
+    need(bool(support['metric_reasoning'].strip()),'MISSING_SCALE_SUPPORT','Metric-scale reasoning must state its conditional basis, not whitespace','tool_infeasible')
+    pairs=_evidence(support,frames);objects={o['id']:o for o in h['objects']};covered=set();seen=set()
+    need(set(support['premise_ids'])<=set(premises),'PREMISE_REFERENCE','Scale support cites an unknown premise')
+    for anchor in support['anchors']:
+        oid=anchor['object_id'];key=(oid,anchor['dimension'])
+        need(key not in seen,'SCALE_ANCHOR','Duplicate scale anchor cannot supply additional support',object_id=oid);seen.add(key)
+        need(oid in objects and objects[oid]['body_geometry'] is not None and objects[oid]['position_m'] is not None,'SCALE_ANCHOR','Scale anchor needs an existing native body-center hypothesis',object_id=oid)
+        o=objects[oid]
+        need(Decimal(str(anchor['value_m']))==Decimal(str(o['body_geometry'][anchor['dimension']])), 'SCALE_ANCHOR','Conditional dimension prior conflicts with the native body dimension',object_id=oid,dimension=anchor['dimension'])
+        need(bool(anchor['rationale'].strip()),'MISSING_SCALE_SUPPORT','Each adopted scale prior needs a reviewable conditional rationale','tool_infeasible',object_id=oid)
+        overlap=_evidence(o,frames)&pairs
+        observed={(x['frame_id'],x['time_id']) for x in o['alignment']['evidence_positions'] if x['observed_actor']}
+        need(bool(overlap) and overlap<=observed,'SCALE_ANCHOR_EVIDENCE','Scale anchor must be seen in its cited original acquisition evidence, not an unrelated frame','tool_infeasible',object_id=oid)
+        covered|=overlap
+        sids=[s['id'] for s in o['scenarios']]
+        applicable=[pid for pid in support['premise_ids'] if (not premises[pid]['object_ids'] or oid in premises[pid]['object_ids']) and (not premises[pid]['scenario_ids'] or bool(set(sids)&set(premises[pid]['scenario_ids'])))]
+        _premises(applicable,premises,oid,sids,0,0)
+        for sid in sids:_premise_space(applicable,premises,oid,sid,_body(o))
+    need(covered==pairs,'SCALE_ANCHOR_EVIDENCE','All scale-support image/time citations must belong to a stated observed dimension anchor','tool_infeasible')
+
+
 def normalize(capture, output, provenance, allow_synthetic=False):
     """Return explicit legacy physical output + full trace, without predictions.
 
@@ -123,6 +152,7 @@ def normalize(capture, output, provenance, allow_synthetic=False):
     need(h['reference_time_id']==m['reference_time_id'], 'DYNAMIC_ALIGNMENT', 'State epoch must resolve to the trusted acquisition reference')
     need(h['coordinate_frame']==m['coordinate_frame'], 'COORDINATES', 'Unsupported coordinate frame')
     need(h['scale_basis']=='model_metric_hypothesis', 'MISSING_SCALE', 'Native metric hypothesis with evidence is required; no unverified projection or scale relabelling', 'tool_infeasible')
+    need(h['metric_scale_support'] is not None,'MISSING_SCALE_SUPPORT','Metric labels do not establish scale; explicit conditional scale support is required','tool_infeasible')
     need(h['road'] is not None and not h['unbounded_unknown'], 'UNBOUNDED_UNKNOWN', 'Unknown road/extent blocks planning', 'tool_infeasible')
     need(d['scene_id']==m['scene_id'] and d['revision']==m['revision'], 'SCENE_VERSION_MISMATCH', 'Decision belongs to another round')
     need(d['valid_until_s']>=m['reference_time_s']+H, 'DECISION_EXPIRED', 'Decision does not cover horizon')
@@ -149,6 +179,7 @@ def normalize(capture, output, provenance, allow_synthetic=False):
     need(len(pids)==len(set(pids)), 'DUPLICATE_PREMISE', 'Duplicate conditional premise')
     premises={p['id']:p for p in h['premises']}
     for p in premises.values():_scope(p,set(object_ids),set(scenario_ids),H,m['history_s'])
+    _scale_support(h['metric_scale_support'],h,frames,premises)
     uids=[u['id'] for u in h['unknowns']]
     need(len(uids)==len(set(uids)), 'DUPLICATE_UNKNOWN', 'Duplicate unknown record')
     for u in h['unknowns']:
@@ -157,9 +188,9 @@ def normalize(capture, output, provenance, allow_synthetic=False):
         need(u['kind']=='multiple_conditionals', 'TYPED_UNKNOWN_BLOCKING', 'No relevance pruning: absent, unexpressible or unbounded coverage still blocks planning', 'tool_infeasible', unknown_id=u['id'], unknown_kind=u['kind'], object_ids=u['object_ids'],time_interval_s=[u['start_s'],u['end_s']])
         need(bool(u['object_ids']) and bool(u['scenario_ids']), 'CONDITIONAL_SCOPE', 'Multiple-conditionals record must identify objects and scenarios')
     lower=deepcopy(output);lower.pop('contract_version');lower.pop('coverage_profile');lower.pop('measurement_semantics')
-    lh=lower['hypotheses'];lh.pop('premises');lh.pop('unknowns')
+    lh=lower['hypotheses'];lh.pop('premises');lh.pop('unknowns');lh.pop('metric_scale_support')
     trace=dict(version=VERSION,coverage_profile=COVERAGE_PROFILE,measurement_semantics=deepcopy(MEASUREMENT_SEMANTICS),
-               source_output=deepcopy(output),source_output_digest=digest(output),lowered_output_digest=None,objects=[],
+               source_output=deepcopy(output),source_output_digest=digest(output),lowered_output_digest=None,objects=[],metric_scale_support=deepcopy(h['metric_scale_support']),
                source_intervals_closed=True, refinement='include_all_closed_intersecting_source_sets_without_shrinking',
                residual_application='one_total_object_radius >= alignment_residual + each_source_geometry_residual; never added again',
                assumptions='Model-proposed premises and adverse-scenario inventory are conditional, uncalibrated and not independently certified')
@@ -248,7 +279,7 @@ def construct(capture, output, provenance, allow_synthetic=False):
     lower,trace=normalize(capture,output,provenance,allow_synthetic)
     p=deepcopy(provenance);p['metric_contract_trace']=trace
     scene=dict(metadata=deepcopy(capture['metadata']),capture=deepcopy(capture),decision=lower['decision'],hypotheses=lower['hypotheses'],provenance=p,
-               claim='conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp1; uncertainty is not calibrated probability')
+               claim='conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability')
     validate('scene_v2.schema.json',scene)
     return scene
 

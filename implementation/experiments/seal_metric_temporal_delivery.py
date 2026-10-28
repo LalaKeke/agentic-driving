@@ -26,12 +26,21 @@ ALLOWED_SOURCE_CHANGES={
     'implementation/experiments/nuscenes/finalize_t1_diagnosis.py'}
 
 
-def main(directory,run):
+def main(directory,run,test_log):
     seal=directory/'DELIVERY_SHA256_MANIFEST.json';check_new_destination(seal)
     baseline=json.loads((directory/'baseline_protection.json').read_text())
     zip_path=directory/'baseline_source.zip';sources={}
     with zipfile.ZipFile(zip_path) as z:
         sources={name:hashlib.sha256(z.read(name)).hexdigest() for name in z.namelist()}
+    development_protocols={}
+    with zipfile.ZipFile(directory/'development_exp1_source.zip') as z:
+        for name in ('implementation/schemas/agent_output_v3_exp1.schema.json',
+                     'implementation/prompts/driving_v3_exp1.txt',
+                     'implementation/docs/计量与时空覆盖契约3_0_exp1.md'):
+            expected=hashlib.sha256(z.read(name)).hexdigest()
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:
+                raise Failure('DEVELOPMENT_PROTOCOL_CHANGED','Frozen exp1 draft must remain unchanged',path=name)
+            development_protocols[name]=expected
     changes=[];unchanged=0
     for name,record in baseline['files'].items():
         path=Path(name) if name.startswith('/') else ROOT/name
@@ -53,7 +62,7 @@ def main(directory,run):
     self_name=str(Path(__file__).resolve().relative_to(ROOT))
     if Path(__file__).read_bytes()!=subprocess.check_output(['git','show',revision+':'+self_name],cwd=ROOT):
         raise Failure('UNFROZEN_SOURCE','Commit the sealing procedure before execution')
-    tests=(directory/'tests.txt').read_text()
+    tests=test_log.read_text()
     if '\nOK\n' not in tests or 'FAILED (' in tests:raise Failure('TEST_FAILURE','Full regression evidence must pass before sealing')
     summary=json.loads((run/'summary.json').read_text())
     if summary['online_model_calls']!=0 or summary['new_online_successes']!=0:
@@ -62,9 +71,12 @@ def main(directory,run):
         baseline_commit=baseline['baseline_commit'],protected_files=len(baseline['files']),
         protected_unchanged=unchanged,authorized_code_changes=changes,scope=baseline['scope'],
         reconciliation='baseline_source_discrepancies.json; original initial-read manifest preserved',
+        frozen_development_exp1_protocols_unchanged=development_protocols,
         old_protocols_prompts_results_manifests_unchanged=True,
         online_model_calls=0,old_model_output_transformations=0,new_online_successes=0,
         offline_run=str(run.relative_to(ROOT)) if run.is_relative_to(ROOT) else str(run),
+        test_log=str(test_log.relative_to(ROOT)) if test_log.is_relative_to(ROOT) else str(test_log),
+        test_log_sha256=hashlib.sha256(test_log.read_bytes()).hexdigest(),
         sealing_source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     write_json_new(directory/'delivery_protection.json',provenance)
     files={str(p.relative_to(directory)):dict(sha256=hashlib.sha256(p.read_bytes()).hexdigest(),bytes=p.stat().st_size)
@@ -75,7 +87,7 @@ def main(directory,run):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--directory',required=True,type=Path);p.add_argument('--run',required=True,type=Path);a=p.parse_args()
-    try:main(a.directory.resolve(),a.run.resolve())
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--directory',required=True,type=Path);p.add_argument('--run',required=True,type=Path);p.add_argument('--tests',required=True,type=Path);a=p.parse_args()
+    try:main(a.directory.resolve(),a.run.resolve(),a.tests.resolve())
     except Failure as exc:
         print(json.dumps(exc.record,ensure_ascii=False));raise SystemExit(2)

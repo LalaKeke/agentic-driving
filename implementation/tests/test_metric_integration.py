@@ -36,13 +36,13 @@ class MetricIntegrationTests(unittest.TestCase):
                     'choices':[{'finish_reason':'stop','message':{'content':json.dumps(output)}}]})
             env=dict(DRIVING_API_BASE='https://fixture.invalid/v1',DRIVING_MODEL='configured-test-service',
                      DRIVING_API_KEY='test-only-not-real',DRIVING_OUTPUT_CONTRACT=VERSION,
-                     DRIVING_PROMPT_VERSION='driving_v3_exp1',DRIVING_RETRIES='0',DRIVING_OUTPUT_MODE='json_schema')
+                     DRIVING_PROMPT_VERSION='driving_v3_exp2',DRIVING_RETRIES='0',DRIVING_OUTPUT_MODE='json_schema')
             with patch.dict(os.environ,env),httpx.Client(transport=httpx.MockTransport(mock)) as client:
                 result,prov=OnlineAgent(client=client).decide(cap)
             self.assertEqual(len(sent),1)
             self.assertEqual(prov['source'],'mock_transport')
             self.assertEqual(prov['agent_output_contract'],VERSION)
-            self.assertEqual(prov['prompt_version'],'driving_v3_exp1')
+            self.assertEqual(prov['prompt_version'],'driving_v3_exp2')
             payload=json.loads(sent[0]['messages'][1]['content'][0]['text'])
             self.assertEqual(payload['tool_contract']['measurement_semantics'],MEASUREMENT_SEMANTICS)
             self.assertEqual(sent[0]['response_format']['json_schema']['schema']['properties']['contract_version']['const'],VERSION)
@@ -54,7 +54,7 @@ class MetricIntegrationTests(unittest.TestCase):
         self.assertFalse(any(x['code']=='OCCUPANCY_GAP' for x in diagnose(cap,out)))
 
     def test_prompt_version_cannot_cross_output_contract(self):
-        with self.assertRaises(Failure):resolve_prompt('2.1.0','driving_v3_exp1')
+        with self.assertRaises(Failure):resolve_prompt('2.1.0','driving_v3_exp2')
         with self.assertRaises(Failure):resolve_prompt(VERSION,'driving_v2_3')
 
     def test_runtime_and_offline_evaluator_use_identical_definitions(self):

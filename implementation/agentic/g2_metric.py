@@ -21,7 +21,7 @@ from .contracts import Failure, digest, need, validate
 from .evidence_io import reserve_directory, write_json_new
 from .geometry import polygon
 
-VERSION = '3.0.0-exp1'
+VERSION = '3.0.0-exp2'
 SEMANTICS = {
     'coordinate_frame': 'ego_at_reference',
     'origin': 'ego_body_center_at_reference',
@@ -227,7 +227,7 @@ def evaluate(records, truth, config, allow_synthetic=False):
         gt = truth['samples'].get(sid)
         reasons, region = _frame_checks(record, gt, config)
         if prov.get('agent_output_contract') == VERSION:
-            try: validate('agent_output_v3_exp1.schema.json', output)
+            try: validate('agent_output_v3_exp2.schema.json', output)
             except Failure: reasons.append('MODEL_OUTPUT_SCHEMA_INVALID')
         h = output.get('hypotheses', {}); objects = h.get('objects', [])
         gt_objects = (gt or {}).get('objects', [])
@@ -336,7 +336,7 @@ def evaluate(records, truth, config, allow_synthetic=False):
                     future_minimum_interval_coverage=_stats(selected,'future_minimum_interval_coverage'),
                     future_mean_envelope_area_ratio=_stats(selected,'future_mean_envelope_area_ratio'))
     by_protocol={version:summarize([x for x in rows if x['output_contract']==version]) for version in sorted({x['output_contract'] for x in rows})}
-    return dict(metric_version='g2_metric_semantics_exp1',status='SYNTHETIC_NUMERIC_TEST_NOT_G2' if allow_synthetic else 'OFFLINE_METRICS_NO_PASS_CLAIM',
+    return dict(metric_version='g2_metric_semantics_exp2',status='SYNTHETIC_NUMERIC_TEST_NOT_G2' if allow_synthetic else 'OFFLINE_METRICS_NO_PASS_CLAIM',
                 real_model_calls_this_evaluation=0, unique_windows=len({x['sample_id'] for x in records}), valid_record_count=len(records),
                 declared_object_rows=len(rows), truth_object_rows=len(truth_rows),
                 availability=summarize(rows),by_output_contract=by_protocol,

@@ -27,7 +27,7 @@ def diagnose(capture,output):
     # Experimental source intervals need not coincide with the physical grid.
     # T1 reports source-specific failures; do not demand 25 source records or
     # suggest changing truthful actor citations to pass legacy diagnostics.
-    if output.get('contract_version')=='3.0.0-exp1':
+    if output.get('contract_version')=='3.0.0-exp2':
         return issues
     times=grid(m)
     for i,obj in enumerate(h.get('objects',[])):

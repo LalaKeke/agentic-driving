@@ -32,7 +32,7 @@ class OnlineAgent:
             need(data.startswith(b'\x89PNG\r\n\x1a\n') if mime=='image/png' else data.startswith(b'\xff\xd8') if mime=='image/jpeg' else data[:4]==b'RIFF' and data[8:12]==b'WEBP','IMAGE_INPUT','Image signature mismatch')
             hashes[f['id']]=__import__('hashlib').sha256(data).hexdigest();meta['path']='attached:'+f['id']
             parts.extend([{'type':'text','text':json.dumps(meta)},{'type':'image_url','image_url':{'url':f'data:{mime};base64,'+base64.b64encode(data).decode()}}])
-        parts.insert(0,{'type':'text','text':json.dumps(dict(capture=safe_capture,feedback=feedback,output_schema=schema,**({'tool_contract':planning_contract(capture,self.output_contract)} if self.prompt_version in ('driving_v2_2','driving_v2_3','driving_v3_exp1') else {})))})
+        parts.insert(0,{'type':'text','text':json.dumps(dict(capture=safe_capture,feedback=feedback,output_schema=schema,**({'tool_contract':planning_contract(capture,self.output_contract)} if self.prompt_version in ('driving_v2_2','driving_v2_3','driving_v3_exp2') else {})))})
         body=dict(model=self.model,messages=[{'role':'system','content':prompt},{'role':'user','content':parts}])
         if self.mode=='json_schema':body['response_format']={'type':'json_schema','json_schema':{'name':'driving_v2','strict':True,'schema':schema}}
         elif self.mode=='json_object':body['response_format']={'type':'json_object'}

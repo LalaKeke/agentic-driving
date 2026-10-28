@@ -1,4 +1,4 @@
-"""Authored SOFTWARE fixtures for v3-exp1. No images, model calls, or GT.
+"""Authored SOFTWARE fixtures for v3-exp2. No images, model calls, or GT.
 
 The actor observations, motion premises and future envelopes below are all
 manually authored test assumptions. They never purport to be nuScenes outputs.
@@ -45,6 +45,18 @@ def metric_case(asynchronous=True, speed=0.):
     actor['time_ids'] = [f['time_id'] for f in frames]
     actor['state_time_id'] = cap['metadata']['reference_time_id']
     actor['body_geometry'] = dict(length_m=.8, width_m=1., yaw_rad=0.)
+    h['premises'].append(dict(
+        id='scale_size_prior', object_ids=['pedestrian'], scenario_ids=['walk'],
+        start_s=-.2 if asynchronous else 0., end_s=5.,
+        space_polygon_m=rect(17,19,-4,11),
+        statement='AUTHORED conditional body-length prior .8m. This fixture is manually specified; the value is not a real-image measurement or certified absolute scale.'))
+    h['metric_scale_support'] = dict(
+        method='conditional_body_dimension_prior',
+        frame_ids=list(actor['frame_ids']), time_ids=list(actor['time_ids']),
+        premise_ids=['scale_size_prior'],
+        anchors=[dict(object_id='pedestrian', dimension='length_m', value_m=.8,
+                      rationale='AUTHORED .8m body length is an explicit conditional test assumption, never a measured or calibrated scale guarantee.')],
+        metric_reasoning='AUTHORED synthetic scene dimensions are manually specified under the .8m body-length prior; paired actor capture records are the only cited evidence. No actual image or monocular absolute-scale recovery is claimed.')
     actor['alignment'] = dict(
         method='model_motion_bound' if asynchronous else 'direct_reference_observation',
         premise_ids=['walk_premise'], residual_m=.2,
@@ -63,7 +75,7 @@ def metric_case(asynchronous=True, speed=0.):
                                premise_ids=['walk_premise'], residual_m=.2,
                                alternatives=[dict(scenario_id='walk', polygon_m=rect(17.6,18.4,-3.5,10.))])]
     provenance = dict(source='synthetic_fixture', model_id='authored-not-a-model-call',
-                      prompt_version='fixture_v3_exp1', agent_output_contract=VERSION,
+                      prompt_version='fixture_v3_exp2', agent_output_contract=VERSION,
                       output_digest=digest(output), tool_calls=0)
     return cap, output, provenance
 
@@ -78,6 +90,11 @@ def add_adverse_scenario(output, invade=False):
     actor['scenarios'].append(dict(id='adverse', premise_ids=['adverse_premise'],
                                    role='reasonable_adverse'))
     actor['alignment']['premise_ids'].append('adverse_premise')
+    for premise in output['hypotheses']['premises']:
+        if premise['id']=='scale_size_prior':
+            # Body length remains the same in both authored motion branches;
+            # this is the stated prior itself, not a new inferred scale.
+            premise['scenario_ids'].append('adverse')
     output['hypotheses']['premises'].append(dict(
         id='adverse_premise', object_ids=[actor['id']], scenario_ids=['adverse'],
         start_s=-.2, end_s=5., space_polygon_m=rect(-3,20,-5,11),

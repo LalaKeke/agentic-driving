@@ -74,7 +74,7 @@ def history():
         except Failure as exc:actual=exc.record
         else:raise Failure('LEGACY_ACCEPTANCE_CHANGED','A frozen rejected response unexpectedly passed')
         if actual['code']!=r['recorded_first_code']:raise Failure('LEGACY_REJECTION_CHANGED','Historical first error changed')
-        try:validate('agent_output_v3_exp1.schema.json',record['output'])
+        try:validate('agent_output_v3_exp2.schema.json',record['output'])
         except Failure as exc:new_schema=exc.record
         else:raise Failure('LEGACY_UPGRADE','Historical output unexpectedly satisfies the new contract')
         rows.append(dict(response_id=r['response_id'],record=r['record'],capture=r['capture'],
@@ -196,7 +196,7 @@ def run(out):
     write_json_new(out/'legacy_gt_identity_bridge.json',bridge)
     write_json_new(out/'historical_g2_strict_refusals.json',g2)
     summary=dict(analysis_source_commit=source['analysis_source_commit'],output_contract=VERSION,
-        prompt_version='driving_v3_exp1',online_model_calls=0,new_online_successes=0,historical_model_output_transformations=0,
+        prompt_version='driving_v3_exp2',online_model_calls=0,new_online_successes=0,historical_model_output_transformations=0,
         historical_valid_responses=27,unique_windows=6,legacy_failed_predicates_retained=422,
         historic_first_codes=hist['first_codes'],legacy_body_ast_unchanged=True,
         authored_cases=dict(stationary=held['T4']['verdict'],moving=moving['T4']['verdict'],

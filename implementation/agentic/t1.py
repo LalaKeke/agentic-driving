@@ -75,7 +75,8 @@ def _construct_legacy(capture,output,provenance,allow_synthetic=False):
 
 def construct(capture,output,provenance,allow_synthetic=False):
     """Explicit experimental selection; legacy defaults and guard body retained."""
-    if provenance.get('agent_output_contract')=='3.0.0-exp1':
+    need(provenance.get('agent_output_contract')!='3.0.0-exp1','MODEL_CONTRACT','The exp1 engineering draft is frozen evidence, not an active runtime contract; select exp2 explicitly')
+    if provenance.get('agent_output_contract')=='3.0.0-exp2':
         from .metric_contract import construct as construct_metric
         return construct_metric(capture,output,provenance,allow_synthetic)
     return _construct_legacy(capture,output,provenance,allow_synthetic)
