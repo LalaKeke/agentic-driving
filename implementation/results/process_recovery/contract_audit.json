@@ -1,0 +1,1010 @@
+{
+  "status": "READ_ONLY_CONTRACT_AUDIT_NO_PASS_CLAIM",
+  "scope": "All completed image-scene outputs listed in the archived response index; failed/time-out requests have no output to audit and are not removed from the original experiment.",
+  "counts": {
+    "responses": 10,
+    "unique_observation_windows": 4,
+    "original_contract_20_responses": 9,
+    "separate_contract_21_responses": 1,
+    "short_planning_validity_responses": 6,
+    "target_region_excludes_initial_center_responses": 3,
+    "target_region_empty_after_current_t2_erosion_responses": 10,
+    "unsupported_calibrated_plane_label_responses": 8,
+    "explicit_unknown_scale_responses": 2,
+    "road_unknown_responses": 5,
+    "unbounded_unknown_responses": 10,
+    "object_entries": 59,
+    "nonnull_occupancy_entries": 54,
+    "unknown_occupancy_entries": 5,
+    "wrong_grid_nonnull_occupancy_entries": 54,
+    "complete_grid_occupancy_entries": 0,
+    "unknown_uncertainty_entries": 55,
+    "known_position_entries": 13,
+    "known_velocity_entries": 0,
+    "response_notes_containing_placeholder_literal": 1
+  },
+  "constraint_policy": {
+    "profile": "convex_disk_bicycle_v2",
+    "target_region_check": "Baseline target half planes offset inward by the recorded capture.vehicle.center_to_rear_axle_m; no road or obstacle geometry is inferred",
+    "scope": "This audit records the archived baseline constraint rule, not a claim about all future corridor profiles"
+  },
+  "interpretation": [
+    "These response/object counts include repeated observations and feedback revisions, not independent scenes.",
+    "The original 2.0 experiment and the single 2.1 night format probe remain separate protocols.",
+    "Wrong validity/grid/target semantics and unsupported label selection are engineering interface issues. Fixing them does not supply missing metric evidence or justify a future occupancy envelope.",
+    "The target-erosion diagnostic reproduces archived baseline T2 target half-plane offsets; it is not a new road/actor hypothesis or a claim that no physical solution exists.",
+    "A non-null occupancy is not endorsed by this audit; the original model explicitly disclaimed some as placeholders. Unknown coverage and uncertainty still require rejection.",
+    "No GT, map, future dataset state, model call or tool execution is used by this audit."
+  ],
+  "rows": [
+    {
+      "record_id": "20261027T153851Z-7d14c064:0006-model-record.json",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0005-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0006-model-record.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": false,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Forward signals remain red; the visible sign prohibits turning on red. Four pedestrians continue left to right across the ego path. Maintain the existing stop. Metric geometry assumes a locally level ground plane using supplied calibration; road boundaries and occluded bodies have no established error bound. Pedestrian envelopes are conditional short-prefix body hypotheses, including the cart, and do not establish coverage over the five-second horizon. Future occupancies of surrounding vehicles and additional partly occluded pedestrians are unknown; empty occupancy arrays deliberately do not certify collision freedom. Road geometry is only a local convex patch. Reject any plan requiring unsupported full-horizon coverage.",
+      "objects": [
+        {
+          "id": "pedestrian_leading",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_middle",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_with_cart",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_trailing",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "cross_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_pickup",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_right_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "adjacent_left_sedan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T153851Z-7d14c064:0009-agent.json",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0008-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0009-agent.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": true,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Remain stationary: forward signals are red and pedestrians continue crossing left to right. Pedestrian positions are approximate calibrated flat-ground projections, not measured body centers. No defensible metric error bounds, complete convex road polygon, or whole-interval future body envelopes can be established here; empty occupancies explicitly represent missing predictions, not free space. Occluded and out-of-view regions have unspecified extent. This stop request does not establish collision-free feasibility.",
+      "objects": [
+        {
+          "id": "pedestrian_front",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_middle",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_with_cart",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrian_left",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "cross_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_pickup",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_right_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "left_adjacent_car",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T153851Z-7d14c064:0012-agent.json",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "kind": "feedback_revision",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0011-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0012-agent.json",
+      "revision": 1,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.15,
+        -0.15,
+        0.15,
+        0.15
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": false,
+      "road_uncertainty_known": true,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Remain stopped: forward signals are red and pedestrians are crossing left to right. Metric geometry is a conditional flat-ground projection using supplied calibration, not measured ground truth. Road polygon describes only the local visible roadway. Occupancy envelopes are short-prefix hypotheses, not justified five-second predictions; partly occluded bodies, unseen extents, and longer-horizon motion remain unbounded. The prior infeasibility is not established as repaired, and these hypotheses do not certify a collision-free plan.",
+      "objects": [
+        {
+          "id": "pedestrian_group",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": true,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "trailing_pedestrian",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": true,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "additional_crossing_pedestrians",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "cross_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_pickup",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": true,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_right_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "left_adjacent_sedan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T153851Z-7d14c064:0015-agent.json",
+      "sample_id": "ac452a60e8b34a7080c938c904b23057",
+      "kind": "feedback_revision",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0014-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0015-agent.json",
+      "revision": 2,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": true,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Remain stationary: forward signals are red and pedestrians are crossing. Calibration supports ground-plane metric hypotheses, but a sufficiently bounded convex road region is not established. Listed occupancy envelopes are conditional hypotheses assuming continued ordinary road-constrained motion; their five-second coverage and uncertainty bounds are not established and must not be accepted as certified envelopes. The explicit unknown polygon is only a review area, not a bound on unknown extent. Occluded space and possible actor motion remain unbounded; the previous planning failure is unresolved.",
+      "objects": [
+        {
+          "id": "pedestrian_group_front",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrians_left",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "cross_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_pickup",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_right_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "adjacent_left_sedan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T154925Z-b9869784:0006-model-record.json",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0005-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0006-model-record.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 5.0,
+      "decision_covers_horizon": true,
+      "target_bounds_m": [
+        4.3,
+        -0.5,
+        6,
+        0.8
+      ],
+      "target_contains_initial_center": false,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": false,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Give-way sign is visible ahead; the road bends left around construction. Ground-plane geometry and lead position are approximate hypotheses using supplied calibration, conditional on locally level pavement; no conservative metric error bound is established. Visible green signals cannot be assigned to this approach. Actor velocities and whole-interval body occupancies cannot be justified from these observations; empty occupancy arrays denote missing predictions, not free space. Occluded traffic and construction activity remain unbounded. The requested stop requires downstream feasibility checking and must not be treated as a certified collision-free plan.",
+      "objects": [
+        {
+          "id": "lead_mpv",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "pedestrians_at_right_crossing",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "cross_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "construction_barriers_and_excavator",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T154925Z-b9869784:0009-agent.json",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0008-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0009-agent.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 5.000000238418579,
+      "decision_covers_horizon": true,
+      "target_bounds_m": [
+        4.3,
+        -0.3,
+        5.5,
+        0.8
+      ],
+      "target_contains_initial_center": false,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": false,
+      "road_uncertainty_known": true,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": true,
+      "confidence_note": "Stop request is precautionary and is not a certified feasible trajectory. Road and approximate minivan position use supplied calibration with an assumed locally level ground plane; uncertainty extents are conditional hypotheses. The minivan proceeds leftward along the bend, but metric velocity is unresolved. Five-second actor envelopes cannot be justified from these images; the supplied broad envelopes are unsupported placeholders and must be rejected, not treated as verified coverage. Occluded junction approaches and future entrants have unbounded extent. Visible green signals cannot confidently be assigned to the ego slip lane; the visible give-way sign requires yielding.",
+      "objects": [
+        {
+          "id": "lead_minivan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": true,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "right_side_pedestrians",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "left_side_pedestrians",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "junction_traffic",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "construction_barriers",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T154925Z-b9869784:0012-agent.json",
+      "sample_id": "88449a5cb1644a199c1c11f6ac034867",
+      "kind": "feedback_revision",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0011-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0012-agent.json",
+      "revision": 1,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 5.0,
+      "decision_covers_horizon": true,
+      "target_bounds_m": [
+        4,
+        0,
+        6,
+        1
+      ],
+      "target_contains_initial_center": false,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": false,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Ground-plane geometry is approximate and assumes locally level pavement. The GIVE WAY sign supports yielding; visible green signals do not establish permission for this slip lane. Future actor envelopes are illustrative hypotheses, not justified whole-interval bounds; their coverage and uncertainty remain unknown and must block planning. Occlusion and unobserved traffic extent remain unresolved. The stopping request does not certify feasibility or repair the prior rejection.",
+      "objects": [
+        {
+          "id": "lead_minivan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": true,
+          "velocity_known": false
+        },
+        {
+          "id": "right_pedestrians",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T154925Z-b9869784:0018-model-record.json",
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0017-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0018-model-record.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 5.0,
+      "decision_covers_horizon": true,
+      "target_bounds_m": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "calibrated_ground_plane",
+      "scale_label_unsupported_by_current_profile": true,
+      "scale_explicitly_unknown": false,
+      "road_unknown": true,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Forward-facing signals remain red; ego is stationary. The van crosses left to right and the dump truck and sedan cross right to left. Maintain the current stop. Calibration supports ground-plane reconstruction in principle, but a conservative metric road boundary and whole-interval actor envelopes are not established here. Empty occupancies indicate missing coverage, not absence of actors; collision and road feasibility require further evidence. Side and rear observations precede the reference and their dynamic states are not assumed unchanged.",
+      "objects": [
+        {
+          "id": "crossing_van",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "crossing_dump_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "crossing_sedan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "cyclist",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "bus_ahead",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "minivan_behind",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "delivery_truck_behind",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T154925Z-b9869784:0021-agent.json",
+      "sample_id": "c537fef0b4b241df92f44daa976fe5b3",
+      "kind": "unconditional",
+      "agent_output_contract": "2.0.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0020-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0021-agent.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.2,
+        -0.2,
+        0.2,
+        0.2
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "unknown",
+      "scale_label_unsupported_by_current_profile": false,
+      "scale_explicitly_unknown": true,
+      "road_unknown": true,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Remain stationary: forward-facing signals are red and vehicles cross the intersection. The van moves image-right, while the dump truck and sedan move image-left across the front history; these are qualitative directions, not metric velocities. The cyclist is visible only in an asynchronous right-camera observation. Rear vehicles are close, with motion unresolved. Calibration is supplied, but a metric road polygon and conservative whole-interval actor-body envelopes have not been established. Empty occupancies indicate missing coverage, not free space. Unseen approaches, occlusions, and future actor motion remain unbounded; this decision requests a stop and does not establish a collision-free certified trajectory.",
+      "objects": [
+        {
+          "id": "crossing_van",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "crossing_dump_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "crossing_sedan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "cyclist",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "bus_ahead",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_minivan",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_delivery_truck",
+          "occupancy_state": "wrong_interval_count",
+          "supplied_intervals": 1,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    },
+    {
+      "record_id": "20261027T161613Z-a58e5a49:0005-model-record.json",
+      "sample_id": "b4c279e61abf49bd871ff2ec4b13e115",
+      "kind": "unconditional",
+      "agent_output_contract": "2.1.0",
+      "capture_source": "implementation/results/gpt61_live/raw_runs/20261027T161613Z-a58e5a49/0004-capture.json",
+      "record_source": "implementation/results/gpt61_live/raw_runs/20261027T161613Z-a58e5a49/0005-model-record.json",
+      "revision": 0,
+      "horizon_s": 5.0,
+      "step_s": 0.2,
+      "decision_validity_relative_s": 0.20000004768371582,
+      "decision_covers_horizon": false,
+      "target_bounds_m": [
+        -0.2,
+        -0.2,
+        0.2,
+        0.2
+      ],
+      "target_contains_initial_center": true,
+      "center_to_rear_axle_m": 1.2,
+      "target_after_current_t2_erosion_area_m2": 0.0,
+      "target_after_current_t2_erosion_empty": true,
+      "eroded_target_contains_initial_rear": false,
+      "scale_basis": "unknown",
+      "scale_label_unsupported_by_current_profile": false,
+      "scale_explicitly_unknown": true,
+      "road_unknown": true,
+      "road_uncertainty_known": false,
+      "unbounded_unknown": true,
+      "confidence_note_mentions_placeholder": false,
+      "confidence_note": "Green and red signals are visible in different directions; applicability to the intended ego movement is unresolved. A motorcycle approaches the intersection, traffic occupies the right approach, and pedestrians are near curbs. Calibration is supplied, but no bounded metric road polygon or actor localization is asserted here. Unknown roadway and occluded space cannot be bounded reliably. Whole-interval future body envelopes are unsupported, so all occupancies are null. The target is a requested stopping region, not a certified free region; missing geometry and occupancies require fail-closed validation.",
+      "objects": [
+        {
+          "id": "approaching_motorcycle",
+          "occupancy_state": "unknown",
+          "supplied_intervals": null,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "front_sidewalk_pedestrian",
+          "occupancy_state": "unknown",
+          "supplied_intervals": null,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "right_approach_traffic",
+          "occupancy_state": "unknown",
+          "supplied_intervals": null,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_van",
+          "occupancy_state": "unknown",
+          "supplied_intervals": null,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        },
+        {
+          "id": "rear_sidewalk_pedestrians",
+          "occupancy_state": "unknown",
+          "supplied_intervals": null,
+          "expected_intervals": 25,
+          "uncertainty_known": false,
+          "position_known": false,
+          "velocity_known": false
+        }
+      ]
+    }
+  ],
+  "input_hashes": {
+    "implementation/results/gpt61_live/response_index.json": {
+      "sha256": "af6f0739db075b7ce20df1c3e3aff456c10e9b5d20deb7f4c9fe9b70ee930a39",
+      "bytes": 8321
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0005-capture.json": {
+      "sha256": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+      "bytes": 13196
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0008-capture.json": {
+      "sha256": "11180b3c7234477a331b65fd27b64f0a0750b16ecca9666de5f9d75e99eddec9",
+      "bytes": 13196
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0011-capture.json": {
+      "sha256": "bbc982996412a5af6f3720e077e9c38cbec3139baa9973fd703c9f89f5837466",
+      "bytes": 13196
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0014-capture.json": {
+      "sha256": "6cfb4f438b6d9342864643d134f5819f5115cb9a4fd5bcc71684536e1b45cae8",
+      "bytes": 13196
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0020-capture.json": {
+      "sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+      "bytes": 13181
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0005-capture.json": {
+      "sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+      "bytes": 13181
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0008-capture.json": {
+      "sha256": "029a357d58fef105e471ea2a2728ba556c43310776a3be6d94e53da7ca70beda",
+      "bytes": 13181
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0011-capture.json": {
+      "sha256": "ab7c5b1bbb5ca6a29260c853879e4701b4ce22a08c8a864a83226f22c746ab63",
+      "bytes": 13181
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0017-capture.json": {
+      "sha256": "375379b4d9240b4c2e9a6670ace4fe75196445c7722bf6d3b1df127f47eed9cd",
+      "bytes": 13173
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0020-capture.json": {
+      "sha256": "375379b4d9240b4c2e9a6670ace4fe75196445c7722bf6d3b1df127f47eed9cd",
+      "bytes": 13173
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0023-capture.json": {
+      "sha256": "af7729e8588b6c114f5c2ffa1c9331fc25f3f485028be8cf7f9784ae0d1c4ad7",
+      "bytes": 13173
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0028-capture.json": {
+      "sha256": "4bed9bfb22930dac4d43b25aa8b8a2828bcb1ac6493cce4c2c10e1c1717f2c02",
+      "bytes": 13213
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T161613Z-a58e5a49/0004-capture.json": {
+      "sha256": "4bed9bfb22930dac4d43b25aa8b8a2828bcb1ac6493cce4c2c10e1c1717f2c02",
+      "bytes": 13213
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0006-model-record.json": {
+      "sha256": "410e3ea2ea36bd06e7f3b59ab677c9b1df9f1f27ef00130330a41de648f269f4",
+      "bytes": 14480
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0009-agent.json": {
+      "sha256": "66d3255a9dd4b121f6e2eaefd1fc129b6efcfb086a461df6fa510cae62bb8721",
+      "bytes": 13134
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0012-agent.json": {
+      "sha256": "904994543e0f80513f5066b22bce534c9c2c9975c726994b641402502ec17c48",
+      "bytes": 13847
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T153851Z-7d14c064/0015-agent.json": {
+      "sha256": "074f76a9b3f1e41827cee80afc7e51534fb4a62cc2109fe78f6db8a3ebde492b",
+      "bytes": 11917
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0006-model-record.json": {
+      "sha256": "14c80baf071e07d68431a0110df546adb9d0c62198c469eff50026702749d84b",
+      "bytes": 9812
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0009-agent.json": {
+      "sha256": "34cb9e397abc2db32167f9c1867def714e1c77cda735123ceb7f372c2ce9b8df",
+      "bytes": 10637
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0012-agent.json": {
+      "sha256": "6ce1e5141775b189ed97c7d3e8be39b87c91a1c87a8f5b932023d99cd1b56d02",
+      "bytes": 7377
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0018-model-record.json": {
+      "sha256": "5295401a3e960ab24b697edb8da156bfdca33652d590ea681494b18de0e51f1f",
+      "bytes": 12047
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T154925Z-b9869784/0021-agent.json": {
+      "sha256": "44a5dbb66bcbe8cf206d4c3335c492390561e504135766945eadf8ba027c347e",
+      "bytes": 12153
+    },
+    "implementation/results/gpt61_live/raw_runs/20261027T161613Z-a58e5a49/0005-model-record.json": {
+      "sha256": "b437010bb9084dbd0da14f4796999d4ad781bfd7c2554f2285e5059990723449",
+      "bytes": 6827
+    }
+  }
+}

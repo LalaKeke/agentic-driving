@@ -35,3 +35,17 @@ class NuScenesBatchFailureTests(unittest.TestCase):
     def test_global_model_denial_blocks_remaining_requests(self):
         summary,calls=self.run_two('CODEX_MODEL_UNAVAILABLE')
         self.assertEqual(calls,1);self.assertEqual(summary['cases'][1]['status'],'BLOCKED_MODEL_ACCESS')
+
+
+    def test_zero_evaluation_calls_does_not_gate_the_planning_round(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);inputs=root/'runtime_inputs';inputs.mkdir();img=root/'unit.png';Image.new('RGB',(8,8)).save(img)
+            cap=capture();cap['observations'][0]['path']=str(img);(inputs/'a.json').write_text(json.dumps(cap))
+            index=root/'runtime_index.json';index.write_text(json.dumps({'cases':[{'sample_id':'a','capture':'runtime_inputs/a.json'}]}))
+            agent=Mock();agent.public_config={'unit_test':True};fake_loop=Mock()
+            fake_loop.round.return_value={'status':'blocked_no_execution','statistics':{'model_attempts':1,'model_responses':1}}
+            with patch.object(batch,'make_agent',return_value=agent),patch.object(batch,'ClosedLoop',return_value=fake_loop):
+                _,summary=batch.run(index,root/'logs',repeats=0,max_revisions=1)
+            fake_loop.round.assert_called_once();agent.decide.assert_not_called()
+            self.assertEqual(summary['all_model_attempts'],1);self.assertEqual(summary['experiment_verdict'],'NO_PHYSICAL_SUCCESS')
+            self.assertEqual(summary['strict_live_physical_successes'],0)

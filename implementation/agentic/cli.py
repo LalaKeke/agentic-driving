@@ -36,7 +36,9 @@ def main():
         from .adapter import make_agent
         agent=make_agent();log.write('adapter-config',agent.public_config);cap=load(args.capture);need(1<=args.calls<=20,'CALL_COUNT','calls must be 1..20')
         if args.plan:
-            result=ClosedLoop(agent,log).round(cap);log.write('summary',dict(status=result['status']))
+            result=ClosedLoop(agent,log).round(cap);log.write('summary',dict(status=result['status'],acceptance=result['acceptance'],statistics=result['statistics']))
+            if not result['acceptance']['strict_live_physical_success']:
+                print(log.path);raise SystemExit(3)
         else:
             log.write('capture',cap)
             for _ in range(args.calls):

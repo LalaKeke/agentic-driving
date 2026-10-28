@@ -82,3 +82,6 @@ DRIVING_CODEX_TIMEOUT_S=180 .venv/bin/python \
 ```
 
 用户提供的 17891 代理已打通模型接口。系统 CLI 0.147.0 返回 model_not_found；项目内独立固定客户端 0.164.0 已完成同模型真实调用，未替换系统客户端。先运行 `.venv/bin/python implementation/experiments/nuscenes/install_codex_client.py`（项目根目录），适配器默认优先选择该项目客户端。使用 `DRIVING_OUTPUT_CONTRACT=2.0.0` 或显式 `2.1.0` 选择版本，结果分开评价；`--max-revisions` 设置最多反馈修订次数。完整命令、原失败及最终结果见 [真实试验报告](../../results/gpt61_live/README.md)。历史“缺少 API Key”仅描述当时 HTTP 路径，不是会员路径要求。
+
+
+流程修复后默认 `--repeats 0` 直接规划；可选评价采样移到规划后，旧命令显式 `--repeats 1` 仍可用。退出码 3 表示未全部达到严格在线单窗口物理成功，退出码 2 表示阻塞，退出码 0 才表示所有试验窗口严格成功。`status=COMPLETED_WITH_PER_CASE_RESULTS` 只表示批次处理完成，必须读取 experiment_verdict 和 acceptance。详见 [流程修复与冻结复测](../../results/process_recovery/README.md)。

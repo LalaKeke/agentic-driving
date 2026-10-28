@@ -127,6 +127,89 @@
     },
     "conservative": {
       "const": true
+    },
+    "construction": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "const": "moving_seed"
+        },
+        "seed_source": {
+          "const": "ego_state_vehicle_limits_semantic_template_only"
+        },
+        "seed_dynamics": {
+          "const": "exact_constant_acceleration_zero_steer"
+        },
+        "target_prediction_source": {
+          "const": "model_whole_interval_occupancy_only"
+        },
+        "behavior": {
+          "enum": [
+            "stop_yield",
+            "hold_lane",
+            "resume"
+          ]
+        },
+        "seed_points": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "time_s": {
+                "type": "number",
+                "minimum": 0
+              },
+              "rear_x_m": {
+                "type": "number"
+              },
+              "rear_y_m": {
+                "type": "number"
+              },
+              "yaw_rad": {
+                "type": "number"
+              },
+              "speed_mps": {
+                "type": "number",
+                "minimum": 0
+              },
+              "acceleration_mps2": {
+                "type": "number"
+              },
+              "steer_rad": {
+                "const": 0.0
+              }
+            },
+            "required": [
+              "time_s",
+              "rear_x_m",
+              "rear_y_m",
+              "yaw_rad",
+              "speed_mps",
+              "acceleration_mps2",
+              "steer_rad"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "seed_is_solution": {
+          "const": false
+        },
+        "limitation": {
+          "const": "A blocked seed is not a proof of global infeasibility"
+        }
+      },
+      "required": [
+        "policy",
+        "seed_source",
+        "seed_dynamics",
+        "target_prediction_source",
+        "behavior",
+        "seed_points",
+        "seed_is_solution",
+        "limitation"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

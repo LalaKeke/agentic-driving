@@ -40,3 +40,25 @@ def grid(meta):
 def model_contract(version='2.0.0'):
     need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown explicit model output contract')
     return ('agent_output_v2.schema.json','driving_v2') if version=='2.0.0' else ('agent_output_v2_1.schema.json','driving_v2_1')
+
+
+def resolve_prompt(version='2.0.0',requested=None):
+    """Explicit prompt-only revision; the selected output schema stays unchanged."""
+    schema,default=model_contract(version)
+    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2')}
+    prompt=requested or default
+    need(prompt in allowed[version],'PROMPT_CONTRACT','Prompt and output contract are incompatible')
+    return schema,prompt
+
+
+def planning_contract(capture):
+    """Deterministic tool requirements, never additional environment facts."""
+    m=capture['metadata'];times=grid(m)
+    return dict(target_region_semantics='Allowed vehicle CENTER region for the entire planning horizon, including initial center; not a terminal goal box',
+                initial_center_m=[capture['ego']['x_m'],capture['ego']['y_m']],
+                decision_valid_until_min_s=m['reference_time_s']+m['horizon_s'],
+                supplied_valid_until_s=m['valid_until_s'],execution_prefix_s=capture['safety']['prefix_s'],
+                occupancy_grid=[dict(start_s=a,end_s=b,kind='whole_interval_envelope') for a,b in zip(times,times[1:])],
+                supported_native_metric_scale_labels=['model_metric_hypothesis','unknown'],
+                calibration_limitation='Intrinsics/extrinsics alone do not verify a ground plane or pixel contact. Do not relabel unsupported scale as a supported metric hypothesis.',
+                coverage_requirement='Each non-null actor occupancy must support every whole interval. Use null for unsupported coverage; never fill placeholders.')

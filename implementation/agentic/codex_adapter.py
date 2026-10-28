@@ -13,7 +13,7 @@ import subprocess
 import tempfile
 import time
 from PIL import Image
-from .contracts import ROOT,Failure,need,validate,digest,model_contract
+from .contracts import ROOT,Failure,need,validate,digest,model_contract,resolve_prompt,planning_contract
 
 DISABLED_FEATURES=('shell_tool','unified_exec','view_image','apps','plugins','multi_agent',
                    'code_mode_host','browser_use','computer_use','image_generation','hooks',
@@ -69,7 +69,7 @@ class CodexSubscriptionAgent:
              'CODEX_CHATGPT_LOGIN_REQUIRED','Use official codex login with ChatGPT; API-key login is not accepted')
         self.version=version.stdout.strip()
         self.output_contract=os.environ.get('DRIVING_OUTPUT_CONTRACT','2.0.0')
-        self.schema_name,self.prompt_version=model_contract(self.output_contract)
+        self.schema_name,self.prompt_version=resolve_prompt(self.output_contract,os.environ.get('DRIVING_PROMPT_VERSION'))
         self.public_config=dict(backend='codex_cli',model=self.model,authentication='chatgpt_subscription',
             cli_version=self.version,cli_binary=self.binary,timeout_s=self.timeout,adapter_retries=0,
             cli_transport_retries='CLI defaults, bounded by process-group timeout',reasoning_effort='medium',
@@ -106,7 +106,7 @@ class CodexSubscriptionAgent:
                 'other agents, and external datasets are unavailable and prohibited. '
                 'Images are attached in the exact order of capture.observations. '
                 'Return only the requested structured final object.\n'+
-                json.dumps(dict(capture=safe,feedback=feedback),ensure_ascii=False))
+                json.dumps(dict(capture=safe,feedback=feedback,**({'tool_contract':planning_contract(capture)} if self.prompt_version=='driving_v2_2' else {})),ensure_ascii=False))
             try:
                 process=subprocess.Popen(self.command(work,images),cwd=work,env=subscription_environment(),
                                          stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
