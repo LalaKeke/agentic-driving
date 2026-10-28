@@ -1,0 +1,106 @@
+{
+  "source_schema": "implementation/schemas/agent_output_v3_exp2.schema.json",
+  "source_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+  "draft7_schema_valid": true,
+  "actual_failure_path": "/properties/hypotheses/properties/coordinate_frame",
+  "actual_failure_node": {
+    "const": "ego_at_reference"
+  },
+  "provider_error": "invalid_json_schema: schema must have a type key",
+  "const_only_nodes": [
+    {
+      "json_pointer": "/properties/hypotheses/properties/coordinate_frame",
+      "raw_value": {
+        "const": "ego_at_reference"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/units",
+      "raw_value": {
+        "const": "m_s_rad"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/objects/items/properties/occupancy/anyOf/0/items/properties/kind",
+      "raw_value": {
+        "const": "whole_interval_body_envelope"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/hypotheses/properties/metric_scale_support/anyOf/0/properties/method",
+      "raw_value": {
+        "const": "conditional_body_dimension_prior"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/contract_version",
+      "raw_value": {
+        "const": "3.0.0-exp2"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/coverage_profile",
+      "raw_value": {
+        "const": "whole_interval_sources_v3_exp2"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/coordinate_frame",
+      "raw_value": {
+        "const": "ego_at_reference"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/origin",
+      "raw_value": {
+        "const": "ego_body_center_at_reference"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/axes",
+      "raw_value": {
+        "const": "x_forward_y_left_fixed_at_reference"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/actor_reference_point",
+      "raw_value": {
+        "const": "annotation_box_center_ground_xy"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/velocity_semantics",
+      "raw_value": {
+        "const": "absolute_ground_velocity_in_fixed_reference_axes"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    },
+    {
+      "json_pointer": "/properties/measurement_semantics/properties/uncertainty_semantics",
+      "raw_value": {
+        "const": "noncalibrated_total_residual_radius_once"
+      },
+      "observation": "const-only schema node; provider error demonstrated one such node requires explicit type"
+    }
+  ],
+  "concluded": "Current fixed native schema is incompatible with the observed outputSchema service validation; no new model environmental hypotheses were evaluated.",
+  "not_concluded": [
+    "Model metric grounding is impossible",
+    "Images are unsuitable",
+    "gpt-6.1-sol availability verified",
+    "Any T1-T4 or G2 pass"
+  ],
+  "schema_prompt_configuration_modified_after_error": false,
+  "additional_model_calls": 0,
+  "next_action_proposal": "Offline review of all provider-required explicit type declarations and compatibility lint under a separately versioned wire/schema experiment. Do not patch or reissue within this ended pilot."
+}

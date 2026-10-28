@@ -1,0 +1,202 @@
+{
+  "evaluation_version": "controlled_exp2_no_native_output_offline_v1",
+  "experiment_id": "exp2_single_day_pilot_20261028_v1",
+  "sample_id": "ac452a60e8b34a7080c938c904b23057",
+  "original_cohort": "original_four",
+  "status": "NO_NATIVE_OUTPUT_OFFLINE_EVALUATION_NOT_G2_PASS",
+  "unique_windows": 1,
+  "attempted_response_slots": 1,
+  "native_output_slots": 0,
+  "optional_revision_slot": {
+    "attempt": 2,
+    "status": "NOT_ATTEMPTED",
+    "reason": "Stopped after service interface incompatibility; no replacement call or transport retry"
+  },
+  "attempted_slot_rows": [
+    {
+      "attempt": 1,
+      "revision": 0,
+      "service_status": "FAIL",
+      "service_error_notification_observed": true,
+      "model_service_returned": "UNKNOWN",
+      "native_output_present": false,
+      "structured_output_status": "NOT_REACHED",
+      "failure_code": "CODEX_SERVICE_FAILURE",
+      "underlying_diagnostic_code": "invalid_json_schema",
+      "underlying_param": "text.format.schema",
+      "diagnosis": "Schema interface incompatibility was reported before any native model text. Error origin and model inference execution are not independently established. This is not evidence that the model lacked necessary metric information.",
+      "stages": {
+        "NATIVE_OUTPUT": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      }
+    }
+  ],
+  "budget": {
+    "limit": 2,
+    "charged": 1,
+    "turn_start_requests": 1,
+    "unused": 1,
+    "automatic_transport_retries": 0,
+    "semantic_revisions": 0,
+    "ended": true
+  },
+  "fixed_focal": {
+    "gt_instance": "afd097377c71479ea8349eeae83b8143",
+    "attempted_slots": 1,
+    "native_positions_present": 0,
+    "evaluable_slots": 0,
+    "unevaluated_slots": 1,
+    "unevaluated_rate_among_attempted_slots": 1.0,
+    "status": "1_OF_1_ATTEMPTED_FOCAL_SLOTS_UNEVALUATED",
+    "position_error_m": null,
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "not_zero_error": true,
+    "unattempted_optional_revision_excluded": true
+  },
+  "declared_actor_availability": {
+    "declared_actor_rows": 0,
+    "denominator_status": "NO_NATIVE_OUTPUT_NO_DECLARED_ACTOR_DENOMINATOR",
+    "position_available": 0,
+    "position_missing": null,
+    "position_missing_rate": null,
+    "velocity_available": 0,
+    "velocity_missing": null,
+    "velocity_missing_rate": null,
+    "future_occupancy_available": 0,
+    "future_occupancy_missing": null,
+    "future_occupancy_missing_rate": null,
+    "identity_reviewed_rows": 0,
+    "unmatched": null,
+    "unmatched_rate": null,
+    "comparable_rows": 0,
+    "noncomparable_rate": null,
+    "reason": "No actor declarations exist. Undefined actor-level rates are null; do not treat no output as zero error, zero missingness or detection recall."
+  },
+  "position_error_m": {
+    "value": null,
+    "status": "NOT_EVALUABLE",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "evaluable_count": 0
+  },
+  "velocity_vector_error_mps": {
+    "value": null,
+    "status": "NOT_EVALUABLE",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "evaluable_count": 0
+  },
+  "road_geometry_error": {
+    "value": null,
+    "status": "NOT_EVALUABLE",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "evaluable_count": 0
+  },
+  "future_coverage": {
+    "value": null,
+    "status": "NOT_EVALUABLE",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "evaluable_count": 0
+  },
+  "future_area_inflation": {
+    "value": null,
+    "status": "NOT_EVALUABLE",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE",
+    "evaluable_count": 0
+  },
+  "planning_usability": {
+    "status": "NOT_REACHED",
+    "value": null,
+    "T1": "NOT_REACHED",
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "independent_acceptor": "NOT_REACHED",
+    "simulated_execution": "NOT_REACHED",
+    "released_prefix_s": null,
+    "consumed_prefix": false,
+    "prefix_classification": "NOT_REACHED",
+    "reason": "NO_NATIVE_MODEL_OUTPUT_AFTER_SERVICE_INTERFACE_FAILURE"
+  },
+  "truth_reference": {
+    "available_independent_gt_actor_rows": 51,
+    "definitions": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    },
+    "evaluation_domain": {
+      "id": "pilot_original_day_fixed_common_domain_v1",
+      "polygon_m": [
+        [
+          -5.0,
+          -12.0
+        ],
+        [
+          45.0,
+          -12.0
+        ],
+        [
+          45.0,
+          12.0
+        ],
+        [
+          -5.0,
+          12.0
+        ]
+      ],
+      "purpose": "current_actor_and_entire_future_body_no_clipping"
+    },
+    "reference_time_id": "nusc_us_1535489306412404",
+    "reference_time_s": 1535489306.4124038,
+    "ego_center_to_rear_axle_m": 1.2,
+    "position_reference": "Annotation-center linear interpolation, not exact observed instantaneous truth",
+    "velocity_reference": "Annotation displacement slope proxy; instantaneous-velocity accuracy remains unscored",
+    "future_reference": "Annotation-linear circumscribed BODY surrogate; no actual continuous-time truth guarantee",
+    "actor_rows_used_for_scores": 0,
+    "passed_to_runtime": false
+  },
+  "identity_review": {
+    "status": "NOT_REACHED_NO_ACTOR_OUTPUT",
+    "new_associations_created": 0,
+    "historical_exposure_disclosed": true,
+    "claim_of_full_blindness": false,
+    "fixed_focal_replaced": false,
+    "numerical_error_based_matching": false
+  },
+  "model_identity": {
+    "requested_model": "gpt-6.1-sol",
+    "cli_resolved_alias": "gpt-6.1-sol",
+    "server_reported_snapshot": null,
+    "snapshot_identity": "NOT_EXPOSED"
+  },
+  "service_software_vs_model_information": {
+    "classification": "SERVICE_INTERFACE_INCOMPATIBILITY",
+    "observed": "invalid_json_schema: schema must have a type key at hypotheses.coordinate_frame",
+    "missing_model_metric_information": "NOT_ASSESSABLE_NO_NATIVE_RESPONSE",
+    "six_window_readiness": "NOT_ESTABLISHED_SERVICE_SCHEMA_COMPATIBILITY_BLOCKED"
+  },
+  "thresholds_applied": false,
+  "g2_pass_claim": false,
+  "online_success_claims": 0,
+  "real_model_calls_this_evaluation": 0,
+  "runtime_truth_writes": 0,
+  "repeated_revisions_are_independent_windows": false,
+  "future_six_window_batch_launched": false,
+  "strict_g2_numeric_entry_invoked": false,
+  "strict_g2_numeric_entry_reason": "The strict evaluator requires at least one original model record. No fixture, converted response or invented empty actor response was substituted.",
+  "limitations": [
+    "This is one historically exposed unique window and one charged invocation, not a success-rate estimate.",
+    "A schema error notification does not establish that multimodal model inference ran or identify an unexposed service snapshot.",
+    "No native output means neither model measurement accuracy nor model information sufficiency can be assessed.",
+    "All model-dependent scores and actor-level missing/unmatched rates are undefined, not zero.",
+    "The unused revision slot is not an additional failed response and its unused budget is not transferred.",
+    "GT and labels were read only after runtime seal; neither they nor this evaluation were fed back to runtime."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "attempt": 1,
+  "revision": 0,
+  "stages": {
+    "SERVICE": {
+      "status": "FAIL",
+      "returned": "UNKNOWN",
+      "failure": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+              "codexErrorInfo": "other",
+              "additionalDetails": null,
+              "misalignment": null
+            },
+            "willRetry": false,
+            "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+            "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "service_layer": {
+        "native_model_text_observed": false,
+        "completed_turn_observed": false,
+        "error_notification_observed": true,
+        "error_origin": "not_established",
+        "turn_start_sent": true
+      },
+      "turn_start_requests": 1
+    },
+    "NATIVE_OUTPUT": {
+      "status": "NOT_REACHED",
+      "failure": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+              "codexErrorInfo": "other",
+              "additionalDetails": null,
+              "misalignment": null
+            },
+            "willRetry": false,
+            "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+            "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    "T1": {
+      "status": "NOT_REACHED"
+    },
+    "T2": {
+      "status": "NOT_REACHED"
+    },
+    "T3": {
+      "status": "NOT_REACHED"
+    },
+    "T4": {
+      "status": "NOT_REACHED"
+    },
+    "EXECUTION": {
+      "status": "NOT_REACHED"
+    },
+    "ACCEPTOR": {
+      "status": "NOT_REACHED"
+    }
+  },
+  "consumed_prefix": false,
+  "stop_after_attempt": true,
+  "feedback": {
+    "failure": {
+      "code": "CODEX_SERVICE_FAILURE",
+      "message": "Official service reported an error; no retry",
+      "category": "interface_error",
+      "details": {
+        "diagnostic": {
+          "error": {
+            "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+            "codexErrorInfo": "other",
+            "additionalDetails": null,
+            "misalignment": null
+          },
+          "willRetry": false,
+          "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+          "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+        }
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    },
+    "repair_request": "Return native JSON exactly per frozen schema. Do not invent missing information."
+  }
+}

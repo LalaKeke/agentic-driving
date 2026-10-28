@@ -1,0 +1,219 @@
+{
+  "experiment_id": "exp2_single_day_pilot_20261028_v1",
+  "source_commit": "1ef04fdda3d64bfe632f14f4fc411aa810646a11",
+  "sample_id": "ac452a60e8b34a7080c938c904b23057",
+  "unique_windows": 1,
+  "attempts": [
+    {
+      "attempt": 1,
+      "revision": 0,
+      "stages": {
+        "SERVICE": {
+          "status": "FAIL",
+          "returned": "UNKNOWN",
+          "failure": {
+            "code": "CODEX_SERVICE_FAILURE",
+            "message": "Official service reported an error; no retry",
+            "category": "interface_error",
+            "details": {
+              "diagnostic": {
+                "error": {
+                  "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+                  "codexErrorInfo": "other",
+                  "additionalDetails": null,
+                  "misalignment": null
+                },
+                "willRetry": false,
+                "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+                "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+              }
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          },
+          "service_layer": {
+            "native_model_text_observed": false,
+            "completed_turn_observed": false,
+            "error_notification_observed": true,
+            "error_origin": "not_established",
+            "turn_start_sent": true
+          },
+          "turn_start_requests": 1
+        },
+        "NATIVE_OUTPUT": {
+          "status": "NOT_REACHED",
+          "failure": {
+            "code": "CODEX_SERVICE_FAILURE",
+            "message": "Official service reported an error; no retry",
+            "category": "interface_error",
+            "details": {
+              "diagnostic": {
+                "error": {
+                  "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+                  "codexErrorInfo": "other",
+                  "additionalDetails": null,
+                  "misalignment": null
+                },
+                "willRetry": false,
+                "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+                "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+              }
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        "T1": {
+          "status": "NOT_REACHED"
+        },
+        "T2": {
+          "status": "NOT_REACHED"
+        },
+        "T3": {
+          "status": "NOT_REACHED"
+        },
+        "T4": {
+          "status": "NOT_REACHED"
+        },
+        "EXECUTION": {
+          "status": "NOT_REACHED"
+        },
+        "ACCEPTOR": {
+          "status": "NOT_REACHED"
+        }
+      },
+      "consumed_prefix": false,
+      "stop_after_attempt": true,
+      "feedback": {
+        "failure": {
+          "code": "CODEX_SERVICE_FAILURE",
+          "message": "Official service reported an error; no retry",
+          "category": "interface_error",
+          "details": {
+            "diagnostic": {
+              "error": {
+                "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+                "codexErrorInfo": "other",
+                "additionalDetails": null,
+                "misalignment": null
+              },
+              "willRetry": false,
+              "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+              "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+            }
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "repair_request": "Return native JSON exactly per frozen schema. Do not invent missing information."
+      }
+    },
+    {
+      "attempt": 2,
+      "status": "NOT_ATTEMPTED",
+      "reason": "Trial ended; no transport retry or replacement call",
+      "stages": {
+        "SERVICE": {
+          "status": "NOT_REACHED"
+        },
+        "NATIVE_OUTPUT": {
+          "status": "NOT_REACHED"
+        },
+        "T1": {
+          "status": "NOT_REACHED"
+        },
+        "T2": {
+          "status": "NOT_REACHED"
+        },
+        "T3": {
+          "status": "NOT_REACHED"
+        },
+        "T4": {
+          "status": "NOT_REACHED"
+        },
+        "EXECUTION": {
+          "status": "NOT_REACHED"
+        },
+        "ACCEPTOR": {
+          "status": "NOT_REACHED"
+        }
+      }
+    }
+  ],
+  "budget": {
+    "limit": 2,
+    "charged": 1,
+    "turn_start_requests": 1,
+    "unused": 1,
+    "automatic_transport_retries": 0,
+    "request_max_retries": 0,
+    "stream_max_retries": 0,
+    "charges": [
+      {
+        "attempt": 1,
+        "phase": "initial",
+        "charged_before_invocation": true,
+        "failed_attempt_consumes_budget": true,
+        "timestamp_utc": "2026-10-28T08:35:39.527496+00:00",
+        "capture_digest": "64ece25e5b76aedf5eb4e471dd91c6bfbb602d2896242f00ee231471b1d54779",
+        "reason": "Initial response"
+      }
+    ],
+    "outcomes": [
+      {
+        "attempt": 1,
+        "turn_start_requests": 1,
+        "requested_model": "gpt-6.1-sol",
+        "cli_resolved_alias": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "transport_summary": {
+          "attempt": 1,
+          "source": "online_model",
+          "status": "FAILED",
+          "adapter_retries": 0,
+          "model_service_returned": "UNKNOWN",
+          "service_layer": {
+            "native_model_text_observed": false,
+            "completed_turn_observed": false,
+            "error_notification_observed": true,
+            "error_origin": "not_established",
+            "turn_start_sent": true
+          },
+          "failure": {
+            "code": "CODEX_SERVICE_FAILURE",
+            "message": "Official service reported an error; no retry",
+            "category": "interface_error",
+            "details": {
+              "diagnostic": {
+                "error": {
+                  "message": "{\n  \"error\": {\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'hypotheses', 'properties', 'coordinate_frame'), schema must have a 'type' key.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"text.format.schema\",\n    \"code\": \"invalid_json_schema\"\n  }\n}",
+                  "codexErrorInfo": "other",
+                  "additionalDetails": null,
+                  "misalignment": null
+                },
+                "willRetry": false,
+                "threadId": "01a181a6-af62-7803-9f8b-ddc4401a833e",
+                "turnId": "01a181a6-b525-70f1-bdba-5bbf5089a7e2"
+              }
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          },
+          "elapsed_s": 11.528676141053438
+        },
+        "charged": 1
+      }
+    ],
+    "snapshot_identity": "NOT_EXPOSED",
+    "ended": true,
+    "no_automatic_batch": true
+  },
+  "fatal_stop": null,
+  "elapsed_s": 12.09622167609632,
+  "conditional_single_window_success": false,
+  "simulated_prefix_consumed": false,
+  "model_snapshot": "NOT_EXPOSED",
+  "g2_status": "NOT_EVALUATED_RUNTIME_TRUTH_SEPARATION",
+  "statement": "未获得完整条件式单窗口链路通过。",
+  "no_real_vehicle_control": true,
+  "no_counterfactual_closed_loop_claim": true,
+  "no_g2_pass_claim": true,
+  "future_six_window_batch_launched": false,
+  "ended": true
+}
