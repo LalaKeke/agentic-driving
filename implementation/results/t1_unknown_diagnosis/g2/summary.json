@@ -1,0 +1,1140 @@
+{
+  "analysis": "OFFLINE_G2_PARTIAL_QUANTITIES_NO_PASS_THRESHOLD",
+  "valid_structured_responses": 27,
+  "unique_windows": 6,
+  "model_attempts": 28,
+  "nonresponse_attempts": 1,
+  "caveats": [
+    "Repeated responses/revisions are not independent samples; no dataset-level success rate or statistical CI.",
+    "Object-row missing rate describes declared objects; model object granularity differs, so it is not detection recall.",
+    "Fixed-window targets retain all 27 response slots plus a separately reported service-failure slot; four original focal targets are preserved, exploratory targets selected post-hoc.",
+    "Associations are assistant non-blind visual review of semantic appearance and official projected labels; no nearest-error matching; ambiguous/groups retain no score.",
+    "Road map is total drivable extent within original ROI, while model road can be a conservative local patch. IoU/Hausdorff are extent diagnostics, not lane accuracy.",
+    "Current annotation velocity is the slope of bracketing ~2Hz positions, not instantaneous measured velocity.",
+    "Future occupancy reference is annotation-linear circumscribed-body surrogate; area overlap is not continuous-time coverage probability or safety.",
+    "All metric estimates and uncertainty ranges remain conditional and uncalibrated; T1 failures remain unchanged."
+  ],
+  "all": {
+    "response_count": 27,
+    "declared_object_rows": 170,
+    "object_position_available": 51,
+    "object_position_missing": 119,
+    "object_position_missing_rate": 0.7,
+    "object_velocity_available": 19,
+    "object_velocity_missing": 151,
+    "object_velocity_missing_rate": 0.888235294117647,
+    "uniquely_matched_object_rows": 51,
+    "object_position_numeric_but_unscored": 24,
+    "object_velocity_numeric_but_unscored": 7,
+    "position_error_m": {
+      "n": 27,
+      "mean": 3.4386663334409326,
+      "median": 2.0728476773502305,
+      "min": 0.2278084232264724,
+      "max": 16.314543999287242
+    },
+    "velocity_vector_error_mps": {
+      "n": 12,
+      "mean": 1.1045761084459462,
+      "median": 0.7946406175594332,
+      "min": 0.0,
+      "max": 4.075170550021675
+    },
+    "speed_error_mps": {
+      "n": 12,
+      "mean": 0.7619570233837996,
+      "median": 0.3074468631142945,
+      "min": 0.0,
+      "max": 4.045249836519713
+    },
+    "road_available": 16,
+    "road_missing": 11,
+    "road_missing_rate": 0.4074074074074074,
+    "road_extent_iou": {
+      "n": 16,
+      "mean": 0.22465786321893283,
+      "median": 0.19333994318401426,
+      "min": 0.0830345635792603,
+      "max": 0.5873834182030468
+    },
+    "road_outside_fraction": {
+      "n": 16,
+      "mean": 0.15928187244835637,
+      "median": 0.13005156184486671,
+      "min": 0.0,
+      "max": 0.4898485080829444
+    },
+    "road_boundary_extent_hausdorff_m": {
+      "n": 16,
+      "mean": 25.709056707659705,
+      "median": 25.907214645428592,
+      "min": 7.3,
+      "max": 38.009077863057925
+    },
+    "fixed_window_target_rows": 27,
+    "fixed_window_target_position_scored": 7,
+    "fixed_window_target_position_unscored": 20,
+    "fixed_window_target_position_unscored_rate": 0.7407407407407407,
+    "fixed_window_target_velocity_scored": 4,
+    "future_occupancy_available": 23,
+    "future_occupancy_missing": 147,
+    "future_surrogate_covered_area_fraction": {
+      "n": 8,
+      "mean": 0.998647252201807,
+      "median": 1.0,
+      "min": 0.9891780176144553,
+      "max": 1.0
+    },
+    "future_surrogate_area_ratio": {
+      "n": 8,
+      "mean": 179.61029448075183,
+      "median": 89.48696820018266,
+      "min": 25.5139799520129,
+      "max": 793.4941962951384
+    }
+  },
+  "by_scene": {
+    "construction_obstacle": {
+      "response_count": 4,
+      "declared_object_rows": 28,
+      "object_position_available": 6,
+      "object_position_missing": 22,
+      "object_position_missing_rate": 0.7857142857142857,
+      "object_velocity_available": 0,
+      "object_velocity_missing": 28,
+      "object_velocity_missing_rate": 1.0,
+      "uniquely_matched_object_rows": 4,
+      "object_position_numeric_but_unscored": 4,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 2,
+        "mean": 1.5145797170188817,
+        "median": 1.5145797170188817,
+        "min": 0.9563117566875331,
+        "max": 2.0728476773502305
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 2,
+      "road_missing": 2,
+      "road_missing_rate": 0.5,
+      "road_extent_iou": {
+        "n": 2,
+        "mean": 0.12362261834524431,
+        "median": 0.12362261834524431,
+        "min": 0.12174985494371854,
+        "max": 0.12549538174677008
+      },
+      "road_outside_fraction": {
+        "n": 2,
+        "mean": 0.45367628515615166,
+        "median": 0.45367628515615166,
+        "min": 0.4175040622293589,
+        "max": 0.4898485080829444
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 2,
+        "mean": 26.876580813028216,
+        "median": 26.876580813028216,
+        "min": 26.727752357956987,
+        "max": 27.025409268099445
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 0,
+      "fixed_window_target_position_unscored": 4,
+      "fixed_window_target_position_unscored_rate": 1.0,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 4,
+      "future_occupancy_missing": 24,
+      "future_surrogate_covered_area_fraction": {
+        "n": 2,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 2,
+        "mean": 27.90441453905609,
+        "median": 27.90441453905609,
+        "min": 25.5139799520129,
+        "max": 30.294849126099283
+      }
+    },
+    "day_pedestrian_crossing": {
+      "response_count": 6,
+      "declared_object_rows": 41,
+      "object_position_available": 16,
+      "object_position_missing": 25,
+      "object_position_missing_rate": 0.6097560975609756,
+      "object_velocity_available": 7,
+      "object_velocity_missing": 34,
+      "object_velocity_missing_rate": 0.8292682926829268,
+      "uniquely_matched_object_rows": 12,
+      "object_position_numeric_but_unscored": 8,
+      "object_velocity_numeric_but_unscored": 3,
+      "position_error_m": {
+        "n": 8,
+        "mean": 0.865019565530178,
+        "median": 0.7757394391202367,
+        "min": 0.2903091343762603,
+        "max": 1.1896877901327223
+      },
+      "velocity_vector_error_mps": {
+        "n": 4,
+        "mean": 0.0010013574882934701,
+        "median": 0.0010013574882934701,
+        "min": 0.0,
+        "max": 0.0020027149765869403
+      },
+      "speed_error_mps": {
+        "n": 4,
+        "mean": 0.0010013574882934701,
+        "median": 0.0010013574882934701,
+        "min": 0.0,
+        "max": 0.0020027149765869403
+      },
+      "road_available": 4,
+      "road_missing": 2,
+      "road_missing_rate": 0.3333333333333333,
+      "road_extent_iou": {
+        "n": 4,
+        "mean": 0.1043991554835958,
+        "median": 0.10830486410387682,
+        "min": 0.0830345635792603,
+        "max": 0.11795233014736925
+      },
+      "road_outside_fraction": {
+        "n": 4,
+        "mean": 0.21678634070909747,
+        "median": 0.2109426797766587,
+        "min": 0.12665323406550014,
+        "max": 0.3186067692175723
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 4,
+        "mean": 35.04198953950771,
+        "median": 35.04975459164195,
+        "min": 34.71310991541956,
+        "max": 35.35533905932737
+      },
+      "fixed_window_target_rows": 6,
+      "fixed_window_target_position_scored": 0,
+      "fixed_window_target_position_unscored": 6,
+      "fixed_window_target_position_unscored_rate": 1.0,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 4,
+      "future_occupancy_missing": 37,
+      "future_surrogate_covered_area_fraction": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "future_surrogate_area_ratio": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "exploratory_parking_access": {
+      "response_count": 6,
+      "declared_object_rows": 28,
+      "object_position_available": 9,
+      "object_position_missing": 19,
+      "object_position_missing_rate": 0.6785714285714286,
+      "object_velocity_available": 2,
+      "object_velocity_missing": 26,
+      "object_velocity_missing_rate": 0.9285714285714286,
+      "uniquely_matched_object_rows": 12,
+      "object_position_numeric_but_unscored": 1,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 8,
+        "mean": 7.022517319928673,
+        "median": 4.650189149611704,
+        "min": 2.4377436295118087,
+        "max": 16.314543999287242
+      },
+      "velocity_vector_error_mps": {
+        "n": 2,
+        "mean": 0.2232282771633008,
+        "median": 0.2232282771633008,
+        "min": 0.2232282771633008,
+        "max": 0.2232282771633008
+      },
+      "speed_error_mps": {
+        "n": 2,
+        "mean": 0.21156541492297998,
+        "median": 0.21156541492297998,
+        "min": 0.21156541492297998,
+        "max": 0.21156541492297998
+      },
+      "road_available": 4,
+      "road_missing": 2,
+      "road_missing_rate": 0.3333333333333333,
+      "road_extent_iou": {
+        "n": 4,
+        "mean": 0.27085124105693803,
+        "median": 0.27131053557518214,
+        "min": 0.2519481688673568,
+        "max": 0.2888357242100311
+      },
+      "road_outside_fraction": {
+        "n": 4,
+        "mean": 0.14519613320135244,
+        "median": 0.14612713078007494,
+        "min": 0.12221800679323047,
+        "max": 0.1663122644520294
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 4,
+        "mean": 20.096861193387994,
+        "median": 20.28712249252504,
+        "min": 18.44867652121094,
+        "max": 21.364523267290963
+      },
+      "fixed_window_target_rows": 6,
+      "fixed_window_target_position_scored": 4,
+      "fixed_window_target_position_unscored": 2,
+      "fixed_window_target_position_unscored_rate": 0.3333333333333333,
+      "fixed_window_target_velocity_scored": 2,
+      "future_occupancy_available": 8,
+      "future_occupancy_missing": 20,
+      "future_surrogate_covered_area_fraction": {
+        "n": 4,
+        "mean": 0.9972945044036139,
+        "median": 1.0,
+        "min": 0.9891780176144553,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 4,
+        "mean": 122.67992342315061,
+        "median": 89.48696820018266,
+        "min": 58.716883090766885,
+        "max": 253.02887420147022
+      }
+    },
+    "exploratory_straight_road": {
+      "response_count": 4,
+      "declared_object_rows": 19,
+      "object_position_available": 3,
+      "object_position_missing": 16,
+      "object_position_missing_rate": 0.8421052631578947,
+      "object_velocity_available": 4,
+      "object_velocity_missing": 15,
+      "object_velocity_missing_rate": 0.7894736842105263,
+      "uniquely_matched_object_rows": 0,
+      "object_position_numeric_but_unscored": 3,
+      "object_velocity_numeric_but_unscored": 4,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 3,
+      "road_missing": 1,
+      "road_missing_rate": 0.25,
+      "road_extent_iou": {
+        "n": 3,
+        "mean": 0.4437515436553665,
+        "median": 0.5299151701504218,
+        "min": 0.21395604261263101,
+        "max": 0.5873834182030468
+      },
+      "road_outside_fraction": {
+        "n": 3,
+        "mean": 0.06370196756500392,
+        "median": 0.07710129366824583,
+        "min": 0.0,
+        "max": 0.1140046090267659
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 3,
+        "mean": 13.328244758752868,
+        "median": 7.8,
+        "min": 7.3,
+        "max": 24.88473427625861
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 0,
+      "fixed_window_target_position_unscored": 4,
+      "fixed_window_target_position_unscored_rate": 1.0,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 4,
+      "future_occupancy_missing": 15,
+      "future_surrogate_covered_area_fraction": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "future_surrogate_area_ratio": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "intersection_cross_traffic": {
+      "response_count": 4,
+      "declared_object_rows": 32,
+      "object_position_available": 12,
+      "object_position_missing": 20,
+      "object_position_missing_rate": 0.625,
+      "object_velocity_available": 6,
+      "object_velocity_missing": 26,
+      "object_velocity_missing_rate": 0.8125,
+      "uniquely_matched_object_rows": 14,
+      "object_position_numeric_but_unscored": 6,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 6,
+        "mean": 2.481263355908357,
+        "median": 1.5196359863965676,
+        "min": 0.2278084232264724,
+        "max": 6.4201802495861084
+      },
+      "velocity_vector_error_mps": {
+        "n": 6,
+        "mean": 2.1340752195119292,
+        "median": 1.947285069876648,
+        "min": 1.3660529579555656,
+        "max": 4.075170550021675
+      },
+      "speed_error_mps": {
+        "n": 6,
+        "mean": 1.4527246701344099,
+        "median": 1.0932914876933957,
+        "min": 0.403328311305609,
+        "max": 4.045249836519713
+      },
+      "road_available": 2,
+      "road_missing": 2,
+      "road_missing_rate": 0.5,
+      "road_extent_iou": {
+        "n": 2,
+        "mean": 0.1486295932819555,
+        "median": 0.1486295932819555,
+        "min": 0.12453534280851349,
+        "max": 0.1727238437553975
+      },
+      "road_outside_fraction": {
+        "n": 2,
+        "mean": 7.320239480176166e-17,
+        "median": 7.320239480176166e-17,
+        "min": 4.920353379940916e-17,
+        "max": 9.720125580411416e-17
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 2,
+        "mean": 35.98246577787861,
+        "median": 35.98246577787861,
+        "min": 33.95585369269929,
+        "max": 38.009077863057925
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 2,
+      "fixed_window_target_position_unscored": 2,
+      "fixed_window_target_position_unscored_rate": 0.5,
+      "fixed_window_target_velocity_scored": 2,
+      "future_occupancy_available": 2,
+      "future_occupancy_missing": 30,
+      "future_surrogate_covered_area_fraction": {
+        "n": 1,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 1,
+        "mean": 96.85963678016165,
+        "median": 96.85963678016165,
+        "min": 96.85963678016165,
+        "max": 96.85963678016165
+      }
+    },
+    "night_pedestrian_crossing": {
+      "response_count": 3,
+      "declared_object_rows": 22,
+      "object_position_available": 5,
+      "object_position_missing": 17,
+      "object_position_missing_rate": 0.7727272727272727,
+      "object_velocity_available": 0,
+      "object_velocity_missing": 22,
+      "object_velocity_missing_rate": 1.0,
+      "uniquely_matched_object_rows": 9,
+      "object_position_numeric_but_unscored": 2,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 3,
+        "mean": 3.9423187832488256,
+        "median": 4.310813022628237,
+        "min": 2.879614742642729,
+        "max": 4.636528584475511
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 1,
+      "road_missing": 2,
+      "road_missing_rate": 0.6666666666666666,
+      "road_extent_iou": {
+        "n": 1,
+        "mean": 0.21776517112029067,
+        "median": 0.21776517112029067,
+        "min": 0.21776517112029067,
+        "max": 0.21776517112029067
+      },
+      "road_outside_fraction": {
+        "n": 1,
+        "mean": 0.002121590524587303,
+        "median": 0.002121590524587303,
+        "min": 0.002121590524587303,
+        "max": 0.002121590524587303
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 1,
+        "mean": 25.086676932900197,
+        "median": 25.086676932900197,
+        "min": 25.086676932900197,
+        "max": 25.086676932900197
+      },
+      "fixed_window_target_rows": 3,
+      "fixed_window_target_position_scored": 1,
+      "fixed_window_target_position_unscored": 2,
+      "fixed_window_target_position_unscored_rate": 0.6666666666666666,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 1,
+      "future_occupancy_missing": 21,
+      "future_surrogate_covered_area_fraction": {
+        "n": 1,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 1,
+        "mean": 793.4941962951384,
+        "median": 793.4941962951384,
+        "min": 793.4941962951384,
+        "max": 793.4941962951384
+      }
+    }
+  },
+  "by_group": {
+    "conditional_trials/exploratory_two": {
+      "response_count": 4,
+      "declared_object_rows": 12,
+      "object_position_available": 7,
+      "object_position_missing": 5,
+      "object_position_missing_rate": 0.4166666666666667,
+      "object_velocity_available": 4,
+      "object_velocity_missing": 8,
+      "object_velocity_missing_rate": 0.6666666666666666,
+      "uniquely_matched_object_rows": 4,
+      "object_position_numeric_but_unscored": 3,
+      "object_velocity_numeric_but_unscored": 4,
+      "position_error_m": {
+        "n": 4,
+        "mean": 6.904273275082386,
+        "median": 4.650189149611704,
+        "min": 2.4377436295118087,
+        "max": 15.878971171594328
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 4,
+      "road_missing": 0,
+      "road_missing_rate": 0.0,
+      "road_extent_iou": {
+        "n": 4,
+        "mean": 0.41216044078473085,
+        "median": 0.4046550880342599,
+        "min": 0.2519481688673568,
+        "max": 0.5873834182030468
+      },
+      "road_outside_fraction": {
+        "n": 4,
+        "mean": 0.1227170141928186,
+        "median": 0.12372724932549958,
+        "min": 0.07710129366824583,
+        "max": 0.1663122644520294
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 4,
+        "mean": 13.484634542686441,
+        "median": 13.12433826060547,
+        "min": 7.3,
+        "max": 20.38986164953483
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 2,
+      "fixed_window_target_position_unscored": 2,
+      "fixed_window_target_position_unscored_rate": 0.5,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 8,
+      "future_occupancy_missing": 4,
+      "future_surrogate_covered_area_fraction": {
+        "n": 2,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 2,
+        "mean": 172.8384470647732,
+        "median": 172.8384470647732,
+        "min": 92.64801992807617,
+        "max": 253.02887420147022
+      }
+    },
+    "conditional_trials/original_four": {
+      "response_count": 7,
+      "declared_object_rows": 36,
+      "object_position_available": 30,
+      "object_position_missing": 6,
+      "object_position_missing_rate": 0.16666666666666666,
+      "object_velocity_available": 6,
+      "object_velocity_missing": 30,
+      "object_velocity_missing_rate": 0.8333333333333334,
+      "uniquely_matched_object_rows": 15,
+      "object_position_numeric_but_unscored": 15,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 15,
+        "mean": 2.2149478046406146,
+        "median": 1.2327543454473096,
+        "min": 0.2278084232264724,
+        "max": 6.4201802495861084
+      },
+      "velocity_vector_error_mps": {
+        "n": 6,
+        "mean": 2.1340752195119292,
+        "median": 1.947285069876648,
+        "min": 1.3660529579555656,
+        "max": 4.075170550021675
+      },
+      "speed_error_mps": {
+        "n": 6,
+        "mean": 1.4527246701344099,
+        "median": 1.0932914876933957,
+        "min": 0.403328311305609,
+        "max": 4.045249836519713
+      },
+      "road_available": 7,
+      "road_missing": 0,
+      "road_missing_rate": 0.0,
+      "road_extent_iou": {
+        "n": 7,
+        "mean": 0.13760806972875997,
+        "median": 0.12453534280851349,
+        "min": 0.0830345635792603,
+        "max": 0.21776517112029067
+      },
+      "road_outside_fraction": {
+        "n": 7,
+        "mean": 0.17630141893155346,
+        "median": 0.12665323406550014,
+        "min": 4.920353379940916e-17,
+        "max": 0.4898485080829444
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 7,
+        "mean": 31.52698440289591,
+        "median": 33.95585369269929,
+        "min": 25.086676932900197,
+        "max": 38.009077863057925
+      },
+      "fixed_window_target_rows": 7,
+      "fixed_window_target_position_scored": 3,
+      "fixed_window_target_position_unscored": 4,
+      "fixed_window_target_position_unscored_rate": 0.5714285714285714,
+      "fixed_window_target_velocity_scored": 2,
+      "future_occupancy_available": 9,
+      "future_occupancy_missing": 27,
+      "future_surrogate_covered_area_fraction": {
+        "n": 4,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 4,
+        "mean": 236.54066553835307,
+        "median": 63.577242953130465,
+        "min": 25.5139799520129,
+        "max": 793.4941962951384
+      }
+    },
+    "temporal_trials/two_windows": {
+      "response_count": 4,
+      "declared_object_rows": 17,
+      "object_position_available": 14,
+      "object_position_missing": 3,
+      "object_position_missing_rate": 0.17647058823529413,
+      "object_velocity_available": 9,
+      "object_velocity_missing": 8,
+      "object_velocity_missing_rate": 0.47058823529411764,
+      "uniquely_matched_object_rows": 8,
+      "object_position_numeric_but_unscored": 6,
+      "object_velocity_numeric_but_unscored": 3,
+      "position_error_m": {
+        "n": 8,
+        "mean": 4.000335104120803,
+        "median": 1.8137157098222656,
+        "min": 0.2903091343762603,
+        "max": 16.314543999287242
+      },
+      "velocity_vector_error_mps": {
+        "n": 6,
+        "mean": 0.07507699737996258,
+        "median": 0.0020027149765869403,
+        "min": 0.0,
+        "max": 0.2232282771633008
+      },
+      "speed_error_mps": {
+        "n": 6,
+        "mean": 0.07118937663318897,
+        "median": 0.0020027149765869403,
+        "min": 0.0,
+        "max": 0.21156541492297998
+      },
+      "road_available": 4,
+      "road_missing": 0,
+      "road_missing_rate": 0.0,
+      "road_extent_iou": {
+        "n": 4,
+        "mean": 0.19216787941251273,
+        "median": 0.190120756361213,
+        "min": 0.09959428071759381,
+        "max": 0.2888357242100311
+      },
+      "road_outside_fraction": {
+        "n": 4,
+        "mean": 0.20588299247038835,
+        "median": 0.1913535969353753,
+        "min": 0.12221800679323047,
+        "max": 0.3186067692175723
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 4,
+        "mean": 27.958186013819887,
+        "median": 28.14651083021846,
+        "min": 20.18438333551525,
+        "max": 35.35533905932737
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 2,
+      "fixed_window_target_position_unscored": 2,
+      "fixed_window_target_position_unscored_rate": 0.5,
+      "fixed_window_target_velocity_scored": 2,
+      "future_occupancy_available": 6,
+      "future_occupancy_missing": 11,
+      "future_surrogate_covered_area_fraction": {
+        "n": 2,
+        "mean": 0.9945890088072277,
+        "median": 0.9945890088072277,
+        "min": 0.9891780176144553,
+        "max": 1.0
+      },
+      "future_surrogate_area_ratio": {
+        "n": 2,
+        "mean": 72.52139978152802,
+        "median": 72.52139978152802,
+        "min": 58.716883090766885,
+        "max": 86.32591647228915
+      }
+    },
+    "v22_trials/exploratory_two": {
+      "response_count": 4,
+      "declared_object_rows": 29,
+      "object_position_available": 0,
+      "object_position_missing": 29,
+      "object_position_missing_rate": 1.0,
+      "object_velocity_available": 0,
+      "object_velocity_missing": 29,
+      "object_velocity_missing_rate": 1.0,
+      "uniquely_matched_object_rows": 4,
+      "object_position_numeric_but_unscored": 0,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 1,
+      "road_missing": 3,
+      "road_missing_rate": 0.75,
+      "road_extent_iou": {
+        "n": 1,
+        "mean": 0.21395604261263101,
+        "median": 0.21395604261263101,
+        "min": 0.21395604261263101,
+        "max": 0.21395604261263101
+      },
+      "road_outside_fraction": {
+        "n": 1,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 1,
+        "mean": 24.88473427625861,
+        "median": 24.88473427625861,
+        "min": 24.88473427625861,
+        "max": 24.88473427625861
+      },
+      "fixed_window_target_rows": 4,
+      "fixed_window_target_position_scored": 0,
+      "fixed_window_target_position_unscored": 4,
+      "fixed_window_target_position_unscored_rate": 1.0,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 0,
+      "future_occupancy_missing": 29,
+      "future_surrogate_covered_area_fraction": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "future_surrogate_area_ratio": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "v22_trials/original_four": {
+      "response_count": 8,
+      "declared_object_rows": 76,
+      "object_position_available": 0,
+      "object_position_missing": 76,
+      "object_position_missing_rate": 1.0,
+      "object_velocity_available": 0,
+      "object_velocity_missing": 76,
+      "object_velocity_missing_rate": 1.0,
+      "uniquely_matched_object_rows": 20,
+      "object_position_numeric_but_unscored": 0,
+      "object_velocity_numeric_but_unscored": 0,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "speed_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_available": 0,
+      "road_missing": 8,
+      "road_missing_rate": 1.0,
+      "road_extent_iou": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_outside_fraction": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "road_boundary_extent_hausdorff_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "fixed_window_target_rows": 8,
+      "fixed_window_target_position_scored": 0,
+      "fixed_window_target_position_unscored": 8,
+      "fixed_window_target_position_unscored_rate": 1.0,
+      "fixed_window_target_velocity_scored": 0,
+      "future_occupancy_available": 0,
+      "future_occupancy_missing": 76,
+      "future_surrogate_covered_area_fraction": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "future_surrogate_area_ratio": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    }
+  },
+  "service_failure": {
+    "group": "conditional_trials/original_four",
+    "scene_type": "night_pedestrian_crossing",
+    "stage": "model",
+    "count": 1,
+    "included_in_27_valid_response_statistics": false,
+    "not_treated_as_null_model_json": true
+  },
+  "by_gt_distance": {
+    "0_to_10m": {
+      "object_rows": 12,
+      "position_error_m": {
+        "n": 8,
+        "mean": 0.865019565530178,
+        "median": 0.7757394391202367,
+        "min": 0.2903091343762603,
+        "max": 1.1896877901327223
+      },
+      "velocity_vector_error_mps": {
+        "n": 4,
+        "mean": 0.0010013574882934701,
+        "median": 0.0010013574882934701,
+        "min": 0.0,
+        "max": 0.0020027149765869403
+      }
+    },
+    "10_to_20m": {
+      "object_rows": 21,
+      "position_error_m": {
+        "n": 11,
+        "mean": 5.735766575154401,
+        "median": 4.310813022628237,
+        "min": 0.2278084232264724,
+        "max": 16.314543999287242
+      },
+      "velocity_vector_error_mps": {
+        "n": 4,
+        "mean": 1.7343288346705208,
+        "median": 1.7343288346705208,
+        "min": 1.3660529579555656,
+        "max": 2.102604711385476
+      }
+    },
+    "20_to_40m": {
+      "object_rows": 15,
+      "position_error_m": {
+        "n": 7,
+        "mean": 3.003412074945646,
+        "median": 2.879614742642729,
+        "min": 1.2327543454473096,
+        "max": 4.636528584475511
+      },
+      "velocity_vector_error_mps": {
+        "n": 3,
+        "mean": 0.7461406608981404,
+        "median": 0.2232282771633008,
+        "min": 0.2232282771633008,
+        "max": 1.7919654283678195
+      }
+    },
+    "40_to_80m": {
+      "object_rows": 3,
+      "position_error_m": {
+        "n": 1,
+        "mean": 1.8065176273458254,
+        "median": 1.8065176273458254,
+        "min": 1.8065176273458254,
+        "max": 1.8065176273458254
+      },
+      "velocity_vector_error_mps": {
+        "n": 1,
+        "mean": 4.075170550021675,
+        "median": 4.075170550021675,
+        "min": 4.075170550021675,
+        "max": 4.075170550021675
+      }
+    },
+    "80m_plus": {
+      "object_rows": 0,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "UNMATCHED_OR_UNAVAILABLE": {
+      "object_rows": 119,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    }
+  },
+  "by_gt_visibility": {
+    "UNMATCHED_OR_UNAVAILABLE": {
+      "object_rows": 119,
+      "position_error_m": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      },
+      "velocity_vector_error_mps": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "v60-80": {
+      "object_rows": 6,
+      "position_error_m": {
+        "n": 4,
+        "mean": 3.068746713013494,
+        "median": 3.0687467130134936,
+        "min": 2.4377436295118087,
+        "max": 3.699749796515179
+      },
+      "velocity_vector_error_mps": {
+        "n": 2,
+        "mean": 0.2232282771633008,
+        "median": 0.2232282771633008,
+        "min": 0.2232282771633008,
+        "max": 0.2232282771633008
+      }
+    },
+    "v80-100": {
+      "object_rows": 45,
+      "position_error_m": {
+        "n": 23,
+        "mean": 3.503000180471792,
+        "median": 1.2327543454473096,
+        "min": 0.2278084232264724,
+        "max": 16.314543999287242
+      },
+      "velocity_vector_error_mps": {
+        "n": 10,
+        "mean": 1.2808456747024752,
+        "median": 1.3660529579555656,
+        "min": 0.0,
+        "max": 4.075170550021675
+      }
+    }
+  },
+  "future_evaluation_status_counts": {
+    "GT_FUTURE_NOT_FULLY_BRACKETED": 1,
+    "MODEL_OCCUPANCY_MISSING": 42,
+    "NO_UNIQUE_ASSOCIATION": 119,
+    "SCORED_ANNOTATION_SURROGATE": 8
+  }
+}
