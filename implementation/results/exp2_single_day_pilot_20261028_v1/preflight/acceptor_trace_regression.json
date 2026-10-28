@@ -1,0 +1,51 @@
+{
+  "source": "synthetic_fixture",
+  "real_model_calls": 0,
+  "baseline_acceptor_sha256": "59dd07d588f7fa205a169d8a6d2555cddb7cf1890e39c3969ed7cd0fb2a25145",
+  "new_acceptor_sha256": "3fe41cd5d4641f17a7bc697489ad0eeb417c14345e53e486cf2bf7ada7ffa528",
+  "T4": "PASS",
+  "old_acceptor": {
+    "acceptance_version": "single_window_physical_v1",
+    "status": "NOT_ACCEPTED",
+    "strict_live_physical_success": false,
+    "software_success": false,
+    "source": "synthetic_fixture",
+    "motion_class": "NOT_EXECUTED",
+    "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+    "multi_round_closed_loop_success": false,
+    "ground_truth_correctness": "NOT_EVALUATED",
+    "released_prefix_s": 0,
+    "checks": {},
+    "reasons": [
+      {
+        "code": "PROVENANCE_MISMATCH",
+        "message": "Scene and model provenance differ."
+      }
+    ],
+    "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety."
+  },
+  "new_acceptor": {
+    "acceptance_version": "single_window_physical_v1",
+    "status": "SYNTHETIC_SOFTWARE_SUCCESS",
+    "strict_live_physical_success": false,
+    "software_success": true,
+    "source": "synthetic_fixture",
+    "motion_class": "STATIONARY_HOLD",
+    "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+    "multi_round_closed_loop_success": false,
+    "ground_truth_correctness": "NOT_EVALUATED",
+    "released_prefix_s": 0.2,
+    "checks": {
+      "acquisition_and_model_identity": true,
+      "t1_t2_reconstructed": true,
+      "independent_t4_passed": true,
+      "execution_receipt_and_integration": true
+    },
+    "reasons": [],
+    "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety.",
+    "prefix_arc_length_m": 2.3603332097187178e-06,
+    "prefix_center_displacement_m": 2.3603332097721363e-06
+  },
+  "model_provenance_unchanged": true,
+  "hard_physical_constraints_changed": false
+}

@@ -113,8 +113,18 @@ def assess_round(result, capture):
                  'CAPTURE_CHANGED', 'Only the recorded revision may change within one observation.')
         _require(scene.get('metadata') == expected_capture['metadata'],
                  'CAPTURE_CHANGED', 'Scene identity differs from its acquired observation.')
-        _require(scene.get('provenance') == provenance,
-                 'PROVENANCE_MISMATCH', 'Scene and model provenance differ.')
+        scene_provenance = deepcopy(scene.get('provenance'))
+        if provenance.get('agent_output_contract') == '3.0.0-exp2':
+            # T1 appends its deterministic source-to-grid trace. It is not a
+            # model/provider provenance field. The complete reconstructed T1
+            # scene below must still match it byte-value-equivalently.
+            _require(isinstance(scene_provenance, dict)
+                     and isinstance(scene_provenance.get('metric_contract_trace'), dict)
+                     and 'metric_contract_trace' not in provenance,
+                     'PROVENANCE_MISMATCH', 'Native exp2 model provenance and deterministic T1 trace must remain distinct.')
+            scene_provenance.pop('metric_contract_trace')
+        _require(scene_provenance == provenance,
+                 'PROVENANCE_MISMATCH', 'Scene and original model provenance differ.')
         _require(provenance.get('output_digest') == digest(output),
                  'OUTPUT_DIGEST_MISMATCH', 'Model output differs from its provenance digest.')
         verdict['checks']['acquisition_and_model_identity'] = True
