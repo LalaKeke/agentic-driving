@@ -16,8 +16,11 @@ def main():
     g=sub.add_parser('g2');g.add_argument('--records',nargs='+',required=True);g.add_argument('--truth',required=True);g.add_argument('--config',required=True);g.add_argument('--out',required=True)
     args=parser.parse_args()
     if args.command=='g2':
-        from .g2 import evaluate
-        result=evaluate([load(p) for p in args.records],load(args.truth),load(args.config));Path(args.out).write_text(json.dumps(result,ensure_ascii=False,indent=2));print(args.out);return
+        from .g2_metric import evaluate
+        from .evidence_io import check_new_destination, write_json_new
+        check_new_destination(args.out,readonly_inputs=[*args.records,args.truth,args.config])
+        result=evaluate([load(p) for p in args.records],load(args.truth),load(args.config))
+        write_json_new(args.out,result);print(args.out);return
     log=RunLog(args.runs)
     if args.command=='demo':
         agent=ScriptedAgent();loop=ClosedLoop(agent,log,True);speed=6.;results=[];t=100.

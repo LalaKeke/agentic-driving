@@ -2,7 +2,7 @@ from copy import deepcopy
 from .contracts import validate,need,grid,digest,model_contract
 from .geometry import polygon
 
-def construct(capture,output,provenance,allow_synthetic=False):
+def _construct_legacy(capture,output,provenance,allow_synthetic=False):
     validate('capture_v2.schema.json',capture);validate(model_contract(provenance.get('agent_output_contract','2.0.0'))[0],output)
     m=capture['metadata'];h=output['hypotheses'];d=output['decision'];times=grid(m)
     need(provenance['source']=='online_model' or (allow_synthetic and provenance['source']=='synthetic_fixture'),'SOURCE','Synthetic input requires explicit test mode')
@@ -71,3 +71,11 @@ def construct(capture,output,provenance,allow_synthetic=False):
     need(capture['vehicle']['center_to_rear_axle_m']<=capture['vehicle']['rear_m'],'VEHICLE','Rear axle outside vehicle')
     return dict(metadata=deepcopy(m),capture=deepcopy(capture),decision=deepcopy(d),hypotheses=deepcopy(h),provenance=deepcopy(provenance),
                 claim='conditional_on_model_hypotheses_and_whole_interval_coverage; uncertainty is not calibrated probability')
+
+
+def construct(capture,output,provenance,allow_synthetic=False):
+    """Explicit experimental selection; legacy defaults and guard body retained."""
+    if provenance.get('agent_output_contract')=='3.0.0-exp1':
+        from .metric_contract import construct as construct_metric
+        return construct_metric(capture,output,provenance,allow_synthetic)
+    return _construct_legacy(capture,output,provenance,allow_synthetic)

@@ -38,6 +38,7 @@ def grid(meta):
 
 
 def model_contract(version='2.0.0'):
+    if version=='3.0.0-exp1':return 'agent_output_v3_exp1.schema.json','driving_v3_exp1'
     need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown explicit model output contract')
     return ('agent_output_v2.schema.json','driving_v2') if version=='2.0.0' else ('agent_output_v2_1.schema.json','driving_v2_1')
 
@@ -45,14 +46,26 @@ def model_contract(version='2.0.0'):
 def resolve_prompt(version='2.0.0',requested=None):
     """Explicit prompt-only revision; the selected output schema stays unchanged."""
     schema,default=model_contract(version)
-    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3')}
+    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3'),'3.0.0-exp1':('driving_v3_exp1',)}
     prompt=requested or default
     need(prompt in allowed[version],'PROMPT_CONTRACT','Prompt and output contract are incompatible')
     return schema,prompt
 
 
-def planning_contract(capture):
+def planning_contract(capture,version='2.0.0'):
     """Deterministic tool requirements, never additional environment facts."""
+    if version=='3.0.0-exp1':
+        from .metric_contract import MEASUREMENT_SEMANTICS,COVERAGE_PROFILE
+        result=planning_contract(capture)
+        result['refinement_grid']=result.pop('occupancy_grid')
+        result['source_coverage_profile']=COVERAGE_PROFILE
+        result['source_coverage_kind']='whole_interval_body_envelope'
+        result['measurement_semantics']=deepcopy(MEASUREMENT_SEMANTICS)
+        result['coverage_requirement']='Sources may span coarse whole intervals. Each declared scenario must cover the entire horizon without gaps. Each source must already enclose the complete actor BODY throughout its closed source interval. The tools retain all closed-intersecting source sets during refinement and never forecast from velocity. Null, placeholders and missing adverse modes remain failures.'
+        result['alignment_requirement']='Actor state_time_id equals the trusted reference. frame_ids/time_ids are index-paired original observations of that actor, not state epochs. Asynchronous evidence requires model-proposed evidence positions, motion bounds covering all declared scenarios, explicit scoped premises and a residual included in the one total actor residual; no small-dt or ego-only exemption.'
+        result['unknown_requirement']='Bind unknown kind/object/space/time and premises/scenarios explicitly. No information, inexpressible coverage or no finite bound still blocks planning. No relevance pruning or arbitrary distance cutoff is enabled.'
+        return result
+    need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown planning contract version')
     m=capture['metadata'];times=grid(m)
     return dict(target_region_semantics='Allowed vehicle CENTER region for the entire planning horizon, including initial center; not a terminal goal box',
                 initial_center_m=[capture['ego']['x_m'],capture['ego']['y_m']],

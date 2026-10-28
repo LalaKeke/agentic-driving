@@ -5,6 +5,10 @@ from .contracts import artifact,identity,need,grid,finite,validate,digest
 from .geometry import polygon,planes,disk_radius,rear_state,center_state,integrate,obstacles
 
 def verify(scene,trajectory):
+    if (scene.get('provenance',{}).get('agent_output_contract')=='3.0.0-exp1'
+            or 'metric_contract_trace' in scene.get('provenance',{})):
+        from .metric_contract import validate_scene
+        validate_scene(scene)
     validate('scene_v2.schema.json',scene);validate('trajectory_v2.schema.json',trajectory)
     finite(trajectory);identity(scene,trajectory)
     cap=scene['capture'];m=scene['metadata'];v=cap['vehicle'];d=scene['decision'];pts=trajectory['points'];times=grid(m)

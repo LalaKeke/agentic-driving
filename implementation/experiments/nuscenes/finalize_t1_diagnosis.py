@@ -23,6 +23,12 @@ def write(path,value):Path(path).write_text(json.dumps(value,ensure_ascii=False,
 
 
 def finalize(out):
+    raise Failure('ARCHIVED_FINALIZER',
+        'This finalizer belongs to sealed T1-diagnosis evidence and is read-only. '
+        'Use implementation/experiments/metric_temporal_offline.py with a fresh output directory; '
+        'do not refresh historical parity, provenance or manifests.')
+    # Historical implementation retained for source archaeology only; entry is
+    # intentionally disabled before source checks, input reads, or any writes.
     revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     names=['implementation/experiments/nuscenes/t1_field_diagnosis.py',
            'implementation/experiments/nuscenes/t1_diagnosis_g2.py',
@@ -92,4 +98,7 @@ def finalize(out):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,default=ROOT/'implementation/results/t1_unknown_diagnosis');a=p.parse_args();finalize(a.out)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,default=ROOT/'implementation/results/t1_unknown_diagnosis');a=p.parse_args()
+    try:finalize(a.out)
+    except Failure as exc:
+        print(json.dumps(exc.record,ensure_ascii=False));raise SystemExit(2)

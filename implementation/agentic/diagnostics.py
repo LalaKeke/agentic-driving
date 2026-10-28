@@ -24,6 +24,11 @@ def diagnose(capture,output):
         add('INVALID_GEOMETRY','decision.target_region','Nondegenerate convex polygon',d.get('target_region'),'Provide a valid evidence-backed region; missing geometry does not authorize planning.')
     if h.get('scale_basis')=='calibrated_ground_plane':
         add('CALIBRATED_PROJECTION_UNVERIFIED','hypotheses.scale_basis','Supported metric hypothesis with evidence, or unknown',h['scale_basis'],'This profile has no verified projection contract. Retain unknown if scale is unsupported; changing the label alone does not add evidence.')
+    # Experimental source intervals need not coincide with the physical grid.
+    # T1 reports source-specific failures; do not demand 25 source records or
+    # suggest changing truthful actor citations to pass legacy diagnostics.
+    if output.get('contract_version')=='3.0.0-exp1':
+        return issues
     times=grid(m)
     for i,obj in enumerate(h.get('objects',[])):
         cells=obj.get('occupancy');path=f'hypotheses.objects[{i}].occupancy'

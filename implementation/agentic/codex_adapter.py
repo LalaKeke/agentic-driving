@@ -106,7 +106,7 @@ class CodexSubscriptionAgent:
                 'other agents, and external datasets are unavailable and prohibited. '
                 'Images are attached in the exact order of capture.observations. '
                 'Return only the requested structured final object.\n'+
-                json.dumps(dict(capture=safe,feedback=feedback,**({'tool_contract':planning_contract(capture)} if self.prompt_version in ('driving_v2_2','driving_v2_3') else {})),ensure_ascii=False))
+                json.dumps(dict(capture=safe,feedback=feedback,**({'tool_contract':planning_contract(capture,self.output_contract)} if self.prompt_version in ('driving_v2_2','driving_v2_3','driving_v3_exp1') else {})),ensure_ascii=False))
             try:
                 process=subprocess.Popen(self.command(work,images),cwd=work,env=subscription_environment(),
                                          stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,

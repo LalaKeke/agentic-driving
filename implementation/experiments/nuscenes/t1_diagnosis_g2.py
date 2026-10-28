@@ -24,6 +24,8 @@ sys.path.insert(0, str(ROOT / 'implementation'))
 sys.path.insert(0, str(Path(__file__).parent))
 from agentic.datasets.nuscenes_capture import Acquisition
 from prepare import OfflineTruth
+from agentic.evidence_io import reserve_directory, write_json_new, open_new
+from agentic.contracts import Failure
 
 SOURCE = ROOT / 'implementation/results/process_recovery'
 ROI = [-5., -12., 45., 12.]
@@ -46,9 +48,7 @@ def sha(p):
 
 
 def write(p, data):
-    p = Path(p)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+    write_json_new(p, data)
 
 
 def rel(p):
@@ -90,10 +90,11 @@ def provenance(inputs):
 
 
 def prepare(out, dataset):
+    out = reserve_directory(out, readonly_inputs=[dataset])
     from PIL import Image, ImageDraw, ImageFont
     from nuscenes.nuscenes import NuScenes
     from nuscenes.utils.geometry_utils import view_points
-    assert not (out / 'truth.json').exists(), 'Use a fresh directory; old audit products are not overwritten'
+    (out / 'review_images').mkdir(exist_ok=False)
     rows = records()
     acq = Acquisition(dataset, 'v1.0-mini')
     truth = OfflineTruth(acq)
@@ -183,7 +184,8 @@ def prepare(out, dataset):
                                     projected_center_pixel=[float(uv[0].mean()),float(uv[1].mean())]))
             draw.rectangle((0,0,im.width,30), fill=(0,0,0)); draw.text((5,5), f'OFFLINE GT REVIEW ONLY | {scene["name"]} | {camera} | no model points', fill=(255,255,255))
             dest = out / 'review_images' / (sample + '_' + camera + '.jpg')
-            dest.parent.mkdir(parents=True, exist_ok=True); im.save(dest, quality=92)
+            with open_new(dest, 'xb') as stream:
+                im.save(stream, format='JPEG', quality=92)
             image_index.append(dict(sample_id=sample, camera=camera, frame_id=f['id'], source_image=path,
                                     source_image_sha256=sha(path), review_image=str(dest.relative_to(out)), visible_labels=visible,
                                     method='Official nuScenes get_sample_data camera-time interpolated boxes + view_points'))
@@ -206,16 +208,19 @@ def csv_write(path, rows):
     if not rows:
         return
     keys = list(dict.fromkeys(k for r in rows for k in r))
-    with Path(path).open('w', newline='') as stream:
+    with open_new(path, 'x', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=keys); writer.writeheader()
         for row in rows:
             writer.writerow({k: json.dumps(v, ensure_ascii=False) if isinstance(v, (list,dict)) else v for k,v in row.items()})
 
 
-def evaluate(out):
-    rows = records(); truth = read(out / 'truth.json')['samples']; review = read(out / 'associations.json')
+def evaluate(input_dir, out):
+    """Historical assumption contrasts only; read inputs and write a new tree."""
+    input_dir = Path(input_dir)
+    out = reserve_directory(out, readonly_inputs=[input_dir])
+    rows = records(); truth = read(input_dir / 'truth.json')['samples']; review = read(input_dir / 'associations.json')
     object_rows = []; road_rows = []; focal_rows = []; future_rows = []
-    inputs = [Path(__file__), out/'truth.json', out/'associations.json', out/'projection_index.json', SOURCE/'final_summary.json']
+    inputs = [Path(__file__), input_dir/'truth.json', input_dir/'associations.json', input_dir/'projection_index.json', SOURCE/'final_summary.json']
     for r in rows:
         inputs += [r['path'], r['capture_path']]
         h = r['output']['hypotheses']; sample = r['sample_id']; gt = truth[sample]
@@ -335,7 +340,9 @@ def evaluate(out):
             fixed_window_target_velocity_scored=sum(x['velocity_vector_error_mps'] is not None for x in focals),
             future_occupancy_available=sum(x['occupancy_available'] for x in selected),future_occupancy_missing=sum(not x['occupancy_available'] for x in selected),
             future_surrogate_covered_area_fraction=stats(selected,'future_surrogate_covered_area_fraction'),future_surrogate_area_ratio=stats(selected,'future_surrogate_area_ratio'))
-    summary=dict(analysis='OFFLINE_G2_PARTIAL_QUANTITIES_NO_PASS_THRESHOLD', valid_structured_responses=27,unique_windows=6,
+    summary=dict(analysis='LEGACY_ASSUMPTION_CONTRASTS_NOT_SEMANTICALLY_CONFIRMED_G2', valid_structured_responses=27,unique_windows=6,
+        semantics_status='LEGACY_ACTOR_REFERENCE_POINT_AND_VELOCITY_UNCONFIRMED',
+        strict_g2_scoring=False,
         model_attempts=28,nonresponse_attempts=1,
         caveats=['Repeated responses/revisions are not independent samples; no dataset-level success rate or statistical CI.',
                  'Object-row missing rate describes declared objects; model object granularity differs, so it is not detection recall.',
@@ -375,10 +382,21 @@ def evaluate(out):
     return summary
 
 
-if __name__ == '__main__':
+def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,required=True)
     mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--prepare',action='store_true');mode.add_argument('--evaluate',action='store_true')
     p.add_argument('--dataset-root',type=Path,default=Path('/data/nuscenes_dataset'))
-    a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+    p.add_argument('--input-dir',type=Path,help='Read-only prepared truth/association directory; required for evaluate')
+    p.add_argument('--legacy-assumption-contrasts',action='store_true',help='Acknowledge legacy quantities lack confirmed actor point/velocity semantics')
+    a=p.parse_args()
     if a.prepare:prepare(a.out,a.dataset_root)
-    else:print(json.dumps(evaluate(a.out),ensure_ascii=False,indent=2))
+    else:
+        if not a.input_dir or not a.legacy_assumption_contrasts:
+            p.error('--evaluate requires --input-dir and explicit --legacy-assumption-contrasts; use agentic.g2_metric for strict semantic scoring')
+        print(json.dumps(evaluate(a.input_dir,a.out),ensure_ascii=False,indent=2))
+
+
+if __name__ == '__main__':
+    try:main()
+    except Failure as exc:
+        print(json.dumps(exc.record,ensure_ascii=False));raise SystemExit(2)

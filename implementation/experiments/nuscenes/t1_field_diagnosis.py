@@ -20,6 +20,7 @@ import math
 from pathlib import Path
 import re
 import subprocess
+import sys
 import zipfile
 
 from jsonschema import Draft7Validator
@@ -28,6 +29,9 @@ import numpy as np
 
 
 REPO = Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(REPO/'implementation'))
+from agentic.contracts import Failure
+from agentic.evidence_io import reserve_directory, open_new, write_text_new
 EVIDENCE = REPO / 'implementation/results/process_recovery'
 DEFAULT_OUT = REPO / 'implementation/results/t1_unknown_diagnosis/fields'
 RUNS = (
@@ -498,10 +502,10 @@ def summary_for(audit):
 
 def write_csv(path, rows):
     if not rows:
-        path.write_text('')
+        write_text_new(path,'')
         return
     fields=list(rows[0])
-    with path.open('w',newline='') as f:
+    with open_new(path,'x',newline='') as f:
         w=csv.DictWriter(f,fieldnames=fields);w.writeheader()
         for row in rows:
             w.writerow({k:json.dumps(v,ensure_ascii=False,sort_keys=True,allow_nan=False) if isinstance(v,(dict,list)) or v is None else v for k,v in row.items()})
@@ -534,12 +538,7 @@ def compact_tables(rows):
 
 
 def build(out=DEFAULT_OUT):
-    out=Path(out).resolve()
-    if out.exists() and any(out.iterdir()):
-        raise SystemExit('Refusing to overwrite an existing nonempty analysis directory: '+str(out))
-    if EVIDENCE.resolve() == out or EVIDENCE.resolve() in out.parents:
-        raise SystemExit('Analysis must not be written into frozen process_recovery evidence')
-    out.mkdir(parents=True,exist_ok=True)
+    out=reserve_directory(out,readonly_inputs=[EVIDENCE])
     before={str(p):sha(p.read_bytes()) for p in EVIDENCE.rglob('*') if p.is_file()}
     all_rows=[];summaries=[];inputs={};run_reports=[]
     for group,subdir in RUNS:
@@ -595,15 +594,15 @@ def build(out=DEFAULT_OUT):
     compact_issues=[r for r in compact if r['status']=='FAIL']
     for name,rows in (('checks',compact),('issues',compact_issues)):
         if name=='checks':
-            with (out/'checks.jsonl.gz').open('wb') as stream:
+            with open_new(out/'checks.jsonl.gz','xb') as stream:
                 with gzip.GzipFile(filename='',mode='wb',fileobj=stream,mtime=0) as f:
                     for row in rows: f.write((json.dumps(row,ensure_ascii=False,sort_keys=True,allow_nan=False)+'\n').encode())
         else:
-            with (out/(name+'.jsonl')).open('w') as f:
+            with open_new(out/(name+'.jsonl'),'x') as f:
                 for row in rows: f.write(json.dumps(row,ensure_ascii=False,sort_keys=True,allow_nan=False)+'\n')
         if name=='issues': write_csv(out/(name+'.csv'),rows)
-    (out/'reference_catalog.json').write_text(json.dumps(catalogs,ensure_ascii=False,indent=2)+'\n')
-    (out/'format.json').write_text(json.dumps(dict(version='t1_field_table_v1',
+    write_text_new(out/'reference_catalog.json',json.dumps(catalogs,ensure_ascii=False,indent=2)+'\n')
+    write_text_new(out/'format.json',json.dumps(dict(version='t1_field_table_v1',
         table_format='checks.jsonl.gz is deterministic gzip-compressed JSON Lines; one independent check per line. issues.jsonl and issues.csv contain failures only.',
         original_value='raw_value is the exact original JSON value at input/json_pointer. Null is JSON null, never empty occupancy.',
         references=dict(source_rule_ref='reference_catalog.json /rules/{id}: frozen source archive, commit, SHA, source line, original predicate, message and category',
@@ -616,7 +615,7 @@ def build(out=DEFAULT_OUT):
             NOT_APPLICABLE='The explicit guard does not apply, e.g. position=null skips the conflict test',
             INFORMATIONAL='Original field preserved; no independent rejection or no machine-parsed semantics'),
         coverage='All source guard families, all declared nonnull interval cells, every supplied alternative polygon and every object state/evidence field; no missing fields are filled.'),ensure_ascii=False,indent=2)+'\n')
-    (out/'README.md').write_text('''# 逐响应、逐字段离线诊断表
+    write_text_new(out/'README.md','''# 逐响应、逐字段离线诊断表
 
 `issues.csv` / `issues.jsonl` 保留失败谓词；`checks.jsonl.gz` 包含全部通过、失败、不可评及信息项。每行的 `record.path`、`record.sha256`、`json_pointer`、`raw_value` 可直接定位原始值。配对 capture/feedback、冻结代码、条款原文及提示词位置通过 `reference_catalog.json` 无损解引用；格式见 `format.json`。
 
@@ -640,10 +639,10 @@ with gzip.open(root / 'checks.jsonl.gz', 'rt') as stream:
 
 所有模型、工具和执行调用均为0。没有向缺失值填数，没有用真值，没有改变旧接受器结论。完整输入SHA、冻结源码ZIP复核及旧证据起止字节保护见 `inputs.json`、`frozen_rule_sources.json`、`summary.json`。源码提交和实际脚本SHA记录在 summary；未经确认不启动新模型实验。
 ''')
-    (out/'responses.json').write_text(json.dumps(summaries,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
-    (out/'windows.json').write_text(json.dumps(bywindow,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
-    (out/'frozen_rule_sources.json').write_text(json.dumps(run_reports,ensure_ascii=False,indent=2)+'\n')
-    (out/'inputs.json').write_text(json.dumps(list(inputs.values()),ensure_ascii=False,indent=2)+'\n')
+    write_text_new(out/'responses.json',json.dumps(summaries,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+    write_text_new(out/'windows.json',json.dumps(bywindow,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+    write_text_new(out/'frozen_rule_sources.json',json.dumps(run_reports,ensure_ascii=False,indent=2)+'\n')
+    write_text_new(out/'inputs.json',json.dumps(list(inputs.values()),ensure_ascii=False,indent=2)+'\n')
     after={str(p):sha(p.read_bytes()) for p in EVIDENCE.rglob('*') if p.is_file()}
     assert before==after, 'Frozen evidence changed during analysis'
     report=dict(analysis='offline_t1_field_diagnosis_v1',created_at_utc=datetime.now(timezone.utc).isoformat(),
@@ -665,7 +664,7 @@ with gzip.open(root / 'checks.jsonl.gz', 'rt') as stream:
             'relevance':'All declared objects are universally required by T1; no candidate corridor or geometric irrelevance proof is computed here.',
             'free_text':'confidence_note is preserved verbatim but never parsed by T1. Missing-vs-unbounded and scenario premises are not typed per object.',
             'causality':'No T3 code is run or used to explain these historical T1 failures. No artificial examples enter any online numerator or denominator.'})
-    (out/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    write_text_new(out/'summary.json',json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     return report
 
 
@@ -677,4 +676,6 @@ def main():
 
 
 if __name__=='__main__':
-    main()
+    try:main()
+    except Failure as exc:
+        print(json.dumps(exc.record,ensure_ascii=False));raise SystemExit(2)

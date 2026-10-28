@@ -14,16 +14,22 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'implementation'))
+from agentic.contracts import Failure
+from agentic.evidence_io import reserve_directory, open_new, write_json_new
 
 
 def module(name, path):
     spec = importlib.util.spec_from_file_location(name, path)
     value = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(value)
+    # Importing archived evidence must not create __pycache__ inside its sealed
+    # directory. Compilation is in memory; relative imports retain the spec's
+    # package identity and the original __file__ remains inspectable.
+    exec(compile(Path(path).read_bytes(), str(path), 'exec'), value.__dict__)
     return value
 
 
 def main(out):
+    out = reserve_directory(out)
     audit = ROOT / 'implementation/results/t1_unknown_diagnosis'
     baseline = audit / 'baseline_sources/t1.py'
     examples = audit / 'relevance/frozen_counterexamples.py'
@@ -31,8 +37,7 @@ def main(out):
     suite_module = module('_authored_t1_counterexamples', examples)
     suite_module.construct = frozen.construct
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(suite_module.IndependentCounterexamples)
-    out.mkdir(parents=True, exist_ok=True)
-    with (out / 'replay.log').open('w') as stream:
+    with open_new(out / 'replay.log', 'x') as stream:
         result = unittest.TextTestRunner(stream=stream, verbosity=2).run(suite)
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
               for p in (Path(__file__), baseline, examples,
@@ -43,7 +48,7 @@ def main(out):
         baseline_t1_loaded_explicitly=True, input_sha256=hashes,
         tests=result.testsRun, failures=len(result.failures), errors=len(result.errors),
         cases=suite_module.FIXTURES, results=suite_module.RESULTS)
-    (out / 'replay.json').write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+    write_json_new(out / 'replay.json', report)
     print(json.dumps(dict(tests=result.testsRun, failures=len(result.failures), errors=len(result.errors))))
     return not result.wasSuccessful()
 
@@ -51,4 +56,6 @@ def main(out):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, default=ROOT / 'implementation/results/t1_unknown_diagnosis/relevance/replay')
-    sys.exit(main(parser.parse_args().out))
+    try:sys.exit(main(parser.parse_args().out))
+    except Failure as exc:
+        print(json.dumps(exc.record,ensure_ascii=False));sys.exit(2)
