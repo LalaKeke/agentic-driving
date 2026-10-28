@@ -179,9 +179,14 @@ def build(scene,policy='initial_anchor',candidate_id=None):
         if seed is None:
             need(domain.buffer(1e-7).covers(anchor),'CORRIDOR_DISCONNECTED','Anchor not in convex cell','tool_infeasible')
         else:
-            need(domain.buffer(1e-7).covers(seed_geometry),'CORRIDOR_SEED_OUTSIDE',
-                 'Ego-only seed leaves a corridor cell; not a global infeasibility proof',
-                 'tool_infeasible',interval=[times[k],times[k+1]],policy=policy)
+            if not search:
+                need(domain.buffer(1e-7).covers(seed_geometry),'CORRIDOR_SEED_OUTSIDE',
+                     'Ego-only seed leaves a corridor cell; not a global infeasibility proof',
+                     'tool_infeasible',interval=[times[k],times[k+1]],policy=policy)
+            # Candidate references only choose a convex homotopy and initialize
+            # IPOPT. They need not themselves solve every physical constraint.
+            # The true initial state, cell connectivity, every T3 half-space and
+            # independent continuous T4 remain mandatory before execution.
             if k==0:
                 need(domain.buffer(1e-7).covers(anchor),'CORRIDOR_INITIAL_STATE',
                      'First corridor cell must contain the true initial rear axle','tool_infeasible')

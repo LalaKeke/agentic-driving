@@ -108,10 +108,15 @@ def main(args):
     need(initial['metadata']['horizon_s']==2 and initial['metadata']['step_s']==.2 and initial['safety']['prefix_s']==.2,
          'PROTOTYPE_CONFIG','Separate 2s/.2s prototype only')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    source_files=[Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',
+        ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']
+    source_files += [ROOT/('implementation/agentic/'+name+'.py') for name in ('t1','t2','t3','t4','candidate_search','acceptance','geometry','runtime')]
+    source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1')]
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
         horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
-        gt_used=False,actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in [Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']}))
+        gt_used=False,source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True)),
+        actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in source_files}))
     budget=[];feedback=read(args.initial_feedback) if getattr(args,'initial_feedback',None) else None
     if feedback is not None:write_json_new(root/'initial_feedback.json',feedback)
     result=None;rows=[];fatal=None
