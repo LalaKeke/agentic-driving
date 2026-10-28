@@ -1,0 +1,102 @@
+{
+  "purpose": "Manual/automated review guide for prompt driving_v2_3 conditional estimates; not model output, not an acceptance threshold or new runtime input",
+  "output_contract": "2.1.0",
+  "schema": "agent_output_v2_1.schema.json",
+  "epistemic_distinctions": [
+    "Acquisition/ego/calibration records are supplied evidence; environmental metric quantities and futures are model hypotheses.",
+    "A reasoned finite conditional estimate is allowed without claiming future truth has already been observed.",
+    "Finite uncertainty is an adopted scenario/coordinate range, not a calibrated probability or guaranteed error bound.",
+    "Tool-chain success is conditional on hypotheses and envelope coverage; G2/real-world correctness remains separate."
+  ],
+  "review_checks": [
+    {
+      "id": "SOURCE_CLOCK",
+      "question": "Do environmental hypotheses cite actual image/time pairs and use the acquired reference?",
+      "red_flags": [
+        "invented reliable timestamp",
+        "GT/map value introduced into a runtime hypothesis",
+        "ego compensation presented as dynamic actor alignment"
+      ]
+    },
+    {
+      "id": "METRIC_BASIS",
+      "question": "Is model_metric_hypothesis accompanied by the cues actually used, meaningful metric assumptions and limitations?",
+      "red_flags": [
+        "intrinsics alone called proof of scale",
+        "parallax claimed for stationary ego without observable relative geometry",
+        "unsupported calibrated_ground_plane merely renamed",
+        "unexplained round dimensions selected to fit a path"
+      ]
+    },
+    {
+      "id": "CONDITIONAL_RANGE",
+      "question": "Does each numerical extent play a reasoned role in a stated conditional model?",
+      "red_flags": [
+        "all uncertainty set to zero without basis",
+        "arbitrarily huge box inserted merely for array validity",
+        "finite numbers asserted as calibrated or proven error bounds"
+      ]
+    },
+    {
+      "id": "SCENARIOS_INDEPENDENT_OF_SOLVER",
+      "question": "Were plausible actor/entrance modes formed from evidence/context rather than tailored to optimizer success?",
+      "red_flags": [
+        "mode removed because it collides",
+        "actor shrinkage or road enlargement after rejection without new basis",
+        "assuming other drivers yield or avoid collision only because ego intends to proceed/stop"
+      ]
+    },
+    {
+      "id": "RELEVANT_INTRUSION",
+      "question": "Are reasonably plausible nearby occluded/entering actors retained even if currently outside the center region?",
+      "red_flags": [
+        "unbounded_unknown=false by fiat",
+        "nearby unknown entrance dropped as outside target_region",
+        "review-area polygon presented as an occupancy bound without a scenario basis"
+      ]
+    },
+    {
+      "id": "INTERVAL_BODY_COVERAGE",
+      "question": "Do the 25 default envelopes (or configured grid) cover actor body motion for each whole interval under the adopted scenario, with alternatives retained?",
+      "red_flags": [
+        "one whole-horizon entry when 25 are required",
+        "centers/endpoints used as full body coverage",
+        "static repetition without a stationary scenario",
+        "ego body/safety margin already folded into actor polygons and then added again"
+      ]
+    },
+    {
+      "id": "MEANINGFUL_UNKNOWNS",
+      "question": "Are quantities estimated when a credible conditional model is possible, while genuinely unrepresentable relevant quantities remain null/unknown?",
+      "red_flags": [
+        "everything unmeasured automatically null solely because no absolute guarantee exists",
+        "unsupported unknowns automatically filled to achieve acceptance"
+      ]
+    },
+    {
+      "id": "SEMANTIC_AND_TEMPORAL_CONTRACT",
+      "question": "Does full-horizon target_region contain the initial center and intended path, with correct validity, stop deadlines and unchanged hard requirements?",
+      "red_flags": [
+        "degenerate target polygon called a free region",
+        "terminal stopping box used as all-horizon region",
+        "0.2s prefix substituted for 5s planning validity",
+        "immediate stop requested for moving ego despite braking limits"
+      ]
+    },
+    {
+      "id": "CLAIM_BOUNDARY",
+      "question": "Are model/scene coherence, tool-chain pass, moving vs stationary prefix, and G2 truth performance reported separately?",
+      "red_flags": [
+        "synthetic output called real model inference",
+        "stationary hold presented as forward driving",
+        "T4 PASS called grounding/G2 or deployment validation"
+      ]
+    }
+  ],
+  "experiment_reporting": {
+    "versioning": "Freeze new prompt identity/hash; keep old prompts/results unchanged.",
+    "comparison": "Retain the same-window denominator and all failures/timeouts; separately label any new exploratory windows.",
+    "no_new_numeric_pass_threshold": "This checklist does not define acceptable G2 error/coverage thresholds.",
+    "unknown_policy": "A credible conditional model is permitted, never obligatory; inability to form one remains a legitimate rejection."
+  }
+}

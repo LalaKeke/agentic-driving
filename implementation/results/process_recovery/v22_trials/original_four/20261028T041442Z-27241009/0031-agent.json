@@ -1,0 +1,261 @@
+{
+  "output": {
+    "decision": {
+      "scene_id": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "revision": 0,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -1.0,
+          -0.5
+        ],
+        [
+          4.5,
+          -0.5
+        ],
+        [
+          4.5,
+          0.5
+        ],
+        [
+          -1.0,
+          0.5
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "lead_minivan",
+        "junction_pedestrians",
+        "cross_traffic",
+        "construction_workers"
+      ],
+      "stop": {
+        "center_x_max_m": 4.5,
+        "deadline_s": 2.0
+      },
+      "priority": 1,
+      "valid_until_s": 1532402940.6624599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 0.0,
+        "acceleration_weight": 1.0,
+        "steering_weight": 1.0,
+        "smoothness_weight": 1.0
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1532402935662460",
+      "units": "m_s_rad",
+      "scale_basis": "unknown",
+      "road": null,
+      "objects": [
+        {
+          "id": "lead_minivan",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "e0bc3ff06fe348fdb56039c640be0ac3",
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935162463",
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "id": "junction_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "e0bc3ff06fe348fdb56039c640be0ac3",
+            "8bfbc893ff1544c2b03d6a4f7240c13a"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935162463",
+            "nusc_us_1532402935620339"
+          ]
+        },
+        {
+          "id": "construction_workers",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "id": "construction_barriers_and_excavator",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "id": "cross_traffic",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "8bfbc893ff1544c2b03d6a4f7240c13a",
+            "8e86b6898f57446d8557d675b07fb38c",
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935620339",
+            "nusc_us_1532402935627893",
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "id": "left_side_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "b558073505fa411798d4dc174e1bdaea"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935654844"
+          ]
+        },
+        {
+          "id": "left_side_motorcycle",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "b558073505fa411798d4dc174e1bdaea"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935654844"
+          ]
+        },
+        {
+          "id": "rear_road_truck",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "66441c4e1ab64d7d916e6108c478f052"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935637525"
+          ]
+        },
+        {
+          "id": "right_rear_pedestrians_and_cyclists",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "8e86b6898f57446d8557d675b07fb38c"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935627893"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935662460"
+          ]
+        },
+        {
+          "rule": "stop_required",
+          "state": null,
+          "frame_ids": [
+            "8bfbc893ff1544c2b03d6a4f7240c13a",
+            "0b2eb9c1cd1b45f0b1664a01684c5767"
+          ],
+          "time_ids": [
+            "nusc_us_1532402935620339",
+            "nusc_us_1532402935662460"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Failure-compatible stopping request, not verified permission to execute. The visible GIVE WAY sign supports yielding to cross_traffic and junction_pedestrians; the lead_minivan and construction_workers also require clearance. Signal applicability to the ego approach is unresolved. Absolute road geometry, actor locations and five-second body occupancy are unsupported; occlusions behind vehicles, barriers and vegetation permit intrusion with no justified finite bound. The target region is only a proposed braking corridor containing the initial center, not established free or drivable space, so its hard requirement remains unverified. At the supplied speed and maximum braking, ideal minimum stopping distance is approximately 4.13 m and stopping time 1.66 s; the requested 4.5 m bound and 2 s deadline are kinematically possible but environmental feasibility is unknown."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "851c5e655d17417e94c2f0820c5ca50f4a11d89a670cb95866842d77e396ca78",
+    "image_sha256": {
+      "331f6292bb4240d7a259cc9845b323c2": "0e290b04c7e720fd68aa9aef2b8298b2f2b029984f2bb1f60248c6d73847f91c",
+      "3338348b245c4deca43d3983489a42fb": "189a0e5eaf559049d5b868690116e545575643589bf3c083baca1552026fde37",
+      "5941e77ca4bd478e99e17114ca8759ab": "dd27df927249dad941dfc055717d5f16333de83b9d28b5b3fc34e33cbabeb3d1",
+      "e0bc3ff06fe348fdb56039c640be0ac3": "b59238f9f5b96bb73d3f3c162473ff953bc4877f2aee2ce2bbdb3bae05b9b3af",
+      "8bfbc893ff1544c2b03d6a4f7240c13a": "f92bd11cea955aaeb972ad5dcfedc7e9cdb241509b0d8eb70bf0bdb47da503fe",
+      "8e86b6898f57446d8557d675b07fb38c": "3f331dd6e3e2509646ccb574d47d4376994bea10d301c47ffa8e2f69c2da4d6e",
+      "66441c4e1ab64d7d916e6108c478f052": "b228b9885617cedd088ddd63506f1540c6031b6421a2005afcc18106001de380",
+      "ea5422c6aacf41869cc5122dad1c6e8a": "c756e2e6707e46615e64e80be4501aa770c9a03ebadf6dca54c4c3a1aa6f9ffc",
+      "b558073505fa411798d4dc174e1bdaea": "4f7d6fa4a39815cdaf81ea3f09faa8dac1f58ff353cf911f91fdb7e4f4a2c07c",
+      "0b2eb9c1cd1b45f0b1664a01684c5767": "10e75c9a10dfaa74c2faf6be73e836c1cdf6d9df5e8b56fb219fe9322fe8ccb6"
+    },
+    "prompt_version": "driving_v2_2",
+    "agent_output_contract": "2.1.0",
+    "prompt_sha256": "8841d18c3137f30d5ec9bccb9242e7776a38c75a34069d019dfd812c18d767ae",
+    "attempts": 1,
+    "elapsed_s": 47.5546670537442,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 33902,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2020,
+      "reasoning_output_tokens": 264
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

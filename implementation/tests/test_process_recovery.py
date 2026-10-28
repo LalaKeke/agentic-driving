@@ -41,3 +41,11 @@ class ProcessRecoveryTests(unittest.TestCase):
             result=ClosedLoop(agent,RunLog(root),max_revisions=2).round(capture())
         self.assertEqual(agent.decide.call_count,1);self.assertFalse(result['acceptance']['strict_live_physical_success'])
         self.assertEqual(result['statistics']['model_attempts'],1);self.assertEqual(result['feedback']['failed_stage'],'Agent')
+
+    def test_degenerate_target_is_reported_alongside_missing_information(self):
+        cap=capture();out,_=ScriptedAgent().decide(cap)
+        out['decision']['target_region']=[[0,0],[0,0],[0,0]]
+        self.assertIn('INVALID_GEOMETRY',{x['code'] for x in diagnose(cap,out)})
+
+    def test_conditional_prompt_retains_same_output_schema(self):
+        self.assertEqual(resolve_prompt('2.1.0','driving_v2_3'),('agent_output_v2_1.schema.json','driving_v2_3'))

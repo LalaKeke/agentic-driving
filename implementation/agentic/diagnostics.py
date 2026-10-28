@@ -18,7 +18,10 @@ def diagnose(capture,output):
         region=polygon(d['target_region'],True);q=rear_state(capture['ego'],capture['vehicle']);distance=capture['vehicle']['center_to_rear_axle_m']
         if any(nx*q[0]+ny*q[1]>b-distance+1e-8 for nx,ny,b in planes(region)):
             add('TARGET_INITIAL_STATE','decision.target_region','All-horizon CENTER region whose rear-reference configuration contains the initial state',d['target_region'],'Provide the image-supported allowed center region for the entire path. Put a stopping point in stop, not in a tiny target box. Do not expand without evidence.')
-    except (Failure,KeyError,TypeError,ValueError,AttributeError):pass  # T1 still reports the authoritative geometry error.
+    except Failure as exc:
+        add(exc.record['code'],'decision.target_region','Nondegenerate convex polygon',d.get('target_region'),'Keep unsupported geometry explicit; do not use repeated zero points or invent a larger free region. T1 remains authoritative.')
+    except (KeyError,TypeError,ValueError,AttributeError):
+        add('INVALID_GEOMETRY','decision.target_region','Nondegenerate convex polygon',d.get('target_region'),'Provide a valid evidence-backed region; missing geometry does not authorize planning.')
     if h.get('scale_basis')=='calibrated_ground_plane':
         add('CALIBRATED_PROJECTION_UNVERIFIED','hypotheses.scale_basis','Supported metric hypothesis with evidence, or unknown',h['scale_basis'],'This profile has no verified projection contract. Retain unknown if scale is unsupported; changing the label alone does not add evidence.')
     times=grid(m)

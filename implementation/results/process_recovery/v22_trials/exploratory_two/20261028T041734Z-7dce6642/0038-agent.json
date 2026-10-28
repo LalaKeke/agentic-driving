@@ -1,0 +1,231 @@
+{
+  "output": {
+    "decision": {
+      "scene_id": "nusc_ac8b4d49731d43289579f014cb7c97ef",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "desired_speed_mps": 0,
+      "yield_to": [
+        "crossing_pedestrian",
+        "bus_stop_pedestrians",
+        "backpack_pedestrians"
+      ],
+      "stop": {
+        "center_x_max_m": 3,
+        "deadline_s": 1.5
+      },
+      "priority": 1,
+      "valid_until_s": 1538984240.4124599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 0,
+        "acceleration_weight": 1,
+        "steering_weight": 1,
+        "smoothness_weight": 1
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984235412460",
+      "units": "m_s_rad",
+      "scale_basis": "unknown",
+      "road": null,
+      "objects": [
+        {
+          "id": "crossing_pedestrian",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "1d1306dc17764f38b6b662d2350acac2",
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984234912460",
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "id": "bus_stop_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "id": "backpack_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "d04e814cac724736b237834106123cc5",
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235404844",
+            "nusc_us_1538984235412460"
+          ]
+        },
+        {
+          "id": "red_shirt_pedestrian",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "d04e814cac724736b237834106123cc5"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235404844"
+          ]
+        },
+        {
+          "id": "parking_area_vehicles",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "1a7e32a8ef504f0097e9046dfa66a0d0"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235370339"
+          ]
+        },
+        {
+          "id": "delivery_truck",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "03f6f518384c4fd09310894b1664e8ce"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235377893"
+          ]
+        },
+        {
+          "id": "bus",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "03f6f518384c4fd09310894b1664e8ce",
+            "6a672ea8f3a3420f8a78c1b20b6445a4"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235377893",
+            "nusc_us_1538984235387525"
+          ]
+        },
+        {
+          "id": "rear_side_pedestrians",
+          "position_m": null,
+          "velocity_mps": null,
+          "uncertainty_m": null,
+          "occupancy": null,
+          "frame_ids": [
+            "6a672ea8f3a3420f8a78c1b20b6445a4",
+            "559f77ef3cbc4246aace52f4ef6979da"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235387525",
+            "nusc_us_1538984235397423"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "b08a2deaf871433fad9a4c03e6f53d32"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235412460"
+          ]
+        }
+      ],
+      "unbounded_unknown": true,
+      "confidence_note": "Failure-compatible stopping request, not verified motion permission. A pedestrian is crossing the road ahead; pedestrians beside the bus stop could also enter. Metric road boundaries, actor locations and five-second body occupancies are unsupported. Calibration and ego history alone do not establish ground-plane scale. Occlusions around the shelter, vehicles and road bend leave relevant intrusion extents unbounded. Actor groups retain visible hazards without claiming individually resolved tracks. The degenerate target region records only the known initial center; it cannot accommodate braking and must fail planning validation. No supported full-path target polygon can be supplied. From the supplied speed and braking limit, ideal straight-line stopping requires approximately 2.75 m and 1.36 s; the requested 3 m limit and 1.5 s deadline are kinematically possible but road containment and collision freedom remain unverified. Additional grounded geometry and actor-motion evidence are required; the MISSING_SCALE rejection remains unresolved."
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_cli",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "explicit CLI request; snapshot not exposed",
+    "cli_version": "codex-cli 0.164.0",
+    "output_digest": "c39ac8934c0955fe6b167fa1c6d333cbe1d4c36a4123039b994a7cf96503a68a",
+    "image_sha256": {
+      "524d443c501a4f98a14508c3fb6f6de3": "eb299dff2240c756d2d4725c6247247655be92531a1d79717ed1da461ce2e130",
+      "ac5aaa8e6e764badb77d5fa077f6e92b": "320d0d2a76fad3211d47f156ad87848fae0e2ec8ee9b5dc3bf2a956c562772c2",
+      "600f938dbfa24792968fb8737f6f5441": "b6ddee2fdb92d3317a3750451de53370e73442873c2bef9e941f9e478cd6db3a",
+      "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+      "1a7e32a8ef504f0097e9046dfa66a0d0": "36d7c8de32598c391dc8dade48a936c75dd5db97cc37666f69a8ae0b9359baba",
+      "03f6f518384c4fd09310894b1664e8ce": "2cc0b36a0144806a78b9aa0c994570eed2de9dd09ff337c266b3ea68f653d668",
+      "6a672ea8f3a3420f8a78c1b20b6445a4": "201c5a545adb15e03cc859784f380609f0ad1f78cbf049561b837e594ed98c74",
+      "559f77ef3cbc4246aace52f4ef6979da": "b0e3da09614407b0cfcc5b8d3e3b6bc5a0e7f8f5e12768960d526716aa9a06ea",
+      "d04e814cac724736b237834106123cc5": "e1a7b0c243e01fe70fd64cca7e9883629204a6767b5ed61ecded95a8810d1fcd",
+      "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2"
+    },
+    "prompt_version": "driving_v2_2",
+    "agent_output_contract": "2.1.0",
+    "prompt_sha256": "8841d18c3137f30d5ec9bccb9242e7776a38c75a34069d019dfd812c18d767ae",
+    "attempts": 1,
+    "elapsed_s": 54.66218095459044,
+    "output_mode": "codex_output_schema",
+    "event_types": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "usage": {
+      "input_tokens": 34460,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1723,
+      "reasoning_output_tokens": 185
+    },
+    "tool_calls": 0,
+    "disabled_capability_notices": [
+      "code_mode_host_disabled"
+    ]
+  }
+}

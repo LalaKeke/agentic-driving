@@ -45,7 +45,7 @@ def model_contract(version='2.0.0'):
 def resolve_prompt(version='2.0.0',requested=None):
     """Explicit prompt-only revision; the selected output schema stays unchanged."""
     schema,default=model_contract(version)
-    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2')}
+    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3')}
     prompt=requested or default
     need(prompt in allowed[version],'PROMPT_CONTRACT','Prompt and output contract are incompatible')
     return schema,prompt
