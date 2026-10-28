@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "case": "parking_bend",
+      "exit_code": 3,
+      "charged": 3,
+      "success": false,
+      "ended": true,
+      "fatal": {
+        "code": "CODEX_SERVICE_FAILURE",
+        "message": "Official service reported an error; no retry",
+        "category": "interface_error",
+        "details": {
+          "diagnostic": {
+            "error": {
+              "message": "exceeded retry limit, last status: 429 Too Many Requests, request id: 06dfed14-d08a-4e82-8e8a-96eda5443d4c",
+              "codexErrorInfo": {
+                "responseTooManyFailedAttempts": {
+                  "httpStatusCode": 429
+                }
+              },
+              "additionalDetails": null,
+              "misalignment": null
+            },
+            "willRetry": false,
+            "threadId": "01a18325-5079-7623-b185-ff4761946552",
+            "turnId": "01a18325-50be-7eb2-8311-1c7a0171e927"
+          }
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "case": "redlight_crossflow",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case": "construction_yield",
+      "exit_code": 3,
+      "charged": 3,
+      "success": false,
+      "ended": true,
+      "fatal": {}
+    }
+  ],
+  "charged_requests": 6,
+  "limit": 8,
+  "unused": 2,
+  "ended": true,
+  "elapsed_s": 410.99451187439263,
+  "end_utc": "2026-10-28T15:35:45.220744+00:00",
+  "source_commit": "5e98614309d7577a07015762dbee1fd204a35bc8",
+  "model_calls_outside_budget": 0
+}

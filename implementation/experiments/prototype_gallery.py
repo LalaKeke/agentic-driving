@@ -13,7 +13,8 @@ from prototype_figure import (body_corners, check_new_destination, load_result,
 def render(cases_root, destination):
     cases_root = Path(cases_root)
     cases = [p for p in sorted(cases_root.iterdir())
-             if p.is_dir() and (p / 'runtime' / 'summary.json').is_file()]
+             if p.is_dir() and ((p / 'runtime' / 'summary.json').is_file()
+                                or (p / 'not_attempted.json').is_file())]
     if not cases:
         raise ValueError('No case/runtime/summary.json found; no figure written.')
     destination = check_new_destination(destination)
@@ -29,8 +30,12 @@ def render(cases_root, destination):
                                  squeeze=False, gridspec_kw={'width_ratios': [1.1, 1]})
         rendered = []
         for row, case in enumerate(cases):
-            summary = read(case / 'runtime' / 'summary.json')
-            result, chosen = load_result(case / 'runtime')
+            attempted = (case / 'runtime' / 'summary.json').is_file()
+            online_summary = read(case / 'runtime' / 'summary.json') if attempted else {}
+            replay = (case / 'yaw_box_replay' / 'summary.json').is_file()
+            chosen_run = case / ('yaw_box_replay' if replay else 'runtime')
+            summary = read(chosen_run / 'summary.json') if replay else online_summary
+            result, chosen = load_result(chosen_run)
             scene, output = result.get('scene', {}), result.get('agent_output', {})
             cap = scene.get('capture') or result.get('capture')
             if not cap and (case / 'capture.json').is_file():
@@ -45,6 +50,8 @@ def render(cases_root, destination):
             consumed = bool(summary.get('prefix_consumed') and execution)
             passed = accepted and consumed and verification.get('verdict') == 'PASS'
             status, color = ('CONDITIONAL PASS', '#087d4a') if passed else ('INCOMPLETE / FAIL', '#a73535')
+            if not attempted:
+                status, color = 'NOT_ATTEMPTED / NO MODEL OUTPUT', '#64748b'
             ax_image, ax_bev = axes[row]
             fronts = [f for f in cap.get('observations', []) if f.get('camera_id') == 'CAM_FRONT']
             frame = max(fronts, key=lambda f: f['capture_time_s']) if fronts else None
@@ -102,8 +109,9 @@ def render(cases_root, destination):
             d = execution.get('center_displacement_m')
             motion = (f"consumed {execution['elapsed_s']:g}s; displacement {math.hypot(*d):.3f}m; "
                       f"speed {execution['speed_mps']:.3f}m/s") if consumed and d else 'No simulated prefix consumed'
-            ax_bev.set_title(f"{status} | T4 {verification.get('verdict', 'NOT_REACHED')} | "
-                             f"{summary.get('charged_requests', '?')} requests\n"
+            provenance = 'OFFLINE REPLAN OF REAL MODEL; original online FAIL\n' if replay else ''
+            ax_bev.set_title(provenance + f"{status} | T4 {verification.get('verdict', 'NOT_REACHED')} | "
+                             f"{online_summary.get('charged_requests', 0)} real requests\n"
                              f"{decision.get('behavior', 'NOT_REACHED')} | {motion}", color=color, fontsize=10)
             ax_bev.set(xlabel='Fixed X forward (m)', ylabel='Fixed Y left (m)')
             ax_bev.set_aspect('equal', adjustable='datalim')
@@ -111,7 +119,9 @@ def render(cases_root, destination):
             if ax_bev.get_legend_handles_labels()[0]:
                 ax_bev.legend(loc='best', fontsize=6.5, ncol=3, framealpha=.9)
             rendered.append(dict(case=case.name, attempt=str(chosen), conditional_pass=passed,
-                                 prefix_consumed=consumed))
+                                 prefix_consumed=consumed, offline_replan=replay,
+                                 online_conditional_success=bool(online_summary.get('prototype_conditional_success')),
+                                 real_requests=online_summary.get('charged_requests', 0), attempted=attempted))
         fig.suptitle('LOCAL CONDITIONAL 2S REAL MODEL SINGLE WINDOWS', fontsize=17, weight='bold')
         fig.text(.02, .012, 'Saved model assumptions, BODY occupancy, and actual simulated prefixes only. '
                  'No real vehicle control, G2 claim, or counterfactual future observations.', fontsize=8)
