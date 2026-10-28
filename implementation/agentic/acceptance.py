@@ -155,15 +155,20 @@ def assess_round(result, capture):
         _require(policy in ('initial_anchor', 'moving_seed', 'yaw_bounded_box_v1'), 'CORRIDOR_POLICY',
                  'Unknown corridor construction policy cannot establish success.')
         box_profile=policy=='yaw_bounded_box_v1'
-        validate('corridor_yaw_box_v1.schema.json' if box_profile else 'corridor_v2.schema.json', corridor)
+        search='search_profile' in corridor
+        validate('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box_profile else 'corridor_v2.schema.json'), corridor)
         identity(scene, corridor)
-        _require(t2.build(scene, policy=policy) == corridor, 'T2_RECONSTRUCTION_MISMATCH',
+        _require(t2.build(scene, policy=policy,**({'candidate_id':construction['candidate_id']} if search else {})) == corridor, 'T2_RECONSTRUCTION_MISMATCH',
                  'Corridor differs from the deterministic T2 result of this scene.')
         _require(len(corridor['cells']) == len(grid(scene['metadata']))-1,
                  'CORRIDOR_COVERAGE', 'Corridor does not cover this prediction grid.')
         verdict['checks']['t1_t2_reconstructed'] = True
 
-        validate('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json', trajectory); identity(scene, trajectory)
+        validate('trajectory_seed_candidates_v1.schema.json' if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'), trajectory); identity(scene, trajectory)
+        if search:
+            _require(trajectory['search_profile']==corridor['search_profile']
+                     and trajectory['heading_bands_rad']==[c['heading_band_rad'] for c in corridor['cells']],
+                     'CORRIDOR_HEADING_BOUND','Optimizer and verifier must retain every T2 candidate yaw band.')
         if box_profile:
             _require(scene['provenance'].get('experiment_profile')=='local_conditional_2s_prototype_v1'
                      and all(abs(p['yaw_rad'])<=corridor['heading_bound_rad']+1e-6 for p in trajectory['points']),

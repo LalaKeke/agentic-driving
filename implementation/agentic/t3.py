@@ -10,8 +10,9 @@ from .geometry import rear_state,center_state
 
 def solve(scene,corridor,max_iter=700):
     box=corridor.get('planner_profile')=='yaw_bounded_box_v1'
+    search='search_profile' in corridor
     validate('scene_v2.schema.json',scene)
-    validate('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json',corridor)
+    validate('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json'),corridor)
     identity(scene,corridor)
     cap=scene['capture'];v=cap['vehicle'];d=scene['decision'];times=grid(scene['metadata']);N=len(times)-1;dt=times[1]
     opt=ca.Opti();X=opt.variable(4,N+1);U=opt.variable(2,N)
@@ -26,6 +27,10 @@ def solve(scene,corridor,max_iter=700):
     opt.subject_to(opt.bounded(-v['max_steer_rad'],U[1,:],v['max_steer_rad']))
     weights=d['preferences'];cost=0
     for k in range(N):
+        if search:
+            lo,hi=corridor['cells'][k]['heading_band_rad']
+            need(lo<=hi,'CORRIDOR_HEADING_BOUND','Reversed candidate yaw band')
+            opt.subject_to(opt.bounded(lo,X[2,k:k+2],hi))
         x,y,p,speed=ca.vertsplit(X[:,k]);a,delta=ca.vertsplit(U[:,k]);curv=ca.tan(delta)/v['wheelbase_m']
         opt.subject_to(opt.bounded(-v['max_curvature_per_m'],curv,v['max_curvature_per_m']))
         travel=speed*dt+.5*a*dt*dt;z=curv*travel/2
@@ -58,6 +63,13 @@ def solve(scene,corridor,max_iter=700):
         q=min(t,cap['ego']['speed_mps']/brake) if brake else t
         opt.set_initial(X[:,k],[initial[0]+initial[3]*q-.5*brake*q*q,initial[1],initial[2],max(0,initial[3]-brake*t)])
     opt.set_initial(U,0)
+    if search:
+        # Exact corresponding ego reference, including braking and steering.
+        seed=corridor['construction']['seed_points']
+        need(len(seed)==N+1,'CORRIDOR_SEED','Incomplete candidate initialization')
+        for k,p in enumerate(seed):
+            opt.set_initial(X[:,k],[p[n] for n in ('rear_x_m','rear_y_m','yaw_rad','speed_mps')])
+            if k<N:opt.set_initial(U[:,k],[p['acceleration_mps2'],p['steer_rad']])
     opt.solver('ipopt',{'print_time':False},{'print_level':0,'sb':'yes','max_iter':max_iter,'tol':1e-8,'acceptable_tol':1e-7})
     try:sol=opt.solve()
     except RuntimeError:
@@ -67,4 +79,5 @@ def solve(scene,corridor,max_iter=700):
         q=sol.value(X[:,k]).tolist();a=float(sol.value(U[0,min(k,N-1)]));steer=float(sol.value(U[1,min(k,N-1)]));center=center_state(q,v)
         points.append(dict(time_s=t,rear_x_m=q[0],rear_y_m=q[1],x_m=center[0],y_m=center[1],yaw_rad=q[2],speed_mps=q[3],acceleration_mps2=a,steer_rad=steer,curvature_per_m=math.tan(steer)/v['wheelbase_m']))
     extra=dict(planner_profile='yaw_bounded_box_v1',verification_profile='continuous_oriented_body_v1') if box else {}
+    if search:extra.update(search_profile=corridor['search_profile'],heading_bands_rad=[c['heading_band_rad'] for c in corridor['cells']])
     return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost))),**extra)

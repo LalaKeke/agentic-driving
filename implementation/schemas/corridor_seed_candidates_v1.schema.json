@@ -1,0 +1,256 @@
+{
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "const": "convex_disk_bicycle_v2"
+        },
+        "schema_version": {
+          "const": "2.0.0"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reference_time_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_time_s": {
+          "type": "number"
+        },
+        "coordinate_frame": {
+          "const": "ego_at_reference"
+        },
+        "horizon_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "step_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "history_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "valid_until_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "profile",
+        "schema_version",
+        "scene_id",
+        "revision",
+        "reference_time_id",
+        "reference_time_s",
+        "coordinate_frame",
+        "horizon_s",
+        "step_s",
+        "history_s",
+        "valid_until_s"
+      ],
+      "additionalProperties": false
+    },
+    "scene_digest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "halfplanes": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "minItems": 1
+          },
+          "polygon_m": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "minItems": 3
+          },
+          "heading_band_rad": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -0.35,
+              "maximum": 0.35
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "start_s",
+          "end_s",
+          "halfplanes",
+          "polygon_m",
+          "heading_band_rad"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "reference_point": {
+      "const": "rear_axle"
+    },
+    "body_envelope": {
+      "const": "yaw_bounded_oriented_box"
+    },
+    "margin_m": {
+      "type": "number",
+      "minimum": 0
+    },
+    "conservative": {
+      "const": true
+    },
+    "construction": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "const": "yaw_bounded_box_v1"
+        },
+        "seed_source": {
+          "const": "ego_state_vehicle_limits_semantic_template_only"
+        },
+        "seed_dynamics": {
+          "const": "exact_constant_acceleration_constant_rear_curvature"
+        },
+        "target_prediction_source": {
+          "const": "model_whole_interval_occupancy_only"
+        },
+        "behavior": {
+          "enum": [
+            "stop_yield",
+            "hold_lane",
+            "resume"
+          ]
+        },
+        "seed_points": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "time_s": {
+                "type": "number",
+                "minimum": 0
+              },
+              "rear_x_m": {
+                "type": "number"
+              },
+              "rear_y_m": {
+                "type": "number"
+              },
+              "yaw_rad": {
+                "type": "number"
+              },
+              "speed_mps": {
+                "type": "number",
+                "minimum": 0
+              },
+              "acceleration_mps2": {
+                "type": "number"
+              },
+              "steer_rad": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "time_s",
+              "rear_x_m",
+              "rear_y_m",
+              "yaw_rad",
+              "speed_mps",
+              "acceleration_mps2",
+              "steer_rad"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "seed_is_solution": {
+          "const": false
+        },
+        "limitation": {
+          "const": "A blocked seed is not a proof of global infeasibility"
+        },
+        "candidate_id": {
+          "enum": [
+            "brake_straight",
+            "brake_right",
+            "brake_left",
+            "brake_right_strong"
+          ]
+        }
+      },
+      "required": [
+        "policy",
+        "seed_source",
+        "seed_dynamics",
+        "target_prediction_source",
+        "behavior",
+        "seed_points",
+        "seed_is_solution",
+        "limitation",
+        "candidate_id"
+      ],
+      "additionalProperties": false
+    },
+    "planner_profile": {
+      "const": "yaw_bounded_box_v1"
+    },
+    "heading_bound_rad": {
+      "const": 0.35
+    },
+    "search_profile": {
+      "const": "bounded_seed_candidates_v1"
+    }
+  },
+  "required": [
+    "metadata",
+    "scene_digest",
+    "cells",
+    "reference_point",
+    "body_envelope",
+    "margin_m",
+    "conservative",
+    "planner_profile",
+    "heading_bound_rad",
+    "construction",
+    "search_profile"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/corridor_seed_candidates_v1.schema.json"
+}

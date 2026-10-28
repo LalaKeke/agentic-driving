@@ -7,6 +7,8 @@ from .geometry import planes,polygon,obstacles,disk_radius,rear_state,integrate
 
 YAW_BOX_PROFILE='yaw_bounded_box_v1'
 YAW_BOX_BOUND_RAD=.35
+SEARCH_PROFILE='bounded_seed_candidates_v1'
+CANDIDATE_IDS=('original','brake_straight','brake_right','brake_left','brake_right_strong')
 
 def yaw_point_support(point,nx,ny,bound=YAW_BOX_BOUND_RAD):
     """Exact support of one rear-relative point rotated over [-bound,bound].
@@ -27,6 +29,39 @@ def yaw_box_support(v,nx,ny,bound=YAW_BOX_BOUND_RAD):
     d=v['center_to_rear_axle_m'];w=v['half_width_m']
     return max(yaw_point_support((x,y),nx,ny,bound)
                for x in (d-v['rear_m'],d+v['front_m']) for y in (-w,w))
+
+def band_point_support(point,nx,ny,band):
+    """Exact support over an asymmetric closed yaw band, no body shrinkage."""
+    lo,hi=band;mid=(lo+hi)/2;c,s=math.cos(mid),math.sin(mid)
+    x,y=point
+    return yaw_point_support((c*x-s*y,s*x+c*y),nx,ny,(hi-lo)/2)
+
+def band_body_support(v,nx,ny,band):
+    d=v['center_to_rear_axle_m'];w=v['half_width_m']
+    return max(band_point_support((x,y),nx,ny,band)
+               for x in (d-v['rear_m'],d+v['front_m']) for y in (-w,w))
+
+def candidate_seed(scene,candidate_id):
+    """Five fixed, bounded ego references; no actor prediction or intent change."""
+    need(candidate_id in CANDIDATE_IDS,'CORRIDOR_CANDIDATE','Unknown bounded seed candidate')
+    times=grid(scene['metadata'])
+    if candidate_id=='original':return _moving_seed(scene,times)
+    v=scene['capture']['vehicle'];q=rear_state(scene['capture']['ego'],v);points=[]
+    steer={'brake_straight':0.,'brake_right':-.18,'brake_left':.18,'brake_right_strong':-.22}[candidate_id]
+    steer=math.copysign(min(abs(steer),v['max_steer_rad'],math.atan(v['wheelbase_m']*v['max_curvature_per_m'])),steer)
+    for k,t in enumerate(times):
+        dt=times[k+1]-t if k<len(times)-1 else times[1]-times[0]
+        a=max(-v['max_brake_mps2'],-q[3]/dt) if k<len(times)-1 else 0.
+        delta=steer if q[3]>1e-8 else 0.
+        points.append(dict(time_s=t,rear_x_m=q[0],rear_y_m=q[1],yaw_rad=q[2],speed_mps=max(0.,q[3]),acceleration_mps2=a,steer_rad=delta))
+        if k<len(times)-1:q=integrate(q,a,delta,dt,v)
+    return points
+
+def candidate_band(a,b):
+    # Narrower geometry is paired with identical T3 and T4 hard yaw bounds.
+    # The global +/- .35rad cap remains; these bands are search restrictions.
+    return [max(-YAW_BOX_BOUND_RAD,min(a['yaw_rad'],b['yaw_rad'])-.025),
+            min(YAW_BOX_BOUND_RAD,max(a['yaw_rad'],b['yaw_rad'])+.025)]
 
 def clip(domain,plane):
     if domain.is_empty:return domain
@@ -79,13 +114,16 @@ def _moving_seed(scene,times):
     return points
 
 
-def build(scene,policy='initial_anchor'):
+def build(scene,policy='initial_anchor',candidate_id=None):
     validate('scene_v2.schema.json',scene)
     need(policy in ('initial_anchor','moving_seed',YAW_BOX_PROFILE),'CORRIDOR_POLICY','Unknown explicit corridor construction policy')
     cap=scene['capture'];v=cap['vehicle'];m=scene['metadata'];d=scene['decision']
     r=disk_radius(v);margin=cap['safety']['margin_m'];anchor=Point(rear_state(cap['ego'],v)[:2])
     base=polygon(scene['hypotheses']['road']['polygon_m'],True)
     box=policy==YAW_BOX_PROFILE
+    search=candidate_id is not None
+    need(not search or (box and candidate_id in CANDIDATE_IDS and candidate_id!='original'),
+         'CORRIDOR_CANDIDATE','Candidate search requires explicit bounded-box profile')
     if box:
         need(abs(cap['ego']['yaw_rad'])<=YAW_BOX_BOUND_RAD,'CORRIDOR_HEADING_BOUND',
              'Initial yaw outside explicit bounded-box planner profile','tool_infeasible')
@@ -96,23 +134,31 @@ def build(scene,policy='initial_anchor'):
                      else v['center_to_rear_axle_m'])] for nx,ny,b in planes(polygon(d['target_region'],True))]
     if d['stop']:hp.append([1.,0.,d['stop']['center_x_max_m']-v['center_to_rear_axle_m']])
     times=grid(m);cells=[]
-    seed=_moving_seed(scene,times) if policy in ('moving_seed',YAW_BOX_PROFILE) else None
+    seed=candidate_seed(scene,candidate_id) if search else (_moving_seed(scene,times) if policy in ('moving_seed',YAW_BOX_PROFILE) else None)
     previous=None
     for k in range(len(times)-1):
         constraints=[p[:] for p in hp]
+        band=None
         if seed is None:seed_geometry=anchor
         else:
             a,b=seed[k:k+2]
             ends=[(a['rear_x_m'],a['rear_y_m']),(b['rear_x_m'],b['rear_y_m'])]
             seed_geometry=Point(ends[0]) if ends[0]==ends[1] else LineString(ends)
+        if search:
+            band=candidate_band(a,b)
+            need(band[0]<=a['yaw_rad']<=band[1] and band[0]<=b['yaw_rad']<=band[1],
+                 'CORRIDOR_HEADING_BOUND','Candidate leaves the unchanged global yaw cap','tool_infeasible',interval=[times[k],times[k+1]])
+            constraints=[[nx,ny,z-band_body_support(v,nx,ny,band)-scene['hypotheses']['road']['uncertainty_m']] for nx,ny,z in planes(base)]
+            constraints += [[nx,ny,z-band_point_support((v['center_to_rear_axle_m'],0),nx,ny,band)] for nx,ny,z in planes(polygon(d['target_region'],True))]
+            if d['stop']:constraints.append([1.,0.,d['stop']['center_x_max_m']-band_point_support((v['center_to_rear_axle_m'],0),1,0,band)])
         selection_geometry=seed_geometry
         if box:
             # Use the zero-steer seed BODY only to choose a separating normal.
             # Safety still uses the analytic support for every allowed yaw below.
-            d0=v['center_to_rear_axle_m'];w=v['half_width_m'];angle=seed[k]['yaw_rad']
-            c0,s0=math.cos(angle),math.sin(angle)
-            selection_geometry=Polygon([(px+c0*x-s0*y,py+s0*x+c0*y)
-                for px,py in ends for x,y in ((d0-v['rear_m'],-w),(d0+v['front_m'],-w),
+            d0=v['center_to_rear_axle_m'];w=v['half_width_m']
+            selection_geometry=Polygon([(p['rear_x_m']+math.cos(p['yaw_rad'])*x-math.sin(p['yaw_rad'])*y,
+                                         p['rear_y_m']+math.sin(p['yaw_rad'])*x+math.cos(p['yaw_rad'])*y)
+                for p in seed[k:k+2] for x,y in ((d0-v['rear_m'],-w),(d0+v['front_m'],-w),
                                              (d0+v['front_m'],w),(d0-v['rear_m'],w))]).convex_hull
         for oid,shape,u in obstacles(scene,k):
             hull=shape.convex_hull
@@ -125,7 +171,8 @@ def build(scene,policy='initial_anchor'):
                  'tool_infeasible',object_id=oid,interval=[times[k],times[k+1]])
             nx,ny=dx/dist,dy/dist
             support=min(nx*x+ny*y for x,y in hull.exterior.coords)
-            constraints.append([nx,ny,support-(yaw_box_support(v,nx,ny) if box else r)-u-margin])
+            ego_support=band_body_support(v,nx,ny,band) if search else (yaw_box_support(v,nx,ny) if box else r)
+            constraints.append([nx,ny,support-ego_support-u-margin])
         domain=base
         for p in constraints:domain=clip(domain,p)
         need(not domain.is_empty and domain.area>1e-8,'CORRIDOR_EMPTY','Empty convex cell','tool_infeasible',interval=[times[k],times[k+1]])
@@ -143,7 +190,7 @@ def build(scene,policy='initial_anchor'):
                      'Adjacent time cells do not share a transition region','tool_infeasible',
                      interval=[times[k-1],times[k+1]])
         previous=domain
-        cells.append(dict(start_s=times[k],end_s=times[k+1],halfplanes=constraints,polygon_m=[list(p) for p in domain.exterior.coords][:-1]))
+        cells.append(dict(start_s=times[k],end_s=times[k+1],halfplanes=constraints,polygon_m=[list(p) for p in domain.exterior.coords][:-1],**({'heading_band_rad':band} if search else {})))
     # Default output stays byte-compatible. Moving seeds change construction only;
     # body envelopes, obstacle occupancies, margins and the T3/T4 checks are unchanged.
     extra={}
@@ -154,6 +201,10 @@ def build(scene,policy='initial_anchor'):
             target_prediction_source='model_whole_interval_occupancy_only',
             behavior=d['behavior'],seed_points=seed,seed_is_solution=False,
             limitation='A blocked seed is not a proof of global infeasibility')
+        if search:
+            extra['construction']['seed_dynamics']='exact_constant_acceleration_constant_rear_curvature'
+            extra['construction']['candidate_id']=candidate_id
+            extra['search_profile']=SEARCH_PROFILE
     if box:
         return artifact(scene,cells=cells,reference_point='rear_axle',
             body_envelope='yaw_bounded_oriented_box',planner_profile=YAW_BOX_PROFILE,

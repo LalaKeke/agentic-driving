@@ -49,10 +49,12 @@ def body_feedback(output):
 def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
     data={};stages={k:'NOT_REACHED' for k in ('T1','T2','T3','T4','EXECUTION','ACCEPTOR')}
     failure=None
-    for name,fn in [('T1',lambda:t1.construct(cap,out,prov)),
+    tools=[('T1',lambda:t1.construct(cap,out,prov)),
         ('T2',lambda:t2.build(data['T1'],policy=policy)),
         ('T3',lambda:t3.solve(data['T1'],data['T2'])),
-        ('T4',lambda:t4.verify(data['T1'],data['T3']))]:
+        ('T4',lambda:t4.verify(data['T1'],data['T3']))]
+    if policy==t2.SEARCH_PROFILE:tools=tools[:1]
+    for name,fn in tools:
         try:
             data[name]=fn();write_json_new(folder/(name+'.json'),data[name]);stages[name]='PASS'
             if name=='T4' and data[name]['verdict']!='PASS':
@@ -60,6 +62,23 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
         except Failure as exc:
             failure=exc.record;stages[name]='FAIL';write_json_new(folder/(name+'-failure.json'),failure)
         if failure:
+            write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
+            return None,failure,stages
+    if policy==t2.SEARCH_PROFILE:
+        from agentic.candidate_search import plan
+        candidate_root=reserve_directory(folder/'candidates');candidate_dirs={}
+        def save(candidate,name,value):
+            if candidate not in candidate_dirs:candidate_dirs[candidate]=reserve_directory(candidate_root/candidate)
+            write_json_new(candidate_dirs[candidate]/(name+'.json'),value)
+        winner,ledger,failure=plan(data['T1'],save)
+        write_json_new(folder/'candidate_ledger.json',ledger)
+        if winner:
+            data.update(winner)
+            for name in ('T2','T3','T4'):write_json_new(folder/(name+'.json'),data[name]);stages[name]='PASS'
+        else:
+            for name in ('T2','T3','T4'):
+                values=[r[name] for r in ledger['candidates']]
+                stages[name]='PASS' if 'PASS' in values else ('FAIL' if 'FAIL' in values else 'NOT_REACHED')
             write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
             return None,failure,stages
     scene,corridor,traj,verdict=(data[n] for n in ('T1','T2','T3','T4'))
@@ -82,8 +101,8 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
 def main(args):
     limit=getattr(args,'max_requests',4)
     planner=getattr(args,'planner_profile','legacy_disk_v2')
-    need(planner in ('legacy_disk_v2','yaw_bounded_box_v1'),'PROTOTYPE_PLANNER','Explicit planner profile required')
-    policy='moving_seed' if planner=='legacy_disk_v2' else 'yaw_bounded_box_v1'
+    need(planner in ('legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE),'PROTOTYPE_PLANNER','Explicit planner profile required')
+    policy='moving_seed' if planner=='legacy_disk_v2' else planner
     need(type(limit) is int and 1<=limit<=4,'PROTOTYPE_BUDGET','Per-case request limit must be 1..4')
     root=reserve_directory(args.out);initial=read(args.capture)
     need(initial['metadata']['horizon_s']==2 and initial['metadata']['step_s']==.2 and initial['safety']['prefix_s']==.2,
@@ -93,7 +112,9 @@ def main(args):
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
         horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in [Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']}))
-    budget=[];feedback=None;result=None;rows=[];fatal=None
+    budget=[];feedback=read(args.initial_feedback) if getattr(args,'initial_feedback',None) else None
+    if feedback is not None:write_json_new(root/'initial_feedback.json',feedback)
+    result=None;rows=[];fatal=None
     if args.replay:
         record=read(args.replay);cap=record['capture'];out=record['output'];prov=record['provenance']
         folder=reserve_directory(root/'attempt_01');write_json_new(folder/'record.json',record)
@@ -147,7 +168,8 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--capture',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
+    p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
     p.add_argument('--max-requests',type=int,default=4)
-    p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1'],default='legacy_disk_v2')
+    p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE],default='legacy_disk_v2')
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')
     sys.exit(main(p.parse_args()))

@@ -34,17 +34,22 @@ def verify(scene,trajectory):
         from .metric_contract import validate_scene
         validate_scene(scene)
     box_profile=('planner_profile' in trajectory or 'verification_profile' in trajectory)
+    search='search_profile' in trajectory or 'heading_bands_rad' in trajectory
     if box_profile:
         need(trajectory.get('planner_profile')=='yaw_bounded_box_v1'
              and trajectory.get('verification_profile')=='continuous_oriented_body_v1'
              and scene.get('provenance',{}).get('experiment_profile')=='local_conditional_2s_prototype_v1',
              'VERIFICATION_PROFILE','Oriented BODY verification requires its explicit planner/profile pair and prototype scene')
     validate('scene_v2.schema.json',scene)
-    validate('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json',trajectory)
+    validate('trajectory_seed_candidates_v1.schema.json' if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'),trajectory)
     finite(trajectory);identity(scene,trajectory)
     cap=scene['capture'];m=scene['metadata'];v=cap['vehicle'];d=scene['decision'];pts=trajectory['points'];times=grid(m)
     need(trajectory['interpolation']=='exact_constant_acceleration_constant_rear_curvature','INTERPOLATION','Unsupported motion convention')
     need(len(pts)==len(times) and all(abs(p['time_s']-t)<1e-8 for p,t in zip(pts,times)),'TIME_COVERAGE','Trajectory time mismatch')
+    if search:
+        need(box_profile and len(trajectory['heading_bands_rad'])==len(times)-1
+             and all(-.35<=lo<=hi<=.35 for lo,hi in trajectory['heading_bands_rad']),
+             'HEADING_COVERAGE','Candidate yaw bands must cover the complete grid within the unchanged global cap')
     need(0<trajectory['requested_prefix_s']<=cap['safety']['prefix_s'],'PREFIX','Prefix exceeds trusted configuration')
     violations=[];minimum=None;r=disk_radius(v);margin=cap['safety']['margin_m']
     def fail(code,t,end,p,value,threshold,unit,oid=None):
@@ -66,6 +71,12 @@ def verify(scene,trajectory):
         if abs(p['curvature_per_m']-math.tan(p['steer_rad'])/v['wheelbase_m'])>1e-6:fail('CURVATURE_CONTROL',p['time_s'],p['time_s'],q,p['curvature_per_m'],math.tan(p['steer_rad'])/v['wheelbase_m'],'1/m')
     for k,(p,b) in enumerate(zip(pts,pts[1:])):
         t=times[k];dt=times[k+1]-t;q=state(p);a=p['acceleration_mps2'];delta=p['steer_rad'];curv=math.tan(delta)/v['wheelbase_m']
+        if search:
+            lo,hi=trajectory['heading_bands_rad'][k]
+            # Exact constant curvature + nonnegative speed => monotone yaw.
+            for point in (p,b):
+                if not lo-1e-6<=point['yaw_rad']<=hi+1e-6:
+                    fail('CANDIDATE_HEADING_BOUND',t,t+dt,state(point),point['yaw_rad'],lo if point['yaw_rad']<lo else hi,'rad')
         expected=integrate(q,a,delta,dt,v)
         for j,(value,want) in enumerate(zip(state(b),expected)):
             if abs(value-want)>1e-5:fail('DYNAMICS_RESIDUAL',t,t+dt,q,abs(value-want),1e-5,['m','m','rad','m/s'][j])
