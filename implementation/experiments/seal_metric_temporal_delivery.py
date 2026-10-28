@@ -20,7 +20,7 @@ from agentic.evidence_io import check_new_destination,write_json_new
 ALLOWED_SOURCE_CHANGES={
     'implementation/agentic/adapter.py','implementation/agentic/cli.py',
     'implementation/agentic/codex_adapter.py','implementation/agentic/contracts.py',
-    'implementation/agentic/diagnostics.py','implementation/agentic/t1.py','implementation/agentic/t4.py',
+    'implementation/agentic/diagnostics.py','implementation/agentic/runtime.py','implementation/agentic/t1.py','implementation/agentic/t4.py',
     'implementation/experiments/nuscenes/t1_diagnosis_g2.py',
     'implementation/experiments/nuscenes/t1_field_diagnosis.py',
     'implementation/experiments/nuscenes/replay_frozen_t1_counterexamples.py',
@@ -47,7 +47,7 @@ def development_protocol_bytes(directory,name):
     raise Failure('DEVELOPMENT_PROTOCOL_MISSING','Frozen protocol absent from source and explicit supplement',path=name)
 
 
-def main(directory,run,test_log):
+def main(directory,run,test_log,previous=None):
     seal=directory/'DELIVERY_SHA256_MANIFEST.json';check_new_destination(seal)
     baseline=json.loads((directory/'baseline_protection.json').read_text())
     zip_path=directory/'baseline_source.zip';sources={}
@@ -78,6 +78,16 @@ def main(directory,run,test_log):
         raw=(ROOT/name).read_bytes()
         if hashlib.sha256(raw).hexdigest()!=record['sha256']:
             raise Failure('SOURCE_CHANGED_AFTER_RUN','Source differs from the actual offline run',path=name)
+    previous_check=None
+    if previous is not None:
+        manifest_path=previous/'DELIVERY_SHA256_MANIFEST.json'
+        manifest=json.loads(manifest_path.read_text())
+        for name,record in manifest['files'].items():
+            if hashlib.sha256((previous/name).read_bytes()).hexdigest()!=record['sha256']:
+                raise Failure('PREVIOUS_DELIVERY_CHANGED','A previously sealed offline artifact changed',path=str(previous/name))
+        previous_check=dict(path=str(previous.relative_to(ROOT)) if previous.is_relative_to(ROOT) else str(previous),
+                            manifest_sha256=hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                            unchanged_files=len(manifest['files'])+1)
     # The sealing procedure itself is also committed and hashed.
     revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     self_name=str(Path(__file__).resolve().relative_to(ROOT))
@@ -93,6 +103,7 @@ def main(directory,run,test_log):
         protected_unchanged=unchanged,authorized_code_changes=changes,scope=baseline['scope'],
         reconciliation='baseline_source_discrepancies.json; original initial-read manifest preserved',
         frozen_development_exp1_protocols_unchanged=development_protocols,
+        previous_delivery_preservation=previous_check,
         old_protocols_prompts_results_manifests_unchanged=True,
         online_model_calls=0,old_model_output_transformations=0,new_online_successes=0,
         offline_run=str(run.relative_to(ROOT)) if run.is_relative_to(ROOT) else str(run),
@@ -108,7 +119,7 @@ def main(directory,run,test_log):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--directory',required=True,type=Path);p.add_argument('--run',required=True,type=Path);p.add_argument('--tests',required=True,type=Path);a=p.parse_args()
-    try:main(a.directory.resolve(),a.run.resolve(),a.tests.resolve())
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--directory',required=True,type=Path);p.add_argument('--run',required=True,type=Path);p.add_argument('--tests',required=True,type=Path);p.add_argument('--previous-delivery',type=Path);a=p.parse_args()
+    try:main(a.directory.resolve(),a.run.resolve(),a.tests.resolve(),a.previous_delivery.resolve() if a.previous_delivery else None)
     except Failure as exc:
         print(json.dumps(exc.record,ensure_ascii=False));raise SystemExit(2)

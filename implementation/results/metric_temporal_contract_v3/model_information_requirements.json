@@ -1,0 +1,22 @@
+{
+  "scope": "Future native exp2 model outputs only; no historical response is filled or converted",
+  "online_model_calls_this_delivery": 0,
+  "output_contract": "3.0.0-exp2",
+  "items": [
+    {"field": "hypotheses.metric_scale_support", "needed": "Native conditional body-dimension prior with actual cited actor, positive dimension matching native body_geometry, applicable premises and metric reasoning", "history": "11/27 explicitly unknown scale; all 27 lack the new structured support field", "if_missing": "MISSING_SCALE_SUPPORT; no label-only repair or invented actor"},
+    {"field": "objects[].position_m and body_geometry", "needed": "Reference-time annotation-box-center XY and oriented full BODY dimensions/yaw; model-native and conditional", "history": "119/170 declared object positions null; new body_geometry absent. Old profile allowed null position with supported occupancy", "if_missing": "BODY_STATE_UNKNOWN in exp2; do not write zero or infer a group representative"},
+    {"field": "objects[].state_time_id and alignment", "needed": "Native reference epoch, actually observed paired citations, per-capture center estimates, motion-bound premises and residual for asynchronous evidence", "history": "84/170 original object citations fail the old exact-reference guard; cannot infer native alignment from a new reference citation", "if_missing": "STATE_TIME, MOTION_BOUND_MISSING or relevant alignment refusal; no ego-only or age-only exemption"},
+    {"field": "measurement_semantics and optional objects[].velocity_mps", "needed": "Explicit body-center point and absolute ground velocity in fixed reference axes", "history": "19/170 numeric velocities have historically ambiguous absolute/relative semantics", "if_missing": "Incompatible definitions rejected; null instantaneous velocity remains allowed with supported coverage"},
+    {"field": "objects[].occupancy and scenarios", "needed": "Supported whole-interval BODY sources covering every retained declared mode without positive time gaps, source IDs/evidence/premises/residuals", "history": "147/170 occupancy null; 23 non-null old arrays are not silently upgraded to native scenario/source records", "if_missing": "OCCUPANCY_UNKNOWN/GAP, PLACEHOLDER_OCCUPANCY or SCENARIO_INCOMPLETE; tools create no actor forecasts"},
+    {"field": "premises and unknowns", "needed": "Object/scenario/time/space bindings, explicit missing/unexpressible/multiple-conditional/unbounded reasons", "history": "All 27 retain global unbounded_unknown=true; free-text remarks cannot authorize planning", "if_missing": "Unresolved unknowns remain blocking regardless of distance; no relevance pruning"},
+    {"field": "uncertainty and road/traffic hypotheses", "needed": "Usable nominal road and supported traffic condition, total residual including alignment plus source geometry, applied once", "history": "11/27 road null, 117 field uncertainty failures and 13 traffic-condition failures; counts overlap", "if_missing": "Preserve explicit rejection; bounds remain uncalibrated conditional extents"}
+  ],
+  "independent_evaluation_needs": [
+    "New model-native exp2 outputs; current real outputs remain legacy and semantically ambiguous",
+    "GT actor reference point, exact acquisition epoch, center offset and evaluation domain explicitly compatible",
+    "For instantaneous velocity accuracy, independent instantaneous GT or a separately justified temporal relation; ~2Hz annotation slopes alone are proxies",
+    "For road-boundary accuracy, corresponding boundary labels and common support domain; total drivable extent is insufficient",
+    "For future occupancy, independently supported whole-interval body truth or explicitly labelled surrogate, plus separate planning evidence"
+  ],
+  "online_success_rate_improvement_claim": false
+}

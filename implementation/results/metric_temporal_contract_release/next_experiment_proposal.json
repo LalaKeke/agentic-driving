@@ -1,0 +1,42 @@
+{
+  "status": "PROPOSAL_ONLY_REQUIRES_CONFIRMATION",
+  "launched": false,
+  "online_model_calls_this_delivery": 0,
+  "question": "Does the explicit metric/time/coverage contract change native output completeness and refusal causes, without relaxing physical constraints?",
+  "unique_windows": 6,
+  "cohorts": {
+    "original_four": ["ac452a60e8b34a7080c938c904b23057", "88449a5cb1644a199c1c11f6ac034867", "c537fef0b4b241df92f44daa976fe5b3", "b4c279e61abf49bd871ff2ec4b13e115"],
+    "exploratory_two": ["6af01b48aec7475eac1f8e9add0276ff", "ac8b4d49731d43289579f014cb7c97ef"]
+  },
+  "arms": [
+    {"id": "legacy", "output_contract": "2.1.0", "prompt_version": "driving_v2_3"},
+    {"id": "native_metric_temporal", "output_contract": "3.0.0-exp2", "prompt_version": "driving_v3_exp2", "coverage_profile": "whole_interval_sources_v3_exp2"}
+  ],
+  "variable": "A contract-and-prompt package, including required native measurement/time/scenario fields; not a single-factor prompt-only causal comparison",
+  "fixed": {
+    "images": "Same frozen ten-frame input per window; no temporal-history enlargement or window replacement",
+    "model_requested": "gpt-6.1-sol; freeze and record actual available service identity before launch; no fallback",
+    "history_s": 2,
+    "horizon_s": 5,
+    "step_s": 0.2,
+    "prefix_s": 0.2,
+    "vehicle_safety_corridor": "Original frozen values; moving_seed; no altered margins or physics",
+    "ground_truth_runtime_input": false,
+    "source_and_prompts": "Freeze exact committed source, both original prompts and schemas before launch"
+  },
+  "budget": {"arm_window_trials": 12, "max_model_invocations_total_including_failures": 24, "max_semantic_revisions_per_trial": 1, "automatic_transport_retries": 0, "timeout_s_per_invocation": 600, "batch_wall_limit_s": 18000},
+  "success": {
+    "engineering": "Fresh actual model record; T1/T2/T3/T4 and independent strict acceptor plus consumed verified short-prefix receipt all succeed, conditional on model premises and coverage",
+    "report_separately": ["Original four versus exploratory two", "First answer versus within-one-revision", "MOVING_PREFIX versus STATIONARY_HOLD", "One-window replay versus real multi-round observations"],
+    "grounding": "Strict G2 only where native measurement and GT definitions/evaluation domains are compatible; retain unavailable and unmatched slots",
+    "numeric_g2_thresholds": "UNSET_REQUIRES_PREREGISTRATION_NO_G2_PASS_CLAIM",
+    "no_posthoc_legacy_upgrade": true
+  },
+  "stops": [
+    "No execution until explicit confirmation; current offline repair is not authorization",
+    "Stop each trial on success, exhausted one semantic revision, or any service/timeout failure; failures consume invocation budget",
+    "Stop batch on auth/quota/model availability/identity errors, source or input SHA mismatch, runtime GT access, exhausted invocation or wall budget",
+    "No extra windows, replacement attempts, changed physical assumptions, alternate models, widened budgets or automatic next batch"
+  ],
+  "limitations": "Six repeated windows with prior exposure, not independent unseen benchmark; source contract capability and authored tests do not establish online improvement or real-world safety"
+}

@@ -1,0 +1,90 @@
+{
+  "source_commit": "79873e59ca9f8c0ff0ad71f6c82d3c95ebb12ec6",
+  "probes": [
+    {
+      "case": "existing_run",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "implementation/experiments/metric_temporal_offline.py",
+        "--out",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/metric_temporal_contract_v3/offline_exp2"
+      ],
+      "exit_code": 2,
+      "error": {
+        "code": "OUTPUT_EXISTS",
+        "message": "Destination already exists; choose a new output path. Evidence is never refreshed in place.",
+        "category": "interface_error",
+        "details": {
+          "path": "/data2/hzy/MAP/agentic-driving/implementation/results/metric_temporal_contract_v3/offline_exp2"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_model_calls": 0
+    },
+    {
+      "case": "sealed_child",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "implementation/experiments/nuscenes/t1_diagnosis_g2.py",
+        "--evaluate",
+        "--legacy-assumption-contrasts",
+        "--input-dir",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/t1_unknown_diagnosis/g2",
+        "--out",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/t1_unknown_diagnosis/g2/must_not_create_9199d48e38824c4390ebd7ffd0e21d8e"
+      ],
+      "exit_code": 2,
+      "error": {
+        "code": "SEALED_EVIDENCE",
+        "message": "Destination is inside sealed or historical evidence; choose a new independent directory.",
+        "category": "interface_error",
+        "details": {
+          "path": "/data2/hzy/MAP/agentic-driving/implementation/results/t1_unknown_diagnosis/g2/must_not_create_9199d48e38824c4390ebd7ffd0e21d8e",
+          "sealed_ancestor": "/data2/hzy/MAP/agentic-driving/implementation/results/t1_unknown_diagnosis/g2"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_model_calls": 0
+    },
+    {
+      "case": "existing_empty",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "implementation/experiments/nuscenes/replay_frozen_t1_counterexamples.py",
+        "--out",
+        "/data2/hzy/MAP/agentic-driving/implementation/results/metric_temporal_contract_v3/probe_existing_empty"
+      ],
+      "exit_code": 2,
+      "error": {
+        "code": "OUTPUT_EXISTS",
+        "message": "Destination already exists; choose a new output path. Evidence is never refreshed in place.",
+        "category": "interface_error",
+        "details": {
+          "path": "/data2/hzy/MAP/agentic-driving/implementation/results/metric_temporal_contract_v3/probe_existing_empty"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_model_calls": 0
+    },
+    {
+      "case": "archival_finalizer",
+      "command": [
+        "/data2/hzy/MAP/agentic-driving/.venv/bin/python",
+        "implementation/experiments/nuscenes/finalize_t1_diagnosis.py"
+      ],
+      "exit_code": 2,
+      "error": {
+        "code": "ARCHIVED_FINALIZER",
+        "message": "This finalizer belongs to sealed T1-diagnosis evidence and is read-only. Use implementation/experiments/metric_temporal_offline.py with a fresh output directory; do not refresh historical parity, provenance or manifests.",
+        "category": "interface_error",
+        "details": {},
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_model_calls": 0
+    }
+  ],
+  "old_t1_directory_unchanged_files": 92,
+  "old_t1_directory_byte_equal": true,
+  "forbidden_path_not_created": true,
+  "online_model_calls": 0
+}

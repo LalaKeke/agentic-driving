@@ -11,10 +11,11 @@ from datetime import datetime,timezone
 from .contracts import Failure,need,digest,identity
 from . import t1,t2,t3,t4
 from .geometry import rear_state,integrate,center_state
+from .evidence_io import reserve_directory,write_json_new
 
 class RunLog:
     def __init__(self,root='runs'):
-        self.path=Path(root)/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8]);self.path.mkdir(parents=True,exist_ok=False)
+        self.path=Path(root)/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8]);reserve_directory(self.path)
         self.count=0
         def git(*args):
             p=subprocess.run(['git',*args],capture_output=True,text=True,cwd=Path(__file__).resolve().parents[2]);return p.stdout.strip() if p.returncode==0 else 'unavailable'
@@ -24,7 +25,7 @@ class RunLog:
         self.write('manifest',dict(code_revision=git('rev-parse','HEAD'),code_dirty=bool(git('status','--porcelain')),python=platform.python_version(),execution='SIMULATION_ONLY',schema='2.0.0'))
     def write(self,stage,data):
         self.count+=1
-        (self.path/f'{self.count:04d}-{stage}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+        write_json_new(self.path/f'{self.count:04d}-{stage}.json',data)
 
 class SimulatedExecutor:
     """Consumes verified prefixes once. No hidden world, perception or true actor state."""
