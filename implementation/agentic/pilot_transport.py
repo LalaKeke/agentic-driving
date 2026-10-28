@@ -23,6 +23,7 @@ from PIL import Image
 from .codex_adapter import DISABLED_FEATURES, subscription_environment
 from .contracts import ROOT, Failure, digest, need, planning_contract, validate
 from .evidence_io import reserve_directory, write_json_new, write_text_new
+from .wire_schema import load_wire_bundle, WireSchemaConflict
 
 PROVIDER = 'pilot-official'
 OFFICIAL_BASE = 'https://chatgpt.com/backend-api/codex'
@@ -184,7 +185,8 @@ class PilotProtocol:
 
 class PilotSubscriptionAgent:
     def __init__(self, *, evidence_dir, model='gpt-6.1-sol', timeout_s=600,
-                 binary=None, expected_cli_version='0.164.0', process_factory=None):
+                 binary=None, expected_cli_version='0.164.0', process_factory=None,
+                 wire_schema_bundle=None):
         self.model = model
         self.timeout = float(timeout_s)
         need(model and 1 <= self.timeout <= 600, 'PILOT_CONFIGURATION',
@@ -193,6 +195,10 @@ class PilotSubscriptionAgent:
         self.binary = str(binary or default)
         need(shutil.which(self.binary), 'CODEX_MISSING', 'Official project CLI is required')
         self.expected_version = expected_cli_version
+        # Explicit opt-in only. Legacy trials continue sending their original
+        # business schema. Validate a new bundle before creating any evidence.
+        self.wire_schema_bundle = Path(wire_schema_bundle) if wire_schema_bundle is not None else None
+        _, self.schema_transport = self._transport_schema()
         self.evidence_dir = reserve_directory(evidence_dir)
         self.private_state = reserve_directory(self.evidence_dir / '.private_state')
         self.private_state.chmod(0o700)
@@ -213,6 +219,27 @@ class PilotSubscriptionAgent:
             prompt_version=PROMPT, agent_output_contract=CONTRACT,
             provider=PROVIDER, api_base=OFFICIAL_BASE,
             model_identity_basis='thread/start CLI-resolved alias; server snapshot unexposed')
+        if self.schema_transport is not None:
+            self.public_config['schema_transport'] = self.schema_transport
+
+    def _transport_schema(self):
+        business_path = ROOT / 'schemas' / SCHEMA
+        if self.wire_schema_bundle is None:
+            return json.loads(business_path.read_text()), None
+        try:
+            schema, manifest = load_wire_bundle(self.wire_schema_bundle, business_path)
+        except WireSchemaConflict as error:
+            raise Failure('WIRE_SCHEMA_INVALID', 'Wire bundle does not match the original business schema; no request sent',
+                          conflicts=error.conflicts) from None
+        return schema, dict(
+            business_schema_sha256=manifest['source_schema_sha256'],
+            wire_schema_sha256=manifest['wire_schema_sha256'],
+            wire_schema_version=manifest['wire_schema_version'],
+            generator_version=manifest['generator_version'],
+            transformation_manifest_sha256=hashlib.sha256(
+                (self.wire_schema_bundle / 'transformation_manifest.json').read_bytes()).hexdigest(),
+            business_validation=SCHEMA, response_repair=False,
+            backend_acceptance='NOT_ESTABLISHED_BY_OFFLINE_REVIEW')
 
     def command(self, *, startup_only=False):
         args = [self.binary, 'app-server', '--strict-config']
@@ -385,6 +412,9 @@ class PilotSubscriptionAgent:
         need(self.preflight_ok, 'PILOT_PREFLIGHT_REQUIRED', 'Call zero-inference preflight first')
         need(self.call_count < 2, 'PILOT_BUDGET', 'Transport supports at most two decide calls')
         validate('capture_v2.schema.json', capture)
+        schema, schema_transport = self._transport_schema()
+        need(schema_transport == self.schema_transport, 'WIRE_SCHEMA_CHANGED',
+             'The pinned wire bundle changed after adapter construction; no request sent')
         self.call_count += 1
         folder = reserve_directory(self.evidence_dir / f'attempt_{self.call_count:02d}')
         self.last_attempt_summary = dict(attempt=self.call_count, source=self.source,
@@ -393,7 +423,6 @@ class PilotSubscriptionAgent:
         try:
             safe = deepcopy(capture)
             prompt = (ROOT / 'prompts' / (PROMPT + '.txt')).read_text()
-            schema = json.loads((ROOT / 'schemas' / SCHEMA).read_text())
             hashes = {}
             with tempfile.TemporaryDirectory(prefix='driving-pilot-images-') as directory:
                 work = Path(directory)
@@ -413,9 +442,12 @@ class PilotSubscriptionAgent:
                 text = prompt + '\n' + json.dumps(dict(capture=safe, feedback=feedback,
                     tool_contract=planning_contract(capture, CONTRACT)), ensure_ascii=False)
                 write_text_new(folder / 'model_input.txt', text)
-                write_json_new(folder / 'input_manifest.json', dict(image_sha256=hashes,
+                input_manifest = dict(image_sha256=hashes,
                     prompt_version=PROMPT, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
-                    output_contract=CONTRACT, schema_sha256=hashlib.sha256((ROOT / 'schemas' / SCHEMA).read_bytes()).hexdigest()))
+                    output_contract=CONTRACT, schema_sha256=hashlib.sha256((ROOT / 'schemas' / SCHEMA).read_bytes()).hexdigest())
+                if schema_transport is not None:
+                    input_manifest['schema_transport'] = schema_transport
+                write_json_new(folder / 'input_manifest.json', input_manifest)
                 protocol = self._rpc(work, [dict(type='text', text=text)] + images, schema, folder)
             text = protocol.final_text()
             write_text_new(folder / 'final_agent_message.txt', text)
@@ -437,6 +469,8 @@ class PilotSubscriptionAgent:
                 prompt_version=PROMPT, agent_output_contract=CONTRACT,
                 prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(), image_sha256=hashes,
                 output_digest=digest(output), tool_calls=0, elapsed_s=time.monotonic() - start)
+            if schema_transport is not None:
+                provenance['schema_transport'] = schema_transport
             write_json_new(folder / 'provenance.json', provenance)
             self.last_attempt_summary.update(native_json_returned=True,
                                              cli_resolved_alias=protocol.resolved_model)

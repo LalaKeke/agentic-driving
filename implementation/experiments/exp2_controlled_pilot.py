@@ -22,6 +22,7 @@ from agentic.evidence_io import reserve_directory,write_json_new
 from agentic.metric_diagnostics import diagnose_metric_output
 from agentic.pilot_transport import PilotSubscriptionAgent
 from agentic.runtime import SimulatedExecutor
+from agentic.wire_schema import load_wire_bundle, WireSchemaConflict
 
 
 def read(path):return json.loads(Path(path).read_text())
@@ -62,6 +63,16 @@ def verify_inputs(config,config_path):
     need(config['max_model_invocations']==2 and config['max_semantic_revisions']==1
          and config['automatic_transport_retries']==0,'PILOT_CONFIG','No hidden or expanded budget')
     need(config['sample_id']=='ac452a60e8b34a7080c938c904b23057','PILOT_WINDOW','Preregistered window cannot be replaced')
+    if 'wire_schema_bundle' in config:
+        pin=config['wire_schema_bundle']
+        try:
+            _,manifest=load_wire_bundle(ROOT/pin['path'],ROOT/'implementation/schemas/agent_output_v3_exp2.schema.json')
+        except WireSchemaConflict as exc:
+            raise Failure('WIRE_SCHEMA_INVALID','Frozen wire bundle integrity failed',conflicts=exc.conflicts) from None
+        need(all(pin.get(k)==manifest[k] for k in ('source_schema_sha256','wire_schema_sha256','wire_schema_version','generator_version')),
+             'WIRE_SCHEMA_PIN','Wire schema identifiers or SHA differ from registration')
+        need(pin.get('transformation_manifest_sha256')==sha(ROOT/pin['path']/'transformation_manifest.json'),
+             'WIRE_SCHEMA_PIN','Transformation manifest bytes differ from registration')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     for name,expected in config['source_sha256'].items():
         p=ROOT/name
@@ -142,6 +153,17 @@ def run_tools(cap,initial,output,prov,revision,folder,ledger,config,check):
 
 def run(config_path):
     config_path=Path(config_path);config=read(config_path)
+    # Offline prepared registrations are deliberately non-executable. A future
+    # authorization must freeze a new concrete config; no old unused allowance
+    # is inherited by adding a wire bundle to an ended trial.
+    if 'wire_schema_bundle' in config or 'execution_authorized' in config:
+        need(config.get('execution_authorized') is True,'PILOT_NOT_AUTHORIZED',
+             'Prepared trial is launched=false and has zero authorized calls; no preflight or model request is allowed')
+    if 'wire_schema_bundle' in config:
+        relation=config.get('old_pilot_relation',{})
+        need(config.get('authorized_model_invocations')==2 and relation.get('approved_limit')==2
+             and relation.get('inherited_unused_calls')==0 and relation.get('new_independent_budget') is True,
+             'PILOT_NOT_AUTHORIZED','A wire trial requires its own explicitly frozen two-call authorization; old unused calls cannot be inherited')
     initial,commit=verify_inputs(config,config_path)
     root=reserve_directory(ROOT/config['runtime_path'])
     write_json_new(root/'frozen_runtime_config.json',dict(config=config,config_sha256=sha(config_path),
@@ -149,7 +171,10 @@ def run(config_path):
     budget=CallBudget(root/'budget');attempts=[];feedback=None;agent=None;fatal=None
     started=time.monotonic();consumed=False
     try:
-        agent=PilotSubscriptionAgent(evidence_dir=root/'transport',model=config['model'],timeout_s=config['timeout_s'])
+        transport_options={}
+        if 'wire_schema_bundle' in config:
+            transport_options['wire_schema_bundle']=ROOT/config['wire_schema_bundle']['path']
+        agent=PilotSubscriptionAgent(evidence_dir=root/'transport',model=config['model'],timeout_s=config['timeout_s'],**transport_options)
         need(agent.source=='online_model' and agent.process_factory is subprocess.Popen,'PILOT_REAL_ONLY','Mock/process substitution prohibited')
         agent.preflight()
         write_json_new(root/'transport_preflight.json',dict(status='PASS',actual_model_turns=0,config=agent.public_config))
