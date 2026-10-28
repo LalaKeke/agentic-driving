@@ -1,0 +1,15 @@
+{
+  "stage": "delivery_seal",
+  "source_commit": "79873e59ca9f8c0ff0ad71f6c82d3c95ebb12ec6",
+  "command": ".venv/bin/python implementation/experiments/seal_metric_temporal_delivery.py --directory implementation/results/metric_temporal_contract_v3 --run implementation/results/metric_temporal_contract_v3/offline_exp2 --tests implementation/results/metric_temporal_contract_v3/verification_exp2/unittest.txt",
+  "exit_code": 1,
+  "exception_type": "KeyError",
+  "message": "There is no item named 'implementation/docs/计量与时空覆盖契约3_0_exp1.md' in the archive",
+  "failed_before_delivery_protection_or_seal_writes": true,
+  "fix": "Preserve original ZIP; add exact frozen-Git documentation supplement and verify combined archives",
+  "new_model_calls": 0,
+  "not_a_model_or_physical_tool_failure": true,
+  "initial_assumed_cause": "Development ZIP retained Git C-quoted UTF-8 path names; sealing lookup initially used the decoded Chinese path",
+  "confirmed_cause": "Git C-quoted Chinese paths were omitted by the original archive ASCII prefix filter, not retained under an alternate ZIP name",
+  "initial_fix_test": "Decoder-only fix: 2 tests run, 1 KeyError; no original evidence writes"
+}

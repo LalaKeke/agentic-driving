@@ -4,6 +4,7 @@ This is a bookkeeping entry point, never a model or driving-control entry point.
 It writes one new seal and refuses an existing destination or sealed directory.
 """
 import argparse
+import ast
 import hashlib
 import json
 from pathlib import Path
@@ -26,6 +27,26 @@ ALLOWED_SOURCE_CHANGES={
     'implementation/experiments/nuscenes/finalize_t1_diagnosis.py'}
 
 
+def archive_path(name):
+    """Decode Git C-quoted UTF-8 path names without rewriting frozen ZIPs."""
+    if not name.startswith('"'):
+        return name
+    value=ast.literal_eval(name)
+    try:
+        return value.encode('latin1').decode('utf-8')
+    except (UnicodeEncodeError,UnicodeDecodeError):
+        return value
+
+
+def development_protocol_bytes(directory,name):
+    for filename in ('development_exp1_source.zip','development_exp1_docs_supplement.zip'):
+        with zipfile.ZipFile(directory/filename) as z:
+            entries={archive_path(item):item for item in z.namelist()}
+            if name in entries:
+                return z.read(entries[name]),filename
+    raise Failure('DEVELOPMENT_PROTOCOL_MISSING','Frozen protocol absent from source and explicit supplement',path=name)
+
+
 def main(directory,run,test_log):
     seal=directory/'DELIVERY_SHA256_MANIFEST.json';check_new_destination(seal)
     baseline=json.loads((directory/'baseline_protection.json').read_text())
@@ -33,14 +54,14 @@ def main(directory,run,test_log):
     with zipfile.ZipFile(zip_path) as z:
         sources={name:hashlib.sha256(z.read(name)).hexdigest() for name in z.namelist()}
     development_protocols={}
-    with zipfile.ZipFile(directory/'development_exp1_source.zip') as z:
-        for name in ('implementation/schemas/agent_output_v3_exp1.schema.json',
-                     'implementation/prompts/driving_v3_exp1.txt',
-                     'implementation/docs/计量与时空覆盖契约3_0_exp1.md'):
-            expected=hashlib.sha256(z.read(name)).hexdigest()
-            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:
-                raise Failure('DEVELOPMENT_PROTOCOL_CHANGED','Frozen exp1 draft must remain unchanged',path=name)
-            development_protocols[name]=expected
+    for name in ('implementation/schemas/agent_output_v3_exp1.schema.json',
+                 'implementation/prompts/driving_v3_exp1.txt',
+                 'implementation/docs/计量与时空覆盖契约3_0_exp1.md'):
+        raw,archive=development_protocol_bytes(directory,name)
+        expected=hashlib.sha256(raw).hexdigest()
+        if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:
+            raise Failure('DEVELOPMENT_PROTOCOL_CHANGED','Frozen exp1 draft must remain unchanged',path=name)
+        development_protocols[name]=dict(sha256=expected,archive=archive)
     changes=[];unchanged=0
     for name,record in baseline['files'].items():
         path=Path(name) if name.startswith('/') else ROOT/name
