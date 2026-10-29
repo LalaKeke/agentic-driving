@@ -1,0 +1,3942 @@
+{
+  "status": "executed_simulated_prefix",
+  "revisions": 0,
+  "agent_output": {
+    "decision": {
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "behavior": "hold_lane",
+      "target_region": [
+        [
+          -0.5,
+          -0.4
+        ],
+        [
+          3,
+          -0.3
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2.5
+        ],
+        [
+          3,
+          1.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "desired_speed_mps": 3,
+      "yield_to": [],
+      "stop": null,
+      "priority": 1,
+      "valid_until_s": 1538984255.41246,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 1,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984253412460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -3,
+            -4.5
+          ],
+          [
+            3,
+            -4
+          ],
+          [
+            9.8,
+            -1.5
+          ],
+          [
+            11,
+            0.8
+          ],
+          [
+            8,
+            3.6
+          ],
+          [
+            -3,
+            5
+          ]
+        ],
+        "uncertainty_m": 0.35,
+        "frame_ids": [
+          "f18c90dafe764fe2b0d96102eb90c48c",
+          "951a1c1f65b84cc18fbc7c9178e6342b"
+        ],
+        "time_ids": [
+          "nusc_us_1538984253412460",
+          "nusc_us_1538984253404844"
+        ]
+      },
+      "objects": [
+        {
+          "id": "parked_gray_mitsubishi",
+          "position_m": [
+            4,
+            -7.5
+          ],
+          "velocity_mps": [
+            0,
+            0
+          ],
+          "uncertainty_m": 0.65,
+          "occupancy": [
+            {
+              "id": "mitsubishi_body_0_2",
+              "start_s": 0,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "2c9ada783ef3477ebefb73f14e65a72b"
+              ],
+              "time_ids": [
+                "nusc_us_1538984253370339"
+              ],
+              "premise_ids": [
+                "prototype_local_scope",
+                "parked_motion",
+                "metric_geometry_prior"
+              ],
+              "residual_m": 0.4,
+              "alternatives": [
+                {
+                  "scenario_id": "mitsubishi_stationary",
+                  "polygon_m": [
+                    [
+                      2.05,
+                      -9.82
+                    ],
+                    [
+                      5.95,
+                      -9.82
+                    ],
+                    [
+                      5.95,
+                      -5.18
+                    ],
+                    [
+                      2.05,
+                      -5.18
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "mitsubishi_small_settle",
+                  "polygon_m": [
+                    [
+                      1.75,
+                      -10.15
+                    ],
+                    [
+                      6.25,
+                      -10.15
+                    ],
+                    [
+                      6.25,
+                      -4.85
+                    ],
+                    [
+                      1.75,
+                      -4.85
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "2c9ada783ef3477ebefb73f14e65a72b"
+          ],
+          "time_ids": [
+            "nusc_us_1538984253370339"
+          ],
+          "state_time_id": "nusc_us_1538984253412460",
+          "body_geometry": {
+            "length_m": 4.25,
+            "width_m": 1.7,
+            "yaw_rad": 2.15
+          },
+          "alignment": {
+            "method": "model_motion_bound",
+            "premise_ids": [
+              "parked_motion",
+              "metric_geometry_prior"
+            ],
+            "residual_m": 0.15,
+            "motion_bound": {
+              "max_speed_mps": 0.2,
+              "displacement_bound_m": 0.02,
+              "covers_all_declared_scenarios": true
+            },
+            "evidence_positions": [
+              {
+                "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+                "time_id": "nusc_us_1538984253370339",
+                "position_m": [
+                  3.99,
+                  -7.5
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "mitsubishi_stationary",
+              "premise_ids": [
+                "prototype_local_scope",
+                "parked_motion",
+                "metric_geometry_prior"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "mitsubishi_small_settle",
+              "premise_ids": [
+                "prototype_local_scope",
+                "parked_motion",
+                "metric_geometry_prior"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional local two-second prototype, not a verified trajectory or a whole-world safety claim. The reference view shows clear pavement sweeping initially left in the fixed reference axes, with a tighter rightward continuation beyond the proposed short route. Prefer gentle curved progress while slowing from the trusted initial 3.537 m/s; do not force the farther bend. Road vertices and actor depth are approximate monocular hypotheses, not calibrated ground-plane measurements. The local domain includes the nearest gray sedan beside the roadway. More distant parking rows, the truck behind-left, hidden pedestrians, and newly arriving traffic are excluded only under the explicit no-entry condition. Their absence worldwide is not asserted. No optimizer, independent dynamics/collision checker, or simulated prefix has been executed here.",
+      "premises": [
+        {
+          "id": "prototype_local_scope",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": [
+            [
+              -3,
+              -10.5
+            ],
+            [
+              6.8,
+              -10.5
+            ],
+            [
+              12,
+              -2
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              -3,
+              6
+            ]
+          ],
+          "statement": "Model only this finite local domain during [0,2] seconds: the observed continuous roadway patch and adjacent nearest gray-sedan bay. Adopt no new unobserved entrant into this domain, no pedestrian emerging from vegetation or parked vehicles, and no departure into this domain from the more distant parking rows or rear-left truck. Those excluded conditions are not observations of absence and invalidate this prototype if violated. Keep the observed nearest sedan explicitly represented. The ego route must remain inside the separately supplied road and center target region."
+        },
+        {
+          "id": "parked_motion",
+          "object_ids": [
+            "parked_gray_mitsubishi"
+          ],
+          "scenario_ids": [
+            "mitsubishi_stationary",
+            "mitsubishi_small_settle"
+          ],
+          "start_s": -0.043,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "The sedan is visually positioned in a parking bay. Conditionally model it as parked from its actual front-right capture, 0.042121 seconds before reference, through horizon end. Adopted mode has a fixed body pose. Reasonable adverse mode permits center displacement within 0.20 m of its reference center and yaw within 0.04 rad of 2.15, with center speed at most 0.20 m/s. Across capture-to-reference the center displacement is bounded by 0.02 m. This past bound is a model assumption supported by the parked appearance, not ego compensation alone. No powered pull-out is adopted in this two-second prototype."
+        },
+        {
+          "id": "metric_geometry_prior",
+          "object_ids": [
+            "parked_gray_mitsubishi"
+          ],
+          "scenario_ids": [
+            "mitsubishi_stationary",
+            "mitsubishi_small_settle"
+          ],
+          "start_s": -0.043,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Conditionally assign the individually observed compact gray Mitsubishi a 4.25 m length and 1.70 m width. Its nearly frontal front-right-camera appearance supplies approximate scale and orientation, not known dimensions. Native body center is estimated at [3.99,-7.50] at capture and [4.00,-7.50] at reference, with yaw 2.15 rad. All source rectangles enclose the full oriented nominal body; the adverse rectangle additionally covers the declared displacement and yaw range. Total actor residual 0.65 m includes alignment residual 0.15 m and source residual 0.40 m, with 0.10 m additional estimation allowance."
+        },
+        {
+          "id": "local_pavement_geometry",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Estimate a convex inner patch of continuous pavement from the reference front image's left guardrail/curb base and right grass-island curb, supplemented by the immediately preceding front-left view near the ego footprint. Use camera axes, perspective, the sedan dimension prior, and a locally approximately level pavement assumption. The right curb near image coordinates roughly [1030,700] suggests forward distance around 9-10 m and lateral position around -1.5 m; the left curb is several meters left of the near route. Rear and near-side vertices conservatively continue the visible adjoining pavement across the current footprint. Assign 0.35 m noncalibrated boundary residual. This supports a short initial leftward sweep, not a claim that the entire farther bend is contained in this convex patch."
+        }
+      ],
+      "unknowns": [],
+      "metric_scale_support": {
+        "method": "conditional_body_dimension_prior",
+        "frame_ids": [
+          "2c9ada783ef3477ebefb73f14e65a72b"
+        ],
+        "time_ids": [
+          "nusc_us_1538984253370339"
+        ],
+        "premise_ids": [
+          "metric_geometry_prior",
+          "local_pavement_geometry"
+        ],
+        "anchors": [
+          {
+            "object_id": "parked_gray_mitsubishi",
+            "dimension": "width_m",
+            "value_m": 1.7,
+            "rationale": "Conditional compact-sedan width prior for this individual gray Mitsubishi, seen nearly frontally in the cited front-right image."
+          },
+          {
+            "object_id": "parked_gray_mitsubishi",
+            "dimension": "length_m",
+            "value_m": 4.25,
+            "rationale": "Conditional compact-sedan length prior matching the native full-body hypothesis; length is less directly constrained than visible frontal width."
+          }
+        ],
+        "metric_reasoning": "The sedan's frontal width occupies approximately 350-380 pixels in the front-right image. With focal length about 1261 pixels and an assumed width of 1.70 m, the approximate frontal distance is 5.6-6.1 m along that camera's viewing direction. Camera orientation places this bay to ego-right. Allowing for the body center behind the visible front yields the estimated center around [4,-7.5] and heading 2.15 rad. Transfer this approximate scale to the nearby curb perspective and use the supplied camera axes to estimate the local pavement polygon. Ground contacts, bay elevation and actual body dimensions are not certified; finite residuals remain model hypotheses."
+      }
+    },
+    "contract_version": "3.0.0-exp2",
+    "coverage_profile": "whole_interval_sources_v3_exp2",
+    "measurement_semantics": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_openai_responses",
+    "authentication": "api_key",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "server_reported_model": "gpt-6.1-sol",
+    "server_reported_snapshot": null,
+    "model_identity_basis": "Responses response.model exact registered ID; independent snapshot authentication unavailable",
+    "response_id": "resp_050621a5cdd0434f016ae31271cf0887d08b48849a30bf3ea6",
+    "request_id": "req_98a0b65f582f4a29becaf892dd5d7ed1",
+    "usage": {
+      "input_tokens": 25321,
+      "input_tokens_details": {
+        "cache_write_tokens": 21823,
+        "cached_tokens": 3495
+      },
+      "output_tokens": 4290,
+      "output_tokens_details": {
+        "reasoning_tokens": 1552
+      },
+      "total_tokens": 29611
+    },
+    "output_digest": "9ac35fde130ef82834c8882599c8ab8ac0b3867f1b8333eaf823181cc30294fd",
+    "image_sha256": {
+      "13b3848fba3442f58870664d973fcb3f": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+      "71f5065f435c47f5b208831524ae6a2a": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868",
+      "468dcee93e6049d8873706be7f9f3f89": "23ca2c6e8ee6b3d94f2c4bd22f984328a6f0fd65dfbbe8136f1c0b859d771b2b",
+      "4c5917e14f224fa2a0bd3bd182f8a3d8": "62881e2d5e4ff1e8f88d42af04e8aaac1e505d53e5a5d841deeac5c3b40c5e90",
+      "2c9ada783ef3477ebefb73f14e65a72b": "3ec9d289068a8fbec3062ba261d4ccf20e73095fef1a70eb892a279d24a5ba64",
+      "3ce943b70af349f38d28c0686faf68f6": "dd6ae3f4dd825c975e09d9685802a9252c421de2b6d92ea948cf4eb9ff849d41",
+      "ee916b0953a0493492d16555d1911353": "47208588ebaa19b4906f5271b3a65de9a0a1600aaeced5dc67c2bb8394718f46",
+      "73f8df215bec4b8da87c96aa382e2ceb": "a97e4b671ce4428f4e48323e2217154b91994050622b729ef46ee223e3e52d94",
+      "951a1c1f65b84cc18fbc7c9178e6342b": "1171cb57f0b9474119167d28f04b939cec9a667ab02e8f191ec83866e531f732",
+      "f18c90dafe764fe2b0d96102eb90c48c": "4a57ae1764293cacca049b878086c5ebc65454b4767fa61d7f7591eb25a328a3"
+    },
+    "prompt_version": "driving_prototype_v3",
+    "agent_output_contract": "3.0.0-exp2",
+    "prompt_sha256": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+    "attempts": 1,
+    "adapter_retries": 0,
+    "request_max_retries": 0,
+    "tool_calls": 0,
+    "schema_transport": {
+      "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+      "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+      "wire_schema_version": "so_const_string_enum_type_v2",
+      "generator_version": "2.0.0",
+      "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+      "business_validation": "agent_output_v3_exp2.schema.json",
+      "response_repair": false
+    },
+    "elapsed_s": 86.97429632022977,
+    "experiment_profile": "local_conditional_2s_prototype_v1"
+  },
+  "scene": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1538984253412460",
+      "reference_time_s": 1538984253.4124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984255.4124599
+    },
+    "capture": {
+      "metadata": {
+        "profile": "convex_disk_bicycle_v2",
+        "schema_version": "2.0.0",
+        "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+        "revision": 0,
+        "reference_time_id": "nusc_us_1538984253412460",
+        "reference_time_s": 1538984253.4124599,
+        "coordinate_frame": "ego_at_reference",
+        "horizon_s": 2.0,
+        "step_s": 0.2,
+        "history_s": 2.0,
+        "valid_until_s": 1538984255.4124599
+      },
+      "observations": [
+        {
+          "id": "13b3848fba3442f58870664d973fcb3f",
+          "time_id": "nusc_us_1538984251412460",
+          "capture_time_s": 1538984251.4124599,
+          "capture_utc": "2018-10-08T07:37:31.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984251412460.jpg"
+        },
+        {
+          "id": "71f5065f435c47f5b208831524ae6a2a",
+          "time_id": "nusc_us_1538984251912460",
+          "capture_time_s": 1538984251.9124599,
+          "capture_utc": "2018-10-08T07:37:31.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984251912460.jpg"
+        },
+        {
+          "id": "468dcee93e6049d8873706be7f9f3f89",
+          "time_id": "nusc_us_1538984252412460",
+          "capture_time_s": 1538984252.4124599,
+          "capture_utc": "2018-10-08T07:37:32.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984252412460.jpg"
+        },
+        {
+          "id": "4c5917e14f224fa2a0bd3bd182f8a3d8",
+          "time_id": "nusc_us_1538984252912460",
+          "capture_time_s": 1538984252.9124599,
+          "capture_utc": "2018-10-08T07:37:32.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984252912460.jpg"
+        },
+        {
+          "id": "2c9ada783ef3477ebefb73f14e65a72b",
+          "time_id": "nusc_us_1538984253370339",
+          "capture_time_s": 1538984253.370339,
+          "capture_utc": "2018-10-08T07:37:33.370339+00:00",
+          "camera_id": "CAM_FRONT_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT_RIGHT/n015-2018-10-08-15-36-50+0800__CAM_FRONT_RIGHT__1538984253370339.jpg"
+        },
+        {
+          "id": "3ce943b70af349f38d28c0686faf68f6",
+          "time_id": "nusc_us_1538984253377893",
+          "capture_time_s": 1538984253.377893,
+          "capture_utc": "2018-10-08T07:37:33.377893+00:00",
+          "camera_id": "CAM_BACK_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_RIGHT/n015-2018-10-08-15-36-50+0800__CAM_BACK_RIGHT__1538984253377893.jpg"
+        },
+        {
+          "id": "ee916b0953a0493492d16555d1911353",
+          "time_id": "nusc_us_1538984253387525",
+          "capture_time_s": 1538984253.3875248,
+          "capture_utc": "2018-10-08T07:37:33.387525+00:00",
+          "camera_id": "CAM_BACK",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK/n015-2018-10-08-15-36-50+0800__CAM_BACK__1538984253387525.jpg"
+        },
+        {
+          "id": "73f8df215bec4b8da87c96aa382e2ceb",
+          "time_id": "nusc_us_1538984253397423",
+          "capture_time_s": 1538984253.397423,
+          "capture_utc": "2018-10-08T07:37:33.397423+00:00",
+          "camera_id": "CAM_BACK_LEFT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_LEFT/n015-2018-10-08-15-36-50+0800__CAM_BACK_LEFT__1538984253397423.jpg"
+        },
+        {
+          "id": "951a1c1f65b84cc18fbc7c9178e6342b",
+          "time_id": "nusc_us_1538984253404844",
+          "capture_time_s": 1538984253.404844,
+          "capture_utc": "2018-10-08T07:37:33.404844+00:00",
+          "camera_id": "CAM_FRONT_LEFT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT_LEFT/n015-2018-10-08-15-36-50+0800__CAM_FRONT_LEFT__1538984253404844.jpg"
+        },
+        {
+          "id": "f18c90dafe764fe2b0d96102eb90c48c",
+          "time_id": "nusc_us_1538984253412460",
+          "capture_time_s": 1538984253.4124599,
+          "capture_utc": "2018-10-08T07:37:33.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984253412460.jpg"
+        }
+      ],
+      "ego": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 3.536993159166046
+      },
+      "vehicle": {
+        "front_m": 2.3,
+        "rear_m": 2.3,
+        "half_width_m": 0.9,
+        "center_to_rear_axle_m": 1.2,
+        "wheelbase_m": 2.7,
+        "max_speed_mps": 12.0,
+        "max_accel_mps2": 2.0,
+        "max_brake_mps2": 3.0,
+        "max_steer_rad": 0.5,
+        "max_curvature_per_m": 0.2
+      },
+      "navigation_intent": "Follow the currently visible roadway when permissible. This task is to demonstrate a curved moving trajectory where the actual images support a bend; slow as needed, obey signals and yield. Never invent road geometry or force a turn when conditions require stopping. No map or future route is supplied.",
+      "safety": {
+        "margin_m": 1.0,
+        "prefix_s": 0.2
+      },
+      "acquisition_metadata": {
+        "dataset": "nuScenes",
+        "native_ego_reference": "rear_axle",
+        "center_offset_assumption_m": 1.2,
+        "calibrations": {
+          "CAM_FRONT": {
+            "camera_intrinsic": [
+              [
+                1266.417203046554,
+                0.0,
+                816.2670197447984
+              ],
+              [
+                0.0,
+                1266.417203046554,
+                491.50706579294757
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.005684778682715441,
+                -0.005636667733598166,
+                0.9999679551206578
+              ],
+              [
+                -0.9999835174398977,
+                -0.0008371152724919728,
+                0.005680148462035628
+              ],
+              [
+                0.0008050713376760443,
+                -0.9999837634756286,
+                -0.005641333641939639
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.5007911895400001,
+              0.0159456324149,
+              1.51095763913
+            ]
+          },
+          "CAM_FRONT_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1260.8474446004698,
+                0.0,
+                807.968244525554
+              ],
+              [
+                0.0,
+                1260.8474446004698,
+                495.3344268742088
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.8329295630238647,
+                -9.946037679009478e-06,
+                0.5533790228604183
+              ],
+              [
+                -0.5533049273172018,
+                0.01637881578953715,
+                -0.8328177422460685
+              ],
+              [
+                -0.009055409840580897,
+                -0.9998658581501867,
+                -0.013647903070083123
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.35084775430000015,
+              -0.493404796419,
+              1.49574800619
+            ]
+          },
+          "CAM_BACK_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1259.5137405846733,
+                0.0,
+                807.2529053838625
+              ],
+              [
+                0.0,
+                1259.5137405846733,
+                501.19579884916527
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.9347755391782981,
+                0.015875837955449834,
+                -0.3548839938953784
+              ],
+              [
+                0.3550745592741919,
+                0.011370495332615804,
+                -0.9347688319537242
+              ],
+              [
+                -0.010805031705694884,
+                -0.9998093166224766,
+                -0.016265967070410614
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.18512190120000005,
+              -0.480568219723,
+              1.56239545128
+            ]
+          },
+          "CAM_BACK": {
+            "camera_intrinsic": [
+              [
+                809.2209905677063,
+                0.0,
+                829.2196003259838
+              ],
+              [
+                0.0,
+                809.2209905677063,
+                481.77842384512485
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.002421709860318755,
+                -0.016753608478469628,
+                -0.9998567156969556
+              ],
+              [
+                0.9999890666843358,
+                -0.003959107249966065,
+                0.002488369260045864
+              ],
+              [
+                -0.004000229136375599,
+                -0.999851810056237,
+                0.016743837496914216
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -1.1716739690642,
+              0.00345136761476,
+              1.57910346144
+            ]
+          },
+          "CAM_BACK_LEFT": {
+            "camera_intrinsic": [
+              [
+                1256.7414812095406,
+                0.0,
+                792.1125740759628
+              ],
+              [
+                0.0,
+                1256.7414812095406,
+                492.7757465151356
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.9477603556843314,
+                0.008665721547931132,
+                -0.31886550999310576
+              ],
+              [
+                0.31896113144149074,
+                -0.01397629983587656,
+                0.9476647401230364
+              ],
+              [
+                0.0037556387837154315,
+                -0.9998647750135773,
+                -0.016010211253286277
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.16430899781999986,
+              0.484795032713,
+              1.59097014818
+            ]
+          },
+          "CAM_FRONT_LEFT": {
+            "camera_intrinsic": [
+              [
+                1272.5979470598488,
+                0.0,
+                826.6154927353808
+              ],
+              [
+                0.0,
+                1272.5979470598488,
+                479.75165386361925
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.8207583481515547,
+                -0.00034143667149910684,
+                0.5712754303840931
+              ],
+              [
+                -0.5712716007618155,
+                0.0032195018514856732,
+                0.8207547703003997
+              ],
+              [
+                -0.002119458082718406,
+                -0.9999947591006806,
+                0.0024473799476101288
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.3238779813500001,
+              0.494631336551,
+              1.50932822144
+            ]
+          }
+        },
+        "ego_history": [
+          {
+            "frame_id": "13b3848fba3442f58870664d973fcb3f",
+            "time_id": "nusc_us_1538984251412460",
+            "center_xy_m": [
+              -6.936541818861669,
+              2.1629087900513206
+            ],
+            "yaw_rad": -0.8064733835039599
+          },
+          {
+            "frame_id": "71f5065f435c47f5b208831524ae6a2a",
+            "time_id": "nusc_us_1538984251912460",
+            "center_xy_m": [
+              -5.32771519129355,
+              1.0155938446348012
+            ],
+            "yaw_rad": -0.6263412813206986
+          },
+          {
+            "frame_id": "468dcee93e6049d8873706be7f9f3f89",
+            "time_id": "nusc_us_1538984252412460",
+            "center_xy_m": [
+              -3.5696618238746445,
+              0.2700271581590778
+            ],
+            "yaw_rad": -0.41451895674847017
+          },
+          {
+            "frame_id": "4c5917e14f224fa2a0bd3bd182f8a3d8",
+            "time_id": "nusc_us_1538984252912460",
+            "center_xy_m": [
+              -1.768496579583023,
+              -0.05945981726533297
+            ],
+            "yaw_rad": -0.20367881974994173
+          },
+          {
+            "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+            "time_id": "nusc_us_1538984253370339",
+            "center_xy_m": [
+              -0.1504746680829323,
+              -0.0177850985418658
+            ],
+            "yaw_rad": -0.016392976370323442
+          },
+          {
+            "frame_id": "3ce943b70af349f38d28c0686faf68f6",
+            "time_id": "nusc_us_1538984253377893",
+            "center_xy_m": [
+              -0.12395058426409529,
+              -0.015003242682348272
+            ],
+            "yaw_rad": -0.0135534859373454
+          },
+          {
+            "frame_id": "ee916b0953a0493492d16555d1911353",
+            "time_id": "nusc_us_1538984253387525",
+            "center_xy_m": [
+              -0.09014355119034996,
+              -0.011475985020449797
+            ],
+            "yaw_rad": -0.009932893596715342
+          },
+          {
+            "frame_id": "73f8df215bec4b8da87c96aa382e2ceb",
+            "time_id": "nusc_us_1538984253397423",
+            "center_xy_m": [
+              -0.05442223545122611,
+              -0.007022285630786353
+            ],
+            "yaw_rad": -0.005995282154948267
+          },
+          {
+            "frame_id": "951a1c1f65b84cc18fbc7c9178e6342b",
+            "time_id": "nusc_us_1538984253404844",
+            "center_xy_m": [
+              -0.02757228586645288,
+              -0.0036176890892444242
+            ],
+            "yaw_rad": -0.0030259305848048257
+          },
+          {
+            "frame_id": "f18c90dafe764fe2b0d96102eb90c48c",
+            "time_id": "nusc_us_1538984253412460",
+            "center_xy_m": [
+              0.0,
+              0.0
+            ],
+            "yaw_rad": 0.0
+          }
+        ],
+        "ego_speed_source": "causal_backward_difference_localization_0.5s; not direct CAN speed",
+        "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+      }
+    },
+    "decision": {
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "behavior": "hold_lane",
+      "target_region": [
+        [
+          -0.5,
+          -0.4
+        ],
+        [
+          3,
+          -0.3
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2.5
+        ],
+        [
+          3,
+          1.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "desired_speed_mps": 3,
+      "yield_to": [],
+      "stop": null,
+      "priority": 1,
+      "valid_until_s": 1538984255.41246,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 1,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984253412460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -3,
+            -4.5
+          ],
+          [
+            3,
+            -4
+          ],
+          [
+            9.8,
+            -1.5
+          ],
+          [
+            11,
+            0.8
+          ],
+          [
+            8,
+            3.6
+          ],
+          [
+            -3,
+            5
+          ]
+        ],
+        "uncertainty_m": 0.35,
+        "frame_ids": [
+          "f18c90dafe764fe2b0d96102eb90c48c",
+          "951a1c1f65b84cc18fbc7c9178e6342b"
+        ],
+        "time_ids": [
+          "nusc_us_1538984253412460",
+          "nusc_us_1538984253404844"
+        ]
+      },
+      "objects": [
+        {
+          "id": "parked_gray_mitsubishi",
+          "position_m": [
+            4,
+            -7.5
+          ],
+          "velocity_mps": [
+            0,
+            0
+          ],
+          "uncertainty_m": 0.65,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ],
+                [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "2c9ada783ef3477ebefb73f14e65a72b"
+          ],
+          "time_ids": [
+            "nusc_us_1538984253370339"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional local two-second prototype, not a verified trajectory or a whole-world safety claim. The reference view shows clear pavement sweeping initially left in the fixed reference axes, with a tighter rightward continuation beyond the proposed short route. Prefer gentle curved progress while slowing from the trusted initial 3.537 m/s; do not force the farther bend. Road vertices and actor depth are approximate monocular hypotheses, not calibrated ground-plane measurements. The local domain includes the nearest gray sedan beside the roadway. More distant parking rows, the truck behind-left, hidden pedestrians, and newly arriving traffic are excluded only under the explicit no-entry condition. Their absence worldwide is not asserted. No optimizer, independent dynamics/collision checker, or simulated prefix has been executed here."
+    },
+    "provenance": {
+      "source": "online_model",
+      "transport": "official_openai_responses",
+      "authentication": "api_key",
+      "requested_model": "gpt-6.1-sol",
+      "model_id": "gpt-6.1-sol",
+      "server_reported_model": "gpt-6.1-sol",
+      "server_reported_snapshot": null,
+      "model_identity_basis": "Responses response.model exact registered ID; independent snapshot authentication unavailable",
+      "response_id": "resp_050621a5cdd0434f016ae31271cf0887d08b48849a30bf3ea6",
+      "request_id": "req_98a0b65f582f4a29becaf892dd5d7ed1",
+      "usage": {
+        "input_tokens": 25321,
+        "input_tokens_details": {
+          "cache_write_tokens": 21823,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4290,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 29611
+      },
+      "output_digest": "9ac35fde130ef82834c8882599c8ab8ac0b3867f1b8333eaf823181cc30294fd",
+      "image_sha256": {
+        "13b3848fba3442f58870664d973fcb3f": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+        "71f5065f435c47f5b208831524ae6a2a": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868",
+        "468dcee93e6049d8873706be7f9f3f89": "23ca2c6e8ee6b3d94f2c4bd22f984328a6f0fd65dfbbe8136f1c0b859d771b2b",
+        "4c5917e14f224fa2a0bd3bd182f8a3d8": "62881e2d5e4ff1e8f88d42af04e8aaac1e505d53e5a5d841deeac5c3b40c5e90",
+        "2c9ada783ef3477ebefb73f14e65a72b": "3ec9d289068a8fbec3062ba261d4ccf20e73095fef1a70eb892a279d24a5ba64",
+        "3ce943b70af349f38d28c0686faf68f6": "dd6ae3f4dd825c975e09d9685802a9252c421de2b6d92ea948cf4eb9ff849d41",
+        "ee916b0953a0493492d16555d1911353": "47208588ebaa19b4906f5271b3a65de9a0a1600aaeced5dc67c2bb8394718f46",
+        "73f8df215bec4b8da87c96aa382e2ceb": "a97e4b671ce4428f4e48323e2217154b91994050622b729ef46ee223e3e52d94",
+        "951a1c1f65b84cc18fbc7c9178e6342b": "1171cb57f0b9474119167d28f04b939cec9a667ab02e8f191ec83866e531f732",
+        "f18c90dafe764fe2b0d96102eb90c48c": "4a57ae1764293cacca049b878086c5ebc65454b4767fa61d7f7591eb25a328a3"
+      },
+      "prompt_version": "driving_prototype_v3",
+      "agent_output_contract": "3.0.0-exp2",
+      "prompt_sha256": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+      "attempts": 1,
+      "adapter_retries": 0,
+      "request_max_retries": 0,
+      "tool_calls": 0,
+      "schema_transport": {
+        "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+        "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+        "wire_schema_version": "so_const_string_enum_type_v2",
+        "generator_version": "2.0.0",
+        "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+        "business_validation": "agent_output_v3_exp2.schema.json",
+        "response_repair": false
+      },
+      "elapsed_s": 86.97429632022977,
+      "experiment_profile": "local_conditional_2s_prototype_v1",
+      "metric_contract_trace": {
+        "version": "3.0.0-exp2",
+        "coverage_profile": "whole_interval_sources_v3_exp2",
+        "measurement_semantics": {
+          "coordinate_frame": "ego_at_reference",
+          "origin": "ego_body_center_at_reference",
+          "axes": "x_forward_y_left_fixed_at_reference",
+          "actor_reference_point": "annotation_box_center_ground_xy",
+          "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+          "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+        },
+        "source_output": {
+          "decision": {
+            "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+            "revision": 0,
+            "behavior": "hold_lane",
+            "target_region": [
+              [
+                -0.5,
+                -0.4
+              ],
+              [
+                3,
+                -0.3
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                7,
+                2.5
+              ],
+              [
+                3,
+                1.5
+              ],
+              [
+                -0.5,
+                0.5
+              ]
+            ],
+            "desired_speed_mps": 3,
+            "yield_to": [],
+            "stop": null,
+            "priority": 1,
+            "valid_until_s": 1538984255.41246,
+            "hard_requirements": [
+              "target_region",
+              "vehicle_limits",
+              "collision_free",
+              "road"
+            ],
+            "preferences": {
+              "speed_weight": 1,
+              "acceleration_weight": 2,
+              "steering_weight": 1,
+              "smoothness_weight": 3
+            }
+          },
+          "hypotheses": {
+            "coordinate_frame": "ego_at_reference",
+            "reference_time_id": "nusc_us_1538984253412460",
+            "units": "m_s_rad",
+            "scale_basis": "model_metric_hypothesis",
+            "road": {
+              "polygon_m": [
+                [
+                  -3,
+                  -4.5
+                ],
+                [
+                  3,
+                  -4
+                ],
+                [
+                  9.8,
+                  -1.5
+                ],
+                [
+                  11,
+                  0.8
+                ],
+                [
+                  8,
+                  3.6
+                ],
+                [
+                  -3,
+                  5
+                ]
+              ],
+              "uncertainty_m": 0.35,
+              "frame_ids": [
+                "f18c90dafe764fe2b0d96102eb90c48c",
+                "951a1c1f65b84cc18fbc7c9178e6342b"
+              ],
+              "time_ids": [
+                "nusc_us_1538984253412460",
+                "nusc_us_1538984253404844"
+              ]
+            },
+            "objects": [
+              {
+                "id": "parked_gray_mitsubishi",
+                "position_m": [
+                  4,
+                  -7.5
+                ],
+                "velocity_mps": [
+                  0,
+                  0
+                ],
+                "uncertainty_m": 0.65,
+                "occupancy": [
+                  {
+                    "id": "mitsubishi_body_0_2",
+                    "start_s": 0,
+                    "end_s": 2,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "alternatives": [
+                      {
+                        "scenario_id": "mitsubishi_stationary",
+                        "polygon_m": [
+                          [
+                            2.05,
+                            -9.82
+                          ],
+                          [
+                            5.95,
+                            -9.82
+                          ],
+                          [
+                            5.95,
+                            -5.18
+                          ],
+                          [
+                            2.05,
+                            -5.18
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "mitsubishi_small_settle",
+                        "polygon_m": [
+                          [
+                            1.75,
+                            -10.15
+                          ],
+                          [
+                            6.25,
+                            -10.15
+                          ],
+                          [
+                            6.25,
+                            -4.85
+                          ],
+                          [
+                            1.75,
+                            -4.85
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "frame_ids": [
+                  "2c9ada783ef3477ebefb73f14e65a72b"
+                ],
+                "time_ids": [
+                  "nusc_us_1538984253370339"
+                ],
+                "state_time_id": "nusc_us_1538984253412460",
+                "body_geometry": {
+                  "length_m": 4.25,
+                  "width_m": 1.7,
+                  "yaw_rad": 2.15
+                },
+                "alignment": {
+                  "method": "model_motion_bound",
+                  "premise_ids": [
+                    "parked_motion",
+                    "metric_geometry_prior"
+                  ],
+                  "residual_m": 0.15,
+                  "motion_bound": {
+                    "max_speed_mps": 0.2,
+                    "displacement_bound_m": 0.02,
+                    "covers_all_declared_scenarios": true
+                  },
+                  "evidence_positions": [
+                    {
+                      "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+                      "time_id": "nusc_us_1538984253370339",
+                      "position_m": [
+                        3.99,
+                        -7.5
+                      ],
+                      "observed_actor": true
+                    }
+                  ]
+                },
+                "scenarios": [
+                  {
+                    "id": "mitsubishi_stationary",
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "role": "adopted"
+                  },
+                  {
+                    "id": "mitsubishi_small_settle",
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "role": "reasonable_adverse"
+                  }
+                ],
+                "scenario_inventory_complete": true
+              }
+            ],
+            "unknown_regions": [],
+            "traffic_evidence": [],
+            "unbounded_unknown": false,
+            "confidence_note": "Conditional local two-second prototype, not a verified trajectory or a whole-world safety claim. The reference view shows clear pavement sweeping initially left in the fixed reference axes, with a tighter rightward continuation beyond the proposed short route. Prefer gentle curved progress while slowing from the trusted initial 3.537 m/s; do not force the farther bend. Road vertices and actor depth are approximate monocular hypotheses, not calibrated ground-plane measurements. The local domain includes the nearest gray sedan beside the roadway. More distant parking rows, the truck behind-left, hidden pedestrians, and newly arriving traffic are excluded only under the explicit no-entry condition. Their absence worldwide is not asserted. No optimizer, independent dynamics/collision checker, or simulated prefix has been executed here.",
+            "premises": [
+              {
+                "id": "prototype_local_scope",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": [
+                  [
+                    -3,
+                    -10.5
+                  ],
+                  [
+                    6.8,
+                    -10.5
+                  ],
+                  [
+                    12,
+                    -2
+                  ],
+                  [
+                    12,
+                    4
+                  ],
+                  [
+                    -3,
+                    6
+                  ]
+                ],
+                "statement": "Model only this finite local domain during [0,2] seconds: the observed continuous roadway patch and adjacent nearest gray-sedan bay. Adopt no new unobserved entrant into this domain, no pedestrian emerging from vegetation or parked vehicles, and no departure into this domain from the more distant parking rows or rear-left truck. Those excluded conditions are not observations of absence and invalidate this prototype if violated. Keep the observed nearest sedan explicitly represented. The ego route must remain inside the separately supplied road and center target region."
+              },
+              {
+                "id": "parked_motion",
+                "object_ids": [
+                  "parked_gray_mitsubishi"
+                ],
+                "scenario_ids": [
+                  "mitsubishi_stationary",
+                  "mitsubishi_small_settle"
+                ],
+                "start_s": -0.043,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "The sedan is visually positioned in a parking bay. Conditionally model it as parked from its actual front-right capture, 0.042121 seconds before reference, through horizon end. Adopted mode has a fixed body pose. Reasonable adverse mode permits center displacement within 0.20 m of its reference center and yaw within 0.04 rad of 2.15, with center speed at most 0.20 m/s. Across capture-to-reference the center displacement is bounded by 0.02 m. This past bound is a model assumption supported by the parked appearance, not ego compensation alone. No powered pull-out is adopted in this two-second prototype."
+              },
+              {
+                "id": "metric_geometry_prior",
+                "object_ids": [
+                  "parked_gray_mitsubishi"
+                ],
+                "scenario_ids": [
+                  "mitsubishi_stationary",
+                  "mitsubishi_small_settle"
+                ],
+                "start_s": -0.043,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "Conditionally assign the individually observed compact gray Mitsubishi a 4.25 m length and 1.70 m width. Its nearly frontal front-right-camera appearance supplies approximate scale and orientation, not known dimensions. Native body center is estimated at [3.99,-7.50] at capture and [4.00,-7.50] at reference, with yaw 2.15 rad. All source rectangles enclose the full oriented nominal body; the adverse rectangle additionally covers the declared displacement and yaw range. Total actor residual 0.65 m includes alignment residual 0.15 m and source residual 0.40 m, with 0.10 m additional estimation allowance."
+              },
+              {
+                "id": "local_pavement_geometry",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "Estimate a convex inner patch of continuous pavement from the reference front image's left guardrail/curb base and right grass-island curb, supplemented by the immediately preceding front-left view near the ego footprint. Use camera axes, perspective, the sedan dimension prior, and a locally approximately level pavement assumption. The right curb near image coordinates roughly [1030,700] suggests forward distance around 9-10 m and lateral position around -1.5 m; the left curb is several meters left of the near route. Rear and near-side vertices conservatively continue the visible adjoining pavement across the current footprint. Assign 0.35 m noncalibrated boundary residual. This supports a short initial leftward sweep, not a claim that the entire farther bend is contained in this convex patch."
+              }
+            ],
+            "unknowns": [],
+            "metric_scale_support": {
+              "method": "conditional_body_dimension_prior",
+              "frame_ids": [
+                "2c9ada783ef3477ebefb73f14e65a72b"
+              ],
+              "time_ids": [
+                "nusc_us_1538984253370339"
+              ],
+              "premise_ids": [
+                "metric_geometry_prior",
+                "local_pavement_geometry"
+              ],
+              "anchors": [
+                {
+                  "object_id": "parked_gray_mitsubishi",
+                  "dimension": "width_m",
+                  "value_m": 1.7,
+                  "rationale": "Conditional compact-sedan width prior for this individual gray Mitsubishi, seen nearly frontally in the cited front-right image."
+                },
+                {
+                  "object_id": "parked_gray_mitsubishi",
+                  "dimension": "length_m",
+                  "value_m": 4.25,
+                  "rationale": "Conditional compact-sedan length prior matching the native full-body hypothesis; length is less directly constrained than visible frontal width."
+                }
+              ],
+              "metric_reasoning": "The sedan's frontal width occupies approximately 350-380 pixels in the front-right image. With focal length about 1261 pixels and an assumed width of 1.70 m, the approximate frontal distance is 5.6-6.1 m along that camera's viewing direction. Camera orientation places this bay to ego-right. Allowing for the body center behind the visible front yields the estimated center around [4,-7.5] and heading 2.15 rad. Transfer this approximate scale to the nearby curb perspective and use the supplied camera axes to estimate the local pavement polygon. Ground contacts, bay elevation and actual body dimensions are not certified; finite residuals remain model hypotheses."
+            }
+          },
+          "contract_version": "3.0.0-exp2",
+          "coverage_profile": "whole_interval_sources_v3_exp2",
+          "measurement_semantics": {
+            "coordinate_frame": "ego_at_reference",
+            "origin": "ego_body_center_at_reference",
+            "axes": "x_forward_y_left_fixed_at_reference",
+            "actor_reference_point": "annotation_box_center_ground_xy",
+            "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+            "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+          }
+        },
+        "source_output_digest": "9ac35fde130ef82834c8882599c8ab8ac0b3867f1b8333eaf823181cc30294fd",
+        "lowered_output_digest": "2a43267dbf4fd03e23a1c5261b414fead8a6331c09f7e376a30270e74b934776",
+        "objects": [
+          {
+            "object_id": "parked_gray_mitsubishi",
+            "alignment": {
+              "method": "model_motion_bound",
+              "premise_ids": [
+                "parked_motion",
+                "metric_geometry_prior"
+              ],
+              "residual_m": 0.15,
+              "motion_bound": {
+                "max_speed_mps": 0.2,
+                "displacement_bound_m": 0.02,
+                "covers_all_declared_scenarios": true
+              },
+              "evidence_positions": [
+                {
+                  "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+                  "time_id": "nusc_us_1538984253370339",
+                  "position_m": [
+                    3.99,
+                    -7.5
+                  ],
+                  "observed_actor": true
+                }
+              ]
+            },
+            "cell_sources": [
+              {
+                "start_s": 0.0,
+                "end_s": 0.2,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.2,
+                "end_s": 0.4,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.4,
+                "end_s": 0.6000000000000001,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.6000000000000001,
+                "end_s": 0.8,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.8,
+                "end_s": 1.0,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.0,
+                "end_s": 1.2000000000000002,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.2000000000000002,
+                "end_s": 1.4000000000000001,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.4000000000000001,
+                "end_s": 1.6,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.6,
+                "end_s": 1.8,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.8,
+                "end_s": 2.0,
+                "source_ids": [
+                  "mitsubishi_body_0_2"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_stationary",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  },
+                  {
+                    "source_id": "mitsubishi_body_0_2",
+                    "scenario_id": "mitsubishi_small_settle",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "parked_motion",
+                      "metric_geometry_prior"
+                    ],
+                    "residual_m": 0.4,
+                    "frame_ids": [
+                      "2c9ada783ef3477ebefb73f14e65a72b"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984253370339"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "total_residual_m": 0.65
+          }
+        ],
+        "metric_scale_support": {
+          "method": "conditional_body_dimension_prior",
+          "frame_ids": [
+            "2c9ada783ef3477ebefb73f14e65a72b"
+          ],
+          "time_ids": [
+            "nusc_us_1538984253370339"
+          ],
+          "premise_ids": [
+            "metric_geometry_prior",
+            "local_pavement_geometry"
+          ],
+          "anchors": [
+            {
+              "object_id": "parked_gray_mitsubishi",
+              "dimension": "width_m",
+              "value_m": 1.7,
+              "rationale": "Conditional compact-sedan width prior for this individual gray Mitsubishi, seen nearly frontally in the cited front-right image."
+            },
+            {
+              "object_id": "parked_gray_mitsubishi",
+              "dimension": "length_m",
+              "value_m": 4.25,
+              "rationale": "Conditional compact-sedan length prior matching the native full-body hypothesis; length is less directly constrained than visible frontal width."
+            }
+          ],
+          "metric_reasoning": "The sedan's frontal width occupies approximately 350-380 pixels in the front-right image. With focal length about 1261 pixels and an assumed width of 1.70 m, the approximate frontal distance is 5.6-6.1 m along that camera's viewing direction. Camera orientation places this bay to ego-right. Allowing for the body center behind the visible front yields the estimated center around [4,-7.5] and heading 2.15 rad. Transfer this approximate scale to the nearby curb perspective and use the supplied camera axes to estimate the local pavement polygon. Ground contacts, bay elevation and actual body dimensions are not certified; finite residuals remain model hypotheses."
+        },
+        "source_intervals_closed": true,
+        "refinement": "include_all_closed_intersecting_source_sets_without_shrinking",
+        "residual_application": "one_total_object_radius >= alignment_residual + each_source_geometry_residual; never added again",
+        "assumptions": "Model-proposed premises and adverse-scenario inventory are conditional, uncalibrated and not independently certified"
+      }
+    },
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "corridor": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1538984253412460",
+      "reference_time_s": 1538984253.4124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984255.4124599
+    },
+    "scene_digest": "cbc2af78d21d9cba12c20b1e6ff7f27f40e59cc5c5fc5d0959a73489f71ff000",
+    "cells": [
+      {
+        "start_s": 0.0,
+        "end_s": 0.2,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.612819858426174
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.313348149919591
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.4935996479935305
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.5680947608886555
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.669369979032932
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4908692280304843
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.3213112893474371
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.8132530018939677
+          ],
+          [
+            1.0,
+            -0.0,
+            5.800000000000001
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.9381275786157389
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.8678841716795751
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6971748854146305
+          ],
+          [
+            0.0,
+            -1.0,
+            2.542790349650374
+          ],
+          [
+            0.0,
+            -1.0,
+            2.212790349650374
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.46335050390896,
+            2.0828374002116496
+          ],
+          [
+            5.645369163508484,
+            0.9796199845854277
+          ],
+          [
+            1.8003749804691895,
+            -0.27000312490234324
+          ],
+          [
+            -1.4908692280304843,
+            -0.36403867371661963
+          ],
+          [
+            -1.4908692280304843,
+            0.47665052641907196
+          ],
+          [
+            1.8028251145855743,
+            1.4177060528808032
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.06863215708739182
+        ]
+      },
+      {
+        "start_s": 0.2,
+        "end_s": 0.4,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.761566263657367
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.4428344529943486
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.528932136591235
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.5085789060898644
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.554543585406193
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.462374042205794
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.3736393426503651
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.8629920789576551
+          ],
+          [
+            1.0,
+            -0.0,
+            5.800208288340798
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8960114042757626
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.8260157539903002
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6934942061963145
+          ],
+          [
+            0.050825475688634256,
+            -0.9987075502973951,
+            2.615230524272737
+          ],
+          [
+            0.05082547568863427,
+            -0.9987075502973952,
+            2.2704093899680067
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.377636202034795,
+            2.0179964659054375
+          ],
+          [
+            4.456327637968018,
+            2.007981192241209
+          ],
+          [
+            5.622234683119206,
+            0.9198012834334336
+          ],
+          [
+            1.8002082883408357,
+            -0.32235729486953685
+          ],
+          [
+            -1.462374042205794,
+            -0.4155739328851549
+          ],
+          [
+            -1.462374042205794,
+            0.44124819641638796
+          ],
+          [
+            1.8065057938034648,
+            1.3752138638476048
+          ]
+        ],
+        "heading_band_rad": [
+          0.01863215708739182,
+          0.10417677955077481
+        ]
+      },
+      {
+        "start_s": 0.4,
+        "end_s": 0.6000000000000001,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.8843355598099887
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.5511402157885006
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.562648084911308
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.4653960168709315
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.46728646652354
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4413877135955988
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4162893331939765
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9040078554722346
+          ],
+          [
+            1.0,
+            -0.0,
+            5.801760643360156
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.863329587920874
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.793491184708265
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6896185183750914
+          ],
+          [
+            0.08489730385484077,
+            -0.9963897067905604,
+            2.677902782177306
+          ],
+          [
+            0.08489730385484082,
+            -0.9963897067905604,
+            2.323624987779969
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.233779142266011,
+            1.9483445557461843
+          ],
+          [
+            4.49217076989296,
+            1.9154583485936636
+          ],
+          [
+            5.609565785382713,
+            0.8725563341365603
+          ],
+          [
+            1.8017606433601694,
+            -0.3649803370207665
+          ],
+          [
+            -1.4413877135955988,
+            -0.4576417186480742
+          ],
+          [
+            -1.4413877135955988,
+            0.41341822766576347
+          ],
+          [
+            1.8103814816249124,
+            1.3424951405859098
+          ]
+        ],
+        "heading_band_rad": [
+          0.054176779550774816,
+          0.13163386739014898
+        ]
+      },
+      {
+        "start_s": 0.6000000000000001,
+        "end_s": 0.8,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.9127999271514677
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.636443300358878
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.591695722631183
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.436415991032705
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.4065271499403673
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4271301167102433
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4492113094179503
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9359607966968574
+          ],
+          [
+            1.0,
+            -0.0,
+            5.803996232972592
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8402112538326978
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.7704658078648529
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6863447570636245
+          ],
+          [
+            0.11067975269196939,
+            -0.9938561225570048,
+            2.7230125341295683
+          ],
+          [
+            0.11067975269196939,
+            -0.993856122557005,
+            2.361836087878166
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.134594642644107,
+            1.8997185975072428
+          ],
+          [
+            4.518977785138956,
+            1.850797106644262
+          ],
+          [
+            5.604763196725243,
+            0.8373973891637275
+          ],
+          [
+            1.8039962329725616,
+            -0.39785187405589384
+          ],
+          [
+            -1.4271301167102433,
+            -0.4901697697611168
+          ],
+          [
+            -1.4271301167102433,
+            0.39354507339555816
+          ],
+          [
+            1.8136552429364758,
+            1.3194837475803352
+          ]
+        ],
+        "heading_band_rad": [
+          0.081633867390149,
+          0.15100342060551433
+        ]
+      },
+      {
+        "start_s": 0.8,
+        "end_s": 1.0,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.9011689439098682
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.697441697298359
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.613748969652979
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.420106814811932
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.371451228298995
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4190367144513663
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.47240865709017477
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9586288059616969
+          ],
+          [
+            1.0,
+            -0.0,
+            5.806115812628709
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8267256884337362
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.7570275176154675
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.684232712032988
+          ],
+          [
+            0.12822907823090374,
+            -0.9917445757331133,
+            2.753932104688112
+          ],
+          [
+            0.12822907823090376,
+            -0.9917445757331133,
+            2.388187671226913
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0777173169847805,
+            1.8715986634521344
+          ],
+          [
+            4.535167360015236,
+            1.8133777488846219
+          ],
+          [
+            5.605975935909549,
+            0.8139564113832629
+          ],
+          [
+            1.8061158126286614,
+            -0.4209981286830256
+          ],
+          [
+            -1.4190367144513663,
+            -0.513145343742455
+          ],
+          [
+            -1.4190367144513663,
+            0.38188144122101153
+          ],
+          [
+            1.8157672879670486,
+            1.3061111561977015
+          ]
+        ],
+        "heading_band_rad": [
+          0.10100342060551434,
+          0.16228543919687086
+        ]
+      },
+      {
+        "start_s": 1.0,
+        "end_s": 1.2000000000000002,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.897464341261914
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.733273596356734
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.62718576990702
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.414964471756897
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.360249260507382
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4164735988608048
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.48590575956039644
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9718765014060994
+          ],
+          [
+            1.0,
+            -0.0,
+            5.807556867144725
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8223969384391276
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.752712860343092
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6835232499057236
+          ],
+          [
+            0.1377001266775525,
+            -0.9904739648839772,
+            2.7727636248323777
+          ],
+          [
+            0.1377001266775525,
+            -0.9904739648839772,
+            2.4045971784173994
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0596127571907505,
+            1.8626105501399661
+          ],
+          [
+            4.54045008042701,
+            1.8014130726371695
+          ],
+          [
+            5.611455917024434,
+            0.80180762514624
+          ],
+          [
+            1.8075568671447493,
+            -0.4344595660646574
+          ],
+          [
+            -1.4164735988608048,
+            -0.5265747222362447
+          ],
+          [
+            -1.4164735988608048,
+            0.3781264486643809
+          ],
+          [
+            1.8164767500946923,
+            1.3018265483659515
+          ]
+        ],
+        "heading_band_rad": [
+          0.11228543919687087,
+          0.16590456483654692
+        ]
+      },
+      {
+        "start_s": 1.2000000000000002,
+        "end_s": 1.4000000000000001,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.8974643412619145
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.7448142330891723
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.6315880237922835
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.414964471756897
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.360249260507382
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4164735988608048
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4902328319797309
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9761327618235814
+          ],
+          [
+            1.0,
+            -0.0,
+            5.808051301488984
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8223969384391275
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.752712860343092
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6835232499057236
+          ],
+          [
+            0.14043877200314162,
+            -0.9900893653192371,
+            2.7793527446104638
+          ],
+          [
+            0.14043877200314164,
+            -0.9900893653192371,
+            2.4104916224541726
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0596127571907505,
+            1.8626105501399661
+          ],
+          [
+            4.540450080427011,
+            1.8014130726371693
+          ],
+          [
+            5.615012528423681,
+            0.7984881211736109
+          ],
+          [
+            1.8080513014890032,
+            -0.4387742775801593
+          ],
+          [
+            -1.4164735988608048,
+            -0.5309035604472967
+          ],
+          [
+            -1.4164735988608048,
+            0.3781264486643809
+          ],
+          [
+            1.8164767500946917,
+            1.3018265483659515
+          ]
+        ],
+        "heading_band_rad": [
+          0.11590456483654693,
+          0.16590456483654692
+        ]
+      },
+      {
+        "start_s": 1.4000000000000001,
+        "end_s": 1.6,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.8974643412619145
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.7448142330891723
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.6315880237922835
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.414964471756897
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.360249260507382
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4164735988608048
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4902328319797309
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9761327618235814
+          ],
+          [
+            1.0,
+            -0.0,
+            5.808051301488984
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8223969384391275
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.752712860343092
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6835232499057236
+          ],
+          [
+            0.14043877200314162,
+            -0.9900893653192371,
+            2.7793527446104638
+          ],
+          [
+            0.14043877200314164,
+            -0.9900893653192371,
+            2.4104916224541726
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0596127571907505,
+            1.8626105501399661
+          ],
+          [
+            4.540450080427011,
+            1.8014130726371693
+          ],
+          [
+            5.615012528423681,
+            0.7984881211736109
+          ],
+          [
+            1.8080513014890032,
+            -0.4387742775801593
+          ],
+          [
+            -1.4164735988608048,
+            -0.5309035604472967
+          ],
+          [
+            -1.4164735988608048,
+            0.3781264486643809
+          ],
+          [
+            1.8164767500946917,
+            1.3018265483659515
+          ]
+        ],
+        "heading_band_rad": [
+          0.11590456483654693,
+          0.16590456483654692
+        ]
+      },
+      {
+        "start_s": 1.6,
+        "end_s": 1.8,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.8974643412619145
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.7448142330891723
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.6315880237922835
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.414964471756897
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.360249260507382
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4164735988608048
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4902328319797309
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9761327618235814
+          ],
+          [
+            1.0,
+            -0.0,
+            5.808051301488984
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8223969384391275
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.752712860343092
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6835232499057236
+          ],
+          [
+            0.14043877200314162,
+            -0.9900893653192371,
+            2.7793527446104638
+          ],
+          [
+            0.14043877200314164,
+            -0.9900893653192371,
+            2.4104916224541726
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0596127571907505,
+            1.8626105501399661
+          ],
+          [
+            4.540450080427011,
+            1.8014130726371693
+          ],
+          [
+            5.615012528423681,
+            0.7984881211736109
+          ],
+          [
+            1.8080513014890032,
+            -0.4387742775801593
+          ],
+          [
+            -1.4164735988608048,
+            -0.5309035604472967
+          ],
+          [
+            -1.4164735988608048,
+            0.3781264486643809
+          ],
+          [
+            1.8164767500946917,
+            1.3018265483659515
+          ]
+        ],
+        "heading_band_rad": [
+          0.11590456483654693,
+          0.16590456483654692
+        ]
+      },
+      {
+        "start_s": 1.8,
+        "end_s": 2.0,
+        "halfplanes": [
+          [
+            0.08304547985373997,
+            -0.9965457582448796,
+            2.8974643412619145
+          ],
+          [
+            0.34506564463097644,
+            -0.9385785533962561,
+            2.7448142330891723
+          ],
+          [
+            0.8865848461654547,
+            -0.4625660066950196,
+            5.6315880237922835
+          ],
+          [
+            0.6823182503600111,
+            0.7310552682428691,
+            4.414964471756897
+          ],
+          [
+            0.12625427967391512,
+            0.991997911723619,
+            2.360249260507382
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.4164735988608048
+          ],
+          [
+            0.028559773898877,
+            -0.9995920864606948,
+            0.4902328319797309
+          ],
+          [
+            0.30908607233755814,
+            -0.9510340687309481,
+            0.9761327618235814
+          ],
+          [
+            1.0,
+            -0.0,
+            5.808051301488984
+          ],
+          [
+            -0.24253562503633297,
+            0.9701425001453319,
+            0.8223969384391275
+          ],
+          [
+            -0.27472112789737807,
+            0.9615239476408232,
+            0.752712860343092
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.6835232499057236
+          ],
+          [
+            0.14043877200314162,
+            -0.9900893653192371,
+            2.7793527446104638
+          ],
+          [
+            0.14043877200314164,
+            -0.9900893653192371,
+            2.4104916224541726
+          ]
+        ],
+        "polygon_m": [
+          [
+            4.0596127571907505,
+            1.8626105501399661
+          ],
+          [
+            4.540450080427011,
+            1.8014130726371693
+          ],
+          [
+            5.615012528423681,
+            0.7984881211736109
+          ],
+          [
+            1.8080513014890032,
+            -0.4387742775801593
+          ],
+          [
+            -1.4164735988608048,
+            -0.5309035604472967
+          ],
+          [
+            -1.4164735988608048,
+            0.3781264486643809
+          ],
+          [
+            1.8164767500946917,
+            1.3018265483659515
+          ]
+        ],
+        "heading_band_rad": [
+          0.11590456483654693,
+          0.16590456483654692
+        ]
+      }
+    ],
+    "reference_point": "rear_axle",
+    "body_envelope": "yaw_bounded_oriented_box",
+    "planner_profile": "yaw_bounded_box_v1",
+    "heading_bound_rad": 0.35,
+    "margin_m": 1.0,
+    "conservative": true,
+    "construction": {
+      "policy": "yaw_bounded_box_v1",
+      "seed_source": "ego_state_vehicle_limits_semantic_template_only",
+      "seed_dynamics": "exact_constant_acceleration_constant_rear_curvature",
+      "target_prediction_source": "model_whole_interval_occupancy_only",
+      "behavior": "hold_lane",
+      "seed_points": [
+        {
+          "time_s": 0.0,
+          "rear_x_m": -1.2,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 3.536993159166046,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 0.2,
+          "rear_x_m": -0.5528067644381449,
+          "rear_y_m": 0.014121458859469579,
+          "yaw_rad": 0.04363215708739182,
+          "speed_mps": 2.936993159166046,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 0.4,
+          "rear_x_m": -0.026429811628825628,
+          "rear_y_m": 0.04648404047554444,
+          "yaw_rad": 0.07917677955077482,
+          "speed_mps": 2.3369931591660458,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 0.6000000000000001,
+          "rear_x_m": 0.3791991324350252,
+          "rear_y_m": 0.08427792940167855,
+          "yaw_rad": 0.10663386739014899,
+          "speed_mps": 1.7369931591660457,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 0.8,
+          "rear_x_m": 0.6646512374425498,
+          "rear_y_m": 0.11763189372130872,
+          "yaw_rad": 0.12600342060551434,
+          "speed_mps": 1.1369931591660458,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 1.0,
+          "rear_x_m": 0.8306005522242572,
+          "rear_y_m": 0.13960527834790828,
+          "yaw_rad": 0.13728543919687086,
+          "speed_mps": 0.536993159166046,
+          "acceleration_mps2": -2.6849657958302275,
+          "steer_rad": 0.18
+        },
+        {
+          "time_s": 1.2000000000000002,
+          "rear_x_m": 0.8837812045153888,
+          "rear_y_m": 0.14705051872804956,
+          "yaw_rad": 0.14090456483654692,
+          "speed_mps": 0.0,
+          "acceleration_mps2": -0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.4000000000000001,
+          "rear_x_m": 0.8837812045153888,
+          "rear_y_m": 0.14705051872804956,
+          "yaw_rad": 0.14090456483654692,
+          "speed_mps": 0.0,
+          "acceleration_mps2": -0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.6,
+          "rear_x_m": 0.8837812045153888,
+          "rear_y_m": 0.14705051872804956,
+          "yaw_rad": 0.14090456483654692,
+          "speed_mps": 0.0,
+          "acceleration_mps2": -0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.8,
+          "rear_x_m": 0.8837812045153888,
+          "rear_y_m": 0.14705051872804956,
+          "yaw_rad": 0.14090456483654692,
+          "speed_mps": 0.0,
+          "acceleration_mps2": -0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 2.0,
+          "rear_x_m": 0.8837812045153888,
+          "rear_y_m": 0.14705051872804956,
+          "yaw_rad": 0.14090456483654692,
+          "speed_mps": 0.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        }
+      ],
+      "seed_is_solution": false,
+      "limitation": "A blocked seed is not a proof of global infeasibility",
+      "candidate_id": "brake_left"
+    },
+    "search_profile": "bounded_seed_candidates_v2"
+  },
+  "trajectory": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1538984253412460",
+      "reference_time_s": 1538984253.4124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984255.4124599
+    },
+    "scene_digest": "cbc2af78d21d9cba12c20b1e6ff7f27f40e59cc5c5fc5d0959a73489f71ff000",
+    "points": [
+      {
+        "time_s": 0.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": -8.118992544335687e-36,
+        "x_m": 0.0,
+        "y_m": -1.4537765458425642e-32,
+        "yaw_rad": -1.2108038721567756e-32,
+        "speed_mps": 3.536993159166046,
+        "acceleration_mps2": -0.233322921129352,
+        "steer_rad": 0.1240726317637175,
+        "curvature_per_m": 0.046190087189742865
+      },
+      {
+        "time_s": 0.2,
+        "rear_x_m": -0.49739122027809746,
+        "rear_y_m": 0.011404081955775922,
+        "x_m": 0.7019766730740764,
+        "y_m": 0.050348354910451566,
+        "yaw_rad": 0.0324592603608045,
+        "speed_mps": 3.4903285749401753,
+        "acceleration_mps2": -0.22115312255191855,
+        "steer_rad": 0.11703284609261944,
+        "curvature_per_m": 0.04354448538456018
+      },
+      {
+        "time_s": 0.4,
+        "rear_x_m": 0.1954407026721139,
+        "rear_y_m": 0.044381018963239593,
+        "x_m": 1.3930854395224312,
+        "y_m": 0.11952810336931827,
+        "yaw_rad": 0.06266357270628718,
+        "speed_mps": 3.4460979504297917,
+        "acceleration_mps2": -0.2017867558524875,
+        "steer_rad": 0.10512219696931718,
+        "curvature_per_m": 0.0390782000309921
+      },
+      {
+        "time_s": 0.6000000000000001,
+        "rear_x_m": 0.8786236126613423,
+        "rear_y_m": 0.09643847132557104,
+        "x_m": 2.073827175667838,
+        "y_m": 0.2036226258288218,
+        "yaw_rad": 0.08943932444877045,
+        "speed_mps": 3.4057405992592944,
+        "acceleration_mps2": -0.17865451906164398,
+        "steer_rad": 0.09010260090501918,
+        "curvature_per_m": 0.0334619360550685
+      },
+      {
+        "time_s": 0.8,
+        "rear_x_m": 1.5527464674961404,
+        "rear_y_m": 0.16460466477970118,
+        "x_m": 2.7452128631348653,
+        "y_m": 0.29885776631701294,
+        "yaw_rad": 0.11211229675740739,
+        "speed_mps": 3.3700096954469654,
+        "acceleration_mps2": -0.1541547400892839,
+        "steer_rad": 0.07343737750374126,
+        "curvature_per_m": 0.027248029639782376
+      },
+      {
+        "time_s": 1.0,
+        "rear_x_m": 2.2187300634951153,
+        "rear_y_m": 0.2457551997956471,
+        "x_m": 3.4085430285137726,
+        "y_m": 0.40178439024894563,
+        "yaw_rad": 0.13039351331237897,
+        "speed_mps": 3.339178747429109,
+        "acceleration_mps2": -0.1300340967529748,
+        "steer_rad": 0.05639238053783182,
+        "curvature_per_m": 0.020908234996181354
+      },
+      {
+        "time_s": 1.2000000000000002,
+        "rear_x_m": 2.8776950263145045,
+        "rear_y_m": 0.33683614499193393,
+        "x_m": 4.065222781166171,
+        "y_m": 0.5093986886013723,
+        "yaw_rad": 0.1443024044323356,
+        "speed_mps": 3.3131719280785137,
+        "acceleration_mps2": -0.10768402865397358,
+        "steer_rad": 0.04013165807961743,
+        "curvature_per_m": 0.014871561721689073
+      },
+      {
+        "time_s": 1.4000000000000001,
+        "rear_x_m": 3.5308340364856914,
+        "rear_y_m": 0.4350231494341623,
+        "x_m": 4.716609558421177,
+        "y_m": 0.619241529566621,
+        "yaw_rad": 0.1541247840032751,
+        "speed_mps": 3.2916351223477194,
+        "acceleration_mps2": -0.08838830102254008,
+        "steer_rad": 0.025809812346979398,
+        "curvature_per_m": 0.009561312930537203
+      },
+      {
+        "time_s": 1.6,
+        "rear_x_m": 4.1792899934863375,
+        "rear_y_m": 0.5378507530163141,
+        "x_m": 5.363885715146935,
+        "y_m": 0.7295092415405833,
+        "yaw_rad": 0.16040235253070434,
+        "speed_mps": 3.2739574621432115,
+        "acceleration_mps2": -0.07355151439877286,
+        "steer_rad": 0.014663900360521252,
+        "curvature_per_m": 0.005431463522334391
+      },
+      {
+        "time_s": 1.8,
+        "rear_x_m": 4.82403735980227,
+        "rear_y_m": 0.6433401458723519,
+        "x_m": 6.007945527315715,
+        "y_m": 0.8392009405581611,
+        "yaw_rad": 0.1639508387892349,
+        "speed_mps": 3.259247159263457,
+        "acceleration_mps2": -0.06493606910489216,
+        "steer_rad": 0.008108409949247455,
+        "curvature_per_m": 0.00300318061232247
+      },
+      {
+        "time_s": 2.0,
+        "rear_x_m": 5.46576014359466,
+        "rear_y_m": 0.7501482028562223,
+        "x_m": 6.6492833944449155,
+        "y_m": 0.9483216488494823,
+        "yaw_rad": 0.16590456007035928,
+        "speed_mps": 3.2462599454424783,
+        "acceleration_mps2": -0.06493606910489216,
+        "steer_rad": 0.008108409949247455,
+        "curvature_per_m": 0.00300318061232247
+      }
+    ],
+    "interpolation": "exact_constant_acceleration_constant_rear_curvature",
+    "requested_prefix_s": 0.2,
+    "solver": {
+      "name": "casadi_ipopt_multiple_shooting",
+      "version": "3.7.2",
+      "status": "Solve_Succeeded",
+      "objective": 0.4191903489939519,
+      "arc_bound": "curvature_epigraph_v1",
+      "iterations": 15,
+      "curvature_magnitude_bounds_per_m": [
+        0.14960049399003478,
+        0.14999441519052176,
+        0.14978092290749404,
+        0.149404800631969,
+        0.14899242002075896,
+        0.1485960040094741,
+        0.14820355625244272,
+        0.14771430211903736,
+        0.14665332517091365,
+        0.0030037411633974304
+      ]
+    },
+    "planner_profile": "yaw_bounded_box_v1",
+    "verification_profile": "continuous_oriented_body_v1",
+    "search_profile": "bounded_seed_candidates_v2",
+    "heading_bands_rad": [
+      [
+        -0.025,
+        0.06863215708739182
+      ],
+      [
+        0.01863215708739182,
+        0.10417677955077481
+      ],
+      [
+        0.054176779550774816,
+        0.13163386739014898
+      ],
+      [
+        0.081633867390149,
+        0.15100342060551433
+      ],
+      [
+        0.10100342060551434,
+        0.16228543919687086
+      ],
+      [
+        0.11228543919687087,
+        0.16590456483654692
+      ],
+      [
+        0.11590456483654693,
+        0.16590456483654692
+      ],
+      [
+        0.11590456483654693,
+        0.16590456483654692
+      ],
+      [
+        0.11590456483654693,
+        0.16590456483654692
+      ],
+      [
+        0.11590456483654693,
+        0.16590456483654692
+      ]
+    ]
+  },
+  "verification": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1538984253412460",
+      "reference_time_s": 1538984253.4124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984255.4124599
+    },
+    "scene_digest": "cbc2af78d21d9cba12c20b1e6ff7f27f40e59cc5c5fc5d0959a73489f71ff000",
+    "verdict": "PASS",
+    "violations": [],
+    "minimum_clearance_lower_bound_m": 3.2583301720114632,
+    "checked_until_s": 2.0,
+    "released_prefix_s": 0.2,
+    "trajectory_digest": "f3b0190d73156486530c72feeed86b1b2af06dae818697609ba7bf6e0657d61d",
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "execution": {
+    "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+    "elapsed_s": 0.2,
+    "center_displacement_m": [
+      0.7019766730740548,
+      0.050348354910557475
+    ],
+    "yaw_delta_rad": 0.03245926036087414,
+    "speed_mps": 3.4903285749401753
+  },
+  "execution_receipt": {
+    "capture_digest": "080592e254771300579ec77e8e4e50954a7033eea28444f94fd9b9a2b3b35eb3",
+    "scene_digest": "cbc2af78d21d9cba12c20b1e6ff7f27f40e59cc5c5fc5d0959a73489f71ff000",
+    "trajectory_digest": "f3b0190d73156486530c72feeed86b1b2af06dae818697609ba7bf6e0657d61d",
+    "verification_digest": "a7bca84f76ed6a93b2ff7560a6d6974407cbb8e0687529505e83b68c194439d7",
+    "execution_digest": "e26b7dec18bf22f804ae0cce5447205b1538d3bea81f3064701f355b142e78b8",
+    "executed_at_s": 1538984253.4124599,
+    "consumed_once": true
+  },
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "claim": "Local conditional prototype only; not old strict success, real vehicle safety, G2, or counterfactual multi-round observations.",
+  "turn_task": {
+    "task_profile": "visible_turn_description_v1",
+    "verdict": "PASS",
+    "failure_code": null,
+    "measurements": {
+      "plan_max_abs_yaw_change_deg": 9.505631094006226,
+      "plan_max_abs_center_lateral_displacement_m": 0.9483216488494823,
+      "prefix_abs_yaw_change_deg": 1.8597786247943777,
+      "prefix_center_displacement_m": 0.7037799417305937,
+      "prefix_center_displacement_xy_m": [
+        0.7019766730740548,
+        0.050348354910557475
+      ],
+      "prefix_duration_s": 0.2
+    },
+    "thresholds": {
+      "plan_min_max_abs_yaw_change_deg": 5.0,
+      "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+      "prefix_min_abs_yaw_change_deg": 0.1,
+      "prefix_min_center_displacement_m_exclusive": 0.01
+    },
+    "checks": {
+      "plan_yaw": true,
+      "plan_lateral": true,
+      "prefix_yaw": true,
+      "prefix_moving": true
+    },
+    "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+  },
+  "acceptance": {
+    "acceptance_version": "single_window_physical_v1",
+    "status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "strict_live_physical_success": true,
+    "software_success": true,
+    "source": "online_model",
+    "motion_class": "MOVING_PREFIX",
+    "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+    "multi_round_closed_loop_success": false,
+    "ground_truth_correctness": "NOT_EVALUATED",
+    "released_prefix_s": 0.2,
+    "checks": {
+      "acquisition_and_model_identity": true,
+      "online_image_bytes_and_source": true,
+      "t1_t2_reconstructed": true,
+      "independent_t4_passed": true,
+      "execution_receipt_and_integration": true
+    },
+    "reasons": [],
+    "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety.",
+    "prefix_arc_length_m": 0.7027321734106222,
+    "prefix_center_displacement_m": 0.7037799417305937
+  },
+  "prototype_conditional_success": true,
+  "fresh_online_model_call": false,
+  "replay_of_real_response": "implementation/results/frame005_recovery_20261029_v1/runtime/frame_005/attempt_01/record.json"
+}

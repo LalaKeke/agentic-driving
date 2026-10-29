@@ -1,0 +1,341 @@
+{
+  "decision": {
+    "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [
+      [
+        -0.5,
+        -0.4
+      ],
+      [
+        3,
+        -0.3
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        2.5
+      ],
+      [
+        3,
+        1.5
+      ],
+      [
+        -0.5,
+        0.5
+      ]
+    ],
+    "desired_speed_mps": 3,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984255.41246,
+    "hard_requirements": [
+      "target_region",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 1,
+      "smoothness_weight": 3
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984253412460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [
+          -3,
+          -4.5
+        ],
+        [
+          3,
+          -4
+        ],
+        [
+          9.8,
+          -1.5
+        ],
+        [
+          11,
+          0.8
+        ],
+        [
+          8,
+          3.6
+        ],
+        [
+          -3,
+          5
+        ]
+      ],
+      "uncertainty_m": 0.35,
+      "frame_ids": [
+        "f18c90dafe764fe2b0d96102eb90c48c",
+        "951a1c1f65b84cc18fbc7c9178e6342b"
+      ],
+      "time_ids": [
+        "nusc_us_1538984253412460",
+        "nusc_us_1538984253404844"
+      ]
+    },
+    "objects": [
+      {
+        "id": "parked_gray_mitsubishi",
+        "position_m": [
+          4,
+          -7.5
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 0.65,
+        "occupancy": [
+          {
+            "id": "mitsubishi_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "2c9ada783ef3477ebefb73f14e65a72b"
+            ],
+            "time_ids": [
+              "nusc_us_1538984253370339"
+            ],
+            "premise_ids": [
+              "prototype_local_scope",
+              "parked_motion",
+              "metric_geometry_prior"
+            ],
+            "residual_m": 0.4,
+            "alternatives": [
+              {
+                "scenario_id": "mitsubishi_stationary",
+                "polygon_m": [
+                  [
+                    2.05,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -9.82
+                  ],
+                  [
+                    5.95,
+                    -5.18
+                  ],
+                  [
+                    2.05,
+                    -5.18
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "mitsubishi_small_settle",
+                "polygon_m": [
+                  [
+                    1.75,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -10.15
+                  ],
+                  [
+                    6.25,
+                    -4.85
+                  ],
+                  [
+                    1.75,
+                    -4.85
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "2c9ada783ef3477ebefb73f14e65a72b"
+        ],
+        "time_ids": [
+          "nusc_us_1538984253370339"
+        ],
+        "state_time_id": "nusc_us_1538984253412460",
+        "body_geometry": {
+          "length_m": 4.25,
+          "width_m": 1.7,
+          "yaw_rad": 2.15
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": [
+            "parked_motion",
+            "metric_geometry_prior"
+          ],
+          "residual_m": 0.15,
+          "motion_bound": {
+            "max_speed_mps": 0.2,
+            "displacement_bound_m": 0.02,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+              "time_id": "nusc_us_1538984253370339",
+              "position_m": [
+                3.99,
+                -7.5
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mitsubishi_stationary",
+            "premise_ids": [
+              "prototype_local_scope",
+              "parked_motion",
+              "metric_geometry_prior"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "mitsubishi_small_settle",
+            "premise_ids": [
+              "prototype_local_scope",
+              "parked_motion",
+              "metric_geometry_prior"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local two-second prototype, not a verified trajectory or a whole-world safety claim. The reference view shows clear pavement sweeping initially left in the fixed reference axes, with a tighter rightward continuation beyond the proposed short route. Prefer gentle curved progress while slowing from the trusted initial 3.537 m/s; do not force the farther bend. Road vertices and actor depth are approximate monocular hypotheses, not calibrated ground-plane measurements. The local domain includes the nearest gray sedan beside the roadway. More distant parking rows, the truck behind-left, hidden pedestrians, and newly arriving traffic are excluded only under the explicit no-entry condition. Their absence worldwide is not asserted. No optimizer, independent dynamics/collision checker, or simulated prefix has been executed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [
+          [
+            -3,
+            -10.5
+          ],
+          [
+            6.8,
+            -10.5
+          ],
+          [
+            12,
+            -2
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            -3,
+            6
+          ]
+        ],
+        "statement": "Model only this finite local domain during [0,2] seconds: the observed continuous roadway patch and adjacent nearest gray-sedan bay. Adopt no new unobserved entrant into this domain, no pedestrian emerging from vegetation or parked vehicles, and no departure into this domain from the more distant parking rows or rear-left truck. Those excluded conditions are not observations of absence and invalidate this prototype if violated. Keep the observed nearest sedan explicitly represented. The ego route must remain inside the separately supplied road and center target region."
+      },
+      {
+        "id": "parked_motion",
+        "object_ids": [
+          "parked_gray_mitsubishi"
+        ],
+        "scenario_ids": [
+          "mitsubishi_stationary",
+          "mitsubishi_small_settle"
+        ],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The sedan is visually positioned in a parking bay. Conditionally model it as parked from its actual front-right capture, 0.042121 seconds before reference, through horizon end. Adopted mode has a fixed body pose. Reasonable adverse mode permits center displacement within 0.20 m of its reference center and yaw within 0.04 rad of 2.15, with center speed at most 0.20 m/s. Across capture-to-reference the center displacement is bounded by 0.02 m. This past bound is a model assumption supported by the parked appearance, not ego compensation alone. No powered pull-out is adopted in this two-second prototype."
+      },
+      {
+        "id": "metric_geometry_prior",
+        "object_ids": [
+          "parked_gray_mitsubishi"
+        ],
+        "scenario_ids": [
+          "mitsubishi_stationary",
+          "mitsubishi_small_settle"
+        ],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Conditionally assign the individually observed compact gray Mitsubishi a 4.25 m length and 1.70 m width. Its nearly frontal front-right-camera appearance supplies approximate scale and orientation, not known dimensions. Native body center is estimated at [3.99,-7.50] at capture and [4.00,-7.50] at reference, with yaw 2.15 rad. All source rectangles enclose the full oriented nominal body; the adverse rectangle additionally covers the declared displacement and yaw range. Total actor residual 0.65 m includes alignment residual 0.15 m and source residual 0.40 m, with 0.10 m additional estimation allowance."
+      },
+      {
+        "id": "local_pavement_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Estimate a convex inner patch of continuous pavement from the reference front image's left guardrail/curb base and right grass-island curb, supplemented by the immediately preceding front-left view near the ego footprint. Use camera axes, perspective, the sedan dimension prior, and a locally approximately level pavement assumption. The right curb near image coordinates roughly [1030,700] suggests forward distance around 9-10 m and lateral position around -1.5 m; the left curb is several meters left of the near route. Rear and near-side vertices conservatively continue the visible adjoining pavement across the current footprint. Assign 0.35 m noncalibrated boundary residual. This supports a short initial leftward sweep, not a claim that the entire farther bend is contained in this convex patch."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "2c9ada783ef3477ebefb73f14e65a72b"
+      ],
+      "time_ids": [
+        "nusc_us_1538984253370339"
+      ],
+      "premise_ids": [
+        "metric_geometry_prior",
+        "local_pavement_geometry"
+      ],
+      "anchors": [
+        {
+          "object_id": "parked_gray_mitsubishi",
+          "dimension": "width_m",
+          "value_m": 1.7,
+          "rationale": "Conditional compact-sedan width prior for this individual gray Mitsubishi, seen nearly frontally in the cited front-right image."
+        },
+        {
+          "object_id": "parked_gray_mitsubishi",
+          "dimension": "length_m",
+          "value_m": 4.25,
+          "rationale": "Conditional compact-sedan length prior matching the native full-body hypothesis; length is less directly constrained than visible frontal width."
+        }
+      ],
+      "metric_reasoning": "The sedan's frontal width occupies approximately 350-380 pixels in the front-right image. With focal length about 1261 pixels and an assumed width of 1.70 m, the approximate frontal distance is 5.6-6.1 m along that camera's viewing direction. Camera orientation places this bay to ego-right. Allowing for the body center behind the visible front yields the estimated center around [4,-7.5] and heading 2.15 rad. Transfer this approximate scale to the nearby curb perspective and use the supplied camera axes to estimate the local pavement polygon. Ground contacts, bay elevation and actual body dimensions are not certified; finite residuals remain model hypotheses."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

@@ -1,0 +1,2519 @@
+{
+  "case_id": "frame_001",
+  "scene_name": "scene-0916",
+  "scene_token": "325cef682f064c55a255f2625c533b75",
+  "sample_token": "e6e877f31dd447199b56cae07f86daad",
+  "label": "frame_001",
+  "runtime_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001",
+  "initial_speed_mps": 4.101373869162963,
+  "status": "RECOVERY_GROUP_PASS_AFTER_PRIOR_ATTEMPT",
+  "ended": true,
+  "charged_requests": 4,
+  "reported_charged_requests": 2,
+  "turn_start_count": 0,
+  "api_post_requests": 4,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": false,
+  "revision_pass": true,
+  "native_json_count": 2,
+  "native_schema_valid_count": 2,
+  "final_failure_stage": null,
+  "final_failure_reasons": [],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [
+    "T1_CONTRACT_GEOMETRY"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25332,
+        "input_tokens_details": {
+          "cache_write_tokens": 21834,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4798,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 30130
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_01/record.json",
+      "record_sha256": "5f542255d9faf8a00beb7032d712e67f44bcf8ca64d9446a13b1dee992512829",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_91d1ffa465194493b459d94e26d9d45e",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25332,
+          "input_tokens_details": {
+            "cache_write_tokens": 21834,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4798,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 30130
+        },
+        "structured_output": true,
+        "elapsed_s": 85.65628230012953
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T1",
+      "blocking_reasons": [
+        {
+          "code": "PREMISE_SCOPE",
+          "message": "Conditional premise does not cover this object, scenario and whole time interval",
+          "category": "interface_error",
+          "details": {
+            "premise_id": "mazda_past_alignment",
+            "object_id": "right_parked_mazda",
+            "required_scenario_ids": [
+              "mazda_stationary"
+            ],
+            "declared_object_ids": [
+              "right_parked_mazda"
+            ],
+            "declared_scenario_ids": [
+              "mazda_stationary",
+              "mazda_bounded_perturbation"
+            ],
+            "required_interval_s": [
+              0,
+              2.0
+            ],
+            "declared_interval_s": [
+              -0.043,
+              0
+            ],
+            "conflict_dimensions": [
+              "time_end"
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PREMISE_SCOPE",
+        "message": "Conditional premise does not cover this object, scenario and whole time interval",
+        "category": "interface_error",
+        "details": {
+          "premise_id": "mazda_past_alignment",
+          "object_id": "right_parked_mazda",
+          "required_scenario_ids": [
+            "mazda_stationary"
+          ],
+          "declared_object_ids": [
+            "right_parked_mazda"
+          ],
+          "declared_scenario_ids": [
+            "mazda_stationary",
+            "mazda_bounded_perturbation"
+          ],
+          "required_interval_s": [
+            0,
+            2.0
+          ],
+          "declared_interval_s": [
+            -0.043,
+            0
+          ],
+          "conflict_dimensions": [
+            "time_end"
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "T1_CONTRACT_GEOMETRY"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.7
+            ],
+            [
+              3,
+              -0.7
+            ],
+            [
+              9,
+              1.5
+            ],
+            [
+              9,
+              4.5
+            ],
+            [
+              -0.5,
+              1
+            ]
+          ],
+          "desired_speed_mps": 3,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.4124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 0.3,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    },
+    {
+      "attempt": 2,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 28524,
+        "input_tokens_details": {
+          "cache_write_tokens": 25026,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 3471,
+        "output_tokens_details": {
+          "reasoning_tokens": 171
+        },
+        "total_tokens": 31995
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/record.json",
+      "record_sha256": "a805b82cc2ecfd19e61ba574e02b9d08197f080d3586bff524385311b7244c80",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_02/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 2,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_cae37a861458485ab4516d0a6cb5e575",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 28524,
+          "input_tokens_details": {
+            "cache_write_tokens": 25026,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 3471,
+          "output_tokens_details": {
+            "reasoning_tokens": 171
+          },
+          "total_tokens": 31995
+        },
+        "structured_output": true,
+        "elapsed_s": 37.77547604776919
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 5,
+        "T3": 5,
+        "T4": 5
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 3.3847692723742786,
+            "minimum_clearance_lower_bound_m": 2.4225962922478947,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "original",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950110625927,
+                    "plan_max_abs_center_lateral_displacement_m": 0.14909017541763403,
+                    "prefix_abs_yaw_change_deg": 1.4323949941981036,
+                    "prefix_center_displacement_m": 0.7799535632642778,
+                    "prefix_center_displacement_xy_m": [
+                      0.7789405531792201,
+                      0.03973884071653812
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 3.384769272358109,
+            "minimum_clearance_lower_bound_m": 2.4225962922507716,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "brake_straight",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950110738017,
+                    "plan_max_abs_center_lateral_displacement_m": 0.1490901754202254,
+                    "prefix_abs_yaw_change_deg": 1.4323949942197005,
+                    "prefix_center_displacement_m": 0.7799535632593461,
+                    "prefix_center_displacement_xy_m": [
+                      0.7789405531742546,
+                      0.03973884071707527
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 10.243180773135961,
+            "minimum_clearance_lower_bound_m": 1.4359911439248445
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 1.0942689583596659,
+            "minimum_clearance_lower_bound_m": 2.7742468114059315
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 11.695592912516528,
+            "minimum_clearance_lower_bound_m": 1.2470039303726885
+          }
+        ],
+        "selected_candidate": "brake_left",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+        "task_filter_active": true,
+        "task_accepted_candidate_count": 3
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          0.8010553783354395,
+          0.06168126229403279
+        ],
+        "displacement_m": 0.8034265973182114,
+        "end_speed_mps": 3.920072622540826,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 2.7742468114059315,
+        "max_abs_acceleration_mps2": 0.906506233110684,
+        "rms_discrete_jerk_proxy_mps3": 0.4014135597050029,
+        "max_abs_steer_rad": 0.128982156716114,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.7
+            ],
+            [
+              3,
+              -0.7
+            ],
+            [
+              9,
+              1.5
+            ],
+            [
+              9,
+              4.5
+            ],
+            [
+              -0.5,
+              1
+            ]
+          ],
+          "desired_speed_mps": 3,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.4124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 0.3,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 2,
+  "candidate_counts": {
+    "T2": 5,
+    "T3": 5,
+    "T4": 5
+  },
+  "physical": {
+    "prefix_consumed": true,
+    "motion_class": "MOVING_PREFIX",
+    "displacement_xy_m": [
+      0.8010553783354395,
+      0.06168126229403279
+    ],
+    "displacement_m": 0.8034265973182114,
+    "end_speed_mps": 3.920072622540826,
+    "prefix_s": 0.2,
+    "minimum_conditional_clearance_lower_bound_m": 2.7742468114059315,
+    "max_abs_acceleration_mps2": 0.906506233110684,
+    "rms_discrete_jerk_proxy_mps3": 0.4014135597050029,
+    "max_abs_steer_rad": 0.128982156716114,
+    "solver_status": "Solve_Succeeded",
+    "T4_verdict": "PASS",
+    "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "independent_acceptor_pass": true,
+    "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/execution_receipt.json",
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": null,
+  "selected_native_failure_reasons": [],
+  "frame_index": 1,
+  "relative_sequence_time_s": 0.5,
+  "reference_time_s": 1538984251.4124599,
+  "reference_time_id": "nusc_us_1538984251412460",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_001/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "TURN_TASK": "PASS",
+    "ACCEPTOR": "PASS",
+    "EXECUTION": "PASS"
+  },
+  "stage_origin_attempt": 2,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": {
+    "task_profile": "visible_turn_description_v1",
+    "verdict": "PASS",
+    "failure_code": null,
+    "measurements": {
+      "plan_max_abs_yaw_change_deg": 12.064968203558507,
+      "plan_max_abs_center_lateral_displacement_m": 1.1391645055178194,
+      "prefix_abs_yaw_change_deg": 2.2077960474318776,
+      "prefix_center_displacement_m": 0.8034265973182114,
+      "prefix_center_displacement_xy_m": [
+        0.8010553783354395,
+        0.06168126229403279
+      ],
+      "prefix_duration_s": 0.2
+    },
+    "thresholds": {
+      "plan_min_max_abs_yaw_change_deg": 5.0,
+      "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+      "prefix_min_abs_yaw_change_deg": 0.1,
+      "prefix_min_center_displacement_m_exclusive": 0.01
+    },
+    "checks": {
+      "plan_yaw": true,
+      "plan_lateral": true,
+      "prefix_yaw": true,
+      "prefix_moving": true
+    },
+    "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+  },
+  "signed_turn": {
+    "plan_end_yaw_change_deg": 12.064968203558507,
+    "plan_end_lateral_m": 1.1391645055178194,
+    "prefix_yaw_change_deg": 2.2077960474318776,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": true,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation.",
+  "selected_group_status": "REVISION_PASS",
+  "source_group": "openai_bend_sequence_tls_20261029_v1",
+  "group_histories": [
+    {
+      "source_group": "openai_bend_sequence_20261029_v1",
+      "result": {
+        "case_id": "frame_001",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "e6e877f31dd447199b56cae07f86daad",
+        "label": "frame_001",
+        "runtime_path": "implementation/results/openai_bend_sequence_20261029_v1/runtime/frame_001",
+        "initial_speed_mps": 4.101373869162963,
+        "status": "SERVICE_INTERFACE_STOP",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": "SERVICE",
+        "final_failure_reasons": [
+          {
+            "code": "API_TRANSPORT",
+            "message": "OpenAI connection failed; no retry; raw exception suppressed",
+            "category": "interface_error",
+            "details": {
+              "exception_type": "ConnectError"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "fatal_service_or_interface_failure": {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "issue_classes_any_attempt": [
+          "SERVICE_INTERFACE"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": null,
+            "usage": null,
+            "record_path": null,
+            "record_sha256": null,
+            "native_output_path": null,
+            "native_json_present": false,
+            "native_business_schema": "NOT_REACHED",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": null,
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "NOT_REACHED",
+              "BUSINESS_SCHEMA": "NOT_REACHED",
+              "T1": "NOT_REACHED",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "FAILED",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": "UNKNOWN",
+              "native_json_returned": false,
+              "failure": {
+                "code": "API_TRANSPORT",
+                "message": "OpenAI connection failed; no retry; raw exception suppressed",
+                "category": "interface_error",
+                "details": {
+                  "exception_type": "ConnectError"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              "elapsed_s": 5.044481933116913
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": true,
+            "service_return": "ADAPTER_FAILURE_NO_NATIVE",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "SERVICE",
+            "blocking_reasons": [
+              {
+                "code": "API_TRANSPORT",
+                "message": "OpenAI connection failed; no retry; raw exception suppressed",
+                "category": "interface_error",
+                "details": {
+                  "exception_type": "ConnectError"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "API_TRANSPORT",
+              "message": "OpenAI connection failed; no retry; raw exception suppressed",
+              "category": "interface_error",
+              "details": {
+                "exception_type": "ConnectError"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "SERVICE_INTERFACE"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": null,
+              "traffic_evidence": null
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": null,
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "SERVICE",
+        "selected_native_failure_reasons": [
+          {
+            "code": "API_TRANSPORT",
+            "message": "OpenAI connection failed; no retry; raw exception suppressed",
+            "category": "interface_error",
+            "details": {
+              "exception_type": "ConnectError"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "frame_index": 1,
+        "relative_sequence_time_s": 0.5,
+        "reference_time_s": 1538984251.4124599,
+        "reference_time_id": "nusc_us_1538984251412460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_001/capture.json",
+        "stages": {
+          "SERVICE": "FAIL",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_REACHED",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": "official_openai_responses",
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_recovery_20261029_v1",
+      "result": {
+        "case_id": "frame_001",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "e6e877f31dd447199b56cae07f86daad",
+        "label": "frame_001",
+        "runtime_path": "implementation/results/openai_bend_sequence_recovery_20261029_v1/runtime/frame_001",
+        "initial_speed_mps": 4.101373869162963,
+        "status": "SERVICE_INTERFACE_STOP",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": "SERVICE",
+        "final_failure_reasons": [
+          {
+            "code": "API_TRANSPORT",
+            "message": "OpenAI connection failed; no retry; raw exception suppressed",
+            "category": "interface_error",
+            "details": {
+              "exception_type": "ConnectError"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "fatal_service_or_interface_failure": {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "issue_classes_any_attempt": [
+          "SERVICE_INTERFACE"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": null,
+            "usage": null,
+            "record_path": null,
+            "record_sha256": null,
+            "native_output_path": null,
+            "native_json_present": false,
+            "native_business_schema": "NOT_REACHED",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": null,
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "NOT_REACHED",
+              "BUSINESS_SCHEMA": "NOT_REACHED",
+              "T1": "NOT_REACHED",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "FAILED",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": "UNKNOWN",
+              "native_json_returned": false,
+              "failure": {
+                "code": "API_TRANSPORT",
+                "message": "OpenAI connection failed; no retry; raw exception suppressed",
+                "category": "interface_error",
+                "details": {
+                  "exception_type": "ConnectError"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              "elapsed_s": 5.082792729139328
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": true,
+            "service_return": "ADAPTER_FAILURE_NO_NATIVE",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "SERVICE",
+            "blocking_reasons": [
+              {
+                "code": "API_TRANSPORT",
+                "message": "OpenAI connection failed; no retry; raw exception suppressed",
+                "category": "interface_error",
+                "details": {
+                  "exception_type": "ConnectError"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "API_TRANSPORT",
+              "message": "OpenAI connection failed; no retry; raw exception suppressed",
+              "category": "interface_error",
+              "details": {
+                "exception_type": "ConnectError"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "SERVICE_INTERFACE"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": null,
+              "traffic_evidence": null
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": null,
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "SERVICE",
+        "selected_native_failure_reasons": [
+          {
+            "code": "API_TRANSPORT",
+            "message": "OpenAI connection failed; no retry; raw exception suppressed",
+            "category": "interface_error",
+            "details": {
+              "exception_type": "ConnectError"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "frame_index": 1,
+        "relative_sequence_time_s": 0.5,
+        "reference_time_s": 1538984251.4124599,
+        "reference_time_id": "nusc_us_1538984251412460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_001/capture.json",
+        "stages": {
+          "SERVICE": "FAIL",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_REACHED",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": "official_openai_responses",
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_tls_20261029_v1",
+      "result": {
+        "case_id": "frame_001",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "e6e877f31dd447199b56cae07f86daad",
+        "label": "frame_001",
+        "runtime_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001",
+        "initial_speed_mps": 4.101373869162963,
+        "status": "REVISION_PASS",
+        "ended": true,
+        "charged_requests": 2,
+        "reported_charged_requests": 2,
+        "turn_start_count": 0,
+        "api_post_requests": 2,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": true,
+        "native_json_count": 2,
+        "native_schema_valid_count": 2,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [
+          "T1_CONTRACT_GEOMETRY"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25332,
+              "input_tokens_details": {
+                "cache_write_tokens": 21834,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 4798,
+              "output_tokens_details": {
+                "reasoning_tokens": 1552
+              },
+              "total_tokens": 30130
+            },
+            "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_01/record.json",
+            "record_sha256": "5f542255d9faf8a00beb7032d712e67f44bcf8ca64d9446a13b1dee992512829",
+            "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "FAIL",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_91d1ffa465194493b459d94e26d9d45e",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25332,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21834,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 4798,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1552
+                },
+                "total_tokens": 30130
+              },
+              "structured_output": true,
+              "elapsed_s": 85.65628230012953
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "T1",
+            "blocking_reasons": [
+              {
+                "code": "PREMISE_SCOPE",
+                "message": "Conditional premise does not cover this object, scenario and whole time interval",
+                "category": "interface_error",
+                "details": {
+                  "premise_id": "mazda_past_alignment",
+                  "object_id": "right_parked_mazda",
+                  "required_scenario_ids": [
+                    "mazda_stationary"
+                  ],
+                  "declared_object_ids": [
+                    "right_parked_mazda"
+                  ],
+                  "declared_scenario_ids": [
+                    "mazda_stationary",
+                    "mazda_bounded_perturbation"
+                  ],
+                  "required_interval_s": [
+                    0,
+                    2.0
+                  ],
+                  "declared_interval_s": [
+                    -0.043,
+                    0
+                  ],
+                  "conflict_dimensions": [
+                    "time_end"
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "PREMISE_SCOPE",
+              "message": "Conditional premise does not cover this object, scenario and whole time interval",
+              "category": "interface_error",
+              "details": {
+                "premise_id": "mazda_past_alignment",
+                "object_id": "right_parked_mazda",
+                "required_scenario_ids": [
+                  "mazda_stationary"
+                ],
+                "declared_object_ids": [
+                  "right_parked_mazda"
+                ],
+                "declared_scenario_ids": [
+                  "mazda_stationary",
+                  "mazda_bounded_perturbation"
+                ],
+                "required_interval_s": [
+                  0,
+                  2.0
+                ],
+                "declared_interval_s": [
+                  -0.043,
+                  0
+                ],
+                "conflict_dimensions": [
+                  "time_end"
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "T1_CONTRACT_GEOMETRY"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.5,
+                    -0.7
+                  ],
+                  [
+                    3,
+                    -0.7
+                  ],
+                  [
+                    9,
+                    1.5
+                  ],
+                  [
+                    9,
+                    4.5
+                  ],
+                  [
+                    -0.5,
+                    1
+                  ]
+                ],
+                "desired_speed_mps": 3,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1538984253.4124599,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 0.5,
+                  "steering_weight": 0.3,
+                  "smoothness_weight": 1
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          },
+          {
+            "attempt": 2,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 28524,
+              "input_tokens_details": {
+                "cache_write_tokens": 25026,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 3471,
+              "output_tokens_details": {
+                "reasoning_tokens": 171
+              },
+              "total_tokens": 31995
+            },
+            "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/record.json",
+            "record_sha256": "a805b82cc2ecfd19e61ba574e02b9d08197f080d3586bff524385311b7244c80",
+            "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_02/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "PASS",
+              "ACCEPTOR": "PASS",
+              "EXECUTION": "PASS"
+            },
+            "transport_summary": {
+              "attempt": 2,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_cae37a861458485ab4516d0a6cb5e575",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 28524,
+                "input_tokens_details": {
+                  "cache_write_tokens": 25026,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 3471,
+                "output_tokens_details": {
+                  "reasoning_tokens": 171
+                },
+                "total_tokens": 31995
+              },
+              "structured_output": true,
+              "elapsed_s": 37.77547604776919
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": true,
+            "deepest_blocking_stage": null,
+            "blocking_reasons": [],
+            "raw_last_failure": null,
+            "candidate_counts": {
+              "T2": 5,
+              "T3": 5,
+              "T4": 5
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "FAIL",
+                  "objective": 3.3847692723742786,
+                  "minimum_clearance_lower_bound_m": 2.4225962922478947,
+                  "task_failure": {
+                    "code": "TURN_TASK_NOT_DEMONSTRATED",
+                    "category": "task_not_completed",
+                    "details": {
+                      "candidate_id": "original",
+                      "turn_task": {
+                        "task_profile": "visible_turn_description_v1",
+                        "verdict": "FAIL",
+                        "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                        "measurements": {
+                          "plan_max_abs_yaw_change_deg": 1.4323950110625927,
+                          "plan_max_abs_center_lateral_displacement_m": 0.14909017541763403,
+                          "prefix_abs_yaw_change_deg": 1.4323949941981036,
+                          "prefix_center_displacement_m": 0.7799535632642778,
+                          "prefix_center_displacement_xy_m": [
+                            0.7789405531792201,
+                            0.03973884071653812
+                          ],
+                          "prefix_duration_s": 0.2
+                        },
+                        "thresholds": {
+                          "plan_min_max_abs_yaw_change_deg": 5.0,
+                          "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                          "prefix_min_abs_yaw_change_deg": 0.1,
+                          "prefix_min_center_displacement_m_exclusive": 0.01
+                        },
+                        "checks": {
+                          "plan_yaw": false,
+                          "plan_lateral": false,
+                          "prefix_yaw": true,
+                          "prefix_moving": true
+                        },
+                        "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                      }
+                    },
+                    "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+                  }
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "FAIL",
+                  "objective": 3.384769272358109,
+                  "minimum_clearance_lower_bound_m": 2.4225962922507716,
+                  "task_failure": {
+                    "code": "TURN_TASK_NOT_DEMONSTRATED",
+                    "category": "task_not_completed",
+                    "details": {
+                      "candidate_id": "brake_straight",
+                      "turn_task": {
+                        "task_profile": "visible_turn_description_v1",
+                        "verdict": "FAIL",
+                        "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                        "measurements": {
+                          "plan_max_abs_yaw_change_deg": 1.4323950110738017,
+                          "plan_max_abs_center_lateral_displacement_m": 0.1490901754202254,
+                          "prefix_abs_yaw_change_deg": 1.4323949942197005,
+                          "prefix_center_displacement_m": 0.7799535632593461,
+                          "prefix_center_displacement_xy_m": [
+                            0.7789405531742546,
+                            0.03973884071707527
+                          ],
+                          "prefix_duration_s": 0.2
+                        },
+                        "thresholds": {
+                          "plan_min_max_abs_yaw_change_deg": 5.0,
+                          "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                          "prefix_min_abs_yaw_change_deg": 0.1,
+                          "prefix_min_center_displacement_m_exclusive": 0.01
+                        },
+                        "checks": {
+                          "plan_yaw": false,
+                          "plan_lateral": false,
+                          "prefix_yaw": true,
+                          "prefix_moving": true
+                        },
+                        "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                      }
+                    },
+                    "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "PASS",
+                  "objective": 10.243180773135961,
+                  "minimum_clearance_lower_bound_m": 1.4359911439248445
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "PASS",
+                  "objective": 1.0942689583596659,
+                  "minimum_clearance_lower_bound_m": 2.7742468114059315
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "PASS",
+                  "objective": 11.695592912516528,
+                  "minimum_clearance_lower_bound_m": 1.2470039303726885
+                }
+              ],
+              "selected_candidate": "brake_left",
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+              "task_filter_active": true,
+              "task_accepted_candidate_count": 3
+            },
+            "issue_classes": [],
+            "physical": {
+              "prefix_consumed": true,
+              "motion_class": "MOVING_PREFIX",
+              "displacement_xy_m": [
+                0.8010553783354395,
+                0.06168126229403279
+              ],
+              "displacement_m": 0.8034265973182114,
+              "end_speed_mps": 3.920072622540826,
+              "prefix_s": 0.2,
+              "minimum_conditional_clearance_lower_bound_m": 2.7742468114059315,
+              "max_abs_acceleration_mps2": 0.906506233110684,
+              "rms_discrete_jerk_proxy_mps3": 0.4014135597050029,
+              "max_abs_steer_rad": 0.128982156716114,
+              "solver_status": "Solve_Succeeded",
+              "T4_verdict": "PASS",
+              "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+              "independent_acceptor_pass": true,
+              "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/execution_receipt.json",
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+                "revision": 1,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.5,
+                    -0.7
+                  ],
+                  [
+                    3,
+                    -0.7
+                  ],
+                  [
+                    9,
+                    1.5
+                  ],
+                  [
+                    9,
+                    4.5
+                  ],
+                  [
+                    -0.5,
+                    1
+                  ]
+                ],
+                "desired_speed_mps": 3,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1538984253.4124599,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 0.5,
+                  "steering_weight": 0.3,
+                  "smoothness_weight": 1
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 2,
+        "candidate_counts": {
+          "T2": 5,
+          "T3": 5,
+          "T4": 5
+        },
+        "physical": {
+          "prefix_consumed": true,
+          "motion_class": "MOVING_PREFIX",
+          "displacement_xy_m": [
+            0.8010553783354395,
+            0.06168126229403279
+          ],
+          "displacement_m": 0.8034265973182114,
+          "end_speed_mps": 3.920072622540826,
+          "prefix_s": 0.2,
+          "minimum_conditional_clearance_lower_bound_m": 2.7742468114059315,
+          "max_abs_acceleration_mps2": 0.906506233110684,
+          "rms_discrete_jerk_proxy_mps3": 0.4014135597050029,
+          "max_abs_steer_rad": 0.128982156716114,
+          "solver_status": "Solve_Succeeded",
+          "T4_verdict": "PASS",
+          "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+          "independent_acceptor_pass": true,
+          "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/execution_receipt.json",
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 1,
+        "relative_sequence_time_s": 0.5,
+        "reference_time_s": 1538984251.4124599,
+        "reference_time_id": "nusc_us_1538984251412460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_001/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "PASS",
+          "TURN_TASK": "PASS",
+          "ACCEPTOR": "PASS",
+          "EXECUTION": "PASS"
+        },
+        "stage_origin_attempt": 2,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": {
+          "task_profile": "visible_turn_description_v1",
+          "verdict": "PASS",
+          "failure_code": null,
+          "measurements": {
+            "plan_max_abs_yaw_change_deg": 12.064968203558507,
+            "plan_max_abs_center_lateral_displacement_m": 1.1391645055178194,
+            "prefix_abs_yaw_change_deg": 2.2077960474318776,
+            "prefix_center_displacement_m": 0.8034265973182114,
+            "prefix_center_displacement_xy_m": [
+              0.8010553783354395,
+              0.06168126229403279
+            ],
+            "prefix_duration_s": 0.2
+          },
+          "thresholds": {
+            "plan_min_max_abs_yaw_change_deg": 5.0,
+            "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+            "prefix_min_abs_yaw_change_deg": 0.1,
+            "prefix_min_center_displacement_m_exclusive": 0.01
+          },
+          "checks": {
+            "plan_yaw": true,
+            "plan_lateral": true,
+            "prefix_yaw": true,
+            "prefix_moving": true
+          },
+          "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+        },
+        "signed_turn": {
+          "plan_end_yaw_change_deg": 12.064968203558507,
+          "plan_end_lateral_m": 1.1391645055178194,
+          "prefix_yaw_change_deg": 2.2077960474318776,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": true,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": null,
+      "usage": null,
+      "record_path": null,
+      "record_sha256": null,
+      "native_output_path": null,
+      "native_json_present": false,
+      "native_business_schema": "NOT_REACHED",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": null,
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "NOT_REACHED",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "FAILED",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": "UNKNOWN",
+        "native_json_returned": false,
+        "failure": {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "elapsed_s": 5.044481933116913
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": true,
+      "service_return": "ADAPTER_FAILURE_NO_NATIVE",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "SERVICE",
+      "blocking_reasons": [
+        {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "SERVICE_INTERFACE"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": null,
+        "traffic_evidence": null
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "openai_bend_sequence_20261029_v1"
+    },
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": null,
+      "usage": null,
+      "record_path": null,
+      "record_sha256": null,
+      "native_output_path": null,
+      "native_json_present": false,
+      "native_business_schema": "NOT_REACHED",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": null,
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "NOT_REACHED",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "FAILED",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": "UNKNOWN",
+        "native_json_returned": false,
+        "failure": {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "elapsed_s": 5.082792729139328
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": true,
+      "service_return": "ADAPTER_FAILURE_NO_NATIVE",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "SERVICE",
+      "blocking_reasons": [
+        {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "SERVICE_INTERFACE"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": null,
+        "traffic_evidence": null
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "openai_bend_sequence_recovery_20261029_v1"
+    },
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25332,
+        "input_tokens_details": {
+          "cache_write_tokens": 21834,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4798,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 30130
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_01/record.json",
+      "record_sha256": "5f542255d9faf8a00beb7032d712e67f44bcf8ca64d9446a13b1dee992512829",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_91d1ffa465194493b459d94e26d9d45e",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25332,
+          "input_tokens_details": {
+            "cache_write_tokens": 21834,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4798,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 30130
+        },
+        "structured_output": true,
+        "elapsed_s": 85.65628230012953
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T1",
+      "blocking_reasons": [
+        {
+          "code": "PREMISE_SCOPE",
+          "message": "Conditional premise does not cover this object, scenario and whole time interval",
+          "category": "interface_error",
+          "details": {
+            "premise_id": "mazda_past_alignment",
+            "object_id": "right_parked_mazda",
+            "required_scenario_ids": [
+              "mazda_stationary"
+            ],
+            "declared_object_ids": [
+              "right_parked_mazda"
+            ],
+            "declared_scenario_ids": [
+              "mazda_stationary",
+              "mazda_bounded_perturbation"
+            ],
+            "required_interval_s": [
+              0,
+              2.0
+            ],
+            "declared_interval_s": [
+              -0.043,
+              0
+            ],
+            "conflict_dimensions": [
+              "time_end"
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PREMISE_SCOPE",
+        "message": "Conditional premise does not cover this object, scenario and whole time interval",
+        "category": "interface_error",
+        "details": {
+          "premise_id": "mazda_past_alignment",
+          "object_id": "right_parked_mazda",
+          "required_scenario_ids": [
+            "mazda_stationary"
+          ],
+          "declared_object_ids": [
+            "right_parked_mazda"
+          ],
+          "declared_scenario_ids": [
+            "mazda_stationary",
+            "mazda_bounded_perturbation"
+          ],
+          "required_interval_s": [
+            0,
+            2.0
+          ],
+          "declared_interval_s": [
+            -0.043,
+            0
+          ],
+          "conflict_dimensions": [
+            "time_end"
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "T1_CONTRACT_GEOMETRY"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.7
+            ],
+            [
+              3,
+              -0.7
+            ],
+            [
+              9,
+              1.5
+            ],
+            [
+              9,
+              4.5
+            ],
+            [
+              -0.5,
+              1
+            ]
+          ],
+          "desired_speed_mps": 3,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.4124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 0.3,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "openai_bend_sequence_tls_20261029_v1"
+    },
+    {
+      "attempt": 2,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 28524,
+        "input_tokens_details": {
+          "cache_write_tokens": 25026,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 3471,
+        "output_tokens_details": {
+          "reasoning_tokens": 171
+        },
+        "total_tokens": 31995
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/record.json",
+      "record_sha256": "a805b82cc2ecfd19e61ba574e02b9d08197f080d3586bff524385311b7244c80",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/transport/attempt_02/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 2,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_cae37a861458485ab4516d0a6cb5e575",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 28524,
+          "input_tokens_details": {
+            "cache_write_tokens": 25026,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 3471,
+          "output_tokens_details": {
+            "reasoning_tokens": 171
+          },
+          "total_tokens": 31995
+        },
+        "structured_output": true,
+        "elapsed_s": 37.77547604776919
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 5,
+        "T3": 5,
+        "T4": 5
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 3.3847692723742786,
+            "minimum_clearance_lower_bound_m": 2.4225962922478947,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "original",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950110625927,
+                    "plan_max_abs_center_lateral_displacement_m": 0.14909017541763403,
+                    "prefix_abs_yaw_change_deg": 1.4323949941981036,
+                    "prefix_center_displacement_m": 0.7799535632642778,
+                    "prefix_center_displacement_xy_m": [
+                      0.7789405531792201,
+                      0.03973884071653812
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 3.384769272358109,
+            "minimum_clearance_lower_bound_m": 2.4225962922507716,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "brake_straight",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950110738017,
+                    "plan_max_abs_center_lateral_displacement_m": 0.1490901754202254,
+                    "prefix_abs_yaw_change_deg": 1.4323949942197005,
+                    "prefix_center_displacement_m": 0.7799535632593461,
+                    "prefix_center_displacement_xy_m": [
+                      0.7789405531742546,
+                      0.03973884071707527
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 10.243180773135961,
+            "minimum_clearance_lower_bound_m": 1.4359911439248445
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 1.0942689583596659,
+            "minimum_clearance_lower_bound_m": 2.7742468114059315
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 11.695592912516528,
+            "minimum_clearance_lower_bound_m": 1.2470039303726885
+          }
+        ],
+        "selected_candidate": "brake_left",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+        "task_filter_active": true,
+        "task_accepted_candidate_count": 3
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          0.8010553783354395,
+          0.06168126229403279
+        ],
+        "displacement_m": 0.8034265973182114,
+        "end_speed_mps": 3.920072622540826,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 2.7742468114059315,
+        "max_abs_acceleration_mps2": 0.906506233110684,
+        "rms_discrete_jerk_proxy_mps3": 0.4014135597050029,
+        "max_abs_steer_rad": 0.128982156716114,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_001/attempt_02/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.7
+            ],
+            [
+              3,
+              -0.7
+            ],
+            [
+              9,
+              1.5
+            ],
+            [
+              9,
+              4.5
+            ],
+            [
+              -0.5,
+              1
+            ]
+          ],
+          "desired_speed_mps": 3,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.4124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 0.3,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "openai_bend_sequence_tls_20261029_v1"
+    }
+  ],
+  "selected_group_charged_requests": 2,
+  "first_overall_request_pass": false,
+  "service_failure_history": [
+    {
+      "source_group": "openai_bend_sequence_20261029_v1",
+      "attempt": 1,
+      "failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_recovery_20261029_v1",
+      "attempt": 1,
+      "failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "preflight_failure_history": [],
+  "post_failure_count": 2,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [
+    {
+      "source_group": "openai_bend_sequence_20261029_v1",
+      "attempt": 1,
+      "failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_recovery_20261029_v1",
+      "attempt": 1,
+      "failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "first_generation_post_pass": false,
+  "overall_success_request_ordinal": 4,
+  "selection_policy": "EARLIEST_EXISTING_PASS",
+  "display_transform_to_first_frame": {
+    "status": "ALIGNED",
+    "translation_m": [
+      2.030105585564074,
+      0.2900282126324719
+    ],
+    "yaw_rad": 0.13638320486771116,
+    "parent_frame": 0,
+    "common_record": {
+      "frame_id": "4cb2e5f01be94ffeb22cabde23ba5b46",
+      "time_id": "nusc_us_1538984250912460"
+    },
+    "display_only": true,
+    "center_offset_added_again": false
+  }
+}

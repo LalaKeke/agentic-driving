@@ -1,6 +1,6 @@
 # Agentic Driving
 
-[正式API连续转弯结果](implementation/results/api_continuous_bend_20261029_v2/README.md)：同一固定六时刻中5个完成真实模型→T1–T4→模拟移动转弯前缀，最后1个在非生成预检断连；图、动画、PDF与全部失败账本已交付。共9次驾驶POST尝试含2次连接失败，另2次短诊断。417项离线回归通过；不称多轮反事实闭环、G2或长期网络稳定。
+[正式API连续转弯结果v3](implementation/results/api_continuous_bend_20261029_v3/README.md)：frame005在连接恢复后一次真实生成完成全链，六个固定时刻现均已有T1–T4及模拟移动转弯前缀通过证据；前五帧未重跑。驾驶POST累计10次含2次连接失败，另保留原预检失败和2次短诊断；旧v2结果原样保留。图、动画、PDF与全部失败账本已交付，不称多轮反事实闭环、G2或长期网络稳定。
 
 [原订阅通道连续转弯六帧回放](implementation/results/continuous_bend_20261029_v1/README.md)：旧批逐帧图/JSON、动画、PDF及统一坐标汇总保留；首帧服务断连后1/12停止，模型输出0、其余5帧未调用。
 
