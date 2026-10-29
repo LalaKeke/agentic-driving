@@ -220,6 +220,48 @@ class ClipTests(unittest.TestCase):
             self.assertEqual(batch['cases'][1]['status'], 'NOT_ATTEMPTED')
             self.assertEqual(runner.read(marker)['failure_code'], 'PROCESS_INTERRUPTED')
 
+    def test_pinned_initial_feedback_is_case_local_and_tamper_blocks_client(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            plan = self.prepare(root)
+            feedback = dict(failure=dict(code='AUTHORED_SPECIFIC_OBJECT_CONFLICT'),
+                            previous_native_output=dict(authored_reference='frame_0'),
+                            instruction='AUTHORED fixture; preserve object IDs and physical bounds')
+            feedback_path = root / 'frame0_feedback.json'
+            feedback_path.write_text(json.dumps(feedback))
+            data = runner.read(plan)
+            data['cases'][0].update(initial_feedback_path=str(feedback_path),
+                                    initial_feedback_sha256=runner.sha(feedback_path))
+            plan.write_text(json.dumps(data))
+            fake, agents = self.fake()
+            with patch.dict(runner.os.environ, DRIVING_MODEL='authored-mock-model'), \
+                 patch.object(runner, 'OpenAIResponsesAgent', fake), \
+                 patch.object(runner, 'physical', return_value=(
+                     dict(prototype_conditional_success=True), None, dict(EXECUTION='PASS'))):
+                self.assertEqual(runner.run(plan), 0)
+            self.assertEqual(agents[0].calls[0][1], feedback)
+            self.assertIsNone(agents[0].calls[1][1])
+            self.assertEqual(runner.read(root / 'runtime/frame_0/initial_feedback.json'), feedback)
+            self.assertFalse((root / 'runtime/frame_1/initial_feedback.json').exists())
+            self.assertEqual(runner.read(root / 'runtime/frame_0/config.json')['initial_feedback_sha256'],
+                             data['cases'][0]['initial_feedback_sha256'])
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            plan = self.prepare(root)
+            feedback_path = root / 'feedback.json'
+            feedback_path.write_text('{"authored":"registered"}')
+            data = runner.read(plan)
+            data['cases'][0].update(initial_feedback_path=str(feedback_path),
+                                    initial_feedback_sha256=runner.sha(feedback_path))
+            plan.write_text(json.dumps(data))
+            feedback_path.write_text('{"authored":"changed"}')
+            with patch.dict(runner.os.environ, DRIVING_MODEL='authored-mock-model'), \
+                 patch.object(runner, 'OpenAIResponsesAgent', side_effect=AssertionError('No client after tamper')):
+                with self.assertRaises(Failure) as caught:
+                    runner.run(plan)
+            self.assertEqual(caught.exception.record['code'], 'CLIP_FEEDBACK_CHANGED')
+            self.assertFalse((root / 'runtime').exists())
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -49,6 +49,33 @@ def source_check(plan):
              'Frozen clip source changed; no new request sent', path=name)
 
 
+def initial_feedback(case):
+    """Load only this reference's explicitly registered, byte-pinned feedback."""
+    path_value = case.get('initial_feedback_path')
+    expected = case.get('initial_feedback_sha256')
+    if path_value is None and expected is None:
+        return None
+    need(isinstance(path_value, str) and bool(path_value)
+         and isinstance(expected, str) and len(expected) == 64,
+         'CLIP_FEEDBACK_CONFIG', 'Initial feedback requires both a path and its SHA256',
+         case_id=case['case_id'])
+    try:
+        raw = (ROOT / path_value).read_bytes()
+    except OSError:
+        raise Failure('CLIP_FEEDBACK_INPUT', 'Registered initial feedback cannot be read',
+                      case_id=case['case_id']) from None
+    need(hashlib.sha256(raw).hexdigest() == expected, 'CLIP_FEEDBACK_CHANGED',
+         'Registered initial feedback bytes changed; no new request sent', case_id=case['case_id'])
+    try:
+        value = json.loads(raw)
+    except ValueError:
+        raise Failure('CLIP_FEEDBACK_INPUT', 'Registered initial feedback is not JSON',
+                      case_id=case['case_id']) from None
+    need(isinstance(value, dict), 'CLIP_FEEDBACK_INPUT',
+         'Registered initial feedback must be a JSON object', case_id=case['case_id'])
+    return value
+
+
 def capture_check(case):
     path = ROOT / case['capture']
     need(sha(path) == case['capture_sha256'], 'CLIP_CAPTURE_CHANGED',
@@ -121,6 +148,10 @@ def run(plan_path, stop_file=None):
     need(os.environ.get('DRIVING_MODEL') == plan['requested_model'],
          'CLIP_MODEL', 'The environment differs from the registered API model')
     source_check(plan)
+    # Validate all optional feedback before constructing any API client, then
+    # check it again when that reference begins. Nothing is inferred or filled.
+    for case in cases:
+        initial_feedback(case)
     # Reserve the roots before reading credentials or constructing any client.
     runtime = reserve_directory(root / 'runtime')
     budget_root = reserve_directory(root / 'budget')
@@ -168,6 +199,7 @@ def run(plan_path, stop_file=None):
                 source_check(plan)
                 initial = capture_check(case)
                 case_limit = case_limits[current_case]
+                feedback = initial_feedback(case)
                 require_turn = case.get('require_turn', plan.get('require_turn', False))
                 need(isinstance(require_turn, bool), 'CLIP_CONFIG', 'require_turn must be an explicit boolean')
                 case_root = reserve_directory(runtime / current_case)
@@ -177,6 +209,8 @@ def run(plan_path, stop_file=None):
                     capture_path=str(ROOT / case['capture']), capture_sha256=case['capture_sha256'],
                     planner_profile=plan['planner_profile'], require_turn=require_turn,
                     prompt_version=plan['prompt_version'], max_requests=case_limit,
+                    initial_feedback_path=case.get('initial_feedback_path'),
+                    initial_feedback_sha256=case.get('initial_feedback_sha256'),
                     horizon_s=2, step_s=.2, prefix_s=.2, gt_used=False,
                     network_readiness_get_attempts=plan.get('network_readiness_get_attempts', 1),
                     keepalive_expiry_s=plan.get('keepalive_expiry_s'),
@@ -184,7 +218,10 @@ def run(plan_path, stop_file=None):
                     source_sha256=plan['source_sha256']))
                 local_rows, mappings, local_charges = [], [], []
                 result = None
-                feedback = None  # Never carry another reference's answer or feedback.
+                if feedback is not None:
+                    write_json_new(case_root / 'initial_feedback.json', feedback)
+                # Every reference loads its own input; no previous reference's
+                # answer or feedback is inherited through the shared client.
                 case_fatal = None
                 for revision in range(case_limit):
                     if stop_file is not None and stop_file.exists():
@@ -195,6 +232,9 @@ def run(plan_path, stop_file=None):
                         stop = 'WALL_LIMIT'
                         break
                     source_check(plan)
+                    # Revalidate the registered file before every POST, while
+                    # keeping any within-reference revision feedback separate.
+                    initial_feedback(case)
                     agent.timeout = min(plan.get('timeout_s', 450), remaining - 90)
                     capture = deepcopy(initial)
                     capture['metadata']['revision'] += revision

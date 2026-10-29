@@ -68,6 +68,23 @@ def normalized_result(case, run_root):
             row['stages']['SERVICE'] = 'PASS'
         if meta.get('native_json_returned') and row['stages']['BUSINESS_SCHEMA'] == 'FAIL':
             row['final_failure_stage'] = 'BUSINESS_SCHEMA'
+    unknown=[]
+    for event in row['attempts']:
+        transport=event.get('transport_summary') or {}
+        if transport.get('status')=='OBSERVER_CLOSED_PROCESS_INTERRUPTION':
+            event.update(dispatch_or_response_unknown=True,unknown_dispatch_attempts=1,
+                service_or_interface_failure=False,service_error_notification_observed=False,
+                service_return='DISPATCH_OR_RESPONSE_UNKNOWN',deepest_blocking_stage='DISPATCH_OR_RESPONSE_UNKNOWN')
+            event['raw_stage_ledger']['SERVICE']='UNKNOWN'
+            event['issue_classes']=sorted((set(event.get('issue_classes',[]))-{'SERVICE_INTERFACE'})|{'PROCESS_INTERRUPTION_UNKNOWN'})
+            unknown.append(dict(attempt=event['attempt'],observation=transport.get('observation'),
+                charged=event['charged'],observed_api_post_requests=event['api_post_requests']))
+            if event['attempt']==attempt:row['stages']['SERVICE']='UNKNOWN'
+    row['unknown_dispatch_attempts']=len(unknown);row['unknown_dispatch_history']=unknown
+    if unknown and not any(e['complete_conditional_chain'] for e in row['attempts']):
+        row['status']='PROCESS_INTERRUPTED_OUTCOME_UNKNOWN'
+        row['final_failure_stage']='DISPATCH_OR_RESPONSE_UNKNOWN'
+        row['issue_classes_any_attempt']=sorted(set().union(*(set(e['issue_classes']) for e in row['attempts'])))
     fatal = row.get('fatal_service_or_interface_failure') or {}
     if str(fatal.get('code', '')).startswith('API_PREFLIGHT_'):
         row['final_failure_stage'] = 'MODELS_PREFLIGHT'
@@ -128,6 +145,10 @@ def collect_groups(plan_path, additional_plans=()):
             status='ENDED' if batch is not None else 'PREPARED_NOT_STARTED',
             charged_requests=(batch or {}).get('charged_requests',0),
             api_post_requests=(batch or {}).get('api_post_requests',0),
+            unknown_dispatch_attempts=(batch or {}).get('unknown_dispatch_attempts',0),
+            observer_closed=(batch or {}).get('observer_closed',False),
+            completion_authority=(batch or {}).get('completion_authority'),
+            parent_exec_exit_code=(batch or {}).get('parent_exec_exit_code'),
             stop_reason=(batch or {}).get('stop_reason'),fatal=fatal or None,
             clip_wide_preflight_failure=preflight_failed,network_preflight=network or None,
             preflight_attribution='SOURCE_GROUP_ONLY; not repeated on each reference'))
@@ -144,11 +165,16 @@ def collect_groups(plan_path, additional_plans=()):
         selected,result,cap,name=passed[0] if passed else (attempted[-1] if attempted else candidates[-1])
         if additional_plans:
             row=combine(selected,histories,name)
+            row['unknown_dispatch_attempts']=sum(h.get('unknown_dispatch_attempts',0) for _,h in histories)
+            row['unknown_dispatch_history']=[dict(item,source_group=group) for group,h in histories for item in h.get('unknown_dispatch_history',[])]
+            if row['unknown_dispatch_attempts']:
+                row['first_generation_post_pass']=None
+                row['overall_request_ordinal_scope']='Charged attempts including unconfirmed dispatch; observed POSTs are counted separately.'
             row['selection_policy']='EARLIEST_EXISTING_PASS' if passed else ('LATEST_ACTUAL_ATTEMPT_GROUP' if attempted else 'NO_ATTEMPT_IN_ANY_GROUP')
             row['source']=selected['source']
         else:row=selected
         triples.append((row,result,cap))
-    for key in ('charged_requests','api_post_requests'):
+    for key in ('charged_requests','api_post_requests','unknown_dispatch_attempts'):
         if sum(t[0][key] for t in triples)!=sum(source[key] for source in sources):
             raise ValueError('Combined '+key+' differs from source batch ledgers')
     latest=next((batch for _,_,_,batch in reversed(groups) if batch is not None),{})
@@ -258,6 +284,7 @@ def draw_frame(row, result, cap, target, plt, np, Patch, Image):
     lines = [f"{row['case_id']} | recorded t=+{row['relative_sequence_time_s']:.3f}s",
              f"Status: {row['status']} | block: {row['final_failure_stage'] or 'NONE'}",
              f"Generating POST attempts: {row.get('api_post_requests',0)} | source: {row['source']}",
+             f"Charged attempts: {row['charged_requests']} | dispatch/response unknown: {row.get('unknown_dispatch_attempts',0)}",
              f"Decision: {decision.get('behavior','NOT_REACHED')} | desired v: {decision.get('desired_speed_mps','UNKNOWN')}",
              'Stages: '+' | '.join(f"{s}={row['stages'][s]}" for s in STAGES),
              f"Declared actors: {len(actors) if native else 'UNKNOWN'} | T4: {m.get('T4_verdict','NOT_REACHED')}",
@@ -282,14 +309,14 @@ def draw_frame(row, result, cap, target, plt, np, Patch, Image):
 
 def draw_overview(rows, results, transforms, target, plt, np, source_note=''):
     fig, axes = plt.subplots(2, 2, figsize=(16, 10.5)); timeline, bev, speed, yaw = axes.flat
-    states = {'NOT_REACHED': 0, 'NOT_APPLICABLE': 1, 'PASS': 2, 'FAIL': 3}
+    states = {'NOT_REACHED': 0, 'NOT_APPLICABLE': 1, 'PASS': 2, 'FAIL': 3, 'UNKNOWN': 4}
     from matplotlib.colors import ListedColormap
     values = np.asarray([[states.get(r['stages'][s], 0) for r in rows] for s in STAGES])
-    timeline.imshow(values, aspect='auto', interpolation='nearest', vmin=0, vmax=3,
-                    cmap=ListedColormap(['#ddd','#a6b8cf','#2b9b65','#ca4b4b']))
+    timeline.imshow(values, aspect='auto', interpolation='nearest', vmin=0, vmax=4,
+                    cmap=ListedColormap(['#ddd','#a6b8cf','#2b9b65','#ca4b4b','#d6a83b']))
     timeline.set(xticks=range(len(rows)), xticklabels=[f"{r['relative_sequence_time_s']:.1f}" for r in rows],
                  yticks=range(len(STAGES)), yticklabels=STAGES, xlabel='Recorded scene time (s)',
-                 title='Selected answer: green PASS / red FAIL / blue N.A. / gray not reached')
+                 title='Selected answer: green PASS / red FAIL / blue N.A. / yellow UNKNOWN / gray not reached')
     colors = plt.get_cmap('viridis'); refs=[]
     for index, (row, result, transform) in enumerate(zip(rows, results, transforms)):
         color = colors(index/max(1,len(rows)-1))
@@ -343,7 +370,104 @@ def raw_display(raw, row, reference_picture, target, Image, ImageOps, ImageDraw,
     return canvas
 
 
-def main(plan_path,out,additional_plans=()):
+def dense_front_view(index_path,plan,rows,out,Image,ImageOps,ImageDraw,ImageFont,video_only=False):
+    """Optional full available CAM_FRONT stream; no stale plans on sweep frames."""
+    index=read(index_path);matches=[c for c in index['clips'] if c['scene_token']==plan['scene_token']]
+    if len(matches)!=1:raise ValueError('Dense front index does not uniquely match the scene')
+    clip=matches[0]
+    if clip['base_plan_sha256']!=sha(resolve(clip['base_plan'])):
+        raise ValueError('Dense front source plan changed')
+    by_case={r['case_id']:r for r in rows};by_capture={c['case_id']:read(resolve(c['capture'])) for c in plan['cases']}
+    matched=[]
+    for frame in clip['rows']:
+        if sha(resolve(frame['path']))!=frame['sha256']:raise ValueError('Dense raw image SHA changed')
+        cid=frame.get('planning_case_id')
+        if cid is not None:
+            if cid not in by_case:raise ValueError('Dense index added an unregistered inference reference')
+            cap=by_capture[cid]
+            observed=[o for o in cap['observations'] if o['id']==frame['id'] and o['time_id']==cap['metadata']['reference_time_id']]
+            if len(observed)!=1:raise ValueError('Dense frame does not exactly match the native planning image')
+            matched.append(cid)
+    if len(matched)!=len(by_case) or set(matched)!=set(by_case):
+        raise ValueError('Dense index must contain every registered reference exactly once')
+    folder=None if video_only else reserve_directory(out/'dense_front_frames')
+    font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',22)
+    small=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',17)
+    animation=[];durations=[];timeline=[]
+    for number,frame in enumerate(clip['rows']):
+        cid=frame.get('planning_case_id');row=by_case.get(cid);posted=bool(row and row['api_post_requests'])
+        warm=frame['relative_time_s']<clip['first_planning_reference_s']-1e-8
+        role='PLANNING_REFERENCE' if cid else ('WARMUP' if warm else 'OBSERVATION_ONLY')
+        canvas=Image.new('RGB',(1280,866),'white');draw=ImageDraw.Draw(canvas)
+        draw.text((16,10),f"CAM_FRONT {number:03d} | +{frame['relative_time_s']:.3f}s | {role}",font=font,fill='black')
+        with Image.open(resolve(frame['path'])) as original:
+            tile=ImageOps.contain(original.convert('RGB'),(620,350));canvas.paste(tile,(16+(620-tile.width)//2,65+(350-tile.height)//2))
+        draw.text((16,430),'Original frame; exact acquisition timestamp retained.',font=small,fill='#333')
+        if row is not None and posted:
+            with Image.open(out/cid/'result.png') as picture:
+                w,h=picture.size
+                bev=ImageOps.contain(picture.crop((w//2,65,w,h//2)).convert('RGB'),(610,400));canvas.paste(bev,(660,60))
+                speed=ImageOps.contain(picture.crop((0,h//2,w//2,h)).convert('RGB'),(620,380));canvas.paste(speed,(16,470))
+            details=[cid+' | '+row['status'],'This exact frame only; no carried prior plan.',
+                'Stages: '+' / '.join(s+'='+row['stages'][s] for s in ('T1','T2','T3','T4')),
+                'Prefix: '+row['physical'].get('motion_class','NOT_EXECUTED'),
+                'Distance: '+str(row['physical'].get('displacement_m'))+' m',
+                'End speed: '+str(row['physical'].get('end_speed_mps'))+' m/s',
+                'All conclusions conditional on model local assumptions.']
+            y=485
+            for line in details:
+                for text in textwrap.wrap(line,59):draw.text((665,y),text,font=small,fill='#223');y+=25
+        else:
+            uncertain=bool(row and row.get('unknown_dispatch_attempts'))
+            label=('REGISTERED REFERENCE / DISPATCH UNKNOWN' if uncertain else 'REGISTERED REFERENCE / NOT_ATTEMPTED') if cid else ('WARMUP / NO_NEW_PLAN' if warm else 'OBSERVATION_ONLY / NO_NEW_PLAN')
+            for i,line in enumerate(textwrap.wrap(label,38)):draw.text((665,110+i*35),line,font=font,fill='#a33')
+            note=[('A charged attempt exists; dispatch or response is unconfirmed.' if uncertain else 'No generating request at this image timestamp.'),'No previous geometry, verification or execution is reused.','Registered model references are about 1 second apart.','Detailed reference pages and the 2Hz analysis video are separate.']
+            y=235
+            for line in note:
+                for text in textwrap.wrap(line,55):draw.text((665,y),text,font=small,fill='#333');y+=29
+        draw.text((16,845),'Recorded camera stream, not observations resulting from simulated controls.',font=small,fill='#333')
+        target=folder/f'frame_{number:04d}.jpg' if folder else None
+        if target:canvas.save(target,quality=88)
+        animation.append(ImageOps.contain(canvas,(960,650)).convert('P',palette=Image.ADAPTIVE,colors=256))
+        dt=((clip['rows'][number+1]['timestamp_us']-frame['timestamp_us'])/1e6) if number+1<len(clip['rows']) else .1
+        durations.append(max(10,round(dt*1000/10)*10))
+        timeline.append(dict(frame_id=frame['id'],timestamp_us=frame['timestamp_us'],relative_time_s=frame['relative_time_s'],
+            image_path=frame['path'],image_sha256=frame['sha256'],is_key_frame=frame['is_key_frame'],role=role,
+            planning_case_id=cid,generating_post_attempted_at_this_frame=posted,
+            dispatch_unknown_attempts=row.get('unknown_dispatch_attempts',0) if row else 0,
+            result_status=row['status'] if row else 'NO_NEW_PLAN',prior_verification_reused=False,
+            display_image=str(target.relative_to(out)) if target else None))
+    video=dict(status='NOT_AVAILABLE');encoder=shutil.which('ffmpeg')
+    scratch=tempfile.TemporaryDirectory(prefix='dense-front-encode-') if video_only else None
+    gif_path=Path(scratch.name)/'dense_front.gif' if scratch else out/'dense_front.gif'
+    try:
+        animation[0].save(gif_path,save_all=True,append_images=animation[1:],duration=durations,loop=0,optimize=False)
+        if encoder:
+            process=subprocess.run([encoder,'-nostdin','-hide_banner','-loglevel','error','-n','-i',str(gif_path),
+                '-vsync','vfr','-pix_fmt','yuv420p','-c:v','libx264','-crf','23','-threads','2','-video_track_timescale','10000',
+                '-movflags','+faststart',str(out/'dense_front.mp4')],capture_output=True,text=True)
+            video.update(status='PASS' if process.returncode==0 else 'ENCODE_FAILED',exit_code=process.returncode,
+                         error=process.stderr[:1000] if process.returncode else None)
+            probe=shutil.which('ffprobe')
+            if process.returncode==0 and probe:
+                inspected=subprocess.run([probe,'-v','error','-select_streams','v:0','-show_entries','stream=nb_frames,avg_frame_rate,duration','-of','json',str(out/'dense_front.mp4')],capture_output=True,text=True)
+                if inspected.returncode==0:video['stream']=json.loads(inspected.stdout)['streams'][0]
+    finally:
+        if scratch:scratch.cleanup()
+    write_json_new(out/'dense_front_timeline.json',timeline)
+    with (out/'dense_front_timeline.csv').open('x',newline='') as stream:
+        keys=('frame_id','timestamp_us','relative_time_s','image_path','image_sha256','is_key_frame','role','planning_case_id','generating_post_attempted_at_this_frame','dispatch_unknown_attempts','result_status','prior_verification_reused','display_image')
+        writer=csv.DictWriter(stream,fieldnames=keys);writer.writeheader();writer.writerows({k:r.get(k) for k in keys} for r in timeline)
+    return dict(index_path=str(index_path),index_sha256=sha(index_path),frame_count=len(timeline),
+        keyframe_count=clip['keyframe_count'],sweep_count=clip['sweep_count'],source_mean_acquisition_rate_hz=clip['mean_acquisition_rate_hz'],
+        source_timestamp_interval_s=clip['interval_s'],planning_references=len(matched),generating_reference_images=sum(r['generating_post_attempted_at_this_frame'] for r in timeline),
+        new_model_requests=0,mp4_encoding=video,gif_duration_resolution_ms=10,last_frame_hold_ms=100,
+        dense_video_only=video_only,gif_retained=not video_only,dense_frame_jpegs_retained=not video_only,
+        claim='All available CAM_FRONT images in the fixed scene time domain; extra display frames never enter runtime or inherit prior plans.')
+
+
+def main(plan_path,out,additional_plans=(),dense_front_index=None,dense_video_only=False):
+    if dense_video_only and not dense_front_index:raise ValueError('Dense-video-only needs a display index')
     plan_path=plan_path.resolve();plan,batch,triples,sources=collect_groups(plan_path,additional_plans)
     cases=plan['cases'];raw_frames=plan['raw_frames']
     if not cases or not raw_frames:raise ValueError('Clip needs raw frames and registered planning references')
@@ -379,7 +503,10 @@ def main(plan_path,out,additional_plans=()):
             animation.append(raw_display(raw,row,picture,target,Image,ImageOps,ImageDraw,ImageFont))
             dt=(raw_frames[index+1]['reference_time_s']-raw['reference_time_s']) if index+1<len(raw_frames) else .5
             durations.append(max(20,round(dt*1000)))
-            raw_rows.append(dict(raw,model_called_at_this_frame=bool(row and row['charged_requests']),
+            called=True if row and row['api_post_requests'] else (None if row and row.get('unknown_dispatch_attempts') else False)
+            raw_rows.append(dict(raw,model_called_at_this_frame=called,
+                generating_post_attempts=row['api_post_requests'] if row else 0,
+                unknown_dispatch_attempts=row.get('unknown_dispatch_attempts',0) if row else 0,
                 planned_reference_result=row['case_id']+'/result.json' if row else None,
                 result_status=row['status'] if row else 'NO_NEW_PLAN',
                 prior_verification_reused=False,display_image=str(target.relative_to(out))))
@@ -396,11 +523,14 @@ def main(plan_path,out,additional_plans=()):
         sheet=Image.new('RGB',(2400,517*math.ceil(len(pages)/3)),'white')
         for index,page in enumerate(pages):sheet.paste(ImageOps.contain(page,(800,517)),((index%3)*800,(index//3)*517))
         sheet.save(out/'contactsheet.jpg',quality=88)
+        dense_display=dense_front_view(dense_front_index,plan,rows,out,Image,ImageOps,ImageDraw,ImageFont,video_only=dense_video_only) if dense_front_index else None
     motion=Counter(r['physical'].get('motion_class','NOT_EXECUTED') for r in rows)
     summary=dict(ended=True,experiment_id=plan.get('experiment_id'),scene_name=plan.get('scene_name',cases[0]['scene_name']),
         unique_scenes=1,raw_frames=len(raw_frames),raw_clip_span_s=raw_frames[-1]['reference_time_s']-raw_frames[0]['reference_time_s'],
         registered_planning_references=len(rows),attempted_references=sum(r['charged_requests']>0 for r in rows),
         charged_requests=sum(r['charged_requests'] for r in rows),api_post_requests=sum(r['api_post_requests'] for r in rows),
+        unknown_dispatch_attempts=sum(r.get('unknown_dispatch_attempts',0) for r in rows),
+        observed_post_references=sum(r['api_post_requests']>0 for r in rows),
         native_json_count=sum(r['native_json_count'] for r in rows),
         conditional_chain_passes=sum(r['physical'].get('independent_acceptor_pass',False) and r['physical'].get('prefix_consumed',False) for r in rows),
         motion_classes=dict(motion),unexplained_hold_review_required=sum(r['motion_review']['unexplained_hold_review_required'] for r in rows),
@@ -410,9 +540,10 @@ def main(plan_path,out,additional_plans=()):
         preflight_failure_attribution='Clip-wide preflight failures are counted once per source, not as one failure per reference.',
         analysis_script_sha256=sha(__file__),new_model_requests=0,GT_used=False,claim=LIMITATION,frames=rows)
     summary['mp4_encoding']=video
+    summary['dense_front_display']=dense_display
     write_json_new(out/'summary.json',summary);write_json_new(out/'raw_timeline.json',raw_rows)
     with (out/'source_groups.csv').open('x',newline='') as stream:
-        keys=('source_group','status','charged_requests','api_post_requests','clip_wide_preflight_failure','stop_reason','fatal_code')
+        keys=('source_group','status','charged_requests','api_post_requests','unknown_dispatch_attempts','clip_wide_preflight_failure','observer_closed','completion_authority','parent_exec_exit_code','stop_reason','fatal_code')
         writer=csv.DictWriter(stream,fieldnames=keys);writer.writeheader()
         for source in sources:
             writer.writerow(dict({k:source.get(k) for k in keys},fatal_code=(source.get('fatal') or {}).get('code')))
@@ -424,14 +555,15 @@ def main(plan_path,out,additional_plans=()):
             item={k:row.get(k) for k in columns};item.update({k:row['physical'].get(k) for k in ('motion_class','prefix_consumed','displacement_m','end_speed_mps','minimum_conditional_clearance_lower_bound_m')})
             item.update(plan_yaw_deg=row['signed_turn']['plan_end_yaw_change_deg'],prefix_yaw_deg=row['signed_turn']['prefix_yaw_change_deg'],unexplained_hold_review_required=row['motion_review']['unexplained_hold_review_required']);writer.writerow(item)
     with (out/'raw_timeline.csv').open('x',newline='') as stream:
-        keys=('raw_index','sample_token','relative_sequence_time_s','role','planning_case_id','model_called_at_this_frame','result_status','prior_verification_reused')
+        keys=('raw_index','sample_token','relative_sequence_time_s','role','planning_case_id','model_called_at_this_frame','generating_post_attempts','unknown_dispatch_attempts','result_status','prior_verification_reused')
         writer=csv.DictWriter(stream,fieldnames=keys);writer.writeheader();writer.writerows({k:r.get(k) for k in keys} for r in raw_rows)
     cards=''.join(f'<section><h2>+{r["relative_sequence_time_s"]:.2f}s {html.escape(r["case_id"])} · {html.escape(r["status"])}</h2><a href="{r["case_id"]}/result.json">Result JSON</a><img src="{r["case_id"]}/result.png"></section>' for r in rows)
     document=('<!doctype html><meta charset="utf-8"><title>Full recorded clip</title><style>body{font:16px sans-serif;max-width:1400px;margin:auto;padding:20px}img{max-width:100%}section{margin:30px 0}</style>'
         '<h1>'+html.escape(summary['scene_name'])+' · full recorded clip</h1><p>'+html.escape(LIMITATION)+'</p>'
         f'<p>Raw frames {len(raw_frames)}; planned references {len(rows)}; conditional chains {summary["conditional_chain_passes"]}. Warmup and observation-only frames have no new plan. Earlier/current clip-wide preflight failures: {summary["clip_wide_preflight_failures"]} (counted once per source group).</p>'
         '<p><a href="full_clip.gif">Full raw-timeline animation</a> · '+('<a href="full_clip.mp4">MP4</a> · ' if video['status']=='PASS' else '')+'<a href="casebook.pdf">PDF</a> · <a href="planning_results.csv">Planning CSV</a> · <a href="raw_timeline.csv">All raw frames</a> · <a href="source_groups.csv">Source groups and preflight history</a> · <a href="summary.json">Full JSON</a></p>'
-        '<img src="clip_overview.png">'+cards)
+        +('<p>Dense CAM_FRONT display: <a href="dense_front.mp4">MP4</a> · '+('<a href="dense_front.gif">GIF</a> · ' if dense_display['gif_retained'] else '')+'<a href="dense_front_timeline.csv">Every available frame</a>. Display only; no extra model calls.</p>' if dense_display else '')
+        +'<img src="clip_overview.png">'+cards)
     write_text_new(out/'index.html',document)
     print(json.dumps(dict(out=str(out),raw_frames=len(raw_frames),planning_references=len(rows),conditional_chains=summary['conditional_chain_passes'],new_model_requests=0)))
     return summary
@@ -440,4 +572,6 @@ def main(plan_path,out,additional_plans=()):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--plan',required=True,type=Path);parser.add_argument('--out',required=True,type=Path)
     parser.add_argument('--additional-plan',action='append',type=Path,default=[],help='Ended recovery source; keep existing passes and include all attempts')
-    args=parser.parse_args();main(args.plan,args.out,args.additional_plan)
+    parser.add_argument('--dense-front-index',type=Path,help='Optional display-only full CAM_FRONT index; never supplied to runtime')
+    parser.add_argument('--dense-video-only',action='store_true',help='Retain dense MP4/timeline only; delete private temporary GIF and do not save duplicate dense JPEGs')
+    args=parser.parse_args();main(args.plan,args.out,args.additional_plan,args.dense_front_index,args.dense_video_only)
