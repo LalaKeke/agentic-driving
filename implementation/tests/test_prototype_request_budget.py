@@ -50,5 +50,39 @@ class PrototypeRequestBudgetTests(unittest.TestCase):
         calls,summary=self.run_mock(3,'success');self.assertEqual(calls,1)
         self.assertTrue(summary['prototype_conditional_success'])
 
+    def test_explicit_api_route_preserves_terminal_error_and_public_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);cap,_,_=fixtures.case();path=root/'capture.json';path.write_text(json.dumps(cap))
+            class AuthoredAPI:
+                calls=0
+                def __init__(self,**kwargs):
+                    self.public_config=dict(backend='official_openai_responses',source='mock_transport',
+                        model=kwargs['model'],adapter_retries=0)
+                    self.last_attempt_summary=None
+                    self.kwargs=kwargs
+                def preflight(self):pass
+                def decide(self,*args):
+                    AuthoredAPI.calls+=1
+                    self.last_attempt_summary=dict(api_post_requests=1,model_service_returned=False)
+                    raise Failure('API_HTTP','AUTHORED API service failure, no retry')
+            args=argparse.Namespace(out=root/'run',capture=path,wire=root/'unused',replay=None,
+                timeout_s=1,deadline_utc='2099-01-01T00:00:00Z',max_requests=2,backend='openai_api')
+            with patch.dict(runner.os.environ,{'DRIVING_MODEL':'registered-mock-model'}), \
+                 patch.object(runner,'OpenAIResponsesAgent',AuthoredAPI), \
+                 patch.object(runner,'PilotSubscriptionAgent',side_effect=AssertionError('Wrong backend')):
+                runner.main(args)
+            summary=json.loads((args.out/'summary.json').read_text())
+            config=json.loads((args.out/'config.json').read_text())
+            public=json.loads((args.out/'transport_config.json').read_text())
+            self.assertEqual(AuthoredAPI.calls,1)
+            self.assertEqual(summary['backend'],'openai_api')
+            self.assertEqual(summary['charged_requests'],1)
+            self.assertEqual(summary['remaining_unused'],1)
+            self.assertEqual(summary['fatal']['code'],'API_HTTP')
+            self.assertEqual(config['backend'],'openai_api')
+            self.assertIn('implementation/agentic/openai_adapter.py',config['actual_source_sha256'])
+            self.assertEqual(public['source'],'mock_transport')
+            self.assertEqual(public['adapter_retries'],0)
+
 
 if __name__=='__main__':unittest.main()

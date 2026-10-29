@@ -181,6 +181,8 @@ def frame_result(case, run_root):
                    task=task, signed_turn=signed_turn(result),
                    display_only_unreleased_candidate=display_candidate,
                    source=result.get('provenance', {}).get('source', 'NO_NATIVE_OUTPUT'),
+                   transport=result.get('provenance', {}).get('transport', event.get('transport')),
+                   server_reported_model=result.get('provenance', {}).get('server_reported_model',event.get('server_reported_model')),
                    actual_server_snapshot=result.get('provenance', {}).get('server_reported_snapshot'),
                    direction_review='PENDING_INDEPENDENT_IMAGE_REVIEW',
                    claim=LIMITATION)
@@ -386,6 +388,7 @@ def observation_counts(rows, results):
     return dict(fixed_observation_times=len(rows),
                 attempted_observation_times=sum(r['charged_requests'] > 0 for r in rows),
                 charged_requests=sum(r['charged_requests'] for r in rows),
+                api_post_requests=sum(r.get('api_post_requests',0) for r in rows),
                 native_outputs=sum(r['native_json_count'] for r in rows),
                 frames_with_plan=sum(bool(r.get('trajectory')) for r in results))
 
@@ -445,13 +448,14 @@ def main(plan_path, out):
                    unique_scenes=len({c['scene_token'] for c in plan['cases']}),
                    unique_observation_times=len(rows),
                    charged_requests=sum(r['charged_requests'] for r in rows),
+                   api_post_requests=sum(r.get('api_post_requests',0) for r in rows),
                    conditional_chain_passes=sum(r['status'] in ('FIRST_ATTEMPT_PASS', 'REVISION_PASS') for r in rows),
                    not_attempted=sum(r['status'] == 'NOT_ATTEMPTED' for r in rows),
                    actual_counts=counts,
                    no_extra_model_calls=True, GT_used=False, claim=LIMITATION,
                    frames=rows, self_checks=checks)
     write_json_new(out / 'sequence_summary.json', summary)
-    columns = ('case_id', 'sample_token', 'relative_sequence_time_s', 'status', 'charged_requests',
+    columns = ('case_id', 'sample_token', 'relative_sequence_time_s', 'status', 'charged_requests', 'api_post_requests',
                'first_attempt_pass', 'revision_pass', 'final_failure_stage', 'source', 'selected_attempt')
     with (out / 'sequence_summary.csv').open('x', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=columns + ('T4', 'TURN_TASK', 'prefix_consumed', 'displacement_m', 'end_speed_mps', 'plan_yaw_deg', 'prefix_yaw_deg'))

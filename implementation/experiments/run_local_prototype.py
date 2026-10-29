@@ -21,6 +21,7 @@ from agentic.contracts import Failure,digest,need
 from agentic.acceptance import assess_round
 from agentic.evidence_io import reserve_directory,write_json_new
 from agentic.pilot_transport import PilotSubscriptionAgent
+from agentic.openai_adapter import OpenAIResponsesAgent
 from agentic.runtime import SimulatedExecutor
 
 PROFILE='local_conditional_2s_prototype_v1'
@@ -118,6 +119,8 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed',require_t
 
 def main(args):
     limit=getattr(args,'max_requests',4)
+    backend=getattr(args,'backend','codex_subscription')
+    need(backend in ('codex_subscription','openai_api'),'PROTOTYPE_BACKEND','Explicit supported model backend required')
     planner=getattr(args,'planner_profile','legacy_disk_v2')
     require_turn=getattr(args,'require_turn',False)
     prompt=getattr(args,'prompt_version','driving_prototype_v1')
@@ -134,11 +137,14 @@ def main(args):
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     source_files=[Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',
         ROOT/'implementation/agentic/metric_contract.py',ROOT/('implementation/prompts/'+prompt+'.txt')]
+    if backend=='openai_api' and not args.replay:source_files.append(ROOT/'implementation/agentic/openai_adapter.py')
     source_files += [ROOT/('implementation/agentic/'+name+'.py') for name in ('t1','t2','t3','t4','candidate_search','acceptance','geometry','runtime')]
     source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1','corridor_seed_candidates_v2','trajectory_seed_candidates_v2')]
     if require_turn:source_files.append(ROOT/'implementation/agentic/turn_task.py')
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
+        backend='saved_output_replay' if args.replay else backend,
+        transport_config_path=None if args.replay else 'transport_config.json',
         require_turn=require_turn,prompt_version=prompt,horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True)),
         actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in source_files}))
@@ -154,11 +160,17 @@ def main(args):
         rows.append(dict(attempt=1,source='OFFLINE_REPLAY_OF_REAL_MODEL',stages=stages,failure=failure))
     else:
         deadline=datetime.fromisoformat(args.deadline_utc.replace('Z','+00:00')).timestamp()
-        for key in ('HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','https_proxy','http_proxy','all_proxy'):
-            os.environ[key]='http://127.0.0.1:17891'
-        agent=PilotSubscriptionAgent(evidence_dir=root/'transport',timeout_s=args.timeout_s,
-            wire_schema_bundle=args.wire,prompt_version=prompt,max_calls=4,experiment_profile=PROFILE)
         try:
+            if backend=='codex_subscription':
+                for key in ('HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','https_proxy','http_proxy','all_proxy'):
+                    os.environ[key]='http://127.0.0.1:17891'
+                agent=PilotSubscriptionAgent(evidence_dir=root/'transport',timeout_s=args.timeout_s,
+                    wire_schema_bundle=args.wire,prompt_version=prompt,max_calls=4,experiment_profile=PROFILE)
+            else:
+                agent=OpenAIResponsesAgent(evidence_dir=root/'transport',model=os.environ.get('DRIVING_MODEL'),
+                    timeout_s=args.timeout_s,wire_schema_bundle=args.wire,prompt_version=prompt,
+                    max_calls=limit,experiment_profile=PROFILE)
+            write_json_new(root/'transport_config.json',getattr(agent,'public_config',None))
             agent.preflight()
             for revision in range(limit):
                 remaining=deadline-time.time()
@@ -182,12 +194,17 @@ def main(args):
                         concrete_repair_request='Supply the specific missing native road polygon/scale support or whole BODY two-second occupancy, under justified local motion conditions. Repair actual evidence/premise/residual/geometry errors. Never fabricate numbers, remove obstacles or relax physical checks. If a conservative corridor fails, revise a justified decision/target region or report the conflict; do not merely explain refusal.')
                 except Failure as exc:
                     failure=exc.record;write_json_new(folder/'failure.json',failure)
+                    if backend=='openai_api':
+                        observed=getattr(agent,'last_attempt_summary',None) or {}
+                        if observed.get('model_service_returned') is True:stages['SERVICE']='PASS'
+                        if observed.get('native_json_returned') and failure['code']=='SCHEMA_ERROR':stages['BUSINESS_SCHEMA']='FAIL'
                     rows.append(dict(attempt=revision+1,stages=stages,failure=failure));fatal=failure
                     break # Service/interface failure is terminal; no retry.
         except Failure as exc:fatal=exc.record
     if result:write_json_new(root/'round_result.json',result)
     summary=dict(profile=PROFILE,planner_profile=planner,turn_task_required=require_turn,charged_requests=len(budget),budget_limit=0 if args.replay else limit,remaining_unused=0 if args.replay else limit-len(budget),
-        ended=True,attempts=rows,fatal=fatal,prototype_conditional_success=bool(result and result['prototype_conditional_success']),
+        ended=True,backend='saved_output_replay' if args.replay else backend,
+        attempts=rows,fatal=fatal,prototype_conditional_success=bool(result and result['prototype_conditional_success']),
         prefix_consumed=bool(result),source_commit=commit,mode='replay' if args.replay else 'online',
         old_strict_experiment_success=False,g2_evaluated=False,real_vehicle_control=False)
     write_json_new(root/'summary.json',summary);print(json.dumps(summary,ensure_ascii=False),flush=True)
@@ -198,6 +215,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--capture',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
+    p.add_argument('--backend',choices=['codex_subscription','openai_api'],default='codex_subscription')
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
     p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2','driving_prototype_v3'],default='driving_prototype_v1')
     p.add_argument('--require-turn',action='store_true',help='Require registered nonzero turning evidence before simulated prefix consumption')

@@ -145,6 +145,10 @@ def attempt(folder,transport_folder,event,charged,expected_sample):
     if service_error:issue_classes.add('SERVICE_INTERFACE')
     provenance=(record or {}).get('provenance',read(transport_folder/'provenance.json',{}))
     return dict(attempt=int(folder.name.split('_')[-1]),charged=charged,turn_start_count=count,
+        api_post_requests=transport.get('api_post_requests',0),
+        transport=provenance.get('transport',transport.get('transport')),
+        server_reported_model=provenance.get('server_reported_model',transport.get('server_reported_model',transport.get('response_model'))),
+        usage=transport.get('usage'),
         record_path=rel(record_path) if record else None,record_sha256=sha(record_path) if record else None,
         native_output_path=rel(native_path) if native_path.is_file() else None,
         native_json_present=native_present,native_business_schema=business,source=source,
@@ -190,6 +194,7 @@ def case_row(case,run_root,preparation_root,selection):
         initial_speed_mps=case['ego_speed_mps'],status=status,ended=summary.get('ended'),
         charged_requests=len(charge_files),reported_charged_requests=summary.get('charged_requests'),
         turn_start_count=sum(a['turn_start_count'] for a in attempts),
+        api_post_requests=sum(a['api_post_requests'] for a in attempts),
         budget_count_matches_summary=(summary.get('charged_requests')==len(charge_files)) if summary else None,
         first_attempt_pass=(attempts[0]['complete_conditional_chain'] if attempts else None),
         revision_pass=(next((a['complete_conditional_chain'] for a in attempts if a['attempt']==2),None)),
