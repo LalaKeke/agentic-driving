@@ -48,7 +48,7 @@ class ClipTests(unittest.TestCase):
         path.write_text(json.dumps(plan))
         return path
 
-    def fake(self, fail_service=False):
+    def fake(self, fail_service=False, interrupt_request=False):
         instances = []
 
         class AuthoredAgent:
@@ -76,6 +76,10 @@ class ClipTests(unittest.TestCase):
                 self.last_attempt_summary = dict(api_post_requests=1, source='mock_transport',
                                                  model_service_returned=not fail_service)
                 (folder / 'attempt_summary.json').write_text(json.dumps(self.last_attempt_summary))
+                if interrupt_request:
+                    self.last_attempt_summary['model_service_returned'] = 'UNKNOWN'
+                    (folder / 'attempt_summary.json').write_text(json.dumps(self.last_attempt_summary))
+                    raise runner.ClipInterrupted(15)
                 if fail_service:
                     raise Failure('API_HTTP', 'AUTHORED service failure; no retry')
                 output = dict(authored=True)
@@ -163,6 +167,58 @@ class ClipTests(unittest.TestCase):
             self.assertEqual(summary['api_post_requests'], 0)
             self.assertEqual(summary['stop_reason'], 'EXTERNAL_STOP_BEFORE_PREFLIGHT')
             self.assertTrue(all(r['status'] == 'NOT_ATTEMPTED' for r in summary['cases']))
+
+    def test_one_remaining_request_cannot_spend_a_semantic_revision(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            plan = self.prepare(root)
+            data = runner.read(plan)
+            for case in data['cases']:
+                case['request_limit'] = 1
+            data['operational_call_ceiling'] = 2
+            plan.write_text(json.dumps(data))
+            fake, agents = self.fake()
+            with patch.dict(runner.os.environ, DRIVING_MODEL='authored-mock-model'), \
+                 patch.object(runner, 'OpenAIResponsesAgent', fake), \
+                 patch.object(runner, 'physical', return_value=(
+                     None, dict(code='AUTHORED_TOOL_REJECTION'), dict(T1='FAIL'))):
+                self.assertEqual(runner.run(plan), 3)
+            self.assertEqual(agents[0].kwargs['max_calls'], 2)
+            self.assertEqual(agents[0].call_count, 2)
+            self.assertTrue(all(feedback is None for _, feedback in agents[0].calls))
+            summary = runner.read(root / 'batch_summary.json')
+            self.assertIsNone(summary['stop_reason'])
+            self.assertEqual([row['charged_requests'] for row in summary['cases']], [1, 1])
+            for case_id in ('frame_0', 'frame_1'):
+                case_root = root / 'runtime' / case_id
+                self.assertFalse((case_root / 'attempt_02').exists())
+                case = runner.read(case_root / 'summary.json')
+                self.assertEqual(case['budget_limit'], 1)
+                self.assertEqual(case['remaining_unused'], 0)
+
+    def test_interrupted_request_keeps_charge_unknown_native_and_stops(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            plan = self.prepare(root)
+            fake, agents = self.fake(interrupt_request=True)
+            marker = root / 'stop.json'
+            self.assertFalse(issubclass(runner.ClipInterrupted, Exception))
+            with patch.dict(runner.os.environ, DRIVING_MODEL='authored-mock-model'), \
+                 patch.object(runner, 'OpenAIResponsesAgent', fake), \
+                 patch.object(runner, 'physical', side_effect=AssertionError('No response to plan')):
+                self.assertEqual(runner.run(plan, marker), 3)
+            self.assertEqual(agents[0].call_count, 1)
+            case = runner.read(root / 'runtime/frame_0/summary.json')
+            self.assertEqual(case['charged_requests'], 1)
+            self.assertEqual(case['native_output_status'], 'UNKNOWN_INTERRUPTED')
+            self.assertFalse(case['prefix_consumed'])
+            batch = runner.read(root / 'batch_summary.json')
+            self.assertEqual(batch['stop_reason'], 'PROCESS_INTERRUPTED')
+            self.assertEqual(batch['fatal']['details'], {'signal_number': 15})
+            self.assertEqual(batch['api_post_requests'], 1)
+            self.assertEqual(batch['native_outputs'], 0)
+            self.assertEqual(batch['cases'][1]['status'], 'NOT_ATTEMPTED')
+            self.assertEqual(runner.read(marker)['failure_code'], 'PROCESS_INTERRUPTED')
 
 
 if __name__ == '__main__':

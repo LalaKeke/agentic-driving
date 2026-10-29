@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import signal
 from pathlib import Path
 import subprocess
 import sys
@@ -23,10 +24,19 @@ def main(plan_path):
     assert plan['execution_authorized'] and plan['old_budget_inherited'] == 0
     assert plan['user_call_limit'] is None and plan['user_authorization'] == 'unlimited requests'
     assert plan['max_parallel_clips'] == 2 and plan['serial_within_clip'] is True
-    assert plan['operational_call_ceiling'] == sum(2 * row['reference_count'] for row in plan['clips'])
+    assert plan['operational_call_ceiling'] == sum(row.get('operational_call_ceiling', 2 * row['reference_count']) for row in plan['clips'])
     for name, expected in plan['source_sha256'].items():
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name
     stop_file = root / 'STOP_GENERATION.json'
+    def interrupted(signum, frame):
+        try:
+            with stop_file.open('x') as stream:
+                json.dump(dict(reason='PARENT_SIGNAL_RECEIVED', signal_number=signum,
+                               at_unix=time.time()), stream)
+        except FileExistsError:
+            pass
+    signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGINT, interrupted)
     write_json_new(root / 'launch.json', dict(
         plan_sha256=hashlib.sha256(plan_path.read_bytes()).hexdigest(),
         source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),

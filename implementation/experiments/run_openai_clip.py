@@ -26,6 +26,15 @@ from run_local_prototype import PROFILE, body_feedback, physical
 from run_openai_bend_sequence import transport_totals
 
 
+class ClipInterrupted(BaseException):
+    """Bypass tool-level Failure catches so a signal cannot become a revision."""
+    def __init__(self, signal_number):
+        self.record = Failure('PROCESS_INTERRUPTED',
+            'Clip process interrupted; an unsaved in-flight model response remains unknown',
+            signal_number=int(signal_number)).record
+        super().__init__('PROCESS_INTERRUPTED')
+
+
 def read(path):
     return json.loads(Path(path).read_text())
 
@@ -103,9 +112,12 @@ def run(plan_path, stop_file=None):
          and len({case['sample_token'] for case in cases}) == len(cases),
          'CLIP_CASES', 'Fixed nonempty unique case and sample identities required')
     need(plan['per_window_limit'] == 2, 'CLIP_BUDGET', 'At most one targeted revision per reference')
-    limit = 2 * len(cases)
+    case_limits = {case['case_id']: case.get('request_limit', 2) for case in cases}
+    need(all(type(value) is int and 1 <= value <= 2 for value in case_limits.values()),
+         'CLIP_BUDGET', 'Each explicit case request_limit must be an integer in 1..2')
+    limit = sum(case_limits.values())
     need(plan['operational_call_ceiling'] == limit, 'CLIP_BUDGET',
-         'Clip operation ceiling must equal two requests per fixed reference')
+         'Clip operation ceiling must equal the sum of fixed per-reference limits')
     need(os.environ.get('DRIVING_MODEL') == plan['requested_model'],
          'CLIP_MODEL', 'The environment differs from the registered API model')
     source_check(plan)
@@ -118,6 +130,7 @@ def run(plan_path, stop_file=None):
         backend='openai_api', source_commit=commit, registered_plan_sha256=sha(plan_path),
         one_api_client_for_clip=True, per_window_conversation_state=False,
         automatic_transport_retries=0, operational_call_ceiling=limit,
+        per_case_request_limits=case_limits,
         network_readiness_get_attempts=plan.get('network_readiness_get_attempts', 1),
         keepalive_expiry_s=plan.get('keepalive_expiry_s'),
         per_window_limit=2, source_sha256=plan['source_sha256']))
@@ -154,6 +167,7 @@ def run(plan_path, stop_file=None):
                     break
                 source_check(plan)
                 initial = capture_check(case)
+                case_limit = case_limits[current_case]
                 require_turn = case.get('require_turn', plan.get('require_turn', False))
                 need(isinstance(require_turn, bool), 'CLIP_CONFIG', 'require_turn must be an explicit boolean')
                 case_root = reserve_directory(runtime / current_case)
@@ -162,7 +176,7 @@ def run(plan_path, stop_file=None):
                     profile=PROFILE, backend='openai_api', source_commit=commit,
                     capture_path=str(ROOT / case['capture']), capture_sha256=case['capture_sha256'],
                     planner_profile=plan['planner_profile'], require_turn=require_turn,
-                    prompt_version=plan['prompt_version'], max_requests=2,
+                    prompt_version=plan['prompt_version'], max_requests=case_limit,
                     horizon_s=2, step_s=.2, prefix_s=.2, gt_used=False,
                     network_readiness_get_attempts=plan.get('network_readiness_get_attempts', 1),
                     keepalive_expiry_s=plan.get('keepalive_expiry_s'),
@@ -172,7 +186,7 @@ def run(plan_path, stop_file=None):
                 result = None
                 feedback = None  # Never carry another reference's answer or feedback.
                 case_fatal = None
-                for revision in range(2):
+                for revision in range(case_limit):
                     if stop_file is not None and stop_file.exists():
                         stop = 'EXTERNAL_STOP'
                         break
@@ -216,7 +230,7 @@ def run(plan_path, stop_file=None):
                             failure=failure, previous_native_output=output,
                             all_initial_body_envelope_conflicts=body_feedback(output),
                             concrete_repair_request='Supply the specific missing native road polygon/scale support or whole BODY two-second occupancy, under justified local motion conditions. Repair actual evidence/premise/residual/geometry errors. Never fabricate numbers, remove obstacles or relax physical checks. If a conservative corridor fails, revise a justified decision/target region or report the conflict; do not merely explain refusal.')
-                    except Failure as error:
+                    except (Failure, ClipInterrupted) as error:
                         case_fatal = error.record
                         observed = agent.last_attempt_summary or {}
                         if observed.get('model_service_returned') is True:
@@ -226,7 +240,7 @@ def run(plan_path, stop_file=None):
                         write_json_new(folder / 'failure.json', case_fatal)
                         local_rows.append(dict(attempt=local_attempt, global_attempt=global_attempt,
                                                stages=stages, failure=case_fatal))
-                        stop = 'SERVICE_INTERFACE_OR_EXECUTION_FAILURE'
+                        stop = 'PROCESS_INTERRUPTED' if isinstance(error, ClipInterrupted) else 'SERVICE_INTERFACE_OR_EXECUTION_FAILURE'
                         fatal = case_fatal
                         request_stop(stop_file, current_case, case_fatal)
                         break
@@ -239,14 +253,18 @@ def run(plan_path, stop_file=None):
                     write_json_new(case_root / 'round_result.json', result)
                 case_summary = dict(
                     profile=PROFILE, planner_profile=plan['planner_profile'], turn_task_required=require_turn,
-                    backend='openai_api', charged_requests=len(local_charges), budget_limit=2,
-                    remaining_unused=2 - len(local_charges), ended=True, attempts=local_rows,
+                    backend='openai_api', charged_requests=len(local_charges), budget_limit=case_limit,
+                    remaining_unused=case_limit - len(local_charges), ended=True, attempts=local_rows,
                     fatal=case_fatal, prototype_conditional_success=bool(result and result['prototype_conditional_success']),
                     prefix_consumed=bool(result), source_commit=commit, mode='online',
+                    native_output_status=('UNKNOWN_INTERRUPTED' if case_fatal
+                        and case_fatal.get('code') == 'PROCESS_INTERRUPTED'
+                        and not list(case_root.glob('transport/attempt_*/native_output.json'))
+                        else 'PRESERVED_OR_NOT_INTERRUPTED'),
                     old_strict_experiment_success=False, g2_evaluated=False, real_vehicle_control=False)
                 write_json_new(case_root / 'summary.json', case_summary)
                 totals = transport_totals(case_root)
-                need(totals['api_post_requests'] <= len(local_charges) <= 2,
+                need(totals['api_post_requests'] <= len(local_charges) <= case_limit,
                      'CLIP_ACCOUNTING', 'Transport accounting exceeds the case charge ledger')
                 rows[index].update(totals, charged_requests=len(local_charges),
                     status='CONDITIONAL_CHAIN_PASS' if case_summary['prototype_conditional_success'] else
@@ -258,6 +276,10 @@ def run(plan_path, stop_file=None):
                 print(json.dumps(rows[index], ensure_ascii=False), flush=True)
                 if stop is not None:
                     break
+    except ClipInterrupted as error:
+        fatal = error.record
+        stop = 'PROCESS_INTERRUPTED'
+        request_stop(stop_file, current_case, fatal)
     except Failure as error:
         fatal = error.record
         stop = 'SERVICE_INTERFACE_OR_INPUT_FAILURE'
@@ -276,7 +298,9 @@ def run(plan_path, stop_file=None):
             api_post_requests=totals['api_post_requests'], usage=totals['usage'],
             server_reported_models=totals['server_reported_models'],
             operational_call_ceiling=limit, unused_operating_slots=limit - len(charges),
+            per_case_request_limits=case_limits,
             per_window_limit=2, old_budget_inherited=0, cases=rows, stop_reason=stop, fatal=fatal,
+            interrupted_case_id=current_case if stop == 'PROCESS_INTERRUPTED' else None,
             native_outputs=len(list((root / 'transport').glob('attempt_*/native_output.json'))),
             conditional_chain_passes=sum(row['status'] == 'CONDITIONAL_CHAIN_PASS' for row in rows),
             all_references_processed=all(row['status'] != 'NOT_ATTEMPTED' for row in rows),
@@ -295,4 +319,15 @@ if __name__ == '__main__':
     parser.add_argument('--stop-file', type=Path,
                         help='Explicit shared stop marker; no new GET/POST after it is observed')
     arguments = parser.parse_args()
+    # Importing the runner has no signal side effects. Catchable interruption is
+    # kept separate from solver/tool Failure, which those modules may handle.
+    import signal
+    def interrupted(number, _frame):
+        # Let the first signal unwind and flush the real ledgers without another
+        # TERM/INT interrupting that flush. SIGKILL is inherently uncatchable.
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        raise ClipInterrupted(number)
+    signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGINT, interrupted)
     sys.exit(run(arguments.plan, arguments.stop_file))
