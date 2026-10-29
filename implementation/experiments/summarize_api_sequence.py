@@ -55,10 +55,13 @@ def combine(selected, histories, group):
     preceding_groups = {name for name, _ in histories[:selected_group_index]}
     row['prior_service_failures'] = [item for item in row['service_failure_history'] if item['source_group'] in preceding_groups]
     row['first_attempt_pass'] = row['first_overall_request_pass'] if attempts else None
+    row['first_generation_post_pass'] = row['first_overall_request_pass'] if attempts else None
     passes = [index + 1 for index, attempt in enumerate(attempts) if attempt['complete_conditional_chain']]
     row['overall_success_request_ordinal'] = passes[0] if passes else None
     if passes and any(history['charged_requests'] for _, history in histories[:selected_group_index]):
         row['status'] = 'RECOVERY_GROUP_PASS_AFTER_PRIOR_ATTEMPT'
+    elif passes and any(item['source_group'] in preceding_groups for item in row['preflight_failure_history']):
+        row['status'] = 'FIRST_GENERATION_PASS_AFTER_PREFLIGHT_FAILURE'
     selected_preflight = next((failure for failure in row['preflight_failure_history'] if failure['source_group'] == group), None)
     if selected_preflight and not selected['attempts']:
         row.update(status='PREFLIGHT_FAILURE_NO_GENERATION', final_failure_stage='MODELS_PREFLIGHT',
@@ -155,11 +158,12 @@ def main(original_plan, recovery_plan, out, additional_plans=()):
                            for path, batch in zip(plan_paths, batches)],
                   no_extra_model_calls=True, GT_used=False, claim=LIMITATION,
                   accounting_scope='Driving POSTs in all listed API groups, including all service and semantic failures; separate adapter-validation requests are not included.',
+                  overall_request_ordinal_scope='Generating POST attempts only; non-generating GET preflight failures are retained and counted separately.',
                   recovery_policy='Explicit new groups, no automatic retry; keep existing passes, otherwise select the last actual attempt. A recovery-group first answer is not a first overall attempt.',
                   frames=rows)
     write_json_new(out / 'sequence_summary.json', report)
     columns = ('case_id', 'sample_token', 'relative_sequence_time_s', 'status', 'source_group',
-               'charged_requests', 'api_post_requests', 'first_overall_request_pass',
+               'charged_requests', 'api_post_requests', 'first_overall_request_pass', 'first_generation_post_pass',
                'overall_success_request_ordinal', 'final_failure_stage', 'post_failure_count', 'preflight_failure_count')
     with (out / 'sequence_summary.csv').open('x', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=columns + ('T4', 'TURN_TASK', 'prefix_consumed', 'displacement_m', 'end_speed_mps'))
