@@ -44,6 +44,13 @@ def combine(selected, histories, group):
                                              failure=attempt['raw_last_failure'])
                                          for name, history in histories for attempt in history['attempts']
                                          if attempt.get('service_or_interface_failure')])
+    row['preflight_failure_history'] = [dict(source_group=name, failure=history['fatal_service_or_interface_failure'])
+        for name, history in histories
+        if not history['attempts'] and isinstance(history.get('fatal_service_or_interface_failure'), dict)
+        and history['fatal_service_or_interface_failure'].get('code', '').startswith('API_PREFLIGHT_')]
+    row['post_failure_count'] = sum(bool(attempt.get('service_or_interface_failure'))
+                                   and attempt.get('api_post_requests', 0) > 0 for attempt in attempts)
+    row['preflight_failure_count'] = len(row['preflight_failure_history'])
     selected_group_index = next(index for index, (name, _) in enumerate(histories) if name == group)
     preceding_groups = {name for name, _ in histories[:selected_group_index]}
     row['prior_service_failures'] = [item for item in row['service_failure_history'] if item['source_group'] in preceding_groups]
@@ -52,6 +59,12 @@ def combine(selected, histories, group):
     row['overall_success_request_ordinal'] = passes[0] if passes else None
     if passes and any(history['charged_requests'] for _, history in histories[:selected_group_index]):
         row['status'] = 'RECOVERY_GROUP_PASS_AFTER_PRIOR_ATTEMPT'
+    selected_preflight = next((failure for failure in row['preflight_failure_history'] if failure['source_group'] == group), None)
+    if selected_preflight and not selected['attempts']:
+        row.update(status='PREFLIGHT_FAILURE_NO_GENERATION', final_failure_stage='MODELS_PREFLIGHT',
+                   final_failure_reasons=[selected_preflight['failure']],
+                   selected_native_failure_stage=None, selected_native_failure_reasons=[])
+        row['stages']['SERVICE'] = 'NOT_REACHED'
     return row
 
 
@@ -117,7 +130,7 @@ def main(original_plan, recovery_plan, out, additional_plans=()):
             write_json_new(folder / 'result.json', row)
             display = deepcopy(row)
             display['source'] = row['source'] + '; group=' + row['source_group']
-            display['status'] = row['status'] + f"; all-group service failures={len(row['service_failure_history'])}"
+            display['status'] = row['status'] + f"; post failures={row['post_failure_count']}/preflight failures={row['preflight_failure_count']}"
             render_frame(display, result, cap, folder / 'result.png', plt, np, Patch, Image)
         render_overview(rows, results, transforms, out / 'sequence_overview.png', plt, np)
         pages = []
@@ -134,6 +147,8 @@ def main(original_plan, recovery_plan, out, additional_plans=()):
     report = dict(ended=True, analysis_script_sha256=sha(Path(__file__)),
                   unique_scenes=1, unique_observation_times=6, **totals,
                   native_json_count=sum(row['native_json_count'] for row in rows),
+                  post_failure_count=sum(row['post_failure_count'] for row in rows),
+                  preflight_failure_count=sum(row['preflight_failure_count'] for row in rows),
                   conditional_chain_passes=sum(row['overall_success_request_ordinal'] is not None for row in rows),
                   sources=[dict(plan_path=str(path), plan_sha256=sha(path),
                                 batch_sha256=sha(path.parent / 'batch_summary.json'), batch=batch)
@@ -145,7 +160,7 @@ def main(original_plan, recovery_plan, out, additional_plans=()):
     write_json_new(out / 'sequence_summary.json', report)
     columns = ('case_id', 'sample_token', 'relative_sequence_time_s', 'status', 'source_group',
                'charged_requests', 'api_post_requests', 'first_overall_request_pass',
-               'overall_success_request_ordinal', 'final_failure_stage')
+               'overall_success_request_ordinal', 'final_failure_stage', 'post_failure_count', 'preflight_failure_count')
     with (out / 'sequence_summary.csv').open('x', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=columns + ('T4', 'TURN_TASK', 'prefix_consumed', 'displacement_m', 'end_speed_mps'))
         writer.writeheader()
