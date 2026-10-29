@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[弯道验证与曲线重规划](implementation/results/bend_validation_20261029_v1/README.md)：新在线试验2/4后断连停止；改进任务候选筛选，旧真实输出零调用得到−8.60°右转计划并消费−2.73°前缀，404项回归通过，明确不计新在线成功。
+
 [新四场景扩展与最小优化](implementation/results/scene_expansion_20261029_v1/README.md)：6/8次真实请求，3窗工具链及模拟移动前缀通过、1窗T2拒绝；披露两窗旧提示文义冲突，修正新提示并增强T2具体反馈，400项回归通过。
 
 [T1–T4零调用局部优化](implementation/results/toolchain_optimization_20261029_v1/README.md)：更具体的T1反馈、原生时间覆盖和光滑曲率约束；停车场恢复一个可行候选，已有3窗通过保留，未宣称在线成功率提高。

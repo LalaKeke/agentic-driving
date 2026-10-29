@@ -1,0 +1,53 @@
+{
+  "new_model_calls_in_this_analysis": 0,
+  "new_online_bend_success": false,
+  "offline_saved_real_output_turn_success": true,
+  "source_record": "implementation/results/scene_expansion_20261029_v1/runtime/neighbor_bend/attempt_02/record.json",
+  "source_record_sha256": "89ab3409acad847c2ed2b668f535487ce32c570efa5dc72cff9b310baaa3dd25",
+  "scene_equal_to_original_online_T1": true,
+  "agent_output_equal": true,
+  "chosen_candidate": "brake_right",
+  "selected_T2_equal_to_preexisting_candidate": true,
+  "selected_T3_equal_to_preexisting_candidate": true,
+  "selected_T4_equal_to_preexisting_candidate": true,
+  "turn_task": {
+    "task_profile": "visible_turn_description_v1",
+    "verdict": "PASS",
+    "failure_code": null,
+    "measurements": {
+      "plan_max_abs_yaw_change_deg": 8.598590715011033,
+      "plan_max_abs_center_lateral_displacement_m": 0.42740908684501056,
+      "prefix_abs_yaw_change_deg": 2.728521057181032,
+      "prefix_center_displacement_m": 0.7261488762616561,
+      "prefix_center_displacement_xy_m": [
+        0.7223315529917742,
+        -0.07435938440141655
+      ],
+      "prefix_duration_s": 0.2
+    },
+    "thresholds": {
+      "plan_min_max_abs_yaw_change_deg": 5.0,
+      "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+      "prefix_min_abs_yaw_change_deg": 0.1,
+      "prefix_min_center_displacement_m_exclusive": 0.01
+    },
+    "checks": {
+      "plan_yaw": true,
+      "plan_lateral": true,
+      "prefix_yaw": true,
+      "prefix_moving": true
+    },
+    "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+  },
+  "execution": {
+    "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+    "elapsed_s": 0.2,
+    "center_displacement_m": [
+      0.7223315529917742,
+      -0.07435938440141655
+    ],
+    "yaw_delta_rad": -0.047621676157805486,
+    "speed_mps": 3.320203482939219
+  },
+  "claim": "Only candidate selection changed; original saved model geometry, decisions and residuals remain. Old v1 model note conflict still disclosed. Not a new online call or full bend traversal."
+}
