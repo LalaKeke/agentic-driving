@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from agentic.evidence_io import reserve_directory, write_json_new, write_text_new
 from summarize_bend_sequence import (align_captures, frame_result, transform_points,
                                      signed_turn, resolve)
+from summarize_api_sequence import combine
 from prototype_figure import body_corners, occupancy_polygons
 from bend_result_figure import dense
 
@@ -84,6 +85,74 @@ def normalized_result(case, run_root):
         image_and_intent_review='NOT_INDEPENDENTLY_EVALUATED')
     row['claim'] = LIMITATION
     return row, result, cap
+
+
+def collect_groups(plan_path, additional_plans=()):
+    """Merge ended recovery groups without duplicating prior consumed prefixes.
+
+    A whole-clip preflight failure belongs to its source group, not to every
+    reference. A prepared, never-started original clip may be used as the fixed
+    input roster when a recovery group is supplied.
+    """
+    paths=[Path(plan_path).resolve()]+[Path(p).resolve() for p in additional_plans]
+    if len(set(paths))!=len(paths):raise ValueError('A source group was listed twice')
+    plans=[read(p) for p in paths];base=plans[0];cases=base['cases']
+    fixed={c['case_id']:c for c in cases}
+    if len(fixed)!=len(cases):raise ValueError('Duplicate fixed reference identifiers')
+    names=[p.get('experiment_id',str(path)) for p,path in zip(plans,paths)]
+    if len(set(names))!=len(names):raise ValueError('Source group identifiers must be distinct')
+    groups=[];sources=[]
+    raw_identity=lambda plan:[(r['raw_index'],r['sample_token'],r['frame_id'],r['image_sha256']) for r in plan['raw_frames']]
+    for path,plan,name in zip(paths,plans,names):
+        root=path.parent;batch=read(root/'batch_summary.json')
+        started=any((root/name).exists() for name in ('runtime','transport','budget','config.json','transport_config.json'))
+        if batch is None:
+            if not additional_plans or started:
+                raise ValueError('Every started source clip must have an ended batch summary')
+        elif batch.get('ended') is not True:
+            raise ValueError('Every started source clip must have ended=true')
+        indexed={c['case_id']:c for c in plan['cases']}
+        if len(indexed)!=len(plan['cases']) or not set(indexed)<=set(fixed):
+            raise ValueError('Recovery changed the fixed reference roster')
+        for cid,case in indexed.items():
+            if any(case[k]!=fixed[cid][k] for k in ('sample_token','capture_sha256','image_sha256')):
+                raise ValueError('Recovery changed fixed capture/image/sample identity')
+        if raw_identity(plan)!=raw_identity(base):raise ValueError('Recovery changed the raw clip identity')
+        network=read(root/'transport/network_preflight.json',{})
+        fatal=(batch or {}).get('fatal') or {}
+        preflight_failed=bool(network.get('failure_code')
+                              or str(fatal.get('code','')).startswith('API_PREFLIGHT_'))
+        sources.append(dict(source_group=name,plan_path=str(path),plan_sha256=sha(path),
+            batch_path=str(root/'batch_summary.json') if batch is not None else None,
+            batch_sha256=sha(root/'batch_summary.json') if batch is not None else None,
+            status='ENDED' if batch is not None else 'PREPARED_NOT_STARTED',
+            charged_requests=(batch or {}).get('charged_requests',0),
+            api_post_requests=(batch or {}).get('api_post_requests',0),
+            stop_reason=(batch or {}).get('stop_reason'),fatal=fatal or None,
+            clip_wide_preflight_failure=preflight_failed,network_preflight=network or None,
+            preflight_attribution='SOURCE_GROUP_ONLY; not repeated on each reference'))
+        groups.append((root,indexed,name,batch))
+    triples=[]
+    for case in cases:
+        histories=[];candidates=[]
+        for root,indexed,name,_ in groups:
+            if case['case_id'] not in indexed:continue
+            row,result,cap=normalized_result(indexed[case['case_id']],root)
+            histories.append((name,row));candidates.append((row,result,cap,name))
+        passed=[v for v in candidates if any(a['complete_conditional_chain'] for a in v[0]['attempts'])]
+        attempted=[v for v in candidates if v[0]['attempts']]
+        selected,result,cap,name=passed[0] if passed else (attempted[-1] if attempted else candidates[-1])
+        if additional_plans:
+            row=combine(selected,histories,name)
+            row['selection_policy']='EARLIEST_EXISTING_PASS' if passed else ('LATEST_ACTUAL_ATTEMPT_GROUP' if attempted else 'NO_ATTEMPT_IN_ANY_GROUP')
+            row['source']=selected['source']
+        else:row=selected
+        triples.append((row,result,cap))
+    for key in ('charged_requests','api_post_requests'):
+        if sum(t[0][key] for t in triples)!=sum(source[key] for source in sources):
+            raise ValueError('Combined '+key+' differs from source batch ledgers')
+    latest=next((batch for _,_,_,batch in reversed(groups) if batch is not None),{})
+    return base,latest,triples,sources
 
 
 def display_transforms(cases, raw_frames, captures):
@@ -203,13 +272,15 @@ def draw_frame(row, result, cap, target, plt, np, Patch, Image):
              'Image markers are model z=0 projections, not detections or GT.',
              'Model uncertainty is uncalibrated; GT not evaluated.',
              'REJECTED CANDIDATE / NOT CONSUMED' if unreleased else '', '', LIMITATION]
+    if row.get('source_group'):
+        lines.insert(3,'Selected source group: '+row['source_group']+'; all group attempts counted above.')
     info.text(0, 1, '\n'.join(part for line in lines for part in (textwrap.wrap(line, 88) or [''])),
               va='top', fontsize=8)
     fig.suptitle(f"{row['case_id']} | +{row['relative_sequence_time_s']:.2f}s | {row['status']}", fontsize=15)
     fig.tight_layout(rect=(0,.02,1,.95)); fig.savefig(target, dpi=140); plt.close(fig)
 
 
-def draw_overview(rows, results, transforms, target, plt, np):
+def draw_overview(rows, results, transforms, target, plt, np, source_note=''):
     fig, axes = plt.subplots(2, 2, figsize=(16, 10.5)); timeline, bev, speed, yaw = axes.flat
     states = {'NOT_REACHED': 0, 'NOT_APPLICABLE': 1, 'PASS': 2, 'FAIL': 3}
     from matplotlib.colors import ListedColormap
@@ -248,7 +319,7 @@ def draw_overview(rows, results, transforms, target, plt, np):
             title='Descriptive heading, no forced-turn threshold');yaw.grid(alpha=.2)
     count=sum(r['physical'].get('independent_acceptor_pass',False) and r['physical'].get('prefix_consumed',False) for r in rows)
     fig.suptitle(f"Full recorded clip | {len(rows)} planning references | {count} conditional chains | sparse inference",fontsize=16)
-    fig.text(.02,.014,LIMITATION,fontsize=8);fig.tight_layout(rect=(0,.04,1,.95));fig.savefig(target,dpi=145);plt.close(fig)
+    fig.text(.02,.014,LIMITATION+('\n'+source_note if source_note else ''),fontsize=8);fig.tight_layout(rect=(0,.05,1,.95));fig.savefig(target,dpi=145);plt.close(fig)
 
 
 def raw_display(raw, row, reference_picture, target, Image, ImageOps, ImageDraw, ImageFont):
@@ -272,19 +343,13 @@ def raw_display(raw, row, reference_picture, target, Image, ImageOps, ImageDraw,
     return canvas
 
 
-def main(plan_path,out):
-    plan_path=plan_path.resolve();plan=read(plan_path);run_root=plan_path.parent
-    batch=read(run_root/'batch_summary.json')
-    if not batch or batch.get('ended') is not True:
-        raise ValueError('Clip must have ended=true before producing its final report')
+def main(plan_path,out,additional_plans=()):
+    plan_path=plan_path.resolve();plan,batch,triples,sources=collect_groups(plan_path,additional_plans)
     cases=plan['cases'];raw_frames=plan['raw_frames']
     if not cases or not raw_frames:raise ValueError('Clip needs raw frames and registered planning references')
     for raw in raw_frames:
         if sha(resolve(raw['image_path']))!=raw['image_sha256']:raise ValueError('Raw image SHA changed')
-    triples=[normalized_result(case,run_root) for case in cases]
     rows=[x[0] for x in triples];results=[x[1] for x in triples];captures=[x[2] for x in triples]
-    if sum(r['api_post_requests'] for r in rows)!=batch['api_post_requests']:
-        raise ValueError('Per-reference POST count differs from clip batch ledger')
     transforms=display_transforms(cases,raw_frames,captures)
     for row,transform in zip(rows,transforms):row['display_transform_to_first_reference']=transform
     out=reserve_directory(out)
@@ -302,7 +367,8 @@ def main(plan_path,out):
             draw_frame(row,result,cap,folder/'result.png',plt,np,Patch,Image)
             with Image.open(folder/'result.png') as picture:
                 pages.append(ImageOps.pad(picture.convert('RGB'),(1200,775),color='white'))
-        draw_overview(rows,results,transforms,out/'clip_overview.png',plt,np)
+        draw_overview(rows,results,transforms,out/'clip_overview.png',plt,np,
+            source_note=f"Source groups: {len(sources)}; clip-wide preflight failures: {sum(s['clip_wide_preflight_failure'] for s in sources)} (counted once, not once per reference).")
         raw_out=reserve_directory(out/'raw_frames');by_case={r['case_id']:r for r in rows};raw_rows=[];animation=[];durations=[]
         for index,raw in enumerate(raw_frames):
             case_id=raw.get('planning_case_id');row=by_case.get(case_id)
@@ -339,10 +405,17 @@ def main(plan_path,out):
         conditional_chain_passes=sum(r['physical'].get('independent_acceptor_pass',False) and r['physical'].get('prefix_consumed',False) for r in rows),
         motion_classes=dict(motion),unexplained_hold_review_required=sum(r['motion_review']['unexplained_hold_review_required'] for r in rows),
         outcome_distribution=dict(Counter(r['status'] for r in rows)),stop_reason=batch.get('stop_reason'),fatal=batch.get('fatal'),
-        source_plan=str(plan_path),source_plan_sha256=sha(plan_path),source_batch_sha256=sha(run_root/'batch_summary.json'),
+        source_plan=str(plan_path),source_plan_sha256=sha(plan_path),source_batch_sha256=sources[0]['batch_sha256'],
+        sources=sources,clip_wide_preflight_failures=sum(s['clip_wide_preflight_failure'] for s in sources),
+        preflight_failure_attribution='Clip-wide preflight failures are counted once per source, not as one failure per reference.',
         analysis_script_sha256=sha(__file__),new_model_requests=0,GT_used=False,claim=LIMITATION,frames=rows)
     summary['mp4_encoding']=video
     write_json_new(out/'summary.json',summary);write_json_new(out/'raw_timeline.json',raw_rows)
+    with (out/'source_groups.csv').open('x',newline='') as stream:
+        keys=('source_group','status','charged_requests','api_post_requests','clip_wide_preflight_failure','stop_reason','fatal_code')
+        writer=csv.DictWriter(stream,fieldnames=keys);writer.writeheader()
+        for source in sources:
+            writer.writerow(dict({k:source.get(k) for k in keys},fatal_code=(source.get('fatal') or {}).get('code')))
     columns=('case_id','sample_token','relative_sequence_time_s','status','charged_requests','api_post_requests','final_failure_stage')
     with (out/'planning_results.csv').open('x',newline='') as stream:
         writer=csv.DictWriter(stream,fieldnames=columns+('motion_class','prefix_consumed','displacement_m','end_speed_mps','minimum_conditional_clearance_lower_bound_m','plan_yaw_deg','prefix_yaw_deg','unexplained_hold_review_required'))
@@ -356,8 +429,8 @@ def main(plan_path,out):
     cards=''.join(f'<section><h2>+{r["relative_sequence_time_s"]:.2f}s {html.escape(r["case_id"])} · {html.escape(r["status"])}</h2><a href="{r["case_id"]}/result.json">Result JSON</a><img src="{r["case_id"]}/result.png"></section>' for r in rows)
     document=('<!doctype html><meta charset="utf-8"><title>Full recorded clip</title><style>body{font:16px sans-serif;max-width:1400px;margin:auto;padding:20px}img{max-width:100%}section{margin:30px 0}</style>'
         '<h1>'+html.escape(summary['scene_name'])+' · full recorded clip</h1><p>'+html.escape(LIMITATION)+'</p>'
-        f'<p>Raw frames {len(raw_frames)}; planned references {len(rows)}; conditional chains {summary["conditional_chain_passes"]}. Warmup and observation-only frames have no new plan.</p>'
-        '<p><a href="full_clip.gif">Full raw-timeline animation</a> · '+('<a href="full_clip.mp4">MP4</a> · ' if video['status']=='PASS' else '')+'<a href="casebook.pdf">PDF</a> · <a href="planning_results.csv">Planning CSV</a> · <a href="raw_timeline.csv">All raw frames</a> · <a href="summary.json">Full JSON</a></p>'
+        f'<p>Raw frames {len(raw_frames)}; planned references {len(rows)}; conditional chains {summary["conditional_chain_passes"]}. Warmup and observation-only frames have no new plan. Earlier/current clip-wide preflight failures: {summary["clip_wide_preflight_failures"]} (counted once per source group).</p>'
+        '<p><a href="full_clip.gif">Full raw-timeline animation</a> · '+('<a href="full_clip.mp4">MP4</a> · ' if video['status']=='PASS' else '')+'<a href="casebook.pdf">PDF</a> · <a href="planning_results.csv">Planning CSV</a> · <a href="raw_timeline.csv">All raw frames</a> · <a href="source_groups.csv">Source groups and preflight history</a> · <a href="summary.json">Full JSON</a></p>'
         '<img src="clip_overview.png">'+cards)
     write_text_new(out/'index.html',document)
     print(json.dumps(dict(out=str(out),raw_frames=len(raw_frames),planning_references=len(rows),conditional_chains=summary['conditional_chain_passes'],new_model_requests=0)))
@@ -366,4 +439,5 @@ def main(plan_path,out):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--plan',required=True,type=Path);parser.add_argument('--out',required=True,type=Path)
-    args=parser.parse_args();main(args.plan,args.out)
+    parser.add_argument('--additional-plan',action='append',type=Path,default=[],help='Ended recovery source; keep existing passes and include all attempts')
+    args=parser.parse_args();main(args.plan,args.out,args.additional_plan)
