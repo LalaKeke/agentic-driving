@@ -1,0 +1,517 @@
+{
+  "selection_kind": "PRESELECTED_ACQUISITION_AND_IMAGE_BASED_CANDIDATES_NO_MODEL_CALLS",
+  "real_requests": 0,
+  "gt_reads": 0,
+  "selection_metadata_only_scene_table": true,
+  "runtime_acquisition_allowlist": [
+    "calibrated_sensor",
+    "ego_pose",
+    "sample",
+    "sample_data",
+    "sensor"
+  ],
+  "read_annotation_map_future_truth": false,
+  "main_cases": [
+    {
+      "role": "main",
+      "case_id": "ordinary_straight",
+      "label": "普通直行",
+      "scene_name": "scene-0796",
+      "scene_token": "c5224b9b454b4ded9b5d2d2634bbda8a",
+      "sample_token": "7df1288fed8a403b8e7a35112b392d7c",
+      "sample_index_zero_based": 24,
+      "reference_sample_data_token": "3299ffab259345fdaa4928d665a2c59d",
+      "reference_time_id": "nusc_us_1538448756512460",
+      "reference_time_s": 1538448756.51246,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-02-10-50-40+0800__CAM_FRONT__1538448756512460.jpg",
+      "reference_front_sha256": "6fef287d4099b5ac45dd740ebc3afd0f2d8e894eb55f087f737a1d488b628ec6",
+      "ego_speed_mps": 11.880634934422835,
+      "selection_reason": "清楚日间直路与道路标记；选择因果初速低于既有12m/s上限的窗口。",
+      "visible_evidence": "前向可见直路、停止线/路口及远处车辆；不把信号状态作为运行时事实。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 12.06158609958258
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 12.045399176349168
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 12.054907481520019
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 11.880634934422835
+          }
+        ],
+        "trend": "decreasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Daylight straight"
+    },
+    {
+      "role": "main",
+      "case_id": "following_deceleration",
+      "label": "有同向前车的减速候选",
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "0d0700a2284e477db876c3ee1d864668",
+      "sample_index_zero_based": 12,
+      "reference_sample_data_token": "f9b9612d1bec41cf974eb41c202759f7",
+      "reference_time_id": "nusc_us_1533151609512404",
+      "reference_time_s": 1533151609.512404,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151609512404.jpg",
+      "reference_front_sha256": "d7b1f0040c5afe17c663de394815309bb54818fbe599483430d049e3cc5eda9b",
+      "ego_speed_mps": 6.630763441388242,
+      "selection_reason": "前向中心可见同向银色车，因果段速度8.992→8.818→7.877→6.631m/s；另有左侧转出SUV。",
+      "visible_evidence": "同向前车与侧向转出车辆均可见；减速原因不预判，模型判断跟车/让行条件。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only selected historical CAM_FRONT ego poses; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 8.992496697431145
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 8.818051208710106
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 7.877042172243981
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 6.630763441388242
+          }
+        ],
+        "trend": "decreasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Lead vehicle / deceleration"
+    },
+    {
+      "role": "main",
+      "case_id": "signal_wait",
+      "label": "信号等待候选",
+      "scene_name": "scene-0553",
+      "scene_token": "6f83169d067343658251f72e1dd17dbc",
+      "sample_token": "6dabc0fb1df045558f802246dd186b3f",
+      "sample_index_zero_based": 8,
+      "reference_sample_data_token": "435543e1321b411ea5c930633e0883d9",
+      "reference_time_id": "nusc_us_1535489300012404",
+      "reference_time_s": 1535489300.012404,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-28-16-43-51-0400__CAM_FRONT__1535489300012404.jpg",
+      "reference_front_sha256": "41a532a7e171fca63591115661584e62d3af89e0023a68f528b9d4122d8faa78",
+      "ego_speed_mps": 0.0,
+      "selection_reason": "自车静止且原图可见路口、信号与横向车流。",
+      "visible_evidence": "静止是采集状态；可见信号灯不等于已确定适用于自车，正确静止等待可有效，但须模型证据。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": -8.785462444558322e-06
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": -2.2125259531456858e-05
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 5.965941815371871e-06
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": -2.7282400612737462e-05
+          }
+        ],
+        "trend": "decreasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Signal waiting candidate"
+    },
+    {
+      "role": "main",
+      "case_id": "neighbor_bend",
+      "label": "邻车与轻弯",
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "a19a80c905674faab7203a3a4e0f5246",
+      "sample_index_zero_based": 16,
+      "reference_sample_data_token": "93c6187bdede4f16ad577f8d02086c7c",
+      "reference_time_id": "nusc_us_1538984241412460",
+      "reference_time_s": 1538984241.4124599,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984241412460.jpg",
+      "reference_front_sha256": "c7cfb92719f54577883db6bf3ef81cfda2d37a25b20d00796363fccc19ee2bac",
+      "ego_speed_mps": 3.9194524872779035,
+      "selection_reason": "停车区近侧车辆密集、道路向右弯；低速有运动，检验车身包络/余量。",
+      "visible_evidence": "原图可见左侧近车和右弯道路；不将停车车辆默认预测为永久静止。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 4.340117376172382
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 4.223596061508924
+          },
+          {
+            "relative_end_s": -0.499993,
+            "segment_duration_s": 0.500007,
+            "forward_mps": 4.074432480348756
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.49999299999999997,
+            "forward_mps": 3.9194524872779035
+          }
+        ],
+        "trend": "decreasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Nearby parked cars / mild bend"
+    },
+    {
+      "role": "main",
+      "case_id": "pedestrian_interaction",
+      "label": "夜间行人交互",
+      "scene_name": "scene-1094",
+      "scene_token": "de7d80a1f5fb4c3e82ce8a4f213b450a",
+      "sample_token": "07c29094cb6144aa889c16c52f762d79",
+      "sample_index_zero_based": 8,
+      "reference_sample_data_token": "886031e85e7a43a49fe3cc374cfd9719",
+      "reference_time_id": "nusc_us_1542800851912460",
+      "reference_time_s": 1542800851.9124599,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800851912460.jpg",
+      "reference_front_sha256": "e34ed78ae3db875ed7aa2aba5c354a564d238770d5b8938d3a965f575c70a1f9",
+      "ego_speed_mps": 2.7234599754206377,
+      "selection_reason": "原图可见前方过街行人与左前同向车辆，低速运动；选择画面关系更直接的窗口。",
+      "visible_evidence": "图像含行人与路口信号；具体运动、信号归属及让行要求由模型给出，不注入运行时标签。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only selected historical CAM_FRONT ego poses; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 1.4954288838673504
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 2.0136867737255004
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 2.574464150272998
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 2.7234599754206377
+          }
+        ],
+        "trend": "mixed_or_increasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Night pedestrian interaction"
+    },
+    {
+      "role": "main",
+      "case_id": "night_straight",
+      "label": "夜间直行",
+      "scene_name": "scene-1077",
+      "scene_token": "d25718445d89453381c659b9c8734939",
+      "sample_token": "1ddf7a48af3d43be8763f154974f09ce",
+      "sample_index_zero_based": 8,
+      "reference_sample_data_token": "a4fd7545ff374e7697358dcac68180f0",
+      "reference_time_id": "nusc_us_1542800371912471",
+      "reference_time_s": 1542800371.9124708,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800371912471.jpg",
+      "reference_front_sha256": "3352ff518a53a0ccab2df09100bd2455a3b6ce18f6ad7ad5bf9ab7956207e668",
+      "ego_speed_mps": 10.503984580449083,
+      "selection_reason": "较暗宽路，路灯眩光与前向车辆；初速10.504m/s仍低于原12上限。",
+      "visible_evidence": "夜间照明与车辆可见；不据场景描述补入施工设施或信号事实。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.500011,
+            "segment_duration_s": 0.39999999999999997,
+            "forward_mps": 8.643446806163698
+          },
+          {
+            "relative_end_s": -1.000011,
+            "segment_duration_s": 0.5,
+            "forward_mps": 9.378509216462902
+          },
+          {
+            "relative_end_s": -0.500011,
+            "segment_duration_s": 0.5,
+            "forward_mps": 10.110357239870185
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.500011,
+            "forward_mps": 10.503984580449083
+          }
+        ],
+        "trend": "mixed_or_increasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 1.900011,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Night straight"
+    }
+  ],
+  "held_out_cases": [
+    {
+      "role": "held_out",
+      "case_id": "heldout_intersection",
+      "label": "后续路口交互验证",
+      "scene_name": "scene-0757",
+      "scene_token": "2fc3753772e241f2ab2cd16a784cc680",
+      "sample_token": "e122a34ec57c4edf8311b40c3f85f863",
+      "sample_index_zero_based": 8,
+      "reference_sample_data_token": "b4f9181a80034d22972433e4d1dd9f9e",
+      "reference_time_id": "nusc_us_1535657112112404",
+      "reference_time_s": 1535657112.1124039,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535657112112404.jpg",
+      "reference_front_sha256": "4bbe3c6d8de244d301d5fa131957a3c11828e5a05e13311be46f1dca5d69e749",
+      "ego_speed_mps": 3.556168267951951,
+      "selection_reason": "接近忙碌路口时因果速度减小，保留作修复后验证；不是本批替补。",
+      "visible_evidence": "前向可见横向公交和车辆；不能强标同向跟车。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 4.748407241739166
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 4.337778058912489
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 4.033555980571298
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 3.556168267951951
+          }
+        ],
+        "trend": "decreasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Reserved busy intersection"
+    },
+    {
+      "role": "held_out",
+      "case_id": "heldout_night_pedestrian",
+      "label": "后续夜间行人验证",
+      "scene_name": "scene-1100",
+      "scene_token": "e233467e827140efa4b42d2b4c435855",
+      "sample_token": "8e5512a630dc44c08d3e3f692b34f808",
+      "sample_index_zero_based": 24,
+      "reference_sample_data_token": "9ee04d160a514511a093dd35ea6f5604",
+      "reference_time_id": "nusc_us_1542800999912460",
+      "reference_time_s": 1542800999.9124599,
+      "reference_front_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800999912460.jpg",
+      "reference_front_sha256": "5c1c91b1a8a3fe233af489d3d282133d35f377ca1d31571af6ffe85bf56316c0",
+      "ego_speed_mps": 0.4701194938221912,
+      "selection_reason": "夜间路口/人行区域及低速状态；保留作另一场景验证，不替换主批失败。",
+      "visible_evidence": "信号、行人状态/归属由模型识别；不以标签当事实。",
+      "historical_speed_summary": {
+        "source": "Causal backward differences of only the five selected historical CAM_FRONT ego poses, rotated at each segment end; selection only",
+        "segments": [
+          {
+            "relative_end_s": -1.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 0.007519398186903095
+          },
+          {
+            "relative_end_s": -1.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 0.39837096398454386
+          },
+          {
+            "relative_end_s": -0.5,
+            "segment_duration_s": 0.5,
+            "forward_mps": 0.6493771409277542
+          },
+          {
+            "relative_end_s": 0.0,
+            "segment_duration_s": 0.5,
+            "forward_mps": 0.4701194938221912
+          }
+        ],
+        "trend": "mixed_or_increasing"
+      },
+      "input_counts": {
+        "total": 10,
+        "forward": 5,
+        "other_current": 5
+      },
+      "history_span_s": 2.0,
+      "navigation_contains_selection_label": false,
+      "prior_exposure": "Curated nuScenes mini, scenes/images may have been viewed in prior project work; not an unseen or blind test.",
+      "runtime_environment_facts_source": "Online base model only; the scenario label/scene description is selection metadata and must not be inserted into runtime capture or feedback.",
+      "preview_label": "Reserved night pedestrian context"
+    }
+  ],
+  "all_mini_scenes": [
+    {
+      "scene_name": "scene-0061",
+      "scene_token": "cc8c0bf57f984915a77078b10eb33198",
+      "description_selection_only": "Parked truck, construction, intersection, turn left, following a van",
+      "sample_count": 39
+    },
+    {
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "description_selection_only": "Many peds right, wait for turning car, long bike rack left, cyclist",
+      "sample_count": 40
+    },
+    {
+      "scene_name": "scene-0553",
+      "scene_token": "6f83169d067343658251f72e1dd17dbc",
+      "description_selection_only": "Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",
+      "sample_count": 41
+    },
+    {
+      "scene_name": "scene-0655",
+      "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+      "description_selection_only": "Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",
+      "sample_count": 41
+    },
+    {
+      "scene_name": "scene-0757",
+      "scene_token": "2fc3753772e241f2ab2cd16a784cc680",
+      "description_selection_only": "Arrive at busy intersection, bus, wait at intersection, bicycle, peds",
+      "sample_count": 41
+    },
+    {
+      "scene_name": "scene-0796",
+      "scene_token": "c5224b9b454b4ded9b5d2d2634bbda8a",
+      "description_selection_only": "Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",
+      "sample_count": 40
+    },
+    {
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "description_selection_only": "Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",
+      "sample_count": 41
+    },
+    {
+      "scene_name": "scene-1077",
+      "scene_token": "d25718445d89453381c659b9c8734939",
+      "description_selection_only": "Night, big street, bus stop, high speed, construction vehicle",
+      "sample_count": 41
+    },
+    {
+      "scene_name": "scene-1094",
+      "scene_token": "de7d80a1f5fb4c3e82ce8a4f213b450a",
+      "description_selection_only": "Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",
+      "sample_count": 40
+    },
+    {
+      "scene_name": "scene-1100",
+      "scene_token": "e233467e827140efa4b42d2b4c435855",
+      "description_selection_only": "Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",
+      "sample_count": 40
+    }
+  ],
+  "frozen_by_parent": true,
+  "selection_limitations": [
+    "Following/deceleration and pedestrian-interaction are visible candidate contexts, not causal or traffic-semantic GT labels. Actual interaction/intent appropriateness must be assessed after model output.",
+    "Signals visible in images are not preassigned to the ego vehicle.",
+    "Selection uses only recorded images and causal ego pose differences; no annotation, map, prediction, future ego trajectory or extra perception model.",
+    "Main cases contain six unique scene_token values. Held-out two are disjoint scene_token values and cannot replace failures."
+  ],
+  "baseline_commit": "4336dca2572f6afa3d139c2387621ac70f72597e",
+  "execution_authorized": false,
+  "selection_frozen_before_any_new_model_output": true,
+  "selection_revision": 2,
+  "supersedes_candidate_sha256": "bfd7bd80d55da31b8fb1b01bdb7feeb58152e4cb454da09727c7c8f268d559ec",
+  "curation_change_reason": "Before any new model call, original-image review showed the former night-following window lost its lead from front view. Exchange the 0103/1094 roles and choose clearer windows; no model outcomes or GT used."
+}

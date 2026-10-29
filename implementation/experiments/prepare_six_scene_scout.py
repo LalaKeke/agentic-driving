@@ -111,7 +111,11 @@ def prepare(selection_path,out,dataset_root):
         row=next(x for x in exported if x['case_id']==case['case_id'])
         cap=json.loads((root/row['capture']).read_text());obs=next(o for o in cap['observations'] if o['time_id']==cap['metadata']['reference_time_id'])
         x=(index%2)*800;y=(index//2)*530
-        draw.text((x+8,y+8),case['case_id']+' '+case.get('preview_label',case['label']),font=font,fill='black')
+        title=f"{index+1}. "+case.get('preview_label',case['label'])
+        title_font=font
+        while draw.textlength(title,font=title_font)>780:
+            title_font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',title_font.size-1)
+        draw.text((x+8,y+8),title,font=title_font,fill='black')
         draw.text((x+8,y+40),case['scene_name']+f" | v={cap['ego']['speed_mps']:.3f}m/s | NOT RUN",font=font,fill='black')
         with Image.open(obs['path']) as source:
             tile=source.convert('RGB');tile.thumbnail((790,445));canvas.paste(tile,(x+4,y+80))
