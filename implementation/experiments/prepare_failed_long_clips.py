@@ -103,6 +103,7 @@ def collect(reports, template):
         template_path = resolve(next(c['plan'] for c in template['clips'] if c['clip_id'] == cid))
         snapshots.append(dict(clip_id=cid, summary_path=relative(summary_path), summary_sha256=sha(summary_path),
             original_references=19, original_passes=summary['conditional_chain_passes'], failed_case_ids=[r['case_id'] for r in failed],
+            passed_case_ids=[r['case_id'] for r in summary['frames'] if complete(r)],
             charged_requests=summary['charged_requests'], observed_posts=summary['api_post_requests'],
             unknown_dispatch=summary['unknown_dispatch_attempts'], preflight_failures=summary['clip_wide_preflight_failures'],
             source_groups=summary['sources']))
@@ -139,6 +140,8 @@ def prepare(reports, template_path, out):
         plan.update({k:common[k] for k in ('source_commit','source_sha256','preparation_started_at_utc','deadline_utc','original_phase_budget_path','original_phase_budget_sha256','phase')})
         plan.update(experiment_id=root.name+'_'+cid, cases=cases, frame_count=len(cases),
             operational_call_ceiling=2*len(cases), per_window_limit=2, old_budget_inherited=0,
+            original_reference_count=19,
+            reused_completed_references=next(s['passed_case_ids'] for s in snapshots if s['clip_id']==cid),
             launched=False, prior_plan=next(c['plan'] for c in template['clips'] if c['clip_id']==cid))
         write_json_new(folder/'plan.json',plan)
         clips.append(dict(clip_id=cid, scene_name=plan['scene_name'], scene_token=plan['scene_token'],
