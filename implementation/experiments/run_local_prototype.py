@@ -70,7 +70,11 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed',require_t
         def save(candidate,name,value):
             if candidate not in candidate_dirs:candidate_dirs[candidate]=reserve_directory(candidate_root/candidate)
             write_json_new(candidate_dirs[candidate]/(name+'.json'),value)
-        winner,ledger,failure=plan(data['T1'],save,profile=policy)
+        task_options={}
+        if require_turn:
+            from agentic.turn_task import evaluate_turn
+            task_options['task_filter']=lambda trajectory:evaluate_turn(data['T1'],trajectory)
+        winner,ledger,failure=plan(data['T1'],save,profile=policy,**task_options)
         write_json_new(folder/'candidate_ledger.json',ledger)
         if winner:
             data.update(winner)
@@ -79,6 +83,8 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed',require_t
             for name in ('T2','T3','T4'):
                 values=[r[name] for r in ledger['candidates']]
                 stages[name]='PASS' if 'PASS' in values else ('FAIL' if 'FAIL' in values else 'NOT_REACHED')
+            if require_turn:
+                stages['TURN_TASK']='FAIL' if any(r.get('TURN_TASK')=='FAIL' for r in ledger['candidates']) else 'NOT_REACHED'
             write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
             return None,failure,stages
     scene,corridor,traj,verdict=(data[n] for n in ('T1','T2','T3','T4'))
