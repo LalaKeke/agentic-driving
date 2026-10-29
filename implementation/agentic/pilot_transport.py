@@ -17,6 +17,7 @@ import subprocess
 import tempfile
 import threading
 import time
+from urllib.parse import urlsplit
 
 from PIL import Image
 
@@ -216,6 +217,9 @@ class PilotSubscriptionAgent:
         self.sqlite_home.chmod(0o700)
         self.log_dir.chmod(0o700)
         self.process_factory = process_factory or subprocess.Popen
+        # Pin the same child-only route for local preflight and every RPC.
+        # Later parent-environment changes must not silently change connections.
+        self.environment = subscription_environment()
         self.source = 'online_model' if process_factory is None else 'mock_transport'
         self.call_count = 0
         self.preflight_ok = False
@@ -227,6 +231,19 @@ class PilotSubscriptionAgent:
             prompt_version=self.prompt_version, agent_output_contract=CONTRACT,
             provider=PROVIDER, api_base=OFFICIAL_BASE,
             model_identity_basis='thread/start CLI-resolved alias; server snapshot unexposed')
+        endpoints={}
+        for name in ('HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','https_proxy','http_proxy','all_proxy'):
+            value=self.environment.get(name)
+            if value:
+                try:
+                    parsed=urlsplit(value)
+                    endpoints[name]=dict(scheme=parsed.scheme,host=parsed.hostname,port=parsed.port,
+                                         credentials_present=parsed.username is not None)
+                except ValueError:endpoints[name]=dict(invalid=True)
+        self.public_config['connection_profile']=dict(
+            captured_at='adapter_construction',project_proxy_configured=bool(self.environment.get('DRIVING_PROXY_URL')),
+            proxy_variables=endpoints,no_proxy_present=bool(self.environment.get('NO_PROXY') or self.environment.get('no_proxy')),
+            ca_bundle=self.environment.get('SSL_CERT_FILE'),certificate_verification_disabled=False)
         if self.schema_transport is not None:
             self.public_config['schema_transport'] = self.schema_transport
         if self.experiment_profile is not None:
@@ -268,7 +285,7 @@ class PilotSubscriptionAgent:
                     ('version', [self.binary, '--version']),
                     ('login_status', [self.binary, 'login', 'status']),
                     ('startup_config', self.command(startup_only=True))):
-                process = subprocess.run(command, cwd=cwd, env=subscription_environment(),
+                process = subprocess.run(command, cwd=cwd, env=self.environment,
                                          capture_output=True, text=True, timeout=20)
                 for name, text in (('stdout', process.stdout), ('stderr', process.stderr)):
                     target = private / (label + '.' + name)
@@ -305,7 +322,7 @@ class PilotSubscriptionAgent:
 
     def _rpc(self, work, input_items, schema, folder):
         protocol = PilotProtocol(self.model)
-        process = self.process_factory(self.command(), cwd=work, env=subscription_environment(),
+        process = self.process_factory(self.command(), cwd=work, env=self.environment,
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             start_new_session=True)
         events = queue.Queue()

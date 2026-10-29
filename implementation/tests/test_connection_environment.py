@@ -15,6 +15,25 @@ KEYS=('OPENAI_API_KEY','CODEX_API_KEY','DRIVING_API_KEY')
 
 
 class ConnectionEnvironmentTests(unittest.TestCase):
+    def test_pilot_rpc_keeps_the_preflight_route_when_parent_environment_changes(self):
+        from agentic.pilot_transport import PilotSubscriptionAgent
+        calls=[]
+        def factory(command,**kwargs):
+            calls.append(kwargs['env'])
+            raise OSError('synthetic process boundary; no subprocess or network')
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.dict(os.environ,{'DRIVING_PROXY_URL':'http://127.0.0.1:17891','NO_PROXY':'*',
+                                        'DRIVING_API_KEY':'synthetic_fixture_only'},clear=True):
+                agent=PilotSubscriptionAgent(evidence_dir=Path(tmp)/'evidence',process_factory=factory)
+            with patch.dict(os.environ,{'HTTPS_PROXY':'http://127.0.0.1:17890','NO_PROXY':'*'},clear=True):
+                with self.assertRaises(OSError):agent._rpc(Path(tmp),[],{},Path(tmp)/'attempt')
+            self.assertEqual(len(calls),1)
+            self.assertTrue(all(calls[0][key]=='http://127.0.0.1:17891' for key in PROXY_KEYS))
+            self.assertNotIn('NO_PROXY',calls[0]);self.assertNotIn('DRIVING_API_KEY',calls[0])
+            profile=agent.public_config['connection_profile']
+            self.assertEqual(profile['proxy_variables']['HTTPS_PROXY']['port'],17891)
+            self.assertFalse(profile['no_proxy_present'])
+
     def test_legacy_environment_is_preserved_except_api_credentials(self):
         original={
             'HTTPS_PROXY':'http://old-upper.invalid:17890',
