@@ -2,7 +2,7 @@
 import math
 from shapely.geometry import Point,LineString,Polygon
 from .contracts import artifact,identity,need,grid,finite,validate,digest
-from .geometry import polygon,planes,disk_radius,rear_state,center_state,integrate,obstacles
+from .geometry import polygon,planes,disk_radius,rear_state,center_state,integrate,obstacles,obstacles_native_cells
 
 
 def oriented_body(q,vehicle):
@@ -35,13 +35,14 @@ def verify(scene,trajectory):
         validate_scene(scene)
     box_profile=('planner_profile' in trajectory or 'verification_profile' in trajectory)
     search='search_profile' in trajectory or 'heading_bands_rad' in trajectory
+    native=trajectory.get('search_profile')=='bounded_seed_candidates_v2'
     if box_profile:
         need(trajectory.get('planner_profile')=='yaw_bounded_box_v1'
              and trajectory.get('verification_profile')=='continuous_oriented_body_v1'
              and scene.get('provenance',{}).get('experiment_profile')=='local_conditional_2s_prototype_v1',
              'VERIFICATION_PROFILE','Oriented BODY verification requires its explicit planner/profile pair and prototype scene')
     validate('scene_v2.schema.json',scene)
-    validate('trajectory_seed_candidates_v1.schema.json' if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'),trajectory)
+    validate(('trajectory_seed_candidates_v2.schema.json' if native else 'trajectory_seed_candidates_v1.schema.json') if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'),trajectory)
     finite(trajectory);identity(scene,trajectory)
     cap=scene['capture'];m=scene['metadata'];v=cap['vehicle'];d=scene['decision'];pts=trajectory['points'];times=grid(m)
     need(trajectory['interpolation']=='exact_constant_acceleration_constant_rear_curvature','INTERPOLATION','Unsupported motion convention')
@@ -91,7 +92,7 @@ def verify(scene,trajectory):
         cuts=[j*dt/count for j in range(count+1)]
         if d['stop'] and t<d['stop']['deadline_s']<t+dt:cuts.append(d['stop']['deadline_s']-t)
         cuts=sorted(set(cuts))
-        obs=list(obstacles(scene,k))
+        obs=list(obstacles_native_cells(scene,k) if native else obstacles(scene,k))
         for left,right in zip(cuts,cuts[1:]):
             qa=integrate(q,a,delta,left,v);qb=integrate(q,a,delta,right,v)
             ca=center_state(qa,v);cb=center_state(qb,v)

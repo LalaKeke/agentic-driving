@@ -53,7 +53,7 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
         ('T2',lambda:t2.build(data['T1'],policy=policy)),
         ('T3',lambda:t3.solve(data['T1'],data['T2'])),
         ('T4',lambda:t4.verify(data['T1'],data['T3']))]
-    if policy==t2.SEARCH_PROFILE:tools=tools[:1]
+    if policy in (t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2):tools=tools[:1]
     for name,fn in tools:
         try:
             data[name]=fn();write_json_new(folder/(name+'.json'),data[name]);stages[name]='PASS'
@@ -64,13 +64,13 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
         if failure:
             write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
             return None,failure,stages
-    if policy==t2.SEARCH_PROFILE:
+    if policy in (t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2):
         from agentic.candidate_search import plan
         candidate_root=reserve_directory(folder/'candidates');candidate_dirs={}
         def save(candidate,name,value):
             if candidate not in candidate_dirs:candidate_dirs[candidate]=reserve_directory(candidate_root/candidate)
             write_json_new(candidate_dirs[candidate]/(name+'.json'),value)
-        winner,ledger,failure=plan(data['T1'],save)
+        winner,ledger,failure=plan(data['T1'],save,profile=policy)
         write_json_new(folder/'candidate_ledger.json',ledger)
         if winner:
             data.update(winner)
@@ -101,7 +101,7 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
 def main(args):
     limit=getattr(args,'max_requests',4)
     planner=getattr(args,'planner_profile','legacy_disk_v2')
-    need(planner in ('legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE),'PROTOTYPE_PLANNER','Explicit planner profile required')
+    need(planner in ('legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2),'PROTOTYPE_PLANNER','Explicit planner profile required')
     policy='moving_seed' if planner=='legacy_disk_v2' else planner
     need(type(limit) is int and 1<=limit<=4,'PROTOTYPE_BUDGET','Per-case request limit must be 1..4')
     root=reserve_directory(args.out);initial=read(args.capture)
@@ -111,7 +111,7 @@ def main(args):
     source_files=[Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',
         ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']
     source_files += [ROOT/('implementation/agentic/'+name+'.py') for name in ('t1','t2','t3','t4','candidate_search','acceptance','geometry','runtime')]
-    source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1')]
+    source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1','corridor_seed_candidates_v2','trajectory_seed_candidates_v2')]
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
         horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
@@ -175,6 +175,6 @@ if __name__=='__main__':
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
     p.add_argument('--max-requests',type=int,default=4)
-    p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE],default='legacy_disk_v2')
+    p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2],default='legacy_disk_v2')
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')
     sys.exit(main(p.parse_args()))

@@ -108,11 +108,19 @@ def _premises(ids, registry, oid, sids, left, right):
         need(pid in registry, 'PREMISE_REFERENCE', 'Unknown conditional premise', premise_id=pid)
         p=registry[pid]
         need((not p['object_ids'] or oid in p['object_ids']) and (not p['scenario_ids'] or bool(set(sids)&set(p['scenario_ids']))) and p['start_s']<=left and p['end_s']>=right,
-             'PREMISE_SCOPE', 'Conditional premise does not cover this object, scenario and whole time interval', premise_id=pid, object_id=oid)
+             'PREMISE_SCOPE', 'Conditional premise does not cover this object, scenario and whole time interval', premise_id=pid, object_id=oid,
+             required_scenario_ids=list(sids), declared_object_ids=list(p['object_ids']),
+             declared_scenario_ids=list(p['scenario_ids']),
+             required_interval_s=[left,right], declared_interval_s=[p['start_s'],p['end_s']],
+             conflict_dimensions=[name for name,conflict in (
+                 ('object',bool(p['object_ids']) and oid not in p['object_ids']),
+                 ('scenario',bool(p['scenario_ids']) and not bool(set(sids)&set(p['scenario_ids']))),
+                 ('time_start',p['start_s']>left),('time_end',p['end_s']<right)) if conflict])
         active.append(p)
     for sid in sids:
         need(any(not p['scenario_ids'] or sid in p['scenario_ids'] for p in active),
-             'PREMISE_SCOPE', 'Each retained scenario needs its own applicable premise; branch-specific premises are not asserted for other branches', object_id=oid, scenario_id=sid)
+             'PREMISE_SCOPE', 'Each retained scenario needs its own applicable premise; branch-specific premises are not asserted for other branches', object_id=oid, scenario_id=sid,
+             premise_ids=list(ids),required_interval_s=[left,right],conflict_dimensions=['scenario'])
 
 
 def _premise_space(ids, registry, oid, sid, geometry):
@@ -262,7 +270,12 @@ def normalize(capture, output, provenance, allow_synthetic=False):
                 poly=polygon(alt['polygon_m']);per_scenario[alt['scenario_id']].append(src)
                 _premise_space(src['premise_ids'],premises,oid,alt['scenario_id'],poly)
                 if src['start_s']==0:
-                    need(poly.covers(body),'BODY_ENVELOPE_CONFLICT','Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center','tool_infeasible',object_id=oid,scenario_id=alt['scenario_id'])
+                    need(poly.covers(body),'BODY_ENVELOPE_CONFLICT','Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center','tool_infeasible',object_id=oid,source_id=src['id'],scenario_id=alt['scenario_id'],
+                         source_interval_s=[src['start_s'],src['end_s']],
+                         computed_initial_body_corners_m=[list(x) for x in body.exterior.coords][:-1],
+                         outside_body_corners_m=[list(x) for x in list(body.exterior.coords)[:-1] if not poly.covers(Point(x))],
+                         maximum_corner_excess_m=max(poly.distance(Point(x)) for x in list(body.exterior.coords)[:-1]),
+                         distance_unit='m', geometry_modified=False)
         for sid,seq in per_scenario.items():
             end=0.
             for src in sorted(seq,key=lambda x:(x['start_s'],x['end_s'])):

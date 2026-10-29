@@ -11,11 +11,18 @@ from .geometry import rear_state,center_state
 def solve(scene,corridor,max_iter=700):
     box=corridor.get('planner_profile')=='yaw_bounded_box_v1'
     search='search_profile' in corridor
+    epigraph=corridor.get('search_profile')=='bounded_seed_candidates_v2'
     validate('scene_v2.schema.json',scene)
-    validate('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json'),corridor)
+    validate('corridor_seed_candidates_v2.schema.json' if epigraph else ('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json')),corridor)
     identity(scene,corridor)
     cap=scene['capture'];v=cap['vehicle'];d=scene['decision'];times=grid(scene['metadata']);N=len(times)-1;dt=times[1]
     opt=ca.Opti();X=opt.variable(4,N+1);U=opt.variable(2,N)
+    if epigraph:
+        # A smooth epigraph of |curvature| avoids the 1e10 second derivative
+        # of sqrt(curvature**2 + 1e-20) at a straight segment. This changes
+        # neither the physical chord-error bound nor the control limits.
+        K=opt.variable(1,N)
+        opt.subject_to(opt.bounded(0,K,v['max_curvature_per_m']))
     initial=rear_state(cap['ego'],v);opt.subject_to(X[:,0]==initial)
     if box:
         # With nonnegative speed and constant curvature yaw is monotone inside
@@ -43,7 +50,12 @@ def solve(scene,corridor,max_iter=700):
         # for the entire interval, including nonuniform time from acceleration.
         # sqrt(curv^2 + eps^2) >= |curv| is a smooth conservative upper bound;
         # eps=1e-10 (1/m). The closed physical half-space remains unchanged.
-        arc_pad=ca.sqrt(curv*curv+1e-20)*travel*travel/8
+        if epigraph:
+            opt.subject_to(K[0,k]>=curv)
+            opt.subject_to(K[0,k]>=-curv)
+            arc_pad=K[0,k]*travel*travel/8
+        else:
+            arc_pad=ca.sqrt(curv*curv+1e-20)*travel*travel/8
         for nx,ny,b in corridor['cells'][k]['halfplanes']:
             # Respect the declared closed half-space. An extra shrink rejects valid
             # stationary states on a stop boundary; physical margins are already in T2.
@@ -69,7 +81,9 @@ def solve(scene,corridor,max_iter=700):
         need(len(seed)==N+1,'CORRIDOR_SEED','Incomplete candidate initialization')
         for k,p in enumerate(seed):
             opt.set_initial(X[:,k],[p[n] for n in ('rear_x_m','rear_y_m','yaw_rad','speed_mps')])
-            if k<N:opt.set_initial(U[:,k],[p['acceleration_mps2'],p['steer_rad']])
+            if k<N:
+                opt.set_initial(U[:,k],[p['acceleration_mps2'],p['steer_rad']])
+                if epigraph:opt.set_initial(K[0,k],abs(math.tan(p['steer_rad'])/v['wheelbase_m']))
     opt.solver('ipopt',{'print_time':False},{'print_level':0,'sb':'yes','max_iter':max_iter,'tol':1e-8,'acceptable_tol':1e-7})
     try:sol=opt.solve()
     except RuntimeError:
@@ -80,4 +94,8 @@ def solve(scene,corridor,max_iter=700):
         points.append(dict(time_s=t,rear_x_m=q[0],rear_y_m=q[1],x_m=center[0],y_m=center[1],yaw_rad=q[2],speed_mps=q[3],acceleration_mps2=a,steer_rad=steer,curvature_per_m=math.tan(steer)/v['wheelbase_m']))
     extra=dict(planner_profile='yaw_bounded_box_v1',verification_profile='continuous_oriented_body_v1') if box else {}
     if search:extra.update(search_profile=corridor['search_profile'],heading_bands_rad=[c['heading_band_rad'] for c in corridor['cells']])
-    return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost))),**extra)
+    solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost)))
+    if epigraph:
+        solver.update(arc_bound='curvature_epigraph_v1',iterations=int(sol.stats()['iter_count']),
+                      curvature_magnitude_bounds_per_m=[float(sol.value(K[0,k])) for k in range(N)])
+    return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=solver,**extra)

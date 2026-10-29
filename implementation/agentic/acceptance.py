@@ -156,15 +156,16 @@ def assess_round(result, capture):
                  'Unknown corridor construction policy cannot establish success.')
         box_profile=policy=='yaw_bounded_box_v1'
         search='search_profile' in corridor
-        validate('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box_profile else 'corridor_v2.schema.json'), corridor)
+        native=corridor.get('search_profile')==t2.SEARCH_PROFILE_V2
+        validate(('corridor_seed_candidates_v2.schema.json' if native else 'corridor_seed_candidates_v1.schema.json') if search else ('corridor_yaw_box_v1.schema.json' if box_profile else 'corridor_v2.schema.json'), corridor)
         identity(scene, corridor)
-        _require(t2.build(scene, policy=policy,**({'candidate_id':construction['candidate_id']} if search else {})) == corridor, 'T2_RECONSTRUCTION_MISMATCH',
+        _require(t2.build(scene, policy=policy,**({'candidate_id':construction['candidate_id'],'search_profile':corridor['search_profile']} if search else {})) == corridor, 'T2_RECONSTRUCTION_MISMATCH',
                  'Corridor differs from the deterministic T2 result of this scene.')
         _require(len(corridor['cells']) == len(grid(scene['metadata']))-1,
                  'CORRIDOR_COVERAGE', 'Corridor does not cover this prediction grid.')
         verdict['checks']['t1_t2_reconstructed'] = True
 
-        validate('trajectory_seed_candidates_v1.schema.json' if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'), trajectory); identity(scene, trajectory)
+        validate(('trajectory_seed_candidates_v2.schema.json' if native else 'trajectory_seed_candidates_v1.schema.json') if search else ('trajectory_yaw_box_v1.schema.json' if box_profile else 'trajectory_v2.schema.json'), trajectory); identity(scene, trajectory)
         if search:
             _require(trajectory['search_profile']==corridor['search_profile']
                      and trajectory['heading_bands_rad']==[c['heading_band_rad'] for c in corridor['cells']],

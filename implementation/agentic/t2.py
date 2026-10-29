@@ -3,11 +3,12 @@ import math
 from shapely.geometry import Point,Polygon,LineString
 from shapely.ops import nearest_points
 from .contracts import artifact,need,grid,validate
-from .geometry import planes,polygon,obstacles,disk_radius,rear_state,integrate
+from .geometry import planes,polygon,obstacles,obstacles_native_cells,disk_radius,rear_state,integrate
 
 YAW_BOX_PROFILE='yaw_bounded_box_v1'
 YAW_BOX_BOUND_RAD=.35
 SEARCH_PROFILE='bounded_seed_candidates_v1'
+SEARCH_PROFILE_V2='bounded_seed_candidates_v2'
 CANDIDATE_IDS=('original','brake_straight','brake_right','brake_left','brake_right_strong')
 
 def yaw_point_support(point,nx,ny,bound=YAW_BOX_BOUND_RAD):
@@ -114,7 +115,7 @@ def _moving_seed(scene,times):
     return points
 
 
-def build(scene,policy='initial_anchor',candidate_id=None):
+def build(scene,policy='initial_anchor',candidate_id=None,search_profile=SEARCH_PROFILE):
     validate('scene_v2.schema.json',scene)
     need(policy in ('initial_anchor','moving_seed',YAW_BOX_PROFILE),'CORRIDOR_POLICY','Unknown explicit corridor construction policy')
     cap=scene['capture'];v=cap['vehicle'];m=scene['metadata'];d=scene['decision']
@@ -122,7 +123,13 @@ def build(scene,policy='initial_anchor',candidate_id=None):
     base=polygon(scene['hypotheses']['road']['polygon_m'],True)
     box=policy==YAW_BOX_PROFILE
     search=candidate_id is not None
-    need(not search or (box and candidate_id in CANDIDATE_IDS and candidate_id!='original'),
+    native=search_profile==SEARCH_PROFILE_V2
+    need(search_profile in (SEARCH_PROFILE,SEARCH_PROFILE_V2) and (not native or search),
+         'CORRIDOR_CANDIDATE','Explicit candidate profile required')
+    if native:
+        from .metric_contract import validate_scene
+        validate_scene(scene)
+    need(not search or (box and candidate_id in CANDIDATE_IDS and (candidate_id!='original' or native)),
          'CORRIDOR_CANDIDATE','Candidate search requires explicit bounded-box profile')
     if box:
         need(abs(cap['ego']['yaw_rad'])<=YAW_BOX_BOUND_RAD,'CORRIDOR_HEADING_BOUND',
@@ -160,16 +167,27 @@ def build(scene,policy='initial_anchor',candidate_id=None):
                                          p['rear_y_m']+math.sin(p['yaw_rad'])*x+math.cos(p['yaw_rad'])*y)
                 for p in seed[k:k+2] for x,y in ((d0-v['rear_m'],-w),(d0+v['front_m'],-w),
                                              (d0+v['front_m'],w),(d0-v['rear_m'],w))]).convex_hull
-        for oid,shape,u in obstacles(scene,k):
+        for oid,shape,u in (obstacles_native_cells(scene,k) if native else obstacles(scene,k)):
             hull=shape.convex_hull
             origin,near=nearest_points(selection_geometry,hull)
             dx,dy=near.x-origin.x,near.y-origin.y;dist=math.hypot(dx,dy)
-            need(dist>0 and (box or dist>r+u+margin),
+            need(native or (dist>0 and (box or dist>r+u+margin)),
                  'CORRIDOR_ANCHOR_BLOCKED' if seed is None else 'CORRIDOR_SEED_BLOCKED',
                  'Conservative corridor anchor blocked' if seed is None else
                  'Ego-only seed blocked; this does not prove all trajectories infeasible',
                  'tool_infeasible',object_id=oid,interval=[times[k],times[k+1]])
-            nx,ny=dx/dist,dy/dist
+            if native:
+                # Finite separating directions, all evaluated against the FULL
+                # model BODY set and unchanged residual/margin. References only
+                # rank safe half-spaces; they are not accepted trajectories.
+                normals=([(dx/dist,dy/dist)] if dist>0 else [])+[(1.,0.),(-1.,0.),(0.,1.),(0.,-1.)]
+                def slack(n):
+                    nx,ny=n
+                    limit=min(nx*x+ny*y for x,y in hull.exterior.coords)-band_body_support(v,nx,ny,band)-u-margin
+                    return limit-max(nx*p['rear_x_m']+ny*p['rear_y_m'] for p in seed[k:k+2])
+                nx,ny=max(normals,key=slack)
+            else:
+                nx,ny=dx/dist,dy/dist
             support=min(nx*x+ny*y for x,y in hull.exterior.coords)
             ego_support=band_body_support(v,nx,ny,band) if search else (yaw_box_support(v,nx,ny) if box else r)
             constraints.append([nx,ny,support-ego_support-u-margin])
@@ -209,7 +227,7 @@ def build(scene,policy='initial_anchor',candidate_id=None):
         if search:
             extra['construction']['seed_dynamics']='exact_constant_acceleration_constant_rear_curvature'
             extra['construction']['candidate_id']=candidate_id
-            extra['search_profile']=SEARCH_PROFILE
+            extra['search_profile']=search_profile
     if box:
         return artifact(scene,cells=cells,reference_point='rear_axle',
             body_envelope='yaw_bounded_oriented_box',planner_profile=YAW_BOX_PROFILE,

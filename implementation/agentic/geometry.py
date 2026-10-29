@@ -1,5 +1,6 @@
 """Deterministic geometry; no inferred environment facts."""
 import math
+from decimal import Decimal
 from shapely.geometry import Polygon, Point
 from shapely.geometry.polygon import orient
 from .contracts import need
@@ -38,6 +39,33 @@ def obstacles(scene,k):
             yield o['id'],polygon(poly),o['uncertainty_m']
     for r in h['unknown_regions']:
         yield 'unknown_region',polygon(r['polygon_m']),r['uncertainty_m']
+
+def obstacles_native_cells(scene,k):
+    """Original whole-interval sources with positive temporal overlap.
+
+    Only for the explicit v2 planner after T1 has checked complete, closed,
+    nonzero source coverage for EVERY retained scenario. A source touching
+    only a grid boundary need not be extended to the entire neighbouring cell.
+    Each cell still checks both endpoints: its own closed sources cover them,
+    and the adjacent cell independently checks that same transition state.
+    No polygon, mode, residual or motion prediction is changed or interpolated.
+    Decimal arithmetic avoids treating a binary grid artefact as real overlap.
+    """
+    trace=scene.get('provenance',{}).get('metric_contract_trace')
+    need(isinstance(trace,dict) and trace.get('version')=='3.0.0-exp2',
+         'METRIC_TRACE','Native interval selection requires revalidated exp2 sources')
+    raw=trace['source_output']['hypotheses']
+    step=Decimal(str(scene['metadata']['step_s']))
+    left,right=step*k,step*(k+1)
+    for actor in raw['objects']:
+        sources=actor['occupancy']
+        need(sources is not None,'OCCUPANCY_UNKNOWN','Null cannot be selected as empty occupancy','tool_infeasible',object_id=actor['id'])
+        for src in sources:
+            if max(Decimal(str(src['start_s'])),left)<min(Decimal(str(src['end_s'])),right):
+                for alt in src['alternatives']:
+                    yield actor['id'],polygon(alt['polygon_m']),actor['uncertainty_m']
+    for region in scene['hypotheses']['unknown_regions']:
+        yield 'unknown_region',polygon(region['polygon_m']),region['uncertainty_m']
 
 def project_ground(pixel,intrinsic,rotation_camera_to_ego,origin_ego):
     """Optional calibrated ray-plane intersection, caller asserts static z=0 ground contact.
