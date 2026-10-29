@@ -1,0 +1,41 @@
+{
+  "stages": {
+    "T1": "FAIL",
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED",
+    "ACCEPTOR": "NOT_REACHED"
+  },
+  "failure": {
+    "code": "PREMISE_SCOPE",
+    "message": "Conditional premise does not cover this object, scenario and whole time interval",
+    "category": "interface_error",
+    "details": {
+      "premise_id": "mazda_past_alignment",
+      "object_id": "right_parked_mazda",
+      "required_scenario_ids": [
+        "mazda_stationary"
+      ],
+      "declared_object_ids": [
+        "right_parked_mazda"
+      ],
+      "declared_scenario_ids": [
+        "mazda_stationary",
+        "mazda_bounded_perturbation"
+      ],
+      "required_interval_s": [
+        0,
+        2.0
+      ],
+      "declared_interval_s": [
+        -0.043,
+        0
+      ],
+      "conflict_dimensions": [
+        "time_end"
+      ]
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  }
+}

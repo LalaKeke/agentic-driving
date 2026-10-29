@@ -1,0 +1,240 @@
+{
+  "case_id": "frame_001",
+  "scene_name": "scene-0916",
+  "scene_token": "325cef682f064c55a255f2625c533b75",
+  "sample_token": "e6e877f31dd447199b56cae07f86daad",
+  "label": "frame_001",
+  "runtime_path": "implementation/results/openai_bend_sequence_20261029_v1/runtime/frame_001",
+  "initial_speed_mps": 4.101373869162963,
+  "status": "SERVICE_INTERFACE_STOP",
+  "ended": true,
+  "charged_requests": 1,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": false,
+  "revision_pass": null,
+  "native_json_count": 0,
+  "native_schema_valid_count": 0,
+  "final_failure_stage": "SERVICE",
+  "final_failure_reasons": [
+    {
+      "code": "API_TRANSPORT",
+      "message": "OpenAI connection failed; no retry; raw exception suppressed",
+      "category": "interface_error",
+      "details": {
+        "exception_type": "ConnectError"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "fatal_service_or_interface_failure": {
+    "code": "API_TRANSPORT",
+    "message": "OpenAI connection failed; no retry; raw exception suppressed",
+    "category": "interface_error",
+    "details": {
+      "exception_type": "ConnectError"
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  },
+  "issue_classes_any_attempt": [
+    "SERVICE_INTERFACE"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": null,
+      "usage": null,
+      "record_path": null,
+      "record_sha256": null,
+      "native_output_path": null,
+      "native_json_present": false,
+      "native_business_schema": "NOT_REACHED",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": null,
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "NOT_REACHED",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "FAILED",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": "UNKNOWN",
+        "native_json_returned": false,
+        "failure": {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        "elapsed_s": 5.044481933116913
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": true,
+      "service_return": "ADAPTER_FAILURE_NO_NATIVE",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "SERVICE",
+      "blocking_reasons": [
+        {
+          "code": "API_TRANSPORT",
+          "message": "OpenAI connection failed; no retry; raw exception suppressed",
+          "category": "interface_error",
+          "details": {
+            "exception_type": "ConnectError"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "SERVICE_INTERFACE"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": null,
+        "traffic_evidence": null
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": null,
+  "physical": {
+    "prefix_consumed": false,
+    "motion_class": "NOT_EXECUTED",
+    "displacement_xy_m": null,
+    "displacement_m": null,
+    "end_speed_mps": null,
+    "prefix_s": null,
+    "minimum_conditional_clearance_lower_bound_m": null,
+    "max_abs_acceleration_mps2": null,
+    "rms_discrete_jerk_proxy_mps3": null,
+    "max_abs_steer_rad": null,
+    "solver_status": null,
+    "T4_verdict": "NOT_REACHED",
+    "acceptor_status": "NOT_REACHED",
+    "independent_acceptor_pass": false,
+    "prefix_receipt_path": null,
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": "SERVICE",
+  "selected_native_failure_reasons": [
+    {
+      "code": "API_TRANSPORT",
+      "message": "OpenAI connection failed; no retry; raw exception suppressed",
+      "category": "interface_error",
+      "details": {
+        "exception_type": "ConnectError"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "frame_index": 1,
+  "relative_sequence_time_s": 0.5,
+  "reference_time_s": 1538984251.4124599,
+  "reference_time_id": "nusc_us_1538984251412460",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_001/capture.json",
+  "stages": {
+    "SERVICE": "FAIL",
+    "BUSINESS_SCHEMA": "NOT_REACHED",
+    "T1": "NOT_REACHED",
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "TURN_TASK": "NOT_REACHED",
+    "ACCEPTOR": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": null,
+    "plan_end_lateral_m": null,
+    "prefix_yaw_change_deg": null,
+    "direction_review": "NOT_EVALUABLE_NO_PLAN"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "NO_NATIVE_OUTPUT",
+  "transport": "official_openai_responses",
+  "server_reported_model": null,
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation.",
+  "display_transform_to_first_frame": {
+    "status": "ALIGNED",
+    "translation_m": [
+      2.030105585564074,
+      0.2900282126324719
+    ],
+    "yaw_rad": 0.13638320486771116,
+    "parent_frame": 0,
+    "common_record": {
+      "frame_id": "4cb2e5f01be94ffeb22cabde23ba5b46",
+      "time_id": "nusc_us_1538984250912460"
+    },
+    "display_only": true,
+    "center_offset_added_again": false
+  }
+}

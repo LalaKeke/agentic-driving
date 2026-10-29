@@ -1,0 +1,129 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "TURN_TASK": "FAIL",
+      "objective": 3.3847692723742786,
+      "minimum_clearance_lower_bound_m": 2.4225962922478947,
+      "task_failure": {
+        "code": "TURN_TASK_NOT_DEMONSTRATED",
+        "category": "task_not_completed",
+        "details": {
+          "candidate_id": "original",
+          "turn_task": {
+            "task_profile": "visible_turn_description_v1",
+            "verdict": "FAIL",
+            "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+            "measurements": {
+              "plan_max_abs_yaw_change_deg": 1.4323950110625927,
+              "plan_max_abs_center_lateral_displacement_m": 0.14909017541763403,
+              "prefix_abs_yaw_change_deg": 1.4323949941981036,
+              "prefix_center_displacement_m": 0.7799535632642778,
+              "prefix_center_displacement_xy_m": [
+                0.7789405531792201,
+                0.03973884071653812
+              ],
+              "prefix_duration_s": 0.2
+            },
+            "thresholds": {
+              "plan_min_max_abs_yaw_change_deg": 5.0,
+              "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+              "prefix_min_abs_yaw_change_deg": 0.1,
+              "prefix_min_center_displacement_m_exclusive": 0.01
+            },
+            "checks": {
+              "plan_yaw": false,
+              "plan_lateral": false,
+              "prefix_yaw": true,
+              "prefix_moving": true
+            },
+            "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+          }
+        },
+        "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+      }
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "TURN_TASK": "FAIL",
+      "objective": 3.384769272358109,
+      "minimum_clearance_lower_bound_m": 2.4225962922507716,
+      "task_failure": {
+        "code": "TURN_TASK_NOT_DEMONSTRATED",
+        "category": "task_not_completed",
+        "details": {
+          "candidate_id": "brake_straight",
+          "turn_task": {
+            "task_profile": "visible_turn_description_v1",
+            "verdict": "FAIL",
+            "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+            "measurements": {
+              "plan_max_abs_yaw_change_deg": 1.4323950110738017,
+              "plan_max_abs_center_lateral_displacement_m": 0.1490901754202254,
+              "prefix_abs_yaw_change_deg": 1.4323949942197005,
+              "prefix_center_displacement_m": 0.7799535632593461,
+              "prefix_center_displacement_xy_m": [
+                0.7789405531742546,
+                0.03973884071707527
+              ],
+              "prefix_duration_s": 0.2
+            },
+            "thresholds": {
+              "plan_min_max_abs_yaw_change_deg": 5.0,
+              "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+              "prefix_min_abs_yaw_change_deg": 0.1,
+              "prefix_min_center_displacement_m_exclusive": 0.01
+            },
+            "checks": {
+              "plan_yaw": false,
+              "plan_lateral": false,
+              "prefix_yaw": true,
+              "prefix_moving": true
+            },
+            "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+          }
+        },
+        "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+      }
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "TURN_TASK": "PASS",
+      "objective": 10.243180773135961,
+      "minimum_clearance_lower_bound_m": 1.4359911439248445
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "TURN_TASK": "PASS",
+      "objective": 1.0942689583596659,
+      "minimum_clearance_lower_bound_m": 2.7742468114059315
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "TURN_TASK": "PASS",
+      "objective": 11.695592912516528,
+      "minimum_clearance_lower_bound_m": 1.2470039303726885
+    }
+  ],
+  "selected_candidate": "brake_left",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+  "task_filter_active": true,
+  "task_accepted_candidate_count": 3
+}

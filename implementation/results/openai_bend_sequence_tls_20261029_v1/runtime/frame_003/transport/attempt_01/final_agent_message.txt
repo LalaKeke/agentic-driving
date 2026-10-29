@@ -1,0 +1,249 @@
+{
+  "decision": {
+    "scene_id": "nusc_7f594234e8034228b1a7d727f1981e09",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [[-0.3, -0.3], [2, -0.3], [8, 2.5], [9, 5], [5, 5], [-0.3, 1]],
+    "desired_speed_mps": 2.5,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984254.4124599,
+    "hard_requirements": ["target_region", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 1,
+      "steering_weight": 0.5,
+      "smoothness_weight": 2
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984252412460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3, -4], [2, -3.6], [10, 1], [13, 4], [11, 8], [-3, 4.5]],
+      "uncertainty_m": 0.45,
+      "frame_ids": ["468dcee93e6049d8873706be7f9f3f89", "03072f9314974a5c878e0f542de53f5f"],
+      "time_ids": ["nusc_us_1538984252412460", "nusc_us_1538984252404844"]
+    },
+    "objects": [
+      {
+        "id": "parked_gray_compact_front_right",
+        "position_m": [9.5, -4.5],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 0.65,
+        "occupancy": [
+          {
+            "id": "gray_compact_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["468dcee93e6049d8873706be7f9f3f89"],
+            "time_ids": ["nusc_us_1538984252412460"],
+            "premise_ids": ["body_scale_prior", "gray_compact_motion"],
+            "residual_m": 0.4,
+            "alternatives": [
+              {
+                "scenario_id": "gray_compact_stationary",
+                "polygon_m": [[7.2, -6.45], [11.8, -6.45], [11.8, -2.55], [7.2, -2.55]]
+              },
+              {
+                "scenario_id": "gray_compact_small_drift",
+                "polygon_m": [[7.05, -6.65], [11.95, -6.65], [11.95, -2.35], [7.05, -2.35]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["468dcee93e6049d8873706be7f9f3f89"],
+        "time_ids": ["nusc_us_1538984252412460"],
+        "state_time_id": "nusc_us_1538984252412460",
+        "body_geometry": {
+          "length_m": 4.3,
+          "width_m": 1.7,
+          "yaw_rad": 2.55
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["body_scale_prior"],
+          "residual_m": 0.2,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "468dcee93e6049d8873706be7f9f3f89",
+              "time_id": "nusc_us_1538984252412460",
+              "position_m": [9.5, -4.5],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "gray_compact_stationary",
+            "premise_ids": ["gray_compact_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "gray_compact_small_drift",
+            "premise_ids": ["gray_compact_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "parked_dark_mazda_right",
+        "position_m": [-3.5, -9],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 0.75,
+        "occupancy": [
+          {
+            "id": "mazda_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["c3133ddc625e48f59ed65f1312768d10"],
+            "time_ids": ["nusc_us_1538984252370339"],
+            "premise_ids": ["mazda_pose_prior", "mazda_motion_and_alignment"],
+            "residual_m": 0.35,
+            "alternatives": [
+              {
+                "scenario_id": "mazda_stationary",
+                "polygon_m": [[-4.85, -11.55], [-2.15, -11.55], [-2.15, -6.45], [-4.85, -6.45]]
+              },
+              {
+                "scenario_id": "mazda_small_creep",
+                "polygon_m": [[-5.22, -11.87], [-1.78, -11.87], [-1.78, -6.13], [-5.22, -6.13]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["c3133ddc625e48f59ed65f1312768d10"],
+        "time_ids": ["nusc_us_1538984252370339"],
+        "state_time_id": "nusc_us_1538984252412460",
+        "body_geometry": {
+          "length_m": 4.8,
+          "width_m": 1.8,
+          "yaw_rad": 1.75
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": ["mazda_pose_prior", "mazda_motion_and_alignment"],
+          "residual_m": 0.25,
+          "motion_bound": {
+            "max_speed_mps": 0.15,
+            "displacement_bound_m": 0.0064,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "c3133ddc625e48f59ed65f1312768d10",
+              "time_id": "nusc_us_1538984252370339",
+              "position_m": [-3.5, -9],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mazda_stationary",
+            "premise_ids": ["mazda_motion_and_alignment"],
+            "role": "adopted"
+          },
+          {
+            "id": "mazda_small_creep",
+            "premise_ids": ["mazda_motion_and_alignment"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second local prototype only; no optimization or independent verification has been executed here. The images support a left bend around the grass island, consistent with the increasing historical ego yaw. Current speed is 3.8189 m/s, not zero; 2.5 m/s is a deceleration preference. Road and actor geometry are approximate monocular hypotheses, not calibrated depth. Uphill parking rows, the rear-left truck, distant parked cars, and occluded areas are outside the modeled driving domain; their non-entry is an explicit condition, not an observed guarantee. The peripheral Mazda is retained because its body approaches the domain boundary. The road polygon represents a convex inner portion of the continuous paved bend, not the parking grass or the entire future roadway.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [[-3, -7], [16, -7], [16, 10], [-3, 10]],
+        "statement": "The modeled driving domain is this finite local patch, and ego travel is restricted further by the road and center-region polygons. For these two seconds, assume no new unobserved pedestrian, vehicle, or other obstacle enters this domain, including from uphill parking, behind the island, or from the rear. Distant parking-row vehicles and the rear-left truck outside this domain are conditionally assumed not to enter it. This does not assert absence of other world traffic. Retain the two declared nearby parked vehicles, including the Mazda extending outside the domain. Assume visible pavement remains traversable, without an unobserved surface obstruction."
+      },
+      {
+        "id": "body_scale_prior",
+        "object_ids": ["parked_gray_compact_front_right"],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The individual gray compact visible in the reference front image is modeled as a 4.3 m by 1.7 m passenger car. Its front three-quarter appearance, apparent body size, and nearby parking-bay/curb perspective support the approximate center [9.5,-4.5] and yaw 2.55. These are falsifiable model estimates. Use this body-size prior and visible curb/guardrail perspective to estimate the local paved bend: the right edge rises leftward around the island, while the opposite paved boundary is visible in the front-left view. The short rearward portion is supported by adjacent pavement views and the supplied ego history, assuming local pavement continuity and modest surface grade. Calibration establishes viewing axes, not certified ground-plane depth."
+      },
+      {
+        "id": "gray_compact_motion",
+        "object_ids": ["parked_gray_compact_front_right"],
+        "scenario_ids": ["gray_compact_stationary", "gray_compact_small_drift"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The compact appears parked in its bay. Adopt a stationary body for two seconds; retain an adverse variant with center displacement at most 0.10 m in any direction and yaw deviation at most 0.03 rad. No pull-out or larger movement is adopted in this conditional prototype. The rectangular source envelopes contain the full oriented body throughout each mode; source residual is additional model error, not body size."
+      },
+      {
+        "id": "mazda_pose_prior",
+        "object_ids": ["parked_dark_mazda_right"],
+        "scenario_ids": [],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The dark Mazda visible at the right edge of the front-right acquisition is modeled as a parked 4.8 m by 1.8 m sedan, yaw 1.75 rad. Its front-facing appearance within the parking bay supports an approximate native evidence center [-3.5,-9] in fixed reference axes, using camera orientation and acquisition ego pose. Its nominal reference center is unchanged under the adopted stationary mode; the separate motion bound covers adverse motion during the actual 0.042121 s acquisition age."
+      },
+      {
+        "id": "mazda_motion_and_alignment",
+        "object_ids": ["parked_dark_mazda_right"],
+        "scenario_ids": ["mazda_stationary", "mazda_small_creep"],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Condition on this bay-parked sedan remaining stationary or creeping at no more than 0.15 m/s from the front-right capture through the horizon. The parked appearance motivates applying this bound across the short past alignment interval as well as the future. Reference alignment displacement is at most 0.0064 m. Over the future interval allow center displacement at most 0.30 m in any direction and yaw deviation at most 0.03 rad. No larger pull-out is included. The adverse body envelope also contains the small acquisition-to-reference displacement allowance."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["468dcee93e6049d8873706be7f9f3f89"],
+      "time_ids": ["nusc_us_1538984252412460"],
+      "premise_ids": ["body_scale_prior"],
+      "anchors": [
+        {
+          "object_id": "parked_gray_compact_front_right",
+          "dimension": "length_m",
+          "value_m": 4.3,
+          "rationale": "Conditional typical compact-passenger-car length for the specific gray car visible in the reference front image; not a measured manufacturer dimension."
+        },
+        {
+          "object_id": "parked_gray_compact_front_right",
+          "dimension": "width_m",
+          "value_m": 1.7,
+          "rationale": "Conditional compact-car width matching the native body hypothesis and its visible front three-quarter silhouette."
+        }
+      ],
+      "metric_reasoning": "Using the gray compact's hypothesized dimensions and oblique silhouette gives an approximate body center about 9.5 m forward and 4.5 m right. The front bumper appears closer than its body center, consistent with the adopted yaw. Relative car, bay, curb and island perspective places the island tip roughly 10–13 m forward and several meters left of the current forward axis. The guardrail-side boundary and right island curb support the stated convex paved patch and leftward center corridor. The model retains 0.45 m road uncertainty and separate actor residuals; none is a calibrated confidence bound."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

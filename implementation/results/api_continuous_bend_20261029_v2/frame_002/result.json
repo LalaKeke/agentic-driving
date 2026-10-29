@@ -1,0 +1,1322 @@
+{
+  "case_id": "frame_002",
+  "scene_name": "scene-0916",
+  "scene_token": "325cef682f064c55a255f2625c533b75",
+  "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+  "label": "frame_002",
+  "runtime_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002",
+  "initial_speed_mps": 3.9519470449247223,
+  "status": "FIRST_ATTEMPT_PASS",
+  "ended": true,
+  "charged_requests": 1,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": true,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": null,
+  "final_failure_reasons": [],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25315,
+        "input_tokens_details": {
+          "cache_write_tokens": 21817,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4795,
+        "output_tokens_details": {
+          "reasoning_tokens": 1396
+        },
+        "total_tokens": 30110
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/record.json",
+      "record_sha256": "e1d5d34c9890bf7d6f5aaa37754bc88b68cc8a67ebf6ed2ef1b2dbe91a6a7e5e",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_57f83d27713b4aa9a232ec5ba93062e2",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25315,
+          "input_tokens_details": {
+            "cache_write_tokens": 21817,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4795,
+          "output_tokens_details": {
+            "reasoning_tokens": 1396
+          },
+          "total_tokens": 30110
+        },
+        "structured_output": true,
+        "elapsed_s": 81.72405322268605
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 5,
+        "T3": 3,
+        "T4": 3
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 21.4560718561001,
+            "minimum_clearance_lower_bound_m": 2.4724102278133975,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "original",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950469232638,
+                    "plan_max_abs_center_lateral_displacement_m": 0.10348551252696661,
+                    "prefix_abs_yaw_change_deg": 1.4323950441866942,
+                    "prefix_center_displacement_m": 0.7322191936268201,
+                    "prefix_center_displacement_xy_m": [
+                      0.7311722603327037,
+                      0.03914170710987988
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 21.456071856104106,
+            "minimum_clearance_lower_bound_m": 2.472410227816746,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "brake_straight",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950469232642,
+                    "plan_max_abs_center_lateral_displacement_m": 0.10348551252179994,
+                    "prefix_abs_yaw_change_deg": 1.432395044186695,
+                    "prefix_center_displacement_m": 0.732219193626867,
+                    "prefix_center_displacement_xy_m": [
+                      0.7311722603327507,
+                      0.03914170710988049
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "TURN_TASK": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 9.73978199354912,
+            "minimum_clearance_lower_bound_m": 1.0066339568798477
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "TURN_TASK": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "brake_left",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+        "task_filter_active": true,
+        "task_accepted_candidate_count": 1
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          0.747047841269883,
+          0.09942566884824582
+        ],
+        "displacement_m": 0.753635150966244,
+        "end_speed_mps": 3.5474487521456837,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.0066339568798477,
+        "max_abs_acceleration_mps2": 2.0224914638951916,
+        "rms_discrete_jerk_proxy_mps3": 0.7873523510184771,
+        "max_abs_steer_rad": 0.22361144438881642,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_cb4e6195faad467094fbd4d0a9e960e9",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.3,
+              -0.4
+            ],
+            [
+              2,
+              -0.4
+            ],
+            [
+              7,
+              1.3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              -0.3,
+              0.8
+            ]
+          ],
+          "desired_speed_mps": 2.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.9124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 1,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": {
+    "T2": 5,
+    "T3": 3,
+    "T4": 3
+  },
+  "physical": {
+    "prefix_consumed": true,
+    "motion_class": "MOVING_PREFIX",
+    "displacement_xy_m": [
+      0.747047841269883,
+      0.09942566884824582
+    ],
+    "displacement_m": 0.753635150966244,
+    "end_speed_mps": 3.5474487521456837,
+    "prefix_s": 0.2,
+    "minimum_conditional_clearance_lower_bound_m": 1.0066339568798477,
+    "max_abs_acceleration_mps2": 2.0224914638951916,
+    "rms_discrete_jerk_proxy_mps3": 0.7873523510184771,
+    "max_abs_steer_rad": 0.22361144438881642,
+    "solver_status": "Solve_Succeeded",
+    "T4_verdict": "PASS",
+    "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "independent_acceptor_pass": true,
+    "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/execution_receipt.json",
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": null,
+  "selected_native_failure_reasons": [],
+  "frame_index": 2,
+  "relative_sequence_time_s": 1.0,
+  "reference_time_s": 1538984251.9124599,
+  "reference_time_id": "nusc_us_1538984251912460",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_002/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "TURN_TASK": "PASS",
+    "ACCEPTOR": "PASS",
+    "EXECUTION": "PASS"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": {
+    "task_profile": "visible_turn_description_v1",
+    "verdict": "PASS",
+    "failure_code": null,
+    "measurements": {
+      "plan_max_abs_yaw_change_deg": 11.540026468021411,
+      "plan_max_abs_center_lateral_displacement_m": 0.912785193524863,
+      "prefix_abs_yaw_change_deg": 3.6191232343186575,
+      "prefix_center_displacement_m": 0.753635150966244,
+      "prefix_center_displacement_xy_m": [
+        0.747047841269883,
+        0.09942566884824582
+      ],
+      "prefix_duration_s": 0.2
+    },
+    "thresholds": {
+      "plan_min_max_abs_yaw_change_deg": 5.0,
+      "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+      "prefix_min_abs_yaw_change_deg": 0.1,
+      "prefix_min_center_displacement_m_exclusive": 0.01
+    },
+    "checks": {
+      "plan_yaw": true,
+      "plan_lateral": true,
+      "prefix_yaw": true,
+      "prefix_moving": true
+    },
+    "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+  },
+  "signed_turn": {
+    "plan_end_yaw_change_deg": 11.540026249004475,
+    "plan_end_lateral_m": 0.912785193524863,
+    "prefix_yaw_change_deg": 3.6191232343186575,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": true,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation.",
+  "selected_group_status": "FIRST_ATTEMPT_PASS",
+  "source_group": "openai_bend_sequence_tls_20261029_v1",
+  "group_histories": [
+    {
+      "source_group": "openai_bend_sequence_20261029_v1",
+      "result": {
+        "case_id": "frame_002",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+        "label": "frame_002",
+        "runtime_path": "implementation/results/openai_bend_sequence_20261029_v1/runtime/frame_002",
+        "initial_speed_mps": 3.9519470449247223,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 2,
+        "relative_sequence_time_s": 1.0,
+        "reference_time_s": 1538984251.9124599,
+        "reference_time_id": "nusc_us_1538984251912460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_002/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_REACHED",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_recovery_20261029_v1",
+      "result": {
+        "case_id": "frame_002",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+        "label": "frame_002",
+        "runtime_path": "implementation/results/openai_bend_sequence_recovery_20261029_v1/runtime/frame_002",
+        "initial_speed_mps": 3.9519470449247223,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 2,
+        "relative_sequence_time_s": 1.0,
+        "reference_time_s": 1538984251.9124599,
+        "reference_time_id": "nusc_us_1538984251912460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_002/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_REACHED",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    },
+    {
+      "source_group": "openai_bend_sequence_tls_20261029_v1",
+      "result": {
+        "case_id": "frame_002",
+        "scene_name": "scene-0916",
+        "scene_token": "325cef682f064c55a255f2625c533b75",
+        "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+        "label": "frame_002",
+        "runtime_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002",
+        "initial_speed_mps": 3.9519470449247223,
+        "status": "FIRST_ATTEMPT_PASS",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": true,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25315,
+              "input_tokens_details": {
+                "cache_write_tokens": 21817,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 4795,
+              "output_tokens_details": {
+                "reasoning_tokens": 1396
+              },
+              "total_tokens": 30110
+            },
+            "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/record.json",
+            "record_sha256": "e1d5d34c9890bf7d6f5aaa37754bc88b68cc8a67ebf6ed2ef1b2dbe91a6a7e5e",
+            "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "PASS",
+              "ACCEPTOR": "PASS",
+              "EXECUTION": "PASS"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_57f83d27713b4aa9a232ec5ba93062e2",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25315,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21817,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 4795,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1396
+                },
+                "total_tokens": 30110
+              },
+              "structured_output": true,
+              "elapsed_s": 81.72405322268605
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": true,
+            "deepest_blocking_stage": null,
+            "blocking_reasons": [],
+            "raw_last_failure": null,
+            "candidate_counts": {
+              "T2": 5,
+              "T3": 3,
+              "T4": 3
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "FAIL",
+                  "objective": 21.4560718561001,
+                  "minimum_clearance_lower_bound_m": 2.4724102278133975,
+                  "task_failure": {
+                    "code": "TURN_TASK_NOT_DEMONSTRATED",
+                    "category": "task_not_completed",
+                    "details": {
+                      "candidate_id": "original",
+                      "turn_task": {
+                        "task_profile": "visible_turn_description_v1",
+                        "verdict": "FAIL",
+                        "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                        "measurements": {
+                          "plan_max_abs_yaw_change_deg": 1.4323950469232638,
+                          "plan_max_abs_center_lateral_displacement_m": 0.10348551252696661,
+                          "prefix_abs_yaw_change_deg": 1.4323950441866942,
+                          "prefix_center_displacement_m": 0.7322191936268201,
+                          "prefix_center_displacement_xy_m": [
+                            0.7311722603327037,
+                            0.03914170710987988
+                          ],
+                          "prefix_duration_s": 0.2
+                        },
+                        "thresholds": {
+                          "plan_min_max_abs_yaw_change_deg": 5.0,
+                          "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                          "prefix_min_abs_yaw_change_deg": 0.1,
+                          "prefix_min_center_displacement_m_exclusive": 0.01
+                        },
+                        "checks": {
+                          "plan_yaw": false,
+                          "plan_lateral": false,
+                          "prefix_yaw": true,
+                          "prefix_moving": true
+                        },
+                        "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                      }
+                    },
+                    "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+                  }
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "FAIL",
+                  "objective": 21.456071856104106,
+                  "minimum_clearance_lower_bound_m": 2.472410227816746,
+                  "task_failure": {
+                    "code": "TURN_TASK_NOT_DEMONSTRATED",
+                    "category": "task_not_completed",
+                    "details": {
+                      "candidate_id": "brake_straight",
+                      "turn_task": {
+                        "task_profile": "visible_turn_description_v1",
+                        "verdict": "FAIL",
+                        "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                        "measurements": {
+                          "plan_max_abs_yaw_change_deg": 1.4323950469232642,
+                          "plan_max_abs_center_lateral_displacement_m": 0.10348551252179994,
+                          "prefix_abs_yaw_change_deg": 1.432395044186695,
+                          "prefix_center_displacement_m": 0.732219193626867,
+                          "prefix_center_displacement_xy_m": [
+                            0.7311722603327507,
+                            0.03914170710988049
+                          ],
+                          "prefix_duration_s": 0.2
+                        },
+                        "thresholds": {
+                          "plan_min_max_abs_yaw_change_deg": 5.0,
+                          "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                          "prefix_min_abs_yaw_change_deg": 0.1,
+                          "prefix_min_center_displacement_m_exclusive": 0.01
+                        },
+                        "checks": {
+                          "plan_yaw": false,
+                          "plan_lateral": false,
+                          "prefix_yaw": true,
+                          "prefix_moving": true
+                        },
+                        "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                      }
+                    },
+                    "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "PASS",
+                  "T3": "FAIL",
+                  "T4": "NOT_REACHED",
+                  "TURN_TASK": "NOT_REACHED",
+                  "failure": {
+                    "code": "OPTIMIZATION_FAILED",
+                    "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "solver_status": "Infeasible_Problem_Detected"
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "TURN_TASK": "PASS",
+                  "objective": 9.73978199354912,
+                  "minimum_clearance_lower_bound_m": 1.0066339568798477
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "PASS",
+                  "T3": "FAIL",
+                  "T4": "NOT_REACHED",
+                  "TURN_TASK": "NOT_REACHED",
+                  "failure": {
+                    "code": "OPTIMIZATION_FAILED",
+                    "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "solver_status": "Infeasible_Problem_Detected"
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": "brake_left",
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+              "task_filter_active": true,
+              "task_accepted_candidate_count": 1
+            },
+            "issue_classes": [],
+            "physical": {
+              "prefix_consumed": true,
+              "motion_class": "MOVING_PREFIX",
+              "displacement_xy_m": [
+                0.747047841269883,
+                0.09942566884824582
+              ],
+              "displacement_m": 0.753635150966244,
+              "end_speed_mps": 3.5474487521456837,
+              "prefix_s": 0.2,
+              "minimum_conditional_clearance_lower_bound_m": 1.0066339568798477,
+              "max_abs_acceleration_mps2": 2.0224914638951916,
+              "rms_discrete_jerk_proxy_mps3": 0.7873523510184771,
+              "max_abs_steer_rad": 0.22361144438881642,
+              "solver_status": "Solve_Succeeded",
+              "T4_verdict": "PASS",
+              "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+              "independent_acceptor_pass": true,
+              "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/execution_receipt.json",
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_cb4e6195faad467094fbd4d0a9e960e9",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.3,
+                    -0.4
+                  ],
+                  [
+                    2,
+                    -0.4
+                  ],
+                  [
+                    7,
+                    1.3
+                  ],
+                  [
+                    7,
+                    4
+                  ],
+                  [
+                    -0.3,
+                    0.8
+                  ]
+                ],
+                "desired_speed_mps": 2.5,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1538984253.9124599,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 1,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": {
+          "T2": 5,
+          "T3": 3,
+          "T4": 3
+        },
+        "physical": {
+          "prefix_consumed": true,
+          "motion_class": "MOVING_PREFIX",
+          "displacement_xy_m": [
+            0.747047841269883,
+            0.09942566884824582
+          ],
+          "displacement_m": 0.753635150966244,
+          "end_speed_mps": 3.5474487521456837,
+          "prefix_s": 0.2,
+          "minimum_conditional_clearance_lower_bound_m": 1.0066339568798477,
+          "max_abs_acceleration_mps2": 2.0224914638951916,
+          "rms_discrete_jerk_proxy_mps3": 0.7873523510184771,
+          "max_abs_steer_rad": 0.22361144438881642,
+          "solver_status": "Solve_Succeeded",
+          "T4_verdict": "PASS",
+          "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+          "independent_acceptor_pass": true,
+          "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/execution_receipt.json",
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 2,
+        "relative_sequence_time_s": 1.0,
+        "reference_time_s": 1538984251.9124599,
+        "reference_time_id": "nusc_us_1538984251912460",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/continuous_bend_20261029_v1/inputs/frame_002/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "PASS",
+          "TURN_TASK": "PASS",
+          "ACCEPTOR": "PASS",
+          "EXECUTION": "PASS"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": {
+          "task_profile": "visible_turn_description_v1",
+          "verdict": "PASS",
+          "failure_code": null,
+          "measurements": {
+            "plan_max_abs_yaw_change_deg": 11.540026468021411,
+            "plan_max_abs_center_lateral_displacement_m": 0.912785193524863,
+            "prefix_abs_yaw_change_deg": 3.6191232343186575,
+            "prefix_center_displacement_m": 0.753635150966244,
+            "prefix_center_displacement_xy_m": [
+              0.747047841269883,
+              0.09942566884824582
+            ],
+            "prefix_duration_s": 0.2
+          },
+          "thresholds": {
+            "plan_min_max_abs_yaw_change_deg": 5.0,
+            "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+            "prefix_min_abs_yaw_change_deg": 0.1,
+            "prefix_min_center_displacement_m_exclusive": 0.01
+          },
+          "checks": {
+            "plan_yaw": true,
+            "plan_lateral": true,
+            "prefix_yaw": true,
+            "prefix_moving": true
+          },
+          "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+        },
+        "signed_turn": {
+          "plan_end_yaw_change_deg": 11.540026249004475,
+          "plan_end_lateral_m": 0.912785193524863,
+          "prefix_yaw_change_deg": 3.6191232343186575,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": true,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations, not observations caused by these plans. Each 2s plan and consumed 0.2s prefix starts independently; no stitched execution, real vehicle control or GT evaluation."
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25315,
+        "input_tokens_details": {
+          "cache_write_tokens": 21817,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4795,
+        "output_tokens_details": {
+          "reasoning_tokens": 1396
+        },
+        "total_tokens": 30110
+      },
+      "record_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/record.json",
+      "record_sha256": "e1d5d34c9890bf7d6f5aaa37754bc88b68cc8a67ebf6ed2ef1b2dbe91a6a7e5e",
+      "native_output_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_57f83d27713b4aa9a232ec5ba93062e2",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25315,
+          "input_tokens_details": {
+            "cache_write_tokens": 21817,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4795,
+          "output_tokens_details": {
+            "reasoning_tokens": 1396
+          },
+          "total_tokens": 30110
+        },
+        "structured_output": true,
+        "elapsed_s": 81.72405322268605
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 5,
+        "T3": 3,
+        "T4": 3
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 21.4560718561001,
+            "minimum_clearance_lower_bound_m": 2.4724102278133975,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "original",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950469232638,
+                    "plan_max_abs_center_lateral_displacement_m": 0.10348551252696661,
+                    "prefix_abs_yaw_change_deg": 1.4323950441866942,
+                    "prefix_center_displacement_m": 0.7322191936268201,
+                    "prefix_center_displacement_xy_m": [
+                      0.7311722603327037,
+                      0.03914170710987988
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "FAIL",
+            "objective": 21.456071856104106,
+            "minimum_clearance_lower_bound_m": 2.472410227816746,
+            "task_failure": {
+              "code": "TURN_TASK_NOT_DEMONSTRATED",
+              "category": "task_not_completed",
+              "details": {
+                "candidate_id": "brake_straight",
+                "turn_task": {
+                  "task_profile": "visible_turn_description_v1",
+                  "verdict": "FAIL",
+                  "failure_code": "TURN_TASK_NOT_DEMONSTRATED",
+                  "measurements": {
+                    "plan_max_abs_yaw_change_deg": 1.4323950469232642,
+                    "plan_max_abs_center_lateral_displacement_m": 0.10348551252179994,
+                    "prefix_abs_yaw_change_deg": 1.432395044186695,
+                    "prefix_center_displacement_m": 0.732219193626867,
+                    "prefix_center_displacement_xy_m": [
+                      0.7311722603327507,
+                      0.03914170710988049
+                    ],
+                    "prefix_duration_s": 0.2
+                  },
+                  "thresholds": {
+                    "plan_min_max_abs_yaw_change_deg": 5.0,
+                    "plan_min_max_abs_center_lateral_displacement_m": 0.3,
+                    "prefix_min_abs_yaw_change_deg": 0.1,
+                    "prefix_min_center_displacement_m_exclusive": 0.01
+                  },
+                  "checks": {
+                    "plan_yaw": false,
+                    "plan_lateral": false,
+                    "prefix_yaw": true,
+                    "prefix_moving": true
+                  },
+                  "claim": "Descriptive engineering turning task only; not collision safety, G2 accuracy, or completed real-world corner traversal. Independent T4 and execution acceptance are separately required."
+                }
+              },
+              "repair_request": "A physically verified candidate does not demonstrate the registered turning task. Preserve image-supported road, target and all safety constraints; do not induce an arbitrary swerve on a straight road."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "TURN_TASK": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "TURN_TASK": "PASS",
+            "objective": 9.73978199354912,
+            "minimum_clearance_lower_bound_m": 1.0066339568798477
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "TURN_TASK": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "brake_left",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged.",
+        "task_filter_active": true,
+        "task_accepted_candidate_count": 1
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          0.747047841269883,
+          0.09942566884824582
+        ],
+        "displacement_m": 0.753635150966244,
+        "end_speed_mps": 3.5474487521456837,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.0066339568798477,
+        "max_abs_acceleration_mps2": 2.0224914638951916,
+        "rms_discrete_jerk_proxy_mps3": 0.7873523510184771,
+        "max_abs_steer_rad": 0.22361144438881642,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/openai_bend_sequence_tls_20261029_v1/runtime/frame_002/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_cb4e6195faad467094fbd4d0a9e960e9",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.3,
+              -0.4
+            ],
+            [
+              2,
+              -0.4
+            ],
+            [
+              7,
+              1.3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              -0.3,
+              0.8
+            ]
+          ],
+          "desired_speed_mps": 2.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538984253.9124599,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 1,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "openai_bend_sequence_tls_20261029_v1"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": true,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "overall_success_request_ordinal": 1,
+  "selection_policy": "EARLIEST_EXISTING_PASS",
+  "display_transform_to_first_frame": {
+    "status": "ALIGNED",
+    "translation_m": [
+      3.903709729078236,
+      0.9179312425303049
+    ],
+    "yaw_rad": 0.3165153070509721,
+    "parent_frame": 1,
+    "common_record": {
+      "frame_id": "13b3848fba3442f58870664d973fcb3f",
+      "time_id": "nusc_us_1538984251412460"
+    },
+    "display_only": true,
+    "center_offset_added_again": false
+  }
+}

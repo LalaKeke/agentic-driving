@@ -1,0 +1,85 @@
+{
+  "ended": true,
+  "backend": "openai_api",
+  "charged_requests": 3,
+  "api_post_requests": 3,
+  "user_call_limit": null,
+  "user_authorization": "unlimited requests",
+  "operational_call_ceiling": 12,
+  "unused_operating_slots": 9,
+  "old_budget_inherited": 0,
+  "serial": true,
+  "automatic_transport_retries": 0,
+  "cases": [
+    {
+      "case_id": "frame_000",
+      "status": "CONDITIONAL_CHAIN_PASS",
+      "charged_requests": 2,
+      "api_post_requests": 2,
+      "native_outputs": 2,
+      "usage": {
+        "input_tokens": 53938,
+        "output_tokens": 7391,
+        "total_tokens": 61329
+      },
+      "server_reported_models": [
+        "gpt-6.1-sol"
+      ],
+      "exit_code": 0,
+      "fatal": null,
+      "timed_out": false
+    },
+    {
+      "case_id": "frame_001",
+      "status": "NO_COMPLETE_CHAIN",
+      "charged_requests": 1,
+      "api_post_requests": 1,
+      "native_outputs": 0,
+      "usage": null,
+      "server_reported_models": [],
+      "exit_code": 3,
+      "fatal": {
+        "code": "API_TRANSPORT",
+        "message": "OpenAI connection failed; no retry; raw exception suppressed",
+        "category": "interface_error",
+        "details": {
+          "exception_type": "ConnectError"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "timed_out": false
+    },
+    {
+      "case_id": "frame_002",
+      "status": "NOT_ATTEMPTED",
+      "charged_requests": 0,
+      "api_post_requests": 0,
+      "native_outputs": 0
+    },
+    {
+      "case_id": "frame_003",
+      "status": "NOT_ATTEMPTED",
+      "charged_requests": 0,
+      "api_post_requests": 0,
+      "native_outputs": 0
+    },
+    {
+      "case_id": "frame_004",
+      "status": "NOT_ATTEMPTED",
+      "charged_requests": 0,
+      "api_post_requests": 0,
+      "native_outputs": 0
+    },
+    {
+      "case_id": "frame_005",
+      "status": "NOT_ATTEMPTED",
+      "charged_requests": 0,
+      "api_post_requests": 0,
+      "native_outputs": 0
+    }
+  ],
+  "stop_reason": "SERVICE_INTERFACE_OR_EXECUTION_FAILURE",
+  "elapsed_s": 107.82381150312722,
+  "actual_server_snapshot": null,
+  "recording_boundary": "Recorded six-reference sequence replay, NOT observations following simulated controls. Every frame resets to its recorded ego state. No concatenated planned path is executed."
+}

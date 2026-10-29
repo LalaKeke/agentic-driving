@@ -1,6 +1,8 @@
 # Agentic Driving
 
-[连续转弯六帧回放](implementation/results/continuous_bend_20261029_v1/README.md)：已交付逐帧图/JSON、动画、PDF及统一坐标汇总；首帧服务断连后1/12停止，模型输出0、其余5帧未调用，明确连续模型分析尚未完成。
+[正式API连续转弯结果](implementation/results/api_continuous_bend_20261029_v2/README.md)：同一固定六时刻中5个完成真实模型→T1–T4→模拟移动转弯前缀，最后1个在非生成预检断连；图、动画、PDF与全部失败账本已交付。共9次驾驶POST尝试含2次连接失败，另2次短诊断。417项离线回归通过；不称多轮反事实闭环、G2或长期网络稳定。
+
+[原订阅通道连续转弯六帧回放](implementation/results/continuous_bend_20261029_v1/README.md)：旧批逐帧图/JSON、动画、PDF及统一坐标汇总保留；首帧服务断连后1/12停止，模型输出0、其余5帧未调用。
 
 [弯道验证与曲线重规划](implementation/results/bend_validation_20261029_v1/README.md)：新在线试验2/4后断连停止；改进任务候选筛选，旧真实输出零调用得到−8.60°右转计划并消费−2.73°前缀，404项回归通过，明确不计新在线成功。
 

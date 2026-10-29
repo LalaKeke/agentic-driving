@@ -1,0 +1,240 @@
+{
+  "decision": {
+    "scene_id": "nusc_e6e877f31dd447199b56cae07f86daad",
+    "revision": 1,
+    "behavior": "hold_lane",
+    "target_region": [[-0.5, -0.7], [3, -0.7], [9, 1.5], [9, 4.5], [-0.5, 1]],
+    "desired_speed_mps": 3,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984253.4124599,
+    "hard_requirements": ["target_region", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 0.5,
+      "steering_weight": 0.3,
+      "smoothness_weight": 1
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984251412460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3, -3.8], [9, -3.8], [14, 1], [14, 9], [9, 9], [-3, 2.8]],
+      "uncertainty_m": 0.55,
+      "frame_ids": ["13b3848fba3442f58870664d973fcb3f", "a021949c4a3e48f6b980bcb3b8f9e2e6"],
+      "time_ids": ["nusc_us_1538984251412460", "nusc_us_1538984251404844"]
+    },
+    "objects": [
+      {
+        "id": "front_grey_mitsubishi",
+        "position_m": [15.8, 1.2],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "mitsubishi_two_second_body",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["13b3848fba3442f58870664d973fcb3f"],
+            "time_ids": ["nusc_us_1538984251412460"],
+            "premise_ids": ["body_scale_prior", "parked_vehicle_conditions"],
+            "residual_m": 0.45,
+            "alternatives": [
+              {
+                "scenario_id": "mitsubishi_stationary",
+                "polygon_m": [[13.35, -0.65], [18.25, -0.65], [18.25, 3.05], [13.35, 3.05]]
+              },
+              {
+                "scenario_id": "mitsubishi_bounded_perturbation",
+                "polygon_m": [[13.1, -0.95], [18.5, -0.95], [18.5, 3.35], [13.1, 3.35]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["13b3848fba3442f58870664d973fcb3f"],
+        "time_ids": ["nusc_us_1538984251412460"],
+        "state_time_id": "nusc_us_1538984251412460",
+        "body_geometry": {
+          "length_m": 4.4,
+          "width_m": 1.75,
+          "yaw_rad": 2.65
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["body_scale_prior"],
+          "residual_m": 0.35,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "13b3848fba3442f58870664d973fcb3f",
+              "time_id": "nusc_us_1538984251412460",
+              "position_m": [15.8, 1.2],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mitsubishi_stationary",
+            "premise_ids": ["parked_vehicle_conditions", "body_scale_prior"],
+            "role": "adopted"
+          },
+          {
+            "id": "mitsubishi_bounded_perturbation",
+            "premise_ids": ["parked_vehicle_conditions", "body_scale_prior"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "right_parked_mazda",
+        "position_m": [7.5, -7],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 1,
+        "occupancy": [
+          {
+            "id": "mazda_two_second_body",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["6a43b4b5174f431eba6eb3367d92023e"],
+            "time_ids": ["nusc_us_1538984251370339"],
+            "premise_ids": ["body_scale_prior", "parked_vehicle_conditions"],
+            "residual_m": 0.5,
+            "alternatives": [
+              {
+                "scenario_id": "mazda_stationary",
+                "polygon_m": [[5.5, -9.5], [9.5, -9.5], [9.5, -4.5], [5.5, -4.5]]
+              },
+              {
+                "scenario_id": "mazda_bounded_perturbation",
+                "polygon_m": [[5.2, -9.8], [9.8, -9.8], [9.8, -4.2], [5.2, -4.2]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["6a43b4b5174f431eba6eb3367d92023e"],
+        "time_ids": ["nusc_us_1538984251370339"],
+        "state_time_id": "nusc_us_1538984251412460",
+        "body_geometry": {
+          "length_m": 4.6,
+          "width_m": 1.8,
+          "yaw_rad": 2.1
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": ["body_scale_prior", "mazda_past_alignment"],
+          "residual_m": 0.5,
+          "motion_bound": {
+            "max_speed_mps": 0.2,
+            "displacement_bound_m": 0.009,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "6a43b4b5174f431eba6eb3367d92023e",
+              "time_id": "nusc_us_1538984251370339",
+              "position_m": [7.5, -7],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mazda_stationary",
+            "premise_ids": ["parked_vehicle_conditions", "body_scale_prior"],
+            "role": "adopted"
+          },
+          {
+            "id": "mazda_bounded_perturbation",
+            "premise_ids": ["parked_vehicle_conditions", "body_scale_prior"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local two-second prototype, not a verified trajectory or world-safety claim. Repair: mazda_past_alignment now binds only asynchronous evidence-to-reference alignment; future Mazda scenarios and occupancy bind the separate [0,2] parked_vehicle_conditions premise. No evidence, actor, body envelope, residual, road boundary or safety limit has been changed. Follow the observed left bend while slowing from the supplied 4.101 m/s toward 3 m/s. The convex road polygon estimates continuous asphalt between the inner grass-island curb and opposite parking frontage, using front and pose-compensated front-left evidence and a conditional car-size prior. Metric estimates and residuals are uncalibrated. Cars deeper behind grass/hedges, rear vehicles and the farther right/rear white Honda are excluded under an explicit no-entry condition; the adjacent Mazda remains represented. Hidden entrants, departures beyond declared bounds, incorrect scale or pavement errors beyond residuals invalidate this proposal. No optimization, independent collision/dynamics verification or prefix simulation has been performed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [[-3, -3.8], [9, -3.8], [19, 0], [19, 10], [3, 10], [-3, 3]],
+        "statement": "Model only this finite road-and-frontage domain for two seconds, with no new unobserved entrant and no entry by observed vehicles outside it. The front Mitsubishi and adjacent right Mazda are explicitly retained; the Mazda is represented additionally outside this domain and outside the road boundary. Other cars deeper behind grass/hedges and in rear/right parking areas are conditionally assumed not to enter the local domain. These are falsifiable exclusions, not assertions that no other traffic exists. Follow the visible left bend without assuming a route beyond the modeled road patch."
+      },
+      {
+        "id": "body_scale_prior",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Use conditional passenger-car dimensions: the directly observed grey Mitsubishi is 4.4 m long and 1.75 m wide; the right Mazda is 4.6 m long and 1.8 m wide. Estimate ground-center positions and orientations from apparent body extent, perspective, camera axes and tire/pavement relationships. Assume approximately locally continuous pavement height, without treating calibration as certified depth. Road vertices are an interior polygon estimated from visible curb and parking edges using this conditional scale. Pose-compensate front-left and front-right evidence using supplied acquisition metadata. This geometric prior applies throughout the declared past-alignment and future intervals."
+      },
+      {
+        "id": "parked_vehicle_conditions",
+        "object_ids": ["front_grey_mitsubishi", "right_parked_mazda"],
+        "scenario_ids": ["mitsubishi_stationary", "mitsubishi_bounded_perturbation", "mazda_stationary", "mazda_bounded_perturbation"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Both vehicles appear parked in individual frontage bays. Adopt stationary bodies at their reference states. Retain a reasonable adverse variant with center displacement at most 0.15 m in any direction and yaw deviation at most 0.05 rad throughout [0,2]. These are the complete retained future modes within this conditional parked-vehicle model; a pulling-out maneuver exceeding those bounds is excluded. Each source rectangle encloses the complete oriented body throughout its whole interval, including the native t=0 body. Adverse rectangles additionally enclose the declared displacement and yaw spread. Source residuals exclude alignment residual; total object residual includes both exactly once."
+      },
+      {
+        "id": "mazda_past_alignment",
+        "object_ids": ["right_parked_mazda"],
+        "scenario_ids": ["mazda_stationary", "mazda_bounded_perturbation"],
+        "start_s": -0.043,
+        "end_s": 0,
+        "space_polygon_m": null,
+        "statement": "Alignment-only premise: the Mazda is observed in CAM_FRONT_RIGHT 0.042121 s before reference, seated in a parking bay with a windshield sunshade. Conditional on parked or near-stationary motion during this acquisition interval, bound ground speed by 0.2 m/s and displacement by 0.009 m for both retained scenarios. The native evidence position is expressed in fixed reference axes after supplied ego-pose compensation. Transfer it to reference with a 0.5 m alignment residual including the displacement bound and visual localization error. This premise does not support future occupancy; that is separately supported by parked_vehicle_conditions over [0,2]."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["13b3848fba3442f58870664d973fcb3f"],
+      "time_ids": ["nusc_us_1538984251412460"],
+      "premise_ids": ["body_scale_prior"],
+      "anchors": [
+        {
+          "object_id": "front_grey_mitsubishi",
+          "dimension": "length_m",
+          "value_m": 4.4,
+          "rationale": "Conditional compact-sedan length prior for the individual grey Mitsubishi visibly facing obliquely toward the roadway; equals its native body length."
+        },
+        {
+          "object_id": "front_grey_mitsubishi",
+          "dimension": "width_m",
+          "value_m": 1.75,
+          "rationale": "Conditional compact-sedan width prior for the same directly observed Mitsubishi; equals its native body width."
+        }
+      ],
+      "metric_reasoning": "The reference-image Mitsubishi spans approximately columns 580–860, with tire/pavement contact near rows 620–635. Its oblique front-and-side appearance, the conditional 4.4 by 1.75 m body prior and supplied camera axes support an approximate center [15.8,1.2] and yaw 2.65 rad. This approximate scale and visible curb perspective support the finite road polygon and leftward bend. Front-left evidence supplies the inner bend boundary after acquisition-pose compensation. The Mazda's front/side extent in the cited front-right image supports its approximate center [7.5,-7] after ego compensation. These are model estimates, not calibrated ground-plane measurements or certified pixel fits."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}
