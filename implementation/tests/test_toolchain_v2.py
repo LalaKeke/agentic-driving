@@ -83,6 +83,11 @@ class ToolchainV2Tests(unittest.TestCase):
         self.assertEqual(before,digest((self.cap,self.out,self.prov,self.scene)))
         tampered=deepcopy(result);tampered['trajectory']['points'][1]['x_m']+=.1
         self.assertFalse(assess_round(tampered,self.cap)['software_success'])
+        for downgrade_corridor in (False,True):
+            downgraded=deepcopy(result)
+            downgraded['trajectory']['search_profile']=t2.SEARCH_PROFILE
+            if downgrade_corridor:downgraded['corridor']['search_profile']=t2.SEARCH_PROFILE
+            self.assertFalse(assess_round(downgraded,self.cap)['software_success'])
 
     def test_future_adverse_body_at_source_boundary_is_still_checked(self):
         output=deepcopy(self.out);actor=output['hypotheses']['objects'][0]
