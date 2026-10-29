@@ -288,7 +288,9 @@ def render_frame(row, result, cap, out, plt, np, Patch, Image):
         speed_ax.legend(fontsize=8)
     else:
         bev.text(.5, .94, 'NO PLAN / NO PREFIX', color='#b33', ha='center', transform=bev.transAxes)
-        speed_ax.text(.5, .5, 'NOT_REACHED — no planned speed', ha='center', transform=speed_ax.transAxes)
+        speed_ax.text(.5, .5, 'NOT_REACHED\nNo trajectory (unknown, not zero)', ha='center',
+                      va='center', transform=speed_ax.transAxes)
+        speed_ax.set_xticks([]); speed_ax.set_yticks([])
     if not native:
         bev.text(.5, .5, 'NO NATIVE MODEL OUTPUT\nGeometry unknown, not empty',
                  ha='center', transform=bev.transAxes, color='#b33')
@@ -367,9 +369,31 @@ def render_overview(rows, results, transforms, out, plt, np):
     yaw.axhline(5, color='#999', ls=':'); yaw.axhline(-5, color='#999', ls=':')
     speed.grid(alpha=.2); yaw.grid(alpha=.2)
     if speed.get_legend_handles_labels()[0]: speed.legend(fontsize=7)
-    fig.suptitle('One original recording / six independent online decisions', fontsize=17)
+    counts = observation_counts(rows, results)
+    if counts['frames_with_plan'] == 0:
+        for axis in (speed, yaw):
+            axis.clear(); axis.set_xticks([]); axis.set_yticks([])
+            axis.text(.5, .5, 'NOT_REACHED\nNo trajectory (unknown, not zero)',
+                      ha='center', va='center', fontsize=15, color='#a44', transform=axis.transAxes)
+        speed.set_title('Planned speed: NOT_REACHED')
+        yaw.set_title('Planned turn: NOT_REACHED')
+    fig.suptitle(counts_title(counts), fontsize=16)
     fig.text(.02, .014, LIMITATION, fontsize=8)
     fig.tight_layout(rect=(0, .04, 1, .95)); fig.savefig(out, dpi=150); plt.close(fig)
+
+
+def observation_counts(rows, results):
+    return dict(fixed_observation_times=len(rows),
+                attempted_observation_times=sum(r['charged_requests'] > 0 for r in rows),
+                charged_requests=sum(r['charged_requests'] for r in rows),
+                native_outputs=sum(r['native_json_count'] for r in rows),
+                frames_with_plan=sum(bool(r.get('trajectory')) for r in results))
+
+
+def counts_title(counts):
+    return (f"One recorded sequence | {counts['attempted_observation_times']}/"
+            f"{counts['fixed_observation_times']} times attempted | "
+            f"{counts['native_outputs']} native outputs | {counts['frames_with_plan']} plans")
 
 
 def main(plan_path, out):
@@ -388,6 +412,7 @@ def main(plan_path, out):
         if row['relative_sequence_time_s'] is None:
             row['relative_sequence_time_s'] = row['reference_time_s'] - rows[0]['reference_time_s']
     transforms = align_captures(captures)
+    counts = observation_counts(rows, results)
     for row, transform in zip(rows, transforms):
         row['display_transform_to_first_frame'] = transform
     with tempfile.TemporaryDirectory(prefix='bend-sequence-mpl-') as cache:
@@ -413,13 +438,16 @@ def main(plan_path, out):
         sheet.save(out / 'contactsheet.png')
         pages = [ImageOps.pad(i, (width, height), color='white') for i in thumbs]
         pages[0].save(out / 'sequence.gif', save_all=True, append_images=pages[1:], duration=1300, loop=0)
-        pages[0].save(out / 'casebook.pdf', save_all=True, append_images=pages[1:], resolution=110.)
+        with Image.open(out / 'sequence_overview.png') as overview:
+            overview.convert('RGB').save(out / 'casebook.pdf', save_all=True,
+                                         append_images=pages, resolution=110., title=counts_title(counts))
     summary = dict(experiment_id=plan.get('experiment_id'), ended=True,
                    unique_scenes=len({c['scene_token'] for c in plan['cases']}),
                    unique_observation_times=len(rows),
                    charged_requests=sum(r['charged_requests'] for r in rows),
                    conditional_chain_passes=sum(r['status'] in ('FIRST_ATTEMPT_PASS', 'REVISION_PASS') for r in rows),
                    not_attempted=sum(r['status'] == 'NOT_ATTEMPTED' for r in rows),
+                   actual_counts=counts,
                    no_extra_model_calls=True, GT_used=False, claim=LIMITATION,
                    frames=rows, self_checks=checks)
     write_json_new(out / 'sequence_summary.json', summary)
@@ -440,7 +468,8 @@ def main(plan_path, out):
                     f'<img src="{r["case_id"]}/result.png"></section>' for r in rows)
     document = ('<!doctype html><meta charset="utf-8"><title>Recorded turning sequence</title>'
                 '<style>body{font:16px sans-serif;max-width:1400px;margin:auto;padding:20px}img{max-width:100%}section{margin:30px 0}</style>'
-                '<h1>连续转弯场景：逐时刻结果</h1><p>' + html.escape(LIMITATION) + '</p>'
+                '<h1>连续转弯场景：逐时刻结果</h1><p>' + html.escape(counts_title(counts)) + '</p><p>'
+                + html.escape(LIMITATION) + '</p>'
                 '<p>GT未使用；方向与道路一致性需要独立阅图。灰色NOT_REACHED不计通过。</p>'
                 '<p><a href="casebook.pdf">PDF</a> · <a href="sequence_summary.csv">CSV</a> · '
                 '<a href="sequence_summary.json">完整JSON</a> · <a href="sequence.gif">GIF</a></p>'
