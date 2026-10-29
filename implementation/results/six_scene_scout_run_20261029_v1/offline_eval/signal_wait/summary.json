@@ -1,0 +1,71 @@
+{
+  "status": "NATIVE_METRIC_HYPOTHESIS_ANNOTATION_PROXY_ONLY_T1_REJECTED",
+  "unique_windows": 1,
+  "native_responses": 1,
+  "primary_response": "attempt_01",
+  "selected_slots": 2,
+  "matched": 2,
+  "ambiguous_or_unmatched": 0,
+  "position_missing": 0,
+  "body_missing": 0,
+  "occupancy_missing": 0,
+  "definition_comparable_native_current_rows": 2,
+  "accepted_T1_alignment_rows": 0,
+  "current_hypothesis_scored": 2,
+  "future_hypothesis_complete_scored": 2,
+  "future_intervals": 20,
+  "model_calls": 0,
+  "gt_runtime_feedback": false,
+  "association_by_error": false,
+  "nonblind": true,
+  "comparability": "The native declared BODY center, frame and reference epoch are explicit and comparable to annotation at that epoch. The temporal premises were NOT accepted by T1. These are nominal hypothesis differences, not accepted/verified aligned states.",
+  "planning_use": {
+    "T1": "PREMISE_SCOPE",
+    "original_stages": {
+      "stages": {
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "PREMISE_SCOPE",
+        "message": "Conditional premise does not cover this object, scenario and whole time interval",
+        "category": "interface_error",
+        "details": {
+          "premise_id": "queued_motion",
+          "object_id": "left_black_sedan"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "prefix_consumed": false,
+    "revision_native_output": false
+  },
+  "evaluation_limits": [
+    "Only this released window and two legal visible identity associations; no metric output from the failed service revision.",
+    "Left black car is close and truncated in its cited camera, so identity confirmation is not full visible-body dimension measurement.",
+    "Reference-state definitions match, but the original T1 premise-scope failure is retained; evaluation does not extend or repair any premise.",
+    "All scenarios and original total residual once; prediction evaluation excludes ego1m safety inflation.",
+    "Annotation interpolated bodies are observational surrogate futures, not measured continuous occupancy or counterfactual response to a newly executed trajectory.",
+    "High area overlap of broad envelopes is not calibrated prediction, planning success or safety; no pass threshold."
+  ],
+  "inputs_sha256": {
+    "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/SHA256_WINDOW_MANIFEST.json": "4b795124d3f676ba6e8538854a9cdcf210c403eedacaed0a7c031154efe7005f",
+    "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json": "2338c4ca8412dd0b0ecaa583c3cf15307908580d1517941c0f316162bd64a10a",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/signal_wait/identity_review.json": "6fd8ee82acde8ec40669e59c4655c6eccda6a3237994f1d526d986fd62e59c27",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/signal_wait/identity_freeze.json": "4a2f80951b60efbd68bad7361c0923f5ee337f9911e0a64c58cfd300b2925a7d",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/signal_wait/comparison_wrapper.py": "a4ce9718bcebd6fcb29a9f9f1e00f7185846b31b0fffff16ab643d7080de5195",
+    "implementation/experiments/critical_actor_comparison.py": "cd9f8e9d580663c3c52adbe80a80ccd50d8c3f30f5410790ddc7a541eacbbf41"
+  },
+  "arithmetic_checks": {
+    "position_norms": 2,
+    "future_intervals": 20,
+    "passed": true
+  }
+}

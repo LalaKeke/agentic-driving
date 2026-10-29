@@ -1,0 +1,326 @@
+{
+  "status": "OFFLINE_ANNOTATION_PROXY_COMPARISON_ONLY",
+  "unique_windows": 1,
+  "native_responses": 2,
+  "primary_response": "attempt_02",
+  "selected_slots": 2,
+  "matched": 2,
+  "ambiguous_or_unmatched": 0,
+  "position_missing": 0,
+  "body_missing": 0,
+  "occupancy_missing": 0,
+  "primary_current_scored": 2,
+  "primary_future_complete_scored": 2,
+  "future_intervals_primary": 20,
+  "model_calls": 0,
+  "gt_runtime_feedback": false,
+  "association_by_error": false,
+  "nonblind": true,
+  "source_comparison": [
+    {
+      "object_id": "blue_rear_adjacent",
+      "current_position_body_residual_unchanged": true,
+      "initial_sources": 1,
+      "revision_sources": 10,
+      "initial_source_intervals": [
+        [
+          0,
+          2
+        ]
+      ],
+      "revision_source_intervals": [
+        [
+          0,
+          0.2
+        ],
+        [
+          0.2,
+          0.4
+        ],
+        [
+          0.4,
+          0.6
+        ],
+        [
+          0.6,
+          0.8
+        ],
+        [
+          0.8,
+          1
+        ],
+        [
+          1,
+          1.2
+        ],
+        [
+          1.2,
+          1.4
+        ],
+        [
+          1.4,
+          1.6
+        ],
+        [
+          1.6,
+          1.8
+        ],
+        [
+          1.8,
+          2
+        ]
+      ],
+      "initial_oriented_coverage": 0.9835751826238637,
+      "revision_oriented_coverage": 0.9835751826238637,
+      "initial_oriented_area_inflation": 10.663260081710643,
+      "revision_oriented_area_inflation": 5.693991559772447,
+      "status": "MODELS_NATIVE_RESEGMENTATION_NOT_TOOL_REPAIR"
+    },
+    {
+      "object_id": "rear_own_lane_car",
+      "current_position_body_residual_unchanged": true,
+      "initial_sources": 1,
+      "revision_sources": 2,
+      "initial_source_intervals": [
+        [
+          0,
+          2
+        ]
+      ],
+      "revision_source_intervals": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "initial_oriented_coverage": 1.0,
+      "revision_oriented_coverage": 1.0,
+      "initial_oriented_area_inflation": 14.436742658182615,
+      "revision_oriented_area_inflation": 10.954080258483291,
+      "status": "MODELS_NATIVE_RESEGMENTATION_NOT_TOOL_REPAIR"
+    }
+  ],
+  "planning_use": [
+    {
+      "attempt": 1,
+      "T1": "PASS",
+      "candidates": [
+        {
+          "candidate_id": "original",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_straight",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_right",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_SEED_BLOCKED",
+            "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+            "category": "tool_infeasible",
+            "details": {
+              "object_id": "blue_rear_adjacent",
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_left",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_right_strong",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_SEED_BLOCKED",
+            "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+            "category": "tool_infeasible",
+            "details": {
+              "object_id": "blue_rear_adjacent",
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        }
+      ],
+      "prefix_consumed": false,
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED"
+    },
+    {
+      "attempt": 2,
+      "T1": "PASS",
+      "candidates": [
+        {
+          "candidate_id": "original",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_straight",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_right",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_left",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_EMPTY",
+            "message": "Empty convex cell",
+            "category": "tool_infeasible",
+            "details": {
+              "interval": [
+                0.0,
+                0.2
+              ]
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        },
+        {
+          "candidate_id": "brake_right_strong",
+          "T2": "FAIL",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "failure": {
+            "code": "CORRIDOR_INITIAL_STATE",
+            "message": "First corridor cell must contain the true initial rear axle",
+            "category": "tool_infeasible",
+            "details": {},
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        }
+      ],
+      "prefix_consumed": false,
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED"
+    }
+  ],
+  "evaluation_limits": [
+    "Only one curated window and two visually associated cars; not detection recall, population accuracy or stability rate.",
+    "The annotation is an interpolated body proxy at exact capture reference epoch; future interpolation is not measured continuous truth.",
+    "Original total model residual added exactly once, all retained scenarios unioned, no ego1m margin added to prediction accuracy geometry.",
+    "High surrogate overlap of a large union is not reliable prediction or safety.",
+    "Source refinements are original model JSON; current centers, BODY and total residual did not change.",
+    "No T3/T4/prefix reached; this report does not authorize planning."
+  ],
+  "inputs_sha256": {
+    "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/SHA256_WINDOW_MANIFEST.json": "7c021a3f411e67628c5b4d143bde0d2ed2e1a10d2abd1b34d022ac26946b4ec0",
+    "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_01/record.json": "571574de92a25d5ab6f398c1916dafb6c2bdab824d20f8d33c565c22ce6aad91",
+    "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json": "f6c00f9142ebb1081feaefdc256d13be2160980ea4164073c78ac583e9ec3571",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/ordinary_straight/identity_review.json": "1d2320e48ef8d21b02809e0109c0082b524e1d1d8c0ea6630ab29a3728620201",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/ordinary_straight/identity_freeze.json": "81f01450e9f5a8210ff7cfe2191e161040ed6912e41bcfa0a999781351060695",
+    "implementation/results/six_scene_scout_run_20261029_v1/offline_eval/ordinary_straight/comparison_wrapper.py": "e5e9cf7be37d7b875171ed5070f501318d3a59b8da225f91e6647cdb14deb9ca",
+    "implementation/experiments/critical_actor_comparison.py": "cd9f8e9d580663c3c52adbe80a80ccd50d8c3f30f5410790ddc7a541eacbbf41"
+  },
+  "arithmetic_checks": {
+    "position_norms": 4,
+    "future_intervals": 40,
+    "passed": true
+  }
+}

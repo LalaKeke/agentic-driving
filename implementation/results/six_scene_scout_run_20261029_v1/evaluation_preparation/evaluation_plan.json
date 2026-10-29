@@ -1,0 +1,162 @@
+{
+  "evaluation_id": "six_scene_scout_critical_objects_offline_v1",
+  "state": "WAIT_FOR_PARENT_RUNTIME_SEAL_NOTICE",
+  "model_requests": 0,
+  "gt_dataset_reads": 0,
+  "online_output_reads": 0,
+  "execution_authorized_for_evaluation_now": false,
+  "runtime_root": "implementation/results/six_scene_scout_run_20261029_v1",
+  "main_windows": [
+    {
+      "case_id": "ordinary_straight",
+      "scene_token": "c5224b9b454b4ded9b5d2d2634bbda8a",
+      "sample_token": "7df1288fed8a403b8e7a35112b392d7c"
+    },
+    {
+      "case_id": "following_deceleration",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "0d0700a2284e477db876c3ee1d864668"
+    },
+    {
+      "case_id": "signal_wait",
+      "scene_token": "6f83169d067343658251f72e1dd17dbc",
+      "sample_token": "6dabc0fb1df045558f802246dd186b3f"
+    },
+    {
+      "case_id": "neighbor_bend",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "a19a80c905674faab7203a3a4e0f5246"
+    },
+    {
+      "case_id": "pedestrian_interaction",
+      "scene_token": "de7d80a1f5fb4c3e82ce8a4f213b450a",
+      "sample_token": "07c29094cb6144aa889c16c52f762d79"
+    },
+    {
+      "case_id": "night_straight",
+      "scene_token": "d25718445d89453381c659b9c8734939",
+      "sample_token": "1ddf7a48af3d43be8763f154974f09ce"
+    }
+  ],
+  "unique_windows": 6,
+  "held_out_windows_included": false,
+  "source_head": "a16e0470e159ab73b2472ef4bc15993b72787b57",
+  "preparation_inputs_sha256": {
+    "implementation/results/six_scene_scout_preparation_20261029_v1/selection_final.json": "296e2fcef0c3fe367359b9dfc4a2b67b71ffe89055e0f67a57e64b9b4b51f1e7",
+    "implementation/experiments/critical_actor_comparison.py": "cd9f8e9d580663c3c52adbe80a80ccd50d8c3f30f5410790ddc7a541eacbbf41",
+    "implementation/experiments/blocking_actor_comparison.py": "5b0879b4e52d362f41ec31089425939064fdff862686c2c095137f4cb7a99091",
+    "implementation/experiments/bus_actor_comparison.py": "8dffff6289d78356b9a4cf6ce3d512327f1d4432e871e276bbd4efd1c1a2350a",
+    "implementation/agentic/g2_metric.py": "6163a61d87aad2f98b67cb81ce369bcfadb3a930a9f021b398edcfaa726841fe"
+  },
+  "measurement_semantics": {
+    "contract": "3.0.0-exp2",
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once",
+    "ego_center_to_rear_axle_m": 1.2,
+    "current_epoch": "capture.metadata.reference_time_s from actual acquisition record; no retiming to annotation sample",
+    "units": {
+      "position": "m",
+      "length_width": "m",
+      "yaw": "rad",
+      "future_time": "s"
+    }
+  },
+  "evaluation_domain": {
+    "entities": "Only the1-2 decisive declared actors per window selected by the fixed rule below, with a legal visible identity association.",
+    "space": "Full selected actor BODY / full declared future union; do not clip either predicted or GT geometry to an ROI to improve coverage or inflation.",
+    "time": "Current capture reference plus full closed[0,2]s, in10 original0.2s intervals.",
+    "model_local_scope": "Kept as the runtime planning condition; it is not silently expanded or used to crop away a prediction mismatch."
+  },
+  "attempt_policy": {
+    "main": "Last valid native response in a window; preserve initial/revision availability and record ID.",
+    "optional_initial_comparison": "May report the same visible actor in initial versus revision separately; never adds an independent window or assumes identity solely from ID/pointer equality.",
+    "no_output": "NO_NATIVE_OUTPUT, no actor-declaration denominator and no scores; do not call this zero error or zero missing rate."
+  },
+  "object_selection_rule": {
+    "maximum_per_window": 2,
+    "minimum_target_slots": 1,
+    "first": "Highest-priority interaction/yield/lead object explicitly used by the native decision; if absent, use the closest declared actor relevant to the local intended motion from model evidence.",
+    "second": "Different actor with smallest reported conditional clearance or decisive T2/T4 conflict across all candidates. If unavailable or duplicate, select one object and explain.",
+    "forbidden": "No selection or association by numerical GT error, future GT coverage, or planning success. A failed T1 window is not excluded solely because planning failed.",
+    "missing": "No eligible declared object or essential native metric quantity remains an explicit missing/unassessable slot, never invented output."
+  },
+  "identity_review": {
+    "release_gate": "Only after parent reports the corresponding runtime evidence saved/sealed may image/semantic views and GT be read.",
+    "evidence": "Actual referenced images and acquisition IDs, semantic appearance, camera/time, then official nuScenes projection for visible instance identity.",
+    "freeze": "Store selected object IDs/reasons, association status and candidate/instance IDs before computing numerical errors; do not choose nearest GT to reduce error.",
+    "ambiguities": [
+      "crowd or aggregate versus single annotation",
+      "articulated bus whole versus per-section annotations",
+      "unseen or occluded body",
+      "no legal same-instance time bracket"
+    ],
+    "disclosure": "Historical project images/truth and some actors have been exposed; no claim of a blind or unseen evaluation. New matching should avoid model numerical values where practicable."
+  },
+  "comparability_guards": [
+    "Exact native contract/measurement semantics, output SHA/provenance and actual image/capture references must match sealed records.",
+    "Current native position/body and state_time_id must mean box center groundXY at the same reference epoch. Null/legacy/conflicting definitions are NOT_COMPARABLE, no coercion or retrospective definition switching.",
+    "GT current state requires same-instance legal annotation interpolation at the exact camera reference epoch, with a bracketing gap<=0.75s; no extrapolation.",
+    "Use nuScenes size order width/length consistently. A square BODY or pedestrian authored yaw0 is not automatically a facing-direction measurement. Retain raw parameter difference only when useful; otherwise yaw score=null with reason.",
+    "Aggregated facilities or a full articulated bus cannot be forced onto one GT box or silently merged to obtain a score."
+  ],
+  "metrics": {
+    "current": [
+      "center_error_m",
+      "absolute_length_error_m",
+      "absolute_width_error_m",
+      "wrapped_yaw_parameter_difference_rad_if_comparable"
+    ],
+    "future": [
+      "raw_union_area_coverage",
+      "raw_union_area_inflation",
+      "total_residual_once_expanded_area_coverage",
+      "total_residual_once_expanded_area_inflation",
+      "valid_interval_count_of10"
+    ],
+    "occupancy": "Union every retained scenario and all coarse sources touching each original closed interval; never shrink alternatives or infer predictions from velocity.",
+    "residual": "Apply original native uncertainty_m total radius exactly once. BODY size is already in polygons. Source/alignment residual components are not added again. The ego1m safety margin is not added to prediction-accuracy geometry.",
+    "gt_surrogate": "Reuse existing oriented annotation-linear center/size/shortest-yaw interpolation surrogate, with conservative<=0.02s subsegments. This is not measured continuous future truth.",
+    "incomplete_future": "Null, time gaps, placeholder or unbracketedGT retain explicit reasons and interval denominator. No aggregate full2s metric unless all10 intervals are comparable.",
+    "planning_usability": "Read original sealed T1/T2/candidate/T3/T4/acceptor/prefix outcomes bound to the exact output; coverage never authorizes planning.",
+    "counts": [
+      "selected_slots",
+      "declared_objects",
+      "position_missing",
+      "body_missing",
+      "occupancy_missing",
+      "matched",
+      "ambiguous_or_unmatched",
+      "current_scored",
+      "future_complete_scored",
+      "unique_windows_with_outputs"
+    ],
+    "thresholds": null,
+    "pass_claim": false
+  },
+  "implementation_reuse": {
+    "base": "implementation/experiments/critical_actor_comparison.py",
+    "minimal_needed_adapter": "After release, point BASE/CASES at the new per-case runtime records and frozen actor review, while handling no-output/null/incomparable rows before invoking legacy arithmetic. Keep all results separate from runtime.",
+    "known_existing_helper_limitations": [
+      "Hard-coded old CASES/BASE require a case-specific wrapper.",
+      "Existing arithmetic assumes non-null position/body/occupancy, so unscorable slots must be retained explicitly instead of passed into it.",
+      "Pedestrian/aggregate yaw and granularity need explicit no-score reasons.",
+      "Strict g2_metric planning binder currently expects legacy corridor_v2, so do not use its binder to falsely reject or certify new candidate corridors; copy sealed planner status with source hashes."
+    ]
+  },
+  "prohibited_until_release": [
+    "reading new native outputs",
+    "reading sample_annotation/instance/category/visibility tables",
+    "reading maps or future GT",
+    "running official SDK annotation projection"
+  ],
+  "prohibited_always": [
+    "feeding GT identities/numbers/projections back to runtime model or tools",
+    "altering native outputs",
+    "modifying planner/prompt during the frozen batch",
+    "calling a real model from evaluation"
+  ]
+}

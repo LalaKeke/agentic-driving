@@ -1,0 +1,35 @@
+{
+  "status": "PENDING_INCOMPLETE_SIX_WINDOW_BATCH",
+  "algorithm_changes_implemented": false,
+  "reason": "Only3/6 windows attempted; the frozen plan forbids algorithm tuning before completing the batch. Service failure stopped all later calls.",
+  "observed_problem_classes_unique_windows": {
+    "T1_CONTRACT_GEOMETRY": 2,
+    "SERVICE_INTERFACE": 1,
+    "T2_CORRIDOR": 1
+  },
+  "interpretation": "T1_CONTRACT_GEOMETRY is a broad output-contract bucket: one BODY envelope conflict and one asynchronous premise-scope failure, not proof of one common geometry cause. Counts may overlap and include initial failures repaired by revision.",
+  "two_most_worthwhile_changes": null,
+  "next_step": "Restore reliable generation connectivity, then explicitly decide whether to continue exactly the three unattempted windows with frozen settings and the existing call ledger. Do not rerun or replace already attempted windows.",
+  "remaining_registered_windows": [
+    "neighbor_bend",
+    "pedestrian_interaction",
+    "night_straight"
+  ],
+  "unused_main_call_slots": 6,
+  "new_generation_launched": false,
+  "preserve_existing_bus_parking_successes": true,
+  "held_out_validation": {
+    "windows": [
+      "heldout_intersection",
+      "heldout_night_pedestrian"
+    ],
+    "scene_names": [
+      "scene-0757",
+      "scene-1100"
+    ],
+    "launched": false,
+    "authorized_calls": 0,
+    "proposed_separate_limit": 4,
+    "requires_completed_batch_and_two_evidence_based_modifications": true
+  }
+}

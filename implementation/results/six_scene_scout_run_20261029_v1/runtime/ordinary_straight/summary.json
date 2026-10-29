@@ -1,0 +1,64 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "planner_profile": "bounded_seed_candidates_v1",
+  "charged_requests": 2,
+  "budget_limit": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CORRIDOR_SEED_BLOCKED",
+        "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "blue_rear_adjacent",
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "attempt": 2,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {},
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "fatal": null,
+  "prototype_conditional_success": false,
+  "prefix_consumed": false,
+  "source_commit": "a16e0470e159ab73b2472ef4bc15993b72787b57",
+  "mode": "online",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

@@ -1,0 +1,370 @@
+{
+  "review_kind": "LIGHTWEIGHT_NONBLIND_IMAGE_DECISION_PREFIX_REVIEW",
+  "new_model_calls": 0,
+  "ground_truth_reads": 0,
+  "core_modified": false,
+  "scope": "仅审阅三已调用窗口的原始参考前图、原生决策/条件前提和现有模拟回执；后三窗未调用。",
+  "truth_boundary": "不是GT准确率、完整跟车控制、真实车辆安全或多轮反事实闭环评价；不向模型或工具反馈任何审阅结论。",
+  "rows": [
+    {
+      "case_id": "ordinary_straight",
+      "reviewed_record_paths": [
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_01/record.json",
+          "sha256": "571574de92a25d5ab6f398c1916dafb6c2bdab824d20f8d33c565c22ce6aad91"
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json",
+          "sha256": "f6c00f9142ebb1081feaefdc256d13be2160980ea4164073c78ac583e9ec3571"
+        }
+      ],
+      "decision_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json",
+        "json_pointer": "/output/decision",
+        "value": {
+          "scene_id": "nusc_7df1288fed8a403b8e7a35112b392d7c",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -2,
+              -1.6
+            ],
+            [
+              28,
+              -1.6
+            ],
+            [
+              28,
+              1.6
+            ],
+            [
+              -2,
+              1.6
+            ]
+          ],
+          "desired_speed_mps": 11.88,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1538448758.51246,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        }
+      },
+      "raw_image_evidence": {
+        "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-02-10-50-40+0800__CAM_FRONT__1538448756512460.jpg",
+        "sha256": "6fef287d4099b5ac45dd740ebc3afd0f2d8e894eb55f087f737a1d488b628ec6",
+        "frame_id": "3299ffab259345fdaa4928d665a2c59d",
+        "time_id": "nusc_us_1538448756512460",
+        "camera_id": "CAM_FRONT",
+        "kind": "ORIGINAL_CAM_FRONT_PIXELS_NOT_Z0_PROJECTION"
+      },
+      "local_scope_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json",
+        "json_pointer": "/output/hypotheses/premises/0/statement",
+        "value": "Model this finite continuous paved road patch for two seconds, adopting straight continuation in the current left lane, no new unobserved entrant into this domain, and continuing green permission. Visible distant forward vans and cars remain beyond x=34 without reversing into the patch; vehicles across the right pedestrian pavement remain outside it. Retain every previously declared rear and adjacent vehicle, including actors outside the patch whose movements could threaten it. Actor motion and scale premises are spatially unrestricted and are not clipped at this domain boundary. These conditions are falsifiable exclusions, not claims of whole-world coverage. The convex road polygon follows the visible left curb, right junction pavement and narrowing at the island, with a short rear extension supported by the rear image and ego history. It includes the physical current footprint and proposed forward route, but does not fit the mandated conservative disk."
+      },
+      "confidence_note_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json",
+        "json_pointer": "/output/hypotheses/confidence_note",
+        "value": "Revision repairs temporal overaggregation rather than deleting the blue rear vehicle or reducing its movement bounds: blue BODY sources now span 0.2 seconds, and the other rear sources span one second. Adopted rear lateral envelopes are slightly enlarged to contain yaw plus drift. Closed-intersection source retention can still produce conservative conflicts; no solver success or verified prefix is claimed. Independently, the observed left curb at approximately y=2.2 conflicts with the required initial rear-axle disk radius hypot(3.5,0.9)=3.61 m even before the 1 m margin. This cannot be repaired by steering or a different target region at t=0; the road is not widened to conceal it. The decision is a conditional candidate for verification, not execution authorization. Ego starts at 11.8806 m/s: maximum braking requires approximately 3.96 seconds and 23.53 m to stop, so no two-second stop is asserted. Excluded world conditions include new occluded entrants, actor departures from the declared motion bounds, signal changes, and distant vehicles reversing into the patch. Metric geometry and residuals are model estimates, not calibrated guarantees."
+      },
+      "model_declared_actor_ids": [
+        "red_sedan_right",
+        "black_hatch_right",
+        "blue_rear_adjacent",
+        "dark_rear_adjacent",
+        "rear_own_lane_car"
+      ],
+      "ground_truth_read": false,
+      "prefix_consumed": false,
+      "motion_class": "NOT_EXECUTED",
+      "assessment": "NOT_EVALUATED_NO_PREFIX",
+      "assessment_zh": "没有轨迹/前缀，不评价动作效果。",
+      "visual_observations": [
+        "参考原图可见直路、车道/路口标记和绿灯样式发光信号；其适用性和模型米制量不是本审阅的真值结论。"
+      ],
+      "execution_evidence": null,
+      "reason_no_action_assessment": "两份原生输出均未通过T2，未消费前缀。模型文字中的旧外接圆说明不作为本审阅认可的规划器事实。"
+    },
+    {
+      "case_id": "following_deceleration",
+      "reviewed_record_paths": [
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_01/record.json",
+          "sha256": "dfb67a8426e890a21da592ecbd7ef485101509ffce374fe07d5942c458045bb8"
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/record.json",
+          "sha256": "34ffcd4c96274127ea6880d6d4b5164b6d6a17530b5081b28ed108f059315e62"
+        }
+      ],
+      "decision_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/record.json",
+        "json_pointer": "/output/decision",
+        "value": {
+          "scene_id": "nusc_0d0700a2284e477db876c3ee1d864668",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -3,
+              -1.5
+            ],
+            [
+              16,
+              -1.5
+            ],
+            [
+              16,
+              1.5
+            ],
+            [
+              -3,
+              1.5
+            ]
+          ],
+          "desired_speed_mps": 2,
+          "yield_to": [],
+          "stop": null,
+          "priority": 10,
+          "valid_until_s": 1533151611.512404,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 4,
+            "smoothness_weight": 2
+          }
+        }
+      },
+      "raw_image_evidence": {
+        "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151609512404.jpg",
+        "sha256": "d7b1f0040c5afe17c663de394815309bb54818fbe599483430d049e3cc5eda9b",
+        "frame_id": "f9b9612d1bec41cf974eb41c202759f7",
+        "time_id": "nusc_us_1533151609512404",
+        "camera_id": "CAM_FRONT",
+        "kind": "ORIGINAL_CAM_FRONT_PIXELS_NOT_Z0_PROJECTION"
+      },
+      "local_scope_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/record.json",
+        "json_pointer": "/output/hypotheses/premises/0/statement",
+        "value": "Model this finite local pavement patch for two seconds, with the unrestricted-spatial actor premises separately covering complete bodies that straddle its boundary. Adopt no additional unobserved entrant into this domain. Visible sidewalk pedestrians remain outside the pavement; other parked vehicles remain parked; side-street vehicles not already entering remain outside; distant forward traffic continues away. Explicitly retain the entering black SUV and approaching silver sedan with adverse bounded motion. These are falsifiable local prototype conditions, not exhaustive world-future claims."
+      },
+      "confidence_note_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/record.json",
+        "json_pointer": "/output/hypotheses/confidence_note",
+        "value": "Conditional two-second prototype, not calibrated depth or verified safety. Retained all four previously declared actors, motion modes, residuals, road geometry and physical requirements. Rounded sedan and compact body envelopes outward by 0.01 m to enclose oriented corners before residual inflation; extended the SUV adverse envelope to x=22.1 to cover its stated translation and heading ranges. Brake toward 2 m/s from the trusted initial 6.63 m/s; this is not an instantaneous speed change. Excluded conditions include new entrants, sidewalk pedestrians stepping into this pavement patch, parked vehicles departing, and traffic outside the stated motion bounds. Rear-facing red signals do not establish a stop requirement ahead. Independent collision, road-corridor and dynamics verification remains necessary; failure of the conservative disk representation must not be repaired by silently widening the road."
+      },
+      "model_declared_actor_ids": [
+        "crossing_black_suv",
+        "right_parked_sedan",
+        "oncoming_silver_sedan",
+        "left_parked_compact"
+      ],
+      "ground_truth_read": false,
+      "prefix_consumed": true,
+      "motion_class": "MOVING_PREFIX",
+      "assessment": "SUPPORTED_BASIC_DECELERATION_AND_HOLD_LANE_UNDER_DECLARED_CONDITIONS",
+      "assessment_zh": "对0.2秒短前缀，基本合理的减速/保持车道方向有图像和决策支持；不是完整跟车控制验证。",
+      "visual_observations": [
+        "原始参考前向图可见左侧转出黑色SUV、前向同向银色车及两侧停放车辆。",
+        "减速并避免大幅横移与这一可见局面相容；本审阅不从像素确认米制距离或未来可达域。"
+      ],
+      "decision_interpretation": "hold_lane, desired_speed_mps=2, stop=null, yield_to=[]；模型明确要求对进入道路的SUV减速，但没有显式stop/yield模板。不能称已完成停车让行。",
+      "simulated_prefix": {
+        "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+        "elapsed_s": 0.2,
+        "center_displacement_m": [
+          1.2840759430702229,
+          -0.012869621440173697
+        ],
+        "yaw_delta_rad": -0.0069865927245588945,
+        "speed_mps": 6.210393330848609,
+        "initial_speed_mps": 6.630763441388242,
+        "speed_change_mps": -0.4203701105396336,
+        "mean_acceleration_mps2": -2.101850552698168,
+        "yaw_change_deg": -0.40030227629403153
+      },
+      "execution_evidence": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/execution.json",
+        "sha256": "9b457c8de9921e0126bd9a4b73e1b0d884ce81cb6965f9532ec410e4706c2ed8",
+        "receipt_path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/execution_receipt.json",
+        "receipt_sha256": "e7374ff0a7b74154a4b8ec2252468afb7cee9bd530fdc4c70011cd4f76660104",
+        "consumed_once": true
+      },
+      "supporting_model_quote": "Brake toward 2 m/s from the trusted initial 6.63 m/s; this is not an instantaneous speed change.",
+      "lead_object_limitation": {
+        "visible_center_lead_individually_declared": false,
+        "evidence": "四个声明ID为crossing_black_suv/right_parked_sedan/oncoming_silver_sedan/left_parked_compact，没有画面中央较远的同向前车ID。",
+        "declared_exclusion_quote": "distant forward traffic continues away.",
+        "implication": "该前车被局部条件前提处理，不能以窗口名following_deceleration声称模型识别了lead或验证了完整跟车策略。"
+      },
+      "further_limitations": [
+        "模型还假设可见人行区域行人不进入路面、其他停放车不离开、无新增未观测进入者；这些都是未用GT验证的条件。",
+        "末速6.210m/s尚未达到2m/s偏好，0.2秒内下降约0.420m/s、平均制动约2.102m/s²；不是瞬间达速。",
+        "横移约1.29cm、偏航约0.40度属于模拟积分量；不证明真实车道、尺度或碰撞安全。"
+      ],
+      "complete_following_task_validated": false,
+      "real_vehicle_safety_validated": false
+    },
+    {
+      "case_id": "signal_wait",
+      "reviewed_record_paths": [
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json",
+          "sha256": "2338c4ca8412dd0b0ecaa583c3cf15307908580d1517941c0f316162bd64a10a"
+        }
+      ],
+      "decision_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json",
+        "json_pointer": "/output/decision",
+        "value": {
+          "scene_id": "nusc_6dabc0fb1df045558f802246dd186b3f",
+          "revision": 0,
+          "behavior": "stop_yield",
+          "target_region": [
+            [
+              -0.2,
+              -0.2
+            ],
+            [
+              0.2,
+              -0.2
+            ],
+            [
+              0.2,
+              0.2
+            ],
+            [
+              -0.2,
+              0.2
+            ]
+          ],
+          "desired_speed_mps": 0,
+          "yield_to": [
+            "cross_silver",
+            "cross_red",
+            "cross_pickup",
+            "ped_trolley",
+            "ped_pole",
+            "ped_white",
+            "ped_companion",
+            "ped_left",
+            "cyclist"
+          ],
+          "stop": {
+            "center_x_max_m": 0.2,
+            "deadline_s": 0.2
+          },
+          "priority": 100,
+          "valid_until_s": 1535489302.012404,
+          "hard_requirements": [
+            "target_region",
+            "stop",
+            "yield",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 5,
+            "steering_weight": 5,
+            "smoothness_weight": 5
+          }
+        }
+      },
+      "raw_image_evidence": {
+        "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-28-16-43-51-0400__CAM_FRONT__1535489300012404.jpg",
+        "sha256": "41a532a7e171fca63591115661584e62d3af89e0023a68f528b9d4122d8faa78",
+        "frame_id": "435543e1321b411ea5c930633e0883d9",
+        "time_id": "nusc_us_1535489300012404",
+        "camera_id": "CAM_FRONT",
+        "kind": "ORIGINAL_CAM_FRONT_PIXELS_NOT_Z0_PROJECTION"
+      },
+      "local_scope_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json",
+        "json_pointer": "/output/hypotheses/premises/0/statement",
+        "value": "Finite local domain is the stated polygon around the stopped approach and nearby observed crossing actors. Model the road subset supplied separately and retain all twelve declared actors, including their complete source envelopes. Conditional on no additional unobserved or excluded actor entering this domain during [0,2], no construction intrusion, and the specified actor movement bounds. The more distant shuttle, pickup and background vehicles remain outside this domain; their motion into it is excluded, not claimed impossible. Sidewalks and islands inside the domain are not drivable road. Ego remains stopped at the red signal; no intersection traversal is proposed."
+      },
+      "confidence_note_reference": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json",
+        "json_pointer": "/output/hypotheses/confidence_note",
+        "value": "Conditional two-second image model, not calibrated geometry or world safety. Remain stopped for the visible red signal. The adjacent black sedan and rear queue are retained: the required rear-axle circumscribed disk plus safety inflation overlaps their estimated body envelopes at the initial state. Consequently this proposal does NOT establish feasible collision-free optimization under that conservative representation; do not execute a moving prefix or enlarge geometry to pass. Road and actor depths are approximate body-prior estimates. Distant vehicles, the shuttle and pickup behind the left-side pedestrians, reflections, and traffic beyond the finite local domain are excluded only under prototype_local_scope's no-entry condition. Occluded entrants, running pedestrians, queue departures and signal changes are not exhaustively predicted."
+      },
+      "model_declared_actor_ids": [
+        "cross_silver",
+        "cross_red",
+        "cross_pickup",
+        "left_black_sedan",
+        "rear_pickup",
+        "rear_truck",
+        "cyclist",
+        "ped_trolley",
+        "ped_pole",
+        "ped_white",
+        "ped_companion",
+        "ped_left"
+      ],
+      "ground_truth_read": false,
+      "prefix_consumed": false,
+      "motion_class": "NOT_EXECUTED",
+      "assessment": "NOT_EVALUATED_NO_PREFIX",
+      "assessment_zh": "没有前缀，不评价执行动作；stop_yield意图有可见信号/横向车流的定性支持，不能记有效静止等待。",
+      "visual_observations": [
+        "参考原图可见前方红色信号灯、停止线/箭头及横向银色车辆等交通。"
+      ],
+      "decision_interpretation": "初速0、desired_speed_mps=0、stop_yield、stop截止0.2秒，与等待意图相容；具体信号归属仍为模型图像判断。",
+      "execution_evidence": null,
+      "valid_stationary_hold_demonstrated": false,
+      "reason_no_action_assessment": "初答T1 PREMISE_SCOPE拒绝；修订遇服务错误，无T2-T4通过或模拟消费回执。不能把采集自车静止写成核验等待成功。"
+    },
+    {
+      "case_id": "neighbor_bend",
+      "assessment": "NOT_ATTEMPTED",
+      "assessment_zh": "未调用，未审阅动作。",
+      "prefix_consumed": false,
+      "motion_class": "NOT_EXECUTED",
+      "reviewed_record_paths": [],
+      "raw_image_evidence": null,
+      "ground_truth_read": false
+    },
+    {
+      "case_id": "pedestrian_interaction",
+      "assessment": "NOT_ATTEMPTED",
+      "assessment_zh": "未调用，未审阅动作。",
+      "prefix_consumed": false,
+      "motion_class": "NOT_EXECUTED",
+      "reviewed_record_paths": [],
+      "raw_image_evidence": null,
+      "ground_truth_read": false
+    },
+    {
+      "case_id": "night_straight",
+      "assessment": "NOT_ATTEMPTED",
+      "assessment_zh": "未调用，未审阅动作。",
+      "prefix_consumed": false,
+      "motion_class": "NOT_EXECUTED",
+      "reviewed_record_paths": [],
+      "raw_image_evidence": null,
+      "ground_truth_read": false
+    }
+  ]
+}

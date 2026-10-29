@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/data2/hzy/MAP/agentic-driving/implementation/experiments/run_six_scene_scout.py", line 93, in <module>
+    args=parser.parse_args();sys.exit(main(args.activation))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/data2/hzy/MAP/agentic-driving/implementation/experiments/run_six_scene_scout.py", line 72, in main
+    charged_requests=count,exit_code=process.returncode,wall_s=time.monotonic()-start,summary_path=str((out/'summary.json').relative_to(root)),
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data2/hzy/conda_envs/anaconda3/lib/python3.11/pathlib.py", line 730, in relative_to
+    raise ValueError("{!r} is not in the subpath of {!r}"
+ValueError: '/data2/hzy/MAP/agentic-driving/implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/summary.json' is not in the subpath of 'implementation/results/six_scene_scout_run_20261029_v1' OR one path is relative and the other is absolute.

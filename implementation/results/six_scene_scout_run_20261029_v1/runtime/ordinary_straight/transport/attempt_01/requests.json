@@ -1,0 +1,1136 @@
+[
+  {
+    "method": "initialize",
+    "params": {
+      "clientInfo": {
+        "name": "agentic_driving_controlled_pilot",
+        "version": "1.0"
+      },
+      "capabilities": {
+        "experimentalApi": true
+      }
+    },
+    "id": 1
+  },
+  {
+    "method": "initialized",
+    "params": {}
+  },
+  {
+    "method": "thread/start",
+    "params": {
+      "model": "gpt-6.1-sol",
+      "modelProvider": "pilot-official",
+      "allowProviderModelFallback": false,
+      "ephemeral": true,
+      "cwd": "/tmp/driving-pilot-images-82h6ve8o",
+      "approvalPolicy": "never",
+      "sandbox": "read-only",
+      "baseInstructions": "A single image-only driving inference. No tools, files, web, agents or external datasets. Return only the requested native JSON.",
+      "developerInstructions": "Attached images and supplied acquisition/ego metadata are the only environment evidence. Never call tools.",
+      "config": {
+        "model_provider": "pilot-official",
+        "forced_login_method": "chatgpt",
+        "model_reasoning_effort": "medium",
+        "web_search": "disabled",
+        "orchestrator.mcp.enabled": false,
+        "skills.include_instructions": false,
+        "skills.bundled.enabled": false,
+        "mcp_servers": {},
+        "model_providers.pilot-official.name": "Official ChatGPT controlled pilot",
+        "model_providers.pilot-official.base_url": "https://chatgpt.com/backend-api/codex",
+        "model_providers.pilot-official.wire_api": "responses",
+        "model_providers.pilot-official.requires_openai_auth": true,
+        "model_providers.pilot-official.supports_websockets": false,
+        "model_providers.pilot-official.request_max_retries": 0,
+        "model_providers.pilot-official.stream_max_retries": 0,
+        "features.shell_tool": false,
+        "features.unified_exec": false,
+        "features.view_image": false,
+        "features.apps": false,
+        "features.plugins": false,
+        "features.multi_agent": false,
+        "features.code_mode_host": false,
+        "features.browser_use": false,
+        "features.computer_use": false,
+        "features.image_generation": false,
+        "features.hooks": false,
+        "features.goals": false,
+        "features.skill_search": false,
+        "features.memories": false,
+        "features.remote_plugin": false,
+        "features.shell_snapshot": false
+      }
+    },
+    "id": 2
+  },
+  {
+    "method": "turn/start",
+    "params": {
+      "threadId": "01a185b4-9d75-7b91-9523-d2d3d9f9918b",
+      "input": [
+        {
+          "type": "text",
+          "text": "You are the ONLINE driving agent for a separately labelled LOCAL CONDITIONAL TWO-SECOND PROTOTYPE. Prompt version driving_prototype_v1; experiment profile local_conditional_2s_prototype_v1. Reuse the supplied 3.0.0-exp2 JSON structure and whole_interval_sources_v3_exp2 BODY representation. This is not the prior strict five-second experiment.\n\nGOAL: from the actual images and trusted acquisition/ego metadata, propose a useful local metric scene and driving decision for two seconds, enabling actual optimization, independent collision/dynamics verification and a simulated 0.2-second prefix. Do not merely explain why you cannot plan. Supply concrete, evidence-supported geometry and finite short-term ranges when you can, with explicit falsifiable assumptions. If necessary support is genuinely unavailable, retain null/unknown rather than fabricate it.\n\nSCOPE AND CONDITIONAL HYPOTHESES\nDefine a premise with id prototype_local_scope, time [0,2], and a finite space_polygon_m for the local road patch you model. In its statement explicitly delimit the local domain and adopted conditions (e.g. no new unobserved entrant into this domain during two seconds). This is a conditional prototype, not an assertion that the world has no other traffic. Record excluded/unobserved world conditions in confidence_note and this premise. Do not silently omit an observed obstacle in or threatening the local domain. Keep every object you declare; tools cannot invent a prediction or delete objects for you.\nYou need not enumerate every logically possible future. Each declared actor needs a complete inventory WITHIN YOUR EXPLICITLY ADOPTED short-term movement conditions, including a reasonable adverse variant within those conditions. A visually parked vehicle may be conditionally assumed to remain parked for two seconds, with an explicitly model-estimated bounded body envelope. A moving actor may follow a stated speed/heading range. These are model hypotheses, not calibrated guarantees. Unsupported necessary conditions remain unknown and planning must fail. unbounded_unknown and unknowns refer to unresolved coverage WITHIN the declared local prototype; do not clear an actual local threat simply to pass. Multiple bounded modes are permitted if all retained modes have coverage.\n\nLOCAL ROAD AND TASK\nGive a convex metric polygon for the observed local continuous road/pavement patch, its nonzero finite uncertainty, actual image/time evidence and estimation basis. Do not require an exact stop-line position if the local task does not need one. Use perspective, visible boundaries and an explicit observed actor body-size prior for approximate scale; calibration gives axes, not certified monocular depth. Never enlarge the road to make a solver succeed. The road must include the current vehicle footprint as well as the intended two-second route. It can include visible adjacent paved roadway, while target_region separately states allowed vehicle CENTER positions. Neither a single narrow lane strip nor an arbitrary huge rectangle is a substitute for observed road boundaries.\nChoose a supported behavior: hold_lane or resume with stop=null when continuing safely under the local assumptions, or stop_yield with a physically achievable stop deadline and explicit yield objects. Initial ego speed is trusted; do not pretend a moving ego is stopped. target_region is the all-horizon allowed CENTER region including [0,0] and proposed forward travel, not a terminal point. hard_requirements includes target_region, vehicle_limits, collision_free, road (plus stop/yield if applicable). Traffic entries only use rule stop_required/yield_required and state active/inactive. Do not invent a traffic rule if none relevant is supported. desired_speed_mps is a preference, never permission to exceed limits.\nThe existing conservative corridor uses a rear-axle circumscribed disk (radius hypot(front_m+center_to_rear_axle_m, half_width_m)); target CENTER halfplanes also reserve center_to_rear_axle_m. This is a tool expression constraint, not an environment fact: if genuine geometry cannot fit, report the physical conflict rather than inventing width.\n\nFIXED MEASUREMENT / EVIDENCE\nOrigin is ego BODY center at the acquisition reference; X forward, Y left fixed axes; meters/seconds/radians. Actor position is BODY-box geometric center ground XY; velocity is ABSOLUTE ground velocity in those fixed axes. Tools handle rear-axle conversion, never shift actors by the 1.2m ego offset. Preserve supplied contract_version, coverage_profile and measurement_semantics constants. Finite residuals are uncalibrated hypotheses.\nPair frame_ids and time_ids exactly with actual capture records. For an actor genuinely visible in the latest reference front image, direct_reference_observation cites ONLY that actual reference image/time, state_time_id is the reference, evidence_positions has its native estimated position and observed_actor=true; motion_bound=null. Do not cite unrelated images. Async-only actors require your own evidence positions and finite motion bounds across their real evidence-to-reference ages, all retained scenarios, explicit premises and residual; ego compensation alone is insufficient.\nmetric_scale_support must use conditional_body_dimension_prior for an actually cited individual actor; anchors value_m equals its native body_geometry length_m or width_m, with rationale and paired evidence. Provide native metric_reasoning and applicable premise_ids. This is an approximate body-size prior, not known GT. Do not relabel a missing scale. No map, annotation, detector, hidden simulator state or future observation is available.\n\nTWO-SECOND WHOLE-BODY SOURCES\nFor every declared actor provide native position_m, body_geometry, finite uncertainty_m, alignment, scenarios, scenario_inventory_complete and occupancy. Future sources may be coarse: one justified [0,2] source per conditional scenario is sufficient, or shorter genuine whole intervals. Every source has id, start_s/end_s, kind=whole_interval_body_envelope, status=supported, actual evidence, premise_ids, residual_m and alternatives binding scenario_id to polygon_m. Each polygon encloses the entire actor BODY for that whole closed interval including t=0, not just its center or endpoints. Keep reasonable adverse variants you declare and cover all retained scenarios without gaps. A parked-body union can remain near that parked actor under an explicit stationary-for-two-seconds premise; do not create an unbounded placeholder covering everything.\nEach scenario and alignment binds applicable premises with time coverage. Common premises may use object_ids=[]/scenario_ids=[] and space_polygon_m=null to explicitly apply without a finite spatial restriction; the separate prototype_local_scope still names the finite scene domain. If a premise has a finite polygon it must contain the full body/source geometry it supports. Object uncertainty_m is TOTAL residual >= alignment.residual_m + each source.residual_m; source residual excludes alignment residual. BODY dimensions/mode spread are already in polygons; ego/safety inflation is performed by tools once. Null velocity is permitted when occupancy is supported.\n\nOn feedback, repair the specific missing field or violated geometric/physical condition using the same actual evidence and explicit conditions. For road=null, supply justified local geometry and basis if possible. For occupancy=null, supply your own conditional short-term movement range and whole-body source if possible. Do not just repeat refusal prose; do not remove obstacles, narrow a threat to evade collision, invent image citations or weaken vehicle/safety limits. Any result remains a conditional local prototype, not world safety, GT accuracy, exhaustive-future coverage or old strict success.\n\n{\"capture\": {\"metadata\": {\"profile\": \"convex_disk_bicycle_v2\", \"schema_version\": \"2.0.0\", \"scene_id\": \"nusc_7df1288fed8a403b8e7a35112b392d7c\", \"revision\": 0, \"reference_time_id\": \"nusc_us_1538448756512460\", \"reference_time_s\": 1538448756.51246, \"coordinate_frame\": \"ego_at_reference\", \"horizon_s\": 2.0, \"step_s\": 0.2, \"history_s\": 2.0, \"valid_until_s\": 1538448758.51246}, \"observations\": [{\"id\": \"949ef7d0557f4165a27eaf71616d14f2\", \"time_id\": \"nusc_us_1538448754512460\", \"capture_time_s\": 1538448754.51246, \"capture_utc\": \"2018-10-02T02:52:34.512460+00:00\", \"camera_id\": \"CAM_FRONT\", \"path\": \"attached:frame_000.jpg\"}, {\"id\": \"fb4c4b4725b542a39bd4e165ebb60950\", \"time_id\": \"nusc_us_1538448755012460\", \"capture_time_s\": 1538448755.01246, \"capture_utc\": \"2018-10-02T02:52:35.012460+00:00\", \"camera_id\": \"CAM_FRONT\", \"path\": \"attached:frame_001.jpg\"}, {\"id\": \"24373c08d1e64e6ebdad1af9542f1438\", \"time_id\": \"nusc_us_1538448755512460\", \"capture_time_s\": 1538448755.51246, \"capture_utc\": \"2018-10-02T02:52:35.512460+00:00\", \"camera_id\": \"CAM_FRONT\", \"path\": \"attached:frame_002.jpg\"}, {\"id\": \"af075ef815d0452db2614113413fb8a1\", \"time_id\": \"nusc_us_1538448756012460\", \"capture_time_s\": 1538448756.01246, \"capture_utc\": \"2018-10-02T02:52:36.012460+00:00\", \"camera_id\": \"CAM_FRONT\", \"path\": \"attached:frame_003.jpg\"}, {\"id\": \"741061643b5a4e7abc590c8097f2baeb\", \"time_id\": \"nusc_us_1538448756420340\", \"capture_time_s\": 1538448756.4203398, \"capture_utc\": \"2018-10-02T02:52:36.420340+00:00\", \"camera_id\": \"CAM_FRONT_RIGHT\", \"path\": \"attached:frame_004.jpg\"}, {\"id\": \"6857cbb21c16499bb80a0c85cc91668e\", \"time_id\": \"nusc_us_1538448756427893\", \"capture_time_s\": 1538448756.427893, \"capture_utc\": \"2018-10-02T02:52:36.427893+00:00\", \"camera_id\": \"CAM_BACK_RIGHT\", \"path\": \"attached:frame_005.jpg\"}, {\"id\": \"38136b8efbeb49ce89e65cb57bd1a109\", \"time_id\": \"nusc_us_1538448756437525\", \"capture_time_s\": 1538448756.437525, \"capture_utc\": \"2018-10-02T02:52:36.437525+00:00\", \"camera_id\": \"CAM_BACK\", \"path\": \"attached:frame_006.jpg\"}, {\"id\": \"c7e38e4f56954bbc8ecb244d0d8d1b90\", \"time_id\": \"nusc_us_1538448756447423\", \"capture_time_s\": 1538448756.447423, \"capture_utc\": \"2018-10-02T02:52:36.447423+00:00\", \"camera_id\": \"CAM_BACK_LEFT\", \"path\": \"attached:frame_007.jpg\"}, {\"id\": \"c0401590262b4c8bbddd88fec98ccec7\", \"time_id\": \"nusc_us_1538448756504844\", \"capture_time_s\": 1538448756.504844, \"capture_utc\": \"2018-10-02T02:52:36.504844+00:00\", \"camera_id\": \"CAM_FRONT_LEFT\", \"path\": \"attached:frame_008.jpg\"}, {\"id\": \"3299ffab259345fdaa4928d665a2c59d\", \"time_id\": \"nusc_us_1538448756512460\", \"capture_time_s\": 1538448756.51246, \"capture_utc\": \"2018-10-02T02:52:36.512460+00:00\", \"camera_id\": \"CAM_FRONT\", \"path\": \"attached:frame_009.jpg\"}], \"ego\": {\"x_m\": 0.0, \"y_m\": 0.0, \"yaw_rad\": 0.0, \"speed_mps\": 11.880634934422835}, \"vehicle\": {\"front_m\": 2.3, \"rear_m\": 2.3, \"half_width_m\": 0.9, \"center_to_rear_axle_m\": 1.2, \"wheelbase_m\": 2.7, \"max_speed_mps\": 12.0, \"max_accel_mps2\": 2.0, \"max_brake_mps2\": 3.0, \"max_steer_rad\": 0.5, \"max_curvature_per_m\": 0.2}, \"navigation_intent\": \"Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.\", \"safety\": {\"margin_m\": 1.0, \"prefix_s\": 0.2}, \"acquisition_metadata\": {\"dataset\": \"nuScenes\", \"native_ego_reference\": \"rear_axle\", \"center_offset_assumption_m\": 1.2, \"calibrations\": {\"CAM_FRONT\": {\"camera_intrinsic\": [[1266.417203046554, 0.0, 816.2670197447984], [0.0, 1266.417203046554, 491.50706579294757], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[0.005684778682715441, -0.005636667733598166, 0.9999679551206578], [-0.9999835174398977, -0.0008371152724919728, 0.005680148462035628], [0.0008050713376760443, -0.9999837634756286, -0.005641333641939639]], \"camera_to_center_translation_m\": [0.5007911895400001, 0.0159456324149, 1.51095763913]}, \"CAM_FRONT_RIGHT\": {\"camera_intrinsic\": [[1260.8474446004698, 0.0, 807.968244525554], [0.0, 1260.8474446004698, 495.3344268742088], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[-0.8329295630238647, -9.946037679009478e-06, 0.5533790228604183], [-0.5533049273172018, 0.01637881578953715, -0.8328177422460685], [-0.009055409840580897, -0.9998658581501867, -0.013647903070083123]], \"camera_to_center_translation_m\": [0.35084775430000015, -0.493404796419, 1.49574800619]}, \"CAM_BACK_RIGHT\": {\"camera_intrinsic\": [[1259.5137405846733, 0.0, 807.2529053838625], [0.0, 1259.5137405846733, 501.19579884916527], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[-0.9347755391782981, 0.015875837955449834, -0.3548839938953784], [0.3550745592741919, 0.011370495332615804, -0.9347688319537242], [-0.010805031705694884, -0.9998093166224766, -0.016265967070410614]], \"camera_to_center_translation_m\": [-0.18512190120000005, -0.480568219723, 1.56239545128]}, \"CAM_BACK\": {\"camera_intrinsic\": [[809.2209905677063, 0.0, 829.2196003259838], [0.0, 809.2209905677063, 481.77842384512485], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[0.002421709860318755, -0.016753608478469628, -0.9998567156969556], [0.9999890666843358, -0.003959107249966065, 0.002488369260045864], [-0.004000229136375599, -0.999851810056237, 0.016743837496914216]], \"camera_to_center_translation_m\": [-1.1716739690642, 0.00345136761476, 1.57910346144]}, \"CAM_BACK_LEFT\": {\"camera_intrinsic\": [[1256.7414812095406, 0.0, 792.1125740759628], [0.0, 1256.7414812095406, 492.7757465151356], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[0.9477603556843314, 0.008665721547931132, -0.31886550999310576], [0.31896113144149074, -0.01397629983587656, 0.9476647401230364], [0.0037556387837154315, -0.9998647750135773, -0.016010211253286277]], \"camera_to_center_translation_m\": [-0.16430899781999986, 0.484795032713, 1.59097014818]}, \"CAM_FRONT_LEFT\": {\"camera_intrinsic\": [[1272.5979470598488, 0.0, 826.6154927353808], [0.0, 1272.5979470598488, 479.75165386361925], [0.0, 0.0, 1.0]], \"camera_to_center_rotation\": [[0.8207583481515547, -0.00034143667149910684, 0.5712754303840931], [-0.5712716007618155, 0.0032195018514856732, 0.8207547703003997], [-0.002119458082718406, -0.9999947591006806, 0.0024473799476101288]], \"camera_to_center_translation_m\": [0.3238779813500001, 0.494631336551, 1.50932822144]}}, \"ego_history\": [{\"frame_id\": \"949ef7d0557f4165a27eaf71616d14f2\", \"time_id\": \"nusc_us_1538448754512460\", \"center_xy_m\": [-24.01994915319968, 0.25187224172443645], \"yaw_rad\": -0.011630589003940983}, {\"frame_id\": \"fb4c4b4725b542a39bd4e165ebb60950\", \"time_id\": \"nusc_us_1538448755012460\", \"center_xy_m\": [-17.989738039071355, 0.16485200045664816], \"yaw_rad\": -0.010527618971467145}, {\"frame_id\": \"24373c08d1e64e6ebdad1af9542f1438\", \"time_id\": \"nusc_us_1538448755512460\", \"center_xy_m\": [-11.96749928343197, 0.08458936589229728], \"yaw_rad\": -0.008369684661144294}, {\"frame_id\": \"af075ef815d0452db2614113413fb8a1\", \"time_id\": \"nusc_us_1538448756012460\", \"center_xy_m\": [-5.940317467211417, 0.012250735798724129], \"yaw_rad\": -0.00466609409479446}, {\"frame_id\": \"741061643b5a4e7abc590c8097f2baeb\", \"time_id\": \"nusc_us_1538448756420340\", \"center_xy_m\": [-1.1101818721870989, 0.0006964658144498439], \"yaw_rad\": 0.00010764629300430428}, {\"frame_id\": \"6857cbb21c16499bb80a0c85cc91668e\", \"time_id\": \"nusc_us_1538448756427893\", \"center_xy_m\": [-1.0202235446163161, 0.0004551920680122486], \"yaw_rad\": 0.0001696260112300507}, {\"frame_id\": \"38136b8efbeb49ce89e65cb57bd1a109\", \"time_id\": \"nusc_us_1538448756437525\", \"center_xy_m\": [-0.9039328052964547, 0.00012756379946473912], \"yaw_rad\": 0.0001943206730898872}, {\"frame_id\": \"c7e38e4f56954bbc8ecb244d0d8d1b90\", \"time_id\": \"nusc_us_1538448756447423\", \"center_xy_m\": [-0.7842887550409097, -0.00021891038768619326], \"yaw_rad\": 0.00021476858056646006}, {\"frame_id\": \"c0401590262b4c8bbddd88fec98ccec7\", \"time_id\": \"nusc_us_1538448756504844\", \"center_xy_m\": [-0.091914642024743, -0.0004994509984402033], \"yaw_rad\": 7.195816033966906e-05}, {\"frame_id\": \"3299ffab259345fdaa4928d665a2c59d\", \"time_id\": \"nusc_us_1538448756512460\", \"center_xy_m\": [0.0, 0.0], \"yaw_rad\": 0.0}], \"ego_speed_source\": \"causal_backward_difference_localization_0.5s; not direct CAN speed\", \"vehicle_parameters_source\": \"EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation\"}}, \"feedback\": null, \"tool_contract\": {\"target_region_semantics\": \"Allowed vehicle CENTER region for the entire planning horizon, including initial center; not a terminal goal box\", \"initial_center_m\": [0.0, 0.0], \"decision_valid_until_min_s\": 1538448758.51246, \"supplied_valid_until_s\": 1538448758.51246, \"execution_prefix_s\": 0.2, \"supported_native_metric_scale_labels\": [\"model_metric_hypothesis\", \"unknown\"], \"calibration_limitation\": \"Intrinsics/extrinsics alone do not verify a ground plane or pixel contact. Do not relabel unsupported scale as a supported metric hypothesis.\", \"coverage_requirement\": \"Sources may span coarse whole intervals. Each declared scenario must cover the entire horizon without gaps. Each source must already enclose the complete actor BODY throughout its closed source interval. The tools retain all closed-intersecting source sets during refinement and never forecast from velocity. Null, placeholders and missing adverse modes remain failures.\", \"refinement_grid\": [{\"start_s\": 0.0, \"end_s\": 0.2, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 0.2, \"end_s\": 0.4, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 0.4, \"end_s\": 0.6000000000000001, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 0.6000000000000001, \"end_s\": 0.8, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 0.8, \"end_s\": 1.0, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 1.0, \"end_s\": 1.2000000000000002, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 1.2000000000000002, \"end_s\": 1.4000000000000001, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 1.4000000000000001, \"end_s\": 1.6, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 1.6, \"end_s\": 1.8, \"kind\": \"whole_interval_envelope\"}, {\"start_s\": 1.8, \"end_s\": 2.0, \"kind\": \"whole_interval_envelope\"}], \"source_coverage_profile\": \"whole_interval_sources_v3_exp2\", \"source_coverage_kind\": \"whole_interval_body_envelope\", \"measurement_semantics\": {\"coordinate_frame\": \"ego_at_reference\", \"origin\": \"ego_body_center_at_reference\", \"axes\": \"x_forward_y_left_fixed_at_reference\", \"actor_reference_point\": \"annotation_box_center_ground_xy\", \"velocity_semantics\": \"absolute_ground_velocity_in_fixed_reference_axes\", \"uncertainty_semantics\": \"noncalibrated_total_residual_radius_once\"}, \"metric_scale_requirement\": \"A scale_basis label alone is insufficient. Supply metric_scale_support with conditional_body_dimension_prior, actual paired actor image/time citations, scoped premise IDs, positive length_m/width_m anchors matching the native actor body hypothesis, per-anchor rationale and model-native metric reasoning. This is a falsifiable conditional prior, not certified scale. Null, unrelated evidence or missing prior support still blocks planning; tools do not infer scale or project pixels from the prior.\", \"alignment_requirement\": \"Actor state_time_id equals the trusted reference. frame_ids/time_ids are index-paired original observations of that actor, not state epochs. Asynchronous evidence requires model-proposed evidence positions, motion bounds covering all declared scenarios, explicit scoped premises and a residual included in the one total actor residual; no small-dt or ego-only exemption.\", \"unknown_requirement\": \"Bind unknown kind/object/space/time and premises/scenarios explicitly. No information, inexpressible coverage or no finite bound still blocks planning. No relevance pruning or arbitrary distance cutoff is enabled.\", \"experiment_profile\": \"local_conditional_2s_prototype_v1\", \"scope_interpretation\": \"Coverage is conditional on the MODEL-declared finite local domain and adopted two-second motion conditions; not exhaustive whole-world futures. All declared obstacles and local unknowns retain the same checks; tools never delete, forecast or fill them.\"}}"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_000.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_001.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_002.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_003.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_004.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_005.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_006.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_007.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_008.jpg"
+        },
+        {
+          "type": "localImage",
+          "path": "/tmp/driving-pilot-images-82h6ve8o/frame_009.jpg"
+        }
+      ],
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "object",
+            "properties": {
+              "scene_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "behavior": {
+                "enum": [
+                  "stop_yield",
+                  "hold_lane",
+                  "resume"
+                ],
+                "type": "string"
+              },
+              "target_region": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 3
+              },
+              "desired_speed_mps": {
+                "type": "number",
+                "minimum": 0
+              },
+              "yield_to": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "stop": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "center_x_max_m": {
+                        "type": "number"
+                      },
+                      "deadline_s": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "center_x_max_m",
+                      "deadline_s"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "priority": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "valid_until_s": {
+                "type": "number"
+              },
+              "hard_requirements": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "target_region",
+                    "stop",
+                    "yield",
+                    "vehicle_limits",
+                    "collision_free",
+                    "road"
+                  ],
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "preferences": {
+                "type": "object",
+                "properties": {
+                  "speed_weight": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "acceleration_weight": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "steering_weight": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "smoothness_weight": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "speed_weight",
+                  "acceleration_weight",
+                  "steering_weight",
+                  "smoothness_weight"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "scene_id",
+              "revision",
+              "behavior",
+              "target_region",
+              "desired_speed_mps",
+              "yield_to",
+              "stop",
+              "priority",
+              "valid_until_s",
+              "hard_requirements",
+              "preferences"
+            ],
+            "additionalProperties": false
+          },
+          "hypotheses": {
+            "type": "object",
+            "properties": {
+              "coordinate_frame": {
+                "const": "ego_at_reference",
+                "type": "string"
+              },
+              "reference_time_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "units": {
+                "const": "m_s_rad",
+                "type": "string"
+              },
+              "scale_basis": {
+                "enum": [
+                  "model_metric_hypothesis",
+                  "calibrated_ground_plane",
+                  "unknown"
+                ],
+                "type": "string"
+              },
+              "road": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "polygon_m": {
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "minItems": 3
+                      },
+                      "uncertainty_m": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "frame_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      },
+                      "time_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      }
+                    },
+                    "required": [
+                      "polygon_m",
+                      "uncertainty_m",
+                      "frame_ids",
+                      "time_ids"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "objects": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "position_m": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "velocity_mps": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "uncertainty_m": {
+                      "anyOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "occupancy": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "start_s": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "end_s": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "kind": {
+                                "const": "whole_interval_body_envelope",
+                                "type": "string"
+                              },
+                              "status": {
+                                "enum": [
+                                  "supported",
+                                  "placeholder"
+                                ],
+                                "type": "string"
+                              },
+                              "frame_ids": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "minItems": 1
+                              },
+                              "time_ids": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "minItems": 1
+                              },
+                              "premise_ids": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "minItems": 0
+                              },
+                              "residual_m": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "alternatives": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "scenario_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "polygon_m": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "number"
+                                        },
+                                        "minItems": 2,
+                                        "maxItems": 2
+                                      },
+                                      "minItems": 3
+                                    }
+                                  },
+                                  "required": [
+                                    "scenario_id",
+                                    "polygon_m"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "minItems": 1
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "start_s",
+                              "end_s",
+                              "kind",
+                              "status",
+                              "frame_ids",
+                              "time_ids",
+                              "premise_ids",
+                              "residual_m",
+                              "alternatives"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "frame_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    },
+                    "time_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    },
+                    "state_time_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "body_geometry": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "length_m": {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            "width_m": {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            "yaw_rad": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "length_m",
+                            "width_m",
+                            "yaw_rad"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "alignment": {
+                      "type": "object",
+                      "properties": {
+                        "method": {
+                          "enum": [
+                            "direct_reference_observation",
+                            "model_motion_bound"
+                          ],
+                          "type": "string"
+                        },
+                        "premise_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "minItems": 0
+                        },
+                        "residual_m": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "motion_bound": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "max_speed_mps": {
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "displacement_bound_m": {
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "covers_all_declared_scenarios": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "max_speed_mps",
+                                "displacement_bound_m",
+                                "covers_all_declared_scenarios"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "evidence_positions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "frame_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "time_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "position_m": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "minItems": 2,
+                                "maxItems": 2
+                              },
+                              "observed_actor": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "frame_id",
+                              "time_id",
+                              "position_m",
+                              "observed_actor"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 1
+                        }
+                      },
+                      "required": [
+                        "method",
+                        "premise_ids",
+                        "residual_m",
+                        "motion_bound",
+                        "evidence_positions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "scenarios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "premise_ids": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "minItems": 0
+                          },
+                          "role": {
+                            "enum": [
+                              "adopted",
+                              "reasonable_adverse"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "premise_ids",
+                          "role"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1
+                    },
+                    "scenario_inventory_complete": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "position_m",
+                    "velocity_mps",
+                    "uncertainty_m",
+                    "occupancy",
+                    "frame_ids",
+                    "time_ids",
+                    "state_time_id",
+                    "body_geometry",
+                    "alignment",
+                    "scenarios",
+                    "scenario_inventory_complete"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "unknown_regions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "polygon_m": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "minItems": 3
+                    },
+                    "uncertainty_m": {
+                      "anyOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "frame_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    },
+                    "time_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "polygon_m",
+                    "uncertainty_m",
+                    "frame_ids",
+                    "time_ids"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "traffic_evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rule": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "state": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "frame_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    },
+                    "time_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "rule",
+                    "state",
+                    "frame_ids",
+                    "time_ids"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "unbounded_unknown": {
+                "type": "boolean"
+              },
+              "confidence_note": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "premises": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "object_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    },
+                    "scenario_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    },
+                    "start_s": {
+                      "type": "number"
+                    },
+                    "end_s": {
+                      "type": "number"
+                    },
+                    "space_polygon_m": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "number"
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                          },
+                          "minItems": 3
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "statement": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object_ids",
+                    "scenario_ids",
+                    "start_s",
+                    "end_s",
+                    "space_polygon_m",
+                    "statement"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "unknowns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "object_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    },
+                    "scenario_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    },
+                    "start_s": {
+                      "type": "number"
+                    },
+                    "end_s": {
+                      "type": "number"
+                    },
+                    "space_polygon_m": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "number"
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                          },
+                          "minItems": 3
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "kind": {
+                      "enum": [
+                        "not_provided",
+                        "not_expressible",
+                        "multiple_conditionals",
+                        "no_finite_bound"
+                      ],
+                      "type": "string"
+                    },
+                    "premise_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    },
+                    "detail": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object_ids",
+                    "scenario_ids",
+                    "start_s",
+                    "end_s",
+                    "space_polygon_m",
+                    "kind",
+                    "premise_ids",
+                    "detail"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "metric_scale_support": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "method": {
+                        "const": "conditional_body_dimension_prior",
+                        "type": "string"
+                      },
+                      "frame_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      },
+                      "time_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      },
+                      "premise_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      },
+                      "anchors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "object_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "dimension": {
+                              "enum": [
+                                "length_m",
+                                "width_m"
+                              ],
+                              "type": "string"
+                            },
+                            "value_m": {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            "rationale": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "object_id",
+                            "dimension",
+                            "value_m",
+                            "rationale"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 1
+                      },
+                      "metric_reasoning": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "method",
+                      "frame_ids",
+                      "time_ids",
+                      "premise_ids",
+                      "anchors",
+                      "metric_reasoning"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "coordinate_frame",
+              "reference_time_id",
+              "units",
+              "scale_basis",
+              "road",
+              "objects",
+              "unknown_regions",
+              "traffic_evidence",
+              "unbounded_unknown",
+              "confidence_note",
+              "premises",
+              "unknowns",
+              "metric_scale_support"
+            ],
+            "additionalProperties": false
+          },
+          "contract_version": {
+            "const": "3.0.0-exp2",
+            "type": "string"
+          },
+          "coverage_profile": {
+            "const": "whole_interval_sources_v3_exp2",
+            "type": "string"
+          },
+          "measurement_semantics": {
+            "type": "object",
+            "properties": {
+              "coordinate_frame": {
+                "const": "ego_at_reference",
+                "type": "string"
+              },
+              "origin": {
+                "const": "ego_body_center_at_reference",
+                "type": "string"
+              },
+              "axes": {
+                "const": "x_forward_y_left_fixed_at_reference",
+                "type": "string"
+              },
+              "actor_reference_point": {
+                "const": "annotation_box_center_ground_xy",
+                "type": "string"
+              },
+              "velocity_semantics": {
+                "const": "absolute_ground_velocity_in_fixed_reference_axes",
+                "type": "string"
+              },
+              "uncertainty_semantics": {
+                "const": "noncalibrated_total_residual_radius_once",
+                "type": "string"
+              }
+            },
+            "required": [
+              "coordinate_frame",
+              "origin",
+              "axes",
+              "actor_reference_point",
+              "velocity_semantics",
+              "uncertainty_semantics"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "decision",
+          "hypotheses",
+          "contract_version",
+          "coverage_profile",
+          "measurement_semantics"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://agentic-driving.local/schemas/agent_output_v3_exp2.schema.json",
+        "title": "Experimental metric, conditional scale support and whole-interval source contract 3.0.0-exp2"
+      },
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "id": 3
+  }
+]
