@@ -65,6 +65,7 @@ def main(activation_path,resume_existing=False):
             stored=read(existing/'summary.json') if (existing/'summary.json').exists() else None
             count=len(list(existing.glob('charge_*.json')))
             if stored is None or not stored.get('ended'):
+                rows[index].update(status='INCOMPLETE_ATTEMPT',charged_requests=count)
                 stop='UNFINISHED_CASE_REQUIRES_REVIEW';break
             assert count<=2 and stored['charged_requests']==count
             rows[index].update(status='CONDITIONAL_CHAIN_PASS' if stored['prototype_conditional_success'] else 'NO_COMPLETE_CHAIN',
