@@ -274,6 +274,54 @@ class OpenAIAdapterTests(unittest.TestCase):
                 self.assertNotIn('other-authored-model', network)
                 self.assertEqual(json.loads(network)['model_available'], case == 'success' if case in ('success', 'missing_model') else None)
 
+    @patch.dict(os.environ, ENV)
+    def test_explicit_readiness_retries_only_connect_failures_and_never_posts_twice(self):
+        cases = ('recover_connect', 'recover_timeout', '401', '429', 'missing_model',
+                 'malformed', 'read_timeout', 'exhausted')
+        for case in cases:
+            with self.subTest(case=case), tempfile.TemporaryDirectory(prefix='authored-openai-readiness-') as directory:
+                root = Path(directory); requests = []
+                valid = json.dumps(authored_case(speed=3., half_road=10.)[1])
+                def handler(request):
+                    requests.append(request)
+                    if request.method == 'POST':
+                        return httpx.Response(200, json=response(valid))
+                    get_count = sum(item.method == 'GET' for item in requests)
+                    if case == 'exhausted' or (case.startswith('recover_') and get_count == 1):
+                        error = httpx.ConnectTimeout if case == 'recover_timeout' else httpx.ConnectError
+                        raise error('Do not publish fake key ' + FAKE_KEY)
+                    if case == 'read_timeout':
+                        raise httpx.ReadTimeout('Not an allowed readiness connection retry')
+                    if case == 'malformed':
+                        return httpx.Response(200, text='AUTHORED not JSON')
+                    return httpx.Response(int(case) if case in ('401', '429') else 200,
+                        headers={'x-request-id': 'req_authored_ready'},
+                        json=dict(data=[dict(id='other-authored-model' if case == 'missing_model' else 'authored-test-model')]))
+                with patch('agentic.openai_adapter.time.sleep') as pause:
+                    if case.startswith('recover_'):
+                        cap, _, agent = self.make(root, handler, network_preflight=True,
+                            network_preflight_attempts=3, keepalive_expiry_s=120)
+                        agent.decide(cap)
+                        self.assertEqual([item.method for item in requests], ['GET', 'GET', 'POST'])
+                        self.assertEqual(agent.call_count, 1)
+                        self.assertEqual(agent.public_config['network_preflight_attempts'], 3)
+                        self.assertEqual(agent.public_config['request_max_retries'], 0)
+                        self.assertEqual(agent.public_config['connection_profile']['keepalive_expiry_s'], 120.)
+                        self.assertEqual(pause.call_count, 1)
+                    else:
+                        with self.assertRaises(Failure):
+                            self.make(root, handler, network_preflight=True,
+                                network_preflight_attempts=3, keepalive_expiry_s=120)
+                        self.assertTrue(all(item.method == 'GET' for item in requests))
+                        self.assertEqual(len(requests), 3 if case == 'exhausted' else 1)
+                        self.assertEqual(pause.call_count, 2 if case == 'exhausted' else 0)
+                folder = root / 'transport'
+                aggregate = json.loads((folder / 'network_preflight.json').read_text())
+                self.assertEqual(aggregate['network_requests'], sum(item.method == 'GET' for item in requests))
+                self.assertEqual(aggregate['model_inference_calls'], 0)
+                self.assertEqual(len(list(folder.glob('network_preflight_attempt_*.json'))), aggregate['network_requests'])
+                self.assertNotIn(FAKE_KEY, (folder / 'network_preflight.json').read_text())
+
 
 if __name__ == '__main__':
     unittest.main()

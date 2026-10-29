@@ -2,7 +2,8 @@
 
 Each reference remains an independent observation, decision, plan and simulated
 prefix. Only the HTTP connection is shared; no previous observation, answer or
-simulated ego state is carried into the next reference. No automatic retries.
+simulated ego state is carried into the next reference. Generating POSTs are
+never retried; bounded non-generating GET readiness is explicit in the plan.
 """
 import argparse
 from copy import deepcopy
@@ -117,6 +118,8 @@ def run(plan_path, stop_file=None):
         backend='openai_api', source_commit=commit, registered_plan_sha256=sha(plan_path),
         one_api_client_for_clip=True, per_window_conversation_state=False,
         automatic_transport_retries=0, operational_call_ceiling=limit,
+        network_readiness_get_attempts=plan.get('network_readiness_get_attempts', 1),
+        keepalive_expiry_s=plan.get('keepalive_expiry_s'),
         per_window_limit=2, source_sha256=plan['source_sha256']))
     rows = [dict(case_id=case['case_id'], status='NOT_ATTEMPTED', charged_requests=0,
                  api_post_requests=0, native_outputs=0) for case in cases]
@@ -136,9 +139,11 @@ def run(plan_path, stop_file=None):
                 evidence_dir=root / 'transport', model=plan['requested_model'],
                 timeout_s=plan.get('timeout_s', 450), wire_schema_bundle=ROOT / plan['wire_bundle'],
                 prompt_version=plan['prompt_version'], experiment_profile=PROFILE,
-                max_calls=limit, network_preflight=True)
+                max_calls=limit, network_preflight=True,
+                network_preflight_attempts=plan.get('network_readiness_get_attempts', 1),
+                keepalive_expiry_s=plan.get('keepalive_expiry_s'))
             write_json_new(root / 'transport_config.json', agent.public_config)
-            agent.preflight()  # One non-generating authenticated GET on the same real client.
+            agent.preflight()  # Explicit bounded readiness GETs on the same real client; no POST retry.
             for index, case in enumerate(cases):
                 current_case = case['case_id']
                 if stop_file is not None and stop_file.exists():
@@ -159,6 +164,8 @@ def run(plan_path, stop_file=None):
                     planner_profile=plan['planner_profile'], require_turn=require_turn,
                     prompt_version=plan['prompt_version'], max_requests=2,
                     horizon_s=2, step_s=.2, prefix_s=.2, gt_used=False,
+                    network_readiness_get_attempts=plan.get('network_readiness_get_attempts', 1),
+                    keepalive_expiry_s=plan.get('keepalive_expiry_s'),
                     mode='FRESH_ONLINE_SINGLE_WINDOW', shared_clip_transport='../../transport',
                     source_sha256=plan['source_sha256']))
                 local_rows, mappings, local_charges = [], [], []

@@ -62,7 +62,8 @@ class OpenAIResponsesAgent:
     def __init__(self, *, evidence_dir, model=None, timeout_s=None,
                  wire_schema_bundle, prompt_version='driving_v3_exp2',
                  experiment_profile=None, max_calls=2, expected_models=None,
-                 client=None, network_preflight=False):
+                 client=None, network_preflight=False,
+                 network_preflight_attempts=1, keepalive_expiry_s=None):
         self.base = os.environ.get('DRIVING_API_BASE', OFFICIAL_BASE).rstrip('/')
         need(self.base == OFFICIAL_BASE, 'API_CONFIGURATION',
              'This transport sends credentials only to the official OpenAI HTTPS /v1 endpoint')
@@ -86,12 +87,20 @@ class OpenAIResponsesAgent:
         proxy, ca = _connection()
         need(isinstance(network_preflight, bool), 'API_CONFIGURATION',
              'network_preflight must be explicitly true or false')
+        need(type(network_preflight_attempts) is int and 1 <= network_preflight_attempts <= 3,
+             'API_CONFIGURATION', 'Non-generating readiness attempts must be in 1..3')
+        need(keepalive_expiry_s is None or (isinstance(keepalive_expiry_s, (int, float))
+             and not isinstance(keepalive_expiry_s, bool) and 0 < keepalive_expiry_s <= 600),
+             'API_CONFIGURATION', 'Explicit keepalive expiry must be in (0,600] seconds')
         self.network_preflight = network_preflight
+        self.network_preflight_attempts = network_preflight_attempts
+        self.keepalive_expiry_s = 5. if keepalive_expiry_s is None else float(keepalive_expiry_s)
         tls_context = ssl.create_default_context(cafile=ca)
         self.source = 'online_model' if client is None else 'mock_transport'
         self.client = client or httpx.Client(timeout=self.timeout, follow_redirects=False,
             trust_env=False, transport=httpx.HTTPTransport(retries=0, proxy=proxy,
-                                                          verify=tls_context, trust_env=False))
+                verify=tls_context, trust_env=False,
+                limits=httpx.Limits(keepalive_expiry=self.keepalive_expiry_s)))
         self.evidence_dir = reserve_directory(evidence_dir)
         self.preflight_ok = False
         self.last_attempt_summary = None
@@ -103,10 +112,14 @@ class OpenAIResponsesAgent:
             model_substitution=False, prompt_version=self.prompt_version,
             agent_output_contract=CONTRACT, experiment_profile=self.experiment_profile,
             max_calls=self.max_calls, source=self.source, reasoning_effort='medium',
-            network_preflight=self.network_preflight, network_preflight_retries=0,
+            network_preflight=self.network_preflight,
+            network_preflight_attempts=self.network_preflight_attempts,
+            network_preflight_retries=self.network_preflight_attempts - 1,
             store=False, schema_transport=self.schema_transport,
             connection_profile=dict(proxy_url=proxy, ca_bundle=ca,
                                     tls_context='ssl.create_default_context',
+                                    keepalive_expiry_s=self.keepalive_expiry_s,
+                                    keepalive_explicit=keepalive_expiry_s is not None,
                                     certificate_verification_disabled=False))
 
     def _transport_schema(self):
@@ -124,51 +137,70 @@ class OpenAIResponsesAgent:
             business_validation=SCHEMA, response_repair=False)
 
     def preflight(self):
-        """Check pins; optionally one non-generating GET on the inference client."""
+        """Check pins; optionally bounded non-generating GET readiness attempts."""
         need(not self.preflight_ok, 'API_PREFLIGHT', 'Preflight already recorded')
         _, current = self._transport_schema()
         need(current == self.schema_transport, 'WIRE_SCHEMA_CHANGED', 'Wire changed before preflight')
         write_json_new(self.evidence_dir / 'public_config.json', self.public_config)
+        network_requests = 0
         if self.network_preflight:
-            self._network_preflight()
+            network_requests = self._network_preflight()['network_requests']
         self.preflight_ok = True
-        return dict(ok=True, model_inference_calls=0, network_requests=int(self.network_preflight),
+        return dict(ok=True, model_inference_calls=0, network_requests=network_requests,
                     backend='official_openai_responses', source=self.source)
 
     def _network_preflight(self):
-        """One authenticated models GET; never serialize the returned model list."""
+        """Explicit readiness attempts; each GET and every model POST has zero HTTP retries."""
         start = time.monotonic()
-        record = dict(http_status=None, request_id=None, model_available=None,
-                      network_requests=1, model_inference_calls=0, source=self.source)
+        records = []
         try:
-            try:
-                response = self.client.get(self.base + '/models',
-                    headers={'Authorization': 'Bearer ' + self.key}, timeout=min(self.timeout, 30.))
-            except (httpx.TimeoutException, httpx.TransportError) as error:
-                record['exception_type'] = type(error).__name__
-                raise Failure('API_PREFLIGHT_TRANSPORT', 'Non-generating model preflight connection failed; no retry',
-                              exception_type=type(error).__name__) from None
-            record.update(http_status=response.status_code,
-                          request_id=response.headers.get('x-request-id'))
-            need(response.status_code == 200, 'API_PREFLIGHT_HTTP',
-                 'Non-generating model preflight rejected; no generation request sent',
-                 http_status=response.status_code)
-            try:
-                data = response.json()
-            except ValueError:
-                raise Failure('API_PREFLIGHT_RESPONSE', 'Model availability response is malformed') from None
-            need(isinstance(data, dict) and isinstance(data.get('data'), list),
-                 'API_PREFLIGHT_RESPONSE', 'Model availability response is malformed')
-            record['model_available'] = any(isinstance(item, dict) and item.get('id') == self.model
-                                            for item in data['data'])
-            need(record['model_available'], 'API_MODEL_UNAVAILABLE',
-                 'Requested model is not listed for the configured API credential; no generation request sent')
-        except Failure as error:
-            record['failure_code'] = error.record['code']
-            raise
+            for number in range(1, self.network_preflight_attempts + 1):
+                attempt_start = time.monotonic()
+                record = dict(attempt=number, http_status=None, request_id=None, model_available=None,
+                              network_requests=1, model_inference_calls=0, source=self.source)
+                retryable = False
+                try:
+                    try:
+                        response = self.client.get(self.base + '/models',
+                            headers={'Authorization': 'Bearer ' + self.key}, timeout=min(self.timeout, 30.))
+                    except (httpx.TimeoutException, httpx.TransportError) as error:
+                        record['exception_type'] = type(error).__name__
+                        retryable = isinstance(error, (httpx.ConnectError, httpx.ConnectTimeout))
+                        raise Failure('API_PREFLIGHT_TRANSPORT',
+                            'Non-generating model readiness connection failed; generation not attempted',
+                            exception_type=type(error).__name__) from None
+                    record.update(http_status=response.status_code,
+                                  request_id=response.headers.get('x-request-id'))
+                    need(response.status_code == 200, 'API_PREFLIGHT_HTTP',
+                         'Non-generating model preflight rejected; no generation request sent',
+                         http_status=response.status_code)
+                    try:
+                        data = response.json()
+                    except ValueError:
+                        raise Failure('API_PREFLIGHT_RESPONSE', 'Model availability response is malformed') from None
+                    need(isinstance(data, dict) and isinstance(data.get('data'), list),
+                         'API_PREFLIGHT_RESPONSE', 'Model availability response is malformed')
+                    record['model_available'] = any(isinstance(item, dict) and item.get('id') == self.model
+                                                    for item in data['data'])
+                    need(record['model_available'], 'API_MODEL_UNAVAILABLE',
+                         'Requested model is not listed for the configured API credential; no generation request sent')
+                except Failure as error:
+                    record['failure_code'] = error.record['code']
+                    if not retryable or number == self.network_preflight_attempts:
+                        raise
+                finally:
+                    record['elapsed_s'] = time.monotonic() - attempt_start
+                    records.append(record)
+                    write_json_new(self.evidence_dir / f'network_preflight_attempt_{number:02d}.json', record)
+                if 'failure_code' not in record:
+                    break
+                time.sleep(1.)
         finally:
-            record['elapsed_s'] = time.monotonic() - start
-            write_json_new(self.evidence_dir / 'network_preflight.json', record)
+            aggregate = dict(records[-1], network_requests=len(records),
+                elapsed_s=time.monotonic() - start, attempts=records,
+                readiness_max_attempts=self.network_preflight_attempts)
+            write_json_new(self.evidence_dir / 'network_preflight.json', aggregate)
+        return aggregate
 
     def _safe_error(self, response):
         result = dict(http_status=response.status_code)

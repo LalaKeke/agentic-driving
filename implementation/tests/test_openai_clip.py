@@ -90,6 +90,9 @@ class ClipTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             plan = self.prepare(root)
+            data = runner.read(plan)
+            data.update(network_readiness_get_attempts=3, keepalive_expiry_s=120.)
+            plan.write_text(json.dumps(data))
             fake, agents = self.fake()
             physical_calls = []
 
@@ -107,6 +110,10 @@ class ClipTests(unittest.TestCase):
             agent = agents[0]
             self.assertEqual(agent.preflights, 1)
             self.assertEqual(agent.kwargs['max_calls'], 4)
+            self.assertEqual(agent.kwargs['network_preflight_attempts'], 3)
+            self.assertEqual(agent.kwargs['keepalive_expiry_s'], 120.)
+            self.assertEqual(runner.read(root / 'config.json')['network_readiness_get_attempts'], 3)
+            self.assertEqual(runner.read(root / 'runtime/frame_0/config.json')['keepalive_expiry_s'], 120.)
             self.assertNotIn('client', agent.kwargs)  # Real route must not inject a mock-labelled client.
             self.assertEqual(agent.call_count, 3)
             self.assertEqual([c['require_turn'] for c in physical_calls], [False, False, True])
