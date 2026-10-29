@@ -65,7 +65,10 @@ def main(plan_path):
     assert plan['old_budget_inherited'] == 0
     assert plan['prompt_version'] == 'driving_prototype_v3'
     assert plan['planner_profile'] == 'bounded_seed_candidates_v2' and plan['require_turn'] is True
-    assert len(plan['cases']) == 6 and len({case['sample_token'] for case in plan['cases']}) == 6
+    # A separate recovery group may contain only the unresolved recorded times.
+    # It never overwrites or silently retries an ended trial.
+    assert 1 <= len(plan['cases']) <= 6
+    assert len({case['sample_token'] for case in plan['cases']}) == len(plan['cases'])
     preflight = read(root / 'preflight.json')
     assert passed(preflight['models_access']) and passed(preflight['probes_validation'])
     assert os.environ.get('DRIVING_MODEL') == plan['requested_model'], 'Frozen API model differs from environment'
