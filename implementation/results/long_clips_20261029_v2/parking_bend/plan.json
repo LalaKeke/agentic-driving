@@ -1,0 +1,1618 @@
+{
+  "backend": "openai_api",
+  "execution_authorized": true,
+  "launched": false,
+  "user_authorization": "unlimited requests",
+  "user_call_limit": null,
+  "operational_call_ceiling": 38,
+  "per_window_limit": 2,
+  "old_budget_inherited": 0,
+  "serial": true,
+  "stop_on_service_error": true,
+  "requested_model": "gpt-6.1-sol",
+  "prompt_version": "driving_prototype_v3",
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "business_contract": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "planner_profile": "bounded_seed_candidates_v2",
+  "require_turn": false,
+  "api_preflight_models": true,
+  "wire_bundle": "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle",
+  "timeout_s": 450,
+  "source_commit": "2080a1dbd4d770290ae1e08b1b55cea8d6fd1e7f",
+  "source_sha256": {
+    "implementation/experiments/prepare_long_clips.py": "2e1ffe6e8095df3c984663c7f097fa53f299d73774196a6d2e5376ba85695d33",
+    "implementation/experiments/prepare_six_scene_scout.py": "412ff4ca21f21093c840a422efee7febd7141ad836b8232603e4cb942a575995",
+    "implementation/results/moving_prototype_2s_20261028_v1/capture.json": "cffbca50ee9b705faaada0d6108eb6e25859740cc592ea49a8295ee595f079fb",
+    "implementation/experiments/run_local_prototype.py": "99e545a6b0feb3ea28ff6134eb50a35064dd6886a805720344ed0ba0e8e312e0",
+    "implementation/experiments/run_openai_bend_sequence.py": "85e03be49b9df69b4d429b3a1fcd834bcc6db9831d935ee51dfd2da7d7015efc",
+    "implementation/prompts/driving_prototype_v3.txt": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+    "implementation/agentic/datasets/nuscenes_capture.py": "8beb8b563b67e7db5ceec82bad58f7117d93d449e83f861c332ba0c00adfeef8",
+    "implementation/agentic/openai_adapter.py": "f6f5133fb57081f31bd0316b912b0c50d450cb38e2fec5416b96a0d4154baae3",
+    "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+    "implementation/agentic/t2.py": "435ed369f45f3683faa53ac79ef5bd07928c23bdfef0e2c439c9d7dbfcbe44a8",
+    "implementation/agentic/t3.py": "e911fb30cadaa65b133498bdaade966c07027dd349c603bdd5c81b82683269bf",
+    "implementation/agentic/t4.py": "b6e4886f19643bf1a0b772ad996775d5330d05b0d39255d0ba89192bbb8da0be",
+    "implementation/agentic/metric_contract.py": "c16cc212fa9374ab4ac9c1a42aec51ef15a0895f3356738566bd686b68dab9b5",
+    "implementation/agentic/geometry.py": "cd99ee0a6ea492ccdd3b8c394af9d09f283c5b53d4cb66c8443974454e802cac",
+    "implementation/agentic/candidate_search.py": "730b8cc2f94ff9ed9bfbb8e4ec5f82ec2d1338d06eed9552a97c0a6df3fd03b0",
+    "implementation/agentic/acceptance.py": "d6475540935ea5eab2d1b3b4e9f7d2abf5aa5da9c3831df131f89d0dad571039",
+    "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+    "implementation/agentic/contracts.py": "25ffe210691a291589fac9d7d1cc9873c76bd6805b694782f2a93e99b7ac32a1",
+    "implementation/agentic/wire_schema.py": "8eb4f3e226eda84f339f6448135e27a749bc5425ca29de70c1def69f7566b3b3",
+    "implementation/agentic/wire_schema_v2.py": "acce592bb24a084b2c62c18690d36c0ba83e911659460800d8c128ce51de9db8",
+    "implementation/agentic/evidence_io.py": "fc8884814eea0318e4ad5852f6826fea91fb6cd778f42829a3c2e5ab8006ca47",
+    "implementation/agentic/turn_task.py": "c008344790374daa730313d85f5520c4c6a184d219676a0404160d33fe431716",
+    "implementation/schemas/capture_v2.schema.json": "bec054ccec1da1c3921d3622b4f0ff0877bbf0084c561468c6ffed4f81a44974",
+    "implementation/schemas/scene_v2.schema.json": "6df0cc7f7d23d4db196c6e5c46e4c428fd9bc1395cd36947a444ccbcb7bd8d7c",
+    "implementation/schemas/agent_output_v3_exp2.schema.json": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+    "implementation/schemas/corridor_seed_candidates_v2.schema.json": "2b4d1c3456176c8bc0bb0a3bd5a2997e5101ec0edee4f318095c0899195135e8",
+    "implementation/schemas/trajectory_seed_candidates_v2.schema.json": "e39b2ff60805b28823d90cf122c53cc5bd8c0e555d2420b078d74162608e429a",
+    "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle/wire_schema.json": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+    "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle/transformation_manifest.json": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+    "implementation/experiments/run_long_clips.py": "32850c760e447dbebd2cf7795795b9ad786dac10616ccad4a4ff68d3fdbf58af",
+    "implementation/experiments/run_openai_clip.py": "a86e4c012db410530993691257a42fdf258329b2c6962f028b1aeaf0ff1ba544"
+  },
+  "preparation_started_at_utc": "2026-10-29T10:16:37.683255+00:00",
+  "deadline_utc": "2026-10-29T14:27:27.291480+00:00",
+  "wall_limit_s": 14400,
+  "configuration": {
+    "history_s": 2.0,
+    "horizon_s": 2.0,
+    "step_s": 0.2,
+    "current_cameras": [
+      "CAM_FRONT",
+      "CAM_FRONT_LEFT",
+      "CAM_FRONT_RIGHT",
+      "CAM_BACK",
+      "CAM_BACK_LEFT",
+      "CAM_BACK_RIGHT"
+    ],
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "center_to_rear_axle_m": 1.2,
+      "wheelbase_m": 2.7,
+      "max_speed_mps": 12.0,
+      "max_accel_mps2": 2.0,
+      "max_brake_mps2": 3.0,
+      "max_steer_rad": 0.5,
+      "max_curvature_per_m": 0.2
+    },
+    "safety": {
+      "margin_m": 1.0,
+      "prefix_s": 0.2
+    },
+    "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+    "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+  },
+  "gt_used": false,
+  "recording_boundary": "Independent plans from recorded ego states. Later original images are not counterfactual observations following the simulated prefixes. No stitched plan is executed.",
+  "context_policy": "Each model gets only its own causal two-second capture and optional within-window tool feedback. Full timeline and selection/display poses do not enter capture.",
+  "result_policy": "Keep every chosen reference and every failure. First two seconds are warm-up, remaining unsampled front frames are observation-only; never call these online planning successes.",
+  "experiment_id": "long_clips_20261029_v2_parking_bend",
+  "clip_id": "parking_bend",
+  "scene_name": "scene-0916",
+  "scene_token": "325cef682f064c55a255f2625c533b75",
+  "selection_label": "Parking-area road / compound bends",
+  "selection_basis": "Previously exposed acquisition/image-based scene choice; whole ego timeline is selection/display only. No annotation or map read.",
+  "raw_frames": [
+    {
+      "raw_index": 0,
+      "sample_token": "b5989651183643369174912bc5641d3b",
+      "frame_id": "524d443c501a4f98a14508c3fb6f6de3",
+      "reference_time_id": "nusc_us_1538984233512470",
+      "reference_time_s": 1538984233.51247,
+      "relative_sequence_time_s": 0.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984233512470.jpg",
+      "image_sha256": "eb299dff2240c756d2d4725c6247247655be92531a1d79717ed1da461ce2e130",
+      "ego_speed_mps": null,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": null,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          715.9888508735178,
+          1809.0317741056679
+        ],
+        "yaw_world_rad": -1.2826122973102223,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 1,
+      "sample_token": "0bb62a68055249e381b039bf54b0ccf8",
+      "frame_id": "bee06d622b78488eaf54f876f4912797",
+      "reference_time_id": "nusc_us_1538984234012472",
+      "reference_time_s": 1538984234.012472,
+      "relative_sequence_time_s": 0.500002,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984234012472.jpg",
+      "image_sha256": "b81300d9dc86a9abda306af1aa5c5c1d90aa838eb4e62973f989bf7b6b52b02f",
+      "ego_speed_mps": 4.0737053325714525,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 0.500002,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          716.1611331036468,
+          1807.001677024613
+        ],
+        "yaw_world_rad": -1.4632513635277093,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 2,
+      "sample_token": "07fad91090c746ccaa1b2bdb55329e20",
+      "frame_id": "332299caf93f4f37874d93def6c7bf46",
+      "reference_time_id": "nusc_us_1538984234512460",
+      "reference_time_s": 1538984234.51246,
+      "relative_sequence_time_s": 0.9999899999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984234512460.jpg",
+      "image_sha256": "45b29dc98f53775c8f5898267dea3c8016884f75b2e200746281a03a3a2e9b24",
+      "ego_speed_mps": 4.160109706921558,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 0.9999899999999999,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          715.9871524677114,
+          1804.9286845018958
+        ],
+        "yaw_world_rad": -1.6382482873613888,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 3,
+      "sample_token": "ae5004bf4ebb4db0a84cb3c27bd398d1",
+      "frame_id": "1d1306dc17764f38b6b662d2350acac2",
+      "reference_time_id": "nusc_us_1538984234912460",
+      "reference_time_s": 1538984234.9124599,
+      "relative_sequence_time_s": 1.3999899999999998,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984234912460.jpg",
+      "image_sha256": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+      "ego_speed_mps": 4.074744117810886,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 1.3999899999999998,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          715.5926942284823,
+          1803.3444991184058
+        ],
+        "yaw_world_rad": -1.7771965576089555,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 4,
+      "sample_token": "ac8b4d49731d43289579f014cb7c97ef",
+      "frame_id": "b08a2deaf871433fad9a4c03e6f53d32",
+      "reference_time_id": "nusc_us_1538984235412460",
+      "reference_time_s": 1538984235.4124599,
+      "relative_sequence_time_s": 1.8999899999999998,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984235412460.jpg",
+      "image_sha256": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2",
+      "ego_speed_mps": 4.064904928453242,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 1.8999899999999998,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          714.8388814378828,
+          1801.456550437165
+        ],
+        "yaw_world_rad": -1.930270494859445,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 5,
+      "sample_token": "c1eed31234b94e9f8e22fbf3428b0ac2",
+      "frame_id": "790bc648874d4664811b364dcbab1bc8",
+      "reference_time_id": "nusc_us_1538984235912460",
+      "reference_time_s": 1538984235.9124599,
+      "relative_sequence_time_s": 2.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984235912460.jpg",
+      "image_sha256": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293",
+      "ego_speed_mps": 4.241828188963939,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_005",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          713.8182395977252,
+          1799.5970831392378
+        ],
+        "yaw_world_rad": -2.0574963601536984,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 6,
+      "sample_token": "edba7d0cf1c64d2a9c8a5ebddab507a9",
+      "frame_id": "fb91724c05c84935a6e066b293046e9e",
+      "reference_time_id": "nusc_us_1538984236412460",
+      "reference_time_s": 1538984236.4124599,
+      "relative_sequence_time_s": 2.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984236412460.jpg",
+      "image_sha256": "391aaaf0581bae910fc4d3cd5a2f5b1ba9aab67b8829c245a33fa590291474c7",
+      "ego_speed_mps": 4.370580741990992,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          712.6064017442351,
+          1797.7785375786623
+        ],
+        "yaw_world_rad": -2.1527219237255757,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 7,
+      "sample_token": "a5afebb0aa5e4d7c95665788ce51ec58",
+      "frame_id": "aa78b9cc380b48c5be14f99540359ccf",
+      "reference_time_id": "nusc_us_1538984236912460",
+      "reference_time_s": 1538984236.9124599,
+      "relative_sequence_time_s": 3.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984236912460.jpg",
+      "image_sha256": "a56044ef2e2fb676ace82740b19a3471781bbb63034466f814159b8d9ee238e1",
+      "ego_speed_mps": 4.545950747114556,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_007",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          711.255442708467,
+          1795.9505837564914
+        ],
+        "yaw_world_rad": -2.203118499017054,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 8,
+      "sample_token": "5b7cb170eee6468aa1fdbd3abcf63c5a",
+      "frame_id": "6f8a88c0de0b42d89e66197403822d30",
+      "reference_time_id": "nusc_us_1538984237412460",
+      "reference_time_s": 1538984237.4124599,
+      "relative_sequence_time_s": 3.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984237412460.jpg",
+      "image_sha256": "9dac788a8415be4b7ad6d12884e052023c8904cad724aa83de13e7ea18a9882c",
+      "ego_speed_mps": 4.735094370156985,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          709.8029779464154,
+          1794.0809226138972
+        ],
+        "yaw_world_rad": -2.2301498593285243,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 9,
+      "sample_token": "d8251bbc2105497ab8ec80827d4429aa",
+      "frame_id": "a9b15094d9f44d2c89faf05252547046",
+      "reference_time_id": "nusc_us_1538984237912460",
+      "reference_time_s": 1538984237.9124599,
+      "relative_sequence_time_s": 4.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984237912460.jpg",
+      "image_sha256": "6f807169f44f98d1d124b90fb1b7393e1a3302f0914a40d9afdb5d0b2287f50a",
+      "ego_speed_mps": 4.710190555518529,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_009",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          708.3062601840932,
+          1792.262585974774
+        ],
+        "yaw_world_rad": -2.256847395341727,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 10,
+      "sample_token": "048a45dd2cf54aa5808d8ccc85731d44",
+      "frame_id": "13450209d238498bb7ad63928f2d6878",
+      "reference_time_id": "nusc_us_1538984238412460",
+      "reference_time_s": 1538984238.4124599,
+      "relative_sequence_time_s": 4.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984238412460.jpg",
+      "image_sha256": "c9201c4f3035f152246c95eaebb950ea9c691da920ec97ecced6708dd99ff350",
+      "ego_speed_mps": 4.651979573056398,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          706.767515792783,
+          1790.5182546473445
+        ],
+        "yaw_world_rad": -2.287612620967529,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 11,
+      "sample_token": "858a1ece22cf45d9bc71e42336604b78",
+      "frame_id": "69c59330a61e4f078b81b475b480912e",
+      "reference_time_id": "nusc_us_1538984238912460",
+      "reference_time_s": 1538984238.9124599,
+      "relative_sequence_time_s": 5.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984238912460.jpg",
+      "image_sha256": "e7a733f16d562d4ccaa922e4bccc9a02fb607c946881d5f91e23226736bd9d72",
+      "ego_speed_mps": 4.638053466723661,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_011",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          705.1558322581535,
+          1788.8507644541257
+        ],
+        "yaw_world_rad": -2.333682932078613,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 12,
+      "sample_token": "372725a4b00e49c78d6d0b1c4a38b6e0",
+      "frame_id": "b81d7ac6a39242999018827cf77ade26",
+      "reference_time_id": "nusc_us_1538984239412460",
+      "reference_time_s": 1538984239.4124599,
+      "relative_sequence_time_s": 5.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984239412460.jpg",
+      "image_sha256": "d8f13e98e31b276382506e92962899ae55d5a2755d7173c78f4f0f4e4bb5da69",
+      "ego_speed_mps": 4.534224818526933,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          703.4642921402972,
+          1787.3412307522983
+        ],
+        "yaw_world_rad": -2.4067332932732604,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 13,
+      "sample_token": "61a7bd24f88a46c2963280d8b13ac675",
+      "frame_id": "6e98b1d0e18a428b869961943f871a83",
+      "reference_time_id": "nusc_us_1538984239912460",
+      "reference_time_s": 1538984239.9124599,
+      "relative_sequence_time_s": 6.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984239912460.jpg",
+      "image_sha256": "959807d607eb846c209d6c412767c1351299a58c44d798b69fefd75125a4a3db",
+      "ego_speed_mps": 4.340117376172382,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_013",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          701.7086846681069,
+          1786.0655465787302
+        ],
+        "yaw_world_rad": -2.5043146326732746,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 14,
+      "sample_token": "609d5177362340458a3bfd4949cd1e64",
+      "frame_id": "919ee11e9920472280b9ee1247298cf2",
+      "reference_time_id": "nusc_us_1538984240412460",
+      "reference_time_s": 1538984240.4124599,
+      "relative_sequence_time_s": 6.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984240412460.jpg",
+      "image_sha256": "9a2525ec3108abb3164a91dca2cbf3e78a92237837e057fe0d8d4dd8f959d6ad",
+      "ego_speed_mps": 4.223596061508924,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          699.8294509860289,
+          1785.1014600423346
+        ],
+        "yaw_world_rad": -2.6505689340589784,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 15,
+      "sample_token": "b1303058fa624645b753d7283d70de45",
+      "frame_id": "d008df699f0e431db7664b16ee57de2f",
+      "reference_time_id": "nusc_us_1538984240912467",
+      "reference_time_s": 1538984240.912467,
+      "relative_sequence_time_s": 7.399997,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984240912467.jpg",
+      "image_sha256": "4eeb3a070cc75f9633a2b23a1511a08655541cca68c3cc43c63c5b95d5e6dd92",
+      "ego_speed_mps": 4.074432480348756,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 1.900007,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_015",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          697.872853003744,
+          1784.5320089788447
+        ],
+        "yaw_world_rad": -2.8354396363924534,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 16,
+      "sample_token": "a19a80c905674faab7203a3a4e0f5246",
+      "frame_id": "93c6187bdede4f16ad577f8d02086c7c",
+      "reference_time_id": "nusc_us_1538984241412460",
+      "reference_time_s": 1538984241.4124599,
+      "relative_sequence_time_s": 7.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984241412460.jpg",
+      "image_sha256": "c7cfb92719f54577883db6bf3ef81cfda2d37a25b20d00796363fccc19ee2bac",
+      "ego_speed_mps": 3.9194524872779035,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          695.9188381766265,
+          1784.3719242625796
+        ],
+        "yaw_world_rad": -3.0301839634019214,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 17,
+      "sample_token": "b6c420c3a5bd4a219b1cb82ee5ea0aa7",
+      "frame_id": "18a34926d51e46a9b9f47aa2011b83d7",
+      "reference_time_id": "nusc_us_1538984241912460",
+      "reference_time_s": 1538984241.9124599,
+      "relative_sequence_time_s": 8.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984241912460.jpg",
+      "image_sha256": "f267c3dbada1bb4ca82a918ff3c569a471ce58c00e54299f43906ffedd1ebaae",
+      "ego_speed_mps": 3.916865748010247,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_017",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          693.9822860124928,
+          1784.668299915787
+        ],
+        "yaw_world_rad": 3.0158258080708613,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 18,
+      "sample_token": "8092909473464f80b9f791a4d31ddcb8",
+      "frame_id": "17194bb665bf45c3af0284287c1f3b4b",
+      "reference_time_id": "nusc_us_1538984242412460",
+      "reference_time_s": 1538984242.4124599,
+      "relative_sequence_time_s": 8.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984242412460.jpg",
+      "image_sha256": "114fa2658e620f92801a7674dfe7a5d7302c29c8ac260eaaa923af5b67f4c99d",
+      "ego_speed_mps": 4.164072342689931,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          692.0726573768144,
+          1785.4996939741918
+        ],
+        "yaw_world_rad": 2.757373359997364,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 19,
+      "sample_token": "e174cb43655f49dab7ffa27b973670e3",
+      "frame_id": "207924ae382b416b8f4fb04b68e61bd7",
+      "reference_time_id": "nusc_us_1538984242912460",
+      "reference_time_s": 1538984242.9124599,
+      "relative_sequence_time_s": 9.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984242912460.jpg",
+      "image_sha256": "997cf98d4dafed69f945afd6fea4ac6f86a57c4fb75873d1a05429aac7f0bc8c",
+      "ego_speed_mps": 4.428961426234585,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 1.999993,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_019",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          690.2727812872614,
+          1786.7903931471853
+        ],
+        "yaw_world_rad": 2.5371607095243776,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 20,
+      "sample_token": "6ff9723a60bf4e14b328b3b19f04dc32",
+      "frame_id": "bae2946bd7c04bf190538513ec180ecc",
+      "reference_time_id": "nusc_us_1538984243412460",
+      "reference_time_s": 1538984243.4124599,
+      "relative_sequence_time_s": 9.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984243412460.jpg",
+      "image_sha256": "c649039025716d2e09e32e837f3eabaff503dcb62f89d2c407bb20522107ea92",
+      "ego_speed_mps": 4.609754016953727,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          688.5637512927487,
+          1788.337159320153
+        ],
+        "yaw_world_rad": 2.4183473705635157,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 21,
+      "sample_token": "06be0e3b665c44fa8d17d9f4770bdf9c",
+      "frame_id": "65ca09683fc74f8891762c2f072d260a",
+      "reference_time_id": "nusc_us_1538984243912460",
+      "reference_time_s": 1538984243.9124599,
+      "relative_sequence_time_s": 10.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984243912460.jpg",
+      "image_sha256": "003a2fd8d46492f0571d52c5aa6bf4057bf5cdd50d0c087969e08920a1002f2c",
+      "ego_speed_mps": 4.894070410523657,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_021",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          686.8004695563022,
+          1790.0340502722954
+        ],
+        "yaw_world_rad": 2.3855551486812816,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 22,
+      "sample_token": "9150678870764c1b87a649a25939c61b",
+      "frame_id": "b474724af63f4a108be0900675dbab6f",
+      "reference_time_id": "nusc_us_1538984244412460",
+      "reference_time_s": 1538984244.4124599,
+      "relative_sequence_time_s": 10.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984244412460.jpg",
+      "image_sha256": "6e6a79c9aaf049420e0b9f9d56ca7f8a7288d94a95fce53f65ce9461637ac6c9",
+      "ego_speed_mps": 5.118749138478735,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          684.9433665687977,
+          1791.7951869373353
+        ],
+        "yaw_world_rad": 2.3850448676690092,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 23,
+      "sample_token": "8573a885a7cb41d185c05029eeb9a54e",
+      "frame_id": "ab7e9c8335034420a1012fd5d165c099",
+      "reference_time_id": "nusc_us_1538984244912460",
+      "reference_time_s": 1538984244.9124599,
+      "relative_sequence_time_s": 11.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984244912460.jpg",
+      "image_sha256": "d9af68aa37258cedb7dc151881794334f3a6c5442ee29e7e401affc1e318bdd7",
+      "ego_speed_mps": 5.214907355093433,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_023",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          683.0585695229172,
+          1793.5970313403425
+        ],
+        "yaw_world_rad": 2.3852053329106755,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 24,
+      "sample_token": "55c258972acb4300a3a6077a531ab050",
+      "frame_id": "b45600798b1f46658b708b65fef08c1e",
+      "reference_time_id": "nusc_us_1538984245412460",
+      "reference_time_s": 1538984245.4124599,
+      "relative_sequence_time_s": 11.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984245412460.jpg",
+      "image_sha256": "2f111c4bab4b8114edbaa9c72583e5bcd9c40f7a0d8ce86c472a5681351304a5",
+      "ego_speed_mps": 5.392667419687503,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          681.0975906777916,
+          1795.4476686095425
+        ],
+        "yaw_world_rad": 2.3884701051558554,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 25,
+      "sample_token": "44237858a539457da65822bfcf58c414",
+      "frame_id": "d78259c8cb0d4cfc9a0ccd43b1ebd994",
+      "reference_time_id": "nusc_us_1538984245912460",
+      "reference_time_s": 1538984245.9124599,
+      "relative_sequence_time_s": 12.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984245912460.jpg",
+      "image_sha256": "6e4de96c2bd4c6abbf8c5bc4c957023193376a10b452311abd6501054ba6f919",
+      "ego_speed_mps": 5.619800327059008,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_025",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          679.0512264661801,
+          1797.373319126861
+        ],
+        "yaw_world_rad": 2.391577209117071,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 26,
+      "sample_token": "8cd36e9531fb4eba8e6ac1d666c4641c",
+      "frame_id": "e8349613902547b5b0911759fa79efaa",
+      "reference_time_id": "nusc_us_1538984246412460",
+      "reference_time_s": 1538984246.4124599,
+      "relative_sequence_time_s": 12.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984246412460.jpg",
+      "image_sha256": "51b64485f6d2b14efed2ae9fcc1c3a76058a771442b757c889328e01a22b37df",
+      "ego_speed_mps": 5.703118954097289,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          676.9862090919761,
+          1799.3398156569042
+        ],
+        "yaw_world_rad": 2.3819350982965304,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 27,
+      "sample_token": "7bebe3c9be714f02837f8617c56df122",
+      "frame_id": "2d7914ad33d64062806d96e7c1fd3476",
+      "reference_time_id": "nusc_us_1538984246912460",
+      "reference_time_s": 1538984246.9124599,
+      "relative_sequence_time_s": 13.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984246912460.jpg",
+      "image_sha256": "69e257420b678cb5987507a01f27b649021c18ad5f78172b8628f078408ca201",
+      "ego_speed_mps": 5.76737624154155,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_027",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          674.9287547679453,
+          1801.3604033225104
+        ],
+        "yaw_world_rad": 2.3705576295374287,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 28,
+      "sample_token": "4b894442c95141f9affd731d9da7b43c",
+      "frame_id": "b886a7f74e7c4b78ae3b626c2e0b67f4",
+      "reference_time_id": "nusc_us_1538984247412460",
+      "reference_time_s": 1538984247.4124599,
+      "relative_sequence_time_s": 13.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984247412460.jpg",
+      "image_sha256": "fae44d1bf3d896b4b1be66fc7e03b5357c4ffd32f3f09a8d71c1d3b335aecaa5",
+      "ego_speed_mps": 6.1084827153234675,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          672.7595966330126,
+          1803.5105929416272
+        ],
+        "yaw_world_rad": 2.364881714954426,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 29,
+      "sample_token": "e00dc15130dc44e796687baadd076ae4",
+      "frame_id": "60c424c157b54829ba532e11fe66363c",
+      "reference_time_id": "nusc_us_1538984247912460",
+      "reference_time_s": 1538984247.9124599,
+      "relative_sequence_time_s": 14.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984247912460.jpg",
+      "image_sha256": "5dedbafb6ec182dc87bf1d2e956b1592b009310a438be29571cb5054d61866ab",
+      "ego_speed_mps": 6.0905818688881945,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_029",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          670.6141998510068,
+          1805.6719636973487
+        ],
+        "yaw_world_rad": 2.3594823057938736,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 30,
+      "sample_token": "e63b83b436a0479db7362338cdfab118",
+      "frame_id": "e2eb142fa3cf467a8ec42faa6a051bb0",
+      "reference_time_id": "nusc_us_1538984248412460",
+      "reference_time_s": 1538984248.4124599,
+      "relative_sequence_time_s": 14.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984248412460.jpg",
+      "image_sha256": "e1224f33295de119491ca42ae6e9f14e51219cad65ed3bd118927b4ad87b338b",
+      "ego_speed_mps": 6.010760001753717,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          668.4971488585933,
+          1807.8051533102616
+        ],
+        "yaw_world_rad": 2.35562132175742,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 31,
+      "sample_token": "c567f9b8e9f34817acdc9c49d791c557",
+      "frame_id": "aa8b56c5feb442dab1d95a62b8509e13",
+      "reference_time_id": "nusc_us_1538984248912460",
+      "reference_time_s": 1538984248.9124599,
+      "relative_sequence_time_s": 15.399989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984248912460.jpg",
+      "image_sha256": "ea194a7a45ebbbe19eaff457580fa849c3bb43582bb3372c4298aaa77f1988f7",
+      "ego_speed_mps": 6.005132147771187,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_031",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          666.3876292824312,
+          1809.9418430194164
+        ],
+        "yaw_world_rad": 2.353331963381037,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 32,
+      "sample_token": "8e352d4a6c6f40c8ad4f10a3d2c3f158",
+      "frame_id": "11693aefd68c4f70ac76775f4a31026d",
+      "reference_time_id": "nusc_us_1538984249412460",
+      "reference_time_s": 1538984249.4124599,
+      "relative_sequence_time_s": 15.899989999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984249412460.jpg",
+      "image_sha256": "cc28376bc272eda4a286d5a420005471b2b62a737472c6f8cac6851af9a359b3",
+      "ego_speed_mps": 5.774916173702068,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          664.351059429183,
+          1811.9888646892737
+        ],
+        "yaw_world_rad": 2.361381118382049,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 33,
+      "sample_token": "841dd6709e9b4d7c9d6bf888f1fe6d7e",
+      "frame_id": "f2b6c088d189439aa7bb2460d1db05da",
+      "reference_time_id": "nusc_us_1538984249912460",
+      "reference_time_s": 1538984249.9124599,
+      "relative_sequence_time_s": 16.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984249912460.jpg",
+      "image_sha256": "ded92c76408e1d4d21f45d003a5fcf3f0a461e0aaf69cd9456bd44906ee242e0",
+      "ego_speed_mps": 5.427299034661586,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_033",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          662.3863147817549,
+          1813.8609139390321
+        ],
+        "yaw_world_rad": 2.391380925337014,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 34,
+      "sample_token": "e54b784a608644a2804fcf800c7499f7",
+      "frame_id": "7d31b274752d4b96a4e2fcb3eda3e1e1",
+      "reference_time_id": "nusc_us_1538984250412460",
+      "reference_time_s": 1538984250.4124599,
+      "relative_sequence_time_s": 16.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984250412460.jpg",
+      "image_sha256": "d24c2270b8aaabdf266f71e287e293335262c4ea3a4dd1e11f93b4f94221a515",
+      "ego_speed_mps": 4.901076318447489,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          660.4986361327423,
+          1815.4235972775095
+        ],
+        "yaw_world_rad": 2.4554706146401126,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 35,
+      "sample_token": "a1289b27ca1d41deb6fc982be9a3d03c",
+      "frame_id": "4cb2e5f01be94ffeb22cabde23ba5b46",
+      "reference_time_id": "nusc_us_1538984250912460",
+      "reference_time_s": 1538984250.9124599,
+      "relative_sequence_time_s": 17.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984250912460.jpg",
+      "image_sha256": "d426567536ef8f92d0b62b354aa4e6fabb3808cbe3b1b50689b629dcda500914",
+      "ego_speed_mps": 4.594389153789989,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_035",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          658.5876349243617,
+          1816.6984595658032
+        ],
+        "yaw_world_rad": 2.5575553457159033,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 36,
+      "sample_token": "e6e877f31dd447199b56cae07f86daad",
+      "frame_id": "13b3848fba3442f58870664d973fcb3f",
+      "reference_time_id": "nusc_us_1538984251412460",
+      "reference_time_s": 1538984251.4124599,
+      "relative_sequence_time_s": 17.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984251412460.jpg",
+      "image_sha256": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+      "ego_speed_mps": 4.101373869162963,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          656.7341123997327,
+          1817.5758986254273
+        ],
+        "yaw_world_rad": 2.6939385505836144,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 37,
+      "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+      "frame_id": "71f5065f435c47f5b208831524ae6a2a",
+      "reference_time_id": "nusc_us_1538984251912460",
+      "reference_time_s": 1538984251.9124599,
+      "relative_sequence_time_s": 18.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984251912460.jpg",
+      "image_sha256": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868",
+      "ego_speed_mps": 3.9519470449247223,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_037",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          654.8248471562455,
+          1818.0851735330755
+        ],
+        "yaw_world_rad": 2.8740706527668753,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 38,
+      "sample_token": "7f594234e8034228b1a7d727f1981e09",
+      "frame_id": "468dcee93e6049d8873706be7f9f3f89",
+      "reference_time_id": "nusc_us_1538984252412460",
+      "reference_time_s": 1538984252.4124599,
+      "relative_sequence_time_s": 18.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984252412460.jpg",
+      "image_sha256": "23ca2c6e8ee6b3d94f2c4bd22f984328a6f0fd65dfbbe8136f1c0b859d771b2b",
+      "ego_speed_mps": 3.818881719239541,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          652.9169406261647,
+          1818.1658828829075
+        ],
+        "yaw_world_rad": 3.085892977339104,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 39,
+      "sample_token": "9cdbf5ff7f294549aea0a4307e5d104a",
+      "frame_id": "4c5917e14f224fa2a0bd3bd182f8a3d8",
+      "reference_time_id": "nusc_us_1538984252912460",
+      "reference_time_s": 1538984252.9124599,
+      "relative_sequence_time_s": 19.39999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984252912460.jpg",
+      "image_sha256": "62881e2d5e4ff1e8f88d42af04e8aaac1e505d53e5a5d841deeac5c3b40c5e90",
+      "ego_speed_mps": 3.6611599445887943,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_039",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          651.1147822016449,
+          1817.841872208468
+        ],
+        "yaw_world_rad": -2.9864521928419543,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 40,
+      "sample_token": "b4ff30109dd14c89b24789dc5713cf8c",
+      "frame_id": "f18c90dafe764fe2b0d96102eb90c48c",
+      "reference_time_id": "nusc_us_1538984253412460",
+      "reference_time_s": 1538984253.4124599,
+      "relative_sequence_time_s": 19.89999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984253412460.jpg",
+      "image_sha256": "4a57ae1764293cacca049b878086c5ebc65454b4767fa61d7f7591eb25a328a3",
+      "ego_speed_mps": 3.536993159166046,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_040",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          649.4797978827164,
+          1817.1651581634503
+        ],
+        "yaw_world_rad": -2.7827733730920126,
+        "center_offset_m": 1.2
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "frame_005",
+      "frame_index": 5,
+      "raw_index": 5,
+      "planning_reference_index": 0,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "c1eed31234b94e9f8e22fbf3428b0ac2",
+      "relative_sequence_time_s": 2.39999,
+      "reference_time_s": 1538984235.9124599,
+      "ego_speed_mps": 4.241828188963939,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_005/capture.json",
+      "capture_sha256": "76591e8518d10999f042ea48e1d3c97ad76053e85e8562b588049ad4321d5056",
+      "image_sha256": {
+        "ac5aaa8e6e764badb77d5fa077f6e92b": "320d0d2a76fad3211d47f156ad87848fae0e2ec8ee9b5dc3bf2a956c562772c2",
+        "600f938dbfa24792968fb8737f6f5441": "b6ddee2fdb92d3317a3750451de53370e73442873c2bef9e941f9e478cd6db3a",
+        "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+        "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2",
+        "7235bbd006454697a368f40dc3a4b8b9": "da66b0039d2d6b23072b8ae14eb746c5d3837b4e73a9258e572d0fa8db9c91d2",
+        "6fa2a3dac26447da8792fd0fcf14d286": "e52dd03a1c73d18a56fe3a2f3f8a8f7c7d5313a74f3ebd562a780da81d468ffd",
+        "e26729a7b49445deb14c7cef0b4f33f2": "f3a05514713af363514aed73351616aefebfda1af0424ec4b62b0fb7b0dd1fde",
+        "d6146978ae2040ae97e1d12b37597a1e": "a72417f6d6ab49f27cf97f62defd07d9a1e4550e7fb2c8931281d0707e0f38fe",
+        "61035e131d8e4af98d245923ee7a9bc1": "477caba17b09edfccbff8612fa4c941bd009f297d8727588bc02e222bd0ee25c",
+        "790bc648874d4664811b364dcbab1bc8": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_007",
+      "frame_index": 7,
+      "raw_index": 7,
+      "planning_reference_index": 1,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "a5afebb0aa5e4d7c95665788ce51ec58",
+      "relative_sequence_time_s": 3.39999,
+      "reference_time_s": 1538984236.9124599,
+      "ego_speed_mps": 4.545950747114556,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_007/capture.json",
+      "capture_sha256": "57b7b9aacf70503582793205ac978818fce7064e7151219d46d7398e084dc5d5",
+      "image_sha256": {
+        "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+        "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2",
+        "790bc648874d4664811b364dcbab1bc8": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293",
+        "fb91724c05c84935a6e066b293046e9e": "391aaaf0581bae910fc4d3cd5a2f5b1ba9aab67b8829c245a33fa590291474c7",
+        "7b4f6f029ca94fe5ba4ee69d1b7b8c80": "de9e8c28f408a4154834351a071fdc94b1e1b1afff550625b20e06e328020126",
+        "747e6b1a7bd949299dea6e3d9173eb77": "cdb926ef985dedceded1d5212f0d93a6d45d580ae16633332c64d1b3cafc251b",
+        "fbc7276b57884dfea23876109fa616ca": "e396308686ea37ccb3a91aff97dd0cfc82d88ec9a386cd7a56ae3bee8f3fddbe",
+        "49def1bf38354372b608c6eaa37d390b": "785a6d56b58cc7d337c01708638d640f993b83a414a7f0171c59c004e83e961b",
+        "7f5690baf4f84f408e5bfcb765fdc82b": "de58eadeebb86fc8b34422be16c1e20dc95a405a420d8ec86527e7937ee55f4f",
+        "aa78b9cc380b48c5be14f99540359ccf": "a56044ef2e2fb676ace82740b19a3471781bbb63034466f814159b8d9ee238e1"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_009",
+      "frame_index": 9,
+      "raw_index": 9,
+      "planning_reference_index": 2,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "d8251bbc2105497ab8ec80827d4429aa",
+      "relative_sequence_time_s": 4.39999,
+      "reference_time_s": 1538984237.9124599,
+      "ego_speed_mps": 4.710190555518529,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_009/capture.json",
+      "capture_sha256": "9e8da9ce573ee5f9911d4f123f3d80d8556ae41e56b4cd166f8a3060f496f0cb",
+      "image_sha256": {
+        "790bc648874d4664811b364dcbab1bc8": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293",
+        "fb91724c05c84935a6e066b293046e9e": "391aaaf0581bae910fc4d3cd5a2f5b1ba9aab67b8829c245a33fa590291474c7",
+        "aa78b9cc380b48c5be14f99540359ccf": "a56044ef2e2fb676ace82740b19a3471781bbb63034466f814159b8d9ee238e1",
+        "6f8a88c0de0b42d89e66197403822d30": "9dac788a8415be4b7ad6d12884e052023c8904cad724aa83de13e7ea18a9882c",
+        "fd787d4bd8454a46a406278019727bb9": "b7808809f0d455887fd06ca0e094e014b91e5f9da3e7dd14446bcd8253b044ce",
+        "0e9caff8934f4dcebb658d9b92c337d5": "5f46c80265e3ca3bb6ef6b2e3b3bbf6b7757703866ffc408198a24976d407eef",
+        "75ee6906f2a74519914ce7d12df54e45": "832b9fc89df1100e5ea088920ff0831621493d44902bf92d3c52d20101acb439",
+        "b516d21720ef457c949c4fa43a84c380": "3bc9a5ebc03b5f35f8d2c90749fa0d95272bcb31b8c9eb1482565421a4b622a5",
+        "e93a7c7e40504c8a86b40154cd1d02e2": "d5d68ad14e5faed45fe74c8118584262dc32edefc0d8051437ce7f6a0207448a",
+        "a9b15094d9f44d2c89faf05252547046": "6f807169f44f98d1d124b90fb1b7393e1a3302f0914a40d9afdb5d0b2287f50a"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_011",
+      "frame_index": 11,
+      "raw_index": 11,
+      "planning_reference_index": 3,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "858a1ece22cf45d9bc71e42336604b78",
+      "relative_sequence_time_s": 5.39999,
+      "reference_time_s": 1538984238.9124599,
+      "ego_speed_mps": 4.638053466723661,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_011/capture.json",
+      "capture_sha256": "8e5fc1d60cb9cbb03efe3d17bb162fe0ae39f60024ba88308cebd948dd915dfb",
+      "image_sha256": {
+        "aa78b9cc380b48c5be14f99540359ccf": "a56044ef2e2fb676ace82740b19a3471781bbb63034466f814159b8d9ee238e1",
+        "6f8a88c0de0b42d89e66197403822d30": "9dac788a8415be4b7ad6d12884e052023c8904cad724aa83de13e7ea18a9882c",
+        "a9b15094d9f44d2c89faf05252547046": "6f807169f44f98d1d124b90fb1b7393e1a3302f0914a40d9afdb5d0b2287f50a",
+        "13450209d238498bb7ad63928f2d6878": "c9201c4f3035f152246c95eaebb950ea9c691da920ec97ecced6708dd99ff350",
+        "905c9a7ce33d4310b89c607ea9318053": "31e71b8f67c1572d967cff777e9b66f96cc0a809e70091f4c1eede890d03f5eb",
+        "cb8b5047e10f490792cbc4809747738a": "367952c2ff2647a18fb00a89e56b879862b84a79a930fd25924596b59d5eec72",
+        "39a2c3c945cc499994d64bdbf133c166": "473fd8dea9cc94db7d065af1797a7de1c1d4d3cbeca24f84e3ef61fda516ea6f",
+        "caab30504f954c44955d3ac90a3dfe2d": "f8761d1f4476580e5bead0cb8eaad03e98c049d2902215c6c9193dd99b46cb73",
+        "c8d4af7d08db4ceaa52bbbd08ba55b80": "cdfe4ffdf623382f66f0b281d84a230323103bbfa1d3fbd3bfa58742a011badc",
+        "69c59330a61e4f078b81b475b480912e": "e7a733f16d562d4ccaa922e4bccc9a02fb607c946881d5f91e23226736bd9d72"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_013",
+      "frame_index": 13,
+      "raw_index": 13,
+      "planning_reference_index": 4,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "61a7bd24f88a46c2963280d8b13ac675",
+      "relative_sequence_time_s": 6.39999,
+      "reference_time_s": 1538984239.9124599,
+      "ego_speed_mps": 4.340117376172382,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_013/capture.json",
+      "capture_sha256": "3b755730f773e3f17a3e11e4e82a606f7c7a29c10169d088250ca7e5dff6a57e",
+      "image_sha256": {
+        "a9b15094d9f44d2c89faf05252547046": "6f807169f44f98d1d124b90fb1b7393e1a3302f0914a40d9afdb5d0b2287f50a",
+        "13450209d238498bb7ad63928f2d6878": "c9201c4f3035f152246c95eaebb950ea9c691da920ec97ecced6708dd99ff350",
+        "69c59330a61e4f078b81b475b480912e": "e7a733f16d562d4ccaa922e4bccc9a02fb607c946881d5f91e23226736bd9d72",
+        "b81d7ac6a39242999018827cf77ade26": "d8f13e98e31b276382506e92962899ae55d5a2755d7173c78f4f0f4e4bb5da69",
+        "be22312d74b64fd9ad79cec9a879888b": "31cacce7601a51f488f03ab76600ccc3a09d54d5f9b01a0a983007a7b9a25854",
+        "d95019425c6e41738450a5c17e61a85d": "97c45c2616cd0528b0fc1f7dc6b81a8bb0bff93acd624819e0fba2c5e0f15482",
+        "c22c5d82fb304955b1bd6d74dee297e1": "8853c4eefbccb172f1717b0cb1cb8040de69e867117a9d9929b2391dd0353490",
+        "78c02371dae6428e97789e4e03867ce7": "b2581b96eac8ec30fd1ec014b896f47cf2b092482d4139c2b5eb2191db1b103d",
+        "a01527073c9b4256b268d2c1fb686460": "f75c35ed0b463b8342568a042f0a3ef4f02159620ff7b452cd4c255c0c5d1da1",
+        "6e98b1d0e18a428b869961943f871a83": "959807d607eb846c209d6c412767c1351299a58c44d798b69fefd75125a4a3db"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_015",
+      "frame_index": 15,
+      "raw_index": 15,
+      "planning_reference_index": 5,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "b1303058fa624645b753d7283d70de45",
+      "relative_sequence_time_s": 7.399997,
+      "reference_time_s": 1538984240.912467,
+      "ego_speed_mps": 4.074432480348756,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_015/capture.json",
+      "capture_sha256": "63c01f6160b5db54b1e4a002dd987d4d7aea8575881cec4478ab52011db13571",
+      "image_sha256": {
+        "048e1ba005f24c9d8a7856724eb83bf7": "582350d0addfeeca6ebaadbbd1f19cc9ae9bb74136497c72484ea1c00d1436ee",
+        "b81d7ac6a39242999018827cf77ade26": "d8f13e98e31b276382506e92962899ae55d5a2755d7173c78f4f0f4e4bb5da69",
+        "6e98b1d0e18a428b869961943f871a83": "959807d607eb846c209d6c412767c1351299a58c44d798b69fefd75125a4a3db",
+        "919ee11e9920472280b9ee1247298cf2": "9a2525ec3108abb3164a91dca2cbf3e78a92237837e057fe0d8d4dd8f959d6ad",
+        "5df8b0fd99c1417993f475e5165fab35": "dc8fafee78940a13d362f49d2d36872bff61329578539f1b00db92686e16aec6",
+        "c3c075d0c03b42f3b48ed761c0b1fca4": "a16814a562f10093e620ba6cff9e331a392050615f59f2d3a6e3c84448b20a2a",
+        "c9bc836ab9c94306a7837eb37186b3c6": "5b37e9c651f084702f5b296be5a5a32dca97a928271517daa6ce0add1e03dea7",
+        "90623d4b0caf4905bf201de53b6356f4": "ebabd001c5170495f3cdb8a7507de614597656b861d91d469bdeccf6aa5330fd",
+        "8590cebe48ef43c3a431c577e51e80f1": "507aea876af37622a5ecc458b1a4eb7b81ad19f8df16531adc977666aa1f6d6e",
+        "d008df699f0e431db7664b16ee57de2f": "4eeb3a070cc75f9633a2b23a1511a08655541cca68c3cc43c63c5b95d5e6dd92"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_017",
+      "frame_index": 17,
+      "raw_index": 17,
+      "planning_reference_index": 6,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "b6c420c3a5bd4a219b1cb82ee5ea0aa7",
+      "relative_sequence_time_s": 8.399989999999999,
+      "reference_time_s": 1538984241.9124599,
+      "ego_speed_mps": 3.916865748010247,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_017/capture.json",
+      "capture_sha256": "1182895b86c65b59834ab325a63c0f7369c6c20da3407ac0c28bb2e3c1751125",
+      "image_sha256": {
+        "6e98b1d0e18a428b869961943f871a83": "959807d607eb846c209d6c412767c1351299a58c44d798b69fefd75125a4a3db",
+        "919ee11e9920472280b9ee1247298cf2": "9a2525ec3108abb3164a91dca2cbf3e78a92237837e057fe0d8d4dd8f959d6ad",
+        "d008df699f0e431db7664b16ee57de2f": "4eeb3a070cc75f9633a2b23a1511a08655541cca68c3cc43c63c5b95d5e6dd92",
+        "93c6187bdede4f16ad577f8d02086c7c": "c7cfb92719f54577883db6bf3ef81cfda2d37a25b20d00796363fccc19ee2bac",
+        "4e8e75b8a53d4fd88a22ce211cfe0343": "6b495358f76753b5ebea6d3d7c9eef13281f953537a08cec5aa103e6c1ccc52a",
+        "0e231a6c1b294fa5a1f594fc815b5430": "c87e2684a9928e8783979b9c9c9136a06bb40ae06c335ed1691159d8f42e2c61",
+        "4b02c793fdfb469a8487b0e60a401166": "e9e0c750db5f130690aac6ad1286b9c3c7e6ef28755c7c78fc71369379d239e0",
+        "2a7bf43dc78245ada533529623233082": "997973f9e56fa13ab71be4a9db4f236ed90c0b75976217b35531fcd6680d16f0",
+        "b1f88de5dbfb4431809220f1638f314a": "fdf3d17650ad73a74ddc94acf802b2ddcc7becd9d1b95598f1a247de80cb5902",
+        "18a34926d51e46a9b9f47aa2011b83d7": "f267c3dbada1bb4ca82a918ff3c569a471ce58c00e54299f43906ffedd1ebaae"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_019",
+      "frame_index": 19,
+      "raw_index": 19,
+      "planning_reference_index": 7,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "e174cb43655f49dab7ffa27b973670e3",
+      "relative_sequence_time_s": 9.399989999999999,
+      "reference_time_s": 1538984242.9124599,
+      "ego_speed_mps": 4.428961426234585,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_019/capture.json",
+      "capture_sha256": "cbbd111fa012f6d149217e75ff034ea2bbd77f0b7a05bf1fc71a5ec7a02c1113",
+      "image_sha256": {
+        "d008df699f0e431db7664b16ee57de2f": "4eeb3a070cc75f9633a2b23a1511a08655541cca68c3cc43c63c5b95d5e6dd92",
+        "93c6187bdede4f16ad577f8d02086c7c": "c7cfb92719f54577883db6bf3ef81cfda2d37a25b20d00796363fccc19ee2bac",
+        "18a34926d51e46a9b9f47aa2011b83d7": "f267c3dbada1bb4ca82a918ff3c569a471ce58c00e54299f43906ffedd1ebaae",
+        "17194bb665bf45c3af0284287c1f3b4b": "114fa2658e620f92801a7674dfe7a5d7302c29c8ac260eaaa923af5b67f4c99d",
+        "8ae07043a39942b9b50bf1621544051a": "86288368ad2366d984ed2aeeaad35f9ce81544da7ab5b280931990ca8bc6c680",
+        "a2e23a98b41647c0a7c4c96b56ff3f7e": "919ca9d067dc7ef4bf4bf4752f67f20e8d088b59f6587ac2952387e4bfcf33f1",
+        "c1a4b9096cbf45b4a6ad59d2fe3682db": "6f40cf674a202830a324e12df19514b8bdcad2c4d804bcab758a00b70e2315ad",
+        "fa5358b041a14c0882aaa12ee454c3fc": "9e2c042a6991a4efaa6b29815e2b2767d5d07a011a54415df8ed39ac38b2d80e",
+        "14514a517a5d420aae26abf7bc40536e": "c634fcb52c75bdd5370235dcbc931cc7bced71b4617d4b9f6fb86b6430c1a0db",
+        "207924ae382b416b8f4fb04b68e61bd7": "997cf98d4dafed69f945afd6fea4ac6f86a57c4fb75873d1a05429aac7f0bc8c"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_021",
+      "frame_index": 21,
+      "raw_index": 21,
+      "planning_reference_index": 8,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "06be0e3b665c44fa8d17d9f4770bdf9c",
+      "relative_sequence_time_s": 10.399989999999999,
+      "reference_time_s": 1538984243.9124599,
+      "ego_speed_mps": 4.894070410523657,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_021/capture.json",
+      "capture_sha256": "88745c772886ec284d03b9ae18b1f8b1431ff25d133dec7fb2dad794019daabb",
+      "image_sha256": {
+        "18a34926d51e46a9b9f47aa2011b83d7": "f267c3dbada1bb4ca82a918ff3c569a471ce58c00e54299f43906ffedd1ebaae",
+        "17194bb665bf45c3af0284287c1f3b4b": "114fa2658e620f92801a7674dfe7a5d7302c29c8ac260eaaa923af5b67f4c99d",
+        "207924ae382b416b8f4fb04b68e61bd7": "997cf98d4dafed69f945afd6fea4ac6f86a57c4fb75873d1a05429aac7f0bc8c",
+        "bae2946bd7c04bf190538513ec180ecc": "c649039025716d2e09e32e837f3eabaff503dcb62f89d2c407bb20522107ea92",
+        "d8292ef4d79a43d293b09feb76d9da41": "359db78dcf4757124d881adf08d6025666ac8d8f5bddc2f09ab15c86ad6af852",
+        "268ab8f67d20409fa0ed160e09bd387d": "1bf0596e2bf14b45577cd8a2adb628cea0c86980c6297cd9fb9b4168f9e30047",
+        "3ac9b94b0f6849e18cc3cecc877adae1": "9d33de2df188f24616e2e68375461fc5f94fb93e1e82e4f867b9997e462013fe",
+        "70f15ceaade048a985312a6388e15a8a": "21c3d593c4584df4ee98a3fe80bb83b92570d6fe369527169b3acb2825c1e17a",
+        "32e0a3e397a0481997a911c42920e136": "83dbcf75a55cc61004a3bcddb472c2c1169f66640c8b8daaf17dd84e1fbe01d7",
+        "65ca09683fc74f8891762c2f072d260a": "003a2fd8d46492f0571d52c5aa6bf4057bf5cdd50d0c087969e08920a1002f2c"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_023",
+      "frame_index": 23,
+      "raw_index": 23,
+      "planning_reference_index": 9,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "8573a885a7cb41d185c05029eeb9a54e",
+      "relative_sequence_time_s": 11.399989999999999,
+      "reference_time_s": 1538984244.9124599,
+      "ego_speed_mps": 5.214907355093433,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_023/capture.json",
+      "capture_sha256": "dd4194b9e2c89536dd816124f2e493342e3d7684d1d7f652a031f74762cfaa5b",
+      "image_sha256": {
+        "207924ae382b416b8f4fb04b68e61bd7": "997cf98d4dafed69f945afd6fea4ac6f86a57c4fb75873d1a05429aac7f0bc8c",
+        "bae2946bd7c04bf190538513ec180ecc": "c649039025716d2e09e32e837f3eabaff503dcb62f89d2c407bb20522107ea92",
+        "65ca09683fc74f8891762c2f072d260a": "003a2fd8d46492f0571d52c5aa6bf4057bf5cdd50d0c087969e08920a1002f2c",
+        "b474724af63f4a108be0900675dbab6f": "6e6a79c9aaf049420e0b9f9d56ca7f8a7288d94a95fce53f65ce9461637ac6c9",
+        "4e2d968823be4d05ab11ff763f64ec1a": "51d10c57481a853f063cb78210b8806974005354e65213a995a8f0a0fa96dc8d",
+        "a8d9b1ce6c254dbf875bfa580ae641da": "36d1c7569bcce63bec3cd398fefb01ee1e3ae1a61a19180ca8226e27b0e47ee8",
+        "3689b3accce545eeb41975333ca092b7": "a3b992562cea90c71f731cbc7ec108527164059451c5752d585104908cc8c470",
+        "777da6c3153f450d9e6a319275e98ec8": "8ea1bed869ef9545eccabe0b4abeede901dc303ecf92c663625ef41e50dd6e83",
+        "4befef899afb42f5bea76daa6b40a04b": "8fbc5daad2c270f76cbf1378f56bc204652a81eaf79ea9c37e416b003d1c59f4",
+        "ab7e9c8335034420a1012fd5d165c099": "d9af68aa37258cedb7dc151881794334f3a6c5442ee29e7e401affc1e318bdd7"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_025",
+      "frame_index": 25,
+      "raw_index": 25,
+      "planning_reference_index": 10,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "44237858a539457da65822bfcf58c414",
+      "relative_sequence_time_s": 12.399989999999999,
+      "reference_time_s": 1538984245.9124599,
+      "ego_speed_mps": 5.619800327059008,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_025/capture.json",
+      "capture_sha256": "6eddf39fdea27a8998fad0f794794160a67b46f72acf479e651135a82c089e74",
+      "image_sha256": {
+        "65ca09683fc74f8891762c2f072d260a": "003a2fd8d46492f0571d52c5aa6bf4057bf5cdd50d0c087969e08920a1002f2c",
+        "b474724af63f4a108be0900675dbab6f": "6e6a79c9aaf049420e0b9f9d56ca7f8a7288d94a95fce53f65ce9461637ac6c9",
+        "ab7e9c8335034420a1012fd5d165c099": "d9af68aa37258cedb7dc151881794334f3a6c5442ee29e7e401affc1e318bdd7",
+        "b45600798b1f46658b708b65fef08c1e": "2f111c4bab4b8114edbaa9c72583e5bcd9c40f7a0d8ce86c472a5681351304a5",
+        "44562259bcf54eae8198c82728bae64a": "999e4d83b5b32d5ebfd0f181e1ff158f89079dfa4f06c9ad9af8b73c2decc8ca",
+        "1228a7b7bbc4477aa3a5b822c6087c49": "c57c520c67acf8c2a9ba12bac46c73a9de9c4314fd4dd56d526869102f8af3ed",
+        "37955e3e1cfb44eea059b6fe411ad2f5": "625f47e469346a966d0e16c5ae1fbf1be7d2da6a376c30441d989c7096fa7798",
+        "b19a468ca62b4e19a87b9b8bbc6fbb12": "b67844bfbada8b905e7c36673da0667bcfa8b9c6efd7b3fe16cc5dd6fe1e16a4",
+        "d79d9a38c0324ff6a2c9da2deb24da77": "248b2ed9673da86c5a0d00ea075a63588f00439d93d188bf66b79e36c8b8ea78",
+        "d78259c8cb0d4cfc9a0ccd43b1ebd994": "6e4de96c2bd4c6abbf8c5bc4c957023193376a10b452311abd6501054ba6f919"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_027",
+      "frame_index": 27,
+      "raw_index": 27,
+      "planning_reference_index": 11,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "7bebe3c9be714f02837f8617c56df122",
+      "relative_sequence_time_s": 13.399989999999999,
+      "reference_time_s": 1538984246.9124599,
+      "ego_speed_mps": 5.76737624154155,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_027/capture.json",
+      "capture_sha256": "7235ea03a8077eb99ad64b4aaf6405a75e849efb727b024210d7dd351e073e81",
+      "image_sha256": {
+        "ab7e9c8335034420a1012fd5d165c099": "d9af68aa37258cedb7dc151881794334f3a6c5442ee29e7e401affc1e318bdd7",
+        "b45600798b1f46658b708b65fef08c1e": "2f111c4bab4b8114edbaa9c72583e5bcd9c40f7a0d8ce86c472a5681351304a5",
+        "d78259c8cb0d4cfc9a0ccd43b1ebd994": "6e4de96c2bd4c6abbf8c5bc4c957023193376a10b452311abd6501054ba6f919",
+        "e8349613902547b5b0911759fa79efaa": "51b64485f6d2b14efed2ae9fcc1c3a76058a771442b757c889328e01a22b37df",
+        "e0acec60ddee4f78a6dedf619ecf01e6": "b59c527c4b250eb85b2757a703ba6df3a1beeaf3d2b77a91ee999a82e0b768f2",
+        "113045e871c94fdbb32ba3de6e5a451a": "ed01da274b91d6ab16d1c4e10f2cbb39a0a1d1213d1376bbdac39d97d246b0be",
+        "074296a4f6704056a7282efa1a4a3ecf": "5262322ebf7a85b93e30a020912c91add753b014d16cde79bd7109a3bd2769b3",
+        "ae54e28c99c24d4c89a3dde3f2d86c94": "f146ae07b9531226579f02b17361489d69f751526163dd85f5f69e991895377d",
+        "e868ab726c1445dc8bc94f926ad71efa": "8dafe47b74ae857fff0362d7bc45ca0bc49e2e8fafa6bd89071a8b82a8e2d516",
+        "2d7914ad33d64062806d96e7c1fd3476": "69e257420b678cb5987507a01f27b649021c18ad5f78172b8628f078408ca201"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_029",
+      "frame_index": 29,
+      "raw_index": 29,
+      "planning_reference_index": 12,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "e00dc15130dc44e796687baadd076ae4",
+      "relative_sequence_time_s": 14.399989999999999,
+      "reference_time_s": 1538984247.9124599,
+      "ego_speed_mps": 6.0905818688881945,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_029/capture.json",
+      "capture_sha256": "0ba69b4a8ab2526ff4a5d0144ce59ea56d382aa727396c5b899c983b182e005a",
+      "image_sha256": {
+        "d78259c8cb0d4cfc9a0ccd43b1ebd994": "6e4de96c2bd4c6abbf8c5bc4c957023193376a10b452311abd6501054ba6f919",
+        "e8349613902547b5b0911759fa79efaa": "51b64485f6d2b14efed2ae9fcc1c3a76058a771442b757c889328e01a22b37df",
+        "2d7914ad33d64062806d96e7c1fd3476": "69e257420b678cb5987507a01f27b649021c18ad5f78172b8628f078408ca201",
+        "b886a7f74e7c4b78ae3b626c2e0b67f4": "fae44d1bf3d896b4b1be66fc7e03b5357c4ffd32f3f09a8d71c1d3b335aecaa5",
+        "63842f8599564080926109b660998f8b": "3cc0848a2d25c91d94ad906745e6a2ebc0b9428d1a757c44bc40fb4622381df7",
+        "22177ee3cebc4df1acfc608d45b0a2c8": "13ef0689159de0c5b5b3b242e400d0561825ffb818670998634b9f103af9c6c4",
+        "542792bf280846f28de2a0b346fee893": "f9bd6b61c9805fa867b5d581740fd6ef379a64d25d8588ba298ae93c3168ee01",
+        "15cb71b12d454c538150ab9f94e4fefd": "c1f3b91d412130b1aa72f582b270f58ab5b82beb756a557e9b7847749011b482",
+        "4d087f27230a4273b4b83cda990fe67e": "fdd215729d63213515af710f7342d70205b54725b6c0ebf789840d629eed610a",
+        "60c424c157b54829ba532e11fe66363c": "5dedbafb6ec182dc87bf1d2e956b1592b009310a438be29571cb5054d61866ab"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_031",
+      "frame_index": 31,
+      "raw_index": 31,
+      "planning_reference_index": 13,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "c567f9b8e9f34817acdc9c49d791c557",
+      "relative_sequence_time_s": 15.399989999999999,
+      "reference_time_s": 1538984248.9124599,
+      "ego_speed_mps": 6.005132147771187,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_031/capture.json",
+      "capture_sha256": "53635d8c3d3d13aa6e91d15024b37e065dd78c977d74d721ba18e9bee0d10a4a",
+      "image_sha256": {
+        "2d7914ad33d64062806d96e7c1fd3476": "69e257420b678cb5987507a01f27b649021c18ad5f78172b8628f078408ca201",
+        "b886a7f74e7c4b78ae3b626c2e0b67f4": "fae44d1bf3d896b4b1be66fc7e03b5357c4ffd32f3f09a8d71c1d3b335aecaa5",
+        "60c424c157b54829ba532e11fe66363c": "5dedbafb6ec182dc87bf1d2e956b1592b009310a438be29571cb5054d61866ab",
+        "e2eb142fa3cf467a8ec42faa6a051bb0": "e1224f33295de119491ca42ae6e9f14e51219cad65ed3bd118927b4ad87b338b",
+        "d034419c02114f899164c47fc7dc9e12": "c66741d062b768a7813b9a2c399e6158e69201777a2939b4d06e81f0fe42ff50",
+        "045507a0c82d469db0bb61fd4d64e19c": "7a6f73b4422a77c63b2c4a77ddb10357ff3f1e74d99b13ff2122f80391962da2",
+        "d15ab7d03e584db1a7f1108db3dc8f66": "817671f9a126c3070c20d17f883875a5ffad6b743eb810e64eda233268dc9532",
+        "ee043328e794463cbc36aa0163ecb752": "6d2ada98f71ac47aaad8d03e4852f4f2058a33030c6150396221f3f922e2f07e",
+        "3988ef113300468fa57f1d47286ace0a": "42b0657854222e9ef1c31ba84e646ca1dfaad6119c406929bb57c45d37cf9c05",
+        "aa8b56c5feb442dab1d95a62b8509e13": "ea194a7a45ebbbe19eaff457580fa849c3bb43582bb3372c4298aaa77f1988f7"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_033",
+      "frame_index": 33,
+      "raw_index": 33,
+      "planning_reference_index": 14,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "841dd6709e9b4d7c9d6bf888f1fe6d7e",
+      "relative_sequence_time_s": 16.39999,
+      "reference_time_s": 1538984249.9124599,
+      "ego_speed_mps": 5.427299034661586,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_033/capture.json",
+      "capture_sha256": "a84aacacd7388b277f951f185a6b969f5ca3dd87081feb069d4db53b2c01f5a3",
+      "image_sha256": {
+        "60c424c157b54829ba532e11fe66363c": "5dedbafb6ec182dc87bf1d2e956b1592b009310a438be29571cb5054d61866ab",
+        "e2eb142fa3cf467a8ec42faa6a051bb0": "e1224f33295de119491ca42ae6e9f14e51219cad65ed3bd118927b4ad87b338b",
+        "aa8b56c5feb442dab1d95a62b8509e13": "ea194a7a45ebbbe19eaff457580fa849c3bb43582bb3372c4298aaa77f1988f7",
+        "11693aefd68c4f70ac76775f4a31026d": "cc28376bc272eda4a286d5a420005471b2b62a737472c6f8cac6851af9a359b3",
+        "09bffbdd05374f67a62efbecdc598cad": "25269270c50d8b5fe7bfa15be672933524826f3c4b1a3743003bb37f81fc0ccd",
+        "fa3e20749189464eb7d4574b85a487ec": "fb3c29472cd6df0f3412ea6279bcc9017a489f154713723cab9a25d6c5b39e50",
+        "0e40faa2201847b2a59f38f098e1018f": "ba3b2992e8a505db903373d783cb22a42d7f284daa6b4db94e41dfc020052d24",
+        "27c02658e200416a9b161ac470ba7386": "679e14d8859fec26ea486b1bc07746e1f9f19640dd519618b91b14aa0a411eb0",
+        "8bca39098b6245e598db8999d504b83a": "b84cd13c086226e4f82ddc377346849999569336edce5e2f26a79663a4d3ba0e",
+        "f2b6c088d189439aa7bb2460d1db05da": "ded92c76408e1d4d21f45d003a5fcf3f0a461e0aaf69cd9456bd44906ee242e0"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_035",
+      "frame_index": 35,
+      "raw_index": 35,
+      "planning_reference_index": 15,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "a1289b27ca1d41deb6fc982be9a3d03c",
+      "relative_sequence_time_s": 17.39999,
+      "reference_time_s": 1538984250.9124599,
+      "ego_speed_mps": 4.594389153789989,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_035/capture.json",
+      "capture_sha256": "eea614618ebb8a5ba4f408bbcdc5c487bf61976e28e2c15629bd2e43b7578f80",
+      "image_sha256": {
+        "aa8b56c5feb442dab1d95a62b8509e13": "ea194a7a45ebbbe19eaff457580fa849c3bb43582bb3372c4298aaa77f1988f7",
+        "11693aefd68c4f70ac76775f4a31026d": "cc28376bc272eda4a286d5a420005471b2b62a737472c6f8cac6851af9a359b3",
+        "f2b6c088d189439aa7bb2460d1db05da": "ded92c76408e1d4d21f45d003a5fcf3f0a461e0aaf69cd9456bd44906ee242e0",
+        "7d31b274752d4b96a4e2fcb3eda3e1e1": "d24c2270b8aaabdf266f71e287e293335262c4ea3a4dd1e11f93b4f94221a515",
+        "ff4159349f534f0faf2da57afe70503f": "02da6605667ca842780d65f105d580f619900787d0acf7db3b8959325e16d652",
+        "a8243da3126141748fbff39eb071bf90": "cf8b9f349586caef70baa81d196ae38b9a319cea518f6508870c5e565e4625c8",
+        "4f6ed65538b84d47a6edb40de9e0b4fc": "89b1bcc8140a7c54be5acb376fd3d2fef898311ef8b15fdfd9dbfd9cc3e06f99",
+        "4a24102f5ccb4db19617f16eda089497": "58ee320dbadbad95de3b55e21cfffacd5242229fbbace180b7bd00c970f7fd0f",
+        "8914542fd61243c5ab42fc6e4e51bf62": "1d36506886105eaa32b1b5ebbc018f071ca3537a928b1e6846d7ad8be3da8a4f",
+        "4cb2e5f01be94ffeb22cabde23ba5b46": "d426567536ef8f92d0b62b354aa4e6fabb3808cbe3b1b50689b629dcda500914"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_037",
+      "frame_index": 37,
+      "raw_index": 37,
+      "planning_reference_index": 16,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "cb4e6195faad467094fbd4d0a9e960e9",
+      "relative_sequence_time_s": 18.39999,
+      "reference_time_s": 1538984251.9124599,
+      "ego_speed_mps": 3.9519470449247223,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_037/capture.json",
+      "capture_sha256": "9c8659d8eae0dbbf0e098db7978e9af8f7ec9085567bdcc06f07f992996a4fa4",
+      "image_sha256": {
+        "f2b6c088d189439aa7bb2460d1db05da": "ded92c76408e1d4d21f45d003a5fcf3f0a461e0aaf69cd9456bd44906ee242e0",
+        "7d31b274752d4b96a4e2fcb3eda3e1e1": "d24c2270b8aaabdf266f71e287e293335262c4ea3a4dd1e11f93b4f94221a515",
+        "4cb2e5f01be94ffeb22cabde23ba5b46": "d426567536ef8f92d0b62b354aa4e6fabb3808cbe3b1b50689b629dcda500914",
+        "13b3848fba3442f58870664d973fcb3f": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+        "fb77144fd4564a2c99364fce3c1ecfd9": "4352b08896fe0fdca8c0a9ebd0c5b2bcf8f22c11096f7962574dfa575408ce5e",
+        "511559252b734718b56735b8f966d2a0": "5e84e0271a1a1e313cff329d2059d9e00468dfa408b6c35ee930d5fff2572507",
+        "87184a853d8748f98fa3b197b6435224": "09a2ed632a4cbde8a6c3705f1745df65312f5e799e0e83d66fc5f3e844194fef",
+        "cb27409992ad42369910d358ef40c406": "f5a074ac908756560e8137e79238b09fcb7ed7f95d88fd6319dea9275e46711d",
+        "f62d0595b4aa426cbe99dc3f1c7c28ca": "cb5a3a0f80194f4a375e3d4dcc0d331dc9e6cda84b743e4ffe580ad0aed9d876",
+        "71f5065f435c47f5b208831524ae6a2a": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_039",
+      "frame_index": 39,
+      "raw_index": 39,
+      "planning_reference_index": 17,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "9cdbf5ff7f294549aea0a4307e5d104a",
+      "relative_sequence_time_s": 19.39999,
+      "reference_time_s": 1538984252.9124599,
+      "ego_speed_mps": 3.6611599445887943,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_039/capture.json",
+      "capture_sha256": "7c920b8d7aed26cdaad585c7dee4668543ec3cb13823f7bf27e2f89893f25f7a",
+      "image_sha256": {
+        "4cb2e5f01be94ffeb22cabde23ba5b46": "d426567536ef8f92d0b62b354aa4e6fabb3808cbe3b1b50689b629dcda500914",
+        "13b3848fba3442f58870664d973fcb3f": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+        "71f5065f435c47f5b208831524ae6a2a": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868",
+        "468dcee93e6049d8873706be7f9f3f89": "23ca2c6e8ee6b3d94f2c4bd22f984328a6f0fd65dfbbe8136f1c0b859d771b2b",
+        "d4f4bff53c4446feba56415ef3847a1f": "98dc61199a03b66379416d9a3acf25ddfdd2ee62f42550d63097a8b0b5ede7b0",
+        "ace22d9e493e4e19abf03c1b3b69421e": "94a9c6befb7d3a0b068b5a85c09a43d488bb68f22ebc04afb82455d8554083f0",
+        "1a9e788237bb4af182af0ec5bd56b6bf": "aaf17097782ea1e3c7dc41d121bf134e62ebc5e38ae348a8d0a28b6deed5609f",
+        "a9e5d6992c9b4d259c983a65cb8cb642": "bfe7a2a393e2de067b7ae3f5026fc0d757683f11193044ff769b6aac7f261469",
+        "96392f60da0c4545bf066418a08edefc": "538643aacd41156214ec185a0374cc0b6bfb8c1445e0dd8d6dab55bbedad5e12",
+        "4c5917e14f224fa2a0bd3bd182f8a3d8": "62881e2d5e4ff1e8f88d42af04e8aaac1e505d53e5a5d841deeac5c3b40c5e90"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_040",
+      "frame_index": 40,
+      "raw_index": 40,
+      "planning_reference_index": 18,
+      "scene_name": "scene-0916",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "sample_token": "b4ff30109dd14c89b24789dc5713cf8c",
+      "relative_sequence_time_s": 19.89999,
+      "reference_time_s": 1538984253.4124599,
+      "ego_speed_mps": 3.536993159166046,
+      "capture": "implementation/results/long_clips_20261029_v1/parking_bend/inputs/frame_040/capture.json",
+      "capture_sha256": "47fc630e04b7a647346664da7d5b6b2268388265a91d537dd01afb0c87cf581b",
+      "image_sha256": {
+        "13b3848fba3442f58870664d973fcb3f": "7c0d0fc89fdc9a6d1354eb34b56c1edf42d428c30d2d357c639dcfa7d6b8cd48",
+        "71f5065f435c47f5b208831524ae6a2a": "979e1bc09ae9c0648ac2f81624519bd004322214025fd03ee3570edda43e6868",
+        "468dcee93e6049d8873706be7f9f3f89": "23ca2c6e8ee6b3d94f2c4bd22f984328a6f0fd65dfbbe8136f1c0b859d771b2b",
+        "4c5917e14f224fa2a0bd3bd182f8a3d8": "62881e2d5e4ff1e8f88d42af04e8aaac1e505d53e5a5d841deeac5c3b40c5e90",
+        "2c9ada783ef3477ebefb73f14e65a72b": "3ec9d289068a8fbec3062ba261d4ccf20e73095fef1a70eb892a279d24a5ba64",
+        "3ce943b70af349f38d28c0686faf68f6": "dd6ae3f4dd825c975e09d9685802a9252c421de2b6d92ea948cf4eb9ff849d41",
+        "ee916b0953a0493492d16555d1911353": "47208588ebaa19b4906f5271b3a65de9a0a1600aaeced5dc67c2bb8394718f46",
+        "73f8df215bec4b8da87c96aa382e2ceb": "a97e4b671ce4428f4e48323e2217154b91994050622b729ef46ee223e3e52d94",
+        "951a1c1f65b84cc18fbc7c9178e6342b": "1171cb57f0b9474119167d28f04b939cec9a667ab02e8f191ec83866e531f732",
+        "f18c90dafe764fe2b0d96102eb90c48c": "4a57ae1764293cacca049b878086c5ebc65454b4767fa61d7f7591eb25a328a3"
+      },
+      "require_turn": false
+    }
+  ],
+  "frame_count": 19,
+  "raw_frame_count": 41,
+  "full_clip_duration_s": 19.89999,
+  "first_planning_time_s": 2.39999,
+  "raw_input_gif_final_hold_ms": 500,
+  "input_preview": "input_contactsheet.jpg",
+  "raw_input_gif": "raw_input.gif",
+  "network_readiness_get_attempts": 3,
+  "keepalive_expiry_s": 120,
+  "automatic_generation_retries": 0,
+  "library_transport_retries": 0,
+  "automatic_transport_retries_scope": "No library HTTP retry or generating POST retry; bounded non-generating readiness GETs are explicit",
+  "analysis_source_recorded_when_rendered": true,
+  "prior_plan": "implementation/results/long_clips_20261029_v1/parking_bend/plan.json",
+  "reused_completed_references": [],
+  "original_reference_count": 19,
+  "recovery_scope": "Only unresolved reference times; original raw timeline and capture/image bytes unchanged; prior responses/stop preserved"
+}
