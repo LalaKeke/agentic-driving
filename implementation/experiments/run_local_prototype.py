@@ -101,6 +101,11 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
 def main(args):
     limit=getattr(args,'max_requests',4)
     planner=getattr(args,'planner_profile','legacy_disk_v2')
+    prompt=getattr(args,'prompt_version','driving_prototype_v1')
+    if args.replay:prompt=read(args.replay)['provenance']['prompt_version']
+    need(prompt in ('driving_prototype_v1','driving_prototype_v2'),'PROMPT_CONTRACT','Explicit prototype prompt version required')
+    need(args.replay or prompt!='driving_prototype_v2' or planner==t2.SEARCH_PROFILE_V2,
+         'PROTOTYPE_PLANNER','The corrected v2 prompt requires the actual v2 planner for online execution')
     need(planner in ('legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2),'PROTOTYPE_PLANNER','Explicit planner profile required')
     policy='moving_seed' if planner=='legacy_disk_v2' else planner
     need(type(limit) is int and 1<=limit<=4,'PROTOTYPE_BUDGET','Per-case request limit must be 1..4')
@@ -109,12 +114,12 @@ def main(args):
          'PROTOTYPE_CONFIG','Separate 2s/.2s prototype only')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     source_files=[Path(__file__),ROOT/'implementation/agentic/pilot_transport.py',
-        ROOT/'implementation/agentic/metric_contract.py',ROOT/'implementation/prompts/driving_prototype_v1.txt']
+        ROOT/'implementation/agentic/metric_contract.py',ROOT/('implementation/prompts/'+prompt+'.txt')]
     source_files += [ROOT/('implementation/agentic/'+name+'.py') for name in ('t1','t2','t3','t4','candidate_search','acceptance','geometry','runtime')]
     source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1','corridor_seed_candidates_v2','trajectory_seed_candidates_v2')]
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
-        horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
+        prompt_version=prompt,horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True)),
         actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in source_files}))
     budget=[];feedback=read(args.initial_feedback) if getattr(args,'initial_feedback',None) else None
@@ -132,7 +137,7 @@ def main(args):
         for key in ('HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','https_proxy','http_proxy','all_proxy'):
             os.environ[key]='http://127.0.0.1:17891'
         agent=PilotSubscriptionAgent(evidence_dir=root/'transport',timeout_s=args.timeout_s,
-            wire_schema_bundle=args.wire,prompt_version='driving_prototype_v1',max_calls=4,experiment_profile=PROFILE)
+            wire_schema_bundle=args.wire,prompt_version=prompt,max_calls=4,experiment_profile=PROFILE)
         try:
             agent.preflight()
             for revision in range(limit):
@@ -174,6 +179,7 @@ if __name__=='__main__':
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
+    p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2'],default='driving_prototype_v1')
     p.add_argument('--max-requests',type=int,default=4)
     p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2],default='legacy_disk_v2')
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')

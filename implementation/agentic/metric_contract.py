@@ -40,10 +40,11 @@ def _check_capture(cap, provenance, output, allow_synthetic):
     need(provenance.get('agent_output_contract') == VERSION, 'MODEL_CONTRACT', 'v3 requires explicit provenance contract version')
     need(provenance.get('source') == 'online_model' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'SOURCE', 'Synthetic input requires explicit test mode')
     prototype = provenance.get('experiment_profile') == 'local_conditional_2s_prototype_v1'
-    need(provenance.get('prompt_version') != 'driving_prototype_v1' or prototype,
+    prototype_prompts=('driving_prototype_v1','driving_prototype_v2')
+    need(provenance.get('prompt_version') not in prototype_prompts or prototype,
          'PROMPT_CONTRACT', 'Prototype prompt cannot masquerade as the strict profile')
     if prototype:
-        need(provenance.get('prompt_version') == 'driving_prototype_v1'
+        need(provenance.get('prompt_version') in prototype_prompts
              and capture_horizon_is_two(cap), 'PROMPT_CONTRACT', 'Prototype profile requires its real prompt and a two-second horizon')
         scope = next((p for p in output['hypotheses']['premises'] if p['id']=='prototype_local_scope'), None)
         need(scope is not None and scope['space_polygon_m'] is not None

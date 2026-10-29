@@ -191,7 +191,7 @@ class PilotSubscriptionAgent:
                  experiment_profile=None):
         prototype = experiment_profile == 'local_conditional_2s_prototype_v1'
         need((prompt_version == PROMPT and experiment_profile is None and max_calls == 2)
-             or (prototype and prompt_version == 'driving_prototype_v1' and max_calls == 4),
+             or (prototype and prompt_version in ('driving_prototype_v1','driving_prototype_v2') and max_calls == 4),
              'PILOT_CONFIGURATION', 'Explicit prototype prompt/profile required for the separate four-call budget')
         self.prompt_version = prompt_version
         self.max_calls = max_calls
@@ -470,6 +470,8 @@ class PilotSubscriptionAgent:
                 if self.experiment_profile is not None:
                     contract['experiment_profile'] = self.experiment_profile
                     contract['scope_interpretation'] = 'Coverage is conditional on the MODEL-declared finite local domain and adopted two-second motion conditions; not exhaustive whole-world futures. All declared obstacles and local unknowns retain the same checks; tools never delete, forecast or fill them.'
+                if self.prompt_version == 'driving_prototype_v2':
+                    contract['planner_profile'] = 'bounded_seed_candidates_v2'
                 text = prompt + '\n' + json.dumps(dict(capture=safe, feedback=feedback,
                     tool_contract=contract), ensure_ascii=False)
                 write_text_new(folder / 'model_input.txt', text)

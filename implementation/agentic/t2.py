@@ -1,5 +1,6 @@
 """Conservative convex reference-point corridor, with no behavior prediction."""
 import math
+from decimal import Decimal
 from shapely.geometry import Point,Polygon,LineString
 from shapely.ops import nearest_points
 from .contracts import artifact,need,grid,validate
@@ -115,6 +116,31 @@ def _moving_seed(scene,times):
     return points
 
 
+
+def _failure_source_evidence(scene,k,entry):
+    """Attach original citations to a failed constraint, never revise geometry."""
+    result=dict(entry)
+    if entry['kind']!='occupancy':return result
+    step=Decimal(str(scene['metadata']['step_s']));left,right=step*k,step*(k+1)
+    shape=polygon(entry['occupancy_polygon_m']);sources=[]
+    raw=scene['provenance']['metric_contract_trace']['source_output']['hypotheses']
+    for actor in raw['objects']:
+        if actor['id']!=entry['object_id']:continue
+        for source in actor['occupancy']:
+            if max(left,Decimal(str(source['start_s'])))>=min(right,Decimal(str(source['end_s']))):continue
+            for alt in source['alternatives']:
+                if shape.equals_exact(polygon(alt['polygon_m']),0):
+                    sources.append(dict(source_id=source['id'],scenario_id=alt['scenario_id'],
+                        source_interval_s=[source['start_s'],source['end_s']],polygon_m=alt['polygon_m'],
+                        frame_ids=source['frame_ids'],time_ids=source['time_ids'],
+                        premise_ids=source['premise_ids'],source_residual_m=source['residual_m']))
+    if entry['object_id']=='unknown_region':
+        sources=[dict(frame_ids=r['frame_ids'],time_ids=r['time_ids'],polygon_m=r['polygon_m'])
+                 for r in raw['unknown_regions'] if shape.equals_exact(polygon(r['polygon_m']),0)]
+    result['native_sources']=sources
+    return result
+
+
 def build(scene,policy='initial_anchor',candidate_id=None,search_profile=SEARCH_PROFILE):
     validate('scene_v2.schema.json',scene)
     need(policy in ('initial_anchor','moving_seed',YAW_BOX_PROFILE),'CORRIDOR_POLICY','Unknown explicit corridor construction policy')
@@ -158,6 +184,18 @@ def build(scene,policy='initial_anchor',candidate_id=None,search_profile=SEARCH_
             constraints=[[nx,ny,z-band_body_support(v,nx,ny,band)-scene['hypotheses']['road']['uncertainty_m']] for nx,ny,z in planes(base)]
             constraints += [[nx,ny,z-band_point_support((v['center_to_rear_axle_m'],0),nx,ny,band)] for nx,ny,z in planes(polygon(d['target_region'],True))]
             if d['stop']:constraints.append([1.,0.,d['stop']['center_x_max_m']-band_point_support((v['center_to_rear_axle_m'],0),1,0,band)])
+        constraint_evidence=[]
+        if native:
+            constraint_evidence=[dict(kind='road',halfplane=constraints[i],
+                input_boundary_halfplane=[nx,ny,z],ego_body_support_m=band_body_support(v,nx,ny,band),
+                road_uncertainty_m=scene['hypotheses']['road']['uncertainty_m'])
+                for i,(nx,ny,z) in enumerate(planes(base))]
+            offset=len(constraint_evidence)
+            constraint_evidence += [dict(kind='target_center',halfplane=constraints[offset+i],
+                input_boundary_halfplane=[nx,ny,z],center_offset_support_m=band_point_support((v['center_to_rear_axle_m'],0),nx,ny,band))
+                for i,(nx,ny,z) in enumerate(planes(polygon(d['target_region'],True)))]
+            if d['stop']:constraint_evidence.append(dict(kind='stop',halfplane=constraints[-1],
+                center_x_max_m=d['stop']['center_x_max_m'],center_offset_support_m=band_point_support((v['center_to_rear_axle_m'],0),1,0,band)))
         selection_geometry=seed_geometry
         if box:
             # Use the zero-steer seed BODY only to choose a separating normal.
@@ -191,9 +229,23 @@ def build(scene,policy='initial_anchor',candidate_id=None,search_profile=SEARCH_
             support=min(nx*x+ny*y for x,y in hull.exterior.coords)
             ego_support=band_body_support(v,nx,ny,band) if search else (yaw_box_support(v,nx,ny) if box else r)
             constraints.append([nx,ny,support-ego_support-u-margin])
-        domain=base
-        for p in constraints:domain=clip(domain,p)
-        need(not domain.is_empty and domain.area>1e-8,'CORRIDOR_EMPTY','Empty convex cell','tool_infeasible',interval=[times[k],times[k+1]])
+            if native:constraint_evidence.append(dict(kind='occupancy',object_id=oid,
+                halfplane=constraints[-1],obstacle_support_m=support,ego_body_support_m=ego_support,
+                model_total_residual_m=u,safety_margin_m=margin,
+                occupancy_polygon_m=[list(p) for p in shape.exterior.coords][:-1]))
+        domain=base;empty_context={}
+        for index,p in enumerate(constraints):
+            before=domain;domain=clip(domain,p)
+            if native and not empty_context and (domain.is_empty or domain.area<=1e-8):
+                entry=_failure_source_evidence(scene,k,constraint_evidence[index])
+                empty_context=dict(candidate_id=candidate_id,object_id=entry.get('object_id'),
+                    heading_band_rad=band,reference_seed_segment=seed[k:k+2],
+                    first_conflicting_constraint=entry,
+                    allowed_domain_before_polygon_m=[list(x) for x in before.exterior.coords][:-1],
+                    allowed_area_before_m2=before.area,area_after_m2=domain.area,
+                    base_constraints=constraint_evidence[:len(planes(base))+len(planes(polygon(d['target_region'],True)))+bool(d['stop'])],
+                    ordering_note='First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof.')
+        need(not domain.is_empty and domain.area>1e-8,'CORRIDOR_EMPTY','Empty convex cell','tool_infeasible',interval=[times[k],times[k+1]],**empty_context)
         if seed is None:
             need(domain.buffer(1e-7).covers(anchor),'CORRIDOR_DISCONNECTED','Anchor not in convex cell','tool_infeasible')
         else:
@@ -206,8 +258,19 @@ def build(scene,policy='initial_anchor',candidate_id=None,search_profile=SEARCH_
             # The true initial state, cell connectivity, every T3 half-space and
             # independent continuous T4 remain mandatory before execution.
             if k==0:
+                initial_context={}
+                if native and not domain.buffer(1e-7).covers(anchor):
+                    violated=[dict(_failure_source_evidence(scene,k,entry),
+                        computed_m=p[0]*anchor.x+p[1]*anchor.y,threshold_m=p[2],
+                        excess_m=p[0]*anchor.x+p[1]*anchor.y-p[2])
+                        for p,entry in zip(constraints,constraint_evidence)
+                        if p[0]*anchor.x+p[1]*anchor.y>p[2]+1e-7]
+                    initial_context=dict(interval=[times[k],times[k+1]],candidate_id=candidate_id,
+                        initial_rear_point_m=[anchor.x,anchor.y],heading_band_rad=band,
+                        initial_state_violations=violated,object_id=next((x.get('object_id') for x in violated if x.get('object_id')),None),
+                        allowed_domain_polygon_m=[list(x) for x in domain.exterior.coords][:-1])
                 need(domain.buffer(1e-7).covers(anchor),'CORRIDOR_INITIAL_STATE',
-                     'First corridor cell must contain the true initial rear axle','tool_infeasible')
+                     'First corridor cell must contain the true initial rear axle','tool_infeasible',**initial_context)
             if previous is not None:
                 need(not previous.intersection(domain).is_empty,'CORRIDOR_DISCONNECTED',
                      'Adjacent time cells do not share a transition region','tool_infeasible',
