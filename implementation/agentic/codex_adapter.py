@@ -12,6 +12,7 @@ import signal
 import subprocess
 import tempfile
 import time
+from urllib.parse import urlsplit
 from PIL import Image
 from .contracts import ROOT,Failure,need,validate,digest,model_contract,resolve_prompt,planning_contract
 
@@ -21,9 +22,45 @@ DISABLED_FEATURES=('shell_tool','unified_exec','view_image','apps','plugins','mu
 API_KEY_VARIABLES=('OPENAI_API_KEY','CODEX_API_KEY','DRIVING_API_KEY')
 
 
-def subscription_environment():
+def subscription_environment(*, proxy_url=None, ca_bundle=None):
+    """Build a child-only environment; optional project settings are explicit.
+
+    With neither project setting, preserve the historical proxy/TLS environment.
+    An explicit proxy controls this child's entire route, including bypass keys.
+    Certificate verification remains enabled; a supplied CA bundle only selects
+    the trust file used by the child.
+    """
     env=dict(os.environ)
     for key in API_KEY_VARIABLES:env.pop(key,None)
+    if proxy_url is None:
+        proxy_url=env.get('DRIVING_PROXY_URL')
+    if proxy_url is not None:
+        valid=isinstance(proxy_url,str) and bool(proxy_url) and not any(c.isspace() for c in proxy_url)
+        if valid:
+            try:
+                parsed=urlsplit(proxy_url)
+                valid=(parsed.scheme in ('http','https') and bool(parsed.hostname)
+                       and parsed.port is not None and 1<=parsed.port<=65535
+                       and parsed.username is None and parsed.password is None
+                       and parsed.path in ('','/') and not parsed.query and not parsed.fragment)
+            except (ValueError,TypeError):
+                valid=False
+        need(valid,'CODEX_PROXY_CONFIGURATION',
+             'Explicit proxy requires an HTTP(S) URL with host and port, without credentials, path, query or fragment')
+        for key in ('HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','https_proxy','http_proxy','all_proxy'):
+            env[key]=proxy_url
+        for key in ('NO_PROXY','no_proxy'):
+            env.pop(key,None)
+    if ca_bundle is None:
+        ca_bundle=env.get('DRIVING_CA_BUNDLE')
+    if ca_bundle is not None:
+        try:
+            bundle=Path(ca_bundle).resolve(strict=True)
+            valid=bool(ca_bundle) and bundle.is_file()
+        except (OSError,ValueError,TypeError):
+            valid=False
+        need(valid,'CODEX_CA_CONFIGURATION','Explicit CA bundle must name an existing file')
+        env['SSL_CERT_FILE']=str(bundle)
     return env
 
 
