@@ -224,6 +224,56 @@ class OpenAIAdapterTests(unittest.TestCase):
             self.assertEqual(cap, before)
             self.assertEqual(provenance['source'], 'mock_transport')
 
+    @patch.dict(os.environ, ENV)
+    def test_optional_network_preflight_reuses_client_and_failure_blocks_post(self):
+        for case in ('success', '401', 'missing_model', 'timeout'):
+            with self.subTest(case=case), tempfile.TemporaryDirectory(prefix='authored-openai-preflight-') as directory:
+                root = Path(directory); requests = []
+                cap, out, _ = authored_case(speed=3., half_road=10.)
+                image = root / 'authored.png'; Image.new('RGB', (4, 4), 'white').save(image)
+                for observation in cap['observations']:
+                    observation['path'] = str(image)
+                def handler(request):
+                    requests.append(request)
+                    if request.method == 'GET':
+                        self.assertEqual(str(request.url), 'https://api.openai.com/v1/models')
+                        self.assertEqual(request.headers['authorization'], 'Bearer ' + FAKE_KEY)
+                        if case == 'timeout':
+                            raise httpx.ConnectTimeout('Suppressed fake secret ' + FAKE_KEY)
+                        return httpx.Response(401 if case == '401' else 200,
+                            headers={'x-request-id': 'req_authored_models'},
+                            json=dict(data=[dict(id='other-authored-model' if case == 'missing_model' else 'authored-test-model',
+                                                 owned_by='UNPUBLISHED_MODELS_METADATA')]))
+                    return httpx.Response(200, json=response(json.dumps(out)))
+                client = httpx.Client(transport=httpx.MockTransport(handler), trust_env=False)
+                agent = OpenAIResponsesAgent(evidence_dir=root / 'transport', client=client,
+                    wire_schema_bundle=WIRE, prompt_version='driving_prototype_v3',
+                    experiment_profile='local_conditional_2s_prototype_v1', network_preflight=True)
+                self.assertIs(agent.client, client)
+                if case == 'success':
+                    result = agent.preflight()
+                    self.assertEqual(result['model_inference_calls'], 0)
+                    self.assertEqual(result['network_requests'], 1)
+                    agent.decide(cap)
+                    self.assertEqual([request.method for request in requests], ['GET', 'POST'])
+                    self.assertEqual(agent.call_count, 1)
+                else:
+                    with self.assertRaises(Failure) as failed:
+                        agent.preflight()
+                    expected = {'401': 'API_PREFLIGHT_HTTP', 'missing_model': 'API_MODEL_UNAVAILABLE',
+                                'timeout': 'API_PREFLIGHT_TRANSPORT'}[case]
+                    self.assertEqual(failed.exception.record['code'], expected)
+                    with self.assertRaises(Failure) as blocked:
+                        agent.decide(cap)
+                    self.assertEqual(blocked.exception.record['code'], 'API_PREFLIGHT_REQUIRED')
+                    self.assertEqual([request.method for request in requests], ['GET'])
+                    self.assertEqual(agent.call_count, 0)
+                network = (root / 'transport/network_preflight.json').read_text()
+                self.assertNotIn(FAKE_KEY, network)
+                self.assertNotIn('UNPUBLISHED_MODELS_METADATA', network)
+                self.assertNotIn('other-authored-model', network)
+                self.assertEqual(json.loads(network)['model_available'], case == 'success' if case in ('success', 'missing_model') else None)
+
 
 if __name__ == '__main__':
     unittest.main()

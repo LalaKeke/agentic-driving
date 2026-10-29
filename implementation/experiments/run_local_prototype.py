@@ -169,7 +169,8 @@ def main(args):
             else:
                 agent=OpenAIResponsesAgent(evidence_dir=root/'transport',model=os.environ.get('DRIVING_MODEL'),
                     timeout_s=args.timeout_s,wire_schema_bundle=args.wire,prompt_version=prompt,
-                    max_calls=limit,experiment_profile=PROFILE)
+                    max_calls=limit,experiment_profile=PROFILE,
+                    network_preflight=getattr(args,'api_preflight_models',False))
             write_json_new(root/'transport_config.json',getattr(agent,'public_config',None))
             agent.preflight()
             for revision in range(limit):
@@ -216,6 +217,7 @@ if __name__=='__main__':
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--backend',choices=['codex_subscription','openai_api'],default='codex_subscription')
+    p.add_argument('--api-preflight-models',action='store_true',help='Explicit non-generating GET /models on the same API client before any POST; no retry')
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
     p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2','driving_prototype_v3'],default='driving_prototype_v1')
     p.add_argument('--require-turn',action='store_true',help='Require registered nonzero turning evidence before simulated prefix consumption')

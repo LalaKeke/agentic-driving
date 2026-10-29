@@ -95,6 +95,8 @@ def main(plan_path):
                    '--planner-profile', plan['planner_profile'], '--prompt-version', plan['prompt_version'],
                    '--require-turn', '--max-requests', '2', '--timeout-s', str(plan.get('timeout_s', 450)),
                    '--deadline-utc', plan['deadline_utc'], '--out', str(out)]
+        if plan.get('api_preflight_models'):
+            command.append('--api-preflight-models')
         write_json_new(runtime / (case['case_id'] + '.launch.json'),
                        dict(command=command, started_at_unix=time.time(), backend='openai_api',
                             automatic_transport_retries=0, credential_values_recorded=False))
