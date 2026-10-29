@@ -1,0 +1,78 @@
+{
+  "status": "CURRENT_EXPLICIT_PROXY_CONNECTION_VERIFIED",
+  "historical_failure_root_cause": "NOT_ESTABLISHED_FROM_RECORDED_ERROR_CHAIN",
+  "authorized_diagnostic_requests": 2,
+  "charged_requests": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "driving_model_requests": 0,
+  "old_budget_inherited": 0,
+  "model_requested": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "changes": [
+    "Explicit DRIVING_PROXY_URL/DRIVING_CA_BUNDLE child-only settings; all proxy variants and bypass handled consistently, API keys still removed.",
+    "One captured child environment shared by preflight and model RPC; sanitized endpoint summary retained.",
+    "One non-generating verified CONNECT/TLS command; independent charged text/10-image probes with no retry."
+  ],
+  "findings": {
+    "inherited_17890": "TCP connection refused; explicit routing required for standalone callers. Old driving batch already forced17891, so this does not establish its failure cause.",
+    "live_17891": "One anonymous HEAD TLS timeout observed; subsequent HTTP1.1/HTTP2 HEAD405 and8/8 verified system-CA TLS handshakes succeeded.",
+    "python_default_ca": "Probe interpreter has missing old Anaconda CA paths. This caused Python probe certificate failures, not demonstrated to cause historical RustCLI failures.",
+    "historical_failures": "Within5.873/7.219s afterturn start, before any model delta; neither450s deadline nor300s stream idle boundary. Underlying connection cause absent from old logs."
+  },
+  "probes": [
+    {
+      "mode": "text",
+      "purpose": "CONNECTION_DIAGNOSTIC_ONLY",
+      "source": "online_model_diagnostic",
+      "source_commit": "70fe8f3e9b35ad973ff84adee6624358e70fd3c1",
+      "script_sha256": "0b91f83b7265476b9fcc496a52189b99c206f1da7a18bb8b5b11f758bf1d6cd1",
+      "transport_source_sha256": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+      "environment_helper_sha256": "8c49e51d567f5ae721d6dae4c555f2e724f708dd2e2873cda73aa7870abda5af",
+      "model_requested": "gpt-6.1-sol",
+      "server_model_snapshot": null,
+      "driver_or_physics_tools": 0,
+      "automatic_transport_retries": 0,
+      "internal_http_attempts": null,
+      "status": "PASS",
+      "native_response": {
+        "ok": true,
+        "diagnostic": "connection"
+      },
+      "cli_resolved_alias": "gpt-6.1-sol",
+      "elapsed_s": 26.660236144438386
+    },
+    {
+      "mode": "images",
+      "purpose": "CONNECTION_DIAGNOSTIC_ONLY",
+      "source": "online_model_diagnostic",
+      "source_commit": "1b50730a879853302eaf281a9c99b7820ea6b9e8",
+      "script_sha256": "0b91f83b7265476b9fcc496a52189b99c206f1da7a18bb8b5b11f758bf1d6cd1",
+      "transport_source_sha256": "b153166a150e02ad9a5ae03f2af2770bca5182d744889433d2cb1e4fa146d3a3",
+      "environment_helper_sha256": "8c49e51d567f5ae721d6dae4c555f2e724f708dd2e2873cda73aa7870abda5af",
+      "model_requested": "gpt-6.1-sol",
+      "server_model_snapshot": null,
+      "driver_or_physics_tools": 0,
+      "automatic_transport_retries": 0,
+      "internal_http_attempts": null,
+      "status": "PASS",
+      "native_response": {
+        "ok": true,
+        "diagnostic": "connection"
+      },
+      "cli_resolved_alias": "gpt-6.1-sol",
+      "elapsed_s": 33.1254671048373
+    }
+  ],
+  "validation": {
+    "connection_and_adapter_tests": 39,
+    "wire_and_budget_boundary_tests": 15,
+    "budget_exhaustion_blocks_before_auth_or_transport": true
+  },
+  "limits": [
+    "Two short positive diagnostics establish current usable request/return paths, not long-running stream reliability or causal proof that the old intermittent fault is eliminated.",
+    "Images only test attachment transport and tiny structured output, not image understanding, driving or G2.",
+    "No TLS verification disabled, system/global proxy/DNS/CA stores unchanged, no SSH forwarding, no model/account switch.",
+    "Old six-scene trial remains ended6/12 with remaining3 windows unattempted; no driving call was resumed."
+  ]
+}

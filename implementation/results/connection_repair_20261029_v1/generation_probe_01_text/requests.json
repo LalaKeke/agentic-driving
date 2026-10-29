@@ -1,0 +1,98 @@
+[
+  {
+    "method": "initialize",
+    "params": {
+      "clientInfo": {
+        "name": "agentic_driving_controlled_pilot",
+        "version": "1.0"
+      },
+      "capabilities": {
+        "experimentalApi": true
+      }
+    },
+    "id": 1
+  },
+  {
+    "method": "initialized",
+    "params": {}
+  },
+  {
+    "method": "thread/start",
+    "params": {
+      "model": "gpt-6.1-sol",
+      "modelProvider": "pilot-official",
+      "allowProviderModelFallback": false,
+      "ephemeral": true,
+      "cwd": "/tmp/driving-connection-diagnostic-v6vk5paz",
+      "approvalPolicy": "never",
+      "sandbox": "read-only",
+      "baseInstructions": "A single image-only driving inference. No tools, files, web, agents or external datasets. Return only the requested native JSON.",
+      "developerInstructions": "Attached images and supplied acquisition/ego metadata are the only environment evidence. Never call tools.",
+      "config": {
+        "model_provider": "pilot-official",
+        "forced_login_method": "chatgpt",
+        "model_reasoning_effort": "medium",
+        "web_search": "disabled",
+        "orchestrator.mcp.enabled": false,
+        "skills.include_instructions": false,
+        "skills.bundled.enabled": false,
+        "mcp_servers": {},
+        "model_providers.pilot-official.name": "Official ChatGPT controlled pilot",
+        "model_providers.pilot-official.base_url": "https://chatgpt.com/backend-api/codex",
+        "model_providers.pilot-official.wire_api": "responses",
+        "model_providers.pilot-official.requires_openai_auth": true,
+        "model_providers.pilot-official.supports_websockets": false,
+        "model_providers.pilot-official.request_max_retries": 0,
+        "model_providers.pilot-official.stream_max_retries": 0,
+        "features.shell_tool": false,
+        "features.unified_exec": false,
+        "features.view_image": false,
+        "features.apps": false,
+        "features.plugins": false,
+        "features.multi_agent": false,
+        "features.code_mode_host": false,
+        "features.browser_use": false,
+        "features.computer_use": false,
+        "features.image_generation": false,
+        "features.hooks": false,
+        "features.goals": false,
+        "features.skill_search": false,
+        "features.memories": false,
+        "features.remote_plugin": false,
+        "features.shell_snapshot": false
+      }
+    },
+    "id": 2
+  },
+  {
+    "method": "turn/start",
+    "params": {
+      "threadId": "01a185de-a9fa-7741-ab61-d4fe80bc3edd",
+      "input": [
+        {
+          "type": "text",
+          "text": "Connectivity diagnostic only. Do not analyze the scene or make driving decisions. No tools. Return exactly {\"ok\":true,\"diagnostic\":\"connection\"}."
+        }
+      ],
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "diagnostic": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ok",
+          "diagnostic"
+        ],
+        "additionalProperties": false
+      },
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "id": 3
+  }
+]

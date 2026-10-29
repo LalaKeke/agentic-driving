@@ -1,0 +1,75 @@
+{
+  "observed_at": "2026-10-29T04:08:26.503132+00:00",
+  "tcp": [
+    {
+      "port": 17890,
+      "status": "FAILED",
+      "exception": "ConnectionRefusedError",
+      "errno": 111,
+      "elapsed_s": 0.0012458786368370056
+    },
+    {
+      "port": 17891,
+      "status": "CONNECTED",
+      "elapsed_s": 6.676651537418365e-05
+    }
+  ],
+  "http_checks": [
+    {
+      "route": "inherited",
+      "returncode": 7,
+      "parse_error": true,
+      "stdout_size": 155,
+      "error": "curl: (7) Failed to connect to 127.0.0.1 port 17890 after 0 ms: Couldn't connect to server",
+      "generation_requests": 0
+    },
+    {
+      "route": "explicit_17891",
+      "returncode": 28,
+      "parse_error": true,
+      "stdout_size": 164,
+      "error": "curl: (28) SSL connection timeout",
+      "generation_requests": 0
+    },
+    {
+      "route": "explicit_17891_h1",
+      "returncode": 0,
+      "http_code": 405,
+      "proxy_connect_code": 200,
+      "http_version": "1.1",
+      "remote_ip": "127.0.0.1",
+      "connect_s": 0.000103,
+      "tls_s": 0.224323,
+      "total_s": 0.347434,
+      "ssl_verify_result": 0,
+      "error": "",
+      "generation_requests": 0
+    },
+    {
+      "route": "explicit_17891_h2",
+      "returncode": 0,
+      "http_code": 405,
+      "proxy_connect_code": 200,
+      "http_version": "2",
+      "remote_ip": "127.0.0.1",
+      "connect_s": 0.000242,
+      "tls_s": 0.230805,
+      "total_s": 0.429226,
+      "ssl_verify_result": 0,
+      "error": "",
+      "generation_requests": 0
+    },
+    {
+      "route": "direct",
+      "returncode": 7,
+      "parse_error": true,
+      "stdout_size": 155,
+      "error": "curl: (7) Failed to connect to chatgpt.com port 443 after 10 ms: Couldn't connect to server",
+      "generation_requests": 0
+    }
+  ],
+  "authenticated": false,
+  "method": "HEAD",
+  "generation_requests": 0,
+  "retries": 0
+}

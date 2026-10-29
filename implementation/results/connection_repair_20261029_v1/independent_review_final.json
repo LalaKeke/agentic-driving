@@ -1,0 +1,175 @@
+{
+  "scope": "Independent read-only final review: second ten-image tiny-JSON generation diagnostic plus combined fresh budget. First review remains unchanged.",
+  "review_new_external_requests": 0,
+  "review_new_generation_requests": 0,
+  "first_review_sha256": "b1519a93ea979246fd49909dca47b96219910317af26b6d301059bc4032a5272",
+  "probe_02_source_commit": "1b50730a879853302eaf281a9c99b7820ea6b9e8",
+  "checks": {
+    "exactly_one_turn_start": true,
+    "exactly_one_turn_complete": true,
+    "no_error_retry_reroute_recovery_notification": true,
+    "no_tool_items_or_server_requests": true,
+    "no_model_fallback": true,
+    "ten_original_images_hash_match": true,
+    "ten_native_image_inputs": true,
+    "two_field_diagnostic_schema_only": true,
+    "dedicated_diagnostic_text_matches_saved": true,
+    "diagnostic_source_and_not_business": true,
+    "expected_native_json": true,
+    "requested_resolved_alias_gpt61": true,
+    "server_snapshot_remains_unknown": true,
+    "constructor_snapshot_registered": true,
+    "all_six_proxy_vars_fixed_to_17891": true,
+    "proxy_bypass_absent": true,
+    "certificate_check_not_disabled": true,
+    "native_logs_confirm_proxy_use": true,
+    "native_logs_no_failure_or_retry": true,
+    "two_new_charges_no_old_budget_inheritance": true
+  },
+  "all_checks_pass": true,
+  "observed": {
+    "turn_start": 1,
+    "turn_completed": 1,
+    "agent_message_deltas": 10,
+    "error_notifications": 0,
+    "image_count": 10,
+    "schema_properties": [
+      "ok",
+      "diagnostic"
+    ],
+    "native_json": {
+      "ok": true,
+      "diagnostic": "connection"
+    },
+    "requested_and_cli_resolved_model": "gpt-6.1-sol",
+    "server_generated_snapshot": null,
+    "private_stderr_sha256": "ff8c44cf97011a794cb32e3e313ccdaff085680578478c62f45e06d260349f7e",
+    "proxy_intercept_log_line_numbers": [
+      2,
+      6,
+      10,
+      17,
+      21,
+      28
+    ],
+    "proxy_connected_log_line_numbers": [
+      4,
+      8,
+      12,
+      19,
+      23,
+      30
+    ]
+  },
+  "meaning_and_limits": "The server accepted a request containing ten image references and a two-field diagnostic schema and returned native JSON over the fixed proxy environment. This is transport/return validation, not evidence that the model understood the images, generated the driving business contract, or passed any driving tool. No TLS handshake/certificate-specific log is present. Socket connection counts include background/metadata traffic and do not measure generation or HTTP retries.",
+  "combined_budget": {
+    "authorized_new_limit": 2,
+    "charges": 2,
+    "observed_generation_turn_starts": 2,
+    "remaining": 0,
+    "old_batch_remainder_inherited": 0,
+    "driving_case_requests": 0,
+    "stop_required": true
+  },
+  "preservation": {
+    "baseline_commit": "274467d9f1ec72d83e0a08d7e982dfc6ea14726a",
+    "old_scout_tracked_entries_compared": 228,
+    "old_scout_symlinks_compared_as_links": 3,
+    "old_scout_changed_files": [],
+    "algorithm_schema_prompt_checks": [
+      {
+        "path": "implementation/agentic/t1.py",
+        "sha256": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t2.py",
+        "sha256": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t3.py",
+        "sha256": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t4.py",
+        "sha256": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/metric_contract.py",
+        "sha256": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/geometry.py",
+        "sha256": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/contracts.py",
+        "sha256": "25ffe210691a291589fac9d7d1cc9873c76bd6805b694782f2a93e99b7ac32a1",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/agentic/acceptance.py",
+        "sha256": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/schemas/agent_output_v3_exp2.schema.json",
+        "sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "implementation/prompts/driving_prototype_v1.txt",
+        "sha256": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "unchanged_from_baseline": true
+      }
+    ],
+    "connection_source_versions": {
+      "pilot_transport.py": "b153166a150e02ad9a5ae03f2af2770bca5182d744889433d2cb1e4fa146d3a3",
+      "codex_adapter.py": "8c49e51d567f5ae721d6dae4c555f2e724f708dd2e2873cda73aa7870abda5af"
+    },
+    "source_change_boundary": "Only project child connection environment normalization and snapshot selection changed; the complete first independent review provides static AST comparisons for transport control, business schema selection and decision path."
+  },
+  "inputs": [
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/result.json",
+      "sha256": "af35ece536c853a97e18c04b9256a816fff96b5afe5de42ccf6461aad9dcbcf2"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/requests.json",
+      "sha256": "ff65e6c66117580770f8e846c3e909468a9c81dfbb4706d6f730cc49f2fd958a"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/events.redacted.jsonl",
+      "sha256": "6ce8083649465bcb8465adf838f735d97a6ab5696d5bfa5589ad1ce68017ab0b"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/input_manifest.json",
+      "sha256": "ebd389de42443afc6d8b6bc65180ff42124963a54eff2f10f7e1900e70c5a699"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/diagnostic_schema.json",
+      "sha256": "448647df4733c1302dc00471c769b331fe0374aa9ffa7f033d8217787d883ee4"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/diagnostic_prompt.txt",
+      "sha256": "8210526a1005c99a438d53954855bb2b0e0e37287bd0a12d681d6c44ae17483b"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/transport/public_config.json",
+      "sha256": "2c6e1e282922edbce88a38dec1b5ccb698c0928d493aa0e2e4c2d157c4bc96a7"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_02_images/.private/stderr.raw",
+      "sha256": "ff8c44cf97011a794cb32e3e313ccdaff085680578478c62f45e06d260349f7e"
+    },
+    {
+      "path": "implementation/results/six_scene_scout_preparation_20261029_v1/prepared_inputs/main/ordinary_straight/capture.json",
+      "sha256": "90d707352340e2c3af5bfe727b9900e76df37bce7f8ccc6c134aa6ba3530303d"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "task": "Connection configuration review; read-only inputs; no network or model requests",
+  "network_calls": 0,
+  "generation_requests": 0,
+  "source_sha256": {
+    "implementation/agentic/codex_adapter.py": "27a593e727c1b2f77fedc8f94026a22150bd3199e5f4432fd2122fca97a1dbec",
+    "implementation/agentic/pilot_transport.py": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+    "implementation/experiments/run_local_prototype.py": "da7b04831a84b2ac6559004e47a9e11d2390712151404cfe483d20b315acc339",
+    "implementation/experiments/run_six_scene_scout.py": "7d679d507d3ede11fa5dc9ee72bf438b94d1141e364e2100f34bd8a2a55dd44b",
+    "implementation/results/six_scene_scout_run_20261029_v1/quota_preflight/probe_source.py": "0cef493aaa288caef1ca0314826da39e07a404d74b541f0c2ef0ece6d7f0e989"
+  },
+  "current_inherited_proxy_summary": {
+    "HTTPS_PROXY": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "HTTP_PROXY": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "ALL_PROXY": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "https_proxy": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "http_proxy": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "all_proxy": {
+      "scheme": "http",
+      "host": "127.0.0.1",
+      "port": 17890,
+      "credentials_present": false
+    },
+    "NO_PROXY": null,
+    "no_proxy": null
+  },
+  "facts": [
+    {
+      "code": "EXECUTOR_ENV_17890",
+      "evidence": "current process environment",
+      "finding": "Six upper/lower-case proxy variables agree on http://127.0.0.1:17890. NO_PROXY/no_proxy are both absent."
+    },
+    {
+      "code": "RUNNER_ENV_17891",
+      "evidence": [
+        "implementation/experiments/run_local_prototype.py:132",
+        "implementation/results/six_scene_scout_run_20261029_v1/quota_preflight/probe_source.py:31"
+      ],
+      "finding": "Online runner and quota probe overwrite all six proxy variables with 17891 before subprocess creation. Thus inherited 17890 alone does not explain the previous batch failure."
+    },
+    {
+      "code": "ENV_FORWARDING",
+      "evidence": [
+        "implementation/agentic/codex_adapter.py:24",
+        "implementation/agentic/pilot_transport.py:308"
+      ],
+      "finding": "subscription_environment copies current env, removes API-key variables and otherwise keeps proxies/no_proxy. _rpc passes that mapping to Popen explicitly."
+    },
+    {
+      "code": "NO_CURRENT_BYPASS_CONFLICT",
+      "evidence": "current environment and local user config filtered to networking-related keys",
+      "finding": "No current NO_PROXY/no_proxy conflict is observed. Different future callers may preserve a conflict because the helper does not normalize bypass variables."
+    },
+    {
+      "code": "USER_CONFIG_NO_NETWORK_OVERRIDE",
+      "evidence": "/home/hzy/.codex/config.toml, filtered TOML inspection; auth files never read",
+      "finding": "No proxy/network/retry/provider override was found among networking-related keys. Existing model is gpt-6.1-sol; existing CODEX_HOME is /home/hzy/.codex."
+    },
+    {
+      "code": "REQUEST_AND_STREAM_RETRY_ZERO_DECLARED",
+      "evidence": "implementation/agentic/pilot_transport.py:58-82",
+      "finding": "Command-line overrides declare request_max_retries=0, stream_max_retries=0 and supports_websockets=false for pilot-official. stream_idle_timeout_ms is not explicitly set."
+    },
+    {
+      "code": "STARTUP_PRINT_NOT_RESOLVED_CONFIG_PROOF",
+      "evidence": "runtime/{ordinary_straight,following_deceleration,signal_wait}/transport/.private_state/preflight/startup_config.stdout",
+      "finding": "All three saved startup stdout files have SHA256 319cf95d70fa748c9bb9e8cf411ed313dc75d21603f5f99bda1dad3a739c25f5. JSON contains appServerVersion/configRequirements only; it does not expose final resolved proxy/provider settings."
+    }
+  ],
+  "local_environment_tests": [
+    {
+      "name": "direct_transport_retains_inherited_endpoint",
+      "result": "PASS",
+      "endpoint": {
+        "HTTPS_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "HTTP_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "ALL_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "https_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "http_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "all_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17890,
+          "credentials_present": false
+        },
+        "NO_PROXY": null,
+        "no_proxy": null
+      }
+    },
+    {
+      "name": "runner_proxy_setting_reaches_child_env_and_bypass_is_not_normalized",
+      "result": "PASS",
+      "endpoint": {
+        "HTTPS_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "HTTP_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "ALL_PROXY": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "https_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "http_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "all_proxy": {
+          "scheme": "http",
+          "host": "127.0.0.1",
+          "port": 17891,
+          "credentials_present": false
+        },
+        "NO_PROXY": ".chatgpt.com",
+        "no_proxy": "localhost"
+      },
+      "api_key_env_removed": true,
+      "network_performed": false
+    }
+  ],
+  "unknowns": [
+    "Actual reqwest proxy endpoint chosen for a past model POST is not recorded in public manifests; source-level env forwarding is established but live connection route requires separate network observation.",
+    "The role of HTTP version, upstream proxy routing, TLS setup and service-side resets cannot be determined from configuration alone.",
+    "No socket or HTTP probe was performed in this subtask. A listening local port or successful metadata RPC would not establish generation streaming health.",
+    "No managed network-policy value was altered or taken as proof of model-provider data-plane behavior."
+  ],
+  "minimal_recommendation": {
+    "primary": "Keep the existing provider, model and retry prohibition. Test the actual configured 17891 route first; compare the upstream connection failure evidence before changing transport.",
+    "project_scope_if_needed": "Make the selected proxy an explicit project setting shared by metadata and generation callers, normalize all six proxy keys in the child environment, record only scheme/host/port and bypass domains. Preserve global environment and old records. This prevents direct-helper callers from silently inheriting the stale 17890 route, but is not yet the proven fix for the previous batch failure.",
+    "tests": "Exercise inherited stale endpoint, explicit selected endpoint, upper/lower-case mismatch and target-domain bypass without networking; verify original API-key stripping and zero-retry declarations stay intact."
+  }
+}

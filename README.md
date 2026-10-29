@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[连接配置修补与验证](implementation/results/connection_repair_20261029_v1/README.md)：显式项目代理/可信CA、预检与RPC共用环境，文本和10图两次独立GPT-6.1连接诊断通过；未续跑驾驶批次。
+
 [六场景摸底实际执行与结果](implementation/results/six_scene_scout_run_20261029_v1/README.md)：6/12次请求后服务连接错误停止，3窗已尝试，1窗修订后全链及模拟移动前缀通过；其余3窗未调用，算法保持冻结。
 
 [六场景摸底：场景清单、原图预览与运行计划](implementation/results/six_scene_scout_preparation_20261029_v1/README.md)：6个不同scene、2个预留验证scene，固定现有2秒原型；建议独立上限12次，当前仅准备、真实调用0。

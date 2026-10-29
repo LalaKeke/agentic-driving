@@ -1,0 +1,293 @@
+{
+  "analysis": "historical_connection_log_diagnosis",
+  "new_external_requests": 0,
+  "new_generation_requests": 0,
+  "analysis_git_head": "274467d9f1ec72d83e0a08d7e982dfc6ea14726a",
+  "old_evidence_modified": false,
+  "private_data_policy": "Only allowlisted log error sentences, metadata and SHA are published; no raw header, token, cookie, account or email content is copied. SQLite was queried from task-private temporary copies and removed at exit.",
+  "cases": [
+    {
+      "case": "six_scene_scout_signal_wait",
+      "inputs": [
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/.private/stderr.raw",
+          "sha256": "3a37d699063d77726bcc2d905060c3f76746135ba162558f63bbed564a2f466d",
+          "size_bytes": 501,
+          "private": true
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/.private/stdout.raw",
+          "sha256": "d29e195691db85e40174ebbcf217f25f6493b1b24a3b2bf9463aa91cb5fc30dd",
+          "size_bytes": 107700,
+          "private": true
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/events.redacted.jsonl",
+          "sha256": "a8bf7dfbdc58721e0ca536c13d3114040b0bf4fa709fd51450c2f3ebe6fe0eaa",
+          "size_bytes": 108121,
+          "private": false
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/requests.json",
+          "sha256": "885cb8ee3906fd2c616b7492f0eaaa6a8654cf1c7640a130c19454a216cf7fa7",
+          "size_bytes": 89540,
+          "private": false
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/attempt_summary.json",
+          "sha256": "bccefafe2214db0203b2eb4fd0739dc5efdb9ddbeb18827e2498cf5847d83d41",
+          "size_bytes": 1166,
+          "private": false
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/wire_manifest.json",
+          "sha256": "3e89a4eb159817726b8e760671841b227a0cb6fe340dd78ea49f72f5d7c33497",
+          "size_bytes": 609,
+          "private": false
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/startup_config.json",
+          "sha256": "3c84721ea705cd768734d0ded1113c617b994aba38b654e2a8252884ad57bc2c",
+          "size_bytes": 3730,
+          "private": false
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/.private_state/logs/logs_2.sqlite",
+          "sha256": "45b1de6d2f6684e6ecdc8211ae73eefac4da67f0f2c1d3c68027f4830c7081f5",
+          "size_bytes": 770048,
+          "private": true
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/.private_state/logs/logs_2.sqlite-wal",
+          "sha256": "c7aa2ccc682afa8e0961cbf86f19716143341bc6b62e885549d73f2d44a1da6f",
+          "size_bytes": 4383712,
+          "private": true
+        },
+        {
+          "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/.private_state/logs/logs_2.sqlite-shm",
+          "sha256": "77a2f2e70382eaba638a12703450c9cf1b3212f615339b8109b91decaf1cc8c6",
+          "size_bytes": 32768,
+          "private": true
+        }
+      ],
+      "rpc_events": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/events.redacted.jsonl",
+        "total_lines": 12,
+        "turn_start_notification_line": 9,
+        "turn_start_emitted_at_ms": 1793245587029,
+        "error_line": 12,
+        "error_emitted_at_ms": 1793245592902,
+        "elapsed_turn_start_to_error_s": 5.873,
+        "agent_message_delta_count": 0,
+        "any_delta_notification_count": 0,
+        "completed_turn_notification_count": 0,
+        "turn_start_request_count": 1,
+        "observed_error": {
+          "message": "Reconnecting... waiting for network",
+          "code": "responseStreamDisconnected",
+          "http_status_code": null,
+          "additional_details": "Connection failed: error sending request",
+          "will_retry": true
+        }
+      },
+      "stderr": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/attempt_02/.private/stderr.raw",
+        "connection_warning_line": 3,
+        "safe_exact_sentence": "stream connection failed; waiting to retry turn_id=01a185c4-2652-7ce2-b39f-973f27d24c36 error=Connection failed: error sending request retry_delay=5s",
+        "file_watcher_warning_count": 2,
+        "watch_warning_causal_connection_to_network_failure": "NOT_ESTABLISHED"
+      },
+      "adapter_attempt_elapsed_s": 7.947406964376569,
+      "adapter_retries_recorded": 0,
+      "declared_and_thread_requested_config": {
+        "model_providers.pilot-official.supports_websockets": false,
+        "model_providers.pilot-official.request_max_retries": 0,
+        "model_providers.pilot-official.stream_max_retries": 0
+      },
+      "stream_idle_timeout_300s_explanation": "NOT_SUPPORTED_BY_TIMING: no model delta, failure within <8s of turn/started; no 300s idle period elapsed.",
+      "overall_timeout_450s_explanation": "NOT_TRIGGERED: attempt elapsed below 8s, far below per-call 450s limit.",
+      "sqlite_log_inventory": {
+        "path": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/transport/.private_state/logs/logs_2.sqlite",
+        "row_count": 1012,
+        "first_unix_timestamp_s": 1793245389,
+        "last_unix_timestamp_s": 1793245576,
+        "failed_turn_log_rows": 0,
+        "http_status_metadata_only": [
+          {
+            "sqlite_row_id": 52,
+            "unix_timestamp_s": 1793245396,
+            "method": "POST",
+            "http_status": 200,
+            "code_file": "http-client/src/client.rs",
+            "code_line": 174,
+            "belongs_to_failed_turn": false
+          }
+        ],
+        "limitation": "Persisted rows end before this failed turn. The preceding successful request has HTTP 200; it cannot be assigned to the failed request. No failed-turn reqwest source chain/TLS/proxy/DNS cause is available in this SQLite snapshot."
+      },
+      "root_cause_classification": {
+        "observable_failure_layer": "Connection setup/send failure before any observable model output; exact network sublayer unestablished.",
+        "reqwest_source_chain": "NOT_RECORDED",
+        "tls_error": "NOT_RECORDED",
+        "proxy_error": "NOT_RECORDED",
+        "dns_error": "NOT_RECORDED",
+        "failed_request_http_status": "UNKNOWN",
+        "not_a_recorded_429": true,
+        "no_automatic_retry_claim_boundary": "The request records pin provider HTTP/stream retry values to zero and the adapter records zero retries with one turn/start. However Codex responses_retry announced an outer retry with 5s delay and willRetry=true. The adapter then aborts on the first error. Historical evidence does not prove effective total backend HTTP attempts=1 or that provider settings disable all CLI retry layers."
+      }
+    },
+    {
+      "case": "construction_recovery",
+      "inputs": [
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/.private/stderr.raw",
+          "sha256": "c02d43aaf6cf1442dcc75b5e369359308382282d89a2368cd17d4c28d1279505",
+          "size_bytes": 621,
+          "private": true
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/.private/stdout.raw",
+          "sha256": "c9dc614a27510b3e9673d53be62bd33150d86a7289bbcfa0b90fa7d53fe95895",
+          "size_bytes": 88720,
+          "private": true
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/events.redacted.jsonl",
+          "sha256": "ddf6fa4ef05ecc89a03b64b509be5d4916399fc48bcaf64c5217bdc02531f1f9",
+          "size_bytes": 89165,
+          "private": false
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/requests.json",
+          "sha256": "7100d8182a677f18e2004159d3be652935ff94ed150bfe1d91caf86d68ed0896",
+          "size_bytes": 80106,
+          "private": false
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/attempt_summary.json",
+          "sha256": "73f16bbc9d7b32846e651cb4bfe75a4154fd9b9b20ec7133e2684369055e0243",
+          "size_bytes": 1166,
+          "private": false
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/wire_manifest.json",
+          "sha256": "99f27876f3ff23d98d34387ee871b92048a118a4d4b56d37478b3978a15ea333",
+          "size_bytes": 609,
+          "private": false
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/startup_config.json",
+          "sha256": "371d4470908adcb0fb4a8f54499a7497ca9993d8be4a6025e94b5ec2fa00f59e",
+          "size_bytes": 3730,
+          "private": false
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/.private_state/logs/logs_2.sqlite",
+          "sha256": "ece0e3db029fbd948a1c4a4799b948356dd15a4955ed1136832c4baeeadaa6e3",
+          "size_bytes": 774144,
+          "private": true
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/.private_state/logs/logs_2.sqlite-wal",
+          "sha256": "adf72f57875fbd08921162f2d3701bcbd706d87dd9df2e8b21eccbaebea418d3",
+          "size_bytes": 4387832,
+          "private": true
+        },
+        {
+          "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/.private_state/logs/logs_2.sqlite-shm",
+          "sha256": "a6f45a9a993429dae923f84c13fb889a63df1977b90842999eda9f31d2048d4c",
+          "size_bytes": 32768,
+          "private": true
+        }
+      ],
+      "rpc_events": {
+        "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/events.redacted.jsonl",
+        "total_lines": 12,
+        "turn_start_notification_line": 8,
+        "turn_start_emitted_at_ms": 1793206009167,
+        "error_line": 12,
+        "error_emitted_at_ms": 1793206016386,
+        "elapsed_turn_start_to_error_s": 7.219,
+        "agent_message_delta_count": 0,
+        "any_delta_notification_count": 0,
+        "completed_turn_notification_count": 0,
+        "turn_start_request_count": 1,
+        "observed_error": {
+          "message": "Reconnecting... waiting for network",
+          "code": "responseStreamDisconnected",
+          "http_status_code": null,
+          "additional_details": "Connection failed: error sending request",
+          "will_retry": true
+        }
+      },
+      "stderr": {
+        "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/attempt_02/.private/stderr.raw",
+        "connection_warning_line": 4,
+        "safe_exact_sentence": "stream connection failed; waiting to retry turn_id=01a18368-3d4b-7ac1-9d16-55bf00c06365 error=Connection failed: error sending request retry_delay=5s",
+        "file_watcher_warning_count": 3,
+        "watch_warning_causal_connection_to_network_failure": "NOT_ESTABLISHED"
+      },
+      "adapter_attempt_elapsed_s": 7.667387759312987,
+      "adapter_retries_recorded": 0,
+      "declared_and_thread_requested_config": {
+        "model_providers.pilot-official.supports_websockets": false,
+        "model_providers.pilot-official.request_max_retries": 0,
+        "model_providers.pilot-official.stream_max_retries": 0
+      },
+      "stream_idle_timeout_300s_explanation": "NOT_SUPPORTED_BY_TIMING: no model delta, failure within <8s of turn/started; no 300s idle period elapsed.",
+      "overall_timeout_450s_explanation": "NOT_TRIGGERED: attempt elapsed below 8s, far below per-call 450s limit.",
+      "sqlite_log_inventory": {
+        "path": "implementation/results/construction_recovery_20261029_v1/live_construction/transport/.private_state/logs/logs_2.sqlite",
+        "row_count": 1010,
+        "first_unix_timestamp_s": 1793205891,
+        "last_unix_timestamp_s": 1793206006,
+        "failed_turn_log_rows": 0,
+        "http_status_metadata_only": [
+          {
+            "sqlite_row_id": 54,
+            "unix_timestamp_s": 1793205902,
+            "method": "POST",
+            "http_status": 200,
+            "code_file": "http-client/src/client.rs",
+            "code_line": 174,
+            "belongs_to_failed_turn": false
+          }
+        ],
+        "limitation": "Persisted rows end before this failed turn. The preceding successful request has HTTP 200; it cannot be assigned to the failed request. No failed-turn reqwest source chain/TLS/proxy/DNS cause is available in this SQLite snapshot."
+      },
+      "root_cause_classification": {
+        "observable_failure_layer": "Connection setup/send failure before any observable model output; exact network sublayer unestablished.",
+        "reqwest_source_chain": "NOT_RECORDED",
+        "tls_error": "NOT_RECORDED",
+        "proxy_error": "NOT_RECORDED",
+        "dns_error": "NOT_RECORDED",
+        "failed_request_http_status": "UNKNOWN",
+        "not_a_recorded_429": true,
+        "no_automatic_retry_claim_boundary": "The request records pin provider HTTP/stream retry values to zero and the adapter records zero retries with one turn/start. However Codex responses_retry announced an outer retry with 5s delay and willRetry=true. The adapter then aborts on the first error. Historical evidence does not prove effective total backend HTTP attempts=1 or that provider settings disable all CLI retry layers."
+      }
+    }
+  ],
+  "source_code": {
+    "path": "implementation/agentic/pilot_transport.py",
+    "sha256": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+    "relevant_lines": {
+      "declared_request_max_retries_zero": 73,
+      "declared_stream_max_retries_zero": 74,
+      "error_notification_raises_before_retry": 152,
+      "retry_prohibited_guard": 156,
+      "kill_process_group": 298,
+      "single_turn_start": 379,
+      "finally_stops_process": 386
+    }
+  },
+  "conclusion": {
+    "supported": "Both historical failures occur <8s after turn/started with zero deltas and no failed-request HTTP status; neither a 450s timeout nor 300s idle timeout explains them.",
+    "unresolved": "Only generic error sending request is retained; cannot distinguish proxy/TLS/DNS/connect from historical logs alone.",
+    "safe_next_diagnostic": "Root agent may use current path connectivity probes and explicitly budgeted minimal generation checks with additional private diagnostic tracing. Do not replay driving cases, guess a network cause, or allow outer retries.",
+    "schema_or_driving_algorithm_change_needed_from_this_evidence": false
+  },
+  "input_recheck": {
+    "files_checked": 20,
+    "all_bytes_unchanged": true
+  }
+}

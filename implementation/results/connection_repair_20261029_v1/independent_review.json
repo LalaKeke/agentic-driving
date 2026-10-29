@@ -1,0 +1,190 @@
+{
+  "review_scope": "Read-only independent review of first text-only generation diagnostic plus static connection-environment snapshot changes. The second image probe is outside this report.",
+  "review_external_requests": 0,
+  "review_generation_requests": 0,
+  "review_git_head": "1b50730a879853302eaf281a9c99b7820ea6b9e8",
+  "probe_source_commit": "70fe8f3e9b35ad973ff84adee6624358e70fd3c1",
+  "probe_transport_sha256": "d9bd7631e07c7a9e341cba8f3048c3403ff79fe6cd25a7782290de2d3cd296ea",
+  "source_version_boundary": "Probe 1 used 70fe8f3 environment helper fix. The later 1b50730 adapter snapshot change was not yet in that request; it is reviewed statically here and should be exercised by the second probe.",
+  "checks": {
+    "turn_start_exactly_one": true,
+    "resolved_alias_matches_requested": true,
+    "server_snapshot_unknown": true,
+    "no_error_notification": true,
+    "no_model_reroute_or_auth_recovery": true,
+    "fallback_explicitly_disabled": true,
+    "no_tool_item": true,
+    "no_server_initiated_rpc_request": true,
+    "one_completed_turn": true,
+    "native_expected_diagnostic": true,
+    "text_probe_has_no_images": true,
+    "actual_prompt_is_saved_diagnostic": true,
+    "actual_schema_is_saved_diagnostic": true,
+    "no_driving_business_schema": true,
+    "result_source_is_diagnostic": true,
+    "raw_stream_shas_match_wire": true,
+    "no_logged_connection_error_or_retry": true
+  },
+  "all_checks_pass": true,
+  "observed": {
+    "turn_start_requests": 1,
+    "agent_message_deltas": 10,
+    "turn_completed": 1,
+    "errors": 0,
+    "model_reroute_or_recovery": 0,
+    "rpc_tool_requests": 0,
+    "native_result": {
+      "ok": true,
+      "diagnostic": "connection"
+    },
+    "actual_server_model_snapshot": null
+  },
+  "connection_evidence": {
+    "private_stderr_sha256": "6ef6d8a187c537321157a61184f590952a3e5c5d1b455acc3e3e22d3d6b05dda",
+    "private_stderr_lines": 32,
+    "proxy": "http://127.0.0.1:17891",
+    "reqwest_proxy_intercept_lines": [
+      3,
+      4,
+      10,
+      17,
+      21,
+      28
+    ],
+    "tcp_local_proxy_connecting_lines": [
+      5,
+      6,
+      11,
+      18,
+      22,
+      29
+    ],
+    "tcp_local_proxy_connected_lines": [
+      7,
+      8,
+      12,
+      19,
+      23,
+      30
+    ],
+    "tls_handshake_or_certificate_diagnostic_lines": 0,
+    "interpretation": "Native reqwest/Hyper logs show actual use of local proxy. Six socket connections include metadata/background endpoint activity and must not be counted as six generation or HTTP retry attempts. No dedicated TLS handshake/certificate log exists. Successful HTTPS generation with no verification-disabling setting supports end-to-end connectivity, but does not independently audit the certificate chain.",
+    "http_attempt_count": "UNKNOWN"
+  },
+  "diagnostic_scope_boundary": {
+    "driving_decide_api_called": false,
+    "business_schema_or_physics_tools_used": false,
+    "base_instructions_note": "Existing transport boilerplate still says single image-only driving inference; the actual turn input is the saved CONNECTION diagnostic text and two-field diagnostic schema. No driving decision or scenario output was requested or scored.",
+    "counts_as_driving_success": false,
+    "old_batch_budget_inherited": false
+  },
+  "static_change_review": {
+    "subscription_environment": "Copies parent environment, strips OPENAI_API_KEY/CODEX_API_KEY/DRIVING_API_KEY, applies only explicit credential-free HTTP(S) proxy and existing CA bundle. Does not edit parent shell settings or credentials.",
+    "snapshot": "self.environment built once in adapter construction, passed unchanged to subprocess.run preflight and process_factory RPC. Parent environment changes cannot change later child route.",
+    "certificate_setting": "No disabling of certificate verification; SSL_CERT_FILE explicitly selects existing CA trust file.",
+    "unchanged_AST": {
+      "provider_config": true,
+      "PilotProtocol": true,
+      "_transport_schema": true,
+      "decide": true
+    },
+    "preflight_and_rpc_AST_equal_after_only_env_expression_restore": {
+      "preflight": true,
+      "_rpc": true
+    },
+    "algorithm_schema_prompt_byte_comparison": [
+      {
+        "path": "implementation/agentic/t1.py",
+        "sha256": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t2.py",
+        "sha256": "d75d3b08208b9a10e82dd31d12a22f88e9535b81e4b7c253817cb38e589f540b",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t3.py",
+        "sha256": "7d9acaf10ccff4ac2872a41964fdf1018ba6cce5a0bb45ea530d3912a13081b9",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/t4.py",
+        "sha256": "25685bce4cf6d090d93a5ab8846387d13b5be643d0236773c78354a761869eda",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/metric_contract.py",
+        "sha256": "4f6303ec0f94e210eddebfa11b1d1787837215667fbe8278b4919e2f30158033",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/geometry.py",
+        "sha256": "095b957b779c375b6aaf90c74fc11cfee66632a1d5639cfedb674c12a4825b02",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/contracts.py",
+        "sha256": "25ffe210691a291589fac9d7d1cc9873c76bd6805b694782f2a93e99b7ac32a1",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/agentic/acceptance.py",
+        "sha256": "72237bb8df9766ff01209f6d0c70e747d9e7bd8adfdeb50de6ef0c84858b6dde",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/schemas/agent_output_v3_exp2.schema.json",
+        "sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+        "same_bytes_as_baseline": true
+      },
+      {
+        "path": "implementation/prompts/driving_prototype_v1.txt",
+        "sha256": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+        "same_bytes_as_baseline": true
+      }
+    ]
+  },
+  "reviewed_files": [
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/result.json",
+      "sha256": "6966dd70503a574bb510a52d111ec91bb6a5e885d96b2b7fd6563a9254974f34"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/requests.json",
+      "sha256": "4aaed8343b468ca72257b67264e13d2abb44702113ca00fda9c36da0341b3c0e"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/events.redacted.jsonl",
+      "sha256": "421d18d89e7bdb2c8a565cb9206c574869891c0c73509015e23c2971c288a8d5"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/wire_manifest.json",
+      "sha256": "f7016df3ee8ac8ddbc8e96950cc9746968f81985e9c57ee0a0b7f95b60997c7c"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/input_manifest.json",
+      "sha256": "386a74dd85631285e68c366ac73aa543f31b4e92fbee513ce2f84a6510f90965"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/diagnostic_prompt.txt",
+      "sha256": "8210526a1005c99a438d53954855bb2b0e0e37287bd0a12d681d6c44ae17483b"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/diagnostic_schema.json",
+      "sha256": "448647df4733c1302dc00471c769b331fe0374aa9ffa7f033d8217787d883ee4"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/transport/public_config.json",
+      "sha256": "5f7f9b065c5d52bc2b69e1b608d796e2c683b135aa23931156997d0cc497938a"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/.private/stderr.raw",
+      "sha256": "6ef6d8a187c537321157a61184f590952a3e5c5d1b455acc3e3e22d3d6b05dda"
+    },
+    {
+      "path": "implementation/results/connection_repair_20261029_v1/generation_probe_01_text/.private/stdout.raw",
+      "sha256": "4831c5aab5f41e32698c0c95adb1f1784caab3c21f4c2e77a246b051328720ea"
+    }
+  ]
+}
