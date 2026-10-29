@@ -1,0 +1,205 @@
+{
+  "code": "CORRIDOR_INITIAL_STATE",
+  "message": "First corridor cell must contain the true initial rear axle",
+  "category": "tool_infeasible",
+  "details": {
+    "interval": [
+      0.0,
+      0.2
+    ],
+    "candidate_id": "brake_left",
+    "initial_rear_point_m": [
+      -1.2,
+      0.0
+    ],
+    "heading_band_rad": [
+      -0.025,
+      0.14100851472863377
+    ],
+    "initial_state_violations": [
+      {
+        "kind": "target_center",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.018650029112251748
+        ],
+        "input_boundary_halfplane": [
+          0.0,
+          1.0,
+          0.15
+        ],
+        "center_offset_support_m": 0.16865002911225174,
+        "computed_m": 0.0,
+        "threshold_m": -0.018650029112251748,
+        "excess_m": 0.018650029112251748
+      },
+      {
+        "kind": "occupancy",
+        "object_id": "oncoming_dark_suv",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.18296320348140926
+        ],
+        "obstacle_support_m": 2.65,
+        "ego_body_support_m": 1.3829632034814092,
+        "model_total_residual_m": 0.45,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            -11.2,
+            2.65
+          ],
+          [
+            9.85,
+            2.65
+          ],
+          [
+            9.85,
+            4.65
+          ],
+          [
+            -11.2,
+            4.65
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "suv_whole_two_seconds",
+            "scenario_id": "suv_straight_pass",
+            "source_interval_s": [
+              0,
+              2
+            ],
+            "polygon_m": [
+              [
+                -11.2,
+                2.65
+              ],
+              [
+                9.85,
+                2.65
+              ],
+              [
+                9.85,
+                4.65
+              ],
+              [
+                -11.2,
+                4.65
+              ]
+            ],
+            "frame_ids": [
+              "5a00ce5d429a48038aec0e2f252db7e3"
+            ],
+            "time_ids": [
+              "nusc_us_1535385111912404"
+            ],
+            "premise_ids": [
+              "suv_body_prior",
+              "suv_short_motion"
+            ],
+            "source_residual_m": 0.25
+          }
+        ],
+        "computed_m": 0.0,
+        "threshold_m": -0.18296320348140926,
+        "excess_m": 0.18296320348140926
+      },
+      {
+        "kind": "occupancy",
+        "object_id": "oncoming_dark_suv",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.382963203481409
+        ],
+        "obstacle_support_m": 2.45,
+        "ego_body_support_m": 1.3829632034814092,
+        "model_total_residual_m": 0.45,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            -15.2,
+            2.45
+          ],
+          [
+            9.9,
+            2.45
+          ],
+          [
+            9.9,
+            4.85
+          ],
+          [
+            -15.2,
+            4.85
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "suv_whole_two_seconds",
+            "scenario_id": "suv_faster_small_drift",
+            "source_interval_s": [
+              0,
+              2
+            ],
+            "polygon_m": [
+              [
+                -15.2,
+                2.45
+              ],
+              [
+                9.9,
+                2.45
+              ],
+              [
+                9.9,
+                4.85
+              ],
+              [
+                -15.2,
+                4.85
+              ]
+            ],
+            "frame_ids": [
+              "5a00ce5d429a48038aec0e2f252db7e3"
+            ],
+            "time_ids": [
+              "nusc_us_1535385111912404"
+            ],
+            "premise_ids": [
+              "suv_body_prior",
+              "suv_short_motion"
+            ],
+            "source_residual_m": 0.25
+          }
+        ],
+        "computed_m": 0.0,
+        "threshold_m": -0.382963203481409,
+        "excess_m": 0.382963203481409
+      }
+    ],
+    "object_id": "oncoming_dark_suv",
+    "allowed_domain_polygon_m": [
+      [
+        -1.3880897136497885,
+        -0.382963203481409
+      ],
+      [
+        6.831757201758313,
+        -0.382963203481409
+      ],
+      [
+        7.213509501790229,
+        -0.6200031249023452
+      ],
+      [
+        -1.3880897136497885,
+        -0.6200031249023452
+      ]
+    ]
+  },
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+}

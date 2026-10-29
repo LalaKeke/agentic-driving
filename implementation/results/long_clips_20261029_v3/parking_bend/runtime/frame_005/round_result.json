@@ -1,0 +1,3602 @@
+{
+  "status": "executed_simulated_prefix",
+  "revisions": 1,
+  "agent_output": {
+    "decision": {
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -0.2,
+          -0.6
+        ],
+        [
+          5.0,
+          -0.6
+        ],
+        [
+          5.0,
+          0.6
+        ],
+        [
+          -0.2,
+          0.6
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "crossing_pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 3.8,
+        "deadline_s": 1.8
+      },
+      "priority": 10,
+      "valid_until_s": 1538984237.9124599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1.0,
+        "acceleration_weight": 2.0,
+        "steering_weight": 3.0,
+        "smoothness_weight": 2.0
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984235912460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -4.0,
+            -3.5
+          ],
+          [
+            11.0,
+            -3.5
+          ],
+          [
+            11.0,
+            4.0
+          ],
+          [
+            -4.0,
+            7.2143
+          ]
+        ],
+        "uncertainty_m": 0.7,
+        "frame_ids": [
+          "790bc648874d4664811b364dcbab1bc8",
+          "e26729a7b49445deb14c7cef0b4f33f2"
+        ],
+        "time_ids": [
+          "nusc_us_1538984235912460",
+          "nusc_us_1538984235887525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "crossing_pedestrian",
+          "position_m": [
+            23.0,
+            -5.2
+          ],
+          "velocity_mps": [
+            0.0,
+            1.0
+          ],
+          "uncertainty_m": 2.0,
+          "occupancy": [
+            {
+              "id": "pedestrian_two_second_body_union",
+              "start_s": 0.0,
+              "end_s": 2.0,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "790bc648874d4664811b364dcbab1bc8"
+              ],
+              "time_ids": [
+                "nusc_us_1538984235912460"
+              ],
+              "premise_ids": [
+                "pedestrian_body_scale",
+                "pedestrian_motion"
+              ],
+              "residual_m": 0.8,
+              "alternatives": [
+                {
+                  "scenario_id": "pedestrian_continues_crossing",
+                  "polygon_m": [
+                    [
+                      21.9,
+                      -5.8
+                    ],
+                    [
+                      24.1,
+                      -5.8
+                    ],
+                    [
+                      24.1,
+                      -2.1
+                    ],
+                    [
+                      21.9,
+                      -2.1
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "pedestrian_adverse_diagonal",
+                  "polygon_m": [
+                    [
+                      20.3,
+                      -5.9
+                    ],
+                    [
+                      24.7,
+                      -5.9
+                    ],
+                    [
+                      24.7,
+                      -1.3
+                    ],
+                    [
+                      20.3,
+                      -1.3
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "790bc648874d4664811b364dcbab1bc8"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235912460"
+          ],
+          "state_time_id": "nusc_us_1538984235912460",
+          "body_geometry": {
+            "length_m": 0.7,
+            "width_m": 0.65,
+            "yaw_rad": 1.5707963267948966
+          },
+          "alignment": {
+            "method": "direct_reference_observation",
+            "premise_ids": [
+              "pedestrian_body_scale"
+            ],
+            "residual_m": 1.2,
+            "motion_bound": null,
+            "evidence_positions": [
+              {
+                "frame_id": "790bc648874d4664811b364dcbab1bc8",
+                "time_id": "nusc_us_1538984235912460",
+                "position_m": [
+                  23.0,
+                  -5.2
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "pedestrian_continues_crossing",
+              "premise_ids": [
+                "pedestrian_body_scale",
+                "pedestrian_motion"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "pedestrian_adverse_diagonal",
+              "premise_ids": [
+                "pedestrian_body_scale",
+                "pedestrian_motion"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "790bc648874d4664811b364dcbab1bc8"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235912460"
+          ]
+        }
+      ],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional local two-second stopping prototype, not world-safety certification. Preserve the moving initial speed of 4.241828 m/s. Approximately 2.5 m/s^2 straight braking gives a 1.70 s stop over 3.60 m; independent dynamics and collision verification remain necessary. Repair concerns the artificial rear modeling cap, not an observed physical road edge: the rear image shows continuous approach asphalt behind the ego, supporting a cap at x=-4 m rather than the previous x=-3 m. Lateral boundaries, forward cap, road uncertainty, actor geometry, actor residuals, safety margin and vehicle limits are unchanged. The previous cap failed the yaw-band BODY containment test by 0.0222 m despite containing the nominal footprint. No verified plan or simulated prefix is claimed. Platform occupants, motorcycles, parked vehicles and rear/side traffic are outside the adopted local patch; their nonentry for two seconds is an explicit conditional exclusion. Unobserved arrivals and departures from those areas are not covered. Pedestrian depth and road dimensions remain approximate monocular hypotheses.",
+      "premises": [
+        {
+          "id": "prototype_local_scope",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "space_polygon_m": [
+            [
+              -4.0,
+              -3.5
+            ],
+            [
+              11.0,
+              -3.5
+            ],
+            [
+              11.0,
+              4.0
+            ],
+            [
+              -4.0,
+              7.2143
+            ]
+          ],
+          "statement": "The local domain is this finite near-field paved approach patch for two seconds. The task is a nearly straight stop, not junction traversal. Adopt no new unobserved entrant into this patch. Observed platform occupants remain on the platform; parked vehicles and motorcycles remain outside the patch; rear/side traffic does not enter it during this interval. This excludes parking pull-outs, platform departures and unobserved arrivals into the patch, not their real-world possibility. The separately declared crossing pedestrian remains modeled under its own bounded movement conditions."
+        },
+        {
+          "id": "pedestrian_body_scale",
+          "object_ids": [
+            "crossing_pedestrian"
+          ],
+          "scenario_ids": [
+            "pedestrian_continues_crossing",
+            "pedestrian_adverse_diagonal"
+          ],
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "space_polygon_m": null,
+          "statement": "The light-shirted walking person near reference-image pixel (1100,535), with feet near (1100,574), is modeled using a conditional adult horizontal body box of length 0.70 m and width 0.65 m. Adopt approximately level local pavement for perspective interpretation using the supplied camera axes. These dimensions and ground contact are not measured truth. Estimated native reference BODY center is (23.0,-5.2) m with alignment/localization residual 1.2 m."
+        },
+        {
+          "id": "pedestrian_motion",
+          "object_ids": [
+            "crossing_pedestrian"
+          ],
+          "scenario_ids": [
+            "pedestrian_continues_crossing",
+            "pedestrian_adverse_diagonal"
+          ],
+          "start_s": 0.0,
+          "end_s": 2.0,
+          "space_polygon_m": null,
+          "statement": "Conditionally assume walking without running or abrupt reversal. Adopted absolute velocity ranges are vx in [-0.3,0.3] m/s and vy in [0.5,1.3] m/s. Reasonable adverse diagonal ranges are vx in [-1.0,0.5] m/s and vy in [0,1.7] m/s. All body orientations are contained by a radius-0.48 m disk about the center. Each rectangular source encloses the entire body for the whole closed interval, including t=0. At the native initial yaw the four corners have x=23.0 plus or minus 0.325 m and y=-5.2 plus or minus 0.35 m, strictly inside both sources. Source residual 0.8 m excludes the 1.2 m alignment residual; total residual is 2.0 m."
+        },
+        {
+          "id": "local_pavement_geometry",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": -0.025,
+          "end_s": 2.0,
+          "space_polygon_m": null,
+          "statement": "The reference front image supports open approach asphalt between the receding left bus-platform curb and the right approach toward the grass island. Estimate a conservative convex patch with right boundary y=-3.5 and left boundary approximately y=6.35714-0.214286*x, using perspective and the pedestrian size prior. The front cap x=11 is a modeling limit. The rear image captured 0.024935 s before reference visibly shows continuous open asphalt immediately behind the ego, between the building-side pavement and the island-side curb. Transform its static-road interpretation using the supplied ego center (-0.105883,0.007220) m and yaw 0.005810 rad. Adopt static continuous pavement over that acquisition age and the planning horizon. This evidence supports retaining the road back to x=-4 m, not treating x=-3 as a physical road end. The revised rear cap is an evidence-backed local truncation of continuous pavement; it does not move a curb, widen either lateral boundary or reduce uncertainty. Preserve total road-boundary model uncertainty 0.7 m."
+        }
+      ],
+      "unknowns": [],
+      "metric_scale_support": {
+        "method": "conditional_body_dimension_prior",
+        "frame_ids": [
+          "790bc648874d4664811b364dcbab1bc8"
+        ],
+        "time_ids": [
+          "nusc_us_1538984235912460"
+        ],
+        "premise_ids": [
+          "pedestrian_body_scale",
+          "local_pavement_geometry"
+        ],
+        "anchors": [
+          {
+            "object_id": "crossing_pedestrian",
+            "dimension": "width_m",
+            "value_m": 0.65,
+            "rationale": "Conditional horizontal adult-body width of the individually visible crossing person; matches the native BODY width and is not an annotation or measured dimension."
+          },
+          {
+            "object_id": "crossing_pedestrian",
+            "dimension": "length_m",
+            "value_m": 0.7,
+            "rationale": "Conditional horizontal walking-body extent allowing visible stride; matches the native BODY length."
+          }
+        ],
+        "metric_reasoning": "The crossing person's horizontal image extent is several tens of pixels. A conditional 0.65-0.70 m body extent with approximately 1266 px focal length supports depth of roughly twenty-plus meters. Feet near row 574 and camera height approximately 1.51 m give a conditional level-pavement consistency check, not calibrated ground-plane depth. The image bearing gives negative ego Y, supporting the native approximate center (23,-5.2) m. Perspective of the platform curb and open asphalt supports the shorter stopping patch. The rear image independently supports immediate pavement continuity behind the ego; its supplied ego pose aligns that static evidence to reference axes. All resulting metric geometry retains noncalibrated residuals."
+      }
+    },
+    "contract_version": "3.0.0-exp2",
+    "coverage_profile": "whole_interval_sources_v3_exp2",
+    "measurement_semantics": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_openai_responses",
+    "authentication": "api_key",
+    "requested_model": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "server_reported_model": "gpt-6.1-sol",
+    "server_reported_snapshot": null,
+    "model_identity_basis": "Responses response.model exact registered ID; independent snapshot authentication unavailable",
+    "response_id": "resp_090e66e4a3dd4654016ae32b51b40c87d0a564408cbcc4cda6",
+    "request_id": "req_ff7eca36063442f9b9f83253e80d5f7e",
+    "usage": {
+      "input_tokens": 28233,
+      "input_tokens_details": {
+        "cache_write_tokens": 24735,
+        "cached_tokens": 3495
+      },
+      "output_tokens": 3012,
+      "output_tokens_details": {
+        "reasoning_tokens": 177
+      },
+      "total_tokens": 31245
+    },
+    "output_digest": "33290e80ffb2e8a107d831501467b07a30fb5c50a5d6835d4a70d0f3a15a64de",
+    "image_sha256": {
+      "ac5aaa8e6e764badb77d5fa077f6e92b": "320d0d2a76fad3211d47f156ad87848fae0e2ec8ee9b5dc3bf2a956c562772c2",
+      "600f938dbfa24792968fb8737f6f5441": "b6ddee2fdb92d3317a3750451de53370e73442873c2bef9e941f9e478cd6db3a",
+      "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+      "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2",
+      "7235bbd006454697a368f40dc3a4b8b9": "da66b0039d2d6b23072b8ae14eb746c5d3837b4e73a9258e572d0fa8db9c91d2",
+      "6fa2a3dac26447da8792fd0fcf14d286": "e52dd03a1c73d18a56fe3a2f3f8a8f7c7d5313a74f3ebd562a780da81d468ffd",
+      "e26729a7b49445deb14c7cef0b4f33f2": "f3a05514713af363514aed73351616aefebfda1af0424ec4b62b0fb7b0dd1fde",
+      "d6146978ae2040ae97e1d12b37597a1e": "a72417f6d6ab49f27cf97f62defd07d9a1e4550e7fb2c8931281d0707e0f38fe",
+      "61035e131d8e4af98d245923ee7a9bc1": "477caba17b09edfccbff8612fa4c941bd009f297d8727588bc02e222bd0ee25c",
+      "790bc648874d4664811b364dcbab1bc8": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293"
+    },
+    "prompt_version": "driving_prototype_v3",
+    "agent_output_contract": "3.0.0-exp2",
+    "prompt_sha256": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+    "attempts": 1,
+    "adapter_retries": 0,
+    "request_max_retries": 0,
+    "tool_calls": 0,
+    "schema_transport": {
+      "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+      "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+      "wire_schema_version": "so_const_string_enum_type_v2",
+      "generator_version": "2.0.0",
+      "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+      "business_validation": "agent_output_v3_exp2.schema.json",
+      "response_repair": false
+    },
+    "elapsed_s": 39.377474715933204,
+    "experiment_profile": "local_conditional_2s_prototype_v1"
+  },
+  "scene": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "reference_time_id": "nusc_us_1538984235912460",
+      "reference_time_s": 1538984235.9124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984237.9124599
+    },
+    "capture": {
+      "metadata": {
+        "profile": "convex_disk_bicycle_v2",
+        "schema_version": "2.0.0",
+        "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+        "revision": 1,
+        "reference_time_id": "nusc_us_1538984235912460",
+        "reference_time_s": 1538984235.9124599,
+        "coordinate_frame": "ego_at_reference",
+        "horizon_s": 2.0,
+        "step_s": 0.2,
+        "history_s": 2.0,
+        "valid_until_s": 1538984237.9124599
+      },
+      "observations": [
+        {
+          "id": "ac5aaa8e6e764badb77d5fa077f6e92b",
+          "time_id": "nusc_us_1538984233912460",
+          "capture_time_s": 1538984233.9124599,
+          "capture_utc": "2018-10-08T07:37:13.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984233912460.jpg"
+        },
+        {
+          "id": "600f938dbfa24792968fb8737f6f5441",
+          "time_id": "nusc_us_1538984234412460",
+          "capture_time_s": 1538984234.4124599,
+          "capture_utc": "2018-10-08T07:37:14.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984234412460.jpg"
+        },
+        {
+          "id": "1d1306dc17764f38b6b662d2350acac2",
+          "time_id": "nusc_us_1538984234912460",
+          "capture_time_s": 1538984234.9124599,
+          "capture_utc": "2018-10-08T07:37:14.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984234912460.jpg"
+        },
+        {
+          "id": "b08a2deaf871433fad9a4c03e6f53d32",
+          "time_id": "nusc_us_1538984235412460",
+          "capture_time_s": 1538984235.4124599,
+          "capture_utc": "2018-10-08T07:37:15.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984235412460.jpg"
+        },
+        {
+          "id": "7235bbd006454697a368f40dc3a4b8b9",
+          "time_id": "nusc_us_1538984235870339",
+          "capture_time_s": 1538984235.870339,
+          "capture_utc": "2018-10-08T07:37:15.870339+00:00",
+          "camera_id": "CAM_FRONT_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT_RIGHT/n015-2018-10-08-15-36-50+0800__CAM_FRONT_RIGHT__1538984235870339.jpg"
+        },
+        {
+          "id": "6fa2a3dac26447da8792fd0fcf14d286",
+          "time_id": "nusc_us_1538984235877893",
+          "capture_time_s": 1538984235.877893,
+          "capture_utc": "2018-10-08T07:37:15.877893+00:00",
+          "camera_id": "CAM_BACK_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_RIGHT/n015-2018-10-08-15-36-50+0800__CAM_BACK_RIGHT__1538984235877893.jpg"
+        },
+        {
+          "id": "e26729a7b49445deb14c7cef0b4f33f2",
+          "time_id": "nusc_us_1538984235887525",
+          "capture_time_s": 1538984235.8875248,
+          "capture_utc": "2018-10-08T07:37:15.887525+00:00",
+          "camera_id": "CAM_BACK",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK/n015-2018-10-08-15-36-50+0800__CAM_BACK__1538984235887525.jpg"
+        },
+        {
+          "id": "d6146978ae2040ae97e1d12b37597a1e",
+          "time_id": "nusc_us_1538984235897423",
+          "capture_time_s": 1538984235.897423,
+          "capture_utc": "2018-10-08T07:37:15.897423+00:00",
+          "camera_id": "CAM_BACK_LEFT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_LEFT/n015-2018-10-08-15-36-50+0800__CAM_BACK_LEFT__1538984235897423.jpg"
+        },
+        {
+          "id": "61035e131d8e4af98d245923ee7a9bc1",
+          "time_id": "nusc_us_1538984235904844",
+          "capture_time_s": 1538984235.904844,
+          "capture_utc": "2018-10-08T07:37:15.904844+00:00",
+          "camera_id": "CAM_FRONT_LEFT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT_LEFT/n015-2018-10-08-15-36-50+0800__CAM_FRONT_LEFT__1538984235904844.jpg"
+        },
+        {
+          "id": "790bc648874d4664811b364dcbab1bc8",
+          "time_id": "nusc_us_1538984235912460",
+          "capture_time_s": 1538984235.9124599,
+          "capture_utc": "2018-10-08T07:37:15.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984235912460.jpg"
+        }
+      ],
+      "ego": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 4.241828188963939
+      },
+      "vehicle": {
+        "front_m": 2.3,
+        "rear_m": 2.3,
+        "half_width_m": 0.9,
+        "center_to_rear_axle_m": 1.2,
+        "wheelbase_m": 2.7,
+        "max_speed_mps": 12.0,
+        "max_accel_mps2": 2.0,
+        "max_brake_mps2": 3.0,
+        "max_steer_rad": 0.5,
+        "max_curvature_per_m": 0.2
+      },
+      "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+      "safety": {
+        "margin_m": 1.0,
+        "prefix_s": 0.2
+      },
+      "acquisition_metadata": {
+        "dataset": "nuScenes",
+        "native_ego_reference": "rear_axle",
+        "center_offset_assumption_m": 1.2,
+        "calibrations": {
+          "CAM_FRONT": {
+            "camera_intrinsic": [
+              [
+                1266.417203046554,
+                0.0,
+                816.2670197447984
+              ],
+              [
+                0.0,
+                1266.417203046554,
+                491.50706579294757
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.005684778682715441,
+                -0.005636667733598166,
+                0.9999679551206578
+              ],
+              [
+                -0.9999835174398977,
+                -0.0008371152724919728,
+                0.005680148462035628
+              ],
+              [
+                0.0008050713376760443,
+                -0.9999837634756286,
+                -0.005641333641939639
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.5007911895400001,
+              0.0159456324149,
+              1.51095763913
+            ]
+          },
+          "CAM_FRONT_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1260.8474446004698,
+                0.0,
+                807.968244525554
+              ],
+              [
+                0.0,
+                1260.8474446004698,
+                495.3344268742088
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.8329295630238647,
+                -9.946037679009478e-06,
+                0.5533790228604183
+              ],
+              [
+                -0.5533049273172018,
+                0.01637881578953715,
+                -0.8328177422460685
+              ],
+              [
+                -0.009055409840580897,
+                -0.9998658581501867,
+                -0.013647903070083123
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.35084775430000015,
+              -0.493404796419,
+              1.49574800619
+            ]
+          },
+          "CAM_BACK_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1259.5137405846733,
+                0.0,
+                807.2529053838625
+              ],
+              [
+                0.0,
+                1259.5137405846733,
+                501.19579884916527
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.9347755391782981,
+                0.015875837955449834,
+                -0.3548839938953784
+              ],
+              [
+                0.3550745592741919,
+                0.011370495332615804,
+                -0.9347688319537242
+              ],
+              [
+                -0.010805031705694884,
+                -0.9998093166224766,
+                -0.016265967070410614
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.18512190120000005,
+              -0.480568219723,
+              1.56239545128
+            ]
+          },
+          "CAM_BACK": {
+            "camera_intrinsic": [
+              [
+                809.2209905677063,
+                0.0,
+                829.2196003259838
+              ],
+              [
+                0.0,
+                809.2209905677063,
+                481.77842384512485
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.002421709860318755,
+                -0.016753608478469628,
+                -0.9998567156969556
+              ],
+              [
+                0.9999890666843358,
+                -0.003959107249966065,
+                0.002488369260045864
+              ],
+              [
+                -0.004000229136375599,
+                -0.999851810056237,
+                0.016743837496914216
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -1.1716739690642,
+              0.00345136761476,
+              1.57910346144
+            ]
+          },
+          "CAM_BACK_LEFT": {
+            "camera_intrinsic": [
+              [
+                1256.7414812095406,
+                0.0,
+                792.1125740759628
+              ],
+              [
+                0.0,
+                1256.7414812095406,
+                492.7757465151356
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.9477603556843314,
+                0.008665721547931132,
+                -0.31886550999310576
+              ],
+              [
+                0.31896113144149074,
+                -0.01397629983587656,
+                0.9476647401230364
+              ],
+              [
+                0.0037556387837154315,
+                -0.9998647750135773,
+                -0.016010211253286277
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.16430899781999986,
+              0.484795032713,
+              1.59097014818
+            ]
+          },
+          "CAM_FRONT_LEFT": {
+            "camera_intrinsic": [
+              [
+                1272.5979470598488,
+                0.0,
+                826.6154927353808
+              ],
+              [
+                0.0,
+                1272.5979470598488,
+                479.75165386361925
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.8207583481515547,
+                -0.00034143667149910684,
+                0.5712754303840931
+              ],
+              [
+                -0.5712716007618155,
+                0.0032195018514856732,
+                0.8207547703003997
+              ],
+              [
+                -0.002119458082718406,
+                -0.9999947591006806,
+                0.0024473799476101288
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.3238779813500001,
+              0.494631336551,
+              1.50932822144
+            ]
+          }
+        },
+        "ego_history": [
+          {
+            "frame_id": "ac5aaa8e6e764badb77d5fa077f6e92b",
+            "time_id": "nusc_us_1538984233912460",
+            "center_xy_m": [
+              -8.01187637069018,
+              -1.5989707646787246
+            ],
+            "yaw_rad": 0.6308940935622575
+          },
+          {
+            "frame_id": "600f938dbfa24792968fb8737f6f5441",
+            "time_id": "nusc_us_1538984234412460",
+            "center_xy_m": [
+              -6.1109106820424826,
+              -0.7102442781511539
+            ],
+            "yaw_rad": 0.45360581089888896
+          },
+          {
+            "frame_id": "1d1306dc17764f38b6b662d2350acac2",
+            "time_id": "nusc_us_1538984234912460",
+            "center_xy_m": [
+              -4.142203287188238,
+              -0.18430324236298173
+            ],
+            "yaw_rad": 0.28029980254474296
+          },
+          {
+            "frame_id": "b08a2deaf871433fad9a4c03e6f53d32",
+            "time_id": "nusc_us_1538984235412460",
+            "center_xy_m": [
+              -2.1209140944819693,
+              0.03243149347469308
+            ],
+            "yaw_rad": 0.1272258652942535
+          },
+          {
+            "frame_id": "7235bbd006454697a368f40dc3a4b8b9",
+            "time_id": "nusc_us_1538984235870339",
+            "center_xy_m": [
+              -0.18030808730156306,
+              0.011556246994141005
+            ],
+            "yaw_rad": 0.009703144431076893
+          },
+          {
+            "frame_id": "6fa2a3dac26447da8792fd0fcf14d286",
+            "time_id": "nusc_us_1538984235877893",
+            "center_xy_m": [
+              -0.14759217539028474,
+              0.009648115175159965
+            ],
+            "yaw_rad": 0.007992130511687456
+          },
+          {
+            "frame_id": "e26729a7b49445deb14c7cef0b4f33f2",
+            "time_id": "nusc_us_1538984235887525",
+            "center_xy_m": [
+              -0.10588264174138551,
+              0.0072198224833661265
+            ],
+            "yaw_rad": 0.005810411778035984
+          },
+          {
+            "frame_id": "d6146978ae2040ae97e1d12b37597a1e",
+            "time_id": "nusc_us_1538984235897423",
+            "center_xy_m": [
+              -0.06372857877023971,
+              0.004424459643885407
+            ],
+            "yaw_rad": 0.003513407042851746
+          },
+          {
+            "frame_id": "61035e131d8e4af98d245923ee7a9bc1",
+            "time_id": "nusc_us_1538984235904844",
+            "center_xy_m": [
+              -0.032288967022963265,
+              0.002259291761174221
+            ],
+            "yaw_rad": 0.0017786121450709125
+          },
+          {
+            "frame_id": "790bc648874d4664811b364dcbab1bc8",
+            "time_id": "nusc_us_1538984235912460",
+            "center_xy_m": [
+              0.0,
+              0.0
+            ],
+            "yaw_rad": 0.0
+          }
+        ],
+        "ego_speed_source": "causal_backward_difference_localization_0.5s; not direct CAN speed",
+        "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+      }
+    },
+    "decision": {
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "behavior": "stop_yield",
+      "target_region": [
+        [
+          -0.2,
+          -0.6
+        ],
+        [
+          5.0,
+          -0.6
+        ],
+        [
+          5.0,
+          0.6
+        ],
+        [
+          -0.2,
+          0.6
+        ]
+      ],
+      "desired_speed_mps": 0.0,
+      "yield_to": [
+        "crossing_pedestrian"
+      ],
+      "stop": {
+        "center_x_max_m": 3.8,
+        "deadline_s": 1.8
+      },
+      "priority": 10,
+      "valid_until_s": 1538984237.9124599,
+      "hard_requirements": [
+        "target_region",
+        "stop",
+        "yield",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1.0,
+        "acceleration_weight": 2.0,
+        "steering_weight": 3.0,
+        "smoothness_weight": 2.0
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1538984235912460",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -4.0,
+            -3.5
+          ],
+          [
+            11.0,
+            -3.5
+          ],
+          [
+            11.0,
+            4.0
+          ],
+          [
+            -4.0,
+            7.2143
+          ]
+        ],
+        "uncertainty_m": 0.7,
+        "frame_ids": [
+          "790bc648874d4664811b364dcbab1bc8",
+          "e26729a7b49445deb14c7cef0b4f33f2"
+        ],
+        "time_ids": [
+          "nusc_us_1538984235912460",
+          "nusc_us_1538984235887525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "crossing_pedestrian",
+          "position_m": [
+            23.0,
+            -5.2
+          ],
+          "velocity_mps": [
+            0.0,
+            1.0
+          ],
+          "uncertainty_m": 2.0,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.9,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -5.8
+                  ],
+                  [
+                    24.1,
+                    -2.1
+                  ],
+                  [
+                    21.9,
+                    -2.1
+                  ]
+                ],
+                [
+                  [
+                    20.3,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -5.9
+                  ],
+                  [
+                    24.7,
+                    -1.3
+                  ],
+                  [
+                    20.3,
+                    -1.3
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "790bc648874d4664811b364dcbab1bc8"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235912460"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [
+        {
+          "rule": "yield_required",
+          "state": "active",
+          "frame_ids": [
+            "790bc648874d4664811b364dcbab1bc8"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235912460"
+          ]
+        }
+      ],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional local two-second stopping prototype, not world-safety certification. Preserve the moving initial speed of 4.241828 m/s. Approximately 2.5 m/s^2 straight braking gives a 1.70 s stop over 3.60 m; independent dynamics and collision verification remain necessary. Repair concerns the artificial rear modeling cap, not an observed physical road edge: the rear image shows continuous approach asphalt behind the ego, supporting a cap at x=-4 m rather than the previous x=-3 m. Lateral boundaries, forward cap, road uncertainty, actor geometry, actor residuals, safety margin and vehicle limits are unchanged. The previous cap failed the yaw-band BODY containment test by 0.0222 m despite containing the nominal footprint. No verified plan or simulated prefix is claimed. Platform occupants, motorcycles, parked vehicles and rear/side traffic are outside the adopted local patch; their nonentry for two seconds is an explicit conditional exclusion. Unobserved arrivals and departures from those areas are not covered. Pedestrian depth and road dimensions remain approximate monocular hypotheses."
+    },
+    "provenance": {
+      "source": "online_model",
+      "transport": "official_openai_responses",
+      "authentication": "api_key",
+      "requested_model": "gpt-6.1-sol",
+      "model_id": "gpt-6.1-sol",
+      "server_reported_model": "gpt-6.1-sol",
+      "server_reported_snapshot": null,
+      "model_identity_basis": "Responses response.model exact registered ID; independent snapshot authentication unavailable",
+      "response_id": "resp_090e66e4a3dd4654016ae32b51b40c87d0a564408cbcc4cda6",
+      "request_id": "req_ff7eca36063442f9b9f83253e80d5f7e",
+      "usage": {
+        "input_tokens": 28233,
+        "input_tokens_details": {
+          "cache_write_tokens": 24735,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 3012,
+        "output_tokens_details": {
+          "reasoning_tokens": 177
+        },
+        "total_tokens": 31245
+      },
+      "output_digest": "33290e80ffb2e8a107d831501467b07a30fb5c50a5d6835d4a70d0f3a15a64de",
+      "image_sha256": {
+        "ac5aaa8e6e764badb77d5fa077f6e92b": "320d0d2a76fad3211d47f156ad87848fae0e2ec8ee9b5dc3bf2a956c562772c2",
+        "600f938dbfa24792968fb8737f6f5441": "b6ddee2fdb92d3317a3750451de53370e73442873c2bef9e941f9e478cd6db3a",
+        "1d1306dc17764f38b6b662d2350acac2": "ac30b5739e5661640cfb58b57b4ef7d5e55f187642c41ae11e6f9b5f1a4093ce",
+        "b08a2deaf871433fad9a4c03e6f53d32": "bdd6bee5955d34e0452deacc9fb9541cf2349d57944f8ff9ca457c5da69fa3a2",
+        "7235bbd006454697a368f40dc3a4b8b9": "da66b0039d2d6b23072b8ae14eb746c5d3837b4e73a9258e572d0fa8db9c91d2",
+        "6fa2a3dac26447da8792fd0fcf14d286": "e52dd03a1c73d18a56fe3a2f3f8a8f7c7d5313a74f3ebd562a780da81d468ffd",
+        "e26729a7b49445deb14c7cef0b4f33f2": "f3a05514713af363514aed73351616aefebfda1af0424ec4b62b0fb7b0dd1fde",
+        "d6146978ae2040ae97e1d12b37597a1e": "a72417f6d6ab49f27cf97f62defd07d9a1e4550e7fb2c8931281d0707e0f38fe",
+        "61035e131d8e4af98d245923ee7a9bc1": "477caba17b09edfccbff8612fa4c941bd009f297d8727588bc02e222bd0ee25c",
+        "790bc648874d4664811b364dcbab1bc8": "ac42ed945a3136ceeeb2d03a40de1f2bf904cb7f9614b056bad2b2314cb71293"
+      },
+      "prompt_version": "driving_prototype_v3",
+      "agent_output_contract": "3.0.0-exp2",
+      "prompt_sha256": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+      "attempts": 1,
+      "adapter_retries": 0,
+      "request_max_retries": 0,
+      "tool_calls": 0,
+      "schema_transport": {
+        "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+        "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+        "wire_schema_version": "so_const_string_enum_type_v2",
+        "generator_version": "2.0.0",
+        "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+        "business_validation": "agent_output_v3_exp2.schema.json",
+        "response_repair": false
+      },
+      "elapsed_s": 39.377474715933204,
+      "experiment_profile": "local_conditional_2s_prototype_v1",
+      "metric_contract_trace": {
+        "version": "3.0.0-exp2",
+        "coverage_profile": "whole_interval_sources_v3_exp2",
+        "measurement_semantics": {
+          "coordinate_frame": "ego_at_reference",
+          "origin": "ego_body_center_at_reference",
+          "axes": "x_forward_y_left_fixed_at_reference",
+          "actor_reference_point": "annotation_box_center_ground_xy",
+          "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+          "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+        },
+        "source_output": {
+          "decision": {
+            "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+            "revision": 1,
+            "behavior": "stop_yield",
+            "target_region": [
+              [
+                -0.2,
+                -0.6
+              ],
+              [
+                5.0,
+                -0.6
+              ],
+              [
+                5.0,
+                0.6
+              ],
+              [
+                -0.2,
+                0.6
+              ]
+            ],
+            "desired_speed_mps": 0.0,
+            "yield_to": [
+              "crossing_pedestrian"
+            ],
+            "stop": {
+              "center_x_max_m": 3.8,
+              "deadline_s": 1.8
+            },
+            "priority": 10,
+            "valid_until_s": 1538984237.9124599,
+            "hard_requirements": [
+              "target_region",
+              "stop",
+              "yield",
+              "vehicle_limits",
+              "collision_free",
+              "road"
+            ],
+            "preferences": {
+              "speed_weight": 1.0,
+              "acceleration_weight": 2.0,
+              "steering_weight": 3.0,
+              "smoothness_weight": 2.0
+            }
+          },
+          "hypotheses": {
+            "coordinate_frame": "ego_at_reference",
+            "reference_time_id": "nusc_us_1538984235912460",
+            "units": "m_s_rad",
+            "scale_basis": "model_metric_hypothesis",
+            "road": {
+              "polygon_m": [
+                [
+                  -4.0,
+                  -3.5
+                ],
+                [
+                  11.0,
+                  -3.5
+                ],
+                [
+                  11.0,
+                  4.0
+                ],
+                [
+                  -4.0,
+                  7.2143
+                ]
+              ],
+              "uncertainty_m": 0.7,
+              "frame_ids": [
+                "790bc648874d4664811b364dcbab1bc8",
+                "e26729a7b49445deb14c7cef0b4f33f2"
+              ],
+              "time_ids": [
+                "nusc_us_1538984235912460",
+                "nusc_us_1538984235887525"
+              ]
+            },
+            "objects": [
+              {
+                "id": "crossing_pedestrian",
+                "position_m": [
+                  23.0,
+                  -5.2
+                ],
+                "velocity_mps": [
+                  0.0,
+                  1.0
+                ],
+                "uncertainty_m": 2.0,
+                "occupancy": [
+                  {
+                    "id": "pedestrian_two_second_body_union",
+                    "start_s": 0.0,
+                    "end_s": 2.0,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "alternatives": [
+                      {
+                        "scenario_id": "pedestrian_continues_crossing",
+                        "polygon_m": [
+                          [
+                            21.9,
+                            -5.8
+                          ],
+                          [
+                            24.1,
+                            -5.8
+                          ],
+                          [
+                            24.1,
+                            -2.1
+                          ],
+                          [
+                            21.9,
+                            -2.1
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "pedestrian_adverse_diagonal",
+                        "polygon_m": [
+                          [
+                            20.3,
+                            -5.9
+                          ],
+                          [
+                            24.7,
+                            -5.9
+                          ],
+                          [
+                            24.7,
+                            -1.3
+                          ],
+                          [
+                            20.3,
+                            -1.3
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "frame_ids": [
+                  "790bc648874d4664811b364dcbab1bc8"
+                ],
+                "time_ids": [
+                  "nusc_us_1538984235912460"
+                ],
+                "state_time_id": "nusc_us_1538984235912460",
+                "body_geometry": {
+                  "length_m": 0.7,
+                  "width_m": 0.65,
+                  "yaw_rad": 1.5707963267948966
+                },
+                "alignment": {
+                  "method": "direct_reference_observation",
+                  "premise_ids": [
+                    "pedestrian_body_scale"
+                  ],
+                  "residual_m": 1.2,
+                  "motion_bound": null,
+                  "evidence_positions": [
+                    {
+                      "frame_id": "790bc648874d4664811b364dcbab1bc8",
+                      "time_id": "nusc_us_1538984235912460",
+                      "position_m": [
+                        23.0,
+                        -5.2
+                      ],
+                      "observed_actor": true
+                    }
+                  ]
+                },
+                "scenarios": [
+                  {
+                    "id": "pedestrian_continues_crossing",
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "role": "adopted"
+                  },
+                  {
+                    "id": "pedestrian_adverse_diagonal",
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "role": "reasonable_adverse"
+                  }
+                ],
+                "scenario_inventory_complete": true
+              }
+            ],
+            "unknown_regions": [],
+            "traffic_evidence": [
+              {
+                "rule": "yield_required",
+                "state": "active",
+                "frame_ids": [
+                  "790bc648874d4664811b364dcbab1bc8"
+                ],
+                "time_ids": [
+                  "nusc_us_1538984235912460"
+                ]
+              }
+            ],
+            "unbounded_unknown": false,
+            "confidence_note": "Conditional local two-second stopping prototype, not world-safety certification. Preserve the moving initial speed of 4.241828 m/s. Approximately 2.5 m/s^2 straight braking gives a 1.70 s stop over 3.60 m; independent dynamics and collision verification remain necessary. Repair concerns the artificial rear modeling cap, not an observed physical road edge: the rear image shows continuous approach asphalt behind the ego, supporting a cap at x=-4 m rather than the previous x=-3 m. Lateral boundaries, forward cap, road uncertainty, actor geometry, actor residuals, safety margin and vehicle limits are unchanged. The previous cap failed the yaw-band BODY containment test by 0.0222 m despite containing the nominal footprint. No verified plan or simulated prefix is claimed. Platform occupants, motorcycles, parked vehicles and rear/side traffic are outside the adopted local patch; their nonentry for two seconds is an explicit conditional exclusion. Unobserved arrivals and departures from those areas are not covered. Pedestrian depth and road dimensions remain approximate monocular hypotheses.",
+            "premises": [
+              {
+                "id": "prototype_local_scope",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": 0.0,
+                "end_s": 2.0,
+                "space_polygon_m": [
+                  [
+                    -4.0,
+                    -3.5
+                  ],
+                  [
+                    11.0,
+                    -3.5
+                  ],
+                  [
+                    11.0,
+                    4.0
+                  ],
+                  [
+                    -4.0,
+                    7.2143
+                  ]
+                ],
+                "statement": "The local domain is this finite near-field paved approach patch for two seconds. The task is a nearly straight stop, not junction traversal. Adopt no new unobserved entrant into this patch. Observed platform occupants remain on the platform; parked vehicles and motorcycles remain outside the patch; rear/side traffic does not enter it during this interval. This excludes parking pull-outs, platform departures and unobserved arrivals into the patch, not their real-world possibility. The separately declared crossing pedestrian remains modeled under its own bounded movement conditions."
+              },
+              {
+                "id": "pedestrian_body_scale",
+                "object_ids": [
+                  "crossing_pedestrian"
+                ],
+                "scenario_ids": [
+                  "pedestrian_continues_crossing",
+                  "pedestrian_adverse_diagonal"
+                ],
+                "start_s": 0.0,
+                "end_s": 2.0,
+                "space_polygon_m": null,
+                "statement": "The light-shirted walking person near reference-image pixel (1100,535), with feet near (1100,574), is modeled using a conditional adult horizontal body box of length 0.70 m and width 0.65 m. Adopt approximately level local pavement for perspective interpretation using the supplied camera axes. These dimensions and ground contact are not measured truth. Estimated native reference BODY center is (23.0,-5.2) m with alignment/localization residual 1.2 m."
+              },
+              {
+                "id": "pedestrian_motion",
+                "object_ids": [
+                  "crossing_pedestrian"
+                ],
+                "scenario_ids": [
+                  "pedestrian_continues_crossing",
+                  "pedestrian_adverse_diagonal"
+                ],
+                "start_s": 0.0,
+                "end_s": 2.0,
+                "space_polygon_m": null,
+                "statement": "Conditionally assume walking without running or abrupt reversal. Adopted absolute velocity ranges are vx in [-0.3,0.3] m/s and vy in [0.5,1.3] m/s. Reasonable adverse diagonal ranges are vx in [-1.0,0.5] m/s and vy in [0,1.7] m/s. All body orientations are contained by a radius-0.48 m disk about the center. Each rectangular source encloses the entire body for the whole closed interval, including t=0. At the native initial yaw the four corners have x=23.0 plus or minus 0.325 m and y=-5.2 plus or minus 0.35 m, strictly inside both sources. Source residual 0.8 m excludes the 1.2 m alignment residual; total residual is 2.0 m."
+              },
+              {
+                "id": "local_pavement_geometry",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": -0.025,
+                "end_s": 2.0,
+                "space_polygon_m": null,
+                "statement": "The reference front image supports open approach asphalt between the receding left bus-platform curb and the right approach toward the grass island. Estimate a conservative convex patch with right boundary y=-3.5 and left boundary approximately y=6.35714-0.214286*x, using perspective and the pedestrian size prior. The front cap x=11 is a modeling limit. The rear image captured 0.024935 s before reference visibly shows continuous open asphalt immediately behind the ego, between the building-side pavement and the island-side curb. Transform its static-road interpretation using the supplied ego center (-0.105883,0.007220) m and yaw 0.005810 rad. Adopt static continuous pavement over that acquisition age and the planning horizon. This evidence supports retaining the road back to x=-4 m, not treating x=-3 as a physical road end. The revised rear cap is an evidence-backed local truncation of continuous pavement; it does not move a curb, widen either lateral boundary or reduce uncertainty. Preserve total road-boundary model uncertainty 0.7 m."
+              }
+            ],
+            "unknowns": [],
+            "metric_scale_support": {
+              "method": "conditional_body_dimension_prior",
+              "frame_ids": [
+                "790bc648874d4664811b364dcbab1bc8"
+              ],
+              "time_ids": [
+                "nusc_us_1538984235912460"
+              ],
+              "premise_ids": [
+                "pedestrian_body_scale",
+                "local_pavement_geometry"
+              ],
+              "anchors": [
+                {
+                  "object_id": "crossing_pedestrian",
+                  "dimension": "width_m",
+                  "value_m": 0.65,
+                  "rationale": "Conditional horizontal adult-body width of the individually visible crossing person; matches the native BODY width and is not an annotation or measured dimension."
+                },
+                {
+                  "object_id": "crossing_pedestrian",
+                  "dimension": "length_m",
+                  "value_m": 0.7,
+                  "rationale": "Conditional horizontal walking-body extent allowing visible stride; matches the native BODY length."
+                }
+              ],
+              "metric_reasoning": "The crossing person's horizontal image extent is several tens of pixels. A conditional 0.65-0.70 m body extent with approximately 1266 px focal length supports depth of roughly twenty-plus meters. Feet near row 574 and camera height approximately 1.51 m give a conditional level-pavement consistency check, not calibrated ground-plane depth. The image bearing gives negative ego Y, supporting the native approximate center (23,-5.2) m. Perspective of the platform curb and open asphalt supports the shorter stopping patch. The rear image independently supports immediate pavement continuity behind the ego; its supplied ego pose aligns that static evidence to reference axes. All resulting metric geometry retains noncalibrated residuals."
+            }
+          },
+          "contract_version": "3.0.0-exp2",
+          "coverage_profile": "whole_interval_sources_v3_exp2",
+          "measurement_semantics": {
+            "coordinate_frame": "ego_at_reference",
+            "origin": "ego_body_center_at_reference",
+            "axes": "x_forward_y_left_fixed_at_reference",
+            "actor_reference_point": "annotation_box_center_ground_xy",
+            "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+            "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+          }
+        },
+        "source_output_digest": "33290e80ffb2e8a107d831501467b07a30fb5c50a5d6835d4a70d0f3a15a64de",
+        "lowered_output_digest": "0c0f15bd86e42dac347a27b6bea1399a54aaed6cd6011a878d634d50bc342d2d",
+        "objects": [
+          {
+            "object_id": "crossing_pedestrian",
+            "alignment": {
+              "method": "direct_reference_observation",
+              "premise_ids": [
+                "pedestrian_body_scale"
+              ],
+              "residual_m": 1.2,
+              "motion_bound": null,
+              "evidence_positions": [
+                {
+                  "frame_id": "790bc648874d4664811b364dcbab1bc8",
+                  "time_id": "nusc_us_1538984235912460",
+                  "position_m": [
+                    23.0,
+                    -5.2
+                  ],
+                  "observed_actor": true
+                }
+              ]
+            },
+            "cell_sources": [
+              {
+                "start_s": 0.0,
+                "end_s": 0.2,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.2,
+                "end_s": 0.4,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.4,
+                "end_s": 0.6000000000000001,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.6000000000000001,
+                "end_s": 0.8,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.8,
+                "end_s": 1.0,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.0,
+                "end_s": 1.2000000000000002,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.2000000000000002,
+                "end_s": 1.4000000000000001,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.4000000000000001,
+                "end_s": 1.6,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.6,
+                "end_s": 1.8,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.8,
+                "end_s": 2.0,
+                "source_ids": [
+                  "pedestrian_two_second_body_union"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_continues_crossing",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  },
+                  {
+                    "source_id": "pedestrian_two_second_body_union",
+                    "scenario_id": "pedestrian_adverse_diagonal",
+                    "source_interval_s": [
+                      0.0,
+                      2.0
+                    ],
+                    "premise_ids": [
+                      "pedestrian_body_scale",
+                      "pedestrian_motion"
+                    ],
+                    "residual_m": 0.8,
+                    "frame_ids": [
+                      "790bc648874d4664811b364dcbab1bc8"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1538984235912460"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "total_residual_m": 2.0
+          }
+        ],
+        "metric_scale_support": {
+          "method": "conditional_body_dimension_prior",
+          "frame_ids": [
+            "790bc648874d4664811b364dcbab1bc8"
+          ],
+          "time_ids": [
+            "nusc_us_1538984235912460"
+          ],
+          "premise_ids": [
+            "pedestrian_body_scale",
+            "local_pavement_geometry"
+          ],
+          "anchors": [
+            {
+              "object_id": "crossing_pedestrian",
+              "dimension": "width_m",
+              "value_m": 0.65,
+              "rationale": "Conditional horizontal adult-body width of the individually visible crossing person; matches the native BODY width and is not an annotation or measured dimension."
+            },
+            {
+              "object_id": "crossing_pedestrian",
+              "dimension": "length_m",
+              "value_m": 0.7,
+              "rationale": "Conditional horizontal walking-body extent allowing visible stride; matches the native BODY length."
+            }
+          ],
+          "metric_reasoning": "The crossing person's horizontal image extent is several tens of pixels. A conditional 0.65-0.70 m body extent with approximately 1266 px focal length supports depth of roughly twenty-plus meters. Feet near row 574 and camera height approximately 1.51 m give a conditional level-pavement consistency check, not calibrated ground-plane depth. The image bearing gives negative ego Y, supporting the native approximate center (23,-5.2) m. Perspective of the platform curb and open asphalt supports the shorter stopping patch. The rear image independently supports immediate pavement continuity behind the ego; its supplied ego pose aligns that static evidence to reference axes. All resulting metric geometry retains noncalibrated residuals."
+        },
+        "source_intervals_closed": true,
+        "refinement": "include_all_closed_intersecting_source_sets_without_shrinking",
+        "residual_application": "one_total_object_radius >= alignment_residual + each_source_geometry_residual; never added again",
+        "assumptions": "Model-proposed premises and adverse-scenario inventory are conditional, uncalibrated and not independently certified"
+      }
+    },
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "corridor": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "reference_time_id": "nusc_us_1538984235912460",
+      "reference_time_s": 1538984235.9124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984237.9124599
+    },
+    "scene_digest": "b4003e266ba3b0bf2785abbd059678845beff6f7f9f40756084db1f023b1a396",
+    "cells": [
+      {
+        "start_s": 0.0,
+        "end_s": 0.2,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9979715865586234,
+            -0.06366091753708927,
+            15.423297400282244
+          ],
+          [
+            0.9997300583581608,
+            -0.0232338205034924,
+            13.785399604857055
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.2,
+        "end_s": 0.4,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9978198849977319,
+            -0.06599603854106087,
+            15.423516442304678
+          ],
+          [
+            0.9997078156404315,
+            -0.024171953736448003,
+            13.785483998518387
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.4,
+        "end_s": 0.6000000000000001,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9976823551680319,
+            -0.06804350216125653,
+            15.423625503690584
+          ],
+          [
+            0.9996874474014247,
+            -0.02500015016002385,
+            13.785546219190287
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.6000000000000001,
+        "end_s": 0.8,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9975656724869322,
+            -0.06973327093787263,
+            15.423657076951724
+          ],
+          [
+            0.9996700174763276,
+            -0.025687665500757535,
+            13.78558912033414
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.8,
+        "end_s": 1.0,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9974761416687299,
+            -0.07100244222323615,
+            15.42364602960928
+          ],
+          [
+            0.9996565518321233,
+            -0.02620645682096942,
+            13.785616237672311
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.0,
+        "end_s": 1.2000000000000002,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9974190030522831,
+            -0.07180064310429057,
+            15.423623802901133
+          ],
+          [
+            0.9996479168466371,
+            -0.026533796263989936,
+            13.785631021793474
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.2000000000000002,
+        "end_s": 1.4000000000000001,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9973977849837073,
+            -0.07209478836638626,
+            15.423612636658163
+          ],
+          [
+            0.9996447021712227,
+            -0.02665463226171976,
+            13.78563602448422
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.4000000000000001,
+        "end_s": 1.6,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9973964783232938,
+            -0.07211286312643021,
+            15.423611898246342
+          ],
+          [
+            0.9996445040601742,
+            -0.026662061103524516,
+            13.78563632404089
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.6,
+        "end_s": 1.8,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9973964783232938,
+            -0.07211286312643021,
+            15.423611898246342
+          ],
+          [
+            0.9996445040601742,
+            -0.026662061103524516,
+            13.78563632404089
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.8,
+        "end_s": 2.0,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            1.8127903496503743
+          ],
+          [
+            1.0,
+            -0.0,
+            6.778596036711799
+          ],
+          [
+            0.20952997908728258,
+            0.9778022232863264,
+            3.8223310402760253
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.177846075773486
+          ],
+          [
+            0.0,
+            -1.0,
+            0.5700031249023452
+          ],
+          [
+            1.0,
+            -0.0,
+            3.8
+          ],
+          [
+            0.0,
+            1.0,
+            0.5700031249023452
+          ],
+          [
+            -1.0,
+            -0.0,
+            1.399625019530843
+          ],
+          [
+            1.0,
+            0.0,
+            2.5999999999999996
+          ],
+          [
+            0.9973964783232938,
+            -0.07211286312643021,
+            15.423611898246342
+          ],
+          [
+            0.9996445040601742,
+            -0.026662061103524516,
+            13.78563632404089
+          ]
+        ],
+        "polygon_m": [
+          [
+            2.5999999999999996,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            -0.5700031249023452
+          ],
+          [
+            -1.399625019530843,
+            0.5700031249023452
+          ],
+          [
+            2.5999999999999996,
+            0.5700031249023452
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      }
+    ],
+    "reference_point": "rear_axle",
+    "body_envelope": "yaw_bounded_oriented_box",
+    "planner_profile": "yaw_bounded_box_v1",
+    "heading_bound_rad": 0.35,
+    "margin_m": 1.0,
+    "conservative": true,
+    "construction": {
+      "policy": "yaw_bounded_box_v1",
+      "seed_source": "ego_state_vehicle_limits_semantic_template_only",
+      "seed_dynamics": "exact_constant_acceleration_constant_rear_curvature",
+      "target_prediction_source": "model_whole_interval_occupancy_only",
+      "behavior": "stop_yield",
+      "seed_points": [
+        {
+          "time_s": 0.0,
+          "rear_x_m": -1.2,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 4.241828188963939,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.2,
+          "rear_x_m": -0.4116343622072123,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 3.6418281889639386,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.4,
+          "rear_x_m": 0.2567312755855754,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 3.0418281889639385,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.6000000000000001,
+          "rear_x_m": 0.8050969133783632,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 2.4418281889639384,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.8,
+          "rear_x_m": 1.2334625511711508,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 1.8418281889639385,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.0,
+          "rear_x_m": 1.5418281889639385,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 1.2418281889639387,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.2000000000000002,
+          "rear_x_m": 1.7301938267567263,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.6418281889639381,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.4000000000000001,
+          "rear_x_m": 1.798559464549514,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.04182818896393825,
+          "acceleration_mps2": -0.2091409448196913,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.6,
+          "rear_x_m": 1.8027422834459077,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.8,
+          "rear_x_m": 1.8027422834459077,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 2.0,
+          "rear_x_m": 1.8027422834459077,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        }
+      ],
+      "seed_is_solution": false,
+      "limitation": "A blocked seed is not a proof of global infeasibility",
+      "candidate_id": "original"
+    },
+    "search_profile": "bounded_seed_candidates_v2"
+  },
+  "trajectory": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "reference_time_id": "nusc_us_1538984235912460",
+      "reference_time_s": 1538984235.9124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984237.9124599
+    },
+    "scene_digest": "b4003e266ba3b0bf2785abbd059678845beff6f7f9f40756084db1f023b1a396",
+    "points": [
+      {
+        "time_s": 0.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": -5.391466701063573e-19,
+        "x_m": 0.0,
+        "y_m": -1.5859329286071027e-17,
+        "yaw_rad": -1.2766818846637225e-17,
+        "speed_mps": 4.241828188963939,
+        "acceleration_mps2": -3.000000028805771,
+        "steer_rad": 1.499104158701217e-09,
+        "curvature_per_m": 5.552237624819322e-10
+      },
+      {
+        "time_s": 0.2,
+        "rear_x_m": -0.4116343627833276,
+        "rear_y_m": 1.7254142973961664e-10,
+        "x_m": 0.7883656372166723,
+        "y_m": 6.978046011953589e-10,
+        "yaw_rad": 4.3771930954645195e-10,
+        "speed_mps": 3.641828183202785,
+        "acceleration_mps2": -3.000000024949745,
+        "steer_rad": 1.212462541683803e-09,
+        "curvature_per_m": 4.490602006236307e-10
+      },
+      {
+        "time_s": 0.4,
+        "rear_x_m": 0.25673127335823454,
+        "rear_y_m": 5.653983963232219e-10,
+        "x_m": 1.4567312733582345,
+        "y_m": 1.4508252358283569e-09,
+        "yaw_rad": 7.378556995876125e-10,
+        "speed_mps": 3.041828178212836,
+        "acceleration_mps2": -2.9275297138999195,
+        "steer_rad": 8.743394552200208e-10,
+        "curvature_per_m": 3.238294278592669e-10
+      },
+      {
+        "time_s": 0.6000000000000001,
+        "rear_x_m": 0.8065463147228035,
+        "rear_y_m": 1.020028799572683e-09,
+        "x_m": 2.0065463147228035,
+        "y_m": 2.119111163803602e-09,
+        "yaw_rad": 9.159019701924324e-10,
+        "speed_mps": 2.4563222354328516,
+        "acceleration_mps2": -2.783929293963974,
+        "steer_rad": 5.836908687754104e-10,
+        "curvature_per_m": 2.16181803250152e-10
+      },
+      {
+        "time_s": 0.8,
+        "rear_x_m": 1.2421321759300945,
+        "rear_y_m": 1.4394913481510338e-09,
+        "x_m": 2.4421321759300945,
+        "y_m": 2.6515725752841127e-09,
+        "yaw_rad": 1.010067689277566e-09,
+        "speed_mps": 1.899536376640057,
+        "acceleration_mps2": -2.589605123972501,
+        "steer_rad": 3.685757326785512e-10,
+        "curvature_per_m": 1.3650953062168563e-10
+      },
+      {
+        "time_s": 1.0,
+        "rear_x_m": 1.570247348778656,
+        "rear_y_m": 1.7782581287247226e-09,
+        "x_m": 2.770247348778656,
+        "y_m": 3.0440883571266017e-09,
+        "yaw_rad": 1.0548585236682328e-09,
+        "speed_mps": 1.3816153518455567,
+        "acceleration_mps2": -2.343683097136536,
+        "steer_rad": 2.242445268185316e-10,
+        "curvature_per_m": 8.305352845130799e-11
+      },
+      {
+        "time_s": 1.2000000000000002,
+        "rear_x_m": 1.7996967572050369,
+        "rear_y_m": 2.0224810266738493e-09,
+        "x_m": 2.9996967572050366,
+        "y_m": 3.3111791429463487e-09,
+        "yaw_rad": 1.0739150968937495e-09,
+        "speed_mps": 0.9128787324182496,
+        "acceleration_mps2": -2.0246111150636583,
+        "steer_rad": 1.3435756894423472e-10,
+        "curvature_per_m": 4.976206257193878e-11
+      },
+      {
+        "time_s": 1.4000000000000001,
+        "rear_x_m": 1.9417802813874137,
+        "rear_y_m": 2.17556894088662e-09,
+        "x_m": 3.1417802813874136,
+        "y_m": 3.472751492500281e-09,
+        "yaw_rad": 1.0809854596780506e-09,
+        "speed_mps": 0.507956509405518,
+        "acceleration_mps2": -1.5868323559752222,
+        "steer_rad": 8.182394228919733e-11,
+        "curvature_per_m": 3.0305163810813826e-11
+      },
+      {
+        "time_s": 1.6,
+        "rear_x_m": 2.011634936149013,
+        "rear_y_m": 2.251154736473774e-09,
+        "x_m": 3.2116349361490126,
+        "y_m": 3.5508776313950468e-09,
+        "yaw_rad": 1.083102412434394e-09,
+        "speed_mps": 0.1905900382104734,
+        "acceleration_mps2": -0.9529501981951242,
+        "steer_rad": 5.346160902605922e-11,
+        "curvature_per_m": 1.9800595935577488e-11
+      },
+      {
+        "time_s": 1.8,
+        "rear_x_m": 2.0306939398272053,
+        "rear_y_m": 2.271801182604145e-09,
+        "x_m": 3.230693939827205,
+        "y_m": 3.571976930470296e-09,
+        "yaw_rad": 1.0834797898884594e-09,
+        "speed_mps": -2.85710277187392e-09,
+        "acceleration_mps2": -1.0714023378231703e-08,
+        "steer_rad": 4.112433628516398e-11,
+        "curvature_per_m": 1.5231235661171843e-11
+      },
+      {
+        "time_s": 2.0,
+        "rear_x_m": 2.030693939041504,
+        "rear_y_m": 2.271801181718056e-09,
+        "x_m": 3.2306939390415037,
+        "y_m": 3.571976928739165e-09,
+        "yaw_rad": 1.0834797891842574e-09,
+        "speed_mps": -4.999907452133864e-09,
+        "acceleration_mps2": -1.0714023378231703e-08,
+        "steer_rad": 4.112433628516398e-11,
+        "curvature_per_m": 1.5231235661171843e-11
+      }
+    ],
+    "interpolation": "exact_constant_acceleration_constant_rear_curvature",
+    "requested_prefix_s": 0.2,
+    "solver": {
+      "name": "casadi_ipopt_multiple_shooting",
+      "version": "3.7.2",
+      "status": "Solve_Succeeded",
+      "objective": 35.7103100011722,
+      "arc_bound": "curvature_epigraph_v1",
+      "iterations": 11,
+      "curvature_magnitude_bounds_per_m": [
+        0.1472422780512382,
+        0.14859146816881086,
+        0.1490855271613289,
+        0.14942418012943856,
+        0.14966497885037996,
+        0.14982987404944942,
+        0.1499320259909346,
+        0.14998299823900635,
+        0.14999868258904017,
+        0.14999996739881066
+      ]
+    },
+    "planner_profile": "yaw_bounded_box_v1",
+    "verification_profile": "continuous_oriented_body_v1",
+    "search_profile": "bounded_seed_candidates_v2",
+    "heading_bands_rad": [
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ]
+    ]
+  },
+  "verification": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+      "revision": 1,
+      "reference_time_id": "nusc_us_1538984235912460",
+      "reference_time_s": 1538984235.9124599,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1538984237.9124599
+    },
+    "scene_digest": "b4003e266ba3b0bf2785abbd059678845beff6f7f9f40756084db1f023b1a396",
+    "verdict": "PASS",
+    "violations": [],
+    "minimum_clearance_lower_bound_m": 12.774626330610806,
+    "checked_until_s": 2.0,
+    "released_prefix_s": 0.2,
+    "trajectory_digest": "88762edbde0316b09d0a514ca50b06c0f4df976577889253446ee13d209096a0",
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "execution": {
+    "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+    "elapsed_s": 0.2,
+    "center_displacement_m": [
+      0.7883656372166723,
+      6.978046437189321e-10
+    ],
+    "yaw_delta_rad": 4.377193353069068e-10,
+    "speed_mps": 3.6418281832027843
+  },
+  "execution_receipt": {
+    "capture_digest": "f2748f6b8d4354f683a1822ad8750d6a783cc20ef9eb980757a92f3ded99fd92",
+    "scene_digest": "b4003e266ba3b0bf2785abbd059678845beff6f7f9f40756084db1f023b1a396",
+    "trajectory_digest": "88762edbde0316b09d0a514ca50b06c0f4df976577889253446ee13d209096a0",
+    "verification_digest": "8847b6bf89fbae39e0964017be5a34d5488145a0657974bc450259eae569dc68",
+    "execution_digest": "afe0030955f1ed37f47dab99c53d7f48bb723da3f42cb6429c28270ec3e8a260",
+    "executed_at_s": 1538984235.9124599,
+    "consumed_once": true
+  },
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "claim": "Local conditional prototype only; not old strict success, real vehicle safety, G2, or counterfactual multi-round observations.",
+  "acceptance": {
+    "acceptance_version": "single_window_physical_v1",
+    "status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "strict_live_physical_success": true,
+    "software_success": true,
+    "source": "online_model",
+    "motion_class": "MOVING_PREFIX",
+    "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+    "multi_round_closed_loop_success": false,
+    "ground_truth_correctness": "NOT_EVALUATED",
+    "released_prefix_s": 0.2,
+    "checks": {
+      "acquisition_and_model_identity": true,
+      "online_image_bytes_and_source": true,
+      "t1_t2_reconstructed": true,
+      "independent_t4_passed": true,
+      "execution_receipt_and_integration": true
+    },
+    "reasons": [],
+    "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety.",
+    "prefix_arc_length_m": 0.7883656372166723,
+    "prefix_center_displacement_m": 0.7883656372166723
+  },
+  "prototype_conditional_success": true
+}

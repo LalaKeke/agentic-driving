@@ -1,0 +1,101 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "planner_profile": "bounded_seed_candidates_v2",
+  "turn_task_required": false,
+  "backend": "openai_api",
+  "charged_requests": 2,
+  "budget_limit": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "global_attempt": 11,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "FAIL",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "VERIFICATION_REJECTED",
+        "violations": [
+          {
+            "code": "ROAD_BOUNDARY",
+            "object_id": null,
+            "time_interval_s": [
+              0.0,
+              0.02
+            ],
+            "position_m": [
+              0.0,
+              -3.5209451552424e-25
+            ],
+            "computed": 3.0323048032029654,
+            "threshold": 3.0,
+            "unit": "m",
+            "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: ROAD_BOUNDARY"
+          }
+        ],
+        "details": {
+          "candidate_id": "original",
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "global_attempt": 12,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null
+    }
+  ],
+  "fatal": null,
+  "prototype_conditional_success": true,
+  "prefix_consumed": true,
+  "source_commit": "3ab96a54f8241da5c5e06182992594f3037b87c6",
+  "mode": "online",
+  "native_output_status": "PRESERVED_OR_NOT_INTERRUPTED",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

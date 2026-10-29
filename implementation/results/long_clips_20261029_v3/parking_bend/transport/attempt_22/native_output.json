@@ -1,0 +1,336 @@
+{
+  "decision": {
+    "scene_id": "nusc_cb4e6195faad467094fbd4d0a9e960e9",
+    "revision": 0,
+    "behavior": "stop_yield",
+    "target_region": [
+      [
+        -0.2,
+        -0.5
+      ],
+      [
+        3.5,
+        -0.5
+      ],
+      [
+        3.5,
+        1.2
+      ],
+      [
+        -0.2,
+        1.2
+      ]
+    ],
+    "desired_speed_mps": 0,
+    "yield_to": [
+      "front_parked_gray_car"
+    ],
+    "stop": {
+      "center_x_max_m": 3.5,
+      "deadline_s": 1.8
+    },
+    "priority": 1,
+    "valid_until_s": 1538984253.9124599,
+    "hard_requirements": [
+      "target_region",
+      "stop",
+      "yield",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 2,
+      "smoothness_weight": 2
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984251912460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [
+          -3,
+          -3.5
+        ],
+        [
+          5,
+          -3.5
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          -3,
+          2.8
+        ]
+      ],
+      "uncertainty_m": 0.3,
+      "frame_ids": [
+        "71f5065f435c47f5b208831524ae6a2a",
+        "f62d0595b4aa426cbe99dc3f1c7c28ca"
+      ],
+      "time_ids": [
+        "nusc_us_1538984251912460",
+        "nusc_us_1538984251904844"
+      ]
+    },
+    "objects": [
+      {
+        "id": "front_parked_gray_car",
+        "position_m": [
+          11,
+          -1.65
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "gray_car_two_second_body_union",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "71f5065f435c47f5b208831524ae6a2a"
+            ],
+            "time_ids": [
+              "nusc_us_1538984251912460"
+            ],
+            "premise_ids": [
+              "prototype_local_scope",
+              "gray_car_body_prior",
+              "gray_car_short_motion"
+            ],
+            "residual_m": 0.45,
+            "alternatives": [
+              {
+                "scenario_id": "gray_car_stationary",
+                "polygon_m": [
+                  [
+                    8.65,
+                    -3.5
+                  ],
+                  [
+                    13.35,
+                    -3.5
+                  ],
+                  [
+                    13.35,
+                    0.2
+                  ],
+                  [
+                    8.65,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "gray_car_small_roll",
+                "polygon_m": [
+                  [
+                    8.2,
+                    -3.7
+                  ],
+                  [
+                    13.5,
+                    -3.7
+                  ],
+                  [
+                    13.5,
+                    0.6
+                  ],
+                  [
+                    8.2,
+                    0.6
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "71f5065f435c47f5b208831524ae6a2a"
+        ],
+        "time_ids": [
+          "nusc_us_1538984251912460"
+        ],
+        "state_time_id": "nusc_us_1538984251912460",
+        "body_geometry": {
+          "length_m": 4.3,
+          "width_m": 1.75,
+          "yaw_rad": 2.65
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "gray_car_body_prior"
+          ],
+          "residual_m": 0.35,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "71f5065f435c47f5b208831524ae6a2a",
+              "time_id": "nusc_us_1538984251912460",
+              "position_m": [
+                11,
+                -1.65
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "gray_car_stationary",
+            "premise_ids": [
+              "prototype_local_scope",
+              "gray_car_body_prior",
+              "gray_car_short_motion"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "gray_car_small_roll",
+            "premise_ids": [
+              "prototype_local_scope",
+              "gray_car_body_prior",
+              "gray_car_short_motion"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local two-second prototype, not calibrated geometry or a world-safety claim. The gray car is visibly parked nose-out near the outside of the leftward bend. A precautionary stop preserves clearance rather than assuming a straight continuation through the bend. Other visible vehicles occupy surrounding parking areas outside this finite modeled patch; their remaining outside it, and absence of new hidden entrants, are explicit conditions rather than observed guarantees. No regulatory stop or yield sign is asserted. No optimizer, independent dynamics check, or simulated prefix has been executed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [
+          [
+            -3,
+            -4.5
+          ],
+          [
+            14,
+            -4.5
+          ],
+          [
+            14,
+            9
+          ],
+          [
+            -3,
+            9
+          ]
+        ],
+        "statement": "Model only this finite local domain for the next two seconds, including the current ego footprint, short stopping route, bend pavement, and nearest nose-out gray car. Adopt no new unobserved pedestrian, cyclist, vehicle, or other obstacle entering this domain during that interval. Surrounding observed parked vehicles outside this domain are conditionally assumed to remain outside it; exclude their departures, unseen traffic arrivals, and other unobserved world conditions. The declared gray car is retained with both stationary and bounded-roll modes. These are falsifiable prototype conditions, not exhaustive future coverage."
+      },
+      {
+        "id": "gray_car_body_prior",
+        "object_ids": [
+          "front_parked_gray_car"
+        ],
+        "scenario_ids": [
+          "gray_car_stationary",
+          "gray_car_small_roll"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The individual gray compact sedan visible in the reference front image is modeled as a 4.3 m by 1.75 m ground-plane body, centered at [11,-1.65] with yaw 2.65 rad. Dimensions, position, and yaw are approximate visual hypotheses. The front-facing end is nearer and image-left of its rear. Direct reference alignment contributes 0.35 m residual; whole-interval source modeling contributes 0.45 m, totaling 0.8 m once."
+      },
+      {
+        "id": "gray_car_short_motion",
+        "object_ids": [
+          "front_parked_gray_car"
+        ],
+        "scenario_ids": [
+          "gray_car_stationary",
+          "gray_car_small_roll"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopted mode keeps the visually parked gray car stationary. Reasonable adverse mode permits forward roll along its native heading at any speed from zero to 0.15 m/s, total translation at most 0.30 m, with yaw within 0.03 rad of 2.65. Exclude powered departures beyond these bounds. Both source polygons contain the entire native oriented body at t=0; the adverse polygon also encloses the full body throughout the stated translation and yaw ranges."
+      },
+      {
+        "id": "local_pavement_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The convex road polygon is an approximate inner patch of continuous visible pavement, not a lane strip or parking-area hull. Estimate its right/forward sloping edge from the asphalt-to-bay/curb boundary beneath the gray car and its left edge from the curb and guardrail-side pavement visible in the front-left view. Use the gray-car dimension prior, perspective, camera axes, and supplied ego poses to estimate metric extent. The front-left evidence is 0.007616 s earlier and depicts static pavement. Extend the near patch beneath the known ego footprint using visible adjacent pavement; assign 0.30 m boundary residual. No calibrated flat-ground reconstruction is claimed."
+      },
+      {
+        "id": "achievable_precautionary_stop",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Initial ego speed is the supplied 3.951947 m/s, not zero. An illustrative straight braking maneuver at approximately 2.5 m/s^2 stops in about 1.58 s after 3.12 m, within the supplied 3 m/s^2 braking limit and requested 1.8 s deadline. Hold after stopping. This is a feasibility seed for verification, not a verified trajectory; yield to the gray car's bounded body occupancy without asserting a regulatory yield requirement."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "71f5065f435c47f5b208831524ae6a2a"
+      ],
+      "time_ids": [
+        "nusc_us_1538984251912460"
+      ],
+      "premise_ids": [
+        "gray_car_body_prior",
+        "local_pavement_geometry"
+      ],
+      "anchors": [
+        {
+          "object_id": "front_parked_gray_car",
+          "dimension": "width_m",
+          "value_m": 1.75,
+          "rationale": "Conditional typical compact-sedan width for this individually visible gray car; matches its native body hypothesis, not a measured manufacturer dimension."
+        },
+        {
+          "object_id": "front_parked_gray_car",
+          "dimension": "length_m",
+          "value_m": 4.3,
+          "rationale": "Conditional compact-sedan length supporting interpretation of the visible oblique front and side; exactly matches the native body length."
+        }
+      ],
+      "metric_reasoning": "The reference car occupies roughly image columns 820–1145, with its near bumper around rows 670–695. Its oblique silhouette is consistent with a roughly 4.3 m long, 1.75 m wide body at approximately 11 m forward and 1.65 m right, facing back and left at yaw 2.65 rad. Use the supplied front intrinsics and camera-axis orientation to interpret angular size and bearing, with the explicit body-size prior supplying approximate metric scale. Relate nearby curb and pavement perspective to that same scale, supplemented by the static front-left boundary view. Pixel contacts, flatness, and exact depth are not certified; the stated residuals remain noncalibrated model hypotheses."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

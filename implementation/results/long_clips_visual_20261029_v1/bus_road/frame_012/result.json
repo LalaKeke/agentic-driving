@@ -1,0 +1,1349 @@
+{
+  "case_id": "frame_012",
+  "scene_name": "scene-0655",
+  "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+  "sample_token": "39bc0a6b3692446d8ba3bde3d6a0774e",
+  "label": "frame_012",
+  "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012",
+  "initial_speed_mps": 8.506431109133791,
+  "status": "FIRST_ATTEMPT_PASS",
+  "ended": true,
+  "charged_requests": 1,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": true,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": null,
+  "final_failure_reasons": [],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25288,
+        "input_tokens_details": {
+          "cache_write_tokens": 21790,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 7156,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 32444
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/record.json",
+      "record_sha256": "c4884334eae19c0363b850d2ff9d6ed572e1a4a9b133053a9e690c3db46627fa",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 6,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_5c91ed1cd4d14d5ea924d44c67754e32",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25288,
+          "input_tokens_details": {
+            "cache_write_tokens": 21790,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 7156,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 32444
+        },
+        "structured_output": true,
+        "elapsed_s": 105.62696881219745
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.9090701778064201,
+            "minimum_clearance_lower_bound_m": 1.1650182689995203
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.909070177806426,
+            "minimum_clearance_lower_bound_m": 1.1650182686455899
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.13561632622443776
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_bmw",
+                    "halfplane": [
+                      -0.07685817283968735,
+                      0.9970420358579396,
+                      -0.031619299015349434
+                    ],
+                    "obstacle_support_m": 2.8721016502252033,
+                    "ego_body_support_m": 1.1037209492405526,
+                    "model_total_residual_m": 0.8,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -28.2,
+                        2.95
+                      ],
+                      [
+                        0.9,
+                        2.95
+                      ],
+                      [
+                        0.9,
+                        5.25
+                      ],
+                      [
+                        -28.2,
+                        5.25
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "bmw_whole_2s",
+                        "scenario_id": "bmw_bounded_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -28.2,
+                            2.95
+                          ],
+                          [
+                            0.9,
+                            2.95
+                          ],
+                          [
+                            0.9,
+                            5.25
+                          ],
+                          [
+                            -28.2,
+                            5.25
+                          ]
+                        ],
+                        "frame_ids": [
+                          "b1b9a28eda984e56bb5d347357bc703a"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385097797418"
+                        ],
+                        "premise_ids": [
+                          "bmw_motion"
+                        ],
+                        "source_residual_m": 0.4
+                      }
+                    ],
+                    "computed_m": 0.09222980740762482,
+                    "threshold_m": -0.031619299015349434,
+                    "excess_m": 0.12384910642297425
+                  }
+                ],
+                "object_id": "oncoming_bmw",
+                "allowed_domain_polygon_m": [
+                  [
+                    9.085862605178445,
+                    0.13775879534120133
+                  ],
+                  [
+                    9.66255767797732,
+                    -0.05915175209954229
+                  ],
+                  [
+                    9.86742218951204,
+                    -0.4700031249023452
+                  ],
+                  [
+                    -1.3889818297648042,
+                    -0.4700031249023452
+                  ],
+                  [
+                    -1.3889818297648042,
+                    -0.1387844239079985
+                  ],
+                  [
+                    2.198472882410635,
+                    0.13775879534120133
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.6847088535472243,
+          -2.128845878556597e-06
+        ],
+        "displacement_m": 1.6847088535485693,
+        "end_speed_mps": 8.340657426348022,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.1650182689995203,
+        "max_abs_acceleration_mps2": 0.8288684139288479,
+        "rms_discrete_jerk_proxy_mps3": 0.3671840861582022,
+        "max_abs_steer_rad": 1.670521294366822e-06,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_39bc0a6b3692446d8ba3bde3d6a0774e",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -0.5
+            ],
+            [
+              20,
+              -0.5
+            ],
+            [
+              20,
+              0.3
+            ],
+            [
+              -0.2,
+              0.3
+            ]
+          ],
+          "desired_speed_mps": 7.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385099.862411,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 1,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": {
+    "T2": 2,
+    "T3": 2,
+    "T4": 2
+  },
+  "physical": {
+    "prefix_consumed": true,
+    "motion_class": "MOVING_PREFIX",
+    "displacement_xy_m": [
+      1.6847088535472243,
+      -2.128845878556597e-06
+    ],
+    "displacement_m": 1.6847088535485693,
+    "end_speed_mps": 8.340657426348022,
+    "prefix_s": 0.2,
+    "minimum_conditional_clearance_lower_bound_m": 1.1650182689995203,
+    "max_abs_acceleration_mps2": 0.8288684139288479,
+    "rms_discrete_jerk_proxy_mps3": 0.3671840861582022,
+    "max_abs_steer_rad": 1.670521294366822e-06,
+    "solver_status": "Solve_Succeeded",
+    "T4_verdict": "PASS",
+    "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "independent_acceptor_pass": true,
+    "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/execution_receipt.json",
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": null,
+  "selected_native_failure_reasons": [],
+  "frame_index": 12,
+  "relative_sequence_time_s": 5.750007,
+  "reference_time_s": 1535385097.862411,
+  "reference_time_id": "nusc_us_1535385097862411",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_012/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "PASS",
+    "EXECUTION": "PASS"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": -0.0002778416747570525,
+    "plan_end_lateral_m": -5.737195984814401e-05,
+    "prefix_yaw_change_deg": -5.972219242464625e-05,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": true,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 0,
+  "unknown_dispatch_history": [],
+  "motion_review": {
+    "moving_prefix_observed": true,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "FIRST_ATTEMPT_PASS",
+  "source_group": "long_clips_20261029_v2_bus_road",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_bus_road",
+      "result": {
+        "case_id": "frame_012",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "39bc0a6b3692446d8ba3bde3d6a0774e",
+        "label": "frame_012",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/bus_road/runtime/frame_012",
+        "initial_speed_mps": 8.506431109133791,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 12,
+        "relative_sequence_time_s": 5.750007,
+        "reference_time_s": 1535385097.862411,
+        "reference_time_id": "nusc_us_1535385097862411",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_012/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_bus_road",
+      "result": {
+        "case_id": "frame_012",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "39bc0a6b3692446d8ba3bde3d6a0774e",
+        "label": "frame_012",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012",
+        "initial_speed_mps": 8.506431109133791,
+        "status": "FIRST_ATTEMPT_PASS",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": true,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25288,
+              "input_tokens_details": {
+                "cache_write_tokens": 21790,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 7156,
+              "output_tokens_details": {
+                "reasoning_tokens": 1552
+              },
+              "total_tokens": 32444
+            },
+            "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/record.json",
+            "record_sha256": "c4884334eae19c0363b850d2ff9d6ed572e1a4a9b133053a9e690c3db46627fa",
+            "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "PASS",
+              "ACCEPTOR": "PASS",
+              "EXECUTION": "PASS"
+            },
+            "transport_summary": {
+              "attempt": 6,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_5c91ed1cd4d14d5ea924d44c67754e32",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25288,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21790,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 7156,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1552
+                },
+                "total_tokens": 32444
+              },
+              "structured_output": true,
+              "elapsed_s": 105.62696881219745
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": true,
+            "deepest_blocking_stage": null,
+            "blocking_reasons": [],
+            "raw_last_failure": null,
+            "candidate_counts": {
+              "T2": 2,
+              "T3": 2,
+              "T4": 2
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "objective": 0.9090701778064201,
+                  "minimum_clearance_lower_bound_m": 1.1650182689995203
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "objective": 0.909070177806426,
+                  "minimum_clearance_lower_bound_m": 1.1650182686455899
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_left",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.13561632622443776
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "occupancy",
+                          "object_id": "oncoming_bmw",
+                          "halfplane": [
+                            -0.07685817283968735,
+                            0.9970420358579396,
+                            -0.031619299015349434
+                          ],
+                          "obstacle_support_m": 2.8721016502252033,
+                          "ego_body_support_m": 1.1037209492405526,
+                          "model_total_residual_m": 0.8,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              -28.2,
+                              2.95
+                            ],
+                            [
+                              0.9,
+                              2.95
+                            ],
+                            [
+                              0.9,
+                              5.25
+                            ],
+                            [
+                              -28.2,
+                              5.25
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "bmw_whole_2s",
+                              "scenario_id": "bmw_bounded_drift",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  -28.2,
+                                  2.95
+                                ],
+                                [
+                                  0.9,
+                                  2.95
+                                ],
+                                [
+                                  0.9,
+                                  5.25
+                                ],
+                                [
+                                  -28.2,
+                                  5.25
+                                ]
+                              ],
+                              "frame_ids": [
+                                "b1b9a28eda984e56bb5d347357bc703a"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385097797418"
+                              ],
+                              "premise_ids": [
+                                "bmw_motion"
+                              ],
+                              "source_residual_m": 0.4
+                            }
+                          ],
+                          "computed_m": 0.09222980740762482,
+                          "threshold_m": -0.031619299015349434,
+                          "excess_m": 0.12384910642297425
+                        }
+                      ],
+                      "object_id": "oncoming_bmw",
+                      "allowed_domain_polygon_m": [
+                        [
+                          9.085862605178445,
+                          0.13775879534120133
+                        ],
+                        [
+                          9.66255767797732,
+                          -0.05915175209954229
+                        ],
+                        [
+                          9.86742218951204,
+                          -0.4700031249023452
+                        ],
+                        [
+                          -1.3889818297648042,
+                          -0.4700031249023452
+                        ],
+                        [
+                          -1.3889818297648042,
+                          -0.1387844239079985
+                        ],
+                        [
+                          2.198472882410635,
+                          0.13775879534120133
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.4,
+                        0.6000000000000001
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": "original",
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [],
+            "physical": {
+              "prefix_consumed": true,
+              "motion_class": "MOVING_PREFIX",
+              "displacement_xy_m": [
+                1.6847088535472243,
+                -2.128845878556597e-06
+              ],
+              "displacement_m": 1.6847088535485693,
+              "end_speed_mps": 8.340657426348022,
+              "prefix_s": 0.2,
+              "minimum_conditional_clearance_lower_bound_m": 1.1650182689995203,
+              "max_abs_acceleration_mps2": 0.8288684139288479,
+              "rms_discrete_jerk_proxy_mps3": 0.3671840861582022,
+              "max_abs_steer_rad": 1.670521294366822e-06,
+              "solver_status": "Solve_Succeeded",
+              "T4_verdict": "PASS",
+              "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+              "independent_acceptor_pass": true,
+              "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/execution_receipt.json",
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_39bc0a6b3692446d8ba3bde3d6a0774e",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.2,
+                    -0.5
+                  ],
+                  [
+                    20,
+                    -0.5
+                  ],
+                  [
+                    20,
+                    0.3
+                  ],
+                  [
+                    -0.2,
+                    0.3
+                  ]
+                ],
+                "desired_speed_mps": 7.5,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385099.862411,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 0.5,
+                  "steering_weight": 1,
+                  "smoothness_weight": 1
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": {
+          "T2": 2,
+          "T3": 2,
+          "T4": 2
+        },
+        "physical": {
+          "prefix_consumed": true,
+          "motion_class": "MOVING_PREFIX",
+          "displacement_xy_m": [
+            1.6847088535472243,
+            -2.128845878556597e-06
+          ],
+          "displacement_m": 1.6847088535485693,
+          "end_speed_mps": 8.340657426348022,
+          "prefix_s": 0.2,
+          "minimum_conditional_clearance_lower_bound_m": 1.1650182689995203,
+          "max_abs_acceleration_mps2": 0.8288684139288479,
+          "rms_discrete_jerk_proxy_mps3": 0.3671840861582022,
+          "max_abs_steer_rad": 1.670521294366822e-06,
+          "solver_status": "Solve_Succeeded",
+          "T4_verdict": "PASS",
+          "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+          "independent_acceptor_pass": true,
+          "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/execution_receipt.json",
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 12,
+        "relative_sequence_time_s": 5.750007,
+        "reference_time_s": 1535385097.862411,
+        "reference_time_id": "nusc_us_1535385097862411",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_012/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "PASS",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "PASS",
+          "EXECUTION": "PASS"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": -0.0002778416747570525,
+          "plan_end_lateral_m": -5.737195984814401e-05,
+          "prefix_yaw_change_deg": -5.972219242464625e-05,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": true,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": true,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25288,
+        "input_tokens_details": {
+          "cache_write_tokens": 21790,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 7156,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 32444
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/record.json",
+      "record_sha256": "c4884334eae19c0363b850d2ff9d6ed572e1a4a9b133053a9e690c3db46627fa",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 6,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_5c91ed1cd4d14d5ea924d44c67754e32",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25288,
+          "input_tokens_details": {
+            "cache_write_tokens": 21790,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 7156,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 32444
+        },
+        "structured_output": true,
+        "elapsed_s": 105.62696881219745
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.9090701778064201,
+            "minimum_clearance_lower_bound_m": 1.1650182689995203
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.909070177806426,
+            "minimum_clearance_lower_bound_m": 1.1650182686455899
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.13561632622443776
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_bmw",
+                    "halfplane": [
+                      -0.07685817283968735,
+                      0.9970420358579396,
+                      -0.031619299015349434
+                    ],
+                    "obstacle_support_m": 2.8721016502252033,
+                    "ego_body_support_m": 1.1037209492405526,
+                    "model_total_residual_m": 0.8,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -28.2,
+                        2.95
+                      ],
+                      [
+                        0.9,
+                        2.95
+                      ],
+                      [
+                        0.9,
+                        5.25
+                      ],
+                      [
+                        -28.2,
+                        5.25
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "bmw_whole_2s",
+                        "scenario_id": "bmw_bounded_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -28.2,
+                            2.95
+                          ],
+                          [
+                            0.9,
+                            2.95
+                          ],
+                          [
+                            0.9,
+                            5.25
+                          ],
+                          [
+                            -28.2,
+                            5.25
+                          ]
+                        ],
+                        "frame_ids": [
+                          "b1b9a28eda984e56bb5d347357bc703a"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385097797418"
+                        ],
+                        "premise_ids": [
+                          "bmw_motion"
+                        ],
+                        "source_residual_m": 0.4
+                      }
+                    ],
+                    "computed_m": 0.09222980740762482,
+                    "threshold_m": -0.031619299015349434,
+                    "excess_m": 0.12384910642297425
+                  }
+                ],
+                "object_id": "oncoming_bmw",
+                "allowed_domain_polygon_m": [
+                  [
+                    9.085862605178445,
+                    0.13775879534120133
+                  ],
+                  [
+                    9.66255767797732,
+                    -0.05915175209954229
+                  ],
+                  [
+                    9.86742218951204,
+                    -0.4700031249023452
+                  ],
+                  [
+                    -1.3889818297648042,
+                    -0.4700031249023452
+                  ],
+                  [
+                    -1.3889818297648042,
+                    -0.1387844239079985
+                  ],
+                  [
+                    2.198472882410635,
+                    0.13775879534120133
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.6847088535472243,
+          -2.128845878556597e-06
+        ],
+        "displacement_m": 1.6847088535485693,
+        "end_speed_mps": 8.340657426348022,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.1650182689995203,
+        "max_abs_acceleration_mps2": 0.8288684139288479,
+        "rms_discrete_jerk_proxy_mps3": 0.3671840861582022,
+        "max_abs_steer_rad": 1.670521294366822e-06,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_012/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_39bc0a6b3692446d8ba3bde3d6a0774e",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -0.5
+            ],
+            [
+              20,
+              -0.5
+            ],
+            [
+              20,
+              0.3
+            ],
+            [
+              -0.2,
+              0.3
+            ]
+          ],
+          "desired_speed_mps": 7.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385099.862411,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 0.5,
+            "steering_weight": 1,
+            "smoothness_weight": 1
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v2_bus_road"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": true,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": true,
+  "overall_success_request_ordinal": 1,
+  "selection_policy": "EARLIEST_EXISTING_PASS",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      31.96372414691105,
+      0.12276390788752867
+    ],
+    "yaw_rad": 0.015365000874574038,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}

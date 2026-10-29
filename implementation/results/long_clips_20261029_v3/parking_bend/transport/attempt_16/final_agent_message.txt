@@ -1,0 +1,281 @@
+{
+  "decision": {
+    "scene_id": "nusc_e00dc15130dc44e796687baadd076ae4",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [[-0.3,-0.8],[12,-0.8],[12,1.1],[-0.3,1.1]],
+    "desired_speed_mps": 4.0,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984249.91246,
+    "hard_requirements": ["target_region","vehicle_limits","collision_free","road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 0.5,
+      "steering_weight": 1,
+      "smoothness_weight": 2
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984247912460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3,-4.2],[16,-3.5],[16,3.4],[-3,4.4]],
+      "uncertainty_m": 0.4,
+      "frame_ids": ["60c424c157b54829ba532e11fe66363c","4d087f27230a4273b4b83cda990fe67e"],
+      "time_ids": ["nusc_us_1538984247912460","nusc_us_1538984247904844"]
+    },
+    "objects": [
+      {
+        "id": "left_parked_truck",
+        "position_m": [2.5,7.5],
+        "velocity_mps": [0,0],
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "truck_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["4d087f27230a4273b4b83cda990fe67e"],
+            "time_ids": ["nusc_us_1538984247904844"],
+            "premise_ids": ["prototype_local_scope","parked_future","truck_alignment","body_scale"],
+            "residual_m": 0.55,
+            "alternatives": [
+              {"scenario_id":"truck_stationary","polygon_m":[[1.15,4.62],[3.85,4.62],[3.85,10.38],[1.15,10.38]]},
+              {"scenario_id":"truck_small_motion","polygon_m":[[0.85,4.32],[4.15,4.32],[4.15,10.68],[0.85,10.68]]}
+            ]
+          }
+        ],
+        "frame_ids": ["4d087f27230a4273b4b83cda990fe67e"],
+        "time_ids": ["nusc_us_1538984247904844"],
+        "state_time_id": "nusc_us_1538984247912460",
+        "body_geometry": {"length_m":5.5,"width_m":2,"yaw_rad":-1.45},
+        "alignment": {
+          "method":"model_motion_bound",
+          "premise_ids":["truck_alignment","body_scale"],
+          "residual_m":0.25,
+          "motion_bound":{"max_speed_mps":0.2,"displacement_bound_m":0.002,"covers_all_declared_scenarios":true},
+          "evidence_positions":[
+            {"frame_id":"4d087f27230a4273b4b83cda990fe67e","time_id":"nusc_us_1538984247904844","position_m":[2.5,7.5],"observed_actor":true}
+          ]
+        },
+        "scenarios":[
+          {"id":"truck_stationary","premise_ids":["parked_future","body_scale"],"role":"adopted"},
+          {"id":"truck_small_motion","premise_ids":["parked_future","body_scale"],"role":"reasonable_adverse"}
+        ],
+        "scenario_inventory_complete":true
+      },
+      {
+        "id":"right_blue_taxi",
+        "position_m":[-0.5,-7],
+        "velocity_mps":[0,0],
+        "uncertainty_m":0.8,
+        "occupancy":[
+          {
+            "id":"taxi_body_0_2",
+            "start_s":0,
+            "end_s":2,
+            "kind":"whole_interval_body_envelope",
+            "status":"supported",
+            "frame_ids":["63842f8599564080926109b660998f8b"],
+            "time_ids":["nusc_us_1538984247870339"],
+            "premise_ids":["prototype_local_scope","parked_future","taxi_alignment","body_scale"],
+            "residual_m":0.55,
+            "alternatives":[
+              {"scenario_id":"taxi_stationary","polygon_m":[[-1.43,-9.33],[0.43,-9.33],[0.43,-4.67],[-1.43,-4.67]]},
+              {"scenario_id":"taxi_small_motion","polygon_m":[[-1.73,-9.63],[0.73,-9.63],[0.73,-4.37],[-1.73,-4.37]]}
+            ]
+          }
+        ],
+        "frame_ids":["63842f8599564080926109b660998f8b"],
+        "time_ids":["nusc_us_1538984247870339"],
+        "state_time_id":"nusc_us_1538984247912460",
+        "body_geometry":{"length_m":4.6,"width_m":1.8,"yaw_rad":1.57},
+        "alignment":{
+          "method":"model_motion_bound",
+          "premise_ids":["taxi_alignment","body_scale"],
+          "residual_m":0.25,
+          "motion_bound":{"max_speed_mps":0.2,"displacement_bound_m":0.009,"covers_all_declared_scenarios":true},
+          "evidence_positions":[
+            {"frame_id":"63842f8599564080926109b660998f8b","time_id":"nusc_us_1538984247870339","position_m":[-0.5,-7],"observed_actor":true}
+          ]
+        },
+        "scenarios":[
+          {"id":"taxi_stationary","premise_ids":["parked_future","body_scale"],"role":"adopted"},
+          {"id":"taxi_small_motion","premise_ids":["parked_future","body_scale"],"role":"reasonable_adverse"}
+        ],
+        "scenario_inventory_complete":true
+      },
+      {
+        "id":"right_silver_suv",
+        "position_m":[10.5,-7],
+        "velocity_mps":[0,0],
+        "uncertainty_m":0.8,
+        "occupancy":[
+          {
+            "id":"silver_body_0_2",
+            "start_s":0,
+            "end_s":2,
+            "kind":"whole_interval_body_envelope",
+            "status":"supported",
+            "frame_ids":["60c424c157b54829ba532e11fe66363c"],
+            "time_ids":["nusc_us_1538984247912460"],
+            "premise_ids":["prototype_local_scope","parked_future","body_scale"],
+            "residual_m":0.6,
+            "alternatives":[
+              {"scenario_id":"silver_stationary","polygon_m":[[9.55,-9.28],[11.45,-9.28],[11.45,-4.72],[9.55,-4.72]]},
+              {"scenario_id":"silver_small_motion","polygon_m":[[9.25,-9.58],[11.75,-9.58],[11.75,-4.42],[9.25,-4.42]]}
+            ]
+          }
+        ],
+        "frame_ids":["60c424c157b54829ba532e11fe66363c"],
+        "time_ids":["nusc_us_1538984247912460"],
+        "state_time_id":"nusc_us_1538984247912460",
+        "body_geometry":{"length_m":4.5,"width_m":1.85,"yaw_rad":1.57},
+        "alignment":{
+          "method":"direct_reference_observation",
+          "premise_ids":["body_scale"],
+          "residual_m":0.2,
+          "motion_bound":null,
+          "evidence_positions":[
+            {"frame_id":"60c424c157b54829ba532e11fe66363c","time_id":"nusc_us_1538984247912460","position_m":[10.5,-7],"observed_actor":true}
+          ]
+        },
+        "scenarios":[
+          {"id":"silver_stationary","premise_ids":["parked_future","body_scale"],"role":"adopted"},
+          {"id":"silver_small_motion","premise_ids":["parked_future","body_scale"],"role":"reasonable_adverse"}
+        ],
+        "scenario_inventory_complete":true
+      },
+      {
+        "id":"right_white_hatchback",
+        "position_m":[16,-6.8],
+        "velocity_mps":[0,0],
+        "uncertainty_m":0.8,
+        "occupancy":[
+          {
+            "id":"white_body_0_2",
+            "start_s":0,
+            "end_s":2,
+            "kind":"whole_interval_body_envelope",
+            "status":"supported",
+            "frame_ids":["60c424c157b54829ba532e11fe66363c"],
+            "time_ids":["nusc_us_1538984247912460"],
+            "premise_ids":["prototype_local_scope","parked_future","body_scale"],
+            "residual_m":0.6,
+            "alternatives":[
+              {"scenario_id":"white_stationary","polygon_m":[[15.1,-9.03],[16.9,-9.03],[16.9,-4.57],[15.1,-4.57]]},
+              {"scenario_id":"white_small_motion","polygon_m":[[14.8,-9.33],[17.2,-9.33],[17.2,-4.27],[14.8,-4.27]]}
+            ]
+          }
+        ],
+        "frame_ids":["60c424c157b54829ba532e11fe66363c"],
+        "time_ids":["nusc_us_1538984247912460"],
+        "state_time_id":"nusc_us_1538984247912460",
+        "body_geometry":{"length_m":4.4,"width_m":1.75,"yaw_rad":1.57},
+        "alignment":{
+          "method":"direct_reference_observation",
+          "premise_ids":["body_scale"],
+          "residual_m":0.2,
+          "motion_bound":null,
+          "evidence_positions":[
+            {"frame_id":"60c424c157b54829ba532e11fe66363c","time_id":"nusc_us_1538984247912460","position_m":[16,-6.8],"observed_actor":true}
+          ]
+        },
+        "scenarios":[
+          {"id":"white_stationary","premise_ids":["parked_future","body_scale"],"role":"adopted"},
+          {"id":"white_small_motion","premise_ids":["parked_future","body_scale"],"role":"reasonable_adverse"}
+        ],
+        "scenario_inventory_complete":true
+      }
+    ],
+    "unknown_regions":[],
+    "traffic_evidence":[],
+    "unbounded_unknown":false,
+    "confidence_note":"Conditional two-second local prototype, not a calibrated reconstruction or verified trajectory. Initial ego speed is 6.0906 m/s; 4 m/s is a deceleration preference, not an assumed initial state. The patch ends before the main left bend. Road edges and actor poses are approximate visual hypotheses. Four nearby bay vehicles are retained, including asynchronous truck and taxi observations. More distant parked rows, rear vehicles outside the domain, hidden pedestrians, vehicle departures exceeding the declared bounds, and new entrants are excluded only by the explicit local-scope condition. No optimization, dynamics verification or simulated prefix has been executed here.",
+    "premises":[
+      {
+        "id":"prototype_local_scope",
+        "object_ids":[],
+        "scenario_ids":[],
+        "start_s":0,
+        "end_s":2,
+        "space_polygon_m":[[-4,-12],[23,-12],[23,12],[-4,12]],
+        "statement":"Model only this finite local domain for two seconds, using the convex paved route patch separately specified as road. Assume no new unobserved entrant, pedestrian, opening door or object enters this domain or the route from occlusions during the horizon. Observed more distant parking rows and rear vehicles outside the domain remain parked and do not enter it. This excludes world conditions rather than claiming they are absent. The nearby truck, taxi, silver SUV and white hatchback are explicitly retained. Road geometry follows the visible curb/pavement transitions, with approximate near-edge continuation around the current footprint; it does not include grass islands or parking bays as driving space."
+      },
+      {
+        "id":"body_scale",
+        "object_ids":[],
+        "scenario_ids":[],
+        "start_s":-0.05,
+        "end_s":2,
+        "space_polygon_m":null,
+        "statement":"Adopt approximate rigid body-size priors: light flatbed truck 5.5 by 2.0 m, taxi 4.6 by 1.8 m, silver SUV 4.5 by 1.85 m, white hatchback 4.4 by 1.75 m. Use their visible body extents, calibrated viewing axes and perspective to estimate ground-XY positions and curb separation. The local pavement is approximately continuous with modest grade; no certified flat-ground reconstruction is asserted. Pose, scale and boundary errors are represented by the declared finite noncalibrated residual hypotheses."
+      },
+      {
+        "id":"parked_future",
+        "object_ids":["left_parked_truck","right_blue_taxi","right_silver_suv","right_white_hatchback"],
+        "scenario_ids":["truck_stationary","truck_small_motion","taxi_stationary","taxi_small_motion","silver_stationary","silver_small_motion","white_stationary","white_small_motion"],
+        "start_s":0,
+        "end_s":2,
+        "space_polygon_m":null,
+        "statement":"The vehicles appear aligned in parking bays rather than moving along the aisle. Adopt stationary poses for two seconds. Reasonable adverse variants permit total center displacement up to 0.2 m in any direction and yaw departure up to 0.03 rad at any time, without a larger pull-out. Expanded adverse rectangles enclose the complete bodies for all those poses throughout the closed interval. This stationary-or-small-motion inventory is complete only within these explicit conditions."
+      },
+      {
+        "id":"truck_alignment",
+        "object_ids":["left_parked_truck"],
+        "scenario_ids":["truck_stationary","truck_small_motion"],
+        "start_s":-0.008,
+        "end_s":0,
+        "space_polygon_m":null,
+        "statement":"Truck visibly occupies a left parking bay in the front-left capture 0.007616 s before reference. Conditional on ground speed at most 0.2 m/s and negligible yaw change over that interval, displacement is at most 0.002 m for both retained future modes. Evidence position is estimated in fixed reference axes using supplied ego pose; the motion bound is additional to ego compensation. Alignment residual is 0.25 m."
+      },
+      {
+        "id":"taxi_alignment",
+        "object_ids":["right_blue_taxi"],
+        "scenario_ids":["taxi_stationary","taxi_small_motion"],
+        "start_s":-0.043,
+        "end_s":0,
+        "space_polygon_m":null,
+        "statement":"Taxi visibly occupies the right parking bay in the front-right capture 0.042121 s before reference. Conditional on ground speed at most 0.2 m/s and negligible yaw change over that interval, displacement is at most 0.009 m for both retained future modes. Evidence position is estimated in fixed reference axes using supplied ego pose; motion uncertainty is not inferred from ego compensation alone. Alignment residual is 0.25 m."
+      }
+    ],
+    "unknowns":[],
+    "metric_scale_support":{
+      "method":"conditional_body_dimension_prior",
+      "frame_ids":["60c424c157b54829ba532e11fe66363c","4d087f27230a4273b4b83cda990fe67e"],
+      "time_ids":["nusc_us_1538984247912460","nusc_us_1538984247904844"],
+      "premise_ids":["body_scale","prototype_local_scope"],
+      "anchors":[
+        {
+          "object_id":"right_white_hatchback",
+          "dimension":"length_m",
+          "value_m":4.4,
+          "rationale":"The individually visible white hatchback has a nearly side-on body in the reference image. A 4.4 m compact-hatchback length is an explicit class-size prior, not a measured dimension."
+        },
+        {
+          "object_id":"left_parked_truck",
+          "dimension":"length_m",
+          "value_m":5.5,
+          "rationale":"The individually visible cab-and-flatbed truck in the front-left image supports a light-truck length prior of 5.5 m, matching its native body hypothesis."
+        }
+      ],
+      "metric_reasoning":"The white hatchback spans roughly 330 image pixels in a predominantly transverse pose. With front focal length about 1266 pixels and the 4.4 m length prior, its body-center range is approximately 16–18 m, with lateral offset about 7 m right. The nearer partially clipped silver SUV is assigned approximately 10.5 m forward and 7 m right. Truck and taxi ranges use their body-size priors and respective calibrated side-camera viewing directions, transformed with supplied ego acquisition poses. Visible aisle curbs imply approximately 7–9 m pavement width locally, narrowing toward the bend. The convex road polygon conservatively follows this local straight portion and includes the current 4.6 by 1.8 m ego footprint; 0.4 m boundary uncertainty is retained. These are falsifiable model estimates rather than calibration-certified depths."
+    }
+  },
+  "contract_version":"3.0.0-exp2",
+  "coverage_profile":"whole_interval_sources_v3_exp2",
+  "measurement_semantics":{
+    "coordinate_frame":"ego_at_reference",
+    "origin":"ego_body_center_at_reference",
+    "axes":"x_forward_y_left_fixed_at_reference",
+    "actor_reference_point":"annotation_box_center_ground_xy",
+    "velocity_semantics":"absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics":"noncalibrated_total_residual_radius_once"
+  }
+}

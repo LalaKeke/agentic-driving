@@ -1,0 +1,2297 @@
+{
+  "case_id": "frame_040",
+  "scene_name": "scene-0655",
+  "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+  "sample_token": "35833ae5808e4ef186d1fdebac3d9cf6",
+  "label": "frame_040",
+  "runtime_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040",
+  "initial_speed_mps": 8.906468110881296,
+  "status": "FIRST_ATTEMPT_PASS",
+  "ended": true,
+  "charged_requests": 1,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": true,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": null,
+  "final_failure_reasons": [],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25275,
+        "input_tokens_details": {
+          "cache_write_tokens": 21777,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 5186,
+        "output_tokens_details": {
+          "reasoning_tokens": 1772
+        },
+        "total_tokens": 30461
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/record.json",
+      "record_sha256": "52b2876da1c00a9a1046d15e1b87705b5c18e390ce3e7b2ffb4e9bd35f74a75e",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 2,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_441c967206104535ace1be57ced2bdb9",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25275,
+          "input_tokens_details": {
+            "cache_write_tokens": 21777,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 5186,
+          "output_tokens_details": {
+            "reasoning_tokens": 1772
+          },
+          "total_tokens": 30461
+        },
+        "structured_output": true,
+        "elapsed_s": 96.77072291821241
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.2305647316102887,
+            "minimum_clearance_lower_bound_m": 1.010949260784392
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.23056473284018603,
+            "minimum_clearance_lower_bound_m": 1.0109473737813899
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.14100851472863377,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.0456631452569054
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.0456631452569056,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.0456631452569054,
+                    "excess_m": 0.0456631452569054
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3880897136497885,
+                    -0.0456631452569054
+                  ],
+                  [
+                    8.620298053804682,
+                    -0.0456631452569054
+                  ],
+                  [
+                    9.59433488637577,
+                    -0.4813499708877483
+                  ],
+                  [
+                    -1.3880897136497885,
+                    -0.4813499708877483
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14100851472863377
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.018650029112251748
+                    ],
+                    "input_boundary_halfplane": [
+                      0.0,
+                      1.0,
+                      0.15
+                    ],
+                    "center_offset_support_m": 0.16865002911225174,
+                    "computed_m": 0.0,
+                    "threshold_m": -0.018650029112251748,
+                    "excess_m": 0.018650029112251748
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.18296320348140926
+                    ],
+                    "obstacle_support_m": 2.65,
+                    "ego_body_support_m": 1.3829632034814092,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -11.2,
+                        2.65
+                      ],
+                      [
+                        9.85,
+                        2.65
+                      ],
+                      [
+                        9.85,
+                        4.65
+                      ],
+                      [
+                        -11.2,
+                        4.65
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_straight_pass",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -11.2,
+                            2.65
+                          ],
+                          [
+                            9.85,
+                            2.65
+                          ],
+                          [
+                            9.85,
+                            4.65
+                          ],
+                          [
+                            -11.2,
+                            4.65
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.18296320348140926,
+                    "excess_m": 0.18296320348140926
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.382963203481409
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.3829632034814092,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.382963203481409,
+                    "excess_m": 0.382963203481409
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3880897136497885,
+                    -0.382963203481409
+                  ],
+                  [
+                    6.831757201758313,
+                    -0.382963203481409
+                  ],
+                  [
+                    7.213509501790229,
+                    -0.6200031249023452
+                  ],
+                  [
+                    -1.3880897136497885,
+                    -0.6200031249023452
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right_strong",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.16756099409439087,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.0708508258656646
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.0708508258656648,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.0708508258656646,
+                    "excess_m": 0.0708508258656646
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3831933661021656,
+                    -0.0708508258656646
+                  ],
+                  [
+                    8.866577410376747,
+                    -0.0708508258656646
+                  ],
+                  [
+                    9.738651086423673,
+                    -0.4498663985937742
+                  ],
+                  [
+                    -1.3831933661021656,
+                    -0.4498663985937742
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.7778035960912062,
+          -2.588675153351103e-05
+        ],
+        "displacement_m": 1.7778035962796759,
+        "end_speed_mps": 8.871567851407256,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.010949260784392,
+        "max_abs_acceleration_mps2": 0.1745012973701998,
+        "rms_discrete_jerk_proxy_mps3": 0.07286644289017753,
+        "max_abs_steer_rad": 1.8820862214372578e-05,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_35833ae5808e4ef186d1fdebac3d9cf6",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -0.65
+            ],
+            [
+              21,
+              -0.65
+            ],
+            [
+              21,
+              0.15
+            ],
+            [
+              -0.2,
+              0.15
+            ]
+          ],
+          "desired_speed_mps": 8.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385113.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": {
+    "T2": 2,
+    "T3": 2,
+    "T4": 2
+  },
+  "physical": {
+    "prefix_consumed": true,
+    "motion_class": "MOVING_PREFIX",
+    "displacement_xy_m": [
+      1.7778035960912062,
+      -2.588675153351103e-05
+    ],
+    "displacement_m": 1.7778035962796759,
+    "end_speed_mps": 8.871567851407256,
+    "prefix_s": 0.2,
+    "minimum_conditional_clearance_lower_bound_m": 1.010949260784392,
+    "max_abs_acceleration_mps2": 0.1745012973701998,
+    "rms_discrete_jerk_proxy_mps3": 0.07286644289017753,
+    "max_abs_steer_rad": 1.8820862214372578e-05,
+    "solver_status": "Solve_Succeeded",
+    "T4_verdict": "PASS",
+    "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "independent_acceptor_pass": true,
+    "prefix_receipt_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/execution_receipt.json",
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": null,
+  "selected_native_failure_reasons": [],
+  "frame_index": 40,
+  "relative_sequence_time_s": 19.8,
+  "reference_time_s": 1535385111.9124038,
+  "reference_time_id": "nusc_us_1535385111912404",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_040/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "PASS",
+    "EXECUTION": "PASS"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": -0.003262749142631464,
+    "plan_end_lateral_m": -0.0007598338867227802,
+    "prefix_yaw_change_deg": -0.0007100389350723475,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": true,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 0,
+  "unknown_dispatch_history": [],
+  "motion_review": {
+    "moving_prefix_observed": true,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "FIRST_ATTEMPT_PASS",
+  "source_group": "long_clips_20261029_v3_bus_road",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_bus_road",
+      "result": {
+        "case_id": "frame_040",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "35833ae5808e4ef186d1fdebac3d9cf6",
+        "label": "frame_040",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/bus_road/runtime/frame_040",
+        "initial_speed_mps": 8.906468110881296,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 40,
+        "relative_sequence_time_s": 19.8,
+        "reference_time_s": 1535385111.9124038,
+        "reference_time_id": "nusc_us_1535385111912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_040/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_bus_road",
+      "result": {
+        "case_id": "frame_040",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "35833ae5808e4ef186d1fdebac3d9cf6",
+        "label": "frame_040",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_040",
+        "initial_speed_mps": 8.906468110881296,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 40,
+        "relative_sequence_time_s": 19.8,
+        "reference_time_s": 1535385111.9124038,
+        "reference_time_id": "nusc_us_1535385111912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_040/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v3_bus_road",
+      "result": {
+        "case_id": "frame_040",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "35833ae5808e4ef186d1fdebac3d9cf6",
+        "label": "frame_040",
+        "runtime_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040",
+        "initial_speed_mps": 8.906468110881296,
+        "status": "FIRST_ATTEMPT_PASS",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": true,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25275,
+              "input_tokens_details": {
+                "cache_write_tokens": 21777,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 5186,
+              "output_tokens_details": {
+                "reasoning_tokens": 1772
+              },
+              "total_tokens": 30461
+            },
+            "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/record.json",
+            "record_sha256": "52b2876da1c00a9a1046d15e1b87705b5c18e390ce3e7b2ffb4e9bd35f74a75e",
+            "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "PASS",
+              "ACCEPTOR": "PASS",
+              "EXECUTION": "PASS"
+            },
+            "transport_summary": {
+              "attempt": 2,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_441c967206104535ace1be57ced2bdb9",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25275,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21777,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 5186,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1772
+                },
+                "total_tokens": 30461
+              },
+              "structured_output": true,
+              "elapsed_s": 96.77072291821241
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": true,
+            "deepest_blocking_stage": null,
+            "blocking_reasons": [],
+            "raw_last_failure": null,
+            "candidate_counts": {
+              "T2": 2,
+              "T3": 2,
+              "T4": 2
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "objective": 0.2305647316102887,
+                  "minimum_clearance_lower_bound_m": 1.010949260784392
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "objective": 0.23056473284018603,
+                  "minimum_clearance_lower_bound_m": 1.0109473737813899
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_right",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.14100851472863377,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "occupancy",
+                          "object_id": "oncoming_dark_suv",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.0456631452569054
+                          ],
+                          "obstacle_support_m": 2.45,
+                          "ego_body_support_m": 1.0456631452569056,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              -15.2,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              4.85
+                            ],
+                            [
+                              -15.2,
+                              4.85
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "suv_whole_two_seconds",
+                              "scenario_id": "suv_faster_small_drift",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  -15.2,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  4.85
+                                ],
+                                [
+                                  -15.2,
+                                  4.85
+                                ]
+                              ],
+                              "frame_ids": [
+                                "5a00ce5d429a48038aec0e2f252db7e3"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385111912404"
+                              ],
+                              "premise_ids": [
+                                "suv_body_prior",
+                                "suv_short_motion"
+                              ],
+                              "source_residual_m": 0.25
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.0456631452569054,
+                          "excess_m": 0.0456631452569054
+                        }
+                      ],
+                      "object_id": "oncoming_dark_suv",
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.3880897136497885,
+                          -0.0456631452569054
+                        ],
+                        [
+                          8.620298053804682,
+                          -0.0456631452569054
+                        ],
+                        [
+                          9.59433488637577,
+                          -0.4813499708877483
+                        ],
+                        [
+                          -1.3880897136497885,
+                          -0.4813499708877483
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_left",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.14100851472863377
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.018650029112251748
+                          ],
+                          "input_boundary_halfplane": [
+                            0.0,
+                            1.0,
+                            0.15
+                          ],
+                          "center_offset_support_m": 0.16865002911225174,
+                          "computed_m": 0.0,
+                          "threshold_m": -0.018650029112251748,
+                          "excess_m": 0.018650029112251748
+                        },
+                        {
+                          "kind": "occupancy",
+                          "object_id": "oncoming_dark_suv",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.18296320348140926
+                          ],
+                          "obstacle_support_m": 2.65,
+                          "ego_body_support_m": 1.3829632034814092,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              -11.2,
+                              2.65
+                            ],
+                            [
+                              9.85,
+                              2.65
+                            ],
+                            [
+                              9.85,
+                              4.65
+                            ],
+                            [
+                              -11.2,
+                              4.65
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "suv_whole_two_seconds",
+                              "scenario_id": "suv_straight_pass",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  -11.2,
+                                  2.65
+                                ],
+                                [
+                                  9.85,
+                                  2.65
+                                ],
+                                [
+                                  9.85,
+                                  4.65
+                                ],
+                                [
+                                  -11.2,
+                                  4.65
+                                ]
+                              ],
+                              "frame_ids": [
+                                "5a00ce5d429a48038aec0e2f252db7e3"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385111912404"
+                              ],
+                              "premise_ids": [
+                                "suv_body_prior",
+                                "suv_short_motion"
+                              ],
+                              "source_residual_m": 0.25
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.18296320348140926,
+                          "excess_m": 0.18296320348140926
+                        },
+                        {
+                          "kind": "occupancy",
+                          "object_id": "oncoming_dark_suv",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.382963203481409
+                          ],
+                          "obstacle_support_m": 2.45,
+                          "ego_body_support_m": 1.3829632034814092,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              -15.2,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              4.85
+                            ],
+                            [
+                              -15.2,
+                              4.85
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "suv_whole_two_seconds",
+                              "scenario_id": "suv_faster_small_drift",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  -15.2,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  4.85
+                                ],
+                                [
+                                  -15.2,
+                                  4.85
+                                ]
+                              ],
+                              "frame_ids": [
+                                "5a00ce5d429a48038aec0e2f252db7e3"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385111912404"
+                              ],
+                              "premise_ids": [
+                                "suv_body_prior",
+                                "suv_short_motion"
+                              ],
+                              "source_residual_m": 0.25
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.382963203481409,
+                          "excess_m": 0.382963203481409
+                        }
+                      ],
+                      "object_id": "oncoming_dark_suv",
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.3880897136497885,
+                          -0.382963203481409
+                        ],
+                        [
+                          6.831757201758313,
+                          -0.382963203481409
+                        ],
+                        [
+                          7.213509501790229,
+                          -0.6200031249023452
+                        ],
+                        [
+                          -1.3880897136497885,
+                          -0.6200031249023452
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_right_strong",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.16756099409439087,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "occupancy",
+                          "object_id": "oncoming_dark_suv",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.0708508258656646
+                          ],
+                          "obstacle_support_m": 2.45,
+                          "ego_body_support_m": 1.0708508258656648,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              -15.2,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              2.45
+                            ],
+                            [
+                              9.9,
+                              4.85
+                            ],
+                            [
+                              -15.2,
+                              4.85
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "suv_whole_two_seconds",
+                              "scenario_id": "suv_faster_small_drift",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  -15.2,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  2.45
+                                ],
+                                [
+                                  9.9,
+                                  4.85
+                                ],
+                                [
+                                  -15.2,
+                                  4.85
+                                ]
+                              ],
+                              "frame_ids": [
+                                "5a00ce5d429a48038aec0e2f252db7e3"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385111912404"
+                              ],
+                              "premise_ids": [
+                                "suv_body_prior",
+                                "suv_short_motion"
+                              ],
+                              "source_residual_m": 0.25
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.0708508258656646,
+                          "excess_m": 0.0708508258656646
+                        }
+                      ],
+                      "object_id": "oncoming_dark_suv",
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.3831933661021656,
+                          -0.0708508258656646
+                        ],
+                        [
+                          8.866577410376747,
+                          -0.0708508258656646
+                        ],
+                        [
+                          9.738651086423673,
+                          -0.4498663985937742
+                        ],
+                        [
+                          -1.3831933661021656,
+                          -0.4498663985937742
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": "original",
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [],
+            "physical": {
+              "prefix_consumed": true,
+              "motion_class": "MOVING_PREFIX",
+              "displacement_xy_m": [
+                1.7778035960912062,
+                -2.588675153351103e-05
+              ],
+              "displacement_m": 1.7778035962796759,
+              "end_speed_mps": 8.871567851407256,
+              "prefix_s": 0.2,
+              "minimum_conditional_clearance_lower_bound_m": 1.010949260784392,
+              "max_abs_acceleration_mps2": 0.1745012973701998,
+              "rms_discrete_jerk_proxy_mps3": 0.07286644289017753,
+              "max_abs_steer_rad": 1.8820862214372578e-05,
+              "solver_status": "Solve_Succeeded",
+              "T4_verdict": "PASS",
+              "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+              "independent_acceptor_pass": true,
+              "prefix_receipt_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/execution_receipt.json",
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_35833ae5808e4ef186d1fdebac3d9cf6",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.2,
+                    -0.65
+                  ],
+                  [
+                    21,
+                    -0.65
+                  ],
+                  [
+                    21,
+                    0.15
+                  ],
+                  [
+                    -0.2,
+                    0.15
+                  ]
+                ],
+                "desired_speed_mps": 8.5,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385113.9124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 3,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": {
+          "T2": 2,
+          "T3": 2,
+          "T4": 2
+        },
+        "physical": {
+          "prefix_consumed": true,
+          "motion_class": "MOVING_PREFIX",
+          "displacement_xy_m": [
+            1.7778035960912062,
+            -2.588675153351103e-05
+          ],
+          "displacement_m": 1.7778035962796759,
+          "end_speed_mps": 8.871567851407256,
+          "prefix_s": 0.2,
+          "minimum_conditional_clearance_lower_bound_m": 1.010949260784392,
+          "max_abs_acceleration_mps2": 0.1745012973701998,
+          "rms_discrete_jerk_proxy_mps3": 0.07286644289017753,
+          "max_abs_steer_rad": 1.8820862214372578e-05,
+          "solver_status": "Solve_Succeeded",
+          "T4_verdict": "PASS",
+          "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+          "independent_acceptor_pass": true,
+          "prefix_receipt_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/execution_receipt.json",
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 40,
+        "relative_sequence_time_s": 19.8,
+        "reference_time_s": 1535385111.9124038,
+        "reference_time_id": "nusc_us_1535385111912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_040/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "PASS",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "PASS",
+          "EXECUTION": "PASS"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": -0.003262749142631464,
+          "plan_end_lateral_m": -0.0007598338867227802,
+          "prefix_yaw_change_deg": -0.0007100389350723475,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": true,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": true,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25275,
+        "input_tokens_details": {
+          "cache_write_tokens": 21777,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 5186,
+        "output_tokens_details": {
+          "reasoning_tokens": 1772
+        },
+        "total_tokens": 30461
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/record.json",
+      "record_sha256": "52b2876da1c00a9a1046d15e1b87705b5c18e390ce3e7b2ffb4e9bd35f74a75e",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 2,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_441c967206104535ace1be57ced2bdb9",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25275,
+          "input_tokens_details": {
+            "cache_write_tokens": 21777,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 5186,
+          "output_tokens_details": {
+            "reasoning_tokens": 1772
+          },
+          "total_tokens": 30461
+        },
+        "structured_output": true,
+        "elapsed_s": 96.77072291821241
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.2305647316102887,
+            "minimum_clearance_lower_bound_m": 1.010949260784392
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.23056473284018603,
+            "minimum_clearance_lower_bound_m": 1.0109473737813899
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.14100851472863377,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.0456631452569054
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.0456631452569056,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.0456631452569054,
+                    "excess_m": 0.0456631452569054
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3880897136497885,
+                    -0.0456631452569054
+                  ],
+                  [
+                    8.620298053804682,
+                    -0.0456631452569054
+                  ],
+                  [
+                    9.59433488637577,
+                    -0.4813499708877483
+                  ],
+                  [
+                    -1.3880897136497885,
+                    -0.4813499708877483
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14100851472863377
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.018650029112251748
+                    ],
+                    "input_boundary_halfplane": [
+                      0.0,
+                      1.0,
+                      0.15
+                    ],
+                    "center_offset_support_m": 0.16865002911225174,
+                    "computed_m": 0.0,
+                    "threshold_m": -0.018650029112251748,
+                    "excess_m": 0.018650029112251748
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.18296320348140926
+                    ],
+                    "obstacle_support_m": 2.65,
+                    "ego_body_support_m": 1.3829632034814092,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -11.2,
+                        2.65
+                      ],
+                      [
+                        9.85,
+                        2.65
+                      ],
+                      [
+                        9.85,
+                        4.65
+                      ],
+                      [
+                        -11.2,
+                        4.65
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_straight_pass",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -11.2,
+                            2.65
+                          ],
+                          [
+                            9.85,
+                            2.65
+                          ],
+                          [
+                            9.85,
+                            4.65
+                          ],
+                          [
+                            -11.2,
+                            4.65
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.18296320348140926,
+                    "excess_m": 0.18296320348140926
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.382963203481409
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.3829632034814092,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.382963203481409,
+                    "excess_m": 0.382963203481409
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3880897136497885,
+                    -0.382963203481409
+                  ],
+                  [
+                    6.831757201758313,
+                    -0.382963203481409
+                  ],
+                  [
+                    7.213509501790229,
+                    -0.6200031249023452
+                  ],
+                  [
+                    -1.3880897136497885,
+                    -0.6200031249023452
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right_strong",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.16756099409439087,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "oncoming_dark_suv",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.0708508258656646
+                    ],
+                    "obstacle_support_m": 2.45,
+                    "ego_body_support_m": 1.0708508258656648,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        -15.2,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        2.45
+                      ],
+                      [
+                        9.9,
+                        4.85
+                      ],
+                      [
+                        -15.2,
+                        4.85
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "suv_whole_two_seconds",
+                        "scenario_id": "suv_faster_small_drift",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            -15.2,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            2.45
+                          ],
+                          [
+                            9.9,
+                            4.85
+                          ],
+                          [
+                            -15.2,
+                            4.85
+                          ]
+                        ],
+                        "frame_ids": [
+                          "5a00ce5d429a48038aec0e2f252db7e3"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385111912404"
+                        ],
+                        "premise_ids": [
+                          "suv_body_prior",
+                          "suv_short_motion"
+                        ],
+                        "source_residual_m": 0.25
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.0708508258656646,
+                    "excess_m": 0.0708508258656646
+                  }
+                ],
+                "object_id": "oncoming_dark_suv",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.3831933661021656,
+                    -0.0708508258656646
+                  ],
+                  [
+                    8.866577410376747,
+                    -0.0708508258656646
+                  ],
+                  [
+                    9.738651086423673,
+                    -0.4498663985937742
+                  ],
+                  [
+                    -1.3831933661021656,
+                    -0.4498663985937742
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.7778035960912062,
+          -2.588675153351103e-05
+        ],
+        "displacement_m": 1.7778035962796759,
+        "end_speed_mps": 8.871567851407256,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.010949260784392,
+        "max_abs_acceleration_mps2": 0.1745012973701998,
+        "rms_discrete_jerk_proxy_mps3": 0.07286644289017753,
+        "max_abs_steer_rad": 1.8820862214372578e-05,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_040/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_35833ae5808e4ef186d1fdebac3d9cf6",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -0.65
+            ],
+            [
+              21,
+              -0.65
+            ],
+            [
+              21,
+              0.15
+            ],
+            [
+              -0.2,
+              0.15
+            ]
+          ],
+          "desired_speed_mps": 8.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385113.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v3_bus_road"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": true,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": true,
+  "overall_success_request_ordinal": 1,
+  "selection_policy": "EARLIEST_EXISTING_PASS",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      146.47337795241666,
+      -0.5009344343918984
+    ],
+    "yaw_rad": 0.012828575790342762,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}

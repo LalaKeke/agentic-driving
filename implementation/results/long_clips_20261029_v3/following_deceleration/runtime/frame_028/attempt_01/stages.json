@@ -1,0 +1,45 @@
+{
+  "stages": {
+    "T1": "FAIL",
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED",
+    "ACCEPTOR": "NOT_REACHED"
+  },
+  "failure": {
+    "code": "PREMISE_SCOPE",
+    "message": "Conditional premise does not cover this object, scenario and whole time interval",
+    "category": "interface_error",
+    "details": {
+      "premise_id": "left_async_alignment",
+      "object_id": "left_silver_wagon",
+      "required_scenario_ids": [
+        "wagon_parked",
+        "wagon_small_settle"
+      ],
+      "declared_object_ids": [
+        "left_silver_wagon",
+        "left_brown_suv"
+      ],
+      "declared_scenario_ids": [
+        "wagon_parked",
+        "wagon_small_settle",
+        "suv_parked",
+        "suv_small_settle"
+      ],
+      "required_interval_s": [
+        0,
+        2
+      ],
+      "declared_interval_s": [
+        -0.008,
+        0
+      ],
+      "conflict_dimensions": [
+        "time_end"
+      ]
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  }
+}

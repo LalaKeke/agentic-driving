@@ -1,0 +1,1305 @@
+{
+  "case_id": "frame_024",
+  "scene_name": "scene-0103",
+  "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+  "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+  "label": "frame_024",
+  "runtime_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024",
+  "initial_speed_mps": 3.7359487922185,
+  "status": "TOOL_OR_SEMANTIC_FAILURE",
+  "ended": true,
+  "charged_requests": 2,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": false,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": "T1",
+  "final_failure_reasons": [
+    {
+      "code": "PREMISE_SPACE",
+      "message": "Declared geometry lies outside its finite premise scope",
+      "category": "tool_infeasible",
+      "details": {
+        "object_id": "lead_black_hatchback",
+        "scenario_id": "lead_continue",
+        "premise_id": "prototype_local_scope"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [
+    "T1_CONTRACT_GEOMETRY"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25300,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 25297
+        },
+        "output_tokens": 9726,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 35026
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/attempt_01/record.json",
+      "record_sha256": "3ce5769213a65897ae1d57fd465424c636a947c5b83687ec695569510bc65800",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_db4f14a0cee043a7922f04acd554f486",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25300,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 25297
+          },
+          "output_tokens": 9726,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 35026
+        },
+        "structured_output": true,
+        "elapsed_s": 130.72681673057377
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T1",
+      "blocking_reasons": [
+        {
+          "code": "PREMISE_SPACE",
+          "message": "Declared geometry lies outside its finite premise scope",
+          "category": "tool_infeasible",
+          "details": {
+            "object_id": "lead_black_hatchback",
+            "scenario_id": "lead_continue",
+            "premise_id": "prototype_local_scope"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PREMISE_SPACE",
+        "message": "Declared geometry lies outside its finite premise scope",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "lead_black_hatchback",
+          "scenario_id": "lead_continue",
+          "premise_id": "prototype_local_scope"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "T1_CONTRACT_GEOMETRY"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_0af0feb5b1394b928dd13d648de898f5",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.6
+            ],
+            [
+              9,
+              -0.6
+            ],
+            [
+              9,
+              0.7
+            ],
+            [
+              -0.5,
+              0.7
+            ]
+          ],
+          "desired_speed_mps": 3.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1533151617.4124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": null,
+  "physical": {
+    "prefix_consumed": false,
+    "motion_class": "NOT_EXECUTED",
+    "displacement_xy_m": null,
+    "displacement_m": null,
+    "end_speed_mps": null,
+    "prefix_s": null,
+    "minimum_conditional_clearance_lower_bound_m": null,
+    "max_abs_acceleration_mps2": null,
+    "rms_discrete_jerk_proxy_mps3": null,
+    "max_abs_steer_rad": null,
+    "solver_status": null,
+    "T4_verdict": "NOT_REACHED",
+    "acceptor_status": "NOT_REACHED",
+    "independent_acceptor_pass": false,
+    "prefix_receipt_path": null,
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": "T1",
+  "selected_native_failure_reasons": [
+    {
+      "code": "PREMISE_SPACE",
+      "message": "Declared geometry lies outside its finite premise scope",
+      "category": "tool_infeasible",
+      "details": {
+        "object_id": "lead_black_hatchback",
+        "scenario_id": "lead_continue",
+        "premise_id": "prototype_local_scope"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "frame_index": 24,
+  "relative_sequence_time_s": 11.899999999999999,
+  "reference_time_s": 1533151615.4124038,
+  "reference_time_id": "nusc_us_1533151615412404",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_024/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "FAIL",
+    "T2": "NOT_REACHED",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": null,
+    "plan_end_lateral_m": null,
+    "prefix_yaw_change_deg": null,
+    "direction_review": "NOT_EVALUABLE_NO_PLAN"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 1,
+  "unknown_dispatch_history": [
+    {
+      "attempt": 1,
+      "observation": {
+        "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+        "observer_closed": true,
+        "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+        "parent_exec_exit_code": 143,
+        "child_exit_codes": null,
+        "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+        "model_service_state_for_inflight": "UNKNOWN",
+        "automatic_model_retries": 0
+      },
+      "charged": true,
+      "observed_api_post_requests": 0,
+      "source_group": "long_clips_20261029_v2_following_deceleration"
+    }
+  ],
+  "motion_review": {
+    "moving_prefix_observed": false,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "TOOL_OR_SEMANTIC_FAILURE",
+  "source_group": "long_clips_20261029_v3_following_deceleration",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_following_deceleration",
+      "result": {
+        "case_id": "frame_024",
+        "scene_name": "scene-0103",
+        "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+        "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+        "label": "frame_024",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/following_deceleration/runtime/frame_024",
+        "initial_speed_mps": 3.7359487922185,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 24,
+        "relative_sequence_time_s": 11.899999999999999,
+        "reference_time_s": 1533151615.4124038,
+        "reference_time_id": "nusc_us_1533151615412404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_024/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_following_deceleration",
+      "result": {
+        "case_id": "frame_024",
+        "scene_name": "scene-0103",
+        "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+        "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+        "label": "frame_024",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/following_deceleration/runtime/frame_024",
+        "initial_speed_mps": 3.7359487922185,
+        "status": "PROCESS_INTERRUPTED_OUTCOME_UNKNOWN",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+        "final_failure_reasons": [
+          {
+            "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+            "category": "execution_error",
+            "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+            "details": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            }
+          }
+        ],
+        "fatal_service_or_interface_failure": {
+          "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+          "category": "execution_error",
+          "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+          "details": {
+            "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+            "observer_closed": true,
+            "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+            "parent_exec_exit_code": 143,
+            "child_exit_codes": null,
+            "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+            "model_service_state_for_inflight": "UNKNOWN",
+            "automatic_model_retries": 0
+          }
+        },
+        "issue_classes_any_attempt": [
+          "PROCESS_INTERRUPTION_UNKNOWN"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 0,
+            "transport": null,
+            "server_reported_model": null,
+            "usage": null,
+            "record_path": null,
+            "record_sha256": null,
+            "native_output_path": null,
+            "native_json_present": false,
+            "native_business_schema": "NOT_REACHED",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": null,
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "UNKNOWN",
+              "BUSINESS_SCHEMA": "NOT_REACHED",
+              "T1": "NOT_REACHED",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 18,
+              "source": "online_model",
+              "status": "OBSERVER_CLOSED_PROCESS_INTERRUPTION",
+              "api_post_requests": 0,
+              "http_requests": 0,
+              "charged_generation_attempt": 1,
+              "dispatch_state": "UNKNOWN",
+              "model_service_returned": "UNKNOWN",
+              "native_json_returned": false,
+              "http_status": null,
+              "request_id": null,
+              "observation": {
+                "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                "observer_closed": true,
+                "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                "parent_exec_exit_code": 143,
+                "child_exit_codes": null,
+                "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                "model_service_state_for_inflight": "UNKNOWN",
+                "automatic_model_retries": 0
+              }
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "DISPATCH_OR_RESPONSE_UNKNOWN",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+            "blocking_reasons": [
+              {
+                "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+                "category": "execution_error",
+                "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+                "details": {
+                  "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                  "observer_closed": true,
+                  "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                  "parent_exec_exit_code": 143,
+                  "child_exit_codes": null,
+                  "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                  "model_service_state_for_inflight": "UNKNOWN",
+                  "automatic_model_retries": 0
+                }
+              }
+            ],
+            "raw_last_failure": {
+              "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+              "category": "execution_error",
+              "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+              "details": {
+                "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                "observer_closed": true,
+                "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                "parent_exec_exit_code": 143,
+                "child_exit_codes": null,
+                "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                "model_service_state_for_inflight": "UNKNOWN",
+                "automatic_model_retries": 0
+              }
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "PROCESS_INTERRUPTION_UNKNOWN"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": null,
+              "traffic_evidence": null
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+            "dispatch_or_response_unknown": true,
+            "unknown_dispatch_attempts": 1
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": null,
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "SERVICE",
+        "selected_native_failure_reasons": [
+          {
+            "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+            "category": "execution_error",
+            "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+            "details": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            }
+          }
+        ],
+        "frame_index": 24,
+        "relative_sequence_time_s": 11.899999999999999,
+        "reference_time_s": 1533151615.4124038,
+        "reference_time_id": "nusc_us_1533151615412404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_024/capture.json",
+        "stages": {
+          "SERVICE": "UNKNOWN",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 1,
+        "unknown_dispatch_history": [
+          {
+            "attempt": 1,
+            "observation": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            },
+            "charged": true,
+            "observed_api_post_requests": 0
+          }
+        ],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v3_following_deceleration",
+      "result": {
+        "case_id": "frame_024",
+        "scene_name": "scene-0103",
+        "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+        "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+        "label": "frame_024",
+        "runtime_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024",
+        "initial_speed_mps": 3.7359487922185,
+        "status": "TOOL_OR_SEMANTIC_FAILURE",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": "T1",
+        "final_failure_reasons": [
+          {
+            "code": "PREMISE_SPACE",
+            "message": "Declared geometry lies outside its finite premise scope",
+            "category": "tool_infeasible",
+            "details": {
+              "object_id": "lead_black_hatchback",
+              "scenario_id": "lead_continue",
+              "premise_id": "prototype_local_scope"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [
+          "T1_CONTRACT_GEOMETRY"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25300,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 25297
+              },
+              "output_tokens": 9726,
+              "output_tokens_details": {
+                "reasoning_tokens": 1552
+              },
+              "total_tokens": 35026
+            },
+            "record_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/attempt_01/record.json",
+            "record_sha256": "3ce5769213a65897ae1d57fd465424c636a947c5b83687ec695569510bc65800",
+            "native_output_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "FAIL",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_db4f14a0cee043a7922f04acd554f486",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25300,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 25297
+                },
+                "output_tokens": 9726,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1552
+                },
+                "total_tokens": 35026
+              },
+              "structured_output": true,
+              "elapsed_s": 130.72681673057377
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "T1",
+            "blocking_reasons": [
+              {
+                "code": "PREMISE_SPACE",
+                "message": "Declared geometry lies outside its finite premise scope",
+                "category": "tool_infeasible",
+                "details": {
+                  "object_id": "lead_black_hatchback",
+                  "scenario_id": "lead_continue",
+                  "premise_id": "prototype_local_scope"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "PREMISE_SPACE",
+              "message": "Declared geometry lies outside its finite premise scope",
+              "category": "tool_infeasible",
+              "details": {
+                "object_id": "lead_black_hatchback",
+                "scenario_id": "lead_continue",
+                "premise_id": "prototype_local_scope"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "T1_CONTRACT_GEOMETRY"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_0af0feb5b1394b928dd13d648de898f5",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.5,
+                    -0.6
+                  ],
+                  [
+                    9,
+                    -0.6
+                  ],
+                  [
+                    9,
+                    0.7
+                  ],
+                  [
+                    -0.5,
+                    0.7
+                  ]
+                ],
+                "desired_speed_mps": 3.5,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1533151617.4124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 3,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": null,
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "T1",
+        "selected_native_failure_reasons": [
+          {
+            "code": "PREMISE_SPACE",
+            "message": "Declared geometry lies outside its finite premise scope",
+            "category": "tool_infeasible",
+            "details": {
+              "object_id": "lead_black_hatchback",
+              "scenario_id": "lead_continue",
+              "premise_id": "prototype_local_scope"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "frame_index": 24,
+        "relative_sequence_time_s": 11.899999999999999,
+        "reference_time_s": 1533151615.4124038,
+        "reference_time_id": "nusc_us_1533151615412404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_024/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "FAIL",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 0,
+      "transport": null,
+      "server_reported_model": null,
+      "usage": null,
+      "record_path": null,
+      "record_sha256": null,
+      "native_output_path": null,
+      "native_json_present": false,
+      "native_business_schema": "NOT_REACHED",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": null,
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "UNKNOWN",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 18,
+        "source": "online_model",
+        "status": "OBSERVER_CLOSED_PROCESS_INTERRUPTION",
+        "api_post_requests": 0,
+        "http_requests": 0,
+        "charged_generation_attempt": 1,
+        "dispatch_state": "UNKNOWN",
+        "model_service_returned": "UNKNOWN",
+        "native_json_returned": false,
+        "http_status": null,
+        "request_id": null,
+        "observation": {
+          "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+          "observer_closed": true,
+          "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+          "parent_exec_exit_code": 143,
+          "child_exit_codes": null,
+          "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+          "model_service_state_for_inflight": "UNKNOWN",
+          "automatic_model_retries": 0
+        }
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "DISPATCH_OR_RESPONSE_UNKNOWN",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+      "blocking_reasons": [
+        {
+          "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+          "category": "execution_error",
+          "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+          "details": {
+            "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+            "observer_closed": true,
+            "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+            "parent_exec_exit_code": 143,
+            "child_exit_codes": null,
+            "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+            "model_service_state_for_inflight": "UNKNOWN",
+            "automatic_model_retries": 0
+          }
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+        "category": "execution_error",
+        "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+        "details": {
+          "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+          "observer_closed": true,
+          "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+          "parent_exec_exit_code": 143,
+          "child_exit_codes": null,
+          "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+          "model_service_state_for_inflight": "UNKNOWN",
+          "automatic_model_retries": 0
+        }
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "PROCESS_INTERRUPTION_UNKNOWN"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": null,
+        "traffic_evidence": null
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "dispatch_or_response_unknown": true,
+      "unknown_dispatch_attempts": 1,
+      "source_group": "long_clips_20261029_v2_following_deceleration"
+    },
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25300,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 25297
+        },
+        "output_tokens": 9726,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 35026
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/attempt_01/record.json",
+      "record_sha256": "3ce5769213a65897ae1d57fd465424c636a947c5b83687ec695569510bc65800",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/following_deceleration/runtime/frame_024/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_db4f14a0cee043a7922f04acd554f486",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25300,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 25297
+          },
+          "output_tokens": 9726,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 35026
+        },
+        "structured_output": true,
+        "elapsed_s": 130.72681673057377
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T1",
+      "blocking_reasons": [
+        {
+          "code": "PREMISE_SPACE",
+          "message": "Declared geometry lies outside its finite premise scope",
+          "category": "tool_infeasible",
+          "details": {
+            "object_id": "lead_black_hatchback",
+            "scenario_id": "lead_continue",
+            "premise_id": "prototype_local_scope"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PREMISE_SPACE",
+        "message": "Declared geometry lies outside its finite premise scope",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "lead_black_hatchback",
+          "scenario_id": "lead_continue",
+          "premise_id": "prototype_local_scope"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "T1_CONTRACT_GEOMETRY"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_0af0feb5b1394b928dd13d648de898f5",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.5,
+              -0.6
+            ],
+            [
+              9,
+              -0.6
+            ],
+            [
+              9,
+              0.7
+            ],
+            [
+              -0.5,
+              0.7
+            ]
+          ],
+          "desired_speed_mps": 3.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1533151617.4124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v3_following_deceleration"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": false,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": null,
+  "overall_success_request_ordinal": null,
+  "overall_request_ordinal_scope": "Charged attempts including unconfirmed dispatch; observed POSTs are counted separately.",
+  "selection_policy": "LATEST_ACTUAL_ATTEMPT_GROUP",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      49.925002710317855,
+      -4.4597884946624085
+    ],
+    "yaw_rad": -0.09256957441890368,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}

@@ -1,0 +1,4951 @@
+{
+  "case_id": "frame_034",
+  "scene_name": "scene-0655",
+  "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+  "sample_token": "96d915e8b7e44bacba3c78e76a924e5c",
+  "label": "frame_034",
+  "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034",
+  "initial_speed_mps": 8.905123017879152,
+  "status": "TOOL_OR_SEMANTIC_FAILURE",
+  "ended": true,
+  "charged_requests": 2,
+  "reported_charged_requests": 2,
+  "turn_start_count": 0,
+  "api_post_requests": 2,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": false,
+  "revision_pass": false,
+  "native_json_count": 2,
+  "native_schema_valid_count": 2,
+  "final_failure_stage": "T4",
+  "final_failure_reasons": [
+    {
+      "code": "VERIFICATION_REJECTED",
+      "violations": [
+        {
+          "code": "TARGET_INTENT",
+          "object_id": null,
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "position_m": [
+            0.0,
+            6.702259317626913e-28
+          ],
+          "computed": 0.08905105054917783,
+          "threshold": 0.05,
+          "unit": "m",
+          "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+        }
+      ]
+    },
+    {
+      "code": "VERIFICATION_REJECTED",
+      "violations": [
+        {
+          "code": "TARGET_INTENT",
+          "object_id": null,
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "position_m": [
+            0.0,
+            2.7948928759469267e-25
+          ],
+          "computed": 0.08905105118875387,
+          "threshold": 0.05,
+          "unit": "m",
+          "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+        }
+      ]
+    }
+  ],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [
+    "T2_CORRIDOR",
+    "T4_VERIFICATION"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25311,
+        "input_tokens_details": {
+          "cache_write_tokens": 21813,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 5741,
+        "output_tokens_details": {
+          "reasoning_tokens": 1034
+        },
+        "total_tokens": 31052
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_01/record.json",
+      "record_sha256": "25be97534d5e415d9f5e596630db6400e04601734bb0a8ee636cbf7a37921121",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 21,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_ced715179f044675a1e06393b7c94566",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25311,
+          "input_tokens_details": {
+            "cache_write_tokens": 21813,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 5741,
+          "output_tokens_details": {
+            "reasoning_tokens": 1034
+          },
+          "total_tokens": 31052
+        },
+        "structured_output": true,
+        "elapsed_s": 86.52658098749816
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T2",
+      "blocking_reasons": [
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "original",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.199625019530843
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.199625019530843,
+                "computed_m": 1.2,
+                "threshold_m": 1.199625019530843,
+                "excess_m": 0.00037498046915684924
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.199625019530843,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                -0.42000312490234526
+              ],
+              [
+                -1.199625019530843,
+                -0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_straight",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.199625019530843
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.199625019530843,
+                "computed_m": 1.2,
+                "threshold_m": 1.199625019530843,
+                "excess_m": 0.00037498046915684924
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.199625019530843,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                -0.42000312490234526
+              ],
+              [
+                -1.199625019530843,
+                -0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_right",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.14099038391825486,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1880927712162086
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1880927712162086,
+                "computed_m": 1.2,
+                "threshold_m": 1.1880927712162086,
+                "excess_m": 0.011907228783791357
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.1880927712162086,
+                -0.28137151194477833
+              ],
+              [
+                -1.1880927712162086,
+                0.4200031249023453
+              ],
+              [
+                -0.17976659807554216,
+                0.4200031249023453
+              ],
+              [
+                2.2887700526250034,
+                -0.28137151194477833
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_left",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.14099038391825486
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1880927712162086
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1880927712162086,
+                "computed_m": 1.2,
+                "threshold_m": 1.1880927712162086,
+                "excess_m": 0.011907228783791357
+              },
+              {
+                "kind": "occupancy",
+                "object_id": "left_cone_workzone_compound",
+                "halfplane": [
+                  0.0,
+                  1.0,
+                  -0.032902668573220106
+                ],
+                "obstacle_support_m": 2.8,
+                "ego_body_support_m": 1.38290266857322,
+                "model_total_residual_m": 0.45,
+                "safety_margin_m": 1.0,
+                "occupancy_polygon_m": [
+                  [
+                    3.7,
+                    2.8
+                  ],
+                  [
+                    43.3,
+                    2.8
+                  ],
+                  [
+                    43.3,
+                    8.4
+                  ],
+                  [
+                    3.7,
+                    8.4
+                  ]
+                ],
+                "native_sources": [
+                  {
+                    "source_id": "cone_group_two_second_body",
+                    "scenario_id": "cones_minor_displacement",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "frame_ids": [
+                      "dd1b722645744b3eb49fdad74b765c4f"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1535385108912404"
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "cone_group_bound"
+                    ],
+                    "source_residual_m": 0.35
+                  }
+                ],
+                "computed_m": 0.0,
+                "threshold_m": -0.032902668573220106,
+                "excess_m": 0.032902668573220106
+              }
+            ],
+            "object_id": "left_cone_workzone_compound",
+            "allowed_domain_polygon_m": [
+              [
+                -1.1880927712162086,
+                -0.032902668573220106
+              ],
+              [
+                19.800000000000004,
+                -0.032902668573220106
+              ],
+              [
+                19.800000000000004,
+                -0.4200031249023453
+              ],
+              [
+                -1.1880927712162086,
+                -0.4200031249023453
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_right_strong",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.16753871343372212,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1831978249173416
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1831978249173416,
+                "computed_m": 1.2,
+                "threshold_m": 1.1831978249173416,
+                "excess_m": 0.016802175082658355
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                1.7398956787134614,
+                -0.24989276097334367
+              ],
+              [
+                -0.8030986601362482,
+                -0.24989276097334367
+              ],
+              [
+                -1.1831978249173416,
+                -0.2121711582765042
+              ],
+              [
+                -1.1831978249173416,
+                0.42000312490234526
+              ],
+              [
+                -0.18587747432688262,
+                0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "original",
+          "initial_rear_point_m": [
+            -1.2,
+            0.0
+          ],
+          "heading_band_rad": [
+            -0.025,
+            0.025
+          ],
+          "initial_state_violations": [
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                1.199625019530843
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "center_offset_support_m": -1.199625019530843,
+              "computed_m": 1.2,
+              "threshold_m": 1.199625019530843,
+              "excess_m": 0.00037498046915684924
+            }
+          ],
+          "object_id": null,
+          "allowed_domain_polygon_m": [
+            [
+              -1.199625019530843,
+              0.3627903496503744
+            ],
+            [
+              19.800000000000004,
+              0.3627903496503744
+            ],
+            [
+              19.800000000000004,
+              -0.42000312490234526
+            ],
+            [
+              -1.199625019530843,
+              -0.42000312490234526
+            ]
+          ],
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            }
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": {
+        "T2": 0,
+        "T3": 0,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "original",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.199625019530843
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.199625019530843,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.199625019530843,
+                    "excess_m": 0.00037498046915684924
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.199625019530843,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.199625019530843,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_straight",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.199625019530843
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.199625019530843,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.199625019530843,
+                    "excess_m": 0.00037498046915684924
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.199625019530843,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.199625019530843,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.14099038391825486,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1880927712162086
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1880927712162086,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1880927712162086,
+                    "excess_m": 0.011907228783791357
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.1880927712162086,
+                    -0.28137151194477833
+                  ],
+                  [
+                    -1.1880927712162086,
+                    0.4200031249023453
+                  ],
+                  [
+                    -0.17976659807554216,
+                    0.4200031249023453
+                  ],
+                  [
+                    2.2887700526250034,
+                    -0.28137151194477833
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14099038391825486
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1880927712162086
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1880927712162086,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1880927712162086,
+                    "excess_m": 0.011907228783791357
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "left_cone_workzone_compound",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.032902668573220106
+                    ],
+                    "obstacle_support_m": 2.8,
+                    "ego_body_support_m": 1.38290266857322,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "cone_group_two_second_body",
+                        "scenario_id": "cones_minor_displacement",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            3.7,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            8.4
+                          ],
+                          [
+                            3.7,
+                            8.4
+                          ]
+                        ],
+                        "frame_ids": [
+                          "dd1b722645744b3eb49fdad74b765c4f"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385108912404"
+                        ],
+                        "premise_ids": [
+                          "prototype_local_scope",
+                          "cone_group_bound"
+                        ],
+                        "source_residual_m": 0.35
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.032902668573220106,
+                    "excess_m": 0.032902668573220106
+                  }
+                ],
+                "object_id": "left_cone_workzone_compound",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.1880927712162086,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.4200031249023453
+                  ],
+                  [
+                    -1.1880927712162086,
+                    -0.4200031249023453
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right_strong",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.16753871343372212,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1831978249173416
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1831978249173416,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1831978249173416,
+                    "excess_m": 0.016802175082658355
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    1.7398956787134614,
+                    -0.24989276097334367
+                  ],
+                  [
+                    -0.8030986601362482,
+                    -0.24989276097334367
+                  ],
+                  [
+                    -1.1831978249173416,
+                    -0.2121711582765042
+                  ],
+                  [
+                    -1.1831978249173416,
+                    0.42000312490234526
+                  ],
+                  [
+                    -0.18587747432688262,
+                    0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T2_CORRIDOR"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              0,
+              -0.45
+            ],
+            [
+              21,
+              -0.45
+            ],
+            [
+              21,
+              0.45
+            ],
+            [
+              0,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.9,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385110.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    },
+    {
+      "attempt": 2,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 30048,
+        "input_tokens_details": {
+          "cache_write_tokens": 26550,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4900,
+        "output_tokens_details": {
+          "reasoning_tokens": 67
+        },
+        "total_tokens": 34948
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_02/record.json",
+      "record_sha256": "f192d975610ff74069ef5a1215bb1006d888dba1856d122916d3178bf79d5cbe",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_02/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "FAIL",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 22,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_2c72c72ed9e648cfb93b67043cc3e299",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 30048,
+          "input_tokens_details": {
+            "cache_write_tokens": 26550,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4900,
+          "output_tokens_details": {
+            "reasoning_tokens": 67
+          },
+          "total_tokens": 34948
+        },
+        "structured_output": true,
+        "elapsed_s": 39.370010297745466
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T4",
+      "blocking_reasons": [
+        {
+          "code": "VERIFICATION_REJECTED",
+          "violations": [
+            {
+              "code": "TARGET_INTENT",
+              "object_id": null,
+              "time_interval_s": [
+                0.0,
+                0.02
+              ],
+              "position_m": [
+                0.0,
+                6.702259317626913e-28
+              ],
+              "computed": 0.08905105054917783,
+              "threshold": 0.05,
+              "unit": "m",
+              "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+            }
+          ]
+        },
+        {
+          "code": "VERIFICATION_REJECTED",
+          "violations": [
+            {
+              "code": "TARGET_INTENT",
+              "object_id": null,
+              "time_interval_s": [
+                0.0,
+                0.02
+              ],
+              "position_m": [
+                0.0,
+                2.7948928759469267e-25
+              ],
+              "computed": 0.08905105118875387,
+              "threshold": 0.05,
+              "unit": "m",
+              "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+            }
+          ]
+        }
+      ],
+      "raw_last_failure": {
+        "code": "VERIFICATION_REJECTED",
+        "violations": [
+          {
+            "code": "TARGET_INTENT",
+            "object_id": null,
+            "time_interval_s": [
+              0.0,
+              0.02
+            ],
+            "position_m": [
+              0.0,
+              6.702259317626913e-28
+            ],
+            "computed": 0.08905105054917783,
+            "threshold": 0.05,
+            "unit": "m",
+            "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+          }
+        ],
+        "details": {
+          "candidate_id": "original",
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            }
+          ]
+        }
+      },
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    0.0,
+                    0.02
+                  ],
+                  "position_m": [
+                    0.0,
+                    6.702259317626913e-28
+                  ],
+                  "computed": 0.08905105054917783,
+                  "threshold": 0.05,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    0.0,
+                    0.02
+                  ],
+                  "position_m": [
+                    0.0,
+                    2.7948928759469267e-25
+                  ],
+                  "computed": 0.08905105118875387,
+                  "threshold": 0.05,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14099038391825486
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "left_cone_workzone_compound",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.032902668573220106
+                    ],
+                    "obstacle_support_m": 2.8,
+                    "ego_body_support_m": 1.38290266857322,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "cone_group_two_second_body",
+                        "scenario_id": "cones_minor_displacement",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            3.7,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            8.4
+                          ],
+                          [
+                            3.7,
+                            8.4
+                          ]
+                        ],
+                        "frame_ids": [
+                          "dd1b722645744b3eb49fdad74b765c4f"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385108912404"
+                        ],
+                        "premise_ids": [
+                          "prototype_local_scope",
+                          "cone_group_bound"
+                        ],
+                        "source_residual_m": 0.35
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.032902668573220106,
+                    "excess_m": 0.032902668573220106
+                  }
+                ],
+                "object_id": "left_cone_workzone_compound",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.2380927712162086,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.2380927712162086,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T4_VERIFICATION"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.05,
+              -0.45
+            ],
+            [
+              21,
+              -0.45
+            ],
+            [
+              21,
+              0.45
+            ],
+            [
+              -0.05,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.9,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385110.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 2,
+  "candidate_counts": {
+    "T2": 2,
+    "T3": 2,
+    "T4": 0
+  },
+  "physical": {
+    "prefix_consumed": false,
+    "motion_class": "NOT_EXECUTED",
+    "displacement_xy_m": null,
+    "displacement_m": null,
+    "end_speed_mps": null,
+    "prefix_s": null,
+    "minimum_conditional_clearance_lower_bound_m": null,
+    "max_abs_acceleration_mps2": null,
+    "rms_discrete_jerk_proxy_mps3": null,
+    "max_abs_steer_rad": null,
+    "solver_status": null,
+    "T4_verdict": "NOT_REACHED",
+    "acceptor_status": "NOT_REACHED",
+    "independent_acceptor_pass": false,
+    "prefix_receipt_path": null,
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": "T4",
+  "selected_native_failure_reasons": [
+    {
+      "code": "VERIFICATION_REJECTED",
+      "violations": [
+        {
+          "code": "TARGET_INTENT",
+          "object_id": null,
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "position_m": [
+            0.0,
+            6.702259317626913e-28
+          ],
+          "computed": 0.08905105054917783,
+          "threshold": 0.05,
+          "unit": "m",
+          "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+        }
+      ]
+    },
+    {
+      "code": "VERIFICATION_REJECTED",
+      "violations": [
+        {
+          "code": "TARGET_INTENT",
+          "object_id": null,
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "position_m": [
+            0.0,
+            2.7948928759469267e-25
+          ],
+          "computed": 0.08905105118875387,
+          "threshold": 0.05,
+          "unit": "m",
+          "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+        }
+      ]
+    }
+  ],
+  "frame_index": 34,
+  "relative_sequence_time_s": 16.8,
+  "reference_time_s": 1535385108.9124038,
+  "reference_time_id": "nusc_us_1535385108912404",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_034/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "FAIL",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED"
+  },
+  "stage_origin_attempt": 2,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": -0.0001514836949770473,
+    "plan_end_lateral_m": -3.434350151078829e-05,
+    "prefix_yaw_change_deg": -2.8940715168027962e-05,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": false,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": "original",
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 0,
+  "unknown_dispatch_history": [],
+  "motion_review": {
+    "moving_prefix_observed": false,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "TOOL_OR_SEMANTIC_FAILURE",
+  "source_group": "long_clips_20261029_v2_bus_road",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_bus_road",
+      "result": {
+        "case_id": "frame_034",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "96d915e8b7e44bacba3c78e76a924e5c",
+        "label": "frame_034",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/bus_road/runtime/frame_034",
+        "initial_speed_mps": 8.905123017879152,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 34,
+        "relative_sequence_time_s": 16.8,
+        "reference_time_s": 1535385108.9124038,
+        "reference_time_id": "nusc_us_1535385108912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_034/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_bus_road",
+      "result": {
+        "case_id": "frame_034",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "96d915e8b7e44bacba3c78e76a924e5c",
+        "label": "frame_034",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034",
+        "initial_speed_mps": 8.905123017879152,
+        "status": "TOOL_OR_SEMANTIC_FAILURE",
+        "ended": true,
+        "charged_requests": 2,
+        "reported_charged_requests": 2,
+        "turn_start_count": 0,
+        "api_post_requests": 2,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": false,
+        "native_json_count": 2,
+        "native_schema_valid_count": 2,
+        "final_failure_stage": "T4",
+        "final_failure_reasons": [
+          {
+            "code": "VERIFICATION_REJECTED",
+            "violations": [
+              {
+                "code": "TARGET_INTENT",
+                "object_id": null,
+                "time_interval_s": [
+                  0.0,
+                  0.02
+                ],
+                "position_m": [
+                  0.0,
+                  6.702259317626913e-28
+                ],
+                "computed": 0.08905105054917783,
+                "threshold": 0.05,
+                "unit": "m",
+                "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+              }
+            ]
+          },
+          {
+            "code": "VERIFICATION_REJECTED",
+            "violations": [
+              {
+                "code": "TARGET_INTENT",
+                "object_id": null,
+                "time_interval_s": [
+                  0.0,
+                  0.02
+                ],
+                "position_m": [
+                  0.0,
+                  2.7948928759469267e-25
+                ],
+                "computed": 0.08905105118875387,
+                "threshold": 0.05,
+                "unit": "m",
+                "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+              }
+            ]
+          }
+        ],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [
+          "T2_CORRIDOR",
+          "T4_VERIFICATION"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25311,
+              "input_tokens_details": {
+                "cache_write_tokens": 21813,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 5741,
+              "output_tokens_details": {
+                "reasoning_tokens": 1034
+              },
+              "total_tokens": 31052
+            },
+            "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_01/record.json",
+            "record_sha256": "25be97534d5e415d9f5e596630db6400e04601734bb0a8ee636cbf7a37921121",
+            "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "FAIL",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 21,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_ced715179f044675a1e06393b7c94566",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25311,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21813,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 5741,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1034
+                },
+                "total_tokens": 31052
+              },
+              "structured_output": true,
+              "elapsed_s": 86.52658098749816
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "T2",
+            "blocking_reasons": [
+              {
+                "code": "CORRIDOR_INITIAL_STATE",
+                "message": "First corridor cell must contain the true initial rear axle",
+                "category": "tool_infeasible",
+                "details": {
+                  "interval": [
+                    0.0,
+                    0.2
+                  ],
+                  "candidate_id": "original",
+                  "initial_rear_point_m": [
+                    -1.2,
+                    0.0
+                  ],
+                  "heading_band_rad": [
+                    -0.025,
+                    0.025
+                  ],
+                  "initial_state_violations": [
+                    {
+                      "kind": "target_center",
+                      "halfplane": [
+                        -1.0,
+                        -0.0,
+                        1.199625019530843
+                      ],
+                      "input_boundary_halfplane": [
+                        -1.0,
+                        -0.0,
+                        -0.0
+                      ],
+                      "center_offset_support_m": -1.199625019530843,
+                      "computed_m": 1.2,
+                      "threshold_m": 1.199625019530843,
+                      "excess_m": 0.00037498046915684924
+                    }
+                  ],
+                  "object_id": null,
+                  "allowed_domain_polygon_m": [
+                    [
+                      -1.199625019530843,
+                      0.3627903496503744
+                    ],
+                    [
+                      19.800000000000004,
+                      0.3627903496503744
+                    ],
+                    [
+                      19.800000000000004,
+                      -0.42000312490234526
+                    ],
+                    [
+                      -1.199625019530843,
+                      -0.42000312490234526
+                    ]
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              {
+                "code": "CORRIDOR_INITIAL_STATE",
+                "message": "First corridor cell must contain the true initial rear axle",
+                "category": "tool_infeasible",
+                "details": {
+                  "interval": [
+                    0.0,
+                    0.2
+                  ],
+                  "candidate_id": "brake_straight",
+                  "initial_rear_point_m": [
+                    -1.2,
+                    0.0
+                  ],
+                  "heading_band_rad": [
+                    -0.025,
+                    0.025
+                  ],
+                  "initial_state_violations": [
+                    {
+                      "kind": "target_center",
+                      "halfplane": [
+                        -1.0,
+                        -0.0,
+                        1.199625019530843
+                      ],
+                      "input_boundary_halfplane": [
+                        -1.0,
+                        -0.0,
+                        -0.0
+                      ],
+                      "center_offset_support_m": -1.199625019530843,
+                      "computed_m": 1.2,
+                      "threshold_m": 1.199625019530843,
+                      "excess_m": 0.00037498046915684924
+                    }
+                  ],
+                  "object_id": null,
+                  "allowed_domain_polygon_m": [
+                    [
+                      -1.199625019530843,
+                      0.3627903496503744
+                    ],
+                    [
+                      19.800000000000004,
+                      0.3627903496503744
+                    ],
+                    [
+                      19.800000000000004,
+                      -0.42000312490234526
+                    ],
+                    [
+                      -1.199625019530843,
+                      -0.42000312490234526
+                    ]
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              {
+                "code": "CORRIDOR_INITIAL_STATE",
+                "message": "First corridor cell must contain the true initial rear axle",
+                "category": "tool_infeasible",
+                "details": {
+                  "interval": [
+                    0.0,
+                    0.2
+                  ],
+                  "candidate_id": "brake_right",
+                  "initial_rear_point_m": [
+                    -1.2,
+                    0.0
+                  ],
+                  "heading_band_rad": [
+                    -0.14099038391825486,
+                    0.025
+                  ],
+                  "initial_state_violations": [
+                    {
+                      "kind": "target_center",
+                      "halfplane": [
+                        -1.0,
+                        -0.0,
+                        1.1880927712162086
+                      ],
+                      "input_boundary_halfplane": [
+                        -1.0,
+                        -0.0,
+                        -0.0
+                      ],
+                      "center_offset_support_m": -1.1880927712162086,
+                      "computed_m": 1.2,
+                      "threshold_m": 1.1880927712162086,
+                      "excess_m": 0.011907228783791357
+                    }
+                  ],
+                  "object_id": null,
+                  "allowed_domain_polygon_m": [
+                    [
+                      -1.1880927712162086,
+                      -0.28137151194477833
+                    ],
+                    [
+                      -1.1880927712162086,
+                      0.4200031249023453
+                    ],
+                    [
+                      -0.17976659807554216,
+                      0.4200031249023453
+                    ],
+                    [
+                      2.2887700526250034,
+                      -0.28137151194477833
+                    ]
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              {
+                "code": "CORRIDOR_INITIAL_STATE",
+                "message": "First corridor cell must contain the true initial rear axle",
+                "category": "tool_infeasible",
+                "details": {
+                  "interval": [
+                    0.0,
+                    0.2
+                  ],
+                  "candidate_id": "brake_left",
+                  "initial_rear_point_m": [
+                    -1.2,
+                    0.0
+                  ],
+                  "heading_band_rad": [
+                    -0.025,
+                    0.14099038391825486
+                  ],
+                  "initial_state_violations": [
+                    {
+                      "kind": "target_center",
+                      "halfplane": [
+                        -1.0,
+                        -0.0,
+                        1.1880927712162086
+                      ],
+                      "input_boundary_halfplane": [
+                        -1.0,
+                        -0.0,
+                        -0.0
+                      ],
+                      "center_offset_support_m": -1.1880927712162086,
+                      "computed_m": 1.2,
+                      "threshold_m": 1.1880927712162086,
+                      "excess_m": 0.011907228783791357
+                    },
+                    {
+                      "kind": "occupancy",
+                      "object_id": "left_cone_workzone_compound",
+                      "halfplane": [
+                        0.0,
+                        1.0,
+                        -0.032902668573220106
+                      ],
+                      "obstacle_support_m": 2.8,
+                      "ego_body_support_m": 1.38290266857322,
+                      "model_total_residual_m": 0.45,
+                      "safety_margin_m": 1.0,
+                      "occupancy_polygon_m": [
+                        [
+                          3.7,
+                          2.8
+                        ],
+                        [
+                          43.3,
+                          2.8
+                        ],
+                        [
+                          43.3,
+                          8.4
+                        ],
+                        [
+                          3.7,
+                          8.4
+                        ]
+                      ],
+                      "native_sources": [
+                        {
+                          "source_id": "cone_group_two_second_body",
+                          "scenario_id": "cones_minor_displacement",
+                          "source_interval_s": [
+                            0,
+                            2
+                          ],
+                          "polygon_m": [
+                            [
+                              3.7,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              8.4
+                            ],
+                            [
+                              3.7,
+                              8.4
+                            ]
+                          ],
+                          "frame_ids": [
+                            "dd1b722645744b3eb49fdad74b765c4f"
+                          ],
+                          "time_ids": [
+                            "nusc_us_1535385108912404"
+                          ],
+                          "premise_ids": [
+                            "prototype_local_scope",
+                            "cone_group_bound"
+                          ],
+                          "source_residual_m": 0.35
+                        }
+                      ],
+                      "computed_m": 0.0,
+                      "threshold_m": -0.032902668573220106,
+                      "excess_m": 0.032902668573220106
+                    }
+                  ],
+                  "object_id": "left_cone_workzone_compound",
+                  "allowed_domain_polygon_m": [
+                    [
+                      -1.1880927712162086,
+                      -0.032902668573220106
+                    ],
+                    [
+                      19.800000000000004,
+                      -0.032902668573220106
+                    ],
+                    [
+                      19.800000000000004,
+                      -0.4200031249023453
+                    ],
+                    [
+                      -1.1880927712162086,
+                      -0.4200031249023453
+                    ]
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              {
+                "code": "CORRIDOR_INITIAL_STATE",
+                "message": "First corridor cell must contain the true initial rear axle",
+                "category": "tool_infeasible",
+                "details": {
+                  "interval": [
+                    0.0,
+                    0.2
+                  ],
+                  "candidate_id": "brake_right_strong",
+                  "initial_rear_point_m": [
+                    -1.2,
+                    0.0
+                  ],
+                  "heading_band_rad": [
+                    -0.16753871343372212,
+                    0.025
+                  ],
+                  "initial_state_violations": [
+                    {
+                      "kind": "target_center",
+                      "halfplane": [
+                        -1.0,
+                        -0.0,
+                        1.1831978249173416
+                      ],
+                      "input_boundary_halfplane": [
+                        -1.0,
+                        -0.0,
+                        -0.0
+                      ],
+                      "center_offset_support_m": -1.1831978249173416,
+                      "computed_m": 1.2,
+                      "threshold_m": 1.1831978249173416,
+                      "excess_m": 0.016802175082658355
+                    }
+                  ],
+                  "object_id": null,
+                  "allowed_domain_polygon_m": [
+                    [
+                      1.7398956787134614,
+                      -0.24989276097334367
+                    ],
+                    [
+                      -0.8030986601362482,
+                      -0.24989276097334367
+                    ],
+                    [
+                      -1.1831978249173416,
+                      -0.2121711582765042
+                    ],
+                    [
+                      -1.1831978249173416,
+                      0.42000312490234526
+                    ],
+                    [
+                      -0.18587747432688262,
+                      0.42000312490234526
+                    ]
+                  ]
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "original",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.199625019530843
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.199625019530843,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.199625019530843,
+                    "excess_m": 0.00037498046915684924
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.199625019530843,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.199625019530843,
+                    -0.42000312490234526
+                  ]
+                ],
+                "candidate_failures": [
+                  {
+                    "candidate_id": "original",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  },
+                  {
+                    "candidate_id": "brake_straight",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  },
+                  {
+                    "candidate_id": "brake_right",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  },
+                  {
+                    "candidate_id": "brake_left",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  },
+                  {
+                    "candidate_id": "brake_right_strong",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  }
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": {
+              "T2": 0,
+              "T3": 0,
+              "T4": 0
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "original",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            -1.0,
+                            -0.0,
+                            1.199625019530843
+                          ],
+                          "input_boundary_halfplane": [
+                            -1.0,
+                            -0.0,
+                            -0.0
+                          ],
+                          "center_offset_support_m": -1.199625019530843,
+                          "computed_m": 1.2,
+                          "threshold_m": 1.199625019530843,
+                          "excess_m": 0.00037498046915684924
+                        }
+                      ],
+                      "object_id": null,
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.199625019530843,
+                          0.3627903496503744
+                        ],
+                        [
+                          19.800000000000004,
+                          0.3627903496503744
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.42000312490234526
+                        ],
+                        [
+                          -1.199625019530843,
+                          -0.42000312490234526
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_straight",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            -1.0,
+                            -0.0,
+                            1.199625019530843
+                          ],
+                          "input_boundary_halfplane": [
+                            -1.0,
+                            -0.0,
+                            -0.0
+                          ],
+                          "center_offset_support_m": -1.199625019530843,
+                          "computed_m": 1.2,
+                          "threshold_m": 1.199625019530843,
+                          "excess_m": 0.00037498046915684924
+                        }
+                      ],
+                      "object_id": null,
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.199625019530843,
+                          0.3627903496503744
+                        ],
+                        [
+                          19.800000000000004,
+                          0.3627903496503744
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.42000312490234526
+                        ],
+                        [
+                          -1.199625019530843,
+                          -0.42000312490234526
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_right",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.14099038391825486,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            -1.0,
+                            -0.0,
+                            1.1880927712162086
+                          ],
+                          "input_boundary_halfplane": [
+                            -1.0,
+                            -0.0,
+                            -0.0
+                          ],
+                          "center_offset_support_m": -1.1880927712162086,
+                          "computed_m": 1.2,
+                          "threshold_m": 1.1880927712162086,
+                          "excess_m": 0.011907228783791357
+                        }
+                      ],
+                      "object_id": null,
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.1880927712162086,
+                          -0.28137151194477833
+                        ],
+                        [
+                          -1.1880927712162086,
+                          0.4200031249023453
+                        ],
+                        [
+                          -0.17976659807554216,
+                          0.4200031249023453
+                        ],
+                        [
+                          2.2887700526250034,
+                          -0.28137151194477833
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_left",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.14099038391825486
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            -1.0,
+                            -0.0,
+                            1.1880927712162086
+                          ],
+                          "input_boundary_halfplane": [
+                            -1.0,
+                            -0.0,
+                            -0.0
+                          ],
+                          "center_offset_support_m": -1.1880927712162086,
+                          "computed_m": 1.2,
+                          "threshold_m": 1.1880927712162086,
+                          "excess_m": 0.011907228783791357
+                        },
+                        {
+                          "kind": "occupancy",
+                          "object_id": "left_cone_workzone_compound",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.032902668573220106
+                          ],
+                          "obstacle_support_m": 2.8,
+                          "ego_body_support_m": 1.38290266857322,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              3.7,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              8.4
+                            ],
+                            [
+                              3.7,
+                              8.4
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "cone_group_two_second_body",
+                              "scenario_id": "cones_minor_displacement",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  3.7,
+                                  2.8
+                                ],
+                                [
+                                  43.3,
+                                  2.8
+                                ],
+                                [
+                                  43.3,
+                                  8.4
+                                ],
+                                [
+                                  3.7,
+                                  8.4
+                                ]
+                              ],
+                              "frame_ids": [
+                                "dd1b722645744b3eb49fdad74b765c4f"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385108912404"
+                              ],
+                              "premise_ids": [
+                                "prototype_local_scope",
+                                "cone_group_bound"
+                              ],
+                              "source_residual_m": 0.35
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.032902668573220106,
+                          "excess_m": 0.032902668573220106
+                        }
+                      ],
+                      "object_id": "left_cone_workzone_compound",
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.1880927712162086,
+                          -0.032902668573220106
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.032902668573220106
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.4200031249023453
+                        ],
+                        [
+                          -1.1880927712162086,
+                          -0.4200031249023453
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_right_strong",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.16753871343372212,
+                        0.025
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "target_center",
+                          "halfplane": [
+                            -1.0,
+                            -0.0,
+                            1.1831978249173416
+                          ],
+                          "input_boundary_halfplane": [
+                            -1.0,
+                            -0.0,
+                            -0.0
+                          ],
+                          "center_offset_support_m": -1.1831978249173416,
+                          "computed_m": 1.2,
+                          "threshold_m": 1.1831978249173416,
+                          "excess_m": 0.016802175082658355
+                        }
+                      ],
+                      "object_id": null,
+                      "allowed_domain_polygon_m": [
+                        [
+                          1.7398956787134614,
+                          -0.24989276097334367
+                        ],
+                        [
+                          -0.8030986601362482,
+                          -0.24989276097334367
+                        ],
+                        [
+                          -1.1831978249173416,
+                          -0.2121711582765042
+                        ],
+                        [
+                          -1.1831978249173416,
+                          0.42000312490234526
+                        ],
+                        [
+                          -0.18587747432688262,
+                          0.42000312490234526
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": null,
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [
+              "T2_CORRIDOR"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    0,
+                    -0.45
+                  ],
+                  [
+                    21,
+                    -0.45
+                  ],
+                  [
+                    21,
+                    0.45
+                  ],
+                  [
+                    0,
+                    0.45
+                  ]
+                ],
+                "desired_speed_mps": 8.9,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385110.9124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 3,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          },
+          {
+            "attempt": 2,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 30048,
+              "input_tokens_details": {
+                "cache_write_tokens": 26550,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 4900,
+              "output_tokens_details": {
+                "reasoning_tokens": 67
+              },
+              "total_tokens": 34948
+            },
+            "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_02/record.json",
+            "record_sha256": "f192d975610ff74069ef5a1215bb1006d888dba1856d122916d3178bf79d5cbe",
+            "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_02/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "FAIL",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 22,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_2c72c72ed9e648cfb93b67043cc3e299",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 30048,
+                "input_tokens_details": {
+                  "cache_write_tokens": 26550,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 4900,
+                "output_tokens_details": {
+                  "reasoning_tokens": 67
+                },
+                "total_tokens": 34948
+              },
+              "structured_output": true,
+              "elapsed_s": 39.370010297745466
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "T4",
+            "blocking_reasons": [
+              {
+                "code": "VERIFICATION_REJECTED",
+                "violations": [
+                  {
+                    "code": "TARGET_INTENT",
+                    "object_id": null,
+                    "time_interval_s": [
+                      0.0,
+                      0.02
+                    ],
+                    "position_m": [
+                      0.0,
+                      6.702259317626913e-28
+                    ],
+                    "computed": 0.08905105054917783,
+                    "threshold": 0.05,
+                    "unit": "m",
+                    "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                  }
+                ]
+              },
+              {
+                "code": "VERIFICATION_REJECTED",
+                "violations": [
+                  {
+                    "code": "TARGET_INTENT",
+                    "object_id": null,
+                    "time_interval_s": [
+                      0.0,
+                      0.02
+                    ],
+                    "position_m": [
+                      0.0,
+                      2.7948928759469267e-25
+                    ],
+                    "computed": 0.08905105118875387,
+                    "threshold": 0.05,
+                    "unit": "m",
+                    "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                  }
+                ]
+              }
+            ],
+            "raw_last_failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    0.0,
+                    0.02
+                  ],
+                  "position_m": [
+                    0.0,
+                    6.702259317626913e-28
+                  ],
+                  "computed": 0.08905105054917783,
+                  "threshold": 0.05,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ],
+              "details": {
+                "candidate_id": "original",
+                "candidate_failures": [
+                  {
+                    "candidate_id": "original",
+                    "stage": "T4",
+                    "code": "VERIFICATION_REJECTED"
+                  },
+                  {
+                    "candidate_id": "brake_straight",
+                    "stage": "T4",
+                    "code": "VERIFICATION_REJECTED"
+                  },
+                  {
+                    "candidate_id": "brake_right",
+                    "stage": "T2",
+                    "code": "CORRIDOR_HEADING_BOUND"
+                  },
+                  {
+                    "candidate_id": "brake_left",
+                    "stage": "T2",
+                    "code": "CORRIDOR_INITIAL_STATE"
+                  },
+                  {
+                    "candidate_id": "brake_right_strong",
+                    "stage": "T2",
+                    "code": "CORRIDOR_HEADING_BOUND"
+                  }
+                ]
+              }
+            },
+            "candidate_counts": {
+              "T2": 2,
+              "T3": 2,
+              "T4": 0
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "FAIL",
+                  "failure": {
+                    "code": "VERIFICATION_REJECTED",
+                    "violations": [
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          0.0,
+                          0.02
+                        ],
+                        "position_m": [
+                          0.0,
+                          6.702259317626913e-28
+                        ],
+                        "computed": 0.08905105054917783,
+                        "threshold": 0.05,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "FAIL",
+                  "failure": {
+                    "code": "VERIFICATION_REJECTED",
+                    "violations": [
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          0.0,
+                          0.02
+                        ],
+                        "position_m": [
+                          0.0,
+                          2.7948928759469267e-25
+                        ],
+                        "computed": 0.08905105118875387,
+                        "threshold": 0.05,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_INITIAL_STATE",
+                    "message": "First corridor cell must contain the true initial rear axle",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.0,
+                        0.2
+                      ],
+                      "candidate_id": "brake_left",
+                      "initial_rear_point_m": [
+                        -1.2,
+                        0.0
+                      ],
+                      "heading_band_rad": [
+                        -0.025,
+                        0.14099038391825486
+                      ],
+                      "initial_state_violations": [
+                        {
+                          "kind": "occupancy",
+                          "object_id": "left_cone_workzone_compound",
+                          "halfplane": [
+                            0.0,
+                            1.0,
+                            -0.032902668573220106
+                          ],
+                          "obstacle_support_m": 2.8,
+                          "ego_body_support_m": 1.38290266857322,
+                          "model_total_residual_m": 0.45,
+                          "safety_margin_m": 1.0,
+                          "occupancy_polygon_m": [
+                            [
+                              3.7,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              2.8
+                            ],
+                            [
+                              43.3,
+                              8.4
+                            ],
+                            [
+                              3.7,
+                              8.4
+                            ]
+                          ],
+                          "native_sources": [
+                            {
+                              "source_id": "cone_group_two_second_body",
+                              "scenario_id": "cones_minor_displacement",
+                              "source_interval_s": [
+                                0,
+                                2
+                              ],
+                              "polygon_m": [
+                                [
+                                  3.7,
+                                  2.8
+                                ],
+                                [
+                                  43.3,
+                                  2.8
+                                ],
+                                [
+                                  43.3,
+                                  8.4
+                                ],
+                                [
+                                  3.7,
+                                  8.4
+                                ]
+                              ],
+                              "frame_ids": [
+                                "dd1b722645744b3eb49fdad74b765c4f"
+                              ],
+                              "time_ids": [
+                                "nusc_us_1535385108912404"
+                              ],
+                              "premise_ids": [
+                                "prototype_local_scope",
+                                "cone_group_bound"
+                              ],
+                              "source_residual_m": 0.35
+                            }
+                          ],
+                          "computed_m": 0.0,
+                          "threshold_m": -0.032902668573220106,
+                          "excess_m": 0.032902668573220106
+                        }
+                      ],
+                      "object_id": "left_cone_workzone_compound",
+                      "allowed_domain_polygon_m": [
+                        [
+                          -1.2380927712162086,
+                          -0.032902668573220106
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.032902668573220106
+                        ],
+                        [
+                          19.800000000000004,
+                          -0.42000312490234526
+                        ],
+                        [
+                          -1.2380927712162086,
+                          -0.42000312490234526
+                        ]
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.4,
+                        0.6000000000000001
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": null,
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [
+              "T4_VERIFICATION"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+                "revision": 1,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.05,
+                    -0.45
+                  ],
+                  [
+                    21,
+                    -0.45
+                  ],
+                  [
+                    21,
+                    0.45
+                  ],
+                  [
+                    -0.05,
+                    0.45
+                  ]
+                ],
+                "desired_speed_mps": 8.9,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385110.9124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 3,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 2,
+        "candidate_counts": {
+          "T2": 2,
+          "T3": 2,
+          "T4": 0
+        },
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "T4",
+        "selected_native_failure_reasons": [
+          {
+            "code": "VERIFICATION_REJECTED",
+            "violations": [
+              {
+                "code": "TARGET_INTENT",
+                "object_id": null,
+                "time_interval_s": [
+                  0.0,
+                  0.02
+                ],
+                "position_m": [
+                  0.0,
+                  6.702259317626913e-28
+                ],
+                "computed": 0.08905105054917783,
+                "threshold": 0.05,
+                "unit": "m",
+                "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+              }
+            ]
+          },
+          {
+            "code": "VERIFICATION_REJECTED",
+            "violations": [
+              {
+                "code": "TARGET_INTENT",
+                "object_id": null,
+                "time_interval_s": [
+                  0.0,
+                  0.02
+                ],
+                "position_m": [
+                  0.0,
+                  2.7948928759469267e-25
+                ],
+                "computed": 0.08905105118875387,
+                "threshold": 0.05,
+                "unit": "m",
+                "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+              }
+            ]
+          }
+        ],
+        "frame_index": 34,
+        "relative_sequence_time_s": 16.8,
+        "reference_time_s": 1535385108.9124038,
+        "reference_time_id": "nusc_us_1535385108912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_034/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "FAIL",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 2,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": -0.0001514836949770473,
+          "plan_end_lateral_m": -3.434350151078829e-05,
+          "prefix_yaw_change_deg": -2.8940715168027962e-05,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": false,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": "original",
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25311,
+        "input_tokens_details": {
+          "cache_write_tokens": 21813,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 5741,
+        "output_tokens_details": {
+          "reasoning_tokens": 1034
+        },
+        "total_tokens": 31052
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_01/record.json",
+      "record_sha256": "25be97534d5e415d9f5e596630db6400e04601734bb0a8ee636cbf7a37921121",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 21,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_ced715179f044675a1e06393b7c94566",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25311,
+          "input_tokens_details": {
+            "cache_write_tokens": 21813,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 5741,
+          "output_tokens_details": {
+            "reasoning_tokens": 1034
+          },
+          "total_tokens": 31052
+        },
+        "structured_output": true,
+        "elapsed_s": 86.52658098749816
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T2",
+      "blocking_reasons": [
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "original",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.199625019530843
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.199625019530843,
+                "computed_m": 1.2,
+                "threshold_m": 1.199625019530843,
+                "excess_m": 0.00037498046915684924
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.199625019530843,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                -0.42000312490234526
+              ],
+              [
+                -1.199625019530843,
+                -0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_straight",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.199625019530843
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.199625019530843,
+                "computed_m": 1.2,
+                "threshold_m": 1.199625019530843,
+                "excess_m": 0.00037498046915684924
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.199625019530843,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                0.3627903496503744
+              ],
+              [
+                19.800000000000004,
+                -0.42000312490234526
+              ],
+              [
+                -1.199625019530843,
+                -0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_right",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.14099038391825486,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1880927712162086
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1880927712162086,
+                "computed_m": 1.2,
+                "threshold_m": 1.1880927712162086,
+                "excess_m": 0.011907228783791357
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                -1.1880927712162086,
+                -0.28137151194477833
+              ],
+              [
+                -1.1880927712162086,
+                0.4200031249023453
+              ],
+              [
+                -0.17976659807554216,
+                0.4200031249023453
+              ],
+              [
+                2.2887700526250034,
+                -0.28137151194477833
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_left",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.025,
+              0.14099038391825486
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1880927712162086
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1880927712162086,
+                "computed_m": 1.2,
+                "threshold_m": 1.1880927712162086,
+                "excess_m": 0.011907228783791357
+              },
+              {
+                "kind": "occupancy",
+                "object_id": "left_cone_workzone_compound",
+                "halfplane": [
+                  0.0,
+                  1.0,
+                  -0.032902668573220106
+                ],
+                "obstacle_support_m": 2.8,
+                "ego_body_support_m": 1.38290266857322,
+                "model_total_residual_m": 0.45,
+                "safety_margin_m": 1.0,
+                "occupancy_polygon_m": [
+                  [
+                    3.7,
+                    2.8
+                  ],
+                  [
+                    43.3,
+                    2.8
+                  ],
+                  [
+                    43.3,
+                    8.4
+                  ],
+                  [
+                    3.7,
+                    8.4
+                  ]
+                ],
+                "native_sources": [
+                  {
+                    "source_id": "cone_group_two_second_body",
+                    "scenario_id": "cones_minor_displacement",
+                    "source_interval_s": [
+                      0,
+                      2
+                    ],
+                    "polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "frame_ids": [
+                      "dd1b722645744b3eb49fdad74b765c4f"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1535385108912404"
+                    ],
+                    "premise_ids": [
+                      "prototype_local_scope",
+                      "cone_group_bound"
+                    ],
+                    "source_residual_m": 0.35
+                  }
+                ],
+                "computed_m": 0.0,
+                "threshold_m": -0.032902668573220106,
+                "excess_m": 0.032902668573220106
+              }
+            ],
+            "object_id": "left_cone_workzone_compound",
+            "allowed_domain_polygon_m": [
+              [
+                -1.1880927712162086,
+                -0.032902668573220106
+              ],
+              [
+                19.800000000000004,
+                -0.032902668573220106
+              ],
+              [
+                19.800000000000004,
+                -0.4200031249023453
+              ],
+              [
+                -1.1880927712162086,
+                -0.4200031249023453
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "CORRIDOR_INITIAL_STATE",
+          "message": "First corridor cell must contain the true initial rear axle",
+          "category": "tool_infeasible",
+          "details": {
+            "interval": [
+              0.0,
+              0.2
+            ],
+            "candidate_id": "brake_right_strong",
+            "initial_rear_point_m": [
+              -1.2,
+              0.0
+            ],
+            "heading_band_rad": [
+              -0.16753871343372212,
+              0.025
+            ],
+            "initial_state_violations": [
+              {
+                "kind": "target_center",
+                "halfplane": [
+                  -1.0,
+                  -0.0,
+                  1.1831978249173416
+                ],
+                "input_boundary_halfplane": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "center_offset_support_m": -1.1831978249173416,
+                "computed_m": 1.2,
+                "threshold_m": 1.1831978249173416,
+                "excess_m": 0.016802175082658355
+              }
+            ],
+            "object_id": null,
+            "allowed_domain_polygon_m": [
+              [
+                1.7398956787134614,
+                -0.24989276097334367
+              ],
+              [
+                -0.8030986601362482,
+                -0.24989276097334367
+              ],
+              [
+                -1.1831978249173416,
+                -0.2121711582765042
+              ],
+              [
+                -1.1831978249173416,
+                0.42000312490234526
+              ],
+              [
+                -0.18587747432688262,
+                0.42000312490234526
+              ]
+            ]
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "original",
+          "initial_rear_point_m": [
+            -1.2,
+            0.0
+          ],
+          "heading_band_rad": [
+            -0.025,
+            0.025
+          ],
+          "initial_state_violations": [
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                1.199625019530843
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "center_offset_support_m": -1.199625019530843,
+              "computed_m": 1.2,
+              "threshold_m": 1.199625019530843,
+              "excess_m": 0.00037498046915684924
+            }
+          ],
+          "object_id": null,
+          "allowed_domain_polygon_m": [
+            [
+              -1.199625019530843,
+              0.3627903496503744
+            ],
+            [
+              19.800000000000004,
+              0.3627903496503744
+            ],
+            [
+              19.800000000000004,
+              -0.42000312490234526
+            ],
+            [
+              -1.199625019530843,
+              -0.42000312490234526
+            ]
+          ],
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            }
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": {
+        "T2": 0,
+        "T3": 0,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "original",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.199625019530843
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.199625019530843,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.199625019530843,
+                    "excess_m": 0.00037498046915684924
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.199625019530843,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.199625019530843,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_straight",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.199625019530843
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.199625019530843,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.199625019530843,
+                    "excess_m": 0.00037498046915684924
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.199625019530843,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    0.3627903496503744
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.199625019530843,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.14099038391825486,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1880927712162086
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1880927712162086,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1880927712162086,
+                    "excess_m": 0.011907228783791357
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.1880927712162086,
+                    -0.28137151194477833
+                  ],
+                  [
+                    -1.1880927712162086,
+                    0.4200031249023453
+                  ],
+                  [
+                    -0.17976659807554216,
+                    0.4200031249023453
+                  ],
+                  [
+                    2.2887700526250034,
+                    -0.28137151194477833
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14099038391825486
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1880927712162086
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1880927712162086,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1880927712162086,
+                    "excess_m": 0.011907228783791357
+                  },
+                  {
+                    "kind": "occupancy",
+                    "object_id": "left_cone_workzone_compound",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.032902668573220106
+                    ],
+                    "obstacle_support_m": 2.8,
+                    "ego_body_support_m": 1.38290266857322,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "cone_group_two_second_body",
+                        "scenario_id": "cones_minor_displacement",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            3.7,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            8.4
+                          ],
+                          [
+                            3.7,
+                            8.4
+                          ]
+                        ],
+                        "frame_ids": [
+                          "dd1b722645744b3eb49fdad74b765c4f"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385108912404"
+                        ],
+                        "premise_ids": [
+                          "prototype_local_scope",
+                          "cone_group_bound"
+                        ],
+                        "source_residual_m": 0.35
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.032902668573220106,
+                    "excess_m": 0.032902668573220106
+                  }
+                ],
+                "object_id": "left_cone_workzone_compound",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.1880927712162086,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.4200031249023453
+                  ],
+                  [
+                    -1.1880927712162086,
+                    -0.4200031249023453
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_right_strong",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.16753871343372212,
+                  0.025
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "target_center",
+                    "halfplane": [
+                      -1.0,
+                      -0.0,
+                      1.1831978249173416
+                    ],
+                    "input_boundary_halfplane": [
+                      -1.0,
+                      -0.0,
+                      -0.0
+                    ],
+                    "center_offset_support_m": -1.1831978249173416,
+                    "computed_m": 1.2,
+                    "threshold_m": 1.1831978249173416,
+                    "excess_m": 0.016802175082658355
+                  }
+                ],
+                "object_id": null,
+                "allowed_domain_polygon_m": [
+                  [
+                    1.7398956787134614,
+                    -0.24989276097334367
+                  ],
+                  [
+                    -0.8030986601362482,
+                    -0.24989276097334367
+                  ],
+                  [
+                    -1.1831978249173416,
+                    -0.2121711582765042
+                  ],
+                  [
+                    -1.1831978249173416,
+                    0.42000312490234526
+                  ],
+                  [
+                    -0.18587747432688262,
+                    0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T2_CORRIDOR"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              0,
+              -0.45
+            ],
+            [
+              21,
+              -0.45
+            ],
+            [
+              21,
+              0.45
+            ],
+            [
+              0,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.9,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385110.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v2_bus_road"
+    },
+    {
+      "attempt": 2,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 30048,
+        "input_tokens_details": {
+          "cache_write_tokens": 26550,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 4900,
+        "output_tokens_details": {
+          "reasoning_tokens": 67
+        },
+        "total_tokens": 34948
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/attempt_02/record.json",
+      "record_sha256": "f192d975610ff74069ef5a1215bb1006d888dba1856d122916d3178bf79d5cbe",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_034/transport/attempt_02/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "FAIL",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 22,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_2c72c72ed9e648cfb93b67043cc3e299",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 30048,
+          "input_tokens_details": {
+            "cache_write_tokens": 26550,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 4900,
+          "output_tokens_details": {
+            "reasoning_tokens": 67
+          },
+          "total_tokens": 34948
+        },
+        "structured_output": true,
+        "elapsed_s": 39.370010297745466
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T4",
+      "blocking_reasons": [
+        {
+          "code": "VERIFICATION_REJECTED",
+          "violations": [
+            {
+              "code": "TARGET_INTENT",
+              "object_id": null,
+              "time_interval_s": [
+                0.0,
+                0.02
+              ],
+              "position_m": [
+                0.0,
+                6.702259317626913e-28
+              ],
+              "computed": 0.08905105054917783,
+              "threshold": 0.05,
+              "unit": "m",
+              "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+            }
+          ]
+        },
+        {
+          "code": "VERIFICATION_REJECTED",
+          "violations": [
+            {
+              "code": "TARGET_INTENT",
+              "object_id": null,
+              "time_interval_s": [
+                0.0,
+                0.02
+              ],
+              "position_m": [
+                0.0,
+                2.7948928759469267e-25
+              ],
+              "computed": 0.08905105118875387,
+              "threshold": 0.05,
+              "unit": "m",
+              "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+            }
+          ]
+        }
+      ],
+      "raw_last_failure": {
+        "code": "VERIFICATION_REJECTED",
+        "violations": [
+          {
+            "code": "TARGET_INTENT",
+            "object_id": null,
+            "time_interval_s": [
+              0.0,
+              0.02
+            ],
+            "position_m": [
+              0.0,
+              6.702259317626913e-28
+            ],
+            "computed": 0.08905105054917783,
+            "threshold": 0.05,
+            "unit": "m",
+            "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+          }
+        ],
+        "details": {
+          "candidate_id": "original",
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T4",
+              "code": "VERIFICATION_REJECTED"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_INITIAL_STATE"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            }
+          ]
+        }
+      },
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    0.0,
+                    0.02
+                  ],
+                  "position_m": [
+                    0.0,
+                    6.702259317626913e-28
+                  ],
+                  "computed": 0.08905105054917783,
+                  "threshold": 0.05,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    0.0,
+                    0.02
+                  ],
+                  "position_m": [
+                    0.0,
+                    2.7948928759469267e-25
+                  ],
+                  "computed": 0.08905105118875387,
+                  "threshold": 0.05,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_INITIAL_STATE",
+              "message": "First corridor cell must contain the true initial rear axle",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.0,
+                  0.2
+                ],
+                "candidate_id": "brake_left",
+                "initial_rear_point_m": [
+                  -1.2,
+                  0.0
+                ],
+                "heading_band_rad": [
+                  -0.025,
+                  0.14099038391825486
+                ],
+                "initial_state_violations": [
+                  {
+                    "kind": "occupancy",
+                    "object_id": "left_cone_workzone_compound",
+                    "halfplane": [
+                      0.0,
+                      1.0,
+                      -0.032902668573220106
+                    ],
+                    "obstacle_support_m": 2.8,
+                    "ego_body_support_m": 1.38290266857322,
+                    "model_total_residual_m": 0.45,
+                    "safety_margin_m": 1.0,
+                    "occupancy_polygon_m": [
+                      [
+                        3.7,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        2.8
+                      ],
+                      [
+                        43.3,
+                        8.4
+                      ],
+                      [
+                        3.7,
+                        8.4
+                      ]
+                    ],
+                    "native_sources": [
+                      {
+                        "source_id": "cone_group_two_second_body",
+                        "scenario_id": "cones_minor_displacement",
+                        "source_interval_s": [
+                          0,
+                          2
+                        ],
+                        "polygon_m": [
+                          [
+                            3.7,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            2.8
+                          ],
+                          [
+                            43.3,
+                            8.4
+                          ],
+                          [
+                            3.7,
+                            8.4
+                          ]
+                        ],
+                        "frame_ids": [
+                          "dd1b722645744b3eb49fdad74b765c4f"
+                        ],
+                        "time_ids": [
+                          "nusc_us_1535385108912404"
+                        ],
+                        "premise_ids": [
+                          "prototype_local_scope",
+                          "cone_group_bound"
+                        ],
+                        "source_residual_m": 0.35
+                      }
+                    ],
+                    "computed_m": 0.0,
+                    "threshold_m": -0.032902668573220106,
+                    "excess_m": 0.032902668573220106
+                  }
+                ],
+                "object_id": "left_cone_workzone_compound",
+                "allowed_domain_polygon_m": [
+                  [
+                    -1.2380927712162086,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.032902668573220106
+                  ],
+                  [
+                    19.800000000000004,
+                    -0.42000312490234526
+                  ],
+                  [
+                    -1.2380927712162086,
+                    -0.42000312490234526
+                  ]
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T4_VERIFICATION"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_96d915e8b7e44bacba3c78e76a924e5c",
+          "revision": 1,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.05,
+              -0.45
+            ],
+            [
+              21,
+              -0.45
+            ],
+            [
+              21,
+              0.45
+            ],
+            [
+              -0.05,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.9,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385110.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 3,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v2_bus_road"
+    }
+  ],
+  "selected_group_charged_requests": 2,
+  "first_overall_request_pass": false,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": false,
+  "overall_success_request_ordinal": null,
+  "selection_policy": "LATEST_ACTUAL_ATTEMPT_GROUP",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      119.99956943334716,
+      -0.519792736092481
+    ],
+    "yaw_rad": -0.006926510533548914,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}

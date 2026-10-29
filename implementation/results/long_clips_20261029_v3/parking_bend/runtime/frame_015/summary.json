@@ -1,0 +1,129 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "planner_profile": "bounded_seed_candidates_v2",
+  "turn_task_required": false,
+  "backend": "openai_api",
+  "charged_requests": 2,
+  "budget_limit": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "global_attempt": 8,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "BODY_ENVELOPE_CONFLICT",
+        "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "blue_sedan",
+          "source_id": "blue_body_0_2",
+          "scenario_id": "blue_stationary",
+          "source_interval_s": [
+            0,
+            2
+          ],
+          "computed_initial_body_corners_m": [
+            [
+              9.8246492686807,
+              0.8610006191142419
+            ],
+            [
+              14.332955526750412,
+              1.7748795407715234
+            ],
+            [
+              13.9753507313193,
+              3.5389993808857585
+            ],
+            [
+              9.467044473249588,
+              2.625120459228477
+            ]
+          ],
+          "outside_body_corners_m": [
+            [
+              14.332955526750412,
+              1.7748795407715234
+            ],
+            [
+              9.467044473249588,
+              2.625120459228477
+            ]
+          ],
+          "maximum_corner_excess_m": 0.012955526750412004,
+          "distance_unit": "m",
+          "geometry_modified": false
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "attempt": 2,
+      "global_attempt": 9,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "PREMISE_SCOPE",
+        "message": "Conditional premise does not cover this object, scenario and whole time interval",
+        "category": "interface_error",
+        "details": {
+          "premise_id": "async_parked_alignment",
+          "object_id": "right_black_sedan",
+          "required_scenario_ids": [
+            "black_stationary"
+          ],
+          "declared_object_ids": [
+            "right_black_sedan",
+            "right_dark_suv"
+          ],
+          "declared_scenario_ids": [
+            "black_stationary",
+            "black_settle",
+            "dark_suv_stationary",
+            "dark_suv_settle"
+          ],
+          "required_interval_s": [
+            0,
+            2.0
+          ],
+          "declared_interval_s": [
+            -0.042128,
+            0
+          ],
+          "conflict_dimensions": [
+            "time_end"
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "fatal": null,
+  "prototype_conditional_success": false,
+  "prefix_consumed": false,
+  "source_commit": "3ab96a54f8241da5c5e06182992594f3037b87c6",
+  "mode": "online",
+  "native_output_status": "PRESERVED_OR_NOT_INTERRUPTED",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

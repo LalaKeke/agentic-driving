@@ -1,0 +1,220 @@
+{
+  "decision": {
+    "scene_id": "nusc_c1eed31234b94e9f8e22fbf3428b0ac2",
+    "revision": 0,
+    "behavior": "stop_yield",
+    "target_region": [
+      [-0.2, -0.6],
+      [5.0, -0.6],
+      [5.0, 0.6],
+      [-0.2, 0.6]
+    ],
+    "desired_speed_mps": 0.0,
+    "yield_to": ["crossing_pedestrian"],
+    "stop": {
+      "center_x_max_m": 3.8,
+      "deadline_s": 1.8
+    },
+    "priority": 10,
+    "valid_until_s": 1538984237.9124599,
+    "hard_requirements": [
+      "target_region",
+      "stop",
+      "yield",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1.0,
+      "acceleration_weight": 2.0,
+      "steering_weight": 3.0,
+      "smoothness_weight": 2.0
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984235912460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [-3.0, -3.5],
+        [11.0, -3.5],
+        [11.0, 4.0],
+        [-3.0, 7.0]
+      ],
+      "uncertainty_m": 0.7,
+      "frame_ids": ["790bc648874d4664811b364dcbab1bc8"],
+      "time_ids": ["nusc_us_1538984235912460"]
+    },
+    "objects": [
+      {
+        "id": "crossing_pedestrian",
+        "position_m": [23.0, -5.2],
+        "velocity_mps": [0.0, 1.0],
+        "uncertainty_m": 2.0,
+        "occupancy": [
+          {
+            "id": "pedestrian_two_second_body_union",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["790bc648874d4664811b364dcbab1bc8"],
+            "time_ids": ["nusc_us_1538984235912460"],
+            "premise_ids": ["pedestrian_body_scale", "pedestrian_motion"],
+            "residual_m": 0.8,
+            "alternatives": [
+              {
+                "scenario_id": "pedestrian_continues_crossing",
+                "polygon_m": [
+                  [21.9, -5.8],
+                  [24.1, -5.8],
+                  [24.1, -2.1],
+                  [21.9, -2.1]
+                ]
+              },
+              {
+                "scenario_id": "pedestrian_adverse_diagonal",
+                "polygon_m": [
+                  [20.3, -5.9],
+                  [24.7, -5.9],
+                  [24.7, -1.3],
+                  [20.3, -1.3]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["790bc648874d4664811b364dcbab1bc8"],
+        "time_ids": ["nusc_us_1538984235912460"],
+        "state_time_id": "nusc_us_1538984235912460",
+        "body_geometry": {
+          "length_m": 0.7,
+          "width_m": 0.65,
+          "yaw_rad": 1.5707963267948966
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_body_scale"],
+          "residual_m": 1.2,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "790bc648874d4664811b364dcbab1bc8",
+              "time_id": "nusc_us_1538984235912460",
+              "position_m": [23.0, -5.2],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "pedestrian_continues_crossing",
+            "premise_ids": ["pedestrian_body_scale", "pedestrian_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "pedestrian_adverse_diagonal",
+            "premise_ids": ["pedestrian_body_scale", "pedestrian_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [
+      {
+        "rule": "yield_required",
+        "state": "active",
+        "frame_ids": ["790bc648874d4664811b364dcbab1bc8"],
+        "time_ids": ["nusc_us_1538984235912460"]
+      }
+    ],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local two-second prototype, not a verified trajectory or world-safety claim. The ego is moving at the supplied 4.2418 m/s. A nearly straight stop using approximately 2.5 m/s^2 braking takes 1.70 s and 3.60 m, making the proposed stop physically plausible before independent verification. Monocular geometry and pedestrian dimensions are model estimates, not calibrated depth. The local road polygon is a conservative near-field portion of the visible paved approach, not the complete junction. Platform occupants, motorcycles, parked vehicles and rear/side traffic are observed outside this patch; their remaining outside it for two seconds is an explicit condition, not evidence of absence. The crossing pedestrian is retained separately despite being beyond the patch. No exact stop line or signal state is asserted. No optimizer, collision verifier or prefix simulator has been executed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": [
+          [-3.0, -3.5],
+          [11.0, -3.5],
+          [11.0, 4.0],
+          [-3.0, 7.0]
+        ],
+        "statement": "The local planning domain is only this near-field paved approach patch for two seconds. Adopt that no new unobserved entrant enters it; observed platform occupants remain on the platform, parked vehicles and motorcycles remain outside it, and rear/side traffic does not enter it during this interval. These conditions exclude unobserved arrivals, parking pull-outs and platform departures into the patch, rather than asserting their impossibility. The separately declared crossing pedestrian remains modeled under its own movement conditions. The task is to stop within the near-field patch, not traverse or turn through the junction."
+      },
+      {
+        "id": "pedestrian_body_scale",
+        "object_ids": ["crossing_pedestrian"],
+        "scenario_ids": [
+          "pedestrian_continues_crossing",
+          "pedestrian_adverse_diagonal"
+        ],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "The light-shirted walking person near reference-image pixel (1100,535), with feet near (1100,574), is represented by a 0.70 m by 0.65 m horizontal body box. This is a conditional adult body-size prior. Adopt a locally approximately level pavement and the supplied camera axes for perspective interpretation; neither ground contact nor dimensions are measured ground truth. Native reference center is estimated as (23.0,-5.2) m, with 1.2 m alignment/localization residual."
+      },
+      {
+        "id": "pedestrian_motion",
+        "object_ids": ["crossing_pedestrian"],
+        "scenario_ids": [
+          "pedestrian_continues_crossing",
+          "pedestrian_adverse_diagonal"
+        ],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Conditionally bound walking, without running or abrupt reversal. Adopted mode has absolute vx in [-0.3,0.3] m/s and vy in [0.5,1.3] m/s. Reasonable adverse diagonal mode has vx in [-1.0,0.5] m/s and vy in [0,1.7] m/s. Horizontal body orientation may vary; every retained orientation fits a radius-0.48 m disk about its center. The outward-rounded rectangular sources enclose this disk throughout each entire interval, including the initial oriented body. Source residual is 0.8 m, separate from the 1.2 m alignment residual."
+      },
+      {
+        "id": "local_pavement_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Estimate the convex near-field pavement patch from the reference front view's open asphalt, the left bus-platform curb receding toward the junction, and the right paved approach before its distant grass-island boundary. Use perspective and the explicit pedestrian body-size prior for approximate scale. The longitudinal caps at x=-3 and x=11 are local modeling limits, not claimed physical road edges. The left boundary tapers from y=7 to y=4; the right boundary y=-3.5 conservatively truncates visible pavement before the island. Adopt continuity beneath and immediately behind the current vehicle footprint. Road-boundary total model uncertainty is 0.7 m."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["790bc648874d4664811b364dcbab1bc8"],
+      "time_ids": ["nusc_us_1538984235912460"],
+      "premise_ids": ["pedestrian_body_scale", "local_pavement_geometry"],
+      "anchors": [
+        {
+          "object_id": "crossing_pedestrian",
+          "dimension": "width_m",
+          "value_m": 0.65,
+          "rationale": "Conditional horizontal adult-body width for the individually visible crossing person; equals the native body-box width, not an annotation or measured dimension."
+        },
+        {
+          "object_id": "crossing_pedestrian",
+          "dimension": "length_m",
+          "value_m": 0.7,
+          "rationale": "Conditional horizontal walking-body extent allowing the visible stride; equals the native body-box length."
+        }
+      ],
+      "metric_reasoning": "The person occupies roughly several tens of horizontal pixels in the reference front image. A 0.65–0.70 m horizontal body extent with focal length approximately 1266 px supports a depth on the order of twenty-plus meters. Feet near image row 574 and camera height approximately 1.51 m provide a conditional level-pavement consistency check, not certified ground-plane calibration. The person's rightward image bearing implies negative ego Y, giving the native approximate center (23,-5.2) m. Open near-field asphalt and the receding platform curb support the much shorter modeled stopping patch. All metric quantities retain explicit noncalibrated residuals."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

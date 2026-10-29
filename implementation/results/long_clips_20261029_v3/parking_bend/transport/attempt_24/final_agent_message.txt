@@ -1,0 +1,176 @@
+{
+  "decision": {
+    "scene_id": "nusc_b4ff30109dd14c89b24789dc5713cf8c",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [[-0.2, -0.7], [8.0, -0.7], [8.0, 1.0], [-0.2, 1.0]],
+    "desired_speed_mps": 2.5,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984255.4124599,
+    "hard_requirements": ["target_region", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1.0,
+      "acceleration_weight": 0.5,
+      "steering_weight": 0.6,
+      "smoothness_weight": 1.0
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984253412460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3.0, -3.0], [8.0, -2.5], [12.0, -1.5], [12.0, 2.0], [5.0, 5.0], [-3.0, 2.8]],
+      "uncertainty_m": 0.4,
+      "frame_ids": ["f18c90dafe764fe2b0d96102eb90c48c", "951a1c1f65b84cc18fbc7c9178e6342b", "2c9ada783ef3477ebefb73f14e65a72b"],
+      "time_ids": ["nusc_us_1538984253412460", "nusc_us_1538984253404844", "nusc_us_1538984253370339"]
+    },
+    "objects": [
+      {
+        "id": "parked_silver_mitsubishi",
+        "position_m": [3.6, -7.0],
+        "velocity_mps": [0.0, 0.0],
+        "uncertainty_m": 0.65,
+        "occupancy": [
+          {
+            "id": "silver_whole_two_seconds",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["2c9ada783ef3477ebefb73f14e65a72b"],
+            "time_ids": ["nusc_us_1538984253370339"],
+            "premise_ids": ["prototype_local_scope", "silver_body_prior", "silver_stationary_bounds"],
+            "residual_m": 0.4,
+            "alternatives": [
+              {
+                "scenario_id": "silver_remains_parked",
+                "polygon_m": [[1.85, -9.3], [5.35, -9.3], [5.35, -4.7], [1.85, -4.7]]
+              },
+              {
+                "scenario_id": "silver_small_pose_change",
+                "polygon_m": [[1.6, -9.5], [5.6, -9.5], [5.6, -4.5], [1.6, -4.5]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["2c9ada783ef3477ebefb73f14e65a72b"],
+        "time_ids": ["nusc_us_1538984253370339"],
+        "state_time_id": "nusc_us_1538984253412460",
+        "body_geometry": {
+          "length_m": 4.25,
+          "width_m": 1.7,
+          "yaw_rad": 2.05
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": ["silver_body_prior", "silver_stationary_bounds"],
+          "residual_m": 0.25,
+          "motion_bound": {
+            "max_speed_mps": 0.3,
+            "displacement_bound_m": 0.013,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "2c9ada783ef3477ebefb73f14e65a72b",
+              "time_id": "nusc_us_1538984253370339",
+              "position_m": [3.6, -7.0],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "silver_remains_parked",
+            "premise_ids": ["prototype_local_scope", "silver_body_prior", "silver_stationary_bounds"],
+            "role": "adopted"
+          },
+          {
+            "id": "silver_small_pose_change",
+            "premise_ids": ["prototype_local_scope", "silver_body_prior", "silver_stationary_bounds"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local two-second prototype, not verified world safety. Ego starts moving at 3.537 m/s; 2.5 m/s is a deceleration preference, not an initial-state substitution. The front image shows clear pavement immediately ahead and a bend to the right farther ahead. Geometry is an approximate monocular hypothesis. The silver car beside the road is retained explicitly. Other visible vehicles occupy parking areas behind or beyond the finite domain; this model excludes their departure into the domain, hidden pedestrians, and other new entrants during these two seconds. No optimizer, independent collision verification, or prefix simulation has been executed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": [[-3.0, -10.0], [6.0, -10.0], [12.0, -1.5], [12.0, 2.0], [5.0, 5.0], [-3.0, 2.8]],
+        "statement": "The conditional domain is this finite pavement-and-nearest-parking patch, in reference ego axes. Model only two seconds of slow forward continuation on the currently clear approach, not traversal of the entire bend. Adopt no new unobserved entrant into this domain and no entry from the visible surrounding parking terraces or rear parking aisles. Vehicles visible outside this polygon, including the farther SUV and cars behind the silver car, remain outside it. These are falsifiable prototype exclusions, not observations that the surrounding world is empty. The silver car within the domain remains represented under both declared bounded modes."
+      },
+      {
+        "id": "local_road_estimate",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Estimate a continuous approximately level local pavement patch from the reference front image's left guardrail/curb and right grass-island curb, supplemented by the near-reference front-left and front-right views. Use supplied camera axes and acquisition ego poses to interpret directions, and the silver car's conditional dimensions for approximate scale. The convex road polygon is a conservative local straight-sided approximation, including the current footprint and the near approach, not the distant roadway beyond the bend. Its lateral extent represents visible pavement rather than a lane-center strip. The rear cut is a finite modeling boundary supported by the side views. Boundary residual is 0.4 m and is not calibrated."
+      },
+      {
+        "id": "silver_body_prior",
+        "object_ids": ["parked_silver_mitsubishi"],
+        "scenario_ids": ["silver_remains_parked", "silver_small_pose_change"],
+        "start_s": -0.043,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "The individual silver Mitsubishi visible frontally in CAM_FRONT_RIGHT is hypothesized to have a 4.25 m by 1.70 m rectangular ground body, centered near [3.6,-7.0], yaw 2.05 rad. These dimensions and depth are approximate passenger-car priors, not measured identity specifications. Native BODY half-extents in reference X/Y are approximately 1.733/2.278 m. Alignment and future-source residuals together total 0.65 m."
+      },
+      {
+        "id": "silver_stationary_bounds",
+        "object_ids": ["parked_silver_mitsubishi"],
+        "scenario_ids": ["silver_remains_parked", "silver_small_pose_change"],
+        "start_s": -0.043,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "The car is visibly positioned in a parking bay, with no visible departure cue. Conditionally it remains parked from the actual front-right capture, 0.042121 s before reference, through the horizon. Adopted mode holds the estimated pose. Reasonable adverse mode allows center displacement up to 0.15 m in each axis from the native reference center, yaw variation up to 0.05 rad, and translational speed at most 0.3 m/s; it does not depart the bay. The same speed bound over the evidence age gives at most 0.012637 m translation, conservatively rounded to 0.013 m. Reference alignment residual is 0.25 m. The adverse polygon bounds the full rotating body and center variation throughout [0,2]; source residual 0.4 m is additional estimation error, not a substitute for body extent."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["2c9ada783ef3477ebefb73f14e65a72b"],
+      "time_ids": ["nusc_us_1538984253370339"],
+      "premise_ids": ["silver_body_prior", "local_road_estimate", "silver_stationary_bounds"],
+      "anchors": [
+        {
+          "object_id": "parked_silver_mitsubishi",
+          "dimension": "width_m",
+          "value_m": 1.7,
+          "rationale": "Conditional typical compact passenger-car width for the individual silver Mitsubishi with its front visible in the cited front-right image."
+        },
+        {
+          "object_id": "parked_silver_mitsubishi",
+          "dimension": "length_m",
+          "value_m": 4.25,
+          "rationale": "Conditional compact-sedan length prior consistent with this car's visible shape; used to extend the frontal observation to a ground-body center and full footprint."
+        }
+      ],
+      "metric_reasoning": "The silver front occupies approximately 350–380 image pixels horizontally. With front-right focal length about 1261 pixels and a 1.70 m width prior, its visible front suggests roughly 5.6–6.1 m optical depth, allowing for obliquity. The calibrated front-right viewing direction places the bumper to ego's right and slightly forward; extending about half a car length away from that bumper gives the hypothesized body center [3.6,-7.0]. Pavement perspective, curb convergence and this approximate scale support a near-road width of several meters and the finite road patch supplied. Camera calibration supplies directions, not independently certified depth or ground contact."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

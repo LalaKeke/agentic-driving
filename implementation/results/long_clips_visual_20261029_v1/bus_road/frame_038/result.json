@@ -1,0 +1,1725 @@
+{
+  "case_id": "frame_038",
+  "scene_name": "scene-0655",
+  "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+  "sample_token": "728e3e32df3c413389cb7e233de96ac4",
+  "label": "frame_038",
+  "runtime_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038",
+  "initial_speed_mps": 8.776165552262823,
+  "status": "TOOL_OR_SEMANTIC_FAILURE",
+  "ended": true,
+  "charged_requests": 2,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": false,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": "T3",
+  "final_failure_reasons": [
+    {
+      "code": "OPTIMIZATION_FAILED",
+      "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+      "category": "tool_infeasible",
+      "details": {
+        "solver_status": "Infeasible_Problem_Detected"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    },
+    {
+      "code": "OPTIMIZATION_FAILED",
+      "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+      "category": "tool_infeasible",
+      "details": {
+        "solver_status": "Infeasible_Problem_Detected"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [
+    "T3_OPTIMIZATION"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25289,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 25286
+        },
+        "output_tokens": 8377,
+        "output_tokens_details": {
+          "reasoning_tokens": 1294
+        },
+        "total_tokens": 33666
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/attempt_01/record.json",
+      "record_sha256": "789381bf189f5b9daeecf3887dbb877fc6c259b090e11fb5c9a0a7a4ac4449d2",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "FAIL",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_ed32f6694a804ccc87c6921b9ecc26a8",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25289,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 25286
+          },
+          "output_tokens": 8377,
+          "output_tokens_details": {
+            "reasoning_tokens": 1294
+          },
+          "total_tokens": 33666
+        },
+        "structured_output": true,
+        "elapsed_s": 107.46472739614546
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T3",
+      "blocking_reasons": [
+        {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected",
+          "candidate_id": "original",
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T3",
+              "code": "OPTIMIZATION_FAILED"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T3",
+              "code": "OPTIMIZATION_FAILED"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            }
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 0,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T3_OPTIMIZATION"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_728e3e32df3c413389cb7e233de96ac4",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -2.0
+            ],
+            [
+              21,
+              -2.0
+            ],
+            [
+              21,
+              0.25
+            ],
+            [
+              -0.2,
+              0.25
+            ]
+          ],
+          "desired_speed_mps": 6.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385112.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 2,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": {
+    "T2": 2,
+    "T3": 0,
+    "T4": 0
+  },
+  "physical": {
+    "prefix_consumed": false,
+    "motion_class": "NOT_EXECUTED",
+    "displacement_xy_m": null,
+    "displacement_m": null,
+    "end_speed_mps": null,
+    "prefix_s": null,
+    "minimum_conditional_clearance_lower_bound_m": null,
+    "max_abs_acceleration_mps2": null,
+    "rms_discrete_jerk_proxy_mps3": null,
+    "max_abs_steer_rad": null,
+    "solver_status": null,
+    "T4_verdict": "NOT_REACHED",
+    "acceptor_status": "NOT_REACHED",
+    "independent_acceptor_pass": false,
+    "prefix_receipt_path": null,
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": "T3",
+  "selected_native_failure_reasons": [
+    {
+      "code": "OPTIMIZATION_FAILED",
+      "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+      "category": "tool_infeasible",
+      "details": {
+        "solver_status": "Infeasible_Problem_Detected"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    },
+    {
+      "code": "OPTIMIZATION_FAILED",
+      "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+      "category": "tool_infeasible",
+      "details": {
+        "solver_status": "Infeasible_Problem_Detected"
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    }
+  ],
+  "frame_index": 38,
+  "relative_sequence_time_s": 18.8,
+  "reference_time_s": 1535385110.9124038,
+  "reference_time_id": "nusc_us_1535385110912404",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_038/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "FAIL",
+    "T4": "NOT_REACHED",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": null,
+    "plan_end_lateral_m": null,
+    "prefix_yaw_change_deg": null,
+    "direction_review": "NOT_EVALUABLE_NO_PLAN"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 1,
+  "unknown_dispatch_history": [
+    {
+      "attempt": 1,
+      "observation": {
+        "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+        "observer_closed": true,
+        "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+        "parent_exec_exit_code": 143,
+        "child_exit_codes": null,
+        "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+        "model_service_state_for_inflight": "UNKNOWN",
+        "automatic_model_retries": 0
+      },
+      "charged": true,
+      "observed_api_post_requests": 0,
+      "source_group": "long_clips_20261029_v2_bus_road"
+    }
+  ],
+  "motion_review": {
+    "moving_prefix_observed": false,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "TOOL_OR_SEMANTIC_FAILURE",
+  "source_group": "long_clips_20261029_v3_bus_road",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_bus_road",
+      "result": {
+        "case_id": "frame_038",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "728e3e32df3c413389cb7e233de96ac4",
+        "label": "frame_038",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/bus_road/runtime/frame_038",
+        "initial_speed_mps": 8.776165552262823,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 38,
+        "relative_sequence_time_s": 18.8,
+        "reference_time_s": 1535385110.9124038,
+        "reference_time_id": "nusc_us_1535385110912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_038/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_bus_road",
+      "result": {
+        "case_id": "frame_038",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "728e3e32df3c413389cb7e233de96ac4",
+        "label": "frame_038",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_038",
+        "initial_speed_mps": 8.776165552262823,
+        "status": "PROCESS_INTERRUPTED_OUTCOME_UNKNOWN",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+        "final_failure_reasons": [
+          {
+            "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+            "category": "execution_error",
+            "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+            "details": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            }
+          }
+        ],
+        "fatal_service_or_interface_failure": {
+          "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+          "category": "execution_error",
+          "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+          "details": {
+            "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+            "observer_closed": true,
+            "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+            "parent_exec_exit_code": 143,
+            "child_exit_codes": null,
+            "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+            "model_service_state_for_inflight": "UNKNOWN",
+            "automatic_model_retries": 0
+          }
+        },
+        "issue_classes_any_attempt": [
+          "PROCESS_INTERRUPTION_UNKNOWN"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 0,
+            "transport": null,
+            "server_reported_model": null,
+            "usage": null,
+            "record_path": null,
+            "record_sha256": null,
+            "native_output_path": null,
+            "native_json_present": false,
+            "native_business_schema": "NOT_REACHED",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": null,
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "UNKNOWN",
+              "BUSINESS_SCHEMA": "NOT_REACHED",
+              "T1": "NOT_REACHED",
+              "T2": "NOT_REACHED",
+              "T3": "NOT_REACHED",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 25,
+              "source": "online_model",
+              "status": "OBSERVER_CLOSED_PROCESS_INTERRUPTION",
+              "api_post_requests": 0,
+              "http_requests": 0,
+              "charged_generation_attempt": 1,
+              "dispatch_state": "UNKNOWN",
+              "model_service_returned": "UNKNOWN",
+              "native_json_returned": false,
+              "http_status": null,
+              "request_id": null,
+              "observation": {
+                "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                "observer_closed": true,
+                "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                "parent_exec_exit_code": 143,
+                "child_exit_codes": null,
+                "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                "model_service_state_for_inflight": "UNKNOWN",
+                "automatic_model_retries": 0
+              }
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "DISPATCH_OR_RESPONSE_UNKNOWN",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+            "blocking_reasons": [
+              {
+                "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+                "category": "execution_error",
+                "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+                "details": {
+                  "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                  "observer_closed": true,
+                  "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                  "parent_exec_exit_code": 143,
+                  "child_exit_codes": null,
+                  "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                  "model_service_state_for_inflight": "UNKNOWN",
+                  "automatic_model_retries": 0
+                }
+              }
+            ],
+            "raw_last_failure": {
+              "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+              "category": "execution_error",
+              "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+              "details": {
+                "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+                "observer_closed": true,
+                "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+                "parent_exec_exit_code": 143,
+                "child_exit_codes": null,
+                "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+                "model_service_state_for_inflight": "UNKNOWN",
+                "automatic_model_retries": 0
+              }
+            },
+            "candidate_counts": null,
+            "candidate_ledger": null,
+            "issue_classes": [
+              "PROCESS_INTERRUPTION_UNKNOWN"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": null,
+              "traffic_evidence": null
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+            "dispatch_or_response_unknown": true,
+            "unknown_dispatch_attempts": 1
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": null,
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "SERVICE",
+        "selected_native_failure_reasons": [
+          {
+            "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+            "category": "execution_error",
+            "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+            "details": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            }
+          }
+        ],
+        "frame_index": 38,
+        "relative_sequence_time_s": 18.8,
+        "reference_time_s": 1535385110.9124038,
+        "reference_time_id": "nusc_us_1535385110912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_038/capture.json",
+        "stages": {
+          "SERVICE": "UNKNOWN",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 1,
+        "unknown_dispatch_history": [
+          {
+            "attempt": 1,
+            "observation": {
+              "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+              "observer_closed": true,
+              "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+              "parent_exec_exit_code": 143,
+              "child_exit_codes": null,
+              "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+              "model_service_state_for_inflight": "UNKNOWN",
+              "automatic_model_retries": 0
+            },
+            "charged": true,
+            "observed_api_post_requests": 0
+          }
+        ],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v3_bus_road",
+      "result": {
+        "case_id": "frame_038",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "728e3e32df3c413389cb7e233de96ac4",
+        "label": "frame_038",
+        "runtime_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038",
+        "initial_speed_mps": 8.776165552262823,
+        "status": "TOOL_OR_SEMANTIC_FAILURE",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": false,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": "T3",
+        "final_failure_reasons": [
+          {
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "category": "tool_infeasible",
+            "details": {
+              "solver_status": "Infeasible_Problem_Detected"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          },
+          {
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "category": "tool_infeasible",
+            "details": {
+              "solver_status": "Infeasible_Problem_Detected"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [
+          "T3_OPTIMIZATION"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25289,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 25286
+              },
+              "output_tokens": 8377,
+              "output_tokens_details": {
+                "reasoning_tokens": 1294
+              },
+              "total_tokens": 33666
+            },
+            "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/attempt_01/record.json",
+            "record_sha256": "789381bf189f5b9daeecf3887dbb877fc6c259b090e11fb5c9a0a7a4ac4449d2",
+            "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "FAIL",
+              "T4": "NOT_REACHED",
+              "ACCEPTOR": "NOT_REACHED",
+              "EXECUTION": "NOT_REACHED"
+            },
+            "transport_summary": {
+              "attempt": 1,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_ed32f6694a804ccc87c6921b9ecc26a8",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25289,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 25286
+                },
+                "output_tokens": 8377,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1294
+                },
+                "total_tokens": 33666
+              },
+              "structured_output": true,
+              "elapsed_s": 107.46472739614546
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": false,
+            "deepest_blocking_stage": "T3",
+            "blocking_reasons": [
+              {
+                "code": "OPTIMIZATION_FAILED",
+                "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                "category": "tool_infeasible",
+                "details": {
+                  "solver_status": "Infeasible_Problem_Detected"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              },
+              {
+                "code": "OPTIMIZATION_FAILED",
+                "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                "category": "tool_infeasible",
+                "details": {
+                  "solver_status": "Infeasible_Problem_Detected"
+                },
+                "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+              }
+            ],
+            "raw_last_failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected",
+                "candidate_id": "original",
+                "candidate_failures": [
+                  {
+                    "candidate_id": "original",
+                    "stage": "T3",
+                    "code": "OPTIMIZATION_FAILED"
+                  },
+                  {
+                    "candidate_id": "brake_straight",
+                    "stage": "T3",
+                    "code": "OPTIMIZATION_FAILED"
+                  },
+                  {
+                    "candidate_id": "brake_right",
+                    "stage": "T2",
+                    "code": "CORRIDOR_HEADING_BOUND"
+                  },
+                  {
+                    "candidate_id": "brake_left",
+                    "stage": "T2",
+                    "code": "CORRIDOR_HEADING_BOUND"
+                  },
+                  {
+                    "candidate_id": "brake_right_strong",
+                    "stage": "T2",
+                    "code": "CORRIDOR_HEADING_BOUND"
+                  }
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            },
+            "candidate_counts": {
+              "T2": 2,
+              "T3": 0,
+              "T4": 0
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "FAIL",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "OPTIMIZATION_FAILED",
+                    "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "solver_status": "Infeasible_Problem_Detected"
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "FAIL",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "OPTIMIZATION_FAILED",
+                    "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "solver_status": "Infeasible_Problem_Detected"
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.4,
+                        0.6000000000000001
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": null,
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [
+              "T3_OPTIMIZATION"
+            ],
+            "physical": {
+              "prefix_consumed": false,
+              "motion_class": "NOT_EXECUTED",
+              "displacement_xy_m": null,
+              "displacement_m": null,
+              "end_speed_mps": null,
+              "prefix_s": null,
+              "minimum_conditional_clearance_lower_bound_m": null,
+              "max_abs_acceleration_mps2": null,
+              "rms_discrete_jerk_proxy_mps3": null,
+              "max_abs_steer_rad": null,
+              "solver_status": null,
+              "T4_verdict": "NOT_REACHED",
+              "acceptor_status": "NOT_REACHED",
+              "independent_acceptor_pass": false,
+              "prefix_receipt_path": null,
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_728e3e32df3c413389cb7e233de96ac4",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.2,
+                    -2.0
+                  ],
+                  [
+                    21,
+                    -2.0
+                  ],
+                  [
+                    21,
+                    0.25
+                  ],
+                  [
+                    -0.2,
+                    0.25
+                  ]
+                ],
+                "desired_speed_mps": 6.5,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385112.9124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1,
+                  "acceleration_weight": 2,
+                  "steering_weight": 2,
+                  "smoothness_weight": 3
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": {
+          "T2": 2,
+          "T3": 0,
+          "T4": 0
+        },
+        "physical": {
+          "prefix_consumed": false,
+          "motion_class": "NOT_EXECUTED",
+          "displacement_xy_m": null,
+          "displacement_m": null,
+          "end_speed_mps": null,
+          "prefix_s": null,
+          "minimum_conditional_clearance_lower_bound_m": null,
+          "max_abs_acceleration_mps2": null,
+          "rms_discrete_jerk_proxy_mps3": null,
+          "max_abs_steer_rad": null,
+          "solver_status": null,
+          "T4_verdict": "NOT_REACHED",
+          "acceptor_status": "NOT_REACHED",
+          "independent_acceptor_pass": false,
+          "prefix_receipt_path": null,
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": "T3",
+        "selected_native_failure_reasons": [
+          {
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "category": "tool_infeasible",
+            "details": {
+              "solver_status": "Infeasible_Problem_Detected"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          },
+          {
+            "code": "OPTIMIZATION_FAILED",
+            "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+            "category": "tool_infeasible",
+            "details": {
+              "solver_status": "Infeasible_Problem_Detected"
+            },
+            "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+          }
+        ],
+        "frame_index": 38,
+        "relative_sequence_time_s": 18.8,
+        "reference_time_s": 1535385110.9124038,
+        "reference_time_id": "nusc_us_1535385110912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_038/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "FAIL",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 0,
+      "transport": null,
+      "server_reported_model": null,
+      "usage": null,
+      "record_path": null,
+      "record_sha256": null,
+      "native_output_path": null,
+      "native_json_present": false,
+      "native_business_schema": "NOT_REACHED",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": null,
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "UNKNOWN",
+        "BUSINESS_SCHEMA": "NOT_REACHED",
+        "T1": "NOT_REACHED",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 25,
+        "source": "online_model",
+        "status": "OBSERVER_CLOSED_PROCESS_INTERRUPTION",
+        "api_post_requests": 0,
+        "http_requests": 0,
+        "charged_generation_attempt": 1,
+        "dispatch_state": "UNKNOWN",
+        "model_service_returned": "UNKNOWN",
+        "native_json_returned": false,
+        "http_status": null,
+        "request_id": null,
+        "observation": {
+          "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+          "observer_closed": true,
+          "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+          "parent_exec_exit_code": 143,
+          "child_exit_codes": null,
+          "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+          "model_service_state_for_inflight": "UNKNOWN",
+          "automatic_model_retries": 0
+        }
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "DISPATCH_OR_RESPONSE_UNKNOWN",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "DISPATCH_OR_RESPONSE_UNKNOWN",
+      "blocking_reasons": [
+        {
+          "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+          "category": "execution_error",
+          "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+          "details": {
+            "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+            "observer_closed": true,
+            "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+            "parent_exec_exit_code": 143,
+            "child_exit_codes": null,
+            "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+            "model_service_state_for_inflight": "UNKNOWN",
+            "automatic_model_retries": 0
+          }
+        }
+      ],
+      "raw_last_failure": {
+        "code": "PROCESS_INTERRUPTED_DURING_API_REQUEST",
+        "category": "execution_error",
+        "message": "Process exited before a native response was recorded; service execution/dispatch unknown; charge retained",
+        "details": {
+          "completion_authority": "LOCAL_OBSERVER_AFTER_NO_OWNED_RUNNER_PIDS",
+          "observer_closed": true,
+          "observed_at_utc": "2026-10-29T11:09:01.823590+00:00",
+          "parent_exec_exit_code": 143,
+          "child_exit_codes": null,
+          "cause": "UNKNOWN_EXTERNAL_PROCESS_TERMINATION",
+          "model_service_state_for_inflight": "UNKNOWN",
+          "automatic_model_retries": 0
+        }
+      },
+      "candidate_counts": null,
+      "candidate_ledger": null,
+      "issue_classes": [
+        "PROCESS_INTERRUPTION_UNKNOWN"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": null,
+        "traffic_evidence": null
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "dispatch_or_response_unknown": true,
+      "unknown_dispatch_attempts": 1,
+      "source_group": "long_clips_20261029_v2_bus_road"
+    },
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25289,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 25286
+        },
+        "output_tokens": 8377,
+        "output_tokens_details": {
+          "reasoning_tokens": 1294
+        },
+        "total_tokens": 33666
+      },
+      "record_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/attempt_01/record.json",
+      "record_sha256": "789381bf189f5b9daeecf3887dbb877fc6c259b090e11fb5c9a0a7a4ac4449d2",
+      "native_output_path": "implementation/results/long_clips_20261029_v3/bus_road/runtime/frame_038/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "FAIL",
+        "T4": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED"
+      },
+      "transport_summary": {
+        "attempt": 1,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_ed32f6694a804ccc87c6921b9ecc26a8",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25289,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 25286
+          },
+          "output_tokens": 8377,
+          "output_tokens_details": {
+            "reasoning_tokens": 1294
+          },
+          "total_tokens": 33666
+        },
+        "structured_output": true,
+        "elapsed_s": 107.46472739614546
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": false,
+      "deepest_blocking_stage": "T3",
+      "blocking_reasons": [
+        {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        },
+        {
+          "code": "OPTIMIZATION_FAILED",
+          "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+          "category": "tool_infeasible",
+          "details": {
+            "solver_status": "Infeasible_Problem_Detected"
+          },
+          "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+        }
+      ],
+      "raw_last_failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected",
+          "candidate_id": "original",
+          "candidate_failures": [
+            {
+              "candidate_id": "original",
+              "stage": "T3",
+              "code": "OPTIMIZATION_FAILED"
+            },
+            {
+              "candidate_id": "brake_straight",
+              "stage": "T3",
+              "code": "OPTIMIZATION_FAILED"
+            },
+            {
+              "candidate_id": "brake_right",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_left",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            },
+            {
+              "candidate_id": "brake_right_strong",
+              "stage": "T2",
+              "code": "CORRIDOR_HEADING_BOUND"
+            }
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 0,
+        "T4": 0
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "FAIL",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "OPTIMIZATION_FAILED",
+              "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+              "category": "tool_infeasible",
+              "details": {
+                "solver_status": "Infeasible_Problem_Detected"
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": null,
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [
+        "T3_OPTIMIZATION"
+      ],
+      "physical": {
+        "prefix_consumed": false,
+        "motion_class": "NOT_EXECUTED",
+        "displacement_xy_m": null,
+        "displacement_m": null,
+        "end_speed_mps": null,
+        "prefix_s": null,
+        "minimum_conditional_clearance_lower_bound_m": null,
+        "max_abs_acceleration_mps2": null,
+        "rms_discrete_jerk_proxy_mps3": null,
+        "max_abs_steer_rad": null,
+        "solver_status": null,
+        "T4_verdict": "NOT_REACHED",
+        "acceptor_status": "NOT_REACHED",
+        "independent_acceptor_pass": false,
+        "prefix_receipt_path": null,
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_728e3e32df3c413389cb7e233de96ac4",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.2,
+              -2.0
+            ],
+            [
+              21,
+              -2.0
+            ],
+            [
+              21,
+              0.25
+            ],
+            [
+              -0.2,
+              0.25
+            ]
+          ],
+          "desired_speed_mps": 6.5,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385112.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1,
+            "acceleration_weight": 2,
+            "steering_weight": 2,
+            "smoothness_weight": 3
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v3_bus_road"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": false,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": null,
+  "overall_success_request_ordinal": null,
+  "overall_request_ordinal_scope": "Charged attempts including unconfirmed dispatch; observed POSTs are counted separately.",
+  "selection_policy": "LATEST_ACTUAL_ATTEMPT_GROUP",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      137.56933203143794,
+      -0.5600891583917051
+    ],
+    "yaw_rad": 0.01204369576122551,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}

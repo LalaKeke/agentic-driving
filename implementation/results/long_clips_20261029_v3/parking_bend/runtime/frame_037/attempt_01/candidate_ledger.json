@@ -1,0 +1,55 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 30.911519220821212,
+      "minimum_clearance_lower_bound_m": 2.1589712162035823
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 30.911519220821212,
+      "minimum_clearance_lower_bound_m": 2.1589712162035823
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 30.964689971835195,
+      "minimum_clearance_lower_bound_m": 2.077145811082999
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 30.96468987555486,
+      "minimum_clearance_lower_bound_m": 2.07714722058439
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "PASS",
+      "T3": "FAIL",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

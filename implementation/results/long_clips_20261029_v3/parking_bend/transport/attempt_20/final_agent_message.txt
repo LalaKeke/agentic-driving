@@ -1,0 +1,233 @@
+{
+  "decision": {
+    "scene_id": "nusc_a1289b27ca1d41deb6fc982be9a3d03c",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [[-0.5, -0.6], [4, -0.6], [10, 2], [10, 3], [4, 2], [-0.5, 0.8]],
+    "desired_speed_mps": 3.5,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1538984252.9124599,
+    "hard_requirements": ["target_region", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 1,
+      "steering_weight": 1,
+      "smoothness_weight": 2
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984250912460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3, -3.5], [5, -3.5], [12, 0], [17, 5], [9, 5], [-3, 3]],
+      "uncertainty_m": 0.65,
+      "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46", "8914542fd61243c5ab42fc6e4e51bf62"],
+      "time_ids": ["nusc_us_1538984250912460", "nusc_us_1538984250904844"]
+    },
+    "objects": [
+      {
+        "id": "parked_gray_sedan_ahead",
+        "position_m": [22, 4.5],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 1.5,
+        "occupancy": [
+          {
+            "id": "sedan_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46"],
+            "time_ids": ["nusc_us_1538984250912460"],
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "residual_m": 1.1,
+            "alternatives": [
+              {
+                "scenario_id": "sedan_stationary",
+                "polygon_m": [[19.5, 2.4], [24.5, 2.4], [24.5, 6.6], [19.5, 6.6]]
+              },
+              {
+                "scenario_id": "sedan_bounded_settle",
+                "polygon_m": [[19.2, 2.1], [24.8, 2.1], [24.8, 6.9], [19.2, 6.9]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46"],
+        "time_ids": ["nusc_us_1538984250912460"],
+        "state_time_id": "nusc_us_1538984250912460",
+        "body_geometry": {
+          "length_m": 4.5,
+          "width_m": 1.8,
+          "yaw_rad": 2.6
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["body_scale_and_road"],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "4cb2e5f01be94ffeb22cabde23ba5b46",
+              "time_id": "nusc_us_1538984250912460",
+              "position_m": [22, 4.5],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "sedan_stationary",
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "role": "adopted"
+          },
+          {
+            "id": "sedan_bounded_settle",
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "parked_dark_mazda_right",
+        "position_m": [13, -7],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 1.5,
+        "occupancy": [
+          {
+            "id": "mazda_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46"],
+            "time_ids": ["nusc_us_1538984250912460"],
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "residual_m": 1.1,
+            "alternatives": [
+              {
+                "scenario_id": "mazda_stationary",
+                "polygon_m": [[10.5, -9.3], [15.5, -9.3], [15.5, -4.7], [10.5, -4.7]]
+              },
+              {
+                "scenario_id": "mazda_bounded_settle",
+                "polygon_m": [[10.2, -9.6], [15.8, -9.6], [15.8, -4.4], [10.2, -4.4]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46"],
+        "time_ids": ["nusc_us_1538984250912460"],
+        "state_time_id": "nusc_us_1538984250912460",
+        "body_geometry": {
+          "length_m": 4.6,
+          "width_m": 1.8,
+          "yaw_rad": 2.5
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["body_scale_and_road"],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "4cb2e5f01be94ffeb22cabde23ba5b46",
+              "time_id": "nusc_us_1538984250912460",
+              "position_m": [13, -7],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mazda_stationary",
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "role": "adopted"
+          },
+          {
+            "id": "mazda_bounded_settle",
+            "premise_ids": ["prototype_local_scope", "body_scale_and_road", "parked_motion_conditions"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second local prototype, not verified world safety. Continue slowly into the visible left bend from the supplied initial speed of 4.594389 m/s; the desired speed requires deceleration, not an instantaneous speed reset. Geometry and residuals are monocular model estimates. Background parking rows, rear traffic, hidden pedestrians and possible departures from other bays are excluded only under the explicit no-entry local-scope condition. The two nearest frontage vehicles are retained. No optimization, continuous collision verification or simulated prefix has been executed here.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [[-3, -10], [17, -10], [28, 2], [28, 8], [10, 8], [-3, 3]],
+        "statement": "Model only this finite local domain for two seconds, including the immediate paved bend and the two declared frontage parked vehicles. Adopt no new unobserved entrant into this domain: no pedestrian emerges from occlusion, no rear vehicle catches the ego, and no vehicle in the farther background parking rows departs into it. Those are falsifiable exclusions, not observations that the surrounding world is empty. The declared frontage vehicles remain within their specified bounded parked modes. Coverage completeness is conditional on these restrictions."
+      },
+      {
+        "id": "body_scale_and_road",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Assume the front-visible gray sedan has length 4.5 m and width 1.8 m, and the dark Mazda has length 4.6 m and width 1.8 m. These are passenger-car body-size priors, not measured dimensions. Use their apparent extent, oblique poses, visible tire/curb relationships and calibrated viewing axes to estimate the stated centers and headings. The asphalt is locally approximately continuous and level. Its inner boundary follows the grass-island curb seen in the front-left view; its outer boundary follows the frontage curb and parking apron seen in the reference front view. The convex road polygon is a conservative local paved subset including the present footprint, not a lane-width rectangle or an expansion into the grass. Boundary residual is 0.65 m. The short asynchronous front-left road view is interpreted with supplied ego history and a static curb assumption; no actor state is inferred from it."
+      },
+      {
+        "id": "parked_motion_conditions",
+        "object_ids": ["parked_gray_sedan_ahead", "parked_dark_mazda_right"],
+        "scenario_ids": ["sedan_stationary", "sedan_bounded_settle", "mazda_stationary", "mazda_bounded_settle"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Both frontage cars appear parked in bays. Adopt stationary nominal bodies throughout the horizon. Reasonable adverse modes permit each body center to move by at most 0.2 m in any direction and yaw to vary by at most 0.05 rad from its native pose throughout the entire interval; no powered pull-out or opening door is included. The adverse rectangles enclose every body under those simultaneous bounds, including the native body at time zero. Each source has 1.1 m model residual, excluding the 0.4 m reference alignment residual; their sum is the single 1.5 m total actor residual. Completeness applies only to these explicit parked conditions."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["4cb2e5f01be94ffeb22cabde23ba5b46"],
+      "time_ids": ["nusc_us_1538984250912460"],
+      "premise_ids": ["body_scale_and_road", "prototype_local_scope"],
+      "anchors": [
+        {
+          "object_id": "parked_gray_sedan_ahead",
+          "dimension": "length_m",
+          "value_m": 4.5,
+          "rationale": "The individually visible gray sedan ahead is modeled as an ordinary compact passenger sedan; 4.5 m is an approximate body-length prior matching its native geometry."
+        },
+        {
+          "object_id": "parked_gray_sedan_ahead",
+          "dimension": "width_m",
+          "value_m": 1.8,
+          "rationale": "Approximate passenger-sedan width prior used jointly with its oblique front/side silhouette; matches the native body width."
+        },
+        {
+          "object_id": "parked_dark_mazda_right",
+          "dimension": "length_m",
+          "value_m": 4.6,
+          "rationale": "The dark Mazda individually visible at the reference image's right edge provides a second passenger-car length prior, matching its native body estimate."
+        }
+      ],
+      "metric_reasoning": "The gray sedan's approximately 250-pixel horizontal extent is an oblique projection of length and width rather than width alone. With the 1266-pixel front focal length and the declared body dimensions, a low-twenties-meter center range is plausible; its left-of-axis image location supports positive lateral position. The substantially larger, right-edge Mazda silhouette and lower tire contacts support a nearer low-teens-meter range and negative lateral position. These estimates set approximate curb scale and the bend's paved subset. Neither camera calibration nor a presumed contact pixel certifies depth; scale and road geometry remain conditional model hypotheses with explicit finite residuals."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

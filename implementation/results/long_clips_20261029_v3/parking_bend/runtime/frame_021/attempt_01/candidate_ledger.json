@@ -1,0 +1,62 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 0.13937245771712167,
+      "minimum_clearance_lower_bound_m": 2.34468539087667
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 0.7628413056475931,
+      "minimum_clearance_lower_bound_m": 2.0969735595574397
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "PASS",
+      "T3": "FAIL",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 26.866806777029968,
+      "minimum_clearance_lower_bound_m": 1.6471402583422152
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "PASS",
+      "T3": "FAIL",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

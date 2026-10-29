@@ -1,0 +1,383 @@
+{
+  "decision": {
+    "scene_id": "nusc_858a1ece22cf45d9bc71e42336604b78",
+    "revision": 0,
+    "behavior": "stop_yield",
+    "target_region": [[-0.2, -0.6], [4.1, -0.6], [4.1, 0.6], [-0.2, 0.6]],
+    "desired_speed_mps": 0,
+    "yield_to": ["pedestrian_blue_shirt"],
+    "stop": {
+      "center_x_max_m": 4,
+      "deadline_s": 1.8
+    },
+    "priority": 1,
+    "valid_until_s": 1538984240.91246,
+    "hard_requirements": ["target_region", "stop", "yield", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 1,
+      "steering_weight": 3,
+      "smoothness_weight": 1
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984238912460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-3, -3], [14, -3], [14, 2.6], [-3, 4.6]],
+      "uncertainty_m": 0.45,
+      "frame_ids": ["13450209d238498bb7ad63928f2d6878", "69c59330a61e4f078b81b475b480912e"],
+      "time_ids": ["nusc_us_1538984238412460", "nusc_us_1538984238912460"]
+    },
+    "objects": [
+      {
+        "id": "pedestrian_blue_shirt",
+        "position_m": [10.3, 4.4],
+        "velocity_mps": [-0.8, 0.2],
+        "uncertainty_m": 0.9,
+        "occupancy": [
+          {
+            "id": "pedestrian_two_second_body_union",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+            "time_ids": ["nusc_us_1538984238912460"],
+            "premise_ids": ["metric_and_road_estimation", "pedestrian_motion"],
+            "residual_m": 0.5,
+            "alternatives": [
+              {
+                "scenario_id": "pedestrian_continue_left_edge",
+                "polygon_m": [[7.99, 4.09], [10.81, 4.09], [10.81, 5.51], [7.99, 5.51]]
+              },
+              {
+                "scenario_id": "pedestrian_step_toward_lane",
+                "polygon_m": [[7.99, 1.09], [11.11, 1.09], [11.11, 5.01], [7.99, 5.01]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+        "time_ids": ["nusc_us_1538984238912460"],
+        "state_time_id": "nusc_us_1538984238912460",
+        "body_geometry": {
+          "length_m": 0.6,
+          "width_m": 0.6,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_and_road_estimation"],
+          "residual_m": 0.2,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "69c59330a61e4f078b81b475b480912e",
+              "time_id": "nusc_us_1538984238912460",
+              "position_m": [10.3, 4.4],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "pedestrian_continue_left_edge",
+            "premise_ids": ["pedestrian_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "pedestrian_step_toward_lane",
+            "premise_ids": ["pedestrian_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "red_parked_motorcycle",
+        "position_m": [14, 4.5],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 1,
+        "occupancy": [
+          {
+            "id": "red_motorcycle_stationary_body",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+            "time_ids": ["nusc_us_1538984238912460"],
+            "premise_ids": ["metric_and_road_estimation", "parked_obstacles"],
+            "residual_m": 0.5,
+            "alternatives": [
+              {
+                "scenario_id": "red_motorcycle_parked",
+                "polygon_m": [[12.94, 4.09], [15.06, 4.09], [15.06, 4.91], [12.94, 4.91]]
+              },
+              {
+                "scenario_id": "red_motorcycle_parked_pose_spread",
+                "polygon_m": [[12.79, 3.94], [15.21, 3.94], [15.21, 5.06], [12.79, 5.06]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+        "time_ids": ["nusc_us_1538984238912460"],
+        "state_time_id": "nusc_us_1538984238912460",
+        "body_geometry": {
+          "length_m": 2.1,
+          "width_m": 0.8,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_and_road_estimation"],
+          "residual_m": 0.3,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "69c59330a61e4f078b81b475b480912e",
+              "time_id": "nusc_us_1538984238912460",
+              "position_m": [14, 4.5],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "red_motorcycle_parked",
+            "premise_ids": ["parked_obstacles"],
+            "role": "adopted"
+          },
+          {
+            "id": "red_motorcycle_parked_pose_spread",
+            "premise_ids": ["parked_obstacles"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_motorcycle_parking_cluster",
+        "position_m": [12, 7.2],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 1.1,
+        "occupancy": [
+          {
+            "id": "left_motorcycle_cluster_body_union",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+            "time_ids": ["nusc_us_1538984238912460"],
+            "premise_ids": ["metric_and_road_estimation", "parked_obstacles"],
+            "residual_m": 0.6,
+            "alternatives": [
+              {
+                "scenario_id": "motorcycle_cluster_stationary",
+                "polygon_m": [[7.99, 5.19], [16.01, 5.19], [16.01, 9.21], [7.99, 9.21]]
+              },
+              {
+                "scenario_id": "motorcycle_cluster_pose_spread",
+                "polygon_m": [[7.79, 4.99], [16.21, 4.99], [16.21, 9.41], [7.79, 9.41]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+        "time_ids": ["nusc_us_1538984238912460"],
+        "state_time_id": "nusc_us_1538984238912460",
+        "body_geometry": {
+          "length_m": 8,
+          "width_m": 4,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_and_road_estimation"],
+          "residual_m": 0.3,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "69c59330a61e4f078b81b475b480912e",
+              "time_id": "nusc_us_1538984238912460",
+              "position_m": [12, 7.2],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "motorcycle_cluster_stationary",
+            "premise_ids": ["parked_obstacles"],
+            "role": "adopted"
+          },
+          {
+            "id": "motorcycle_cluster_pose_spread",
+            "premise_ids": ["parked_obstacles"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_bollard_group",
+        "position_m": [9.1, 5.4],
+        "velocity_mps": [0, 0],
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "bollard_group_body_union",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+            "time_ids": ["nusc_us_1538984238912460"],
+            "premise_ids": ["metric_and_road_estimation", "fixed_bollards"],
+            "residual_m": 0.4,
+            "alternatives": [
+              {
+                "scenario_id": "bollards_fixed",
+                "polygon_m": [[6.79, 4.39], [11.41, 4.39], [11.41, 6.41], [6.79, 6.41]]
+              },
+              {
+                "scenario_id": "bollards_boundary_spread",
+                "polygon_m": [[6.64, 4.24], [11.56, 4.24], [11.56, 6.56], [6.64, 6.56]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+        "time_ids": ["nusc_us_1538984238912460"],
+        "state_time_id": "nusc_us_1538984238912460",
+        "body_geometry": {
+          "length_m": 4.6,
+          "width_m": 2,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_and_road_estimation"],
+          "residual_m": 0.2,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "69c59330a61e4f078b81b475b480912e",
+              "time_id": "nusc_us_1538984238912460",
+              "position_m": [9.1, 5.4],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "bollards_fixed",
+            "premise_ids": ["fixed_bollards"],
+            "role": "adopted"
+          },
+          {
+            "id": "bollards_boundary_spread",
+            "premise_ids": ["fixed_bollards"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [
+      {
+        "rule": "yield_required",
+        "state": "active",
+        "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+        "time_ids": ["nusc_us_1538984238912460"]
+      }
+    ],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second local prototype, not verified geometry or world safety. Brake from the supplied 4.638 m/s; do not treat ego as initially stationary. A constant approximately 2.8 m/s^2 braking candidate stops in about 1.66 s after 3.84 m, within the supplied limits, but no optimizer or independent continuous collision checker has been run here. The visible blue-shirt pedestrian is retained with an adverse lane-entry mode. Motorcycle and bollard groups are conservative aggregate obstacle boxes, not individual vehicle detections. Shelter occupants, distant parked cars, the central distant scooter, rear bus and side parking are outside the adopted local maneuver patch; their exclusion is conditional on no entry into that patch during these two seconds. The model does not cover a pedestrian running, motorcycle departure, a new occluded entrant, or continuation around the bend after stopping. All metric residuals and motion bounds are uncalibrated estimates.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [[-3, -3.5], [17, -3.5], [17, 10], [6, 10], [6, 5], [-3, 5]],
+        "statement": "Model only this finite approach-and-left-obstacle domain for a straight braking maneuver over two seconds. Adopt no new unobserved entrant into this domain, shelter occupants remaining on the raised platform outside the approach, and distant/side parked traffic remaining outside this domain. The rear bus does not enter this domain. These are explicit conditional exclusions, not claims about the unobserved world. Declared pedestrian and obstacle sources remain represented, including their adverse modes."
+      },
+      {
+        "id": "metric_and_road_estimation",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopt an approximately locally level pavement interpretation and a 2.1 m long, 0.8 m wide red parked motorcycle body prior. Use visible motorcycle extent, pedestrian foot location, perspective convergence, the raised left pavement edge and right paved approach to estimate metric geometry. The convex road polygon is an interior approximation of continuous approach pavement, truncated before the far parking/guardrail and not an assertion that parking bays are drivable. Its 0.45 m residual covers model-estimated boundary error, not certified calibration. The polygon includes the present ego footprint and the intended stopping route. Aggregate boxes conservatively cover the visible left motorcycle bank and bollard group."
+      },
+      {
+        "id": "pedestrian_motion",
+        "object_ids": ["pedestrian_blue_shirt"],
+        "scenario_ids": ["pedestrian_continue_left_edge", "pedestrian_step_toward_lane"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Condition on walking, not running, without instantaneous relocation. Adopted mode keeps the pedestrian center in x=[8.3,10.5], y=[4.4,5.2]. Reasonable adverse mode permits a turn toward the lane with center x=[8.3,10.8], y=[1.4,4.7]. Both start at [10.3,4.4], with absolute speed bounded by 1.9 m/s. The rectangular sources include the full 0.6 by 0.6 m body throughout either closed interval. This is a bounded short-term hypothesis, not exhaustive human behavior."
+      },
+      {
+        "id": "parked_obstacles",
+        "object_ids": ["red_parked_motorcycle", "left_motorcycle_parking_cluster"],
+        "scenario_ids": ["red_motorcycle_parked", "red_motorcycle_parked_pose_spread", "motorcycle_cluster_stationary", "motorcycle_cluster_pose_spread"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The visibly parked, unoccupied motorcycles remain parked for two seconds. Adopted envelopes contain their native rectangular body hypotheses. Adverse variants add 0.15 m per side for the individual motorcycle and 0.20 m per side for the aggregate bank to cover bounded stand/pose spread; no powered departure is adopted. The bank box is an enclosing compound obstacle, with dimensions describing its aggregate occupied extent rather than a single motorcycle."
+      },
+      {
+        "id": "fixed_bollards",
+        "object_ids": ["left_bollard_group"],
+        "scenario_ids": ["bollards_fixed", "bollards_boundary_spread"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The visible fixed bollards remain stationary. Their aggregate box encloses the group, including intervening space. The adverse envelope adds 0.15 m per side for bounded group-boundary estimation spread, separately from the declared total residual."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["69c59330a61e4f078b81b475b480912e"],
+      "time_ids": ["nusc_us_1538984238912460"],
+      "premise_ids": ["metric_and_road_estimation"],
+      "anchors": [
+        {
+          "object_id": "red_parked_motorcycle",
+          "dimension": "length_m",
+          "value_m": 2.1,
+          "rationale": "Conditional typical full-size motorcycle length for the individually visible red parked motorcycle left of the open approach."
+        },
+        {
+          "object_id": "red_parked_motorcycle",
+          "dimension": "width_m",
+          "value_m": 0.8,
+          "rationale": "Conditional handlebar/body width prior for that same individual motorcycle; equals its native body width."
+        }
+      ],
+      "metric_reasoning": "The reference image places the red motorcycle near image u=430 with ground contact around v=620, whereas the pedestrian feet are near u=280,v=680. Under the explicitly adopted approximately level local pavement interpretation, the supplied front-camera axes and perspective make the motorcycle farther ahead than the pedestrian. Its assumed 0.8 m body width is consistent with its order-of-tens-of-pixels visible width at a low-teens-meter distance. I estimate motorcycle center [14,4.5] m and pedestrian center [10.3,4.4] m, then use the visible left curb and open paved approach to form a truncated convex road patch. Occlusion, contact selection and body-size variability prevent calibrated monocular depth; the dimensions, positions and finite residuals remain falsifiable model hypotheses."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

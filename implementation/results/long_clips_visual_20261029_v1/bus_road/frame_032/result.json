@@ -1,0 +1,1940 @@
+{
+  "case_id": "frame_032",
+  "scene_name": "scene-0655",
+  "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+  "sample_token": "9a0a16d628ae41d1ab25c9cdfc66d6a1",
+  "label": "frame_032",
+  "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032",
+  "initial_speed_mps": 8.339260677338604,
+  "status": "FIRST_ATTEMPT_PASS",
+  "ended": true,
+  "charged_requests": 1,
+  "reported_charged_requests": 1,
+  "turn_start_count": 0,
+  "api_post_requests": 1,
+  "budget_count_matches_summary": true,
+  "first_attempt_pass": true,
+  "revision_pass": null,
+  "native_json_count": 1,
+  "native_schema_valid_count": 1,
+  "final_failure_stage": null,
+  "final_failure_reasons": [],
+  "fatal_service_or_interface_failure": null,
+  "issue_classes_any_attempt": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25286,
+        "input_tokens_details": {
+          "cache_write_tokens": 21788,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 7565,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 32851
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/record.json",
+      "record_sha256": "c4803b7d9beca9570d17d4c017e2b82364716a62bbb88bc92fa62d1980399c06",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 20,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_c1e5dceb5d5a4388a83735fa2a993b8f",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25286,
+          "input_tokens_details": {
+            "cache_write_tokens": 21788,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 7565,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 32851
+        },
+        "structured_output": true,
+        "elapsed_s": 103.62453862838447
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 1
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.10329905667423558,
+            "minimum_clearance_lower_bound_m": 1.3993796264916878
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.62,
+                    1.6400000000000001
+                  ],
+                  "position_m": [
+                    11.15459283197756,
+                    -0.28865995659664884
+                  ],
+                  "computed": 0.3516384826283933,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6400000000000001,
+                    1.6600000000000001
+                  ],
+                  "position_m": [
+                    11.274515017440795,
+                    -0.2916586371525556
+                  ],
+                  "computed": 0.35453912253755165,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6600000000000001,
+                    1.6800000000000002
+                  ],
+                  "position_m": [
+                    11.394250516249793,
+                    -0.29465264956627113
+                  ],
+                  "computed": 0.3574350943045256,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6800000000000002,
+                    1.7000000000000002
+                  ],
+                  "position_m": [
+                    11.51379932840456,
+                    -0.2976419938378022
+                  ],
+                  "computed": 0.3603263979293217,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.7000000000000002,
+                    1.72
+                  ],
+                  "position_m": [
+                    11.633161453905089,
+                    -0.3006266699671556
+                  ],
+                  "computed": 0.36321303341194694,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.72,
+                    1.74
+                  ],
+                  "position_m": [
+                    11.752336892751384,
+                    -0.30360667795433804
+                  ],
+                  "computed": 0.366095000752408,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.74,
+                    1.76
+                  ],
+                  "position_m": [
+                    11.871325644943443,
+                    -0.3065820177993563
+                  ],
+                  "computed": 0.36897229995071157,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.76,
+                    1.78
+                  ],
+                  "position_m": [
+                    11.99012771048127,
+                    -0.309552689502217
+                  ],
+                  "computed": 0.37184493100686417,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.78,
+                    1.8
+                  ],
+                  "position_m": [
+                    12.108743089364859,
+                    -0.3125186930629269
+                  ],
+                  "computed": 0.37471289392087276,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.8,
+                    1.82
+                  ],
+                  "position_m": [
+                    12.227171781594214,
+                    -0.31548002848149276
+                  ],
+                  "computed": 0.3775790842010594,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.82,
+                    1.84
+                  ],
+                  "position_m": [
+                    12.345422347502463,
+                    -0.31843392538309767
+                  ],
+                  "computed": 0.3804435758945649,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.84,
+                    1.86
+                  ],
+                  "position_m": [
+                    12.463503205147143,
+                    -0.3213833032121156
+                  ],
+                  "computed": 0.383303549720144,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.86,
+                    1.8800000000000001
+                  ],
+                  "position_m": [
+                    12.581414354497499,
+                    -0.32432816317320723
+                  ],
+                  "computed": 0.386159006880726,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.8800000000000001,
+                    1.9
+                  ],
+                  "position_m": [
+                    12.699155795522831,
+                    -0.3272685064693016
+                  ],
+                  "computed": 0.38900994857750854,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.9,
+                    1.92
+                  ],
+                  "position_m": [
+                    12.816727528192484,
+                    -0.3302043343015966
+                  ],
+                  "computed": 0.3918563760099582,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.92,
+                    1.94
+                  ],
+                  "position_m": [
+                    12.934129552475856,
+                    -0.3331356478695588
+                  ],
+                  "computed": 0.3946982903758103,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.94,
+                    1.96
+                  ],
+                  "position_m": [
+                    13.05136186834239,
+                    -0.3360624483709233
+                  ],
+                  "computed": 0.39753569287106877,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.96,
+                    1.98
+                  ],
+                  "position_m": [
+                    13.16842447576158,
+                    -0.3389847370016942
+                  ],
+                  "computed": 0.4003685846900059,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.98,
+                    2.0
+                  ],
+                  "position_m": [
+                    13.285317374702968,
+                    -0.3419025149561439
+                  ],
+                  "computed": 0.4031969670251633,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.6622640237658088,
+          -2.9823310126596757e-06
+        ],
+        "displacement_m": 1.6622640237684843,
+        "end_speed_mps": 8.283379560338389,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.3993796264916878,
+        "max_abs_acceleration_mps2": 0.2794055850010772,
+        "rms_discrete_jerk_proxy_mps3": 0.12377511801210628,
+        "max_abs_steer_rad": 2.384961937113283e-06,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_9a0a16d628ae41d1ab25c9cdfc66d6a1",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.3,
+              -0.35
+            ],
+            [
+              18.5,
+              -0.35
+            ],
+            [
+              18.5,
+              0.45
+            ],
+            [
+              -0.3,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.0,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385109.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1.0,
+            "acceleration_weight": 0.5,
+            "steering_weight": 1.0,
+            "smoothness_weight": 1.0
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+    }
+  ],
+  "selected_attempt": 1,
+  "candidate_counts": {
+    "T2": 2,
+    "T3": 2,
+    "T4": 1
+  },
+  "physical": {
+    "prefix_consumed": true,
+    "motion_class": "MOVING_PREFIX",
+    "displacement_xy_m": [
+      1.6622640237658088,
+      -2.9823310126596757e-06
+    ],
+    "displacement_m": 1.6622640237684843,
+    "end_speed_mps": 8.283379560338389,
+    "prefix_s": 0.2,
+    "minimum_conditional_clearance_lower_bound_m": 1.3993796264916878,
+    "max_abs_acceleration_mps2": 0.2794055850010772,
+    "rms_discrete_jerk_proxy_mps3": 0.12377511801210628,
+    "max_abs_steer_rad": 2.384961937113283e-06,
+    "solver_status": "Solve_Succeeded",
+    "T4_verdict": "PASS",
+    "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "independent_acceptor_pass": true,
+    "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/execution_receipt.json",
+    "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+  },
+  "behavioral_review": {
+    "status": "NOT_EVALUATED",
+    "needs_human_review": true,
+    "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+  },
+  "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+  "selected_native_failure_stage": null,
+  "selected_native_failure_reasons": [],
+  "frame_index": 32,
+  "relative_sequence_time_s": 15.799999999999999,
+  "reference_time_s": 1535385107.9124038,
+  "reference_time_id": "nusc_us_1535385107912404",
+  "input_image_count": 10,
+  "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_032/capture.json",
+  "stages": {
+    "SERVICE": "PASS",
+    "BUSINESS_SCHEMA": "PASS",
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "PASS",
+    "TURN_TASK": "NOT_APPLICABLE",
+    "ACCEPTOR": "PASS",
+    "EXECUTION": "PASS"
+  },
+  "stage_origin_attempt": 1,
+  "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+  "task": null,
+  "signed_turn": {
+    "plan_end_yaw_change_deg": -0.00047475221642747094,
+    "plan_end_lateral_m": -9.653888080315975e-05,
+    "prefix_yaw_change_deg": -8.412795383887468e-05,
+    "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+    "prefix_was_consumed": true,
+    "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+  },
+  "display_only_unreleased_candidate": null,
+  "source": "online_model",
+  "transport": "official_openai_responses",
+  "server_reported_model": "gpt-6.1-sol",
+  "actual_server_snapshot": null,
+  "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+  "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+  "turn_task_required": false,
+  "unknown_dispatch_attempts": 0,
+  "unknown_dispatch_history": [],
+  "motion_review": {
+    "moving_prefix_observed": true,
+    "stationary_prefix_observed": false,
+    "stationary_has_declared_stop_intent": false,
+    "unexplained_hold_review_required": false,
+    "moving_task_completed_by_stationary_prefix": false,
+    "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+  },
+  "selected_group_status": "FIRST_ATTEMPT_PASS",
+  "source_group": "long_clips_20261029_v2_bus_road",
+  "group_histories": [
+    {
+      "source_group": "long_clips_20261029_v1_bus_road",
+      "result": {
+        "case_id": "frame_032",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "9a0a16d628ae41d1ab25c9cdfc66d6a1",
+        "label": "frame_032",
+        "runtime_path": "implementation/results/long_clips_20261029_v1/bus_road/runtime/frame_032",
+        "initial_speed_mps": 8.339260677338604,
+        "status": "NOT_ATTEMPTED",
+        "ended": null,
+        "charged_requests": 0,
+        "reported_charged_requests": null,
+        "turn_start_count": 0,
+        "api_post_requests": 0,
+        "budget_count_matches_summary": null,
+        "first_attempt_pass": null,
+        "revision_pass": null,
+        "native_json_count": 0,
+        "native_schema_valid_count": 0,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [],
+        "selected_attempt": null,
+        "candidate_counts": null,
+        "physical": {},
+        "behavioral_review": {
+          "status": "NOT_EVALUATED"
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 32,
+        "relative_sequence_time_s": 15.799999999999999,
+        "reference_time_s": 1535385107.9124038,
+        "reference_time_id": "nusc_us_1535385107912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_032/capture.json",
+        "stages": {
+          "SERVICE": "NOT_REACHED",
+          "BUSINESS_SCHEMA": "NOT_REACHED",
+          "T1": "NOT_REACHED",
+          "T2": "NOT_REACHED",
+          "T3": "NOT_REACHED",
+          "T4": "NOT_REACHED",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "NOT_REACHED",
+          "EXECUTION": "NOT_REACHED"
+        },
+        "stage_origin_attempt": null,
+        "run_mode": "NOT_ATTEMPTED",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": null,
+          "plan_end_lateral_m": null,
+          "prefix_yaw_change_deg": null,
+          "direction_review": "NOT_EVALUABLE_NO_PLAN"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "NO_NATIVE_OUTPUT",
+        "transport": null,
+        "server_reported_model": null,
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": false,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    },
+    {
+      "source_group": "long_clips_20261029_v2_bus_road",
+      "result": {
+        "case_id": "frame_032",
+        "scene_name": "scene-0655",
+        "scene_token": "bebf5f5b2a674631ab5c88fd1aa9e87a",
+        "sample_token": "9a0a16d628ae41d1ab25c9cdfc66d6a1",
+        "label": "frame_032",
+        "runtime_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032",
+        "initial_speed_mps": 8.339260677338604,
+        "status": "FIRST_ATTEMPT_PASS",
+        "ended": true,
+        "charged_requests": 1,
+        "reported_charged_requests": 1,
+        "turn_start_count": 0,
+        "api_post_requests": 1,
+        "budget_count_matches_summary": true,
+        "first_attempt_pass": true,
+        "revision_pass": null,
+        "native_json_count": 1,
+        "native_schema_valid_count": 1,
+        "final_failure_stage": null,
+        "final_failure_reasons": [],
+        "fatal_service_or_interface_failure": null,
+        "issue_classes_any_attempt": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "charged": true,
+            "turn_start_count": 0,
+            "api_post_requests": 1,
+            "transport": "official_openai_responses",
+            "server_reported_model": "gpt-6.1-sol",
+            "usage": {
+              "input_tokens": 25286,
+              "input_tokens_details": {
+                "cache_write_tokens": 21788,
+                "cached_tokens": 3495
+              },
+              "output_tokens": 7565,
+              "output_tokens_details": {
+                "reasoning_tokens": 1552
+              },
+              "total_tokens": 32851
+            },
+            "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/record.json",
+            "record_sha256": "c4803b7d9beca9570d17d4c017e2b82364716a62bbb88bc92fa62d1980399c06",
+            "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/transport/attempt_01/native_output.json",
+            "native_json_present": true,
+            "native_business_schema": "PASS",
+            "source": "online_model",
+            "record_window_matches_frozen_sample": true,
+            "requested_model": "gpt-6.1-sol",
+            "cli_resolved_alias": null,
+            "actual_server_snapshot": null,
+            "raw_stage_ledger": {
+              "SERVICE": "PASS",
+              "BUSINESS_SCHEMA": "PASS",
+              "T1": "PASS",
+              "T2": "PASS",
+              "T3": "PASS",
+              "T4": "PASS",
+              "ACCEPTOR": "PASS",
+              "EXECUTION": "PASS"
+            },
+            "transport_summary": {
+              "attempt": 20,
+              "source": "online_model",
+              "transport": "official_openai_responses",
+              "status": "NATIVE_SCHEMA_VALID",
+              "adapter_retries": 0,
+              "http_requests": 1,
+              "api_post_requests": 1,
+              "model_service_returned": true,
+              "native_json_returned": true,
+              "http_status": 200,
+              "request_id": "req_c1e5dceb5d5a4388a83735fa2a993b8f",
+              "response_model": "gpt-6.1-sol",
+              "server_reported_model": "gpt-6.1-sol",
+              "server_reported_snapshot": null,
+              "usage": {
+                "input_tokens": 25286,
+                "input_tokens_details": {
+                  "cache_write_tokens": 21788,
+                  "cached_tokens": 3495
+                },
+                "output_tokens": 7565,
+                "output_tokens_details": {
+                  "reasoning_tokens": 1552
+                },
+                "total_tokens": 32851
+              },
+              "structured_output": true,
+              "elapsed_s": 103.62453862838447
+            },
+            "service_error_notification_observed": false,
+            "service_or_interface_failure": false,
+            "service_return": "NATIVE_FINAL_TEXT",
+            "complete_conditional_chain": true,
+            "deepest_blocking_stage": null,
+            "blocking_reasons": [],
+            "raw_last_failure": null,
+            "candidate_counts": {
+              "T2": 2,
+              "T3": 2,
+              "T4": 1
+            },
+            "candidate_ledger": {
+              "search_profile": "bounded_seed_candidates_v2",
+              "candidate_count": 5,
+              "candidates": [
+                {
+                  "candidate_id": "original",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "PASS",
+                  "objective": 0.10329905667423558,
+                  "minimum_clearance_lower_bound_m": 1.3993796264916878
+                },
+                {
+                  "candidate_id": "brake_straight",
+                  "T2": "PASS",
+                  "T3": "PASS",
+                  "T4": "FAIL",
+                  "failure": {
+                    "code": "VERIFICATION_REJECTED",
+                    "violations": [
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.62,
+                          1.6400000000000001
+                        ],
+                        "position_m": [
+                          11.15459283197756,
+                          -0.28865995659664884
+                        ],
+                        "computed": 0.3516384826283933,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.6400000000000001,
+                          1.6600000000000001
+                        ],
+                        "position_m": [
+                          11.274515017440795,
+                          -0.2916586371525556
+                        ],
+                        "computed": 0.35453912253755165,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.6600000000000001,
+                          1.6800000000000002
+                        ],
+                        "position_m": [
+                          11.394250516249793,
+                          -0.29465264956627113
+                        ],
+                        "computed": 0.3574350943045256,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.6800000000000002,
+                          1.7000000000000002
+                        ],
+                        "position_m": [
+                          11.51379932840456,
+                          -0.2976419938378022
+                        ],
+                        "computed": 0.3603263979293217,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.7000000000000002,
+                          1.72
+                        ],
+                        "position_m": [
+                          11.633161453905089,
+                          -0.3006266699671556
+                        ],
+                        "computed": 0.36321303341194694,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.72,
+                          1.74
+                        ],
+                        "position_m": [
+                          11.752336892751384,
+                          -0.30360667795433804
+                        ],
+                        "computed": 0.366095000752408,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.74,
+                          1.76
+                        ],
+                        "position_m": [
+                          11.871325644943443,
+                          -0.3065820177993563
+                        ],
+                        "computed": 0.36897229995071157,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.76,
+                          1.78
+                        ],
+                        "position_m": [
+                          11.99012771048127,
+                          -0.309552689502217
+                        ],
+                        "computed": 0.37184493100686417,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.78,
+                          1.8
+                        ],
+                        "position_m": [
+                          12.108743089364859,
+                          -0.3125186930629269
+                        ],
+                        "computed": 0.37471289392087276,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.8,
+                          1.82
+                        ],
+                        "position_m": [
+                          12.227171781594214,
+                          -0.31548002848149276
+                        ],
+                        "computed": 0.3775790842010594,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.82,
+                          1.84
+                        ],
+                        "position_m": [
+                          12.345422347502463,
+                          -0.31843392538309767
+                        ],
+                        "computed": 0.3804435758945649,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.84,
+                          1.86
+                        ],
+                        "position_m": [
+                          12.463503205147143,
+                          -0.3213833032121156
+                        ],
+                        "computed": 0.383303549720144,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.86,
+                          1.8800000000000001
+                        ],
+                        "position_m": [
+                          12.581414354497499,
+                          -0.32432816317320723
+                        ],
+                        "computed": 0.386159006880726,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.8800000000000001,
+                          1.9
+                        ],
+                        "position_m": [
+                          12.699155795522831,
+                          -0.3272685064693016
+                        ],
+                        "computed": 0.38900994857750854,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.9,
+                          1.92
+                        ],
+                        "position_m": [
+                          12.816727528192484,
+                          -0.3302043343015966
+                        ],
+                        "computed": 0.3918563760099582,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.92,
+                          1.94
+                        ],
+                        "position_m": [
+                          12.934129552475856,
+                          -0.3331356478695588
+                        ],
+                        "computed": 0.3946982903758103,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.94,
+                          1.96
+                        ],
+                        "position_m": [
+                          13.05136186834239,
+                          -0.3360624483709233
+                        ],
+                        "computed": 0.39753569287106877,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.96,
+                          1.98
+                        ],
+                        "position_m": [
+                          13.16842447576158,
+                          -0.3389847370016942
+                        ],
+                        "computed": 0.4003685846900059,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      },
+                      {
+                        "code": "TARGET_INTENT",
+                        "object_id": null,
+                        "time_interval_s": [
+                          1.98,
+                          2.0
+                        ],
+                        "position_m": [
+                          13.285317374702968,
+                          -0.3419025149561439
+                        ],
+                        "computed": 0.4031969670251633,
+                        "threshold": 0.35,
+                        "unit": "m",
+                        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "candidate_id": "brake_right",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_left",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.6000000000000001,
+                        0.8
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                },
+                {
+                  "candidate_id": "brake_right_strong",
+                  "T2": "FAIL",
+                  "T3": "NOT_REACHED",
+                  "T4": "NOT_REACHED",
+                  "failure": {
+                    "code": "CORRIDOR_HEADING_BOUND",
+                    "message": "Candidate leaves the unchanged global yaw cap",
+                    "category": "tool_infeasible",
+                    "details": {
+                      "interval": [
+                        0.4,
+                        0.6000000000000001
+                      ]
+                    },
+                    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+                  }
+                }
+              ],
+              "selected_candidate": "original",
+              "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+            },
+            "issue_classes": [],
+            "physical": {
+              "prefix_consumed": true,
+              "motion_class": "MOVING_PREFIX",
+              "displacement_xy_m": [
+                1.6622640237658088,
+                -2.9823310126596757e-06
+              ],
+              "displacement_m": 1.6622640237684843,
+              "end_speed_mps": 8.283379560338389,
+              "prefix_s": 0.2,
+              "minimum_conditional_clearance_lower_bound_m": 1.3993796264916878,
+              "max_abs_acceleration_mps2": 0.2794055850010772,
+              "rms_discrete_jerk_proxy_mps3": 0.12377511801210628,
+              "max_abs_steer_rad": 2.384961937113283e-06,
+              "solver_status": "Solve_Succeeded",
+              "T4_verdict": "PASS",
+              "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+              "independent_acceptor_pass": true,
+              "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/execution_receipt.json",
+              "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+            },
+            "decision_evidence": {
+              "decision": {
+                "scene_id": "nusc_9a0a16d628ae41d1ab25c9cdfc66d6a1",
+                "revision": 0,
+                "behavior": "hold_lane",
+                "target_region": [
+                  [
+                    -0.3,
+                    -0.35
+                  ],
+                  [
+                    18.5,
+                    -0.35
+                  ],
+                  [
+                    18.5,
+                    0.45
+                  ],
+                  [
+                    -0.3,
+                    0.45
+                  ]
+                ],
+                "desired_speed_mps": 8.0,
+                "yield_to": [],
+                "stop": null,
+                "priority": 1,
+                "valid_until_s": 1535385109.9124038,
+                "hard_requirements": [
+                  "target_region",
+                  "vehicle_limits",
+                  "collision_free",
+                  "road"
+                ],
+                "preferences": {
+                  "speed_weight": 1.0,
+                  "acceleration_weight": 0.5,
+                  "steering_weight": 1.0,
+                  "smoothness_weight": 1.0
+                }
+              },
+              "traffic_evidence": []
+            },
+            "behavioral_review": {
+              "status": "NOT_EVALUATED",
+              "needs_human_review": true,
+              "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+            },
+            "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER"
+          }
+        ],
+        "selected_attempt": 1,
+        "candidate_counts": {
+          "T2": 2,
+          "T3": 2,
+          "T4": 1
+        },
+        "physical": {
+          "prefix_consumed": true,
+          "motion_class": "MOVING_PREFIX",
+          "displacement_xy_m": [
+            1.6622640237658088,
+            -2.9823310126596757e-06
+          ],
+          "displacement_m": 1.6622640237684843,
+          "end_speed_mps": 8.283379560338389,
+          "prefix_s": 0.2,
+          "minimum_conditional_clearance_lower_bound_m": 1.3993796264916878,
+          "max_abs_acceleration_mps2": 0.2794055850010772,
+          "rms_discrete_jerk_proxy_mps3": 0.12377511801210628,
+          "max_abs_steer_rad": 2.384961937113283e-06,
+          "solver_status": "Solve_Succeeded",
+          "T4_verdict": "PASS",
+          "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+          "independent_acceptor_pass": true,
+          "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/execution_receipt.json",
+          "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+        },
+        "behavioral_review": {
+          "status": "NOT_EVALUATED",
+          "needs_human_review": true,
+          "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+        },
+        "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+        "selected_native_failure_stage": null,
+        "selected_native_failure_reasons": [],
+        "frame_index": 32,
+        "relative_sequence_time_s": 15.799999999999999,
+        "reference_time_s": 1535385107.9124038,
+        "reference_time_id": "nusc_us_1535385107912404",
+        "input_image_count": 10,
+        "capture_path": "/data2/hzy/MAP/agentic-driving/implementation/results/long_clips_20261029_v1/bus_road/inputs/frame_032/capture.json",
+        "stages": {
+          "SERVICE": "PASS",
+          "BUSINESS_SCHEMA": "PASS",
+          "T1": "PASS",
+          "T2": "PASS",
+          "T3": "PASS",
+          "T4": "PASS",
+          "TURN_TASK": "NOT_APPLICABLE",
+          "ACCEPTOR": "PASS",
+          "EXECUTION": "PASS"
+        },
+        "stage_origin_attempt": 1,
+        "run_mode": "FRESH_ONLINE_SINGLE_WINDOW",
+        "task": null,
+        "signed_turn": {
+          "plan_end_yaw_change_deg": -0.00047475221642747094,
+          "plan_end_lateral_m": -9.653888080315975e-05,
+          "prefix_yaw_change_deg": -8.412795383887468e-05,
+          "prefix_measurement_source": "Exact declared control integration; consumption separately checked",
+          "prefix_was_consumed": true,
+          "direction_review": "REQUIRES_IMAGE_REVIEW; amplitude gate does not establish correct turn direction"
+        },
+        "display_only_unreleased_candidate": null,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "server_reported_model": "gpt-6.1-sol",
+        "actual_server_snapshot": null,
+        "direction_review": "PENDING_INDEPENDENT_IMAGE_REVIEW",
+        "claim": "Recorded observations; every 2s forecast and consumed 0.2s prefix starts independently. Unqueried frames have NO_NEW_PLAN. No stitched execution, counterfactual observations, real vehicle control or GT evaluation.",
+        "turn_task_required": false,
+        "unknown_dispatch_attempts": 0,
+        "unknown_dispatch_history": [],
+        "motion_review": {
+          "moving_prefix_observed": true,
+          "stationary_prefix_observed": false,
+          "stationary_has_declared_stop_intent": false,
+          "unexplained_hold_review_required": false,
+          "moving_task_completed_by_stationary_prefix": false,
+          "image_and_intent_review": "NOT_INDEPENDENTLY_EVALUATED"
+        }
+      }
+    }
+  ],
+  "overall_attempts": [
+    {
+      "attempt": 1,
+      "charged": true,
+      "turn_start_count": 0,
+      "api_post_requests": 1,
+      "transport": "official_openai_responses",
+      "server_reported_model": "gpt-6.1-sol",
+      "usage": {
+        "input_tokens": 25286,
+        "input_tokens_details": {
+          "cache_write_tokens": 21788,
+          "cached_tokens": 3495
+        },
+        "output_tokens": 7565,
+        "output_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "total_tokens": 32851
+      },
+      "record_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/record.json",
+      "record_sha256": "c4803b7d9beca9570d17d4c017e2b82364716a62bbb88bc92fa62d1980399c06",
+      "native_output_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/transport/attempt_01/native_output.json",
+      "native_json_present": true,
+      "native_business_schema": "PASS",
+      "source": "online_model",
+      "record_window_matches_frozen_sample": true,
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": null,
+      "actual_server_snapshot": null,
+      "raw_stage_ledger": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "ACCEPTOR": "PASS",
+        "EXECUTION": "PASS"
+      },
+      "transport_summary": {
+        "attempt": 20,
+        "source": "online_model",
+        "transport": "official_openai_responses",
+        "status": "NATIVE_SCHEMA_VALID",
+        "adapter_retries": 0,
+        "http_requests": 1,
+        "api_post_requests": 1,
+        "model_service_returned": true,
+        "native_json_returned": true,
+        "http_status": 200,
+        "request_id": "req_c1e5dceb5d5a4388a83735fa2a993b8f",
+        "response_model": "gpt-6.1-sol",
+        "server_reported_model": "gpt-6.1-sol",
+        "server_reported_snapshot": null,
+        "usage": {
+          "input_tokens": 25286,
+          "input_tokens_details": {
+            "cache_write_tokens": 21788,
+            "cached_tokens": 3495
+          },
+          "output_tokens": 7565,
+          "output_tokens_details": {
+            "reasoning_tokens": 1552
+          },
+          "total_tokens": 32851
+        },
+        "structured_output": true,
+        "elapsed_s": 103.62453862838447
+      },
+      "service_error_notification_observed": false,
+      "service_or_interface_failure": false,
+      "service_return": "NATIVE_FINAL_TEXT",
+      "complete_conditional_chain": true,
+      "deepest_blocking_stage": null,
+      "blocking_reasons": [],
+      "raw_last_failure": null,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 1
+      },
+      "candidate_ledger": {
+        "search_profile": "bounded_seed_candidates_v2",
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "candidate_id": "original",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "PASS",
+            "objective": 0.10329905667423558,
+            "minimum_clearance_lower_bound_m": 1.3993796264916878
+          },
+          {
+            "candidate_id": "brake_straight",
+            "T2": "PASS",
+            "T3": "PASS",
+            "T4": "FAIL",
+            "failure": {
+              "code": "VERIFICATION_REJECTED",
+              "violations": [
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.62,
+                    1.6400000000000001
+                  ],
+                  "position_m": [
+                    11.15459283197756,
+                    -0.28865995659664884
+                  ],
+                  "computed": 0.3516384826283933,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6400000000000001,
+                    1.6600000000000001
+                  ],
+                  "position_m": [
+                    11.274515017440795,
+                    -0.2916586371525556
+                  ],
+                  "computed": 0.35453912253755165,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6600000000000001,
+                    1.6800000000000002
+                  ],
+                  "position_m": [
+                    11.394250516249793,
+                    -0.29465264956627113
+                  ],
+                  "computed": 0.3574350943045256,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.6800000000000002,
+                    1.7000000000000002
+                  ],
+                  "position_m": [
+                    11.51379932840456,
+                    -0.2976419938378022
+                  ],
+                  "computed": 0.3603263979293217,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.7000000000000002,
+                    1.72
+                  ],
+                  "position_m": [
+                    11.633161453905089,
+                    -0.3006266699671556
+                  ],
+                  "computed": 0.36321303341194694,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.72,
+                    1.74
+                  ],
+                  "position_m": [
+                    11.752336892751384,
+                    -0.30360667795433804
+                  ],
+                  "computed": 0.366095000752408,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.74,
+                    1.76
+                  ],
+                  "position_m": [
+                    11.871325644943443,
+                    -0.3065820177993563
+                  ],
+                  "computed": 0.36897229995071157,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.76,
+                    1.78
+                  ],
+                  "position_m": [
+                    11.99012771048127,
+                    -0.309552689502217
+                  ],
+                  "computed": 0.37184493100686417,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.78,
+                    1.8
+                  ],
+                  "position_m": [
+                    12.108743089364859,
+                    -0.3125186930629269
+                  ],
+                  "computed": 0.37471289392087276,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.8,
+                    1.82
+                  ],
+                  "position_m": [
+                    12.227171781594214,
+                    -0.31548002848149276
+                  ],
+                  "computed": 0.3775790842010594,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.82,
+                    1.84
+                  ],
+                  "position_m": [
+                    12.345422347502463,
+                    -0.31843392538309767
+                  ],
+                  "computed": 0.3804435758945649,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.84,
+                    1.86
+                  ],
+                  "position_m": [
+                    12.463503205147143,
+                    -0.3213833032121156
+                  ],
+                  "computed": 0.383303549720144,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.86,
+                    1.8800000000000001
+                  ],
+                  "position_m": [
+                    12.581414354497499,
+                    -0.32432816317320723
+                  ],
+                  "computed": 0.386159006880726,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.8800000000000001,
+                    1.9
+                  ],
+                  "position_m": [
+                    12.699155795522831,
+                    -0.3272685064693016
+                  ],
+                  "computed": 0.38900994857750854,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.9,
+                    1.92
+                  ],
+                  "position_m": [
+                    12.816727528192484,
+                    -0.3302043343015966
+                  ],
+                  "computed": 0.3918563760099582,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.92,
+                    1.94
+                  ],
+                  "position_m": [
+                    12.934129552475856,
+                    -0.3331356478695588
+                  ],
+                  "computed": 0.3946982903758103,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.94,
+                    1.96
+                  ],
+                  "position_m": [
+                    13.05136186834239,
+                    -0.3360624483709233
+                  ],
+                  "computed": 0.39753569287106877,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.96,
+                    1.98
+                  ],
+                  "position_m": [
+                    13.16842447576158,
+                    -0.3389847370016942
+                  ],
+                  "computed": 0.4003685846900059,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                },
+                {
+                  "code": "TARGET_INTENT",
+                  "object_id": null,
+                  "time_interval_s": [
+                    1.98,
+                    2.0
+                  ],
+                  "position_m": [
+                    13.285317374702968,
+                    -0.3419025149561439
+                  ],
+                  "computed": 0.4031969670251633,
+                  "threshold": 0.35,
+                  "unit": "m",
+                  "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+                }
+              ]
+            }
+          },
+          {
+            "candidate_id": "brake_right",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_left",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.6000000000000001,
+                  0.8
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          },
+          {
+            "candidate_id": "brake_right_strong",
+            "T2": "FAIL",
+            "T3": "NOT_REACHED",
+            "T4": "NOT_REACHED",
+            "failure": {
+              "code": "CORRIDOR_HEADING_BOUND",
+              "message": "Candidate leaves the unchanged global yaw cap",
+              "category": "tool_infeasible",
+              "details": {
+                "interval": [
+                  0.4,
+                  0.6000000000000001
+                ]
+              },
+              "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+            }
+          }
+        ],
+        "selected_candidate": "original",
+        "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+      },
+      "issue_classes": [],
+      "physical": {
+        "prefix_consumed": true,
+        "motion_class": "MOVING_PREFIX",
+        "displacement_xy_m": [
+          1.6622640237658088,
+          -2.9823310126596757e-06
+        ],
+        "displacement_m": 1.6622640237684843,
+        "end_speed_mps": 8.283379560338389,
+        "prefix_s": 0.2,
+        "minimum_conditional_clearance_lower_bound_m": 1.3993796264916878,
+        "max_abs_acceleration_mps2": 0.2794055850010772,
+        "rms_discrete_jerk_proxy_mps3": 0.12377511801210628,
+        "max_abs_steer_rad": 2.384961937113283e-06,
+        "solver_status": "Solve_Succeeded",
+        "T4_verdict": "PASS",
+        "acceptor_status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+        "independent_acceptor_pass": true,
+        "prefix_receipt_path": "implementation/results/long_clips_20261029_v2/bus_road/runtime/frame_032/attempt_01/execution_receipt.json",
+        "limitation": "Jerk is an acceleration-difference proxy, not finite continuous RMS jerk of piecewise-constant controls."
+      },
+      "decision_evidence": {
+        "decision": {
+          "scene_id": "nusc_9a0a16d628ae41d1ab25c9cdfc66d6a1",
+          "revision": 0,
+          "behavior": "hold_lane",
+          "target_region": [
+            [
+              -0.3,
+              -0.35
+            ],
+            [
+              18.5,
+              -0.35
+            ],
+            [
+              18.5,
+              0.45
+            ],
+            [
+              -0.3,
+              0.45
+            ]
+          ],
+          "desired_speed_mps": 8.0,
+          "yield_to": [],
+          "stop": null,
+          "priority": 1,
+          "valid_until_s": 1535385109.9124038,
+          "hard_requirements": [
+            "target_region",
+            "vehicle_limits",
+            "collision_free",
+            "road"
+          ],
+          "preferences": {
+            "speed_weight": 1.0,
+            "acceleration_weight": 0.5,
+            "steering_weight": 1.0,
+            "smoothness_weight": 1.0
+          }
+        },
+        "traffic_evidence": []
+      },
+      "behavioral_review": {
+        "status": "NOT_EVALUATED",
+        "needs_human_review": true,
+        "rule": "Review raw images and decision evidence separately. A stationary prefix alone does not complete a moving task; a signal label is not an applicable signal fact."
+      },
+      "offline_GT_review": "NOT_EVALUATED_BY_THIS_HELPER",
+      "source_group": "long_clips_20261029_v2_bus_road"
+    }
+  ],
+  "selected_group_charged_requests": 1,
+  "first_overall_request_pass": true,
+  "service_failure_history": [],
+  "preflight_failure_history": [],
+  "post_failure_count": 0,
+  "preflight_failure_count": 0,
+  "prior_service_failures": [],
+  "first_generation_post_pass": true,
+  "overall_success_request_ordinal": 1,
+  "selection_policy": "EARLIEST_EXISTING_PASS",
+  "display_transform_to_first_reference": {
+    "status": "ALIGNED",
+    "translation_m": [
+      111.25865306218748,
+      -0.3905099909115268
+    ],
+    "yaw_rad": -0.009325328604942798,
+    "display_only": true,
+    "source": "Raw acquisition ego_pose; center offset already applied",
+    "center_offset_added_again": false
+  }
+}
