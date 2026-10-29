@@ -1,0 +1,248 @@
+{
+  "code": "CORRIDOR_EMPTY",
+  "message": "Empty convex cell",
+  "category": "tool_infeasible",
+  "details": {
+    "interval": [
+      0.2,
+      0.4
+    ],
+    "candidate_id": "brake_right_strong",
+    "object_id": "articulated_bus",
+    "heading_band_rad": [
+      -0.2869616121287939,
+      -0.1109501265425899
+    ],
+    "reference_seed_segment": [
+      {
+        "time_s": 0.2,
+        "rear_x_m": 0.43642170835547844,
+        "rear_y_m": -0.1114075122369936,
+        "yaw_rad": -0.1359501265425899,
+        "speed_mps": 7.907367212832257,
+        "acceleration_mps2": -3.0,
+        "steer_rad": -0.22
+      },
+      {
+        "time_s": 0.4,
+        "rear_x_m": 1.9268951902256022,
+        "rear_y_m": -0.41192158947957935,
+        "yaw_rad": -0.2619616121287939,
+        "speed_mps": 7.307367212832258,
+        "acceleration_mps2": -3.0,
+        "steer_rad": -0.22
+      }
+    ],
+    "first_conflicting_constraint": {
+      "kind": "occupancy",
+      "object_id": "articulated_bus",
+      "halfplane": [
+        0.0,
+        -1.0,
+        -0.40383533212769707
+      ],
+      "obstacle_support_m": 2.95,
+      "ego_body_support_m": 1.8538353321276972,
+      "model_total_residual_m": 0.5,
+      "safety_margin_m": 1.0,
+      "occupancy_polygon_m": [
+        [
+          -1.4,
+          -6.05
+        ],
+        [
+          17.4,
+          -6.05
+        ],
+        [
+          17.4,
+          -2.95
+        ],
+        [
+          -1.4,
+          -2.95
+        ]
+      ],
+      "native_sources": [
+        {
+          "source_id": "bus_body_0_2",
+          "scenario_id": "bus_small_settle",
+          "source_interval_s": [
+            0,
+            2
+          ],
+          "polygon_m": [
+            [
+              -1.4,
+              -6.05
+            ],
+            [
+              17.4,
+              -6.05
+            ],
+            [
+              17.4,
+              -2.95
+            ],
+            [
+              -1.4,
+              -2.95
+            ]
+          ],
+          "frame_ids": [
+            "078b27dc1d57494887cba9e4e511ddeb"
+          ],
+          "time_ids": [
+            "nusc_us_1535385106912404"
+          ],
+          "premise_ids": [
+            "prototype_local_scope",
+            "metric_geometry",
+            "bus_stationary_conditions"
+          ],
+          "source_residual_m": 0.2
+        }
+      ]
+    },
+    "allowed_domain_before_polygon_m": [
+      [
+        -1.650929941752166,
+        0.3828671622583254
+      ],
+      [
+        18.807378384736626,
+        0.3828671622583254
+      ],
+      [
+        18.807378384736626,
+        0.15383533212769707
+      ],
+      [
+        -1.650929941752166,
+        0.15383533212769707
+      ]
+    ],
+    "allowed_area_before_m2": 4.6856037973924005,
+    "area_after_m2": 0.0,
+    "base_constraints": [
+      {
+        "kind": "road",
+        "halfplane": [
+          0.0,
+          -1.0,
+          4.246164667872303
+        ],
+        "input_boundary_halfplane": [
+          0.0,
+          -1.0,
+          6.5
+        ],
+        "ego_body_support_m": 1.8538353321276972,
+        "road_uncertainty_m": 0.4
+      },
+      {
+        "kind": "road",
+        "halfplane": [
+          1.0,
+          -0.0,
+          21.986137800081472
+        ],
+        "input_boundary_halfplane": [
+          1.0,
+          -0.0,
+          26.0
+        ],
+        "ego_body_support_m": 3.6138621999185303,
+        "road_uncertainty_m": 0.4
+      },
+      {
+        "kind": "road",
+        "halfplane": [
+          0.0,
+          1.0,
+          5.425459211287324
+        ],
+        "input_boundary_halfplane": [
+          0.0,
+          1.0,
+          7.0
+        ],
+        "ego_body_support_m": 1.174540788712676,
+        "road_uncertainty_m": 0.4
+      },
+      {
+        "kind": "road",
+        "halfplane": [
+          -1.0,
+          -0.0,
+          2.290245432946548
+        ],
+        "input_boundary_halfplane": [
+          -1.0,
+          -0.0,
+          4.0
+        ],
+        "ego_body_support_m": 1.3097545670534518,
+        "road_uncertainty_m": 0.4
+      },
+      {
+        "kind": "target_center",
+        "halfplane": [
+          0.0,
+          -1.0,
+          -0.1396472717075106
+        ],
+        "input_boundary_halfplane": [
+          0.0,
+          -1.0,
+          0.20000000000000004
+        ],
+        "center_offset_support_m": 0.33964727170751063
+      },
+      {
+        "kind": "target_center",
+        "halfplane": [
+          1.0,
+          -0.0,
+          18.807378384736626
+        ],
+        "input_boundary_halfplane": [
+          1.0,
+          -0.0,
+          20.0
+        ],
+        "center_offset_support_m": 1.1926216152633742
+      },
+      {
+        "kind": "target_center",
+        "halfplane": [
+          0.0,
+          1.0,
+          0.3828671622583254
+        ],
+        "input_boundary_halfplane": [
+          0.0,
+          1.0,
+          0.25
+        ],
+        "center_offset_support_m": -0.1328671622583254
+      },
+      {
+        "kind": "target_center",
+        "halfplane": [
+          -1.0,
+          -0.0,
+          1.650929941752166
+        ],
+        "input_boundary_halfplane": [
+          -1.0,
+          -0.0,
+          0.5
+        ],
+        "center_offset_support_m": -1.150929941752166
+      }
+    ],
+    "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+  },
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+}

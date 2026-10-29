@@ -1,0 +1,188 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 0.9090701778064201,
+      "minimum_clearance_lower_bound_m": 1.1650182689995203
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 0.909070177806426,
+      "minimum_clearance_lower_bound_m": 1.1650182686455899
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_left",
+          "initial_rear_point_m": [
+            -1.2,
+            0.0
+          ],
+          "heading_band_rad": [
+            -0.025,
+            0.13561632622443776
+          ],
+          "initial_state_violations": [
+            {
+              "kind": "occupancy",
+              "object_id": "oncoming_bmw",
+              "halfplane": [
+                -0.07685817283968735,
+                0.9970420358579396,
+                -0.031619299015349434
+              ],
+              "obstacle_support_m": 2.8721016502252033,
+              "ego_body_support_m": 1.1037209492405526,
+              "model_total_residual_m": 0.8,
+              "safety_margin_m": 1.0,
+              "occupancy_polygon_m": [
+                [
+                  -28.2,
+                  2.95
+                ],
+                [
+                  0.9,
+                  2.95
+                ],
+                [
+                  0.9,
+                  5.25
+                ],
+                [
+                  -28.2,
+                  5.25
+                ]
+              ],
+              "native_sources": [
+                {
+                  "source_id": "bmw_whole_2s",
+                  "scenario_id": "bmw_bounded_drift",
+                  "source_interval_s": [
+                    0,
+                    2
+                  ],
+                  "polygon_m": [
+                    [
+                      -28.2,
+                      2.95
+                    ],
+                    [
+                      0.9,
+                      2.95
+                    ],
+                    [
+                      0.9,
+                      5.25
+                    ],
+                    [
+                      -28.2,
+                      5.25
+                    ]
+                  ],
+                  "frame_ids": [
+                    "b1b9a28eda984e56bb5d347357bc703a"
+                  ],
+                  "time_ids": [
+                    "nusc_us_1535385097797418"
+                  ],
+                  "premise_ids": [
+                    "bmw_motion"
+                  ],
+                  "source_residual_m": 0.4
+                }
+              ],
+              "computed_m": 0.09222980740762482,
+              "threshold_m": -0.031619299015349434,
+              "excess_m": 0.12384910642297425
+            }
+          ],
+          "object_id": "oncoming_bmw",
+          "allowed_domain_polygon_m": [
+            [
+              9.085862605178445,
+              0.13775879534120133
+            ],
+            [
+              9.66255767797732,
+              -0.05915175209954229
+            ],
+            [
+              9.86742218951204,
+              -0.4700031249023452
+            ],
+            [
+              -1.3889818297648042,
+              -0.4700031249023452
+            ],
+            [
+              -1.3889818297648042,
+              -0.1387844239079985
+            ],
+            [
+              2.198472882410635,
+              0.13775879534120133
+            ]
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.4,
+            0.6000000000000001
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

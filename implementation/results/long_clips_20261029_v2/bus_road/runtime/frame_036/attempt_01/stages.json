@@ -1,0 +1,96 @@
+{
+  "stages": {
+    "T1": "PASS",
+    "T2": "FAIL",
+    "T3": "NOT_REACHED",
+    "T4": "NOT_REACHED",
+    "EXECUTION": "NOT_REACHED",
+    "ACCEPTOR": "NOT_REACHED"
+  },
+  "failure": {
+    "code": "CORRIDOR_INITIAL_STATE",
+    "message": "First corridor cell must contain the true initial rear axle",
+    "category": "tool_infeasible",
+    "details": {
+      "interval": [
+        0.0,
+        0.2
+      ],
+      "candidate_id": "original",
+      "initial_rear_point_m": [
+        -1.2,
+        0.0
+      ],
+      "heading_band_rad": [
+        -0.025,
+        0.025
+      ],
+      "initial_state_violations": [
+        {
+          "kind": "target_center",
+          "halfplane": [
+            -1.0,
+            -0.0,
+            1.199625019530843
+          ],
+          "input_boundary_halfplane": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "center_offset_support_m": -1.199625019530843,
+          "computed_m": 1.2,
+          "threshold_m": 1.199625019530843,
+          "excess_m": 0.00037498046915684924
+        }
+      ],
+      "object_id": null,
+      "allowed_domain_polygon_m": [
+        [
+          8.185455953187564,
+          0.1700031249023452
+        ],
+        [
+          8.377456698611375,
+          -1.4700031249023453
+        ],
+        [
+          -1.199625019530843,
+          -1.4700031249023453
+        ],
+        [
+          -1.199625019530843,
+          0.1700031249023452
+        ]
+      ],
+      "candidate_failures": [
+        {
+          "candidate_id": "original",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        },
+        {
+          "candidate_id": "brake_straight",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        },
+        {
+          "candidate_id": "brake_right",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        },
+        {
+          "candidate_id": "brake_left",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        },
+        {
+          "candidate_id": "brake_right_strong",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        }
+      ]
+    },
+    "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+  }
+}

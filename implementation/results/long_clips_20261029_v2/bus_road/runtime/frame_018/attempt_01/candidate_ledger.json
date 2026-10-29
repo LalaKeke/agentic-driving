@@ -1,0 +1,78 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 1.905889466569333,
+      "minimum_clearance_lower_bound_m": 3.32856304774215
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 1.905889466569377,
+      "minimum_clearance_lower_bound_m": 3.328564878085221
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.4,
+            0.6000000000000001
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

@@ -1,0 +1,569 @@
+{
+  "decision": {
+    "scene_id": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        14,
+        -0.5
+      ],
+      [
+        14,
+        0.6
+      ],
+      [
+        -0.5,
+        0.6
+      ]
+    ],
+    "desired_speed_mps": 5.5,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1535385105.9124038,
+    "hard_requirements": [
+      "target_region",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 0.5,
+      "steering_weight": 1,
+      "smoothness_weight": 1
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1535385103912404",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [
+          -4,
+          -5.3
+        ],
+        [
+          32,
+          -5.3
+        ],
+        [
+          32,
+          7.8
+        ],
+        [
+          -4,
+          7.8
+        ]
+      ],
+      "uncertainty_m": 0.5,
+      "frame_ids": [
+        "f62878a493ea46e3b60bd312dfac2334",
+        "c19b9643ea88456cab60258183e9aee3"
+      ],
+      "time_ids": [
+        "nusc_us_1535385103912404",
+        "nusc_us_1535385103904799"
+      ]
+    },
+    "objects": [
+      {
+        "id": "curbside_bus",
+        "position_m": [
+          24,
+          -3.8
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1,
+        "occupancy": [
+          {
+            "id": "bus_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "f62878a493ea46e3b60bd312dfac2334"
+            ],
+            "time_ids": [
+              "nusc_us_1535385103912404"
+            ],
+            "premise_ids": [
+              "local_metric_geometry",
+              "bus_short_term"
+            ],
+            "residual_m": 0.65,
+            "alternatives": [
+              {
+                "scenario_id": "bus_stationary",
+                "polygon_m": [
+                  [
+                    17.9,
+                    -5.15
+                  ],
+                  [
+                    30.1,
+                    -5.15
+                  ],
+                  [
+                    30.1,
+                    -2.45
+                  ],
+                  [
+                    17.9,
+                    -2.45
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "bus_creeps",
+                "polygon_m": [
+                  [
+                    17.7,
+                    -5.6
+                  ],
+                  [
+                    31.3,
+                    -5.6
+                  ],
+                  [
+                    31.3,
+                    -2
+                  ],
+                  [
+                    17.7,
+                    -2
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "f62878a493ea46e3b60bd312dfac2334"
+        ],
+        "time_ids": [
+          "nusc_us_1535385103912404"
+        ],
+        "state_time_id": "nusc_us_1535385103912404",
+        "body_geometry": {
+          "length_m": 12,
+          "width_m": 2.55,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "local_metric_geometry"
+          ],
+          "residual_m": 0.35,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "f62878a493ea46e3b60bd312dfac2334",
+              "time_id": "nusc_us_1535385103912404",
+              "position_m": [
+                24,
+                -3.8
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "bus_stationary",
+            "premise_ids": [
+              "bus_short_term"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "bus_creeps",
+            "premise_ids": [
+              "bus_short_term"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_silver_sedan",
+        "position_m": [
+          -0.8,
+          6.3
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "sedan_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "f62878a493ea46e3b60bd312dfac2334"
+            ],
+            "time_ids": [
+              "nusc_us_1535385103912404"
+            ],
+            "premise_ids": [
+              "local_metric_geometry",
+              "sedan_short_term"
+            ],
+            "residual_m": 0.5,
+            "alternatives": [
+              {
+                "scenario_id": "sedan_parked",
+                "polygon_m": [
+                  [
+                    -3.3,
+                    5.3
+                  ],
+                  [
+                    1.7,
+                    5.3
+                  ],
+                  [
+                    1.7,
+                    7.3
+                  ],
+                  [
+                    -3.3,
+                    7.3
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "sedan_small_creep",
+                "polygon_m": [
+                  [
+                    -3.9,
+                    4.9
+                  ],
+                  [
+                    2.1,
+                    4.9
+                  ],
+                  [
+                    2.1,
+                    7.7
+                  ],
+                  [
+                    -3.9,
+                    7.7
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "f62878a493ea46e3b60bd312dfac2334"
+        ],
+        "time_ids": [
+          "nusc_us_1535385103912404"
+        ],
+        "state_time_id": "nusc_us_1535385103912404",
+        "body_geometry": {
+          "length_m": 4.8,
+          "width_m": 1.85,
+          "yaw_rad": 3.141592653589793
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "local_metric_geometry"
+          ],
+          "residual_m": 0.3,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "f62878a493ea46e3b60bd312dfac2334",
+              "time_id": "nusc_us_1535385103912404",
+              "position_m": [
+                -0.8,
+                6.3
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "sedan_parked",
+            "premise_ids": [
+              "sedan_short_term"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "sedan_small_creep",
+            "premise_ids": [
+              "sedan_short_term"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_worksite_aggregate",
+        "position_m": [
+          29,
+          6
+        ],
+        "velocity_mps": null,
+        "uncertainty_m": 1.2,
+        "occupancy": [
+          {
+            "id": "worksite_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "f62878a493ea46e3b60bd312dfac2334"
+            ],
+            "time_ids": [
+              "nusc_us_1535385103912404"
+            ],
+            "premise_ids": [
+              "local_metric_geometry",
+              "worksite_short_term"
+            ],
+            "residual_m": 0.8,
+            "alternatives": [
+              {
+                "scenario_id": "worksite_fixed",
+                "polygon_m": [
+                  [
+                    20.9,
+                    1.7
+                  ],
+                  [
+                    37.1,
+                    1.7
+                  ],
+                  [
+                    37.1,
+                    10.3
+                  ],
+                  [
+                    20.9,
+                    10.3
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "worksite_bounded_activity",
+                "polygon_m": [
+                  [
+                    20.3,
+                    1.1
+                  ],
+                  [
+                    37.7,
+                    1.1
+                  ],
+                  [
+                    37.7,
+                    10.9
+                  ],
+                  [
+                    20.3,
+                    10.9
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "f62878a493ea46e3b60bd312dfac2334"
+        ],
+        "time_ids": [
+          "nusc_us_1535385103912404"
+        ],
+        "state_time_id": "nusc_us_1535385103912404",
+        "body_geometry": {
+          "length_m": 16,
+          "width_m": 8.4,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "local_metric_geometry"
+          ],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "f62878a493ea46e3b60bd312dfac2334",
+              "time_id": "nusc_us_1535385103912404",
+              "position_m": [
+                29,
+                6
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "worksite_fixed",
+            "premise_ids": [
+              "worksite_short_term"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "worksite_bounded_activity",
+            "premise_ids": [
+              "worksite_short_term"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second prototype, not certified world safety. Metric geometry and residuals are model estimates. Road boundaries follow the visible approximately straight curb-to-curb paved street, including adjacent roadway, rather than only the ego lane; the target region restricts ego centers to the current travel corridor. The worksite is conservatively represented as one composite obstacle containing the visible utility vehicles, cones and intervening equipment, not as one physical vehicle. The sidewalk pedestrian in the back-left image, following traffic behind, distant approaching traffic, and parking-lot vehicles are outside the adopted local domain or excluded from entering it by an explicit condition. Their unrestricted futures are not covered. No optimization, independent dynamics check or simulated prefix has been executed in this response.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [
+          [
+            -5,
+            -6.5
+          ],
+          [
+            40,
+            -6.5
+          ],
+          [
+            40,
+            11
+          ],
+          [
+            -5,
+            11
+          ]
+        ],
+        "statement": "Model only this finite near-road domain for two seconds. Adopt no new unobserved entrant into it, no entry from the adjacent parking lot or sidewalks, and no arrival of the observed rear follower or distant approaching vehicle. The back-left sidewalk pedestrian remains outside this domain. These are falsifiable exclusions, not evidence that other traffic is absent. All visible obstacles within the domain are represented by the bus, silver sedan and conservative worksite aggregate. This scope is conditional on the separately stated movement envelopes and metric prior."
+      },
+      {
+        "id": "local_metric_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopt an approximately level, straight local street and a 12 m by 2.55 m transit-bus body prior. In the reference image its approximately 180-195 pixel rear-body width suggests roughly 16-18 m camera-to-rear range using focal length about 1253 pixels; adding half its body length and allowing perspective gives the adopted center near x=24 m. Its rightward image displacement places it near y=-3.8 m. Visible curbs and pavement convergence suggest a right curb near y=-5.3 m and left curb near y=7.8 m over the selected road patch. The front-left image supports the left curb and sedan interpretation; it is road evidence only, not asynchronous actor-state evidence. Road extent x=-4 to 32 m is a truncation of that observed continuous pavement, with 0.5 m boundary residual. The silver sedan is partially visible at the left edge of the reference image; its full body position is inferred from that partial view, perspective and a 4.8 by 1.85 m sedan prior. These are approximate, falsifiable monocular metric hypotheses, not calibrated ground-plane measurements."
+      },
+      {
+        "id": "bus_short_term",
+        "object_ids": [
+          "curbside_bus"
+        ],
+        "scenario_ids": [
+          "bus_stationary",
+          "bus_creeps"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The curb-aligned bus is adopted stationary. Retain adverse slow forward departure with absolute longitudinal speed between 0 and 0.5 m/s, lateral displacement at most 0.3 m, and heading within 0.02 rad of its native yaw. No reversing or larger pull-out within this conditional horizon. The adverse rectangle encloses the full body throughout these motions, including its initial body."
+      },
+      {
+        "id": "sedan_short_term",
+        "object_ids": [
+          "left_silver_sedan"
+        ],
+        "scenario_ids": [
+          "sedan_parked",
+          "sedan_small_creep"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopt the curb-aligned sedan parked. Retain adverse center displacement up to 0.5 m longitudinally and 0.3 m laterally, with heading within 0.02 rad of pi. Exclude a larger departure during these two seconds. The adverse whole-body rectangle includes this bounded motion and the initial oriented body."
+      },
+      {
+        "id": "worksite_short_term",
+        "object_ids": [
+          "left_worksite_aggregate"
+        ],
+        "scenario_ids": [
+          "worksite_fixed",
+          "worksite_bounded_activity"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Represent the visible left utility-truck, boom-equipment and cone cluster by one conservative composite rectangular body, centered at [29,6], spanning x=21..37 and y=1.8..10.2. Adopt stationary ground equipment. Retain adverse bounded activity inside a further 0.6 m expansion of that footprint; any occupants remain in this worksite envelope. No truck departure, boom intrusion or worker movement outside that envelope is adopted. This composite box intentionally includes empty space and is not a vehicle-dimension measurement."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "f62878a493ea46e3b60bd312dfac2334"
+      ],
+      "time_ids": [
+        "nusc_us_1535385103912404"
+      ],
+      "premise_ids": [
+        "local_metric_geometry"
+      ],
+      "anchors": [
+        {
+          "object_id": "curbside_bus",
+          "dimension": "width_m",
+          "value_m": 2.55,
+          "rationale": "The individually visible curbside transit bus has a recognizable approximately rear-facing body. A 2.55 m full-width prior is plausible for this class, but is not measured ground truth."
+        },
+        {
+          "object_id": "curbside_bus",
+          "dimension": "length_m",
+          "value_m": 12,
+          "rationale": "A conventional full-size single transit bus is conditionally modeled as 12 m long; its visible side supports a substantial longitudinal extent. This prior converts the inferred rear range to geometric body-center range."
+        }
+      ],
+      "metric_reasoning": "Use the bus's apparent rear width, roughly 180-195 pixels, with the supplied front focal length near 1253 pixels: 1253*2.55/width gives approximately 16-18 m to the rear face, before perspective and camera-offset allowances. Adding about 6 m gives a body center in the low-to-mid twenties of meters; adopt [24,-3.8]. Use the same perspective scale and visible curb convergence to estimate the local road and worksite geometry. Calibration fixes projection axes but does not certify contact points or depth. Finite road and object residuals explicitly represent noncalibrated estimation error."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

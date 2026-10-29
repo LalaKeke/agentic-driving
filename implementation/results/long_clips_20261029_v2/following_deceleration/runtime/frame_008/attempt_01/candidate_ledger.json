@@ -1,0 +1,331 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            1.8,
+            2.0
+          ],
+          "candidate_id": "original",
+          "object_id": "distant_oncoming",
+          "heading_band_rad": [
+            -0.025,
+            0.025
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 1.8,
+              "rear_x_m": 13.368158531028188,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 8.0,
+              "acceleration_mps2": 0.0,
+              "steer_rad": 0.0
+            },
+            {
+              "time_s": 2.0,
+              "rear_x_m": 14.968158531028187,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 8.0,
+              "acceleration_mps2": 0.0,
+              "steer_rad": 0.0
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "distant_oncoming",
+            "halfplane": [
+              0.0,
+              1.0,
+              -0.7372096503496255
+            ],
+            "obstacle_support_m": 2.4,
+            "ego_body_support_m": 0.9872096503496255,
+            "model_total_residual_m": 1.15,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                17.5,
+                2.4
+              ],
+              [
+                40.5,
+                2.4
+              ],
+              [
+                40.5,
+                5.0
+              ],
+              [
+                17.5,
+                5.0
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "distant_oncoming_body_0_2",
+                "scenario_id": "distant_oncoming_adverse",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    17.5,
+                    2.4
+                  ],
+                  [
+                    40.5,
+                    2.4
+                  ],
+                  [
+                    40.5,
+                    5
+                  ],
+                  [
+                    17.5,
+                    5
+                  ]
+                ],
+                "frame_ids": [
+                  "94449679456646028efd31ec73c6ae47"
+                ],
+                "time_ids": [
+                  "nusc_us_1533151607512404"
+                ],
+                "premise_ids": [
+                  "body_scale",
+                  "local_movement"
+                ],
+                "source_residual_m": 0.55
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              3.221297106464472,
+              -0.5700031249023452
+            ],
+            [
+              3.3948780064442547,
+              0.39257989408727106
+            ],
+            [
+              5.2631761746245544,
+              0.7700031249023452
+            ],
+            [
+              13.410498246891391,
+              0.7700031249023452
+            ],
+            [
+              16.20300939760596,
+              0.5161129730192747
+            ],
+            [
+              16.82992316958739,
+              -0.5700031249023452
+            ]
+          ],
+          "allowed_area_before_m2": 16.87990459025067,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                0.0,
+                -1.0,
+                3.4627903496503745
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                5.0
+              ],
+              "ego_body_support_m": 0.9872096503496255,
+              "road_uncertainty_m": 0.55
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                21.9285960367118
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                26.0
+              ],
+              "ego_body_support_m": 3.5214039632882,
+              "road_uncertainty_m": 0.55
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                0.0,
+                1.0,
+                6.4627903496503745
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                8.0
+              ],
+              "ego_body_support_m": 0.9872096503496255,
+              "road_uncertainty_m": 0.55
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.3278460757734862
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                4.0
+              ],
+              "ego_body_support_m": 1.122153924226514,
+              "road_uncertainty_m": 0.55
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                0.5700031249023452
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                0.6
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                19.8
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                21.0
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                0.7700031249023452
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                0.8
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                1.399625019530843
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                0.19999999999999998
+              ],
+              "center_offset_support_m": -1.199625019530843
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 12.198693416354802,
+      "minimum_clearance_lower_bound_m": 1.2393801477523625
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.4,
+            0.6000000000000001
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "brake_straight",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

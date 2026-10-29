@@ -1,0 +1,125 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 4.949915881568494,
+      "minimum_clearance_lower_bound_m": 1.0436279915714826
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS",
+      "objective": 4.949915901354775,
+      "minimum_clearance_lower_bound_m": 1.0436274084570667
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_left",
+          "initial_rear_point_m": [
+            -1.2,
+            0.0
+          ],
+          "heading_band_rad": [
+            -0.025,
+            0.13348612618263356
+          ],
+          "initial_state_violations": [
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                -0.009708069325787966
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                0.15
+              ],
+              "center_offset_support_m": 0.15970806932578796,
+              "computed_m": 0.0,
+              "threshold_m": -0.009708069325787966,
+              "excess_m": 0.009708069325787966
+            }
+          ],
+          "object_id": null,
+          "allowed_domain_polygon_m": [
+            [
+              4.4915234240338355,
+              -0.009708069325787966
+            ],
+            [
+              4.819829725928114,
+              -1.4700031249023453
+            ],
+            [
+              -1.289324738072924,
+              -1.4700031249023453
+            ],
+            [
+              -1.289324738072924,
+              -0.009708069325787966
+            ]
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.4,
+            0.6000000000000001
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": "original",
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

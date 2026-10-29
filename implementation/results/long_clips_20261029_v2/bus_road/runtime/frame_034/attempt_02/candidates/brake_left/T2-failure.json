@@ -1,0 +1,115 @@
+{
+  "code": "CORRIDOR_INITIAL_STATE",
+  "message": "First corridor cell must contain the true initial rear axle",
+  "category": "tool_infeasible",
+  "details": {
+    "interval": [
+      0.0,
+      0.2
+    ],
+    "candidate_id": "brake_left",
+    "initial_rear_point_m": [
+      -1.2,
+      0.0
+    ],
+    "heading_band_rad": [
+      -0.025,
+      0.14099038391825486
+    ],
+    "initial_state_violations": [
+      {
+        "kind": "occupancy",
+        "object_id": "left_cone_workzone_compound",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.032902668573220106
+        ],
+        "obstacle_support_m": 2.8,
+        "ego_body_support_m": 1.38290266857322,
+        "model_total_residual_m": 0.45,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            3.7,
+            2.8
+          ],
+          [
+            43.3,
+            2.8
+          ],
+          [
+            43.3,
+            8.4
+          ],
+          [
+            3.7,
+            8.4
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "cone_group_two_second_body",
+            "scenario_id": "cones_minor_displacement",
+            "source_interval_s": [
+              0,
+              2
+            ],
+            "polygon_m": [
+              [
+                3.7,
+                2.8
+              ],
+              [
+                43.3,
+                2.8
+              ],
+              [
+                43.3,
+                8.4
+              ],
+              [
+                3.7,
+                8.4
+              ]
+            ],
+            "frame_ids": [
+              "dd1b722645744b3eb49fdad74b765c4f"
+            ],
+            "time_ids": [
+              "nusc_us_1535385108912404"
+            ],
+            "premise_ids": [
+              "prototype_local_scope",
+              "cone_group_bound"
+            ],
+            "source_residual_m": 0.35
+          }
+        ],
+        "computed_m": 0.0,
+        "threshold_m": -0.032902668573220106,
+        "excess_m": 0.032902668573220106
+      }
+    ],
+    "object_id": "left_cone_workzone_compound",
+    "allowed_domain_polygon_m": [
+      [
+        -1.2380927712162086,
+        -0.032902668573220106
+      ],
+      [
+        19.800000000000004,
+        -0.032902668573220106
+      ],
+      [
+        19.800000000000004,
+        -0.42000312490234526
+      ],
+      [
+        -1.2380927712162086,
+        -0.42000312490234526
+      ]
+    ]
+  },
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+}

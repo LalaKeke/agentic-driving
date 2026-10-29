@@ -1,0 +1,115 @@
+{
+  "code": "CORRIDOR_INITIAL_STATE",
+  "message": "First corridor cell must contain the true initial rear axle",
+  "category": "tool_infeasible",
+  "details": {
+    "interval": [
+      0.0,
+      0.2
+    ],
+    "candidate_id": "original",
+    "initial_rear_point_m": [
+      -1.2,
+      0.0
+    ],
+    "heading_band_rad": [
+      -0.025,
+      0.025
+    ],
+    "initial_state_violations": [
+      {
+        "kind": "occupancy",
+        "object_id": "oncoming_black_sedan",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.03720965034962542
+        ],
+        "obstacle_support_m": 2.6,
+        "ego_body_support_m": 0.9872096503496255,
+        "model_total_residual_m": 0.65,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            -8.7,
+            2.6
+          ],
+          [
+            16.6,
+            2.6
+          ],
+          [
+            16.6,
+            5.9
+          ],
+          [
+            -8.7,
+            5.9
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "sedan_whole_2s",
+            "scenario_id": "sedan_adverse",
+            "source_interval_s": [
+              0.0,
+              2.0
+            ],
+            "polygon_m": [
+              [
+                -8.7,
+                2.6
+              ],
+              [
+                16.6,
+                2.6
+              ],
+              [
+                16.6,
+                5.9
+              ],
+              [
+                -8.7,
+                5.9
+              ]
+            ],
+            "frame_ids": [
+              "fa18edcec56e4a87a5cbd9e04a2f3a09"
+            ],
+            "time_ids": [
+              "nusc_us_1533151605512404"
+            ],
+            "premise_ids": [
+              "sedan_body_scale",
+              "sedan_motion"
+            ],
+            "source_residual_m": 0.35
+          }
+        ],
+        "computed_m": 0.0,
+        "threshold_m": -0.03720965034962542,
+        "excess_m": 0.03720965034962542
+      }
+    ],
+    "object_id": "oncoming_black_sedan",
+    "allowed_domain_polygon_m": [
+      [
+        11.958244621989895,
+        -1.4700031249023453
+      ],
+      [
+        -1.2996250195308432,
+        -1.4700031249023453
+      ],
+      [
+        -1.2996250195308432,
+        -0.03720965034962542
+      ],
+      [
+        10.427462159581745,
+        -0.03720965034962542
+      ]
+    ]
+  },
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+}

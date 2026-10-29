@@ -1,0 +1,116 @@
+{
+  "search_profile": "bounded_seed_candidates_v2",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "FAIL",
+      "failure": {
+        "code": "VERIFICATION_REJECTED",
+        "violations": [
+          {
+            "code": "TARGET_INTENT",
+            "object_id": null,
+            "time_interval_s": [
+              0.0,
+              0.02
+            ],
+            "position_m": [
+              0.0,
+              -4.52928575679671e-28
+            ],
+            "computed": 0.06757161857684392,
+            "threshold": 0.049999999999999996,
+            "unit": "m",
+            "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "brake_straight",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "FAIL",
+      "failure": {
+        "code": "VERIFICATION_REJECTED",
+        "violations": [
+          {
+            "code": "TARGET_INTENT",
+            "object_id": null,
+            "time_interval_s": [
+              0.0,
+              0.02
+            ],
+            "position_m": [
+              0.0,
+              -5.5834371116041556e-27
+            ],
+            "computed": 0.06757161856541967,
+            "threshold": 0.049999999999999996,
+            "unit": "m",
+            "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "brake_right",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            1.0,
+            1.2000000000000002
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            1.0,
+            1.2000000000000002
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "T2": "FAIL",
+      "T3": "NOT_REACHED",
+      "T4": "NOT_REACHED",
+      "failure": {
+        "code": "CORRIDOR_HEADING_BOUND",
+        "message": "Candidate leaves the unchanged global yaw cap",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.6000000000000001,
+            0.8
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "selected_candidate": null,
+  "limitation": "Finite ego-reference search; exhaustion is not proof of global infeasibility. All target occupancies, adverse scenarios, residuals and physical limits are unchanged."
+}

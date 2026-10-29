@@ -1,0 +1,188 @@
+{
+  "code": "CORRIDOR_INITIAL_STATE",
+  "message": "First corridor cell must contain the true initial rear axle",
+  "category": "tool_infeasible",
+  "details": {
+    "interval": [
+      0.0,
+      0.2
+    ],
+    "candidate_id": "brake_straight",
+    "initial_rear_point_m": [
+      -1.2,
+      0.0
+    ],
+    "heading_band_rad": [
+      -0.025,
+      0.025
+    ],
+    "initial_state_violations": [
+      {
+        "kind": "occupancy",
+        "object_id": "passing_black_suv",
+        "halfplane": [
+          -2.6122894697062503e-16,
+          1.0,
+          -0.23720965034962405
+        ],
+        "obstacle_support_m": 2.6000000000000005,
+        "ego_body_support_m": 0.9872096503496246,
+        "model_total_residual_m": 0.85,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            -24.1,
+            2.6
+          ],
+          [
+            -0.9,
+            2.6
+          ],
+          [
+            -0.9,
+            4.8
+          ],
+          [
+            -24.1,
+            4.8
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "passing_suv_body_0_2",
+            "scenario_id": "suv_continues",
+            "source_interval_s": [
+              0,
+              2
+            ],
+            "polygon_m": [
+              [
+                -24.1,
+                2.6
+              ],
+              [
+                -0.9,
+                2.6
+              ],
+              [
+                -0.9,
+                4.8
+              ],
+              [
+                -24.1,
+                4.8
+              ]
+            ],
+            "frame_ids": [
+              "cd4d779b982e4b939a246f2ca38a9e28"
+            ],
+            "time_ids": [
+              "nusc_us_1533151606447405"
+            ],
+            "premise_ids": [
+              "metric_body_priors",
+              "passing_suv_motion"
+            ],
+            "source_residual_m": 0.55
+          }
+        ],
+        "computed_m": 3.1347473636475e-16,
+        "threshold_m": -0.23720965034962405,
+        "excess_m": 0.23720965034962435
+      },
+      {
+        "kind": "occupancy",
+        "object_id": "passing_black_suv",
+        "halfplane": [
+          0.0,
+          1.0,
+          -0.5372096503496256
+        ],
+        "obstacle_support_m": 2.3,
+        "ego_body_support_m": 0.9872096503496255,
+        "model_total_residual_m": 0.85,
+        "safety_margin_m": 1.0,
+        "occupancy_polygon_m": [
+          [
+            -28.1,
+            2.3
+          ],
+          [
+            -0.9,
+            2.3
+          ],
+          [
+            -0.9,
+            5.1
+          ],
+          [
+            -28.1,
+            5.1
+          ]
+        ],
+        "native_sources": [
+          {
+            "source_id": "passing_suv_body_0_2",
+            "scenario_id": "suv_adverse",
+            "source_interval_s": [
+              0,
+              2
+            ],
+            "polygon_m": [
+              [
+                -28.1,
+                2.3
+              ],
+              [
+                -0.9,
+                2.3
+              ],
+              [
+                -0.9,
+                5.1
+              ],
+              [
+                -28.1,
+                5.1
+              ]
+            ],
+            "frame_ids": [
+              "cd4d779b982e4b939a246f2ca38a9e28"
+            ],
+            "time_ids": [
+              "nusc_us_1533151606447405"
+            ],
+            "premise_ids": [
+              "metric_body_priors",
+              "passing_suv_motion"
+            ],
+            "source_residual_m": 0.55
+          }
+        ],
+        "computed_m": 0.0,
+        "threshold_m": -0.5372096503496256,
+        "excess_m": 0.5372096503496256
+      }
+    ],
+    "object_id": "passing_black_suv",
+    "allowed_domain_polygon_m": [
+      [
+        -1.399625019530843,
+        -0.5372096503496256
+      ],
+      [
+        9.34914663379281,
+        -0.5372096503496256
+      ],
+      [
+        9.467590981727326,
+        -1.6700031249023453
+      ],
+      [
+        -1.399625019530843,
+        -1.6700031249023453
+      ]
+    ]
+  },
+  "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+}

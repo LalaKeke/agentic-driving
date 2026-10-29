@@ -1,0 +1,424 @@
+{
+  "decision": {
+    "scene_id": "nusc_747aa46b9a4641fe90db05d97db2acea",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [[-0.1, -1.5], [18.0, -1.5], [18.0, 0.15], [-0.1, 0.15]],
+    "desired_speed_mps": 6.0,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1533151607.512404,
+    "hard_requirements": ["target_region", "vehicle_limits", "collision_free", "road"],
+    "preferences": {
+      "speed_weight": 1.0,
+      "acceleration_weight": 0.5,
+      "steering_weight": 1.0,
+      "smoothness_weight": 1.0
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1533151605512404",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-4.0, -3.8], [22.0, -6.0], [22.0, 7.0], [-4.0, 7.0]],
+      "uncertainty_m": 0.45,
+      "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09", "7cb571f327f64fd4ac5f5bbf205cb742", "bfdb17386ee849b9ab30c0b7a3bb436d"],
+      "time_ids": ["nusc_us_1533151605512404", "nusc_us_1533151605504799", "nusc_us_1533151605420482"]
+    },
+    "objects": [
+      {
+        "id": "oncoming_black_sedan",
+        "position_m": [14.0, 4.2],
+        "velocity_mps": [-8.0, 0.0],
+        "uncertainty_m": 0.65,
+        "occupancy": [
+          {
+            "id": "sedan_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["sedan_body_scale", "sedan_motion"],
+            "residual_m": 0.35,
+            "alternatives": [
+              {
+                "scenario_id": "sedan_straight",
+                "polygon_m": [[-5.0, 2.8], [16.6, 2.8], [16.6, 5.6], [-5.0, 5.6]]
+              },
+              {
+                "scenario_id": "sedan_adverse",
+                "polygon_m": [[-8.7, 2.6], [16.6, 2.6], [16.6, 5.9], [-8.7, 5.9]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 4.8, "width_m": 2.0, "yaw_rad": 3.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["sedan_body_scale"],
+          "residual_m": 0.3,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09",
+              "time_id": "nusc_us_1533151605512404",
+              "position_m": [14.0, 4.2],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {"id": "sedan_straight", "premise_ids": ["sedan_body_scale", "sedan_motion"], "role": "adopted"},
+          {"id": "sedan_adverse", "premise_ids": ["sedan_body_scale", "sedan_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_corner_man",
+        "position_m": [13.5, 8.1],
+        "velocity_mps": null,
+        "uncertainty_m": 0.9,
+        "occupancy": [
+          {
+            "id": "left_man_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.5,
+            "alternatives": [
+              {"scenario_id": "left_man_waits", "polygon_m": [[12.9, 7.5], [14.1, 7.5], [14.1, 8.7], [12.9, 8.7]]},
+              {"scenario_id": "left_man_sidewalk_adverse", "polygon_m": [[9.9, 7.3], [17.1, 7.3], [17.1, 9.2], [9.9, 9.2]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [13.5, 8.1], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "left_man_waits", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "left_man_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "left_edge_woman",
+        "position_m": [15.0, 10.0],
+        "velocity_mps": null,
+        "uncertainty_m": 1.2,
+        "occupancy": [
+          {
+            "id": "left_woman_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.7,
+            "alternatives": [
+              {"scenario_id": "left_woman_walks", "polygon_m": [[12.5, 9.3], [17.5, 9.3], [17.5, 10.7], [12.5, 10.7]]},
+              {"scenario_id": "left_woman_sidewalk_adverse", "polygon_m": [[11.4, 8.6], [18.6, 8.6], [18.6, 11.4], [11.4, 11.4]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.5,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [15.0, 10.0], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "left_woman_walks", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "left_woman_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "right_gray_shirt_shorts",
+        "position_m": [23.0, -10.0],
+        "velocity_mps": null,
+        "uncertainty_m": 1.3,
+        "occupancy": [
+          {
+            "id": "right_gray_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.7,
+            "alternatives": [
+              {"scenario_id": "right_gray_walks", "polygon_m": [[20.4, -10.7], [25.6, -10.7], [25.6, -9.3], [20.4, -9.3]]},
+              {"scenario_id": "right_gray_sidewalk_adverse", "polygon_m": [[19.4, -11.4], [26.6, -11.4], [26.6, -8.6], [19.4, -8.6]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.6,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [23.0, -10.0], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "right_gray_walks", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "right_gray_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "right_middle_dark_pedestrian",
+        "position_m": [25.0, -11.5],
+        "velocity_mps": null,
+        "uncertainty_m": 1.3,
+        "occupancy": [
+          {
+            "id": "right_middle_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.7,
+            "alternatives": [
+              {"scenario_id": "right_middle_walks", "polygon_m": [[22.4, -12.2], [27.6, -12.2], [27.6, -10.8], [22.4, -10.8]]},
+              {"scenario_id": "right_middle_sidewalk_adverse", "polygon_m": [[21.4, -12.9], [28.6, -12.9], [28.6, -10.1], [21.4, -10.1]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.6,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [25.0, -11.5], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "right_middle_walks", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "right_middle_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "right_front_dark_man",
+        "position_m": [19.0, -10.0],
+        "velocity_mps": null,
+        "uncertainty_m": 1.3,
+        "occupancy": [
+          {
+            "id": "right_front_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.7,
+            "alternatives": [
+              {"scenario_id": "right_front_walks", "polygon_m": [[16.4, -10.7], [21.6, -10.7], [21.6, -9.3], [16.4, -9.3]]},
+              {"scenario_id": "right_front_sidewalk_adverse", "polygon_m": [[15.4, -11.4], [22.6, -11.4], [22.6, -8.6], [15.4, -8.6]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.6,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [19.0, -10.0], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "right_front_walks", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "right_front_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "right_edge_cropped_pedestrian",
+        "position_m": [17.0, -11.0],
+        "velocity_mps": null,
+        "uncertainty_m": 1.5,
+        "occupancy": [
+          {
+            "id": "right_edge_whole_2s",
+            "start_s": 0.0,
+            "end_s": 2.0,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+            "time_ids": ["nusc_us_1533151605512404"],
+            "premise_ids": ["pedestrian_bodies", "sidewalk_motion"],
+            "residual_m": 0.8,
+            "alternatives": [
+              {"scenario_id": "right_edge_walks", "polygon_m": [[14.4, -11.7], [19.6, -11.7], [19.6, -10.3], [14.4, -10.3]]},
+              {"scenario_id": "right_edge_sidewalk_adverse", "polygon_m": [[13.4, -12.4], [20.6, -12.4], [20.6, -9.6], [13.4, -9.6]]}
+            ]
+          }
+        ],
+        "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+        "time_ids": ["nusc_us_1533151605512404"],
+        "state_time_id": "nusc_us_1533151605512404",
+        "body_geometry": {"length_m": 0.7, "width_m": 0.7, "yaw_rad": 0.0},
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["pedestrian_bodies"],
+          "residual_m": 0.7,
+          "motion_bound": null,
+          "evidence_positions": [
+            {"frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09", "time_id": "nusc_us_1533151605512404", "position_m": [17.0, -11.0], "observed_actor": true}
+          ]
+        },
+        "scenarios": [
+          {"id": "right_edge_walks", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "adopted"},
+          {"id": "right_edge_sidewalk_adverse", "premise_ids": ["pedestrian_bodies", "sidewalk_motion"], "role": "reasonable_adverse"}
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second proposal, not a verified trajectory or world-safety claim. Road and actor metrics are approximate monocular hypotheses. The local road patch includes both traffic directions and adjacent paved width, not permission to use the opposing lane. Latest front imagery shows amber-looking illuminated signals and an approaching crosswalk; it does not establish an active red indication. With initial speed 8.3484 m/s, maximum braking requires approximately 2.78 s and 11.62 m of center travel, so a two-second full stop is physically unavailable. The nearest crossing marking is estimated around 8–10 m ahead, making a stop before it doubtful even before adding front-body clearance. Continuing while reducing speed is proposed only under the declared signal and sidewalk conditions. Near-corner pedestrians are retained individually, including the cropped right-edge person. More distant vehicles, the following vehicle, bridge-side pedestrians, hidden cross-street traffic and pedestrian curb entry are excluded from this local prediction only through the explicit no-entry conditions; they have not been proved absent. No optimizer, continuous collision checker or simulated prefix has been run.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": [[-4.0, -3.8], [22.0, -6.0], [22.0, 7.0], [-4.0, 7.0]],
+        "statement": "The modeled local driving domain is exactly this convex road patch for two seconds. Adopt no new unobserved entrant, no cross-street vehicle entering this patch, and no entry by distant observed vehicles or bridge-side pedestrians. The declared nearby oncoming sedan may traverse and leave the patch; its complete source is retained outside the patch as well. Declared corner pedestrians remain on their respective sidewalks under sidewalk_motion. Distant lead and parked vehicles remain beyond the forward boundary, the distant oncoming van does not reach x=22, and the rear vehicle does not reach the rear boundary during this interval. These are falsifiable conditional exclusions, not claims of exhaustive traffic observation. Adopt that the visible amber-looking signal permits clearing the crossing because a comfortable or maximum-limit stop before the near crossing is unavailable; no unseen red or conflicting green phase is assumed."
+      },
+      {
+        "id": "road_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Approximate the continuous paved surface by the declared convex polygon. Latest front curb edges, crosswalk perspective and double-yellow alignment, supplemented by the near-synchronous left and right curb views, support a roughly 11–13 m total paved width with the right edge receding toward negative Y. The near rear extension is the bridge pavement occupied by the ego immediately before reference, supported by ego history and side views. The polygon contains the present 4.6 by 1.8 m ego footprint. Boundary residual is 0.45 m; this is not a calibrated ground plane. Scale is linked to sedan_body_scale, not established by extrinsics alone."
+      },
+      {
+        "id": "sedan_body_scale",
+        "object_ids": ["oncoming_black_sedan"],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "The individually visible black oncoming sedan is modeled as a 4.8 m long, 2.0 m wide passenger sedan, centered at [14,4.2] with yaw 3.0 rad. These dimensions are a conditional category prior, not measured ground truth. Its oblique front/side projection and tire-to-road region support an approximate low-teens-meter range. Alignment residual 0.30 m and future source residual 0.35 m sum to the total 0.65 m."
+      },
+      {
+        "id": "sedan_motion",
+        "object_ids": ["oncoming_black_sedan"],
+        "scenario_ids": ["sedan_straight", "sedan_adverse"],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Condition on continued oncoming motion without a turn across the centerline. Adopted mode has center X decreasing at 6–8 m/s, center Y in [4.15,4.25], yaw in [3.0,3.1416]. Adverse mode permits 6–10 m/s, center Y in [4.0,4.5], yaw in [3.0,3.1416]. All ranges include the native pose. BODY half-extents over these yaw ranges are bounded by 2.52 m longitudinally and 1.33 m laterally. The outward-rounded whole-interval rectangles enclose the full body, including at t=0; they are not center trajectories. Inventory is complete only within these no-turn movement conditions."
+      },
+      {
+        "id": "pedestrian_bodies",
+        "object_ids": ["left_corner_man", "left_edge_woman", "right_gray_shirt_shorts", "right_middle_dark_pedestrian", "right_front_dark_man", "right_edge_cropped_pedestrian"],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Each named pedestrian is directly visible in the reference front image. Use a 0.7 by 0.7 m ground BODY box with native yaw zero; the 0.50 m radial half-diagonal also bounds arbitrary body heading. Positions are coarse perspective estimates under the sedan scale and approximate road surface, with larger residuals for distant or cropped figures. These are ground-body centers, not head locations. Identity labels refer only to appearance and image location."
+      },
+      {
+        "id": "sidewalk_motion",
+        "object_ids": ["left_corner_man", "left_edge_woman", "right_gray_shirt_shorts", "right_middle_dark_pedestrian", "right_front_dark_man", "right_edge_cropped_pedestrian"],
+        "scenario_ids": [],
+        "start_s": 0.0,
+        "end_s": 2.0,
+        "space_polygon_m": null,
+        "statement": "Explicitly condition on no curb entry or crosswalk crossing by these sidewalk pedestrians for two seconds. Left man adopted mode waits with center displacement bounded by 0.1 m per axis; adverse mode allows longitudinal displacement up to 3 m and center Y in [7.8,8.7]. Other adopted modes permit longitudinal displacement up to 2 m and lateral displacement up to 0.2 m. Their adverse sidewalk modes permit longitudinal displacement up to 3 m and lateral displacement up to 0.9 m. Source rectangles add at least 0.5 m BODY support and outward rounding to these center ranges. Both directions of along-sidewalk walking are covered. Sudden road entry is excluded explicitly, not represented as a covered mode."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["fa18edcec56e4a87a5cbd9e04a2f3a09"],
+      "time_ids": ["nusc_us_1533151605512404"],
+      "premise_ids": ["sedan_body_scale", "road_geometry"],
+      "anchors": [
+        {
+          "object_id": "oncoming_black_sedan",
+          "dimension": "length_m",
+          "value_m": 4.8,
+          "rationale": "Visible individual is an obliquely viewed full-size passenger sedan; 4.8 m is a conditional typical body-length prior matching its native body hypothesis."
+        },
+        {
+          "object_id": "oncoming_black_sedan",
+          "dimension": "width_m",
+          "value_m": 2.0,
+          "rationale": "A 2.0 m body-width prior is adopted for this same visible sedan and equals the declared native width; it is not a measured make/model dimension."
+        }
+      ],
+      "metric_reasoning": "The reference image shows both the sedan front and flank, so its full horizontal image extent must not be interpreted as width alone. Combining the 4.8 by 2.0 m oblique body prior, yaw approximately 3.0 rad, supplied camera axes and the apparent tire/road region gives an approximate body-center estimate [14,4.2] m. Its image placement relative to the yellow centerline and curb perspective supports a paved cross-section of roughly 11–13 m and a crossing in the near 8–10 m range. These estimates define a falsifiable model-metric scene, not a calibrated depth reconstruction; residuals remain noncalibrated and independent verification is required."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

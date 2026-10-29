@@ -1,0 +1,61 @@
+{
+  "stages": {
+    "T1": "PASS",
+    "T2": "PASS",
+    "T3": "PASS",
+    "T4": "FAIL",
+    "EXECUTION": "NOT_REACHED",
+    "ACCEPTOR": "NOT_REACHED"
+  },
+  "failure": {
+    "code": "VERIFICATION_REJECTED",
+    "violations": [
+      {
+        "code": "TARGET_INTENT",
+        "object_id": null,
+        "time_interval_s": [
+          0.0,
+          0.02
+        ],
+        "position_m": [
+          0.0,
+          6.702259317626913e-28
+        ],
+        "computed": 0.08905105054917783,
+        "threshold": 0.05,
+        "unit": "m",
+        "repair_request": "Revise decision or evidence-backed scene hypothesis and replan: TARGET_INTENT"
+      }
+    ],
+    "details": {
+      "candidate_id": "original",
+      "candidate_failures": [
+        {
+          "candidate_id": "original",
+          "stage": "T4",
+          "code": "VERIFICATION_REJECTED"
+        },
+        {
+          "candidate_id": "brake_straight",
+          "stage": "T4",
+          "code": "VERIFICATION_REJECTED"
+        },
+        {
+          "candidate_id": "brake_right",
+          "stage": "T2",
+          "code": "CORRIDOR_HEADING_BOUND"
+        },
+        {
+          "candidate_id": "brake_left",
+          "stage": "T2",
+          "code": "CORRIDOR_INITIAL_STATE"
+        },
+        {
+          "candidate_id": "brake_right_strong",
+          "stage": "T2",
+          "code": "CORRIDOR_HEADING_BOUND"
+        }
+      ]
+    }
+  }
+}
