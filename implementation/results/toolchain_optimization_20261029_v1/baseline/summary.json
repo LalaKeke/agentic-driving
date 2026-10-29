@@ -1,0 +1,396 @@
+{
+  "profile": "bounded_seed_candidates_v1",
+  "source_commit": "9a1fa8775ccef140873250611d2bca8b6e504221",
+  "code_dirty": true,
+  "new_model_calls": 0,
+  "network_connections_prohibited": true,
+  "unique_windows": 6,
+  "responses": 9,
+  "rows": [
+    {
+      "case": "bus",
+      "sample_id": "nusc_7ff999a1242e4573a81dd3a6f0c158a2",
+      "record": "implementation/results/moving_prototype_2s_20261028_v1/runtime/attempt_02/record.json",
+      "record_sha256": "5b5ff30e62b081a43e6a48ea1c87b41b60811c5b1ff13008237c11aa130e7e52",
+      "output_digest": "fce77e17c8fd9417f03993828e0bd5918e6d89c0f3d944e039a37a716dc2bb97",
+      "capture_digest": "52f4ee86467e8fc2fd5de823b10968a1e75fabc84215637791d33c51c76ca98f",
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null,
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": true,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "selected_candidate": "brake_straight",
+      "execution": {
+        "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+        "elapsed_s": 0.2,
+        "center_displacement_m": [
+          1.2718650211051261,
+          -1.5355031089847168e-08
+        ],
+        "yaw_delta_rad": -8.363614131559631e-09,
+        "speed_mps": 6.320778469553164
+      },
+      "motion_class": "MOVING_PREFIX",
+      "min_clearance_m": 4.461059816834561,
+      "solver": {
+        "name": "casadi_ipopt_multiple_shooting",
+        "version": "3.7.2",
+        "status": "Solve_Succeeded",
+        "objective": 1.1250414491135474
+      },
+      "max_abs_acceleration_mps2": 0.38546635972466814
+    },
+    {
+      "case": "parking",
+      "sample_id": "nusc_8573a885a7cb41d185c05029eeb9a54e",
+      "record": "implementation/results/varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/record.json",
+      "record_sha256": "03b8f9cbaaf54d3132d855bcc39590c9441e6b497fcc431a421e965dc3a9a8ac",
+      "output_digest": "5df88c2b9c80135e652270cf4f760e72e0d7efa4e0c89549a4690b135a0efbdc",
+      "capture_digest": "4b44efa3a961eb3509a3f230e5ebdaddf2c2fe86db65c56269cc5cee091316c5",
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null,
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": true,
+      "candidate_counts": {
+        "T2": 4,
+        "T3": 1,
+        "T4": 1
+      },
+      "selected_candidate": "original",
+      "execution": {
+        "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+        "elapsed_s": 0.2,
+        "center_displacement_m": [
+          1.0325500052109768,
+          1.1551309306968802e-07
+        ],
+        "yaw_delta_rad": 6.730453621612317e-08,
+        "speed_mps": 5.1105926970163695
+      },
+      "motion_class": "MOVING_PREFIX",
+      "min_clearance_m": 2.2979030574693393,
+      "solver": {
+        "name": "casadi_ipopt_multiple_shooting",
+        "version": "3.7.2",
+        "status": "Solve_Succeeded",
+        "objective": 2.05980562167918
+      },
+      "max_abs_acceleration_mps2": 0.5215732903853183
+    },
+    {
+      "case": "construction_saved",
+      "sample_id": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "record": "implementation/results/varied_prototypes_2s_20261028_v1/construction_yield/runtime/attempt_03/record.json",
+      "record_sha256": "f80c444a120c335fb448d8a4ac1715819fd5e33186f5115cfb4d863f4821776a",
+      "output_digest": "b3e95eeacd4a1f7ae5ed661c2e6fe9dc40a737c411fa8f8e9850c3c5c8d86f15",
+      "capture_digest": "93867ad2ee8ec2479f726fa7491894145b8a91f09ac92b02bcad8e890ecdee68",
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "FAIL",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 0,
+        "T4": 0
+      },
+      "selected_candidate": null
+    },
+    {
+      "case": "construction_new",
+      "sample_id": "nusc_88449a5cb1644a199c1c11f6ac034867",
+      "record": "implementation/results/construction_recovery_20261029_v1/live_construction/attempt_01/record.json",
+      "record_sha256": "02c7348d6bcfe23bfd934359a47ca28989f0087933c87fe73d4de05e78a789d7",
+      "output_digest": "58dfd9f68d55b09f3181ea78d4cb1951d3a1c20c650f844898ee421b72b1cb91",
+      "capture_digest": "8d3265334b3e7cd7822b2eb0bf3589c6b07c9c9659bff13b950efbf19f13d60c",
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "FAIL",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "OPTIMIZATION_FAILED",
+        "message": "IPOPT did not produce a feasible solution; no constraints relaxed",
+        "category": "tool_infeasible",
+        "details": {
+          "solver_status": "Infeasible_Problem_Detected"
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 0,
+        "T4": 0
+      },
+      "selected_candidate": null
+    },
+    {
+      "case": "straight_initial",
+      "sample_id": "nusc_7df1288fed8a403b8e7a35112b392d7c",
+      "record": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_01/record.json",
+      "record_sha256": "571574de92a25d5ab6f398c1916dafb6c2bdab824d20f8d33c565c22ce6aad91",
+      "output_digest": "91bb5c9211e2b286f0312c2dea84706fc46ecf8f2a5eb8765cba9b915e147419",
+      "capture_digest": "7e87522c7dd266bd4f7e653c106264f356375296a4e8a88b395cd2b02fc12aef",
+      "stages": {
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CORRIDOR_SEED_BLOCKED",
+        "message": "Ego-only seed blocked; this does not prove all trajectories infeasible",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "blue_rear_adjacent",
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false,
+      "candidate_counts": {
+        "T2": 0,
+        "T3": 0,
+        "T4": 0
+      },
+      "selected_candidate": null
+    },
+    {
+      "case": "straight_revision",
+      "sample_id": "nusc_7df1288fed8a403b8e7a35112b392d7c",
+      "record": "implementation/results/six_scene_scout_run_20261029_v1/runtime/ordinary_straight/attempt_02/record.json",
+      "record_sha256": "f6c00f9142ebb1081feaefdc256d13be2160980ea4164073c78ac583e9ec3571",
+      "output_digest": "bdc17bf7b2a060f26f5578295d3860175614098408979764112a0838c60f2dd0",
+      "capture_digest": "dc6a6e6edf07bbc22159c84ec8d11cd28b93e126ee006eb0c2e3598dfbbcff3f",
+      "stages": {
+        "T1": "PASS",
+        "T2": "FAIL",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "CORRIDOR_INITIAL_STATE",
+        "message": "First corridor cell must contain the true initial rear axle",
+        "category": "tool_infeasible",
+        "details": {},
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false,
+      "candidate_counts": {
+        "T2": 0,
+        "T3": 0,
+        "T4": 0
+      },
+      "selected_candidate": null
+    },
+    {
+      "case": "deceleration_initial",
+      "sample_id": "nusc_0d0700a2284e477db876c3ee1d864668",
+      "record": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_01/record.json",
+      "record_sha256": "dfb67a8426e890a21da592ecbd7ef485101509ffce374fe07d5942c458045bb8",
+      "output_digest": "7b63b0910de51a3d1bd0e7f079b34b48eb1f3327036c2519eeaa7342247901c3",
+      "capture_digest": "32ac5857d6643b3c70a0667a432d07405f6830504a2a3d644290a48b74ebae01",
+      "stages": {
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "BODY_ENVELOPE_CONFLICT",
+        "message": "Nominal initial envelope must enclose the oriented actor body before residual inflation, not only its center",
+        "category": "tool_infeasible",
+        "details": {
+          "object_id": "oncoming_silver_sedan",
+          "source_id": "oncoming_body_0_2",
+          "scenario_id": "oncoming_slow",
+          "source_interval_s": [
+            0,
+            2
+          ],
+          "computed_initial_body_corners_m": [
+            [
+              27.39999967091016,
+              5.0500008313844384
+            ],
+            [
+              22.599999670910446,
+              5.0499991686154475
+            ],
+            [
+              22.60000032908984,
+              3.1499991686155613
+            ],
+            [
+              27.400000329089554,
+              3.1500008313845522
+            ]
+          ],
+          "outside_body_corners_m": [
+            [
+              27.400000329089554,
+              3.1500008313845522
+            ]
+          ],
+          "maximum_corner_excess_m": 3.290895556062879e-07,
+          "distance_unit": "m",
+          "geometry_modified": false
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false
+    },
+    {
+      "case": "deceleration_revision",
+      "sample_id": "nusc_0d0700a2284e477db876c3ee1d864668",
+      "record": "implementation/results/six_scene_scout_run_20261029_v1/runtime/following_deceleration/attempt_02/record.json",
+      "record_sha256": "34ffcd4c96274127ea6880d6d4b5164b6d6a17530b5081b28ed108f059315e62",
+      "output_digest": "e8e758cfa0c31e008fed1625b589d79d14af705b13c37c161416331d270e1c43",
+      "capture_digest": "488841db1477beead007015c941ed992f8cb19c13336b13589b663dec049c06f",
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null,
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": true,
+      "candidate_counts": {
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "selected_candidate": "brake_straight",
+      "execution": {
+        "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+        "elapsed_s": 0.2,
+        "center_displacement_m": [
+          1.2840759430702229,
+          -0.012869621440173697
+        ],
+        "yaw_delta_rad": -0.0069865927245588945,
+        "speed_mps": 6.210393330848609
+      },
+      "motion_class": "MOVING_PREFIX",
+      "min_clearance_m": 1.4895853570337227,
+      "solver": {
+        "name": "casadi_ipopt_multiple_shooting",
+        "version": "3.7.2",
+        "status": "Solve_Succeeded",
+        "objective": 29.640536713128004
+      },
+      "max_abs_acceleration_mps2": 2.1018505526981697
+    },
+    {
+      "case": "signal_initial",
+      "sample_id": "nusc_6dabc0fb1df045558f802246dd186b3f",
+      "record": "implementation/results/six_scene_scout_run_20261029_v1/runtime/signal_wait/attempt_01/record.json",
+      "record_sha256": "2338c4ca8412dd0b0ecaa583c3cf15307908580d1517941c0f316162bd64a10a",
+      "output_digest": "2fa201d5b188616e34d46da8b9b97562da21080c49923fda31f103d81655bf12",
+      "capture_digest": "ebdf503b16273e238f4b39205ae1df8f87eaf1dfd26046d8b194ee10f9c63f6b",
+      "stages": {
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "PREMISE_SCOPE",
+        "message": "Conditional premise does not cover this object, scenario and whole time interval",
+        "category": "interface_error",
+        "details": {
+          "premise_id": "queued_motion",
+          "object_id": "left_black_sedan",
+          "required_scenario_ids": [
+            "black_stopped",
+            "black_creep"
+          ],
+          "declared_object_ids": [
+            "left_black_sedan",
+            "rear_pickup",
+            "rear_truck"
+          ],
+          "declared_scenario_ids": [],
+          "required_interval_s": [
+            -0.007605,
+            0
+          ],
+          "declared_interval_s": [
+            0,
+            2
+          ],
+          "conflict_dimensions": [
+            "time_start"
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "mode": "SAVED_REAL_OUTPUT_OFFLINE_REPLANNING",
+      "new_model_calls": 0,
+      "prototype_conditional_success": false
+    }
+  ],
+  "claim": "Fixed saved real outputs, offline comparison only; no online success-rate or GT accuracy claim."
+}
