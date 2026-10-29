@@ -1,0 +1,840 @@
+{
+  "decision": {
+    "scene_id": "nusc_a19a80c905674faab7203a3a4e0f5246",
+    "revision": 1,
+    "behavior": "stop_yield",
+    "target_region": [
+      [
+        -3,
+        -3
+      ],
+      [
+        5,
+        -5
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        -3,
+        4
+      ]
+    ],
+    "desired_speed_mps": 0,
+    "yield_to": [
+      "blue_sedan",
+      "black_right_sedan"
+    ],
+    "stop": {
+      "center_x_max_m": 3.2,
+      "deadline_s": 1.8
+    },
+    "priority": 100,
+    "valid_until_s": 1538984243.41246,
+    "hard_requirements": [
+      "target_region",
+      "stop",
+      "yield",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 2,
+      "smoothness_weight": 3
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1538984241412460",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [
+          -5,
+          -2.75
+        ],
+        [
+          10,
+          -11
+        ],
+        [
+          10,
+          1.5
+        ],
+        [
+          -5,
+          9.75
+        ]
+      ],
+      "uncertainty_m": 0.5,
+      "frame_ids": [
+        "93c6187bdede4f16ad577f8d02086c7c",
+        "14763ce8f0dc40a1b825c327293c5982",
+        "30548dcabe2a4af58555ee282b57f845"
+      ],
+      "time_ids": [
+        "nusc_us_1538984241412460",
+        "nusc_us_1538984241370339",
+        "nusc_us_1538984241404844"
+      ]
+    },
+    "objects": [
+      {
+        "id": "blue_sedan",
+        "position_m": [
+          9.2,
+          5.2
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1,
+        "occupancy": [
+          {
+            "id": "blue_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "93c6187bdede4f16ad577f8d02086c7c"
+            ],
+            "time_ids": [
+              "nusc_us_1538984241412460"
+            ],
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "residual_m": 0.6,
+            "alternatives": [
+              {
+                "scenario_id": "blue_stationary",
+                "polygon_m": [
+                  [
+                    7.2,
+                    2.7
+                  ],
+                  [
+                    11.2,
+                    2.7
+                  ],
+                  [
+                    11.2,
+                    7.7
+                  ],
+                  [
+                    7.2,
+                    7.7
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "blue_adverse",
+                "polygon_m": [
+                  [
+                    7,
+                    2.5
+                  ],
+                  [
+                    11.4,
+                    2.5
+                  ],
+                  [
+                    11.4,
+                    7.9
+                  ],
+                  [
+                    7,
+                    7.9
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "93c6187bdede4f16ad577f8d02086c7c"
+        ],
+        "time_ids": [
+          "nusc_us_1538984241412460"
+        ],
+        "state_time_id": "nusc_us_1538984241412460",
+        "body_geometry": {
+          "length_m": 4.6,
+          "width_m": 1.8,
+          "yaw_rad": 1.05
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "metric_prior",
+            "parked_conditions"
+          ],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "93c6187bdede4f16ad577f8d02086c7c",
+              "time_id": "nusc_us_1538984241412460",
+              "position_m": [
+                9.2,
+                5.2
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "blue_stationary",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "blue_adverse",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "silver_hatchback",
+        "position_m": [
+          11.8,
+          3.1
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1.1,
+        "occupancy": [
+          {
+            "id": "silver_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "93c6187bdede4f16ad577f8d02086c7c"
+            ],
+            "time_ids": [
+              "nusc_us_1538984241412460"
+            ],
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "residual_m": 0.7,
+            "alternatives": [
+              {
+                "scenario_id": "silver_stationary",
+                "polygon_m": [
+                  [
+                    10,
+                    0.8
+                  ],
+                  [
+                    13.6,
+                    0.8
+                  ],
+                  [
+                    13.6,
+                    5.4
+                  ],
+                  [
+                    10,
+                    5.4
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "silver_adverse",
+                "polygon_m": [
+                  [
+                    9.8,
+                    0.6
+                  ],
+                  [
+                    13.8,
+                    0.6
+                  ],
+                  [
+                    13.8,
+                    5.6
+                  ],
+                  [
+                    9.8,
+                    5.6
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "93c6187bdede4f16ad577f8d02086c7c"
+        ],
+        "time_ids": [
+          "nusc_us_1538984241412460"
+        ],
+        "state_time_id": "nusc_us_1538984241412460",
+        "body_geometry": {
+          "length_m": 4,
+          "width_m": 1.7,
+          "yaw_rad": -2.09
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "metric_prior",
+            "parked_conditions"
+          ],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "93c6187bdede4f16ad577f8d02086c7c",
+              "time_id": "nusc_us_1538984241412460",
+              "position_m": [
+                11.8,
+                3.1
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "silver_stationary",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "silver_adverse",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "blue_mini",
+        "position_m": [
+          14.4,
+          1
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1.3,
+        "occupancy": [
+          {
+            "id": "mini_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "93c6187bdede4f16ad577f8d02086c7c"
+            ],
+            "time_ids": [
+              "nusc_us_1538984241412460"
+            ],
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "residual_m": 0.9,
+            "alternatives": [
+              {
+                "scenario_id": "mini_stationary",
+                "polygon_m": [
+                  [
+                    12.6,
+                    -1.2
+                  ],
+                  [
+                    16.2,
+                    -1.2
+                  ],
+                  [
+                    16.2,
+                    3.2
+                  ],
+                  [
+                    12.6,
+                    3.2
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "mini_adverse",
+                "polygon_m": [
+                  [
+                    12.4,
+                    -1.4
+                  ],
+                  [
+                    16.4,
+                    -1.4
+                  ],
+                  [
+                    16.4,
+                    3.4
+                  ],
+                  [
+                    12.4,
+                    3.4
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "93c6187bdede4f16ad577f8d02086c7c"
+        ],
+        "time_ids": [
+          "nusc_us_1538984241412460"
+        ],
+        "state_time_id": "nusc_us_1538984241412460",
+        "body_geometry": {
+          "length_m": 3.8,
+          "width_m": 1.75,
+          "yaw_rad": -2.09
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "metric_prior",
+            "parked_conditions"
+          ],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "93c6187bdede4f16ad577f8d02086c7c",
+              "time_id": "nusc_us_1538984241412460",
+              "position_m": [
+                14.4,
+                1
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "mini_stationary",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "mini_adverse",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "white_suv",
+        "position_m": [
+          17.2,
+          -0.8
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1.5,
+        "occupancy": [
+          {
+            "id": "white_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "93c6187bdede4f16ad577f8d02086c7c"
+            ],
+            "time_ids": [
+              "nusc_us_1538984241412460"
+            ],
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "residual_m": 1.1,
+            "alternatives": [
+              {
+                "scenario_id": "white_stationary",
+                "polygon_m": [
+                  [
+                    15.1,
+                    -3.5
+                  ],
+                  [
+                    19.3,
+                    -3.5
+                  ],
+                  [
+                    19.3,
+                    1.9
+                  ],
+                  [
+                    15.1,
+                    1.9
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "white_adverse",
+                "polygon_m": [
+                  [
+                    14.9,
+                    -3.7
+                  ],
+                  [
+                    19.5,
+                    -3.7
+                  ],
+                  [
+                    19.5,
+                    2.1
+                  ],
+                  [
+                    14.9,
+                    2.1
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "93c6187bdede4f16ad577f8d02086c7c"
+        ],
+        "time_ids": [
+          "nusc_us_1538984241412460"
+        ],
+        "state_time_id": "nusc_us_1538984241412460",
+        "body_geometry": {
+          "length_m": 4.7,
+          "width_m": 1.9,
+          "yaw_rad": -2.09
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "metric_prior",
+            "parked_conditions"
+          ],
+          "residual_m": 0.4,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "93c6187bdede4f16ad577f8d02086c7c",
+              "time_id": "nusc_us_1538984241412460",
+              "position_m": [
+                17.2,
+                -0.8
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "white_stationary",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "white_adverse",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "black_right_sedan",
+        "position_m": [
+          3.2,
+          -8.7
+        ],
+        "velocity_mps": [
+          0,
+          0
+        ],
+        "uncertainty_m": 1.2,
+        "occupancy": [
+          {
+            "id": "black_body_0_2",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "14763ce8f0dc40a1b825c327293c5982"
+            ],
+            "time_ids": [
+              "nusc_us_1538984241370339"
+            ],
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior",
+              "black_alignment"
+            ],
+            "residual_m": 0.7,
+            "alternatives": [
+              {
+                "scenario_id": "black_stationary",
+                "polygon_m": [
+                  [
+                    1,
+                    -11.4
+                  ],
+                  [
+                    5.4,
+                    -11.4
+                  ],
+                  [
+                    5.4,
+                    -6
+                  ],
+                  [
+                    1,
+                    -6
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "black_adverse",
+                "polygon_m": [
+                  [
+                    0.8,
+                    -11.6
+                  ],
+                  [
+                    5.6,
+                    -11.6
+                  ],
+                  [
+                    5.6,
+                    -5.8
+                  ],
+                  [
+                    0.8,
+                    -5.8
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "14763ce8f0dc40a1b825c327293c5982"
+        ],
+        "time_ids": [
+          "nusc_us_1538984241370339"
+        ],
+        "state_time_id": "nusc_us_1538984241412460",
+        "body_geometry": {
+          "length_m": 4.9,
+          "width_m": 1.9,
+          "yaw_rad": 1.05
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": [
+            "black_alignment",
+            "parked_conditions",
+            "metric_prior"
+          ],
+          "residual_m": 0.5,
+          "motion_bound": {
+            "max_speed_mps": 0.1,
+            "displacement_bound_m": 0.005,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "14763ce8f0dc40a1b825c327293c5982",
+              "time_id": "nusc_us_1538984241370339",
+              "position_m": [
+                3.2,
+                -8.7
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "black_stationary",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior",
+              "black_alignment"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "black_adverse",
+            "premise_ids": [
+              "parked_conditions",
+              "metric_prior",
+              "black_alignment"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "CONSTRAINT CONFLICT: this is a braking proposal, not an executable or verified prefix. The retained road has right edge 0.55*x+y=-5.5. Initial rear axle is (-1.2,0), whose perpendicular clearance is approximately 4.24 m. Required disk radius hypot(3.5,0.9), plus 1 m margin and 0.5 m road uncertainty, is approximately 5.11 m: an initial containment deficit of approximately 0.87 m. Changing the future target or braking cannot repair a t=0 violation. Do not execute a simulated prefix as verified, enlarge the road, or relax limits. The previous typed coverage unknown is replaced by this explicit deterministic geometric failure; no obstacle or movement mode is removed. Ego starts at 3.91945 m/s; braking at 2.6 m/s² would stop in approximately 1.51 s over 2.95 m, satisfying the proposed stop deadline in isolation. Local scene coverage remains conditional on no entry from the rear bus stop, waiting pedestrians, motorcycle bays, farther parking rows or unseen world. These exclusions are not assertions of world safety.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [
+          [
+            -5,
+            -2.75
+          ],
+          [
+            10,
+            -11
+          ],
+          [
+            10,
+            1.5
+          ],
+          [
+            -5,
+            9.75
+          ]
+        ],
+        "statement": "Model this finite continuous paved aisle patch for a two-second braking maneuver. Adopt no new unobserved entrant, no pedestrian emerging from parked vehicles, and no entry from the rear bus stop, motorcycle bays or farther parking rows. Those observed or unobserved world conditions are excluded conditionally, not asserted absent. All five previously declared vehicles remain represented, including bodies outside this patch. Longitudinal polygon ends are local truncations; diagonal sides estimate pavement edges. This domain contains the initial physical vehicle footprint and nominal braking route, but does not contain the mandated inflated initial rear-axle disk. Planning must fail that hard road check."
+      },
+      {
+        "id": "metric_prior",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopt approximate body dimensions and locally approximately level pavement, not a calibrated ground plane. The individually observed blue sedan is hypothesized to measure 4.6 by 1.8 m. Its oblique silhouette, neighboring bay spacing, tire/apron contacts, front-left island edge and front-right curb convergence support the retained diagonal aisle geometry and approximately 12.5 m lateral intercept span. Native depths, headings and boundaries are falsifiable monocular estimates with finite noncalibrated residuals. Geometry is not widened to accommodate the conservative disk."
+      },
+      {
+        "id": "parked_conditions",
+        "object_ids": [
+          "blue_sedan",
+          "silver_hatchback",
+          "blue_mini",
+          "white_suv",
+          "black_right_sedan"
+        ],
+        "scenario_ids": [],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Conditionally treat these bay-aligned vehicles as parked. Adopted mode is stationary; reasonable adverse mode permits arbitrary translation at no more than 0.1 m/s with unchanged heading. During [0,2], displacement is at most 0.2 m from the reference position. Each stationary rectangle encloses the complete rotated native body; each adverse rectangle expands it by 0.2 m on all sides. Powered pull-outs, heading changes and door opening are excluded adopted conditions, not proven impossible. These scenarios exhaust only this stated movement family."
+      },
+      {
+        "id": "black_alignment",
+        "object_ids": [
+          "black_right_sedan"
+        ],
+        "scenario_ids": [
+          "black_stationary",
+          "black_adverse"
+        ],
+        "start_s": -0.043,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "The front-right observation precedes reference by approximately 0.042121 s. Its native estimated evidence position is expressed in fixed reference axes using supplied acquisition pose and model depth. The stationary or at-most-0.1-m/s translation condition also applies across this age, giving displacement at most 0.004213 m, conservatively bounded by 0.005 m. Alignment residual 0.5 m includes monocular localization and correspondence error. The source residual is separate and their sum is the total actor residual."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "93c6187bdede4f16ad577f8d02086c7c"
+      ],
+      "time_ids": [
+        "nusc_us_1538984241412460"
+      ],
+      "premise_ids": [
+        "metric_prior"
+      ],
+      "anchors": [
+        {
+          "object_id": "blue_sedan",
+          "dimension": "length_m",
+          "value_m": 4.6,
+          "rationale": "The individual blue sedan visible at the left of the reference image is assigned a conditional typical sedan length, not an identity-specific measured dimension."
+        },
+        {
+          "object_id": "blue_sedan",
+          "dimension": "width_m",
+          "value_m": 1.8,
+          "rationale": "Its visible rear body supplies an approximate transverse scale under this explicit sedan-width prior and oblique body orientation."
+        }
+      ],
+      "metric_reasoning": "The reference blue sedan spans roughly 350 pixels across its oblique rear/side silhouette. A 1.8 m width and 4.6 m length at the hypothesized orientation, with supplied front focal length approximately 1266 pixels, support forward depth of order 9–11 m. Bay spacing, visible body contacts and diagonal pavement boundaries support the retained local arrangement. This is approximate conditional scale, not certified depth; calibration supplies ray orientation. The road estimate is retained despite its demonstrable incompatibility with the required inflated initial disk."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

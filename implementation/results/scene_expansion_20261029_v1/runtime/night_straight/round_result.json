@@ -1,0 +1,3777 @@
+{
+  "status": "executed_simulated_prefix",
+  "revisions": 0,
+  "agent_output": {
+    "decision": {
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "behavior": "hold_lane",
+      "target_region": [
+        [
+          -1.5,
+          -1.5
+        ],
+        [
+          24,
+          -1.5
+        ],
+        [
+          24,
+          1.5
+        ],
+        [
+          -1.5,
+          1.5
+        ]
+      ],
+      "desired_speed_mps": 9,
+      "yield_to": [],
+      "stop": null,
+      "priority": 1,
+      "valid_until_s": 1542800373.9124708,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 5,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1542800371912471",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -6,
+            -8.5
+          ],
+          [
+            34,
+            -8.5
+          ],
+          [
+            34,
+            1.7
+          ],
+          [
+            -6,
+            2.8
+          ]
+        ],
+        "uncertainty_m": 0.5,
+        "frame_ids": [
+          "a4fd7545ff374e7697358dcac68180f0",
+          "bb7b3a3e07104e2b9860da140f5cec59"
+        ],
+        "time_ids": [
+          "nusc_us_1542800371912471",
+          "nusc_us_1542800371887525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "lead_hatchback",
+          "position_m": [
+            24,
+            -0.3
+          ],
+          "velocity_mps": [
+            10.5,
+            0
+          ],
+          "uncertainty_m": 1.5,
+          "occupancy": [
+            {
+              "id": "lead_first_second",
+              "start_s": 0,
+              "end_s": 1,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "a4fd7545ff374e7697358dcac68180f0"
+              ],
+              "time_ids": [
+                "nusc_us_1542800371912471"
+              ],
+              "premise_ids": [
+                "lead_motion",
+                "body_scale"
+              ],
+              "residual_m": 1,
+              "alternatives": [
+                {
+                  "scenario_id": "lead_continue",
+                  "polygon_m": [
+                    [
+                      21.7,
+                      -1.6
+                    ],
+                    [
+                      39.3,
+                      -1.6
+                    ],
+                    [
+                      39.3,
+                      1
+                    ],
+                    [
+                      21.7,
+                      1
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "lead_brake",
+                  "polygon_m": [
+                    [
+                      21.7,
+                      -1.8
+                    ],
+                    [
+                      36.3,
+                      -1.8
+                    ],
+                    [
+                      36.3,
+                      1.2
+                    ],
+                    [
+                      21.7,
+                      1.2
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "lead_second_second",
+              "start_s": 1,
+              "end_s": 2,
+              "kind": "whole_interval_body_envelope",
+              "status": "supported",
+              "frame_ids": [
+                "a4fd7545ff374e7697358dcac68180f0"
+              ],
+              "time_ids": [
+                "nusc_us_1542800371912471"
+              ],
+              "premise_ids": [
+                "lead_motion",
+                "body_scale"
+              ],
+              "residual_m": 1,
+              "alternatives": [
+                {
+                  "scenario_id": "lead_continue",
+                  "polygon_m": [
+                    [
+                      30.7,
+                      -1.9
+                    ],
+                    [
+                      52.3,
+                      -1.9
+                    ],
+                    [
+                      52.3,
+                      1.3
+                    ],
+                    [
+                      30.7,
+                      1.3
+                    ]
+                  ]
+                },
+                {
+                  "scenario_id": "lead_brake",
+                  "polygon_m": [
+                    [
+                      27.7,
+                      -2.3
+                    ],
+                    [
+                      46.3,
+                      -2.3
+                    ],
+                    [
+                      46.3,
+                      1.7
+                    ],
+                    [
+                      27.7,
+                      1.7
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "frame_ids": [
+            "a4fd7545ff374e7697358dcac68180f0"
+          ],
+          "time_ids": [
+            "nusc_us_1542800371912471"
+          ],
+          "state_time_id": "nusc_us_1542800371912471",
+          "body_geometry": {
+            "length_m": 4.5,
+            "width_m": 1.8,
+            "yaw_rad": 0
+          },
+          "alignment": {
+            "method": "direct_reference_observation",
+            "premise_ids": [
+              "body_scale",
+              "lead_motion"
+            ],
+            "residual_m": 0.5,
+            "motion_bound": null,
+            "evidence_positions": [
+              {
+                "frame_id": "a4fd7545ff374e7697358dcac68180f0",
+                "time_id": "nusc_us_1542800371912471",
+                "position_m": [
+                  24,
+                  -0.3
+                ],
+                "observed_actor": true
+              }
+            ]
+          },
+          "scenarios": [
+            {
+              "id": "lead_continue",
+              "premise_ids": [
+                "lead_motion",
+                "body_scale"
+              ],
+              "role": "adopted"
+            },
+            {
+              "id": "lead_brake",
+              "premise_ids": [
+                "lead_motion",
+                "body_scale"
+              ],
+              "role": "reasonable_adverse"
+            }
+          ],
+          "scenario_inventory_complete": true
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional two-second proposal, not verified execution permission. The observed left curb is only approximately 2–3 m left of ego. The required rear-axle disk radius is approximately 3.61 m, so its road containment already conflicts with this supported pavement geometry at initialization; independent verification should reject rather than widen the road. The actual rectangular footprint fits the estimated pavement. Distant forward vehicles, opposing traffic across the raised median, and distant rear traffic are outside the local domain under the stated no-entry conditions, not asserted absent. Darkness, glare, road grade, hidden pedestrians and unexpected entries are excluded conditions, not certified observations.",
+      "premises": [
+        {
+          "id": "prototype_local_scope",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": [
+            [
+              -6,
+              -8.5
+            ],
+            [
+              34,
+              -8.5
+            ],
+            [
+              34,
+              1.7
+            ],
+            [
+              -6,
+              2.8
+            ]
+          ],
+          "statement": "Model only this finite same-direction paved patch for two seconds. Adopt no previously unobserved pedestrian, cycle, vehicle or debris entering it; no entry from distant rear traffic; distant forward vehicles continue away without reversing into it; opposing vehicles remain across the raised median. Retain the observed lead hatchback wherever its predicted body travels, including beyond this patch. This excludes unexpected crossings, median incursions, hidden obstacles and world-wide coverage. No road-containment feasibility is assumed."
+        },
+        {
+          "id": "body_scale",
+          "object_ids": [
+            "lead_hatchback"
+          ],
+          "scenario_ids": [
+            "lead_continue",
+            "lead_brake"
+          ],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Condition on the visible lead hatchback having approximately 4.5 m body length and 1.8 m width. Its reference rear silhouette is roughly 105–110 pixels wide, implying about 21–22 m camera-to-rear-face depth and approximately 24 m body-center range. These are falsifiable model size and perspective estimates, not measured dimensions or calibrated depth."
+        },
+        {
+          "id": "road_geometry",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Assume locally approximately planar continuous pavement and no abrupt boundary change over two seconds. Estimate the left curb and right raised-median edge from reference perspective using the hatchback scale prior and supplied camera axes. Three visible same-direction lanes support approximately 10–11 m total paved width, not a widened single-lane corridor. The rear image supports continuation behind the current footprint; compensate its 0.025 s age using supplied ego history and assume stationary boundaries. Nonzero 0.5 m road residual represents approximate boundary, plane and scale error."
+        },
+        {
+          "id": "lead_motion",
+          "object_ids": [
+            "lead_hatchback"
+          ],
+          "scenario_ids": [
+            "lead_continue",
+            "lead_brake"
+          ],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": null,
+          "statement": "Reference appearance and approximately stable following range in the front sequence support forward motion, not parking. Adopt initial absolute longitudinal speed 9–13 m/s. Continue mode maintains this range; adverse braking mode permits acceleration -6 to 0 m/s² with speed floored at zero. Neither mode reverses. Continue lateral center displacement is bounded by 0.3t m; braking displacement by 0.5t m. Body yaw stays within 0.05 rad. The two modes exhaust only these adopted conditions. Rectangular sources include body rotation and all intermediate positions, before residual inflation."
+        }
+      ],
+      "unknowns": [],
+      "metric_scale_support": {
+        "method": "conditional_body_dimension_prior",
+        "frame_ids": [
+          "a4fd7545ff374e7697358dcac68180f0"
+        ],
+        "time_ids": [
+          "nusc_us_1542800371912471"
+        ],
+        "premise_ids": [
+          "body_scale",
+          "road_geometry"
+        ],
+        "anchors": [
+          {
+            "object_id": "lead_hatchback",
+            "dimension": "width_m",
+            "value_m": 1.8,
+            "rationale": "Approximate compact hatchback body-width prior applied to the individually visible lead vehicle."
+          },
+          {
+            "object_id": "lead_hatchback",
+            "dimension": "length_m",
+            "value_m": 4.5,
+            "rationale": "Conditional compact-car length prior used to convert rear-face range to geometric body-center range."
+          }
+        ],
+        "metric_reasoning": "With focal length approximately 1266 pixels and an approximately 105–110 pixel rear silhouette, the 1.8 m width prior yields approximately 21–22 m rear-face depth. Adding approximately half the 4.5 m length gives a body center near x=24 m; its slight right image displacement gives y approximately -0.3 m. Curb and median perspective relative to this scale support the stated convex local pavement patch. Camera calibration establishes directions only; planarity, silhouette correspondence and actor dimensions remain explicit conditional hypotheses."
+      }
+    },
+    "contract_version": "3.0.0-exp2",
+    "coverage_profile": "whole_interval_sources_v3_exp2",
+    "measurement_semantics": {
+      "coordinate_frame": "ego_at_reference",
+      "origin": "ego_body_center_at_reference",
+      "axes": "x_forward_y_left_fixed_at_reference",
+      "actor_reference_point": "annotation_box_center_ground_xy",
+      "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+      "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+    }
+  },
+  "provenance": {
+    "source": "online_model",
+    "transport": "official_codex_app_server",
+    "authentication": "chatgpt_subscription",
+    "requested_model": "gpt-6.1-sol",
+    "cli_resolved_alias": "gpt-6.1-sol",
+    "model_id": "gpt-6.1-sol",
+    "model_identity_basis": "app-server thread/start resolved alias, not reported server snapshot",
+    "server_reported_snapshot": null,
+    "model_reroute_observed": false,
+    "cli_version": "codex-cli 0.164.0",
+    "attempts": 1,
+    "adapter_retries": 0,
+    "request_max_retries": 0,
+    "stream_max_retries": 0,
+    "supports_websockets": false,
+    "prompt_version": "driving_prototype_v1",
+    "agent_output_contract": "3.0.0-exp2",
+    "prompt_sha256": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+    "image_sha256": {
+      "5ea718b073064b3b921aac5f18afc6c9": "3f37c572de19cf1fd8c62e5635d2174cdd25d4cc168c238bc03f41146be934b2",
+      "3a308cf9cf9a4e60a103da1b9edb4850": "58de712b26118ab908bd3521c4db8233451f2bed6df3c881c9c050e0470321d2",
+      "6f9c54f157b347619b5259cc8002fa11": "5ef833f1843dab204ed909001f6d404cc03a335e6fba438bd6a97e61c660991e",
+      "03ff7abc0df34efa8e6e61138af392e0": "532365b7c06b314a86358d326a96c83482dce9bfdd0d78c9e4794c6588335a0c",
+      "70570e5b26bf4ce19a7b69ea1dc5a4d4": "b54283e82ed401642471a0062a4a0b9c03c8f769af3e998d9d37ad0413507aea",
+      "901710ad4d5c43e38b970700e0b059a2": "36669b0fea350c396413d0a332d44ddc2c9210e763cb276ba47f5f1675aa6871",
+      "bb7b3a3e07104e2b9860da140f5cec59": "0d4f4c3839b60e001d96eca103f21fcd8d3d413d57894a5dcd88b8bd7567548a",
+      "8f4a4428789e49f6804656f45c2ca3d4": "8901250d6968d906123afbddaf1b3513196992c06dda5cbfb83633d32103c48f",
+      "392505489e5e49538fa445afc0364897": "50705330d73ce1bb1e1cd7561992e128fec62df21e1d7f8c56c87bc062d91f48",
+      "a4fd7545ff374e7697358dcac68180f0": "3352ff518a53a0ccab2df09100bd2455a3b6ce18f6ad7ad5bf9ab7956207e668"
+    },
+    "output_digest": "e7dad1c0a36a4a63133be990e3720872d493cb7386a986c550d205d3931d4d6b",
+    "tool_calls": 0,
+    "elapsed_s": 117.32754941657186,
+    "schema_transport": {
+      "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+      "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+      "wire_schema_version": "so_const_string_enum_type_v2",
+      "generator_version": "2.0.0",
+      "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+      "business_validation": "agent_output_v3_exp2.schema.json",
+      "response_repair": false,
+      "backend_acceptance": "NOT_ESTABLISHED_BY_OFFLINE_REVIEW"
+    },
+    "experiment_profile": "local_conditional_2s_prototype_v1"
+  },
+  "scene": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1542800371912471",
+      "reference_time_s": 1542800371.9124708,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1542800373.9124708
+    },
+    "capture": {
+      "metadata": {
+        "profile": "convex_disk_bicycle_v2",
+        "schema_version": "2.0.0",
+        "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+        "revision": 0,
+        "reference_time_id": "nusc_us_1542800371912471",
+        "reference_time_s": 1542800371.9124708,
+        "coordinate_frame": "ego_at_reference",
+        "horizon_s": 2.0,
+        "step_s": 0.2,
+        "history_s": 2.0,
+        "valid_until_s": 1542800373.9124708
+      },
+      "observations": [
+        {
+          "id": "5ea718b073064b3b921aac5f18afc6c9",
+          "time_id": "nusc_us_1542800370012460",
+          "capture_time_s": 1542800370.01246,
+          "capture_utc": "2018-11-21T11:39:30.012460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800370012460.jpg"
+        },
+        {
+          "id": "3a308cf9cf9a4e60a103da1b9edb4850",
+          "time_id": "nusc_us_1542800370412460",
+          "capture_time_s": 1542800370.4124599,
+          "capture_utc": "2018-11-21T11:39:30.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800370412460.jpg"
+        },
+        {
+          "id": "6f9c54f157b347619b5259cc8002fa11",
+          "time_id": "nusc_us_1542800370912460",
+          "capture_time_s": 1542800370.9124599,
+          "capture_utc": "2018-11-21T11:39:30.912460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800370912460.jpg"
+        },
+        {
+          "id": "03ff7abc0df34efa8e6e61138af392e0",
+          "time_id": "nusc_us_1542800371412460",
+          "capture_time_s": 1542800371.4124599,
+          "capture_utc": "2018-11-21T11:39:31.412460+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800371412460.jpg"
+        },
+        {
+          "id": "70570e5b26bf4ce19a7b69ea1dc5a4d4",
+          "time_id": "nusc_us_1542800371870339",
+          "capture_time_s": 1542800371.870339,
+          "capture_utc": "2018-11-21T11:39:31.870339+00:00",
+          "camera_id": "CAM_FRONT_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_FRONT_RIGHT/n015-2018-11-21-19-38-26+0800__CAM_FRONT_RIGHT__1542800371870339.jpg"
+        },
+        {
+          "id": "901710ad4d5c43e38b970700e0b059a2",
+          "time_id": "nusc_us_1542800371878183",
+          "capture_time_s": 1542800371.878183,
+          "capture_utc": "2018-11-21T11:39:31.878183+00:00",
+          "camera_id": "CAM_BACK_RIGHT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_RIGHT/n015-2018-11-21-19-38-26+0800__CAM_BACK_RIGHT__1542800371878183.jpg"
+        },
+        {
+          "id": "bb7b3a3e07104e2b9860da140f5cec59",
+          "time_id": "nusc_us_1542800371887525",
+          "capture_time_s": 1542800371.8875248,
+          "capture_utc": "2018-11-21T11:39:31.887525+00:00",
+          "camera_id": "CAM_BACK",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK/n015-2018-11-21-19-38-26+0800__CAM_BACK__1542800371887525.jpg"
+        },
+        {
+          "id": "8f4a4428789e49f6804656f45c2ca3d4",
+          "time_id": "nusc_us_1542800371897423",
+          "capture_time_s": 1542800371.897423,
+          "capture_utc": "2018-11-21T11:39:31.897423+00:00",
+          "camera_id": "CAM_BACK_LEFT",
+          "path": "/data/nuscenes_dataset/sweeps/CAM_BACK_LEFT/n015-2018-11-21-19-38-26+0800__CAM_BACK_LEFT__1542800371897423.jpg"
+        },
+        {
+          "id": "392505489e5e49538fa445afc0364897",
+          "time_id": "nusc_us_1542800371904844",
+          "capture_time_s": 1542800371.904844,
+          "capture_utc": "2018-11-21T11:39:31.904844+00:00",
+          "camera_id": "CAM_FRONT_LEFT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT_LEFT/n015-2018-11-21-19-38-26+0800__CAM_FRONT_LEFT__1542800371904844.jpg"
+        },
+        {
+          "id": "a4fd7545ff374e7697358dcac68180f0",
+          "time_id": "nusc_us_1542800371912471",
+          "capture_time_s": 1542800371.9124708,
+          "capture_utc": "2018-11-21T11:39:31.912471+00:00",
+          "camera_id": "CAM_FRONT",
+          "path": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800371912471.jpg"
+        }
+      ],
+      "ego": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "yaw_rad": 0.0,
+        "speed_mps": 10.503984580449083
+      },
+      "vehicle": {
+        "front_m": 2.3,
+        "rear_m": 2.3,
+        "half_width_m": 0.9,
+        "center_to_rear_axle_m": 1.2,
+        "wheelbase_m": 2.7,
+        "max_speed_mps": 12.0,
+        "max_accel_mps2": 2.0,
+        "max_brake_mps2": 3.0,
+        "max_steer_rad": 0.5,
+        "max_curvature_per_m": 0.2
+      },
+      "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+      "safety": {
+        "margin_m": 1.0,
+        "prefix_s": 0.2
+      },
+      "acquisition_metadata": {
+        "dataset": "nuScenes",
+        "native_ego_reference": "rear_axle",
+        "center_offset_assumption_m": 1.2,
+        "calibrations": {
+          "CAM_FRONT": {
+            "camera_intrinsic": [
+              [
+                1266.417203046554,
+                0.0,
+                816.2670197447984
+              ],
+              [
+                0.0,
+                1266.417203046554,
+                491.50706579294757
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.005684778682715441,
+                -0.005636667733598166,
+                0.9999679551206578
+              ],
+              [
+                -0.9999835174398977,
+                -0.0008371152724919728,
+                0.005680148462035628
+              ],
+              [
+                0.0008050713376760443,
+                -0.9999837634756286,
+                -0.005641333641939639
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.5007911895400001,
+              0.0159456324149,
+              1.51095763913
+            ]
+          },
+          "CAM_FRONT_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1260.8474446004698,
+                0.0,
+                807.968244525554
+              ],
+              [
+                0.0,
+                1260.8474446004698,
+                495.3344268742088
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.8329295630238647,
+                -9.946037679009478e-06,
+                0.5533790228604183
+              ],
+              [
+                -0.5533049273172018,
+                0.01637881578953715,
+                -0.8328177422460685
+              ],
+              [
+                -0.009055409840580897,
+                -0.9998658581501867,
+                -0.013647903070083123
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.35084775430000015,
+              -0.493404796419,
+              1.49574800619
+            ]
+          },
+          "CAM_BACK_RIGHT": {
+            "camera_intrinsic": [
+              [
+                1259.5137405846733,
+                0.0,
+                807.2529053838625
+              ],
+              [
+                0.0,
+                1259.5137405846733,
+                501.19579884916527
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                -0.9347755391782981,
+                0.015875837955449834,
+                -0.3548839938953784
+              ],
+              [
+                0.3550745592741919,
+                0.011370495332615804,
+                -0.9347688319537242
+              ],
+              [
+                -0.010805031705694884,
+                -0.9998093166224766,
+                -0.016265967070410614
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.18512190120000005,
+              -0.480568219723,
+              1.56239545128
+            ]
+          },
+          "CAM_BACK": {
+            "camera_intrinsic": [
+              [
+                809.2209905677063,
+                0.0,
+                829.2196003259838
+              ],
+              [
+                0.0,
+                809.2209905677063,
+                481.77842384512485
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.002421709860318755,
+                -0.016753608478469628,
+                -0.9998567156969556
+              ],
+              [
+                0.9999890666843358,
+                -0.003959107249966065,
+                0.002488369260045864
+              ],
+              [
+                -0.004000229136375599,
+                -0.999851810056237,
+                0.016743837496914216
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -1.1716739690642,
+              0.00345136761476,
+              1.57910346144
+            ]
+          },
+          "CAM_BACK_LEFT": {
+            "camera_intrinsic": [
+              [
+                1256.7414812095406,
+                0.0,
+                792.1125740759628
+              ],
+              [
+                0.0,
+                1256.7414812095406,
+                492.7757465151356
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.9477603556843314,
+                0.008665721547931132,
+                -0.31886550999310576
+              ],
+              [
+                0.31896113144149074,
+                -0.01397629983587656,
+                0.9476647401230364
+              ],
+              [
+                0.0037556387837154315,
+                -0.9998647750135773,
+                -0.016010211253286277
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              -0.16430899781999986,
+              0.484795032713,
+              1.59097014818
+            ]
+          },
+          "CAM_FRONT_LEFT": {
+            "camera_intrinsic": [
+              [
+                1272.5979470598488,
+                0.0,
+                826.6154927353808
+              ],
+              [
+                0.0,
+                1272.5979470598488,
+                479.75165386361925
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_to_center_rotation": [
+              [
+                0.8207583481515547,
+                -0.00034143667149910684,
+                0.5712754303840931
+              ],
+              [
+                -0.5712716007618155,
+                0.0032195018514856732,
+                0.8207547703003997
+              ],
+              [
+                -0.002119458082718406,
+                -0.9999947591006806,
+                0.0024473799476101288
+              ]
+            ],
+            "camera_to_center_translation_m": [
+              0.3238779813500001,
+              0.494631336551,
+              1.50932822144
+            ]
+          }
+        },
+        "ego_history": [
+          {
+            "frame_id": "5ea718b073064b3b921aac5f18afc6c9",
+            "time_id": "nusc_us_1542800370012460",
+            "center_xy_m": [
+              -18.451663857478092,
+              0.3140403598024547
+            ],
+            "yaw_rad": -0.046038734336067866
+          },
+          {
+            "frame_id": "3a308cf9cf9a4e60a103da1b9edb4850",
+            "time_id": "nusc_us_1542800370412460",
+            "center_xy_m": [
+              -14.99586377765161,
+              0.19670626095738794
+            ],
+            "yaw_rad": -0.01848956152580772
+          },
+          {
+            "frame_id": "6f9c54f157b347619b5259cc8002fa11",
+            "time_id": "nusc_us_1542800370912460",
+            "center_xy_m": [
+              -10.307156440046025,
+              0.10597804121626253
+            ],
+            "yaw_rad": -0.00747634918512452
+          },
+          {
+            "frame_id": "03ff7abc0df34efa8e6e61138af392e0",
+            "time_id": "nusc_us_1542800371412460",
+            "center_xy_m": [
+              -5.252107834054926,
+              0.03601560854165777
+            ],
+            "yaw_rad": -0.002003329765406625
+          },
+          {
+            "frame_id": "70570e5b26bf4ce19a7b69ea1dc5a4d4",
+            "time_id": "nusc_us_1542800371870339",
+            "center_xy_m": [
+              -0.44609090813840047,
+              0.0010893706314474875
+            ],
+            "yaw_rad": -0.0008983237175009817
+          },
+          {
+            "frame_id": "901710ad4d5c43e38b970700e0b059a2",
+            "time_id": "nusc_us_1542800371878183",
+            "center_xy_m": [
+              -0.3618127563546966,
+              0.0001361396866235715
+            ],
+            "yaw_rad": -0.0009651878196169639
+          },
+          {
+            "frame_id": "bb7b3a3e07104e2b9860da140f5cec59",
+            "time_id": "nusc_us_1542800371887525",
+            "center_xy_m": [
+              -0.26327534111091283,
+              6.120854659507679e-05
+            ],
+            "yaw_rad": -0.0006813341535892857
+          },
+          {
+            "frame_id": "8f4a4428789e49f6804656f45c2ca3d4",
+            "time_id": "nusc_us_1542800371897423",
+            "center_xy_m": [
+              -0.15885349354874442,
+              5.81756432438858e-05
+            ],
+            "yaw_rad": -0.0003876474637946048
+          },
+          {
+            "frame_id": "392505489e5e49538fa445afc0364897",
+            "time_id": "nusc_us_1542800371904844",
+            "center_xy_m": [
+              -0.08051623889342548,
+              4.54160238816826e-06
+            ],
+            "yaw_rad": -0.00019642720824297744
+          },
+          {
+            "frame_id": "a4fd7545ff374e7697358dcac68180f0",
+            "time_id": "nusc_us_1542800371912471",
+            "center_xy_m": [
+              0.0,
+              0.0
+            ],
+            "yaw_rad": 0.0
+          }
+        ],
+        "ego_speed_source": "causal_backward_difference_localization_0.5s; not direct CAN speed",
+        "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+      }
+    },
+    "decision": {
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "behavior": "hold_lane",
+      "target_region": [
+        [
+          -1.5,
+          -1.5
+        ],
+        [
+          24,
+          -1.5
+        ],
+        [
+          24,
+          1.5
+        ],
+        [
+          -1.5,
+          1.5
+        ]
+      ],
+      "desired_speed_mps": 9,
+      "yield_to": [],
+      "stop": null,
+      "priority": 1,
+      "valid_until_s": 1542800373.9124708,
+      "hard_requirements": [
+        "target_region",
+        "vehicle_limits",
+        "collision_free",
+        "road"
+      ],
+      "preferences": {
+        "speed_weight": 1,
+        "acceleration_weight": 2,
+        "steering_weight": 5,
+        "smoothness_weight": 3
+      }
+    },
+    "hypotheses": {
+      "coordinate_frame": "ego_at_reference",
+      "reference_time_id": "nusc_us_1542800371912471",
+      "units": "m_s_rad",
+      "scale_basis": "model_metric_hypothesis",
+      "road": {
+        "polygon_m": [
+          [
+            -6,
+            -8.5
+          ],
+          [
+            34,
+            -8.5
+          ],
+          [
+            34,
+            1.7
+          ],
+          [
+            -6,
+            2.8
+          ]
+        ],
+        "uncertainty_m": 0.5,
+        "frame_ids": [
+          "a4fd7545ff374e7697358dcac68180f0",
+          "bb7b3a3e07104e2b9860da140f5cec59"
+        ],
+        "time_ids": [
+          "nusc_us_1542800371912471",
+          "nusc_us_1542800371887525"
+        ]
+      },
+      "objects": [
+        {
+          "id": "lead_hatchback",
+          "position_m": [
+            24,
+            -0.3
+          ],
+          "velocity_mps": [
+            10.5,
+            0
+          ],
+          "uncertainty_m": 1.5,
+          "occupancy": [
+            {
+              "start_s": 0.0,
+              "end_s": 0.2,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.2,
+              "end_s": 0.4,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.4,
+              "end_s": 0.6000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.6000000000000001,
+              "end_s": 0.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 1.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ],
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.0,
+              "end_s": 1.2000000000000002,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ],
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.2000000000000002,
+              "end_s": 1.4000000000000001,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.4000000000000001,
+              "end_s": 1.6,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.6,
+              "end_s": 1.8,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            },
+            {
+              "start_s": 1.8,
+              "end_s": 2.0,
+              "kind": "whole_interval_envelope",
+              "alternatives_m": [
+                [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ],
+                [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              ]
+            }
+          ],
+          "frame_ids": [
+            "a4fd7545ff374e7697358dcac68180f0"
+          ],
+          "time_ids": [
+            "nusc_us_1542800371912471"
+          ]
+        }
+      ],
+      "unknown_regions": [],
+      "traffic_evidence": [],
+      "unbounded_unknown": false,
+      "confidence_note": "Conditional two-second proposal, not verified execution permission. The observed left curb is only approximately 2–3 m left of ego. The required rear-axle disk radius is approximately 3.61 m, so its road containment already conflicts with this supported pavement geometry at initialization; independent verification should reject rather than widen the road. The actual rectangular footprint fits the estimated pavement. Distant forward vehicles, opposing traffic across the raised median, and distant rear traffic are outside the local domain under the stated no-entry conditions, not asserted absent. Darkness, glare, road grade, hidden pedestrians and unexpected entries are excluded conditions, not certified observations."
+    },
+    "provenance": {
+      "source": "online_model",
+      "transport": "official_codex_app_server",
+      "authentication": "chatgpt_subscription",
+      "requested_model": "gpt-6.1-sol",
+      "cli_resolved_alias": "gpt-6.1-sol",
+      "model_id": "gpt-6.1-sol",
+      "model_identity_basis": "app-server thread/start resolved alias, not reported server snapshot",
+      "server_reported_snapshot": null,
+      "model_reroute_observed": false,
+      "cli_version": "codex-cli 0.164.0",
+      "attempts": 1,
+      "adapter_retries": 0,
+      "request_max_retries": 0,
+      "stream_max_retries": 0,
+      "supports_websockets": false,
+      "prompt_version": "driving_prototype_v1",
+      "agent_output_contract": "3.0.0-exp2",
+      "prompt_sha256": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+      "image_sha256": {
+        "5ea718b073064b3b921aac5f18afc6c9": "3f37c572de19cf1fd8c62e5635d2174cdd25d4cc168c238bc03f41146be934b2",
+        "3a308cf9cf9a4e60a103da1b9edb4850": "58de712b26118ab908bd3521c4db8233451f2bed6df3c881c9c050e0470321d2",
+        "6f9c54f157b347619b5259cc8002fa11": "5ef833f1843dab204ed909001f6d404cc03a335e6fba438bd6a97e61c660991e",
+        "03ff7abc0df34efa8e6e61138af392e0": "532365b7c06b314a86358d326a96c83482dce9bfdd0d78c9e4794c6588335a0c",
+        "70570e5b26bf4ce19a7b69ea1dc5a4d4": "b54283e82ed401642471a0062a4a0b9c03c8f769af3e998d9d37ad0413507aea",
+        "901710ad4d5c43e38b970700e0b059a2": "36669b0fea350c396413d0a332d44ddc2c9210e763cb276ba47f5f1675aa6871",
+        "bb7b3a3e07104e2b9860da140f5cec59": "0d4f4c3839b60e001d96eca103f21fcd8d3d413d57894a5dcd88b8bd7567548a",
+        "8f4a4428789e49f6804656f45c2ca3d4": "8901250d6968d906123afbddaf1b3513196992c06dda5cbfb83633d32103c48f",
+        "392505489e5e49538fa445afc0364897": "50705330d73ce1bb1e1cd7561992e128fec62df21e1d7f8c56c87bc062d91f48",
+        "a4fd7545ff374e7697358dcac68180f0": "3352ff518a53a0ccab2df09100bd2455a3b6ce18f6ad7ad5bf9ab7956207e668"
+      },
+      "output_digest": "e7dad1c0a36a4a63133be990e3720872d493cb7386a986c550d205d3931d4d6b",
+      "tool_calls": 0,
+      "elapsed_s": 117.32754941657186,
+      "schema_transport": {
+        "business_schema_sha256": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+        "wire_schema_sha256": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+        "wire_schema_version": "so_const_string_enum_type_v2",
+        "generator_version": "2.0.0",
+        "transformation_manifest_sha256": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+        "business_validation": "agent_output_v3_exp2.schema.json",
+        "response_repair": false,
+        "backend_acceptance": "NOT_ESTABLISHED_BY_OFFLINE_REVIEW"
+      },
+      "experiment_profile": "local_conditional_2s_prototype_v1",
+      "metric_contract_trace": {
+        "version": "3.0.0-exp2",
+        "coverage_profile": "whole_interval_sources_v3_exp2",
+        "measurement_semantics": {
+          "coordinate_frame": "ego_at_reference",
+          "origin": "ego_body_center_at_reference",
+          "axes": "x_forward_y_left_fixed_at_reference",
+          "actor_reference_point": "annotation_box_center_ground_xy",
+          "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+          "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+        },
+        "source_output": {
+          "decision": {
+            "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+            "revision": 0,
+            "behavior": "hold_lane",
+            "target_region": [
+              [
+                -1.5,
+                -1.5
+              ],
+              [
+                24,
+                -1.5
+              ],
+              [
+                24,
+                1.5
+              ],
+              [
+                -1.5,
+                1.5
+              ]
+            ],
+            "desired_speed_mps": 9,
+            "yield_to": [],
+            "stop": null,
+            "priority": 1,
+            "valid_until_s": 1542800373.9124708,
+            "hard_requirements": [
+              "target_region",
+              "vehicle_limits",
+              "collision_free",
+              "road"
+            ],
+            "preferences": {
+              "speed_weight": 1,
+              "acceleration_weight": 2,
+              "steering_weight": 5,
+              "smoothness_weight": 3
+            }
+          },
+          "hypotheses": {
+            "coordinate_frame": "ego_at_reference",
+            "reference_time_id": "nusc_us_1542800371912471",
+            "units": "m_s_rad",
+            "scale_basis": "model_metric_hypothesis",
+            "road": {
+              "polygon_m": [
+                [
+                  -6,
+                  -8.5
+                ],
+                [
+                  34,
+                  -8.5
+                ],
+                [
+                  34,
+                  1.7
+                ],
+                [
+                  -6,
+                  2.8
+                ]
+              ],
+              "uncertainty_m": 0.5,
+              "frame_ids": [
+                "a4fd7545ff374e7697358dcac68180f0",
+                "bb7b3a3e07104e2b9860da140f5cec59"
+              ],
+              "time_ids": [
+                "nusc_us_1542800371912471",
+                "nusc_us_1542800371887525"
+              ]
+            },
+            "objects": [
+              {
+                "id": "lead_hatchback",
+                "position_m": [
+                  24,
+                  -0.3
+                ],
+                "velocity_mps": [
+                  10.5,
+                  0
+                ],
+                "uncertainty_m": 1.5,
+                "occupancy": [
+                  {
+                    "id": "lead_first_second",
+                    "start_s": 0,
+                    "end_s": 1,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "alternatives": [
+                      {
+                        "scenario_id": "lead_continue",
+                        "polygon_m": [
+                          [
+                            21.7,
+                            -1.6
+                          ],
+                          [
+                            39.3,
+                            -1.6
+                          ],
+                          [
+                            39.3,
+                            1
+                          ],
+                          [
+                            21.7,
+                            1
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "lead_brake",
+                        "polygon_m": [
+                          [
+                            21.7,
+                            -1.8
+                          ],
+                          [
+                            36.3,
+                            -1.8
+                          ],
+                          [
+                            36.3,
+                            1.2
+                          ],
+                          [
+                            21.7,
+                            1.2
+                          ]
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "lead_second_second",
+                    "start_s": 1,
+                    "end_s": 2,
+                    "kind": "whole_interval_body_envelope",
+                    "status": "supported",
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "alternatives": [
+                      {
+                        "scenario_id": "lead_continue",
+                        "polygon_m": [
+                          [
+                            30.7,
+                            -1.9
+                          ],
+                          [
+                            52.3,
+                            -1.9
+                          ],
+                          [
+                            52.3,
+                            1.3
+                          ],
+                          [
+                            30.7,
+                            1.3
+                          ]
+                        ]
+                      },
+                      {
+                        "scenario_id": "lead_brake",
+                        "polygon_m": [
+                          [
+                            27.7,
+                            -2.3
+                          ],
+                          [
+                            46.3,
+                            -2.3
+                          ],
+                          [
+                            46.3,
+                            1.7
+                          ],
+                          [
+                            27.7,
+                            1.7
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "frame_ids": [
+                  "a4fd7545ff374e7697358dcac68180f0"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800371912471"
+                ],
+                "state_time_id": "nusc_us_1542800371912471",
+                "body_geometry": {
+                  "length_m": 4.5,
+                  "width_m": 1.8,
+                  "yaw_rad": 0
+                },
+                "alignment": {
+                  "method": "direct_reference_observation",
+                  "premise_ids": [
+                    "body_scale",
+                    "lead_motion"
+                  ],
+                  "residual_m": 0.5,
+                  "motion_bound": null,
+                  "evidence_positions": [
+                    {
+                      "frame_id": "a4fd7545ff374e7697358dcac68180f0",
+                      "time_id": "nusc_us_1542800371912471",
+                      "position_m": [
+                        24,
+                        -0.3
+                      ],
+                      "observed_actor": true
+                    }
+                  ]
+                },
+                "scenarios": [
+                  {
+                    "id": "lead_continue",
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "role": "adopted"
+                  },
+                  {
+                    "id": "lead_brake",
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "role": "reasonable_adverse"
+                  }
+                ],
+                "scenario_inventory_complete": true
+              }
+            ],
+            "unknown_regions": [],
+            "traffic_evidence": [],
+            "unbounded_unknown": false,
+            "confidence_note": "Conditional two-second proposal, not verified execution permission. The observed left curb is only approximately 2–3 m left of ego. The required rear-axle disk radius is approximately 3.61 m, so its road containment already conflicts with this supported pavement geometry at initialization; independent verification should reject rather than widen the road. The actual rectangular footprint fits the estimated pavement. Distant forward vehicles, opposing traffic across the raised median, and distant rear traffic are outside the local domain under the stated no-entry conditions, not asserted absent. Darkness, glare, road grade, hidden pedestrians and unexpected entries are excluded conditions, not certified observations.",
+            "premises": [
+              {
+                "id": "prototype_local_scope",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": [
+                  [
+                    -6,
+                    -8.5
+                  ],
+                  [
+                    34,
+                    -8.5
+                  ],
+                  [
+                    34,
+                    1.7
+                  ],
+                  [
+                    -6,
+                    2.8
+                  ]
+                ],
+                "statement": "Model only this finite same-direction paved patch for two seconds. Adopt no previously unobserved pedestrian, cycle, vehicle or debris entering it; no entry from distant rear traffic; distant forward vehicles continue away without reversing into it; opposing vehicles remain across the raised median. Retain the observed lead hatchback wherever its predicted body travels, including beyond this patch. This excludes unexpected crossings, median incursions, hidden obstacles and world-wide coverage. No road-containment feasibility is assumed."
+              },
+              {
+                "id": "body_scale",
+                "object_ids": [
+                  "lead_hatchback"
+                ],
+                "scenario_ids": [
+                  "lead_continue",
+                  "lead_brake"
+                ],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "Condition on the visible lead hatchback having approximately 4.5 m body length and 1.8 m width. Its reference rear silhouette is roughly 105–110 pixels wide, implying about 21–22 m camera-to-rear-face depth and approximately 24 m body-center range. These are falsifiable model size and perspective estimates, not measured dimensions or calibrated depth."
+              },
+              {
+                "id": "road_geometry",
+                "object_ids": [],
+                "scenario_ids": [],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "Assume locally approximately planar continuous pavement and no abrupt boundary change over two seconds. Estimate the left curb and right raised-median edge from reference perspective using the hatchback scale prior and supplied camera axes. Three visible same-direction lanes support approximately 10–11 m total paved width, not a widened single-lane corridor. The rear image supports continuation behind the current footprint; compensate its 0.025 s age using supplied ego history and assume stationary boundaries. Nonzero 0.5 m road residual represents approximate boundary, plane and scale error."
+              },
+              {
+                "id": "lead_motion",
+                "object_ids": [
+                  "lead_hatchback"
+                ],
+                "scenario_ids": [
+                  "lead_continue",
+                  "lead_brake"
+                ],
+                "start_s": 0,
+                "end_s": 2,
+                "space_polygon_m": null,
+                "statement": "Reference appearance and approximately stable following range in the front sequence support forward motion, not parking. Adopt initial absolute longitudinal speed 9–13 m/s. Continue mode maintains this range; adverse braking mode permits acceleration -6 to 0 m/s² with speed floored at zero. Neither mode reverses. Continue lateral center displacement is bounded by 0.3t m; braking displacement by 0.5t m. Body yaw stays within 0.05 rad. The two modes exhaust only these adopted conditions. Rectangular sources include body rotation and all intermediate positions, before residual inflation."
+              }
+            ],
+            "unknowns": [],
+            "metric_scale_support": {
+              "method": "conditional_body_dimension_prior",
+              "frame_ids": [
+                "a4fd7545ff374e7697358dcac68180f0"
+              ],
+              "time_ids": [
+                "nusc_us_1542800371912471"
+              ],
+              "premise_ids": [
+                "body_scale",
+                "road_geometry"
+              ],
+              "anchors": [
+                {
+                  "object_id": "lead_hatchback",
+                  "dimension": "width_m",
+                  "value_m": 1.8,
+                  "rationale": "Approximate compact hatchback body-width prior applied to the individually visible lead vehicle."
+                },
+                {
+                  "object_id": "lead_hatchback",
+                  "dimension": "length_m",
+                  "value_m": 4.5,
+                  "rationale": "Conditional compact-car length prior used to convert rear-face range to geometric body-center range."
+                }
+              ],
+              "metric_reasoning": "With focal length approximately 1266 pixels and an approximately 105–110 pixel rear silhouette, the 1.8 m width prior yields approximately 21–22 m rear-face depth. Adding approximately half the 4.5 m length gives a body center near x=24 m; its slight right image displacement gives y approximately -0.3 m. Curb and median perspective relative to this scale support the stated convex local pavement patch. Camera calibration establishes directions only; planarity, silhouette correspondence and actor dimensions remain explicit conditional hypotheses."
+            }
+          },
+          "contract_version": "3.0.0-exp2",
+          "coverage_profile": "whole_interval_sources_v3_exp2",
+          "measurement_semantics": {
+            "coordinate_frame": "ego_at_reference",
+            "origin": "ego_body_center_at_reference",
+            "axes": "x_forward_y_left_fixed_at_reference",
+            "actor_reference_point": "annotation_box_center_ground_xy",
+            "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+            "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+          }
+        },
+        "source_output_digest": "e7dad1c0a36a4a63133be990e3720872d493cb7386a986c550d205d3931d4d6b",
+        "lowered_output_digest": "e34a4f2b25b60db5378e554fbef6f779e60e2217b44a0e7b190e3f8580b15767",
+        "objects": [
+          {
+            "object_id": "lead_hatchback",
+            "alignment": {
+              "method": "direct_reference_observation",
+              "premise_ids": [
+                "body_scale",
+                "lead_motion"
+              ],
+              "residual_m": 0.5,
+              "motion_bound": null,
+              "evidence_positions": [
+                {
+                  "frame_id": "a4fd7545ff374e7697358dcac68180f0",
+                  "time_id": "nusc_us_1542800371912471",
+                  "position_m": [
+                    24,
+                    -0.3
+                  ],
+                  "observed_actor": true
+                }
+              ]
+            },
+            "cell_sources": [
+              {
+                "start_s": 0.0,
+                "end_s": 0.2,
+                "source_ids": [
+                  "lead_first_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.2,
+                "end_s": 0.4,
+                "source_ids": [
+                  "lead_first_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.4,
+                "end_s": 0.6000000000000001,
+                "source_ids": [
+                  "lead_first_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.6000000000000001,
+                "end_s": 0.8,
+                "source_ids": [
+                  "lead_first_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 0.8,
+                "end_s": 1.0,
+                "source_ids": [
+                  "lead_first_second",
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.0,
+                "end_s": 1.2000000000000002,
+                "source_ids": [
+                  "lead_first_second",
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_first_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      0,
+                      1
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.2000000000000002,
+                "end_s": 1.4000000000000001,
+                "source_ids": [
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.4000000000000001,
+                "end_s": 1.6,
+                "source_ids": [
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.6,
+                "end_s": 1.8,
+                "source_ids": [
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              },
+              {
+                "start_s": 1.8,
+                "end_s": 2.0,
+                "source_ids": [
+                  "lead_second_second"
+                ],
+                "alternatives": [
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_continue",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  },
+                  {
+                    "source_id": "lead_second_second",
+                    "scenario_id": "lead_brake",
+                    "source_interval_s": [
+                      1,
+                      2
+                    ],
+                    "premise_ids": [
+                      "lead_motion",
+                      "body_scale"
+                    ],
+                    "residual_m": 1,
+                    "frame_ids": [
+                      "a4fd7545ff374e7697358dcac68180f0"
+                    ],
+                    "time_ids": [
+                      "nusc_us_1542800371912471"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "total_residual_m": 1.5
+          }
+        ],
+        "metric_scale_support": {
+          "method": "conditional_body_dimension_prior",
+          "frame_ids": [
+            "a4fd7545ff374e7697358dcac68180f0"
+          ],
+          "time_ids": [
+            "nusc_us_1542800371912471"
+          ],
+          "premise_ids": [
+            "body_scale",
+            "road_geometry"
+          ],
+          "anchors": [
+            {
+              "object_id": "lead_hatchback",
+              "dimension": "width_m",
+              "value_m": 1.8,
+              "rationale": "Approximate compact hatchback body-width prior applied to the individually visible lead vehicle."
+            },
+            {
+              "object_id": "lead_hatchback",
+              "dimension": "length_m",
+              "value_m": 4.5,
+              "rationale": "Conditional compact-car length prior used to convert rear-face range to geometric body-center range."
+            }
+          ],
+          "metric_reasoning": "With focal length approximately 1266 pixels and an approximately 105–110 pixel rear silhouette, the 1.8 m width prior yields approximately 21–22 m rear-face depth. Adding approximately half the 4.5 m length gives a body center near x=24 m; its slight right image displacement gives y approximately -0.3 m. Curb and median perspective relative to this scale support the stated convex local pavement patch. Camera calibration establishes directions only; planarity, silhouette correspondence and actor dimensions remain explicit conditional hypotheses."
+        },
+        "source_intervals_closed": true,
+        "refinement": "include_all_closed_intersecting_source_sets_without_shrinking",
+        "residual_application": "one_total_object_radius >= alignment_residual + each_source_geometry_residual; never added again",
+        "assumptions": "Model-proposed premises and adverse-scenario inventory are conditional, uncalibrated and not independently certified"
+      }
+    },
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "corridor": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1542800371912471",
+      "reference_time_s": 1542800371.9124708,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1542800373.9124708
+    },
+    "scene_digest": "8dfcd72c7abc02f4eb4033350e35974e6626189f95d2ae36b3ea55921302a968",
+    "cells": [
+      {
+        "start_s": 0.0,
+        "end_s": 0.2,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -6.395587512045383e-18,
+            15.678596036711799
+          ],
+          [
+            1.0,
+            6.395587512045383e-18,
+            15.678596036711799
+          ]
+        ],
+        "polygon_m": [
+          [
+            15.678596036711799,
+            0.6208386939792733
+          ],
+          [
+            15.678596036711799,
+            0.0
+          ],
+          [
+            15.678596036711799,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.2,
+        "end_s": 0.4,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -7.191305971333314e-18,
+            15.678596036711799
+          ],
+          [
+            1.0,
+            7.191305971333314e-18,
+            15.678596036711799
+          ]
+        ],
+        "polygon_m": [
+          [
+            15.678596036711799,
+            0.6208386939792733
+          ],
+          [
+            15.678596036711799,
+            0.0
+          ],
+          [
+            15.678596036711799,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.4,
+        "end_s": 0.6000000000000001,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -8.158600790824185e-18,
+            15.678596036711799
+          ],
+          [
+            1.0,
+            8.158600790824185e-18,
+            15.678596036711799
+          ]
+        ],
+        "polygon_m": [
+          [
+            15.678596036711799,
+            0.6208386939792733
+          ],
+          [
+            15.678596036711799,
+            0.0
+          ],
+          [
+            15.678596036711799,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.6000000000000001,
+        "end_s": 0.8,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -9.402289123727789e-18,
+            15.678596036711799
+          ],
+          [
+            1.0,
+            9.402289123727789e-18,
+            15.678596036711799
+          ]
+        ],
+        "polygon_m": [
+          [
+            15.678596036711799,
+            0.6208386939792733
+          ],
+          [
+            15.678596036711799,
+            0.0
+          ],
+          [
+            15.678596036711799,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 0.8,
+        "end_s": 1.0,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -1.1093347015917376e-17,
+            15.678596036711799
+          ],
+          [
+            1.0,
+            1.1093347015917376e-17,
+            15.678596036711799
+          ]
+        ],
+        "polygon_m": [
+          [
+            15.678596036711799,
+            0.6208386939792733
+          ],
+          [
+            15.678596036711799,
+            0.0
+          ],
+          [
+            15.678596036711799,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.0,
+        "end_s": 1.2000000000000002,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -3.2258906532057906e-17,
+            24.6785960367118
+          ],
+          [
+            1.0,
+            -7.814065471412266e-18,
+            21.6785960367118
+          ]
+        ],
+        "polygon_m": [
+          [
+            21.6785960367118,
+            0.4558386939792733
+          ],
+          [
+            21.6785960367118,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.2000000000000002,
+        "end_s": 1.4000000000000001,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -3.602746849356736e-17,
+            24.6785960367118
+          ],
+          [
+            1.0,
+            -8.947633259048385e-18,
+            21.6785960367118
+          ]
+        ],
+        "polygon_m": [
+          [
+            21.6785960367118,
+            0.4558386939792733
+          ],
+          [
+            21.6785960367118,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.4000000000000001,
+        "end_s": 1.6,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -4.079300395412093e-17,
+            24.6785960367118
+          ],
+          [
+            1.0,
+            -1.0465895717647975e-17,
+            21.6785960367118
+          ]
+        ],
+        "polygon_m": [
+          [
+            21.6785960367118,
+            0.4558386939792733
+          ],
+          [
+            21.6785960367118,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.6,
+        "end_s": 1.8,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -4.701144561863895e-17,
+            24.6785960367118
+          ],
+          [
+            1.0,
+            -1.2604700872286812e-17,
+            21.6785960367118
+          ]
+        ],
+        "polygon_m": [
+          [
+            21.6785960367118,
+            0.4558386939792733
+          ],
+          [
+            21.6785960367118,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      },
+      {
+        "start_s": 1.8,
+        "end_s": 2.0,
+        "halfplanes": [
+          [
+            0.0,
+            -1.0,
+            7.012790349650374
+          ],
+          [
+            1.0,
+            -0.0,
+            29.9785960367118
+          ],
+          [
+            0.02748960745664934,
+            0.9996220893327034,
+            1.0516025229347323
+          ],
+          [
+            -1.0,
+            -0.0,
+            4.377846075773487
+          ],
+          [
+            0.0,
+            -1.0,
+            1.4700031249023453
+          ],
+          [
+            1.0,
+            -0.0,
+            22.8
+          ],
+          [
+            0.0,
+            1.0,
+            1.4700031249023453
+          ],
+          [
+            -1.0,
+            -0.0,
+            2.699625019530843
+          ],
+          [
+            1.0,
+            -5.5466735079586865e-17,
+            24.6785960367118
+          ],
+          [
+            1.0,
+            -1.584220609627053e-17,
+            21.6785960367118
+          ]
+        ],
+        "polygon_m": [
+          [
+            21.6785960367118,
+            0.4558386939792733
+          ],
+          [
+            21.6785960367118,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            -1.4700031249023453
+          ],
+          [
+            -2.699625019530843,
+            1.126239773025946
+          ]
+        ],
+        "heading_band_rad": [
+          -0.025,
+          0.025
+        ]
+      }
+    ],
+    "reference_point": "rear_axle",
+    "body_envelope": "yaw_bounded_oriented_box",
+    "planner_profile": "yaw_bounded_box_v1",
+    "heading_bound_rad": 0.35,
+    "margin_m": 1.0,
+    "conservative": true,
+    "construction": {
+      "policy": "yaw_bounded_box_v1",
+      "seed_source": "ego_state_vehicle_limits_semantic_template_only",
+      "seed_dynamics": "exact_constant_acceleration_constant_rear_curvature",
+      "target_prediction_source": "model_whole_interval_occupancy_only",
+      "behavior": "hold_lane",
+      "seed_points": [
+        {
+          "time_s": 0.0,
+          "rear_x_m": -1.2,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 10.503984580449083,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.2,
+          "rear_x_m": 0.8407969160898168,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.903984580449084,
+          "acceleration_mps2": -3.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.4,
+          "rear_x_m": 2.7615938321796336,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.303984580449084,
+          "acceleration_mps2": -1.5199229022454204,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.6000000000000001,
+          "rear_x_m": 4.5919922902245425,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 0.8,
+          "rear_x_m": 6.391992290224542,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.0,
+          "rear_x_m": 8.191992290224542,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.2000000000000002,
+          "rear_x_m": 9.991992290224545,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.4000000000000001,
+          "rear_x_m": 11.791992290224544,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.6,
+          "rear_x_m": 13.591992290224542,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 1.8,
+          "rear_x_m": 15.391992290224541,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        },
+        {
+          "time_s": 2.0,
+          "rear_x_m": 17.19199229022454,
+          "rear_y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 9.0,
+          "acceleration_mps2": 0.0,
+          "steer_rad": 0.0
+        }
+      ],
+      "seed_is_solution": false,
+      "limitation": "A blocked seed is not a proof of global infeasibility",
+      "candidate_id": "original"
+    },
+    "search_profile": "bounded_seed_candidates_v2"
+  },
+  "trajectory": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1542800371912471",
+      "reference_time_s": 1542800371.9124708,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1542800373.9124708
+    },
+    "scene_digest": "8dfcd72c7abc02f4eb4033350e35974e6626189f95d2ae36b3ea55921302a968",
+    "points": [
+      {
+        "time_s": 0.0,
+        "rear_x_m": -1.2,
+        "rear_y_m": -9.524484702508903e-27,
+        "x_m": 0.0,
+        "y_m": 8.499551826944879e-29,
+        "yaw_rad": 8.00790018398196e-27,
+        "speed_mps": 10.503984580449083,
+        "acceleration_mps2": -0.6456773676535127,
+        "steer_rad": -2.06222946445185e-07,
+        "curvature_per_m": -7.637886905377329e-08
+      },
+      {
+        "time_s": 0.2,
+        "rear_x_m": 0.8878833687368276,
+        "rear_y_m": -1.6647755831946359e-07,
+        "x_m": 2.0878833687368124,
+        "y_m": -3.578417628261904e-07,
+        "yaw_rad": -1.5947017042227305e-07,
+        "speed_mps": 10.374849106918381,
+        "acceleration_mps2": -0.611896865441601,
+        "steer_rad": -1.8726829049229592e-07,
+        "curvature_per_m": -6.935862610825855e-08
+      },
+      {
+        "time_s": 0.4,
+        "rear_x_m": 2.9506152528122156,
+        "rear_y_m": -6.429774833652234e-07,
+        "x_m": 4.150615252812161,
+        "y_m": -1.0060235872900316e-06,
+        "yaw_rad": -3.0253841993734465e-07,
+        "speed_mps": 10.25246973383006,
+        "acceleration_mps2": -0.5581631156014675,
+        "steer_rad": -1.5995398853570187e-07,
+        "curvature_per_m": -5.924221797618638e-08
+      },
+      {
+        "time_s": 0.6000000000000001,
+        "rear_x_m": 4.989945937267574,
+        "rear_y_m": -1.3831436973208637e-06,
+        "x_m": 6.189945937267467,
+        "y_m": -1.8911671687769614e-06,
+        "yaw_rad": -4.233528928800942e-07,
+        "speed_mps": 10.140837110709766,
+        "acceleration_mps2": -0.49401121472298865,
+        "steer_rad": -1.3025558330032026e-07,
+        "curvature_per_m": -4.824280862974852e-08
+      },
+      {
+        "time_s": 0.8,
+        "rear_x_m": 7.008233135117517,
+        "rear_y_m": -2.335849556845883e-06,
+        "x_m": 8.208233135117354,
+        "y_m": -2.960714439969125e-06,
+        "yaw_rad": -5.207207359360583e-07,
+        "speed_mps": 10.042034867765167,
+        "acceleration_mps2": -0.4260987376109977,
+        "steer_rad": -1.0154777334142117e-07,
+        "curvature_per_m": -3.761028642274871e-08
+      },
+      {
+        "time_s": 1.0,
+        "rear_x_m": 9.008118133921956,
+        "rear_y_m": -3.452443067993583e-06,
+        "x_m": 10.208118133921744,
+        "y_m": -4.167567448270528e-06,
+        "yaw_rad": -5.959369835641562e-07,
+        "speed_mps": 9.956815120242968,
+        "acceleration_mps2": -0.35926448565950675,
+        "steer_rad": -7.576023138724232e-08,
+        "curvature_per_m": -2.8059344958237948e-08
+      },
+      {
+        "time_s": 1.2000000000000002,
+        "rear_x_m": 10.992295868262152,
+        "rear_y_m": -4.690122239377804e-06,
+        "x_m": 12.192295868261898,
+        "y_m": -5.472056292674104e-06,
+        "yaw_rad": -6.516117110802962e-07,
+        "speed_mps": 9.884962223111065,
+        "acceleration_mps2": -0.29735476030852503,
+        "steer_rad": -5.40370576060581e-08,
+        "curvature_per_m": -2.0013725039280797e-08
+      },
+      {
+        "time_s": 1.4000000000000001,
+        "rear_x_m": 12.963341217684047,
+        "rear_y_m": -6.01335533107066e-06,
+        "x_m": 14.16334121768376,
+        "y_m": -6.842626935973133e-06,
+        "yaw_rad": -6.910596707521158e-07,
+        "speed_mps": 9.825491271049362,
+        "acceleration_mps2": -0.24391442790844564,
+        "steer_rad": -3.710776967682181e-08,
+        "curvature_per_m": -1.3743618398822898e-08
+      },
+      {
+        "time_s": 1.6,
+        "rear_x_m": 14.923561183342498,
+        "rear_y_m": -7.394388963265931e-06,
+        "x_m": 16.12356118334219,
+        "y_m": -8.25598918639968e-06,
+        "yaw_rad": -7.180001859448528e-07,
+        "speed_mps": 9.776708385467673,
+        "acceleration_mps2": -0.2028246611676703,
+        "steer_rad": -2.548544950620045e-08,
+        "curvature_per_m": -9.439055372666835e-09
+      },
+      {
+        "time_s": 1.8,
+        "rear_x_m": 16.874846367220144,
+        "rear_y_m": -8.813381755515341e-06,
+        "x_m": 18.07484636721982,
+        "y_m": -9.69708392533389e-06,
+        "yaw_rad": -7.36418474848858e-07,
+        "speed_mps": 9.736143453234138,
+        "acceleration_mps2": -0.17896293639807576,
+        "steer_rad": -1.9551768920641746e-08,
+        "curvature_per_m": -7.241395896533981e-09
+      },
+      {
+        "time_s": 2.0,
+        "rear_x_m": 18.81849579914705,
+        "rear_y_m": -1.0258399281474341e-05,
+        "x_m": 20.018495799146713,
+        "y_m": -1.1158991133323182e-05,
+        "yaw_rad": -7.504932098741042e-07,
+        "speed_mps": 9.700350865954523,
+        "acceleration_mps2": -0.17896293639807576,
+        "steer_rad": -1.9551768920641746e-08,
+        "curvature_per_m": -7.241395896533981e-09
+      }
+    ],
+    "interpolation": "exact_constant_acceleration_constant_rear_curvature",
+    "requested_prefix_s": 0.2,
+    "solver": {
+      "name": "casadi_ipopt_multiple_shooting",
+      "version": "3.7.2",
+      "status": "Solve_Succeeded",
+      "objective": 3.156651835964759,
+      "arc_bound": "curvature_epigraph_v1",
+      "iterations": 12,
+      "curvature_magnitude_bounds_per_m": [
+        0.14201429817638275,
+        0.14285395048593275,
+        0.1430692524127753,
+        0.14308861150847865,
+        0.1429682875459034,
+        0.14313939993566444,
+        0.14292821345557558,
+        0.14260707078285478,
+        0.14212786004378525,
+        0.1413522768853992
+      ]
+    },
+    "planner_profile": "yaw_bounded_box_v1",
+    "verification_profile": "continuous_oriented_body_v1",
+    "search_profile": "bounded_seed_candidates_v2",
+    "heading_bands_rad": [
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ],
+      [
+        -0.025,
+        0.025
+      ]
+    ]
+  },
+  "verification": {
+    "metadata": {
+      "profile": "convex_disk_bicycle_v2",
+      "schema_version": "2.0.0",
+      "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+      "revision": 0,
+      "reference_time_id": "nusc_us_1542800371912471",
+      "reference_time_s": 1542800371.9124708,
+      "coordinate_frame": "ego_at_reference",
+      "horizon_s": 2.0,
+      "step_s": 0.2,
+      "history_s": 2.0,
+      "valid_until_s": 1542800373.9124708
+    },
+    "scene_digest": "8dfcd72c7abc02f4eb4033350e35974e6626189f95d2ae36b3ea55921302a968",
+    "verdict": "PASS",
+    "violations": [],
+    "minimum_clearance_lower_bound_m": 3.7844821079264452,
+    "checked_until_s": 2.0,
+    "released_prefix_s": 0.2,
+    "trajectory_digest": "1c116227238e37c53d40558043df6883bda02a7ac846067bc96af5cef990d15f",
+    "claim": "LOCAL_CONDITIONAL_2S_PROTOTYPE_ONLY; within model-declared local domain and adopted motion conditions, not exhaustive futures or old strict experiment success; conditional_on_model_hypotheses_and_whole_interval_coverage; explicit_metric_temporal_contract_3.0.0-exp2; uncertainty is not calibrated probability"
+  },
+  "execution": {
+    "interface": "SIMULATED_EXECUTION_NO_VEHICLE_CONTROL",
+    "elapsed_s": 0.2,
+    "center_displacement_m": [
+      2.0878833687367226,
+      -3.5784176281942716e-07
+    ],
+    "yaw_delta_rad": -1.5947017042029501e-07,
+    "speed_mps": 10.374849106918381
+  },
+  "execution_receipt": {
+    "capture_digest": "238f08e0c25f6d742ead48aebc486b1ff8ab7940602587fb69da4d99f151a159",
+    "scene_digest": "8dfcd72c7abc02f4eb4033350e35974e6626189f95d2ae36b3ea55921302a968",
+    "trajectory_digest": "1c116227238e37c53d40558043df6883bda02a7ac846067bc96af5cef990d15f",
+    "verification_digest": "29c4b446d460374aafd3556af0cc90bb03bf68cec2d36cfd5b52c1cd81f66aa2",
+    "execution_digest": "d96b520bbb458b5262ef89c576b5ffd1da51873511cb9e723a080792eed02721",
+    "executed_at_s": 1542800371.9124708,
+    "consumed_once": true
+  },
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "claim": "Local conditional prototype only; not old strict success, real vehicle safety, G2, or counterfactual multi-round observations.",
+  "acceptance": {
+    "acceptance_version": "single_window_physical_v1",
+    "status": "ONLINE_SINGLE_WINDOW_SUCCESS",
+    "strict_live_physical_success": true,
+    "software_success": true,
+    "source": "online_model",
+    "motion_class": "MOVING_PREFIX",
+    "scope": "SINGLE_OBSERVATION_SIMULATED_PREFIX",
+    "multi_round_closed_loop_success": false,
+    "ground_truth_correctness": "NOT_EVALUATED",
+    "released_prefix_s": 0.2,
+    "checks": {
+      "acquisition_and_model_identity": true,
+      "online_image_bytes_and_source": true,
+      "t1_t2_reconstructed": true,
+      "independent_t4_passed": true,
+      "execution_receipt_and_integration": true
+    },
+    "reasons": [],
+    "claim": "Conditional on the model/fixture scene hypotheses and whole-interval coverage. Trusted local runtime ledger plus independent checks; not remote attestation, GT correctness, or deployment safety.",
+    "prefix_arc_length_m": 2.0878833687367466,
+    "prefix_center_displacement_m": 2.0878833687367533
+  },
+  "prototype_conditional_success": true
+}

@@ -1,0 +1,183 @@
+{
+  "analysis": "READ_ONLY_NATIVE_OUTPUT_COMPARISON",
+  "analysis_source_commit": "a48d5d2397bb7f171e683d82857e5c23a16b7d70",
+  "new_model_calls": 0,
+  "gt_read": false,
+  "native_output_modified": false,
+  "source_records": [
+    {
+      "path": "implementation/results/scene_expansion_20261029_v1/runtime/neighbor_bend/attempt_01/record.json",
+      "sha256": "10a61e874afa50d19240c8a955a34fc8971bd1838ef63e1ea3b391885810d69b"
+    },
+    {
+      "path": "implementation/results/scene_expansion_20261029_v1/runtime/neighbor_bend/attempt_02/record.json",
+      "sha256": "89ab3409acad847c2ed2b668f535487ce32c570efa5dc72cff9b310baaa3dd25"
+    }
+  ],
+  "same": {
+    "road": true,
+    "all_declared_actor_records": true,
+    "actor_ids": true,
+    "decision_except_revision": true,
+    "unbounded_unknown": true
+  },
+  "physical_geometry_change": {
+    "road_enlarged": false,
+    "actor_deleted": false,
+    "body_changed": false,
+    "occupancy_changed": false,
+    "scenario_removed": false,
+    "residual_shrunk": false
+  },
+  "native_json_field_changes": [
+    {
+      "json_pointer": "/decision/revision",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "json_pointer": "/hypotheses/confidence_note",
+      "before": "Conditional stopping proposal, not a verified executable plan. Ego starts at 3.919 m/s; approximately 2.6 m/s² braking stops it in 1.51 s over 2.95 m. The aisle runs diagonally right; continuing straight toward the parked row is inappropriate. Road geometry is estimated from the front parking apron, front-right curb and front-left pavement, with actor-size priors and perspective, not a calibrated ground plane. The conservative rear-axle disk plus margin and road residual may not fit the initial right boundary; retain this physical/tool conflict rather than enlarge the road. The local scope excludes the rear bus and waiting pedestrians, motorcycle bays, farther parked rows and unseen world; their non-entry is an explicit condition, not observed future safety.",
+      "after": "CONSTRAINT CONFLICT: this is a braking proposal, not an executable or verified prefix. The retained road has right edge 0.55*x+y=-5.5. Initial rear axle is (-1.2,0), whose perpendicular clearance is approximately 4.24 m. Required disk radius hypot(3.5,0.9), plus 1 m margin and 0.5 m road uncertainty, is approximately 5.11 m: an initial containment deficit of approximately 0.87 m. Changing the future target or braking cannot repair a t=0 violation. Do not execute a simulated prefix as verified, enlarge the road, or relax limits. The previous typed coverage unknown is replaced by this explicit deterministic geometric failure; no obstacle or movement mode is removed. Ego starts at 3.91945 m/s; braking at 2.6 m/s² would stop in approximately 1.51 s over 2.95 m, satisfying the proposed stop deadline in isolation. Local scene coverage remains conditional on no entry from the rear bus stop, waiting pedestrians, motorcycle bays, farther parking rows or unseen world. These exclusions are not assertions of world safety."
+    },
+    {
+      "json_pointer": "/hypotheses/metric_scale_support/anchors/0/rationale",
+      "before": "Visible individual compact sedan; 4.6 m is an assumed typical body length, not a measured identity-specific dimension.",
+      "after": "The individual blue sedan visible at the left of the reference image is assigned a conditional typical sedan length, not an identity-specific measured dimension."
+    },
+    {
+      "json_pointer": "/hypotheses/metric_scale_support/anchors/1/rationale",
+      "before": "Visible rear body provides an approximate transverse scale anchor under the sedan-width prior and oblique parking orientation.",
+      "after": "Its visible rear body supplies an approximate transverse scale under this explicit sedan-width prior and oblique body orientation."
+    },
+    {
+      "json_pointer": "/hypotheses/metric_scale_support/metric_reasoning",
+      "before": "The blue sedan occupies roughly 350 image pixels across its oblique rear/side silhouette. A 1.8 m width with a 4.6 m oblique length contribution and focal length about 1266 pixels supports a body center of order 9–11 m forward, rather than an exact depth. Tire/apron contacts, neighboring vehicle spacing and diagonal curb convergence support the proposed local aisle and actor arrangement. All values remain conditional monocular estimates with explicit residuals; camera calibration supplies ray orientation, not certified scale.",
+      "after": "The reference blue sedan spans roughly 350 pixels across its oblique rear/side silhouette. A 1.8 m width and 4.6 m length at the hypothesized orientation, with supplied front focal length approximately 1266 pixels, support forward depth of order 9–11 m. Bay spacing, visible body contacts and diagonal pavement boundaries support the retained local arrangement. This is approximate conditional scale, not certified depth; calibration supplies ray orientation. The road estimate is retained despite its demonstrable incompatibility with the required inflated initial disk."
+    },
+    {
+      "json_pointer": "/hypotheses/premises/0/statement",
+      "before": "Model only this finite continuous paved aisle patch for a two-second braking maneuver. Adopt no new unobserved entrant, no pedestrian emerging from parked vehicles, and no entry from the rear bus stop, motorcycle bays or farther parking rows during this interval. These excluded world conditions are not asserted absent. Adjacent declared parked bodies remain represented even where their envelopes lie outside the patch. The road polygon follows estimated aisle edges; its longitudinal ends are local truncations, not curbs.",
+      "after": "Model this finite continuous paved aisle patch for a two-second braking maneuver. Adopt no new unobserved entrant, no pedestrian emerging from parked vehicles, and no entry from the rear bus stop, motorcycle bays or farther parking rows. Those observed or unobserved world conditions are excluded conditionally, not asserted absent. All five previously declared vehicles remain represented, including bodies outside this patch. Longitudinal polygon ends are local truncations; diagonal sides estimate pavement edges. This domain contains the initial physical vehicle footprint and nominal braking route, but does not contain the mandated inflated initial rear-axle disk. Planning must fail that hard road check."
+    },
+    {
+      "json_pointer": "/hypotheses/premises/1/start_s",
+      "before": 0,
+      "after": -0.043
+    },
+    {
+      "json_pointer": "/hypotheses/premises/1/statement",
+      "before": "Conditional body-size and approximately level pavement hypotheses apply to all declared geometry. Front blue sedan dimensions are estimated as 4.6 by 1.8 m. Perspective, visible tire/apron contacts and supplied camera axes suggest the native positions and an approximately 12.5 m lateral intercept span between diagonal aisle edges. Depth, contact and yaw estimates are falsifiable, uncalibrated hypotheses; no ground-plane calibration is claimed.",
+      "after": "Adopt approximate body dimensions and locally approximately level pavement, not a calibrated ground plane. The individually observed blue sedan is hypothesized to measure 4.6 by 1.8 m. Its oblique silhouette, neighboring bay spacing, tire/apron contacts, front-left island edge and front-right curb convergence support the retained diagonal aisle geometry and approximately 12.5 m lateral intercept span. Native depths, headings and boundaries are falsifiable monocular estimates with finite noncalibrated residuals. Geometry is not widened to accommodate the conservative disk."
+    },
+    {
+      "json_pointer": "/hypotheses/premises/2/start_s",
+      "before": 0,
+      "after": -0.043
+    },
+    {
+      "json_pointer": "/hypotheses/premises/2/statement",
+      "before": "All five visibly bay-aligned vehicles are conditionally parked for two seconds: adopted mode is stationary; adverse mode permits arbitrary translation at at most 0.1 m/s with unchanged heading, hence at most 0.2 m displacement. No powered pull-out or door opening is adopted. Each adverse rectangle expands the stationary whole-body rectangle by 0.2 m on every side. These two modes exhaust only these explicitly adopted movement conditions.",
+      "after": "Conditionally treat these bay-aligned vehicles as parked. Adopted mode is stationary; reasonable adverse mode permits arbitrary translation at no more than 0.1 m/s with unchanged heading. During [0,2], displacement is at most 0.2 m from the reference position. Each stationary rectangle encloses the complete rotated native body; each adverse rectangle expands it by 0.2 m on all sides. Powered pull-outs, heading changes and door opening are excluded adopted conditions, not proven impossible. These scenarios exhaust only this stated movement family."
+    },
+    {
+      "json_pointer": "/hypotheses/premises/3/start_s",
+      "before": -0.042121,
+      "after": -0.043
+    },
+    {
+      "json_pointer": "/hypotheses/premises/3/statement",
+      "before": "The front-right black sedan observation is 0.042121 s before reference. Its evidence position is expressed in fixed reference axes using supplied acquisition pose and a model depth estimate. Adopt the same stationary or at-most-0.1-m/s translation condition during this age; displacement is bounded by 0.005 m. Alignment residual 0.5 m additionally accounts for uncertain monocular localization and correspondence.",
+      "after": "The front-right observation precedes reference by approximately 0.042121 s. Its native estimated evidence position is expressed in fixed reference axes using supplied acquisition pose and model depth. The stationary or at-most-0.1-m/s translation condition also applies across this age, giving displacement at most 0.004213 m, conservatively bounded by 0.005 m. Alignment residual 0.5 m includes monocular localization and correspondence error. The source residual is separate and their sum is the total actor residual."
+    },
+    {
+      "json_pointer": "/hypotheses/unknowns",
+      "before": [
+        {
+          "id": "initial_disk_road_fit",
+          "object_ids": [],
+          "scenario_ids": [],
+          "start_s": 0,
+          "end_s": 2,
+          "space_polygon_m": [
+            [
+              -5,
+              -2.75
+            ],
+            [
+              10,
+              -11
+            ],
+            [
+              10,
+              1.5
+            ],
+            [
+              -5,
+              9.75
+            ]
+          ],
+          "kind": "not_expressible",
+          "premise_ids": [
+            "prototype_local_scope",
+            "metric_prior"
+          ],
+          "detail": "The estimated patch contains the physical initial vehicle footprint and stopping route, but the supplied conservative rear-axle disk, 1 m margin and 0.5 m road residual can conflict with its initial right edge. Optimization must reject if this containment fails; this response does not claim verified feasibility or authorize relaxing those limits."
+        }
+      ],
+      "after": []
+    }
+  ],
+  "observed_transition": {
+    "initial_actual_failure": {
+      "code": "TYPED_UNKNOWN_BLOCKING",
+      "message": "No relevance pruning: absent, unexpressible or unbounded coverage still blocks planning",
+      "category": "tool_infeasible",
+      "details": {
+        "unknown_id": "initial_disk_road_fit",
+        "unknown_kind": "not_expressible",
+        "object_ids": [],
+        "time_interval_s": [
+          0,
+          2
+        ]
+      },
+      "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+    },
+    "revision_actual_stages": {
+      "stages": {
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      }
+    }
+  },
+  "model_explanations": [
+    {
+      "attempt": 1,
+      "json_pointer": "/hypotheses/unknowns/0/detail",
+      "quote": "The estimated patch contains the physical initial vehicle footprint and stopping route, but the supplied conservative rear-axle disk, 1 m margin and 0.5 m road residual can conflict with its initial right edge."
+    },
+    {
+      "attempt": 2,
+      "json_pointer": "/hypotheses/confidence_note",
+      "quote": "The previous typed coverage unknown is replaced by this explicit deterministic geometric failure; no obstacle or movement mode is removed."
+    },
+    {
+      "attempt": 2,
+      "json_pointer": "/hypotheses/confidence_note",
+      "quote": "Do not execute a simulated prefix as verified, enlarge the road, or relax limits."
+    }
+  ],
+  "interpretation": [
+    "The initial actual first rejection is TYPED_UNKNOWN_BLOCKING, bound to initial_disk_road_fit. The revision removes that typed record and gives its disk-based concern in free text.",
+    "The revision also extends metric_prior and parked_conditions from [0,2] to [-.043,2], and black_alignment from [-.042121,2] to [-.043,2]. These are native model premise changes, not tool edits.",
+    "No road, actor record (including BODY, occupancy, scenarios, alignment and residual), or task decision except revision number changes. It is not a success obtained by deleting obstacles, shrinking residuals or expanding pavement.",
+    "The model still warns against execution based on the supplied old circumscribed-disk description. Actual bounded_seed_candidates_v2 uses oriented BODY with yaw bands, so the free-text disk calculation is not the executed geometry.",
+    "This is evidence of a prompt/profile expression mismatch. It does not establish that road geometry is accurate, that excluded entrants are truly absent, or that the model endorses the v2 released trajectory.",
+    "Several textual premises and scale rationales also changed, so do not attribute success to a single isolated field change or claim a measured prompt-fix benefit before a separate experiment."
+  ]
+}

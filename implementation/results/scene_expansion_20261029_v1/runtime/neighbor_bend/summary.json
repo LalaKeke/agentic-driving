@@ -1,0 +1,60 @@
+{
+  "profile": "local_conditional_2s_prototype_v1",
+  "planner_profile": "bounded_seed_candidates_v2",
+  "charged_requests": 2,
+  "budget_limit": 2,
+  "remaining_unused": 0,
+  "ended": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "FAIL",
+        "T2": "NOT_REACHED",
+        "T3": "NOT_REACHED",
+        "T4": "NOT_REACHED",
+        "EXECUTION": "NOT_REACHED",
+        "ACCEPTOR": "NOT_REACHED"
+      },
+      "failure": {
+        "code": "TYPED_UNKNOWN_BLOCKING",
+        "message": "No relevance pruning: absent, unexpressible or unbounded coverage still blocks planning",
+        "category": "tool_infeasible",
+        "details": {
+          "unknown_id": "initial_disk_road_fit",
+          "unknown_kind": "not_expressible",
+          "object_ids": [],
+          "time_interval_s": [
+            0,
+            2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "attempt": 2,
+      "stages": {
+        "SERVICE": "PASS",
+        "BUSINESS_SCHEMA": "PASS",
+        "T1": "PASS",
+        "T2": "PASS",
+        "T3": "PASS",
+        "T4": "PASS",
+        "EXECUTION": "PASS",
+        "ACCEPTOR": "PASS"
+      },
+      "failure": null
+    }
+  ],
+  "fatal": null,
+  "prototype_conditional_success": true,
+  "prefix_consumed": true,
+  "source_commit": "a48d5d2397bb7f171e683d82857e5c23a16b7d70",
+  "mode": "online",
+  "old_strict_experiment_success": false,
+  "g2_evaluated": false,
+  "real_vehicle_control": false
+}

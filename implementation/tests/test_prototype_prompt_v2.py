@@ -73,10 +73,12 @@ class PrototypePromptV2Tests(unittest.TestCase):
                 prompt_version='driving_prototype_v1',max_calls=4,experiment_profile='local_conditional_2s_prototype_v1')
             self.assertEqual(v1.prompt_version,'driving_prototype_v1')
             for profile,limit in ((None,4),('local_conditional_2s_prototype_v1',2)):
-                with self.assertRaises(Failure):
+                with self.assertRaises(Failure) as failure:
                     PilotSubscriptionAgent(evidence_dir=root/f'prohibited-{limit}',binary=sys.executable,
                         process_factory=no_process,prompt_version='driving_prototype_v2',max_calls=limit,
                         experiment_profile=profile)
+                self.assertEqual(failure.exception.record['code'],'PILOT_CONFIGURATION')
+                self.assertFalse((root/f'prohibited-{limit}').exists())
             cap,out,_=authored_case(speed=3.,half_road=10.)
             image=root/'authored.png';Image.new('RGB',(3,3),'white').save(image)
             for frame in cap['observations']:frame['path']=str(image)

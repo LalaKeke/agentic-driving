@@ -1,0 +1,376 @@
+{
+  "decision": {
+    "scene_id": "nusc_1ddf7a48af3d43be8763f154974f09ce",
+    "revision": 0,
+    "behavior": "hold_lane",
+    "target_region": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        24,
+        -1.5
+      ],
+      [
+        24,
+        1.5
+      ],
+      [
+        -1.5,
+        1.5
+      ]
+    ],
+    "desired_speed_mps": 9,
+    "yield_to": [],
+    "stop": null,
+    "priority": 1,
+    "valid_until_s": 1542800373.9124708,
+    "hard_requirements": [
+      "target_region",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 5,
+      "smoothness_weight": 3
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1542800371912471",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [
+        [
+          -6,
+          -8.5
+        ],
+        [
+          34,
+          -8.5
+        ],
+        [
+          34,
+          1.7
+        ],
+        [
+          -6,
+          2.8
+        ]
+      ],
+      "uncertainty_m": 0.5,
+      "frame_ids": [
+        "a4fd7545ff374e7697358dcac68180f0",
+        "bb7b3a3e07104e2b9860da140f5cec59"
+      ],
+      "time_ids": [
+        "nusc_us_1542800371912471",
+        "nusc_us_1542800371887525"
+      ]
+    },
+    "objects": [
+      {
+        "id": "lead_hatchback",
+        "position_m": [
+          24,
+          -0.3
+        ],
+        "velocity_mps": [
+          10.5,
+          0
+        ],
+        "uncertainty_m": 1.5,
+        "occupancy": [
+          {
+            "id": "lead_first_second",
+            "start_s": 0,
+            "end_s": 1,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "a4fd7545ff374e7697358dcac68180f0"
+            ],
+            "time_ids": [
+              "nusc_us_1542800371912471"
+            ],
+            "premise_ids": [
+              "lead_motion",
+              "body_scale"
+            ],
+            "residual_m": 1,
+            "alternatives": [
+              {
+                "scenario_id": "lead_continue",
+                "polygon_m": [
+                  [
+                    21.7,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    -1.6
+                  ],
+                  [
+                    39.3,
+                    1
+                  ],
+                  [
+                    21.7,
+                    1
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "lead_brake",
+                "polygon_m": [
+                  [
+                    21.7,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    -1.8
+                  ],
+                  [
+                    36.3,
+                    1.2
+                  ],
+                  [
+                    21.7,
+                    1.2
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "id": "lead_second_second",
+            "start_s": 1,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": [
+              "a4fd7545ff374e7697358dcac68180f0"
+            ],
+            "time_ids": [
+              "nusc_us_1542800371912471"
+            ],
+            "premise_ids": [
+              "lead_motion",
+              "body_scale"
+            ],
+            "residual_m": 1,
+            "alternatives": [
+              {
+                "scenario_id": "lead_continue",
+                "polygon_m": [
+                  [
+                    30.7,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    -1.9
+                  ],
+                  [
+                    52.3,
+                    1.3
+                  ],
+                  [
+                    30.7,
+                    1.3
+                  ]
+                ]
+              },
+              {
+                "scenario_id": "lead_brake",
+                "polygon_m": [
+                  [
+                    27.7,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    -2.3
+                  ],
+                  [
+                    46.3,
+                    1.7
+                  ],
+                  [
+                    27.7,
+                    1.7
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "frame_ids": [
+          "a4fd7545ff374e7697358dcac68180f0"
+        ],
+        "time_ids": [
+          "nusc_us_1542800371912471"
+        ],
+        "state_time_id": "nusc_us_1542800371912471",
+        "body_geometry": {
+          "length_m": 4.5,
+          "width_m": 1.8,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": [
+            "body_scale",
+            "lead_motion"
+          ],
+          "residual_m": 0.5,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "a4fd7545ff374e7697358dcac68180f0",
+              "time_id": "nusc_us_1542800371912471",
+              "position_m": [
+                24,
+                -0.3
+              ],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "lead_continue",
+            "premise_ids": [
+              "lead_motion",
+              "body_scale"
+            ],
+            "role": "adopted"
+          },
+          {
+            "id": "lead_brake",
+            "premise_ids": [
+              "lead_motion",
+              "body_scale"
+            ],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional two-second proposal, not verified execution permission. The observed left curb is only approximately 2–3 m left of ego. The required rear-axle disk radius is approximately 3.61 m, so its road containment already conflicts with this supported pavement geometry at initialization; independent verification should reject rather than widen the road. The actual rectangular footprint fits the estimated pavement. Distant forward vehicles, opposing traffic across the raised median, and distant rear traffic are outside the local domain under the stated no-entry conditions, not asserted absent. Darkness, glare, road grade, hidden pedestrians and unexpected entries are excluded conditions, not certified observations.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [
+          [
+            -6,
+            -8.5
+          ],
+          [
+            34,
+            -8.5
+          ],
+          [
+            34,
+            1.7
+          ],
+          [
+            -6,
+            2.8
+          ]
+        ],
+        "statement": "Model only this finite same-direction paved patch for two seconds. Adopt no previously unobserved pedestrian, cycle, vehicle or debris entering it; no entry from distant rear traffic; distant forward vehicles continue away without reversing into it; opposing vehicles remain across the raised median. Retain the observed lead hatchback wherever its predicted body travels, including beyond this patch. This excludes unexpected crossings, median incursions, hidden obstacles and world-wide coverage. No road-containment feasibility is assumed."
+      },
+      {
+        "id": "body_scale",
+        "object_ids": [
+          "lead_hatchback"
+        ],
+        "scenario_ids": [
+          "lead_continue",
+          "lead_brake"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Condition on the visible lead hatchback having approximately 4.5 m body length and 1.8 m width. Its reference rear silhouette is roughly 105–110 pixels wide, implying about 21–22 m camera-to-rear-face depth and approximately 24 m body-center range. These are falsifiable model size and perspective estimates, not measured dimensions or calibrated depth."
+      },
+      {
+        "id": "road_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Assume locally approximately planar continuous pavement and no abrupt boundary change over two seconds. Estimate the left curb and right raised-median edge from reference perspective using the hatchback scale prior and supplied camera axes. Three visible same-direction lanes support approximately 10–11 m total paved width, not a widened single-lane corridor. The rear image supports continuation behind the current footprint; compensate its 0.025 s age using supplied ego history and assume stationary boundaries. Nonzero 0.5 m road residual represents approximate boundary, plane and scale error."
+      },
+      {
+        "id": "lead_motion",
+        "object_ids": [
+          "lead_hatchback"
+        ],
+        "scenario_ids": [
+          "lead_continue",
+          "lead_brake"
+        ],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Reference appearance and approximately stable following range in the front sequence support forward motion, not parking. Adopt initial absolute longitudinal speed 9–13 m/s. Continue mode maintains this range; adverse braking mode permits acceleration -6 to 0 m/s² with speed floored at zero. Neither mode reverses. Continue lateral center displacement is bounded by 0.3t m; braking displacement by 0.5t m. Body yaw stays within 0.05 rad. The two modes exhaust only these adopted conditions. Rectangular sources include body rotation and all intermediate positions, before residual inflation."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": [
+        "a4fd7545ff374e7697358dcac68180f0"
+      ],
+      "time_ids": [
+        "nusc_us_1542800371912471"
+      ],
+      "premise_ids": [
+        "body_scale",
+        "road_geometry"
+      ],
+      "anchors": [
+        {
+          "object_id": "lead_hatchback",
+          "dimension": "width_m",
+          "value_m": 1.8,
+          "rationale": "Approximate compact hatchback body-width prior applied to the individually visible lead vehicle."
+        },
+        {
+          "object_id": "lead_hatchback",
+          "dimension": "length_m",
+          "value_m": 4.5,
+          "rationale": "Conditional compact-car length prior used to convert rear-face range to geometric body-center range."
+        }
+      ],
+      "metric_reasoning": "With focal length approximately 1266 pixels and an approximately 105–110 pixel rear silhouette, the 1.8 m width prior yields approximately 21–22 m rear-face depth. Adding approximately half the 4.5 m length gives a body center near x=24 m; its slight right image displacement gives y approximately -0.3 m. Curb and median perspective relative to this scale support the stated convex local pavement patch. Camera calibration establishes directions only; planarity, silhouette correspondence and actor dimensions remain explicit conditional hypotheses."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

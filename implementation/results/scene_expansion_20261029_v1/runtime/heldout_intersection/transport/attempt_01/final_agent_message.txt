@@ -1,0 +1,329 @@
+{
+  "decision": {
+    "scene_id": "nusc_e122a34ec57c4edf8311b40c3f85f863",
+    "revision": 0,
+    "behavior": "stop_yield",
+    "target_region": [[-2,-1.8],[5,-1.8],[5,1.8],[-2,1.8]],
+    "desired_speed_mps": 0,
+    "yield_to": ["crossing_bus","crossing_suv"],
+    "stop": {
+      "center_x_max_m": 4,
+      "deadline_s": 1.8
+    },
+    "priority": 1,
+    "valid_until_s": 1535657114.1124039,
+    "hard_requirements": ["target_region","stop","yield","vehicle_limits","collision_free","road"],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 3,
+      "smoothness_weight": 2
+    }
+  },
+  "hypotheses": {
+    "coordinate_frame": "ego_at_reference",
+    "reference_time_id": "nusc_us_1535657112112404",
+    "units": "m_s_rad",
+    "scale_basis": "model_metric_hypothesis",
+    "road": {
+      "polygon_m": [[-6,-5.2],[18,-5.8],[18,7],[-6,6]],
+      "uncertainty_m": 0.35,
+      "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e","50a1c01c493e4bb096466d4bbf940263","a3da73ed729d4da6a452065a3e549da2"],
+      "time_ids": ["nusc_us_1535657112112404","nusc_us_1535657112104799","nusc_us_1535657112037558"]
+    },
+    "objects": [
+      {
+        "id": "crossing_bus",
+        "position_m": [27,-6],
+        "velocity_mps": [0,4],
+        "uncertainty_m": 1.2,
+        "occupancy": [
+          {
+            "id": "bus_whole_2s",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+            "time_ids": ["nusc_us_1535657112112404"],
+            "premise_ids": ["prototype_local_scope","metric_geometry","bus_motion"],
+            "residual_m": 0.6,
+            "alternatives": [
+              {
+                "scenario_id": "bus_crossing",
+                "polygon_m": [[25.3,-12.2],[28.7,-12.2],[28.7,10.2],[25.3,10.2]]
+              },
+              {
+                "scenario_id": "bus_slow_or_faster",
+                "polygon_m": [[24.5,-12.5],[29.5,-12.5],[29.5,12.5],[24.5,12.5]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+        "time_ids": ["nusc_us_1535657112112404"],
+        "state_time_id": "nusc_us_1535657112112404",
+        "body_geometry": {
+          "length_m": 12,
+          "width_m": 2.6,
+          "yaw_rad": 1.5708
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_geometry","bus_motion"],
+          "residual_m": 0.6,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "b4f9181a80034d22972433e4d1dd9f9e",
+              "time_id": "nusc_us_1535657112112404",
+              "position_m": [27,-6],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "bus_crossing",
+            "premise_ids": ["prototype_local_scope","metric_geometry","bus_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "bus_slow_or_faster",
+            "premise_ids": ["prototype_local_scope","metric_geometry","bus_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "crossing_suv",
+        "position_m": [23,-6],
+        "velocity_mps": [0,-5],
+        "uncertainty_m": 1,
+        "occupancy": [
+          {
+            "id": "suv_whole_2s",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+            "time_ids": ["nusc_us_1535657112112404"],
+            "premise_ids": ["prototype_local_scope","metric_geometry","suv_motion"],
+            "residual_m": 0.5,
+            "alternatives": [
+              {
+                "scenario_id": "suv_crossing",
+                "polygon_m": [[21.6,-20.6],[24.4,-20.6],[24.4,-3.4],[21.6,-3.4]]
+              },
+              {
+                "scenario_id": "suv_slow_or_faster",
+                "polygon_m": [[20.8,-22.8],[25.2,-22.8],[25.2,-3.2],[20.8,-3.2]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+        "time_ids": ["nusc_us_1535657112112404"],
+        "state_time_id": "nusc_us_1535657112112404",
+        "body_geometry": {
+          "length_m": 4.8,
+          "width_m": 1.9,
+          "yaw_rad": -1.5708
+        },
+        "alignment": {
+          "method": "direct_reference_observation",
+          "premise_ids": ["metric_geometry","suv_motion"],
+          "residual_m": 0.5,
+          "motion_bound": null,
+          "evidence_positions": [
+            {
+              "frame_id": "b4f9181a80034d22972433e4d1dd9f9e",
+              "time_id": "nusc_us_1535657112112404",
+              "position_m": [23,-6],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "suv_crossing",
+            "premise_ids": ["prototype_local_scope","metric_geometry","suv_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "suv_slow_or_faster",
+            "premise_ids": ["prototype_local_scope","metric_geometry","suv_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      },
+      {
+        "id": "rear_minivan",
+        "position_m": [-11.5,0.6],
+        "velocity_mps": null,
+        "uncertainty_m": 0.8,
+        "occupancy": [
+          {
+            "id": "rear_minivan_whole_2s",
+            "start_s": 0,
+            "end_s": 2,
+            "kind": "whole_interval_body_envelope",
+            "status": "supported",
+            "frame_ids": ["a3da73ed729d4da6a452065a3e549da2"],
+            "time_ids": ["nusc_us_1535657112037558"],
+            "premise_ids": ["prototype_local_scope","metric_geometry","rear_motion"],
+            "residual_m": 0.4,
+            "alternatives": [
+              {
+                "scenario_id": "rear_waits",
+                "polygon_m": [[-14.1,-0.65],[-8.8,-0.65],[-8.8,1.85],[-14.1,1.85]]
+              },
+              {
+                "scenario_id": "rear_creeps",
+                "polygon_m": [[-14.2,-0.9],[-7,-0.9],[-7,2.1],[-14.2,2.1]]
+              }
+            ]
+          }
+        ],
+        "frame_ids": ["a3da73ed729d4da6a452065a3e549da2"],
+        "time_ids": ["nusc_us_1535657112037558"],
+        "state_time_id": "nusc_us_1535657112112404",
+        "body_geometry": {
+          "length_m": 4.8,
+          "width_m": 1.9,
+          "yaw_rad": 0
+        },
+        "alignment": {
+          "method": "model_motion_bound",
+          "premise_ids": ["metric_geometry","rear_motion"],
+          "residual_m": 0.4,
+          "motion_bound": {
+            "max_speed_mps": 2,
+            "displacement_bound_m": 0.15,
+            "covers_all_declared_scenarios": true
+          },
+          "evidence_positions": [
+            {
+              "frame_id": "a3da73ed729d4da6a452065a3e549da2",
+              "time_id": "nusc_us_1535657112037558",
+              "position_m": [-11.6,0.6],
+              "observed_actor": true
+            }
+          ]
+        },
+        "scenarios": [
+          {
+            "id": "rear_waits",
+            "premise_ids": ["prototype_local_scope","metric_geometry","rear_motion"],
+            "role": "adopted"
+          },
+          {
+            "id": "rear_creeps",
+            "premise_ids": ["prototype_local_scope","metric_geometry","rear_motion"],
+            "role": "reasonable_adverse"
+          }
+        ],
+        "scenario_inventory_complete": true
+      }
+    ],
+    "unknown_regions": [],
+    "traffic_evidence": [
+      {
+        "rule": "stop_required",
+        "state": "active",
+        "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+        "time_ids": ["nusc_us_1535657112112404"]
+      },
+      {
+        "rule": "yield_required",
+        "state": "active",
+        "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e"],
+        "time_ids": ["nusc_us_1535657112112404"]
+      }
+    ],
+    "unbounded_unknown": false,
+    "confidence_note": "Conditional local prototype only. Red-looking forward-facing signals and active cross traffic support stopping well before the intersection. At trusted speed 3.556 m/s, approximately 2.1 m/s² braking stops in 1.70 s and 3.02 m; no instantaneous stop is assumed. Geometry and residuals are uncalibrated monocular estimates. Rear-minivan slow-response conditions are necessary and not established by a single rear image. Outside-domain vehicles, parking-lot traffic, construction activity and occluded entrants are excluded only under the explicit no-entry condition, not asserted absent. Road clearance, especially the right fence boundary under disk inflation, requires independent verification; no optimization or collision verification has been performed.",
+    "premises": [
+      {
+        "id": "prototype_local_scope",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": [[-16,-24],[32,-24],[32,14],[-16,14]],
+        "statement": "Model only the observed approach pavement, nearby cross-traffic bodies and following minivan within this finite domain for two seconds. Adopt no new unobserved entrant from occlusions, construction fencing, sidewalks, the rear parking area or farther roadway. Visible distant vehicles beyond the domain do not enter it. Construction machinery, barrels behind the rear edge of the modeled road and fenced materials remain stationary outside the intended route. The road polygon is only the convex approach pavement subset, not this entire domain. These exclusions are falsifiable conditions, not whole-world safety claims."
+      },
+      {
+        "id": "metric_geometry",
+        "object_ids": [],
+        "scenario_ids": [],
+        "start_s": -0.075,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Adopt approximately level continuous pavement and the stated individual vehicle dimensions. Estimate depths and lateral offsets jointly from apparent body size, perspective and supplied camera axes; calibration alone does not establish ground contact. The bus spans roughly 570 image pixels along its broadside, consistent with a 12 m body at roughly 26–28 m depth. The nearer SUV is approximately 23 m forward. The rear minivan's roughly 200-pixel frontal width with the rear camera focal length supports approximately 8 m camera-to-front distance, hence roughly 11.5 m body-center separation. Visible left curb/hatched pavement and right construction-fence edge support an approximately 11–13 m wide approach patch; rear and left views support its continuation around the current footprint. Road boundaries, body poses and residuals remain model hypotheses."
+      },
+      {
+        "id": "bus_motion",
+        "object_ids": ["crossing_bus"],
+        "scenario_ids": ["bus_crossing","bus_slow_or_faster"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Bus continues generally toward positive Y, as supported by the front-image sequence. Adopted center displacement is 0–10 m positive Y with X within 0.3 m of 27 and heading within 0.03 rad of pi/2. Adverse retained mode permits stopping or displacement up to 12 m positive Y, X drift up to 0.8 m and heading variation up to 0.1 rad. No reversal or turn toward the ego approach within two seconds. Source polygons contain the complete 12 by 2.6 m body throughout these modes."
+      },
+      {
+        "id": "suv_motion",
+        "object_ids": ["crossing_suv"],
+        "scenario_ids": ["suv_crossing","suv_slow_or_faster"],
+        "start_s": 0,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "SUV continues generally toward negative Y, consistent with the front history. Adopted displacement is 0–12 m negative Y with X drift at most 0.3 m and heading variation at most 0.05 rad. Adverse mode permits stopping or displacement up to 14 m negative Y, X drift at most 0.9 m and heading variation at most 0.1 rad. No reversal or turn into the approach during this interval. Envelopes include the entire body, not merely center trajectories."
+      },
+      {
+        "id": "rear_motion",
+        "object_ids": ["rear_minivan"],
+        "scenario_ids": ["rear_waits","rear_creeps"],
+        "start_s": -0.075,
+        "end_s": 2,
+        "space_polygon_m": null,
+        "statement": "Necessary conditional hypothesis: the following minivan is already slow or braking. During the 0.074846 s acquisition age its absolute speed is at most 2 m/s, hence displacement at most 0.15 m; native evidence position already includes acquisition ego pose compensation. Adopted future center advance is at most 0.2 m. Adverse retained mode permits advance up to 2 m, lateral drift up to 0.3 m and yaw within 0.08 rad, with no reverse motion. This is not inferred certainty about driver response. Whole-body rectangles include these motions and heading spread. Faster approach or failure to brake invalidates the prototype."
+      }
+    ],
+    "unknowns": [],
+    "metric_scale_support": {
+      "method": "conditional_body_dimension_prior",
+      "frame_ids": ["b4f9181a80034d22972433e4d1dd9f9e","a3da73ed729d4da6a452065a3e549da2"],
+      "time_ids": ["nusc_us_1535657112112404","nusc_us_1535657112037558"],
+      "premise_ids": ["prototype_local_scope","metric_geometry","rear_motion"],
+      "anchors": [
+        {
+          "object_id": "crossing_bus",
+          "dimension": "length_m",
+          "value_m": 12,
+          "rationale": "Conditional full-size single-body transit-bus length prior for the broadside bus actually visible in the reference front image."
+        },
+        {
+          "object_id": "rear_minivan",
+          "dimension": "width_m",
+          "value_m": 1.9,
+          "rationale": "Conditional passenger-minivan body-width prior for the individual following vehicle visible in the rear image."
+        }
+      ],
+      "metric_reasoning": "Use the reference bus's broadside angular extent with the 12 m length prior to place its center approximately 27 m forward. Use the rear minivan's frontal angular width with its 1.9 m width prior to estimate camera-to-front distance, then account for half its body length and the supplied camera-to-body-center translation. Perspective convergence and visible pavement boundaries provide the local road trapezoid. Ground-contact interpretation, body dimensions and resulting distances are explicit approximate hypotheses, not calibrated depth or ground truth."
+    }
+  },
+  "contract_version": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "measurement_semantics": {
+    "coordinate_frame": "ego_at_reference",
+    "origin": "ego_body_center_at_reference",
+    "axes": "x_forward_y_left_fixed_at_reference",
+    "actor_reference_point": "annotation_box_center_ground_xy",
+    "velocity_semantics": "absolute_ground_velocity_in_fixed_reference_axes",
+    "uncertainty_semantics": "noncalibrated_total_residual_radius_once"
+  }
+}

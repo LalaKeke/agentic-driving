@@ -1,0 +1,1391 @@
+{
+  "mode": "OFFLINE_FEEDBACK_ONLY_REAL_OUTPUT_REPLAY",
+  "new_model_calls": 0,
+  "original_record": "implementation/results/scene_expansion_20261029_v1/runtime/pedestrian_interaction/attempt_01/record.json",
+  "record_sha256": "0048ad6d01c6d16c9510d00b19d2d97fd26487d16e10c3740f62b51c9f09452a",
+  "native_model_output_digest": "07ad69bb7d7a9d0499e8c0eaad60456c74a704d563465be1471304640d51172f",
+  "T1_unchanged": true,
+  "scene_digest": "db410e4c06a4724473274fcb5e72d2e4c077ee673ea1d94a0c4c111f4eaad78a",
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "old_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "original",
+          "object_id": "following_car",
+          "heading_band_rad": [
+            -0.025,
+            0.025
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 0.0,
+              "rear_x_m": -1.2,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.7234599754206377,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.0
+            },
+            {
+              "time_s": 0.2,
+              "rear_x_m": -0.7153080049158724,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.1234599754206376,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.0
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "following_car",
+            "halfplane": [
+              -1.0,
+              0.0,
+              -0.722153924226514
+            ],
+            "obstacle_support_m": 2.5,
+            "ego_body_support_m": 1.122153924226514,
+            "model_total_residual_m": 1.1,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                -13.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                1.8
+              ],
+              [
+                -13.5,
+                1.8
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "following_body_0_2",
+                "scenario_id": "following_continue",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    -13.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    1.8
+                  ],
+                  [
+                    -13.5,
+                    1.8
+                  ]
+                ],
+                "frame_ids": [
+                  "c9436084f6ad4894b3a4726c07a84c97"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800851887525"
+                ],
+                "premise_ids": [
+                  "following_motion"
+                ],
+                "source_residual_m": 0.6
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              0.005968175796798126,
+              0.8090313018852748
+            ],
+            [
+              0.40000000000000013,
+              -0.9741649755323222
+            ],
+            [
+              0.40000000000000013,
+              -1.4700031249023453
+            ],
+            [
+              -2.699625019530843,
+              -1.4700031249023453
+            ],
+            [
+              -2.699625019530843,
+              0.8238231711475698
+            ]
+          ],
+          "allowed_area_before_m2": 6.732844479002554,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                2.947395987017283
+              ],
+              "input_boundary_halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                4.608176875690327
+              ],
+              "ego_body_support_m": 1.160780888673044,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                8.9785960367118
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                13.0
+              ],
+              "ego_body_support_m": 3.5214039632882,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                2.2151800741545347
+              ],
+              "input_boundary_halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                3.8629034653091137
+              ],
+              "ego_body_support_m": 1.147723391154579,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                3.377846075773486
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                5.0
+              ],
+              "ego_body_support_m": 1.122153924226514,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                2.3
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                3.5
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.699625019530843
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                1.5
+              ],
+              "center_offset_support_m": -1.199625019530843
+            },
+            {
+              "kind": "stop",
+              "halfplane": [
+                1.0,
+                0.0,
+                0.40000000000000013
+              ],
+              "center_x_max_m": 1.6,
+              "center_offset_support_m": 1.2
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_straight",
+      "old_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_straight",
+          "object_id": "following_car",
+          "heading_band_rad": [
+            -0.025,
+            0.025
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 0.0,
+              "rear_x_m": -1.2,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.7234599754206377,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.0
+            },
+            {
+              "time_s": 0.2,
+              "rear_x_m": -0.7153080049158724,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.1234599754206376,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.0
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "following_car",
+            "halfplane": [
+              -1.0,
+              0.0,
+              -0.722153924226514
+            ],
+            "obstacle_support_m": 2.5,
+            "ego_body_support_m": 1.122153924226514,
+            "model_total_residual_m": 1.1,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                -13.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                1.8
+              ],
+              [
+                -13.5,
+                1.8
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "following_body_0_2",
+                "scenario_id": "following_continue",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    -13.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    1.8
+                  ],
+                  [
+                    -13.5,
+                    1.8
+                  ]
+                ],
+                "frame_ids": [
+                  "c9436084f6ad4894b3a4726c07a84c97"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800851887525"
+                ],
+                "premise_ids": [
+                  "following_motion"
+                ],
+                "source_residual_m": 0.6
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              0.005968175796798126,
+              0.8090313018852748
+            ],
+            [
+              0.40000000000000013,
+              -0.9741649755323222
+            ],
+            [
+              0.40000000000000013,
+              -1.4700031249023453
+            ],
+            [
+              -2.699625019530843,
+              -1.4700031249023453
+            ],
+            [
+              -2.699625019530843,
+              0.8238231711475698
+            ]
+          ],
+          "allowed_area_before_m2": 6.732844479002554,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                2.947395987017283
+              ],
+              "input_boundary_halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                4.608176875690327
+              ],
+              "ego_body_support_m": 1.160780888673044,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                8.9785960367118
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                13.0
+              ],
+              "ego_body_support_m": 3.5214039632882,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                2.2151800741545347
+              ],
+              "input_boundary_halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                3.8629034653091137
+              ],
+              "ego_body_support_m": 1.147723391154579,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                3.377846075773486
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                5.0
+              ],
+              "ego_body_support_m": 1.122153924226514,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                2.3
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                3.5
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.699625019530843
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                1.5
+              ],
+              "center_offset_support_m": -1.199625019530843
+            },
+            {
+              "kind": "stop",
+              "halfplane": [
+                1.0,
+                0.0,
+                0.40000000000000013
+              ],
+              "center_x_max_m": 1.6,
+              "center_offset_support_m": 1.2
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right",
+      "old_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_right",
+          "object_id": "following_car",
+          "heading_band_rad": [
+            -0.05766636076852329,
+            0.025
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 0.0,
+              "rear_x_m": -1.2,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.7234599754206377,
+              "acceleration_mps2": -3.0,
+              "steer_rad": -0.18
+            },
+            {
+              "time_s": 0.2,
+              "rear_x_m": -0.7153942020711878,
+              "rear_y_m": -0.007915857837153923,
+              "yaw_rad": -0.03266636076852329,
+              "speed_mps": 2.1234599754206376,
+              "acceleration_mps2": -3.0,
+              "steer_rad": -0.18
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "following_car",
+            "halfplane": [
+              -1.0,
+              0.0,
+              -0.7500424965816439
+            ],
+            "obstacle_support_m": 2.5,
+            "ego_body_support_m": 1.1500424965816438,
+            "model_total_residual_m": 1.1,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                -13.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                1.8
+              ],
+              [
+                -13.5,
+                1.8
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "following_body_0_2",
+                "scenario_id": "following_continue",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    -13.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    1.8
+                  ],
+                  [
+                    -13.5,
+                    1.8
+                  ]
+                ],
+                "frame_ids": [
+                  "c9436084f6ad4894b3a4726c07a84c97"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800851887525"
+                ],
+                "premise_ids": [
+                  "following_motion"
+                ],
+                "source_residual_m": 0.6
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              -2.6980053073574486,
+              -1.4308387135502454
+            ],
+            [
+              -2.6980053073574486,
+              0.8127903496503746
+            ],
+            [
+              -0.02492218065590124,
+              0.8127903496503746
+            ],
+            [
+              0.1532441893737053,
+              0.15016098923182739
+            ],
+            [
+              0.40000000000000013,
+              -0.7675635226819038
+            ],
+            [
+              0.40000000000000013,
+              -1.4308387135502454
+            ]
+          ],
+          "allowed_area_before_m2": 6.615011038717226,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                2.947395987017283
+              ],
+              "input_boundary_halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                4.608176875690327
+              ],
+              "ego_body_support_m": 1.160780888673044,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                8.95394688870346
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                13.0
+              ],
+              "ego_body_support_m": 3.546053111296541,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                2.188413351378272
+              ],
+              "input_boundary_halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                3.8629034653091137
+              ],
+              "ego_body_support_m": 1.1744901139308417,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                3.349957503418356
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                5.0
+              ],
+              "ego_body_support_m": 1.1500424965816438,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                1.4308387135502454
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.06916128644975471
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                2.3
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                3.5
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.6980053073574486
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                1.5
+              ],
+              "center_offset_support_m": -1.1980053073574486
+            },
+            {
+              "kind": "stop",
+              "halfplane": [
+                1.0,
+                0.0,
+                0.40000000000000013
+              ],
+              "center_x_max_m": 1.6,
+              "center_offset_support_m": 1.2
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_left",
+      "old_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_left",
+          "object_id": "following_car",
+          "heading_band_rad": [
+            -0.025,
+            0.05766636076852329
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 0.0,
+              "rear_x_m": -1.2,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.7234599754206377,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.18
+            },
+            {
+              "time_s": 0.2,
+              "rear_x_m": -0.7153942020711878,
+              "rear_y_m": 0.007915857837153923,
+              "yaw_rad": 0.03266636076852329,
+              "speed_mps": 2.1234599754206376,
+              "acceleration_mps2": -3.0,
+              "steer_rad": 0.18
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "following_car",
+            "halfplane": [
+              -1.0,
+              0.0,
+              -0.7500424965816439
+            ],
+            "obstacle_support_m": 2.5,
+            "ego_body_support_m": 1.1500424965816438,
+            "model_total_residual_m": 1.1,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                -13.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                1.8
+              ],
+              [
+                -13.5,
+                1.8
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "following_body_0_2",
+                "scenario_id": "following_continue",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    -13.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    1.8
+                  ],
+                  [
+                    -13.5,
+                    1.8
+                  ]
+                ],
+                "frame_ids": [
+                  "c9436084f6ad4894b3a4726c07a84c97"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800851887525"
+                ],
+                "premise_ids": [
+                  "following_motion"
+                ],
+                "source_residual_m": 0.6
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              -2.6980053073574486,
+              -1.4700031249023453
+            ],
+            [
+              -2.6980053073574486,
+              0.7352981239399791
+            ],
+            [
+              0.05006894712901272,
+              0.6874258643029988
+            ],
+            [
+              0.40000000000000013,
+              -1.3222666849010971
+            ],
+            [
+              0.40000000000000013,
+              -1.4700031249023453
+            ]
+          ],
+          "allowed_area_before_m2": 6.3978778060662265,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                2.9212298709321534
+              ],
+              "input_boundary_halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                4.608176875690327
+              ],
+              "ego_body_support_m": 1.1869470047581736,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                8.95394688870346
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                13.0
+              ],
+              "ego_body_support_m": 3.546053111296541,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                2.2151800741545347
+              ],
+              "input_boundary_halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                3.8629034653091137
+              ],
+              "ego_body_support_m": 1.147723391154579,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                3.349957503418356
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                5.0
+              ],
+              "ego_body_support_m": 1.1500424965816438,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.029996875097654797
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                2.3
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                3.5
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                1.4308387135502454
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.06916128644975471
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.6980053073574486
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                1.5
+              ],
+              "center_offset_support_m": -1.1980053073574486
+            },
+            {
+              "kind": "stop",
+              "halfplane": [
+                1.0,
+                0.0,
+                0.40000000000000013
+              ],
+              "center_x_max_m": 1.6,
+              "center_offset_support_m": 1.2
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "old_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "new_failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ],
+          "candidate_id": "brake_right_strong",
+          "object_id": "following_car",
+          "heading_band_rad": [
+            -0.0651431642797961,
+            0.025
+          ],
+          "reference_seed_segment": [
+            {
+              "time_s": 0.0,
+              "rear_x_m": -1.2,
+              "rear_y_m": 0.0,
+              "yaw_rad": 0.0,
+              "speed_mps": 2.7234599754206377,
+              "acceleration_mps2": -3.0,
+              "steer_rad": -0.22
+            },
+            {
+              "time_s": 0.2,
+              "rear_x_m": -0.7154381724894856,
+              "rear_y_m": -0.009727228822223061,
+              "yaw_rad": -0.0401431642797961,
+              "speed_mps": 2.1234599754206376,
+              "acceleration_mps2": -3.0,
+              "steer_rad": -0.22
+            }
+          ],
+          "first_conflicting_constraint": {
+            "kind": "occupancy",
+            "object_id": "following_car",
+            "halfplane": [
+              -1.0,
+              0.0,
+              -0.7562542178582896
+            ],
+            "obstacle_support_m": 2.5,
+            "ego_body_support_m": 1.1562542178582895,
+            "model_total_residual_m": 1.1,
+            "safety_margin_m": 1.0,
+            "occupancy_polygon_m": [
+              [
+                -13.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                -1.8
+              ],
+              [
+                -2.5,
+                1.8
+              ],
+              [
+                -13.5,
+                1.8
+              ]
+            ],
+            "native_sources": [
+              {
+                "source_id": "following_body_0_2",
+                "scenario_id": "following_continue",
+                "source_interval_s": [
+                  0,
+                  2
+                ],
+                "polygon_m": [
+                  [
+                    -13.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    -1.8
+                  ],
+                  [
+                    -2.5,
+                    1.8
+                  ],
+                  [
+                    -13.5,
+                    1.8
+                  ]
+                ],
+                "frame_ids": [
+                  "c9436084f6ad4894b3a4726c07a84c97"
+                ],
+                "time_ids": [
+                  "nusc_us_1542800851887525"
+                ],
+                "premise_ids": [
+                  "following_motion"
+                ],
+                "source_residual_m": 0.6
+              }
+            ]
+          },
+          "allowed_domain_before_polygon_m": [
+            [
+              -0.033484037375233686,
+              0.812790349650375
+            ],
+            [
+              0.40000000000000013,
+              -0.7355384733813036
+            ],
+            [
+              0.40000000000000013,
+              -1.4218834798555615
+            ],
+            [
+              -2.697454721181775,
+              -1.4218834798555615
+            ],
+            [
+              -2.697454721181775,
+              0.812790349650375
+            ]
+          ],
+          "allowed_area_before_m2": 6.586213088808414,
+          "area_after_m2": 0.0,
+          "base_constraints": [
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                2.947395987017283
+              ],
+              "input_boundary_halfplane": [
+                -0.24253562503633297,
+                -0.9701425001453319,
+                4.608176875690327
+              ],
+              "ego_body_support_m": 1.160780888673044,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                1.0,
+                -0.0,
+                8.94883633977816
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                13.0
+              ],
+              "ego_body_support_m": 3.55116366022184,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                2.1824621157891717
+              ],
+              "input_boundary_halfplane": [
+                -0.22722961560641844,
+                0.9738412097417932,
+                3.8629034653091137
+              ],
+              "ego_body_support_m": 1.180441349519942,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "road",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                3.3437457821417107
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                5.0
+              ],
+              "ego_body_support_m": 1.1562542178582895,
+              "road_uncertainty_m": 0.5
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                -1.0,
+                1.4218834798555615
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                -1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.07811652014443846
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                1.0,
+                -0.0,
+                2.3
+              ],
+              "input_boundary_halfplane": [
+                1.0,
+                -0.0,
+                3.5
+              ],
+              "center_offset_support_m": 1.2
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                0.0,
+                1.0,
+                1.4700031249023453
+              ],
+              "input_boundary_halfplane": [
+                0.0,
+                1.0,
+                1.5
+              ],
+              "center_offset_support_m": 0.02999687509765479
+            },
+            {
+              "kind": "target_center",
+              "halfplane": [
+                -1.0,
+                -0.0,
+                2.697454721181775
+              ],
+              "input_boundary_halfplane": [
+                -1.0,
+                -0.0,
+                1.5
+              ],
+              "center_offset_support_m": -1.1974547211817754
+            },
+            {
+              "kind": "stop",
+              "halfplane": [
+                1.0,
+                0.0,
+                0.40000000000000013
+              ],
+              "center_x_max_m": 1.6,
+              "center_offset_support_m": 1.2
+            }
+          ],
+          "ordering_note": "First constraint in construction order to remove positive area; not a minimal unsatisfiable set or global infeasibility proof."
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      }
+    }
+  ],
+  "success": false
+}

@@ -1,0 +1,401 @@
+{
+  "mode": "READ_ONLY_FIXED_NATIVE_T2_DIAGNOSIS",
+  "new_model_calls": 0,
+  "gt_read": false,
+  "source_modified": false,
+  "source_record": {
+    "path": "implementation/results/scene_expansion_20261029_v1/runtime/pedestrian_interaction/attempt_01/record.json",
+    "sha256": "0048ad6d01c6d16c9510d00b19d2d97fd26487d16e10c3740f62b51c9f09452a"
+  },
+  "interval_s": [
+    0,
+    0.2
+  ],
+  "vehicle": {
+    "front_m": 2.3,
+    "rear_m": 2.3,
+    "half_width_m": 0.9,
+    "center_to_rear_axle_m": 1.2,
+    "wheelbase_m": 2.7,
+    "max_speed_mps": 12.0,
+    "max_accel_mps2": 2.0,
+    "max_brake_mps2": 3.0,
+    "max_steer_rad": 0.5,
+    "max_curvature_per_m": 0.2
+  },
+  "initial_rear_state": [
+    -1.2,
+    0.0,
+    0.0,
+    2.7234599754206377
+  ],
+  "decision": {
+    "scene_id": "nusc_07c29094cb6144aa889c16c52f762d79",
+    "revision": 0,
+    "behavior": "stop_yield",
+    "target_region": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        3.5,
+        -1.5
+      ],
+      [
+        3.5,
+        1.5
+      ],
+      [
+        -1.5,
+        1.5
+      ]
+    ],
+    "desired_speed_mps": 0,
+    "yield_to": [
+      "pedestrian_near",
+      "pedestrian_umbrella",
+      "pedestrian_dark",
+      "mpv"
+    ],
+    "stop": {
+      "center_x_max_m": 1.6,
+      "deadline_s": 1.2
+    },
+    "priority": 10,
+    "valid_until_s": 1542800853.91246,
+    "hard_requirements": [
+      "target_region",
+      "stop",
+      "yield",
+      "vehicle_limits",
+      "collision_free",
+      "road"
+    ],
+    "preferences": {
+      "speed_weight": 1,
+      "acceleration_weight": 2,
+      "steering_weight": 4,
+      "smoothness_weight": 3
+    }
+  },
+  "critical_object": {
+    "object_id": "following_car",
+    "native_position_m": [
+      -11,
+      0
+    ],
+    "native_body_geometry": {
+      "length_m": 4.6,
+      "width_m": 1.8,
+      "yaw_rad": 0
+    },
+    "native_initial_body_polygon_m": [
+      [
+        -13.3,
+        -0.9
+      ],
+      [
+        -8.7,
+        -0.9
+      ],
+      [
+        -8.7,
+        0.9
+      ],
+      [
+        -13.3,
+        0.9
+      ]
+    ],
+    "whole_interval_source_id": "following_body_0_2",
+    "whole_interval_s": [
+      0,
+      2
+    ],
+    "adverse_scenario_id": "following_continue",
+    "adverse_polygon_m": [
+      [
+        -13.5,
+        -1.8
+      ],
+      [
+        -2.5,
+        -1.8
+      ],
+      [
+        -2.5,
+        1.8
+      ],
+      [
+        -13.5,
+        1.8
+      ]
+    ],
+    "total_residual_m": 1.1,
+    "safety_margin_m": 1.0,
+    "frame_ids": [
+      "c9436084f6ad4894b3a4726c07a84c97"
+    ],
+    "time_ids": [
+      "nusc_us_1542800851887525"
+    ],
+    "premise_ids": [
+      "following_motion"
+    ],
+    "actual_initial_nominal_BODY_clearance_after_residual_m": 5.299999999999999,
+    "coarse_interval_envelope_initial_clearance_after_residual_m": -0.8999999999999999
+  },
+  "road_initial_check": {
+    "polygon_m": [
+      [
+        -5,
+        -3.5
+      ],
+      [
+        13,
+        -8
+      ],
+      [
+        13,
+        7
+      ],
+      [
+        -5,
+        2.8
+      ]
+    ],
+    "uncertainty_m": 0.5,
+    "minimum_physical_body_slack_m": 1.9638182606467374,
+    "edge_checks": [
+      {
+        "halfplane": [
+          -0.24253562503633297,
+          -0.9701425001453319,
+          4.608176875690327
+        ],
+        "actual_initial_body_plus_road_residual_m": 1.9309601877143645,
+        "slack_m": 2.677216687975962
+      },
+      {
+        "halfplane": [
+          1.0,
+          -0.0,
+          13.0
+        ],
+        "actual_initial_body_plus_road_residual_m": 2.8,
+        "slack_m": 10.2
+      },
+      {
+        "halfplane": [
+          -0.22722961560641844,
+          0.9738412097417932,
+          3.8629034653091137
+        ],
+        "actual_initial_body_plus_road_residual_m": 1.8990852046623763,
+        "slack_m": 1.9638182606467374
+      },
+      {
+        "halfplane": [
+          -1.0,
+          -0.0,
+          5.0
+        ],
+        "actual_initial_body_plus_road_residual_m": 2.8,
+        "slack_m": 2.2
+      }
+    ]
+  },
+  "stop_kinematics": {
+    "initial_speed_mps": 2.7234599754206377,
+    "max_brake_mps2": 3.0,
+    "minimum_stop_time_s": 0.9078199918068792,
+    "minimum_straight_stop_distance_m": 1.2362057062863634,
+    "deadline_s": 1.2,
+    "center_x_max_m": 1.6
+  },
+  "candidates": [
+    {
+      "candidate_id": "original",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "stop_halfplane": [
+        1.0,
+        0.0,
+        0.40000000000000013
+      ],
+      "first_empty_constraint": {
+        "kind": "occupancy",
+        "object_id": "following_car",
+        "index": 11,
+        "halfplane": [
+          -1.0,
+          0.0,
+          -0.722153924226514
+        ],
+        "area_before_m2": 6.732844479002554,
+        "area_after_m2": 0.0,
+        "empty": true
+      },
+      "two_plane_infeasibility_gap_m": 0.3221539242265139
+    },
+    {
+      "candidate_id": "brake_straight",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "stop_halfplane": [
+        1.0,
+        0.0,
+        0.40000000000000013
+      ],
+      "first_empty_constraint": {
+        "kind": "occupancy",
+        "object_id": "following_car",
+        "index": 11,
+        "halfplane": [
+          -1.0,
+          0.0,
+          -0.722153924226514
+        ],
+        "area_before_m2": 6.732844479002554,
+        "area_after_m2": 0.0,
+        "empty": true
+      },
+      "two_plane_infeasibility_gap_m": 0.3221539242265139
+    },
+    {
+      "candidate_id": "brake_right",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "stop_halfplane": [
+        1.0,
+        0.0,
+        0.40000000000000013
+      ],
+      "first_empty_constraint": {
+        "kind": "occupancy",
+        "object_id": "following_car",
+        "index": 11,
+        "halfplane": [
+          -1.0,
+          0.0,
+          -0.7500424965816439
+        ],
+        "area_before_m2": 6.615011038717226,
+        "area_after_m2": 0.0,
+        "empty": true
+      },
+      "two_plane_infeasibility_gap_m": 0.35004249658164377
+    },
+    {
+      "candidate_id": "brake_left",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "stop_halfplane": [
+        1.0,
+        0.0,
+        0.40000000000000013
+      ],
+      "first_empty_constraint": {
+        "kind": "occupancy",
+        "object_id": "following_car",
+        "index": 11,
+        "halfplane": [
+          -1.0,
+          0.0,
+          -0.7500424965816439
+        ],
+        "area_before_m2": 6.3978778060662265,
+        "area_after_m2": 0.0,
+        "empty": true
+      },
+      "two_plane_infeasibility_gap_m": 0.35004249658164377
+    },
+    {
+      "candidate_id": "brake_right_strong",
+      "failure": {
+        "code": "CORRIDOR_EMPTY",
+        "message": "Empty convex cell",
+        "category": "tool_infeasible",
+        "details": {
+          "interval": [
+            0.0,
+            0.2
+          ]
+        },
+        "repair_request": "Revise decision or evidence-backed hypotheses; never relax safety silently."
+      },
+      "stop_halfplane": [
+        1.0,
+        0.0,
+        0.40000000000000013
+      ],
+      "first_empty_constraint": {
+        "kind": "occupancy",
+        "object_id": "following_car",
+        "index": 11,
+        "halfplane": [
+          -1.0,
+          0.0,
+          -0.7562542178582896
+        ],
+        "area_before_m2": 6.586213088808414,
+        "area_after_m2": 0.0,
+        "empty": true
+      },
+      "two_plane_infeasibility_gap_m": 0.3562542178582895
+    }
+  ],
+  "classification": [
+    "The first cell is emptied by the rear following_car reasonable-adverse whole-[0,2] envelope. The stop plane and its selected forward-separation plane alone have disjoint rear-x bounds.",
+    "The current physical nominal BODY at t=0 is not the whole future envelope: its initial clearance after total residual is 5.3m. Do not report a known real initial collision.",
+    "The model-provided coarse future envelope applies as the robust obstacle set for the entire first cell; v2 positive-overlap selection cannot refine a single [0,2] source or invent its time-resolved motion.",
+    "The road, target initial containment and braking deadline are individually compatible with the initial state. This does not prove a globally feasible trajectory under all declared sources.",
+    "All five current candidates choose forward separation from the same rear adverse set. Other corridor searches are not exhausted globally; do not infer global physical infeasibility from this finite construction."
+  ],
+  "model_reason": {
+    "json_pointer": "/hypotheses/confidence_note",
+    "quote": "The retained following-car adverse envelope also threatens the stopped ego under disk inflation, so independent verification may reject this proposal.",
+    "limitation": "The model cites the old disk, whereas the demonstrated conflict also exists under the actual oriented-BODY v2 constraints."
+  }
+}

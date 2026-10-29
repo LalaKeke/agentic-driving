@@ -1,0 +1,41 @@
+{
+  "method": "Assistant posthoc visual review of actual reference-front preview plus native decisions; no GT or causal safety validation",
+  "rows": [
+    {
+      "case_id": "neighbor_bend",
+      "status": "BRAKING_DIRECTION_PLAUSIBLE_TEXT_CONFLICT",
+      "model_tool_description_conflict": true,
+      "review_note": "原图邻车和右弯可见，短前缀制动符合stop_yield决策；不称完成过弯。模型confidence_note及local-scope statement仍按旧圆盘要求拒绝，存在明确工具说明文义冲突。",
+      "source_image": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-10-08-15-36-50+0800__CAM_FRONT__1538984241412460.jpg",
+      "source_image_sha256": "c7cfb92719f54577883db6bf3ef81cfda2d37a25b20d00796363fccc19ee2bac",
+      "gt_used": false
+    },
+    {
+      "case_id": "pedestrian_interaction",
+      "status": "NO_EXECUTION_TO_JUDGE",
+      "model_tool_description_conflict": false,
+      "review_note": "原图可见行人与近侧车辆，模型让行意图有可见依据；T2拒绝，未产生轨迹，不能称已正确等待。",
+      "source_image": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800851912460.jpg",
+      "source_image_sha256": "e34ed78ae3db875ed7aa2aba5c354a564d238770d5b8938d3a965f575c70a1f9",
+      "gt_used": false
+    },
+    {
+      "case_id": "night_straight",
+      "status": "LANE_HOLD_DECEL_DIRECTION_PLAUSIBLE_TEXT_CONFLICT",
+      "model_tool_description_conflict": true,
+      "review_note": "原图夜间车道和同向前车可见，hold_lane并减速方向合理；未评价模型距离准确性。模型说明仍预期旧圆盘导致道路拒绝，与实际v2不一致。",
+      "source_image": "/data/nuscenes_dataset/samples/CAM_FRONT/n015-2018-11-21-19-38-26+0800__CAM_FRONT__1542800371912471.jpg",
+      "source_image_sha256": "3352ff518a53a0ccab2df09100bd2455a3b6ce18f6ad7ad5bf9ab7956207e668",
+      "gt_used": false
+    },
+    {
+      "case_id": "heldout_intersection",
+      "status": "BRAKING_DIRECTION_PLAUSIBLE",
+      "model_tool_description_conflict": false,
+      "review_note": "原图横向公交/SUV和路口可见，stop_yield制动方向有依据；未独立确认信号归属、状态或模型米制真值，不称完成停车。",
+      "source_image": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535657112112404.jpg",
+      "source_image_sha256": "4bbe3c6d8de244d301d5fa131957a3c11828e5a05e13311be46f1dca5d69e749",
+      "gt_used": false
+    }
+  ]
+}

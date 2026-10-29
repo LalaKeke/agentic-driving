@@ -1,0 +1,43 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "launched": false,
+  "new_model_calls": 0,
+  "used_in_current_frozen_batch": false,
+  "source_commit": "a48d5d2397bb7f171e683d82857e5c23a16b7d70",
+  "old_prompt_path": "implementation/prompts/driving_prototype_v1.txt",
+  "old_prompt_version": "driving_prototype_v1",
+  "old_prompt_sha256": "a2cead8da3cc140aea5cc46d2780b143a45dad57d7a7a4cc95de0536082e45c2",
+  "old_bytes_preserved": true,
+  "new_prompt_path": "implementation/prompts/driving_prototype_v2.txt",
+  "new_prompt_version": "driving_prototype_v2",
+  "new_prompt_sha256": "3c174e127451f05a034caf4a4ce81957d0c552d0c2ae76a1132b7822d2c03f01",
+  "evidence_path": "implementation/results/scene_expansion_20261029_v1/analysis/neighbor_revision.json",
+  "evidence_sha256": "c7232afa39fe534d612412c9fb3c93fecca7612dcabc04f44db407e6e0e859d5",
+  "changes": [
+    {
+      "line": 1,
+      "old": "Prompt version driving_prototype_v1;",
+      "new": "Prompt version driving_prototype_v2;",
+      "reason": "New explicit prompt version; experiment profile and business contract remain unchanged."
+    },
+    {
+      "line": 12,
+      "old": "The existing conservative corridor uses a rear-axle circumscribed disk (radius hypot(front_m+center_to_rear_axle_m, half_width_m)); target CENTER halfplanes also reserve center_to_rear_axle_m. This is a tool expression constraint, not an environment fact: if genuine geometry cannot fit, report the physical conflict rather than inventing width.",
+      "new": "The explicit bounded_seed_candidates_v2 planner uses the full oriented ego BODY referenced at the rear axle, with hard per-cell yaw bands. T2 shrinks road halfplanes by ego BODY support over the permitted yaw band plus road uncertainty; it separates each original actor BODY envelope using ego BODY support plus that actor's TOTAL model residual and the configured safety.margin_m (1 m here), each exactly once. The safety margin is not additionally subtracted from the road. target_region constrains the vehicle CENTER; the tools account for center_to_rear_axle_m when converting reference points. T3 enforces the same yaw bands together with vehicle dynamics/limits, and T4 independently checks continuous full-body motion and collisions from the original scene. This is a tool expression constraint, not an environment fact: if genuine geometry cannot fit, report the physical conflict rather than enlarging the road, moving an obstacle or reducing residuals.",
+      "reason": "Correct stale disk description to the implemented oriented BODY, per-cell yaw bands, road-only residual shrink, obstacle total residual plus one margin, CENTER conversion and independent continuous T4."
+    }
+  ],
+  "only_these_two_replacements": true,
+  "business_contract": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "unchanged_requirements": [
+    "Necessary evidence and scale support",
+    "Unknown/null handling",
+    "Whole-interval BODY coverage and all retained scenarios",
+    "Model residuals and physical safety parameters",
+    "No road enlargement, obstacle removal or invented predictions"
+  ],
+  "migration_boundary": "Prompt-only correction prepared for an explicit new group. It does not change prior outputs, prove improved model behavior, modify the frozen batch or authorize extra requests.",
+  "unified_diff": "--- implementation/prompts/driving_prototype_v1.txt\n+++ implementation/prompts/driving_prototype_v2.txt\n@@ -1,2 +1,2 @@\n-You are the ONLINE driving agent for a separately labelled LOCAL CONDITIONAL TWO-SECOND PROTOTYPE. Prompt version driving_prototype_v1; experiment profile local_conditional_2s_prototype_v1. Reuse the supplied 3.0.0-exp2 JSON structure and whole_interval_sources_v3_exp2 BODY representation. This is not the prior strict five-second experiment.\n+You are the ONLINE driving agent for a separately labelled LOCAL CONDITIONAL TWO-SECOND PROTOTYPE. Prompt version driving_prototype_v2; experiment profile local_conditional_2s_prototype_v1. Reuse the supplied 3.0.0-exp2 JSON structure and whole_interval_sources_v3_exp2 BODY representation. This is not the prior strict five-second experiment.\n \n@@ -11,3 +11,3 @@\n Choose a supported behavior: hold_lane or resume with stop=null when continuing safely under the local assumptions, or stop_yield with a physically achievable stop deadline and explicit yield objects. Initial ego speed is trusted; do not pretend a moving ego is stopped. target_region is the all-horizon allowed CENTER region including [0,0] and proposed forward travel, not a terminal point. hard_requirements includes target_region, vehicle_limits, collision_free, road (plus stop/yield if applicable). Traffic entries only use rule stop_required/yield_required and state active/inactive. Do not invent a traffic rule if none relevant is supported. desired_speed_mps is a preference, never permission to exceed limits.\n-The existing conservative corridor uses a rear-axle circumscribed disk (radius hypot(front_m+center_to_rear_axle_m, half_width_m)); target CENTER halfplanes also reserve center_to_rear_axle_m. This is a tool expression constraint, not an environment fact: if genuine geometry cannot fit, report the physical conflict rather than inventing width.\n+The explicit bounded_seed_candidates_v2 planner uses the full oriented ego BODY referenced at the rear axle, with hard per-cell yaw bands. T2 shrinks road halfplanes by ego BODY support over the permitted yaw band plus road uncertainty; it separates each original actor BODY envelope using ego BODY support plus that actor's TOTAL model residual and the configured safety.margin_m (1 m here), each exactly once. The safety margin is not additionally subtracted from the road. target_region constrains the vehicle CENTER; the tools account for center_to_rear_axle_m when converting reference points. T3 enforces the same yaw bands together with vehicle dynamics/limits, and T4 independently checks continuous full-body motion and collisions from the original scene. This is a tool expression constraint, not an environment fact: if genuine geometry cannot fit, report the physical conflict rather than enlarging the road, moving an obstacle or reducing residuals.\n \n"
+}

@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[新四场景扩展与最小优化](implementation/results/scene_expansion_20261029_v1/README.md)：6/8次真实请求，3窗工具链及模拟移动前缀通过、1窗T2拒绝；披露两窗旧提示文义冲突，修正新提示并增强T2具体反馈，400项回归通过。
+
 [T1–T4零调用局部优化](implementation/results/toolchain_optimization_20261029_v1/README.md)：更具体的T1反馈、原生时间覆盖和光滑曲率约束；停车场恢复一个可行候选，已有3窗通过保留，未宣称在线成功率提高。
 
 [连接配置修补与验证](implementation/results/connection_repair_20261029_v1/README.md)：显式项目代理/可信CA、预检与RPC共用环境，文本和10图两次独立GPT-6.1连接诊断通过；未续跑驾驶批次。
