@@ -35,7 +35,8 @@ def validate_frozen(plan_path):
         for obs in cap['observations']:assert sha(obs['path'])==manifest['image_sha256'][obs['id']],'Image changed'
     return plan
 
-def main(activation_path):
+def main(activation_path,resume_existing=False):
+    activation_path=activation_path.resolve()
     active=read(activation_path);root=activation_path.parent
     assert active['execution_authorized'] and active['authorized_calls']==12
     assert active['per_window_limit']==2 and active['old_budget_inherited']==0
@@ -44,14 +45,35 @@ def main(activation_path):
     plan=validate_frozen(plan_path)
     quota=read(root/'quota_preflight/result.json')
     assert quota['quota_observation']=='WINDOWS_BELOW_LIMIT_NOT_GENERATION_ENTITLEMENT_PROOF','Quota unavailable/reached: no generation'
-    runtime=reserve_directory(root/'runtime')
+    runtime=(root/'runtime') if resume_existing else reserve_directory(root/'runtime')
     progress=root/'progress.jsonl'
-    with progress.open('x'):pass
+    if resume_existing:
+        assert runtime.is_dir() and progress.is_file(),'No existing batch to recover'
+        original=root/'actual_activation.json'
+        assert active['resume_of_activation_sha256']==sha(original)
+        old=read(original)
+        assert all(active[k]==old[k] for k in ('plan_sha256','authorized_calls','per_window_limit','deadline_utc')),'Recovery cannot reset budget/deadline or change the plan'
+    else:
+        with progress.open('x'):pass
     started=time.monotonic();deadline=datetime.fromisoformat(active['deadline_utc']).timestamp()
     rows=[dict(case_id=c['case_id'],scene_token=c['scene_token'],sample_token=c['sample_token'],status='NOT_ATTEMPTED',charged_requests=0) for c in plan['runtime_inputs']]
     stop=None
     for index,case in enumerate(plan['runtime_inputs']):
         validate_frozen(plan_path)
+        existing=runtime/case['case_id']
+        if resume_existing and existing.exists():
+            stored=read(existing/'summary.json') if (existing/'summary.json').exists() else None
+            count=len(list(existing.glob('charge_*.json')))
+            if stored is None or not stored.get('ended'):
+                stop='UNFINISHED_CASE_REQUIRES_REVIEW';break
+            assert count<=2 and stored['charged_requests']==count
+            rows[index].update(status='CONDITIONAL_CHAIN_PASS' if stored['prototype_conditional_success'] else 'NO_COMPLETE_CHAIN',
+                charged_requests=count,summary_path=str((existing/'summary.json').relative_to(root)),
+                native_output_count=len(list(existing.glob('attempt_*/record.json'))),fatal=stored.get('fatal'),recovered_existing_result=True)
+            with progress.open('a') as stream:stream.write(json.dumps(dict(event='CASE_RECOVERED_NO_NEW_REQUEST',**rows[index]))+'\n')
+            if stored.get('fatal'):
+                stop='SERVICE_INTERFACE_OR_EXECUTION_FAILURE';break
+            continue
         charged=sum(len(list(runtime.glob(c['case_id']+'/charge_*.json'))) for c in plan['runtime_inputs'])
         if charged>=12 or time.time()>=deadline-100:
             stop='BUDGET_OR_WALL_LIMIT';break
@@ -90,4 +112,5 @@ def main(activation_path):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--activation',required=True,type=Path)
-    args=parser.parse_args();sys.exit(main(args.activation))
+    parser.add_argument('--resume-existing',action='store_true',help='Reuse completed windows and their charges after launcher-only recovery; never repeat an unfinished request')
+    args=parser.parse_args();sys.exit(main(args.activation,args.resume_existing))
