@@ -46,7 +46,7 @@ def body_feedback(output):
     return conflicts
 
 
-def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
+def physical(cap,out,prov,initial,revision,folder,policy='moving_seed',require_turn=False):
     data={};stages={k:'NOT_REACHED' for k in ('T1','T2','T3','T4','EXECUTION','ACCEPTOR')}
     failure=None
     tools=[('T1',lambda:t1.construct(cap,out,prov)),
@@ -82,6 +82,17 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
             write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
             return None,failure,stages
     scene,corridor,traj,verdict=(data[n] for n in ('T1','T2','T3','T4'))
+    turn_task=None
+    if require_turn:
+        from agentic.turn_task import evaluate_turn
+        turn_task=evaluate_turn(scene,traj)
+        write_json_new(folder/'turn_task.json',turn_task)
+        stages['TURN_TASK']=turn_task['verdict']
+        if turn_task['verdict']!='PASS':
+            failure=dict(code='TURN_TASK_NOT_DEMONSTRATED',category='task_not_completed',details=turn_task,
+                repair_request='This verified plan does not demonstrate the registered turning task. Use only actual image-supported local road and target geometry; never distort geometry or remove a threat to meet a numeric threshold. A necessary stop remains a valid safety choice but does not complete this turning demonstration.')
+            write_json_new(folder/'stages.json',dict(stages=stages,failure=failure))
+            return None,failure,stages
     executor=SimulatedExecutor();executor.observe(cap)
     execution=executor.execute(scene,traj,verdict,cap['metadata']['reference_time_s'])
     receipt=dict(capture_digest=digest(scene['capture']),scene_digest=digest(scene),trajectory_digest=digest(traj),
@@ -91,6 +102,7 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
     result=dict(status='executed_simulated_prefix',revisions=revision,agent_output=out,provenance=prov,
         scene=scene,corridor=corridor,trajectory=traj,verification=verdict,execution=execution,execution_receipt=receipt,
         experiment_profile=PROFILE,claim='Local conditional prototype only; not old strict success, real vehicle safety, G2, or counterfactual multi-round observations.')
+    if turn_task is not None:result['turn_task']=turn_task
     acceptance=assess_round(result,initial);result['acceptance']=acceptance
     result['prototype_conditional_success']=acceptance['strict_live_physical_success']
     stages['EXECUTION']='PASS';stages['ACCEPTOR']='PASS' if result['prototype_conditional_success'] else 'FAIL'
@@ -101,6 +113,7 @@ def physical(cap,out,prov,initial,revision,folder,policy='moving_seed'):
 def main(args):
     limit=getattr(args,'max_requests',4)
     planner=getattr(args,'planner_profile','legacy_disk_v2')
+    require_turn=getattr(args,'require_turn',False)
     prompt=getattr(args,'prompt_version','driving_prototype_v1')
     if args.replay:prompt=read(args.replay)['provenance']['prompt_version']
     need(prompt in ('driving_prototype_v1','driving_prototype_v2'),'PROMPT_CONTRACT','Explicit prototype prompt version required')
@@ -117,9 +130,10 @@ def main(args):
         ROOT/'implementation/agentic/metric_contract.py',ROOT/('implementation/prompts/'+prompt+'.txt')]
     source_files += [ROOT/('implementation/agentic/'+name+'.py') for name in ('t1','t2','t3','t4','candidate_search','acceptance','geometry','runtime')]
     source_files += [ROOT/('implementation/schemas/'+name+'.schema.json') for name in ('corridor_seed_candidates_v1','trajectory_seed_candidates_v1','corridor_seed_candidates_v2','trajectory_seed_candidates_v2')]
+    if require_turn:source_files.append(ROOT/'implementation/agentic/turn_task.py')
     write_json_new(root/'config.json',dict(profile=PROFILE,capture_path=str(args.capture),capture_sha256=sha(args.capture),
         wire_bundle=str(args.wire),source_commit=commit,max_requests=limit,deadline_utc=args.deadline_utc,planner_profile=planner,
-        prompt_version=prompt,horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
+        require_turn=require_turn,prompt_version=prompt,horizon_s=2,step_s=.2,prefix_s=.2,mode='FROZEN_REAL_OUTPUT_OFFLINE_REPLAY' if args.replay else 'FRESH_ONLINE_SINGLE_WINDOW',
         gt_used=False,source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True)),
         actual_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in source_files}))
     budget=[];feedback=read(args.initial_feedback) if getattr(args,'initial_feedback',None) else None
@@ -128,7 +142,7 @@ def main(args):
     if args.replay:
         record=read(args.replay);cap=record['capture'];out=record['output'];prov=record['provenance']
         folder=reserve_directory(root/'attempt_01');write_json_new(folder/'record.json',record)
-        result,failure,stages=physical(cap,out,prov,cap,0,folder,policy=policy)
+        result,failure,stages=physical(cap,out,prov,cap,0,folder,policy=policy,**({'require_turn':True} if require_turn else {}))
         if result:
             result['fresh_online_model_call']=False;result['replay_of_real_response']=str(args.replay)
         rows.append(dict(attempt=1,source='OFFLINE_REPLAY_OF_REAL_MODEL',stages=stages,failure=failure))
@@ -153,7 +167,7 @@ def main(args):
                 try:
                     out,prov=agent.decide(cap,feedback);stages['SERVICE']='PASS';stages['BUSINESS_SCHEMA']='PASS'
                     write_json_new(folder/'record.json',dict(capture=cap,output=out,provenance=prov))
-                    result,failure,tools=physical(cap,out,prov,initial,revision,folder,policy=policy);stages.update(tools)
+                    result,failure,tools=physical(cap,out,prov,initial,revision,folder,policy=policy,**({'require_turn':True} if require_turn else {}));stages.update(tools)
                     rows.append(dict(attempt=revision+1,stages=stages,failure=failure))
                     print(json.dumps(dict(attempt=revision+1,stages=stages,failure=failure),ensure_ascii=False),flush=True)
                     if result:break # Any consumed prefix ends this observation.
@@ -166,7 +180,7 @@ def main(args):
                     break # Service/interface failure is terminal; no retry.
         except Failure as exc:fatal=exc.record
     if result:write_json_new(root/'round_result.json',result)
-    summary=dict(profile=PROFILE,planner_profile=planner,charged_requests=len(budget),budget_limit=0 if args.replay else limit,remaining_unused=0 if args.replay else limit-len(budget),
+    summary=dict(profile=PROFILE,planner_profile=planner,turn_task_required=require_turn,charged_requests=len(budget),budget_limit=0 if args.replay else limit,remaining_unused=0 if args.replay else limit-len(budget),
         ended=True,attempts=rows,fatal=fatal,prototype_conditional_success=bool(result and result['prototype_conditional_success']),
         prefix_consumed=bool(result),source_commit=commit,mode='replay' if args.replay else 'online',
         old_strict_experiment_success=False,g2_evaluated=False,real_vehicle_control=False)
@@ -180,6 +194,7 @@ if __name__=='__main__':
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
     p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2'],default='driving_prototype_v1')
+    p.add_argument('--require-turn',action='store_true',help='Require registered nonzero turning evidence before simulated prefix consumption')
     p.add_argument('--max-requests',type=int,default=4)
     p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2],default='legacy_disk_v2')
     p.add_argument('--deadline-utc',default='2026-10-28T11:58:34Z')
