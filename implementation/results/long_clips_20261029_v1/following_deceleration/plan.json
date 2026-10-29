@@ -1,0 +1,1586 @@
+{
+  "backend": "openai_api",
+  "execution_authorized": true,
+  "launched": false,
+  "user_authorization": "unlimited requests",
+  "user_call_limit": null,
+  "operational_call_ceiling": 38,
+  "per_window_limit": 2,
+  "old_budget_inherited": 0,
+  "serial": true,
+  "automatic_retries": 0,
+  "stop_on_service_error": true,
+  "requested_model": "gpt-6.1-sol",
+  "prompt_version": "driving_prototype_v3",
+  "experiment_profile": "local_conditional_2s_prototype_v1",
+  "business_contract": "3.0.0-exp2",
+  "coverage_profile": "whole_interval_sources_v3_exp2",
+  "planner_profile": "bounded_seed_candidates_v2",
+  "require_turn": false,
+  "api_preflight_models": true,
+  "wire_bundle": "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle",
+  "timeout_s": 450,
+  "source_commit": "eeeda0e0eeca4cf3c63fafcfde388457d3a2c821",
+  "source_sha256": {
+    "implementation/experiments/prepare_long_clips.py": "2e1ffe6e8095df3c984663c7f097fa53f299d73774196a6d2e5376ba85695d33",
+    "implementation/experiments/prepare_six_scene_scout.py": "412ff4ca21f21093c840a422efee7febd7141ad836b8232603e4cb942a575995",
+    "implementation/results/moving_prototype_2s_20261028_v1/capture.json": "cffbca50ee9b705faaada0d6108eb6e25859740cc592ea49a8295ee595f079fb",
+    "implementation/experiments/run_local_prototype.py": "99e545a6b0feb3ea28ff6134eb50a35064dd6886a805720344ed0ba0e8e312e0",
+    "implementation/experiments/run_openai_bend_sequence.py": "85e03be49b9df69b4d429b3a1fcd834bcc6db9831d935ee51dfd2da7d7015efc",
+    "implementation/prompts/driving_prototype_v3.txt": "7b48f4858d7654900df625aa3aaff5fe143536a7872595dec3348e4b98191a95",
+    "implementation/agentic/datasets/nuscenes_capture.py": "8beb8b563b67e7db5ceec82bad58f7117d93d449e83f861c332ba0c00adfeef8",
+    "implementation/agentic/openai_adapter.py": "5c16d8163cf968019de7f9b909b9f95603a13753d0692d0c0f8d696365a769d6",
+    "implementation/agentic/t1.py": "91249b301bfbab9971c412b32920379005659f25eca71668e7640835d02944bb",
+    "implementation/agentic/t2.py": "435ed369f45f3683faa53ac79ef5bd07928c23bdfef0e2c439c9d7dbfcbe44a8",
+    "implementation/agentic/t3.py": "e911fb30cadaa65b133498bdaade966c07027dd349c603bdd5c81b82683269bf",
+    "implementation/agentic/t4.py": "b6e4886f19643bf1a0b772ad996775d5330d05b0d39255d0ba89192bbb8da0be",
+    "implementation/agentic/metric_contract.py": "c16cc212fa9374ab4ac9c1a42aec51ef15a0895f3356738566bd686b68dab9b5",
+    "implementation/agentic/geometry.py": "cd99ee0a6ea492ccdd3b8c394af9d09f283c5b53d4cb66c8443974454e802cac",
+    "implementation/agentic/candidate_search.py": "730b8cc2f94ff9ed9bfbb8e4ec5f82ec2d1338d06eed9552a97c0a6df3fd03b0",
+    "implementation/agentic/acceptance.py": "d6475540935ea5eab2d1b3b4e9f7d2abf5aa5da9c3831df131f89d0dad571039",
+    "implementation/agentic/runtime.py": "aded0e27db3e2eda8a972a7fd139ea0db8333266647ff7a4656518dfc412bafa",
+    "implementation/agentic/contracts.py": "25ffe210691a291589fac9d7d1cc9873c76bd6805b694782f2a93e99b7ac32a1",
+    "implementation/agentic/wire_schema.py": "8eb4f3e226eda84f339f6448135e27a749bc5425ca29de70c1def69f7566b3b3",
+    "implementation/agentic/wire_schema_v2.py": "acce592bb24a084b2c62c18690d36c0ba83e911659460800d8c128ce51de9db8",
+    "implementation/agentic/evidence_io.py": "fc8884814eea0318e4ad5852f6826fea91fb6cd778f42829a3c2e5ab8006ca47",
+    "implementation/agentic/turn_task.py": "c008344790374daa730313d85f5520c4c6a184d219676a0404160d33fe431716",
+    "implementation/schemas/capture_v2.schema.json": "bec054ccec1da1c3921d3622b4f0ff0877bbf0084c561468c6ffed4f81a44974",
+    "implementation/schemas/scene_v2.schema.json": "6df0cc7f7d23d4db196c6e5c46e4c428fd9bc1395cd36947a444ccbcb7bd8d7c",
+    "implementation/schemas/agent_output_v3_exp2.schema.json": "ae599d4744b9fe37ced1fd96cd883646daf6d0057dbc749cb805ed8a0819a6bd",
+    "implementation/schemas/corridor_seed_candidates_v2.schema.json": "2b4d1c3456176c8bc0bb0a3bd5a2997e5101ec0edee4f318095c0899195135e8",
+    "implementation/schemas/trajectory_seed_candidates_v2.schema.json": "e39b2ff60805b28823d90cf122c53cc5bd8c0e555d2420b078d74162608e429a",
+    "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle/wire_schema.json": "c2e95df4406b292918a6bb85baa4a31b88467abeac613a7daa9e191eb021efbb",
+    "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle/transformation_manifest.json": "8f232d5d19957225ba48ab38b921293d694c5bbec288cc0cf210b88c6bbd5b23",
+    "implementation/experiments/run_long_clips.py": "32850c760e447dbebd2cf7795795b9ad786dac10616ccad4a4ff68d3fdbf58af",
+    "implementation/experiments/run_openai_clip.py": "6ee72576bd102ec3ad7d4d856ac46bfca40912cf9ca35a5a1ee232f266d468f8",
+    "implementation/experiments/summarize_long_clip.py": "ec5b846a6370ac8732875463099129034230cca42e59a52ff532d0fa8c77f1aa"
+  },
+  "preparation_started_at_utc": "2026-10-29T10:16:37.683255+00:00",
+  "deadline_utc": "2026-10-29T14:16:37.683255+00:00",
+  "wall_limit_s": 14400,
+  "configuration": {
+    "history_s": 2.0,
+    "horizon_s": 2.0,
+    "step_s": 0.2,
+    "current_cameras": [
+      "CAM_FRONT",
+      "CAM_FRONT_LEFT",
+      "CAM_FRONT_RIGHT",
+      "CAM_BACK",
+      "CAM_BACK_LEFT",
+      "CAM_BACK_RIGHT"
+    ],
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "center_to_rear_axle_m": 1.2,
+      "wheelbase_m": 2.7,
+      "max_speed_mps": 12.0,
+      "max_accel_mps2": 2.0,
+      "max_brake_mps2": 3.0,
+      "max_steer_rad": 0.5,
+      "max_curvature_per_m": 0.2
+    },
+    "safety": {
+      "margin_m": 1.0,
+      "prefix_s": 0.2
+    },
+    "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+    "vehicle_parameters_source": "EXPERIMENT_ASSUMPTIONS, not measured nuScenes vehicle geometry; the same center offset is used in runtime calibration and offline evaluation"
+  },
+  "gt_used": false,
+  "recording_boundary": "Independent plans from recorded ego states. Later original images are not counterfactual observations following the simulated prefixes. No stitched plan is executed.",
+  "context_policy": "Each model gets only its own causal two-second capture and optional within-window tool feedback. Full timeline and selection/display poses do not enter capture.",
+  "result_policy": "Keep every chosen reference and every failure. First two seconds are warm-up, remaining unsampled front frames are observation-only; never call these online planning successes.",
+  "experiment_id": "long_clips_20261029_v1_following_deceleration",
+  "clip_id": "following_deceleration",
+  "scene_name": "scene-0103",
+  "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+  "selection_label": "Lead vehicle / deceleration and continued travel",
+  "selection_basis": "Previously exposed acquisition/image-based scene choice; whole ego timeline is selection/display only. No annotation or map read.",
+  "raw_frames": [
+    {
+      "raw_index": 0,
+      "sample_token": "3e8750f331d7499e9b5123e9eb70f2e2",
+      "frame_id": "4f5e35aa6c6a426ca945e206fb2f4921",
+      "reference_time_id": "nusc_us_1533151603512404",
+      "reference_time_s": 1533151603.512404,
+      "relative_sequence_time_s": 0.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151603512404.jpg",
+      "image_sha256": "0e2067a1618c4424050c45c393ada8c9dbf130fff8d6015004fce901dc07984d",
+      "ego_speed_mps": null,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": null,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          600.9025056550497,
+          1647.0651440049783
+        ],
+        "yaw_world_rad": -0.5006408683239911,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 1,
+      "sample_token": "3950bd41f74548429c0f7700ff3d8269",
+      "frame_id": "ba01f58b926a472b9d146cb5a54e9a2e",
+      "reference_time_id": "nusc_us_1533151604012404",
+      "reference_time_s": 1533151604.012404,
+      "relative_sequence_time_s": 0.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151604012404.jpg",
+      "image_sha256": "d5624fcecf12310c3d0760362e097c38cdcdce987e032aaf2883071cd14e2732",
+      "ego_speed_mps": 8.546577655456415,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 0.5,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          604.6110350521911,
+          1644.9419716581156
+        ],
+        "yaw_world_rad": -0.5182465847279271,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 2,
+      "sample_token": "c5f58c19249d4137ae063b0e9ecd8b8e",
+      "frame_id": "a4f0ea2892094f4586a0e2c84f456d8e",
+      "reference_time_id": "nusc_us_1533151604512404",
+      "reference_time_s": 1533151604.512404,
+      "relative_sequence_time_s": 1.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151604512404.jpg",
+      "image_sha256": "0bb82b89f9e6ce47d9e1bcd747b01fe3fd342ccc67eb7a9c693a3fc3fc73a6bc",
+      "ego_speed_mps": 8.44269643015857,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 1.0,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          608.2196715388931,
+          1642.7516465122806
+        ],
+        "yaw_world_rad": -0.5453170904640418,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 3,
+      "sample_token": "700c1a25559b4433be532de3475e58a9",
+      "frame_id": "78c6783107c4461e830783480eeda657",
+      "reference_time_id": "nusc_us_1533151605012404",
+      "reference_time_s": 1533151605.012404,
+      "relative_sequence_time_s": 1.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151605012404.jpg",
+      "image_sha256": "54384bc8c4896f349bdc643b573f398fbb03ee842ac2af2af2c602a62f48f79d",
+      "ego_speed_mps": 8.364587859540691,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": false,
+      "history_span_s": 1.5,
+      "role": "WARMUP",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          611.7384796326206,
+          1640.4911789311382
+        ],
+        "yaw_world_rad": -0.573855909776153,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 4,
+      "sample_token": "747aa46b9a4641fe90db05d97db2acea",
+      "frame_id": "fa18edcec56e4a87a5cbd9e04a2f3a09",
+      "reference_time_id": "nusc_us_1533151605512404",
+      "reference_time_s": 1533151605.512404,
+      "relative_sequence_time_s": 2.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151605512404.jpg",
+      "image_sha256": "fc82f0d43b5c2d93b5f5aedc3ef491e7a2d5e3c5ac86be4918d8a0b991205ce5",
+      "ego_speed_mps": 8.348395306568168,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_004",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          615.1896642319359,
+          1638.1430995127077
+        ],
+        "yaw_world_rad": -0.601030845361222,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 5,
+      "sample_token": "f4f86af4da3b49e79497deda5c5f223a",
+      "frame_id": "42563f19747741318b4983bbc61a47b1",
+      "reference_time_id": "nusc_us_1533151606012404",
+      "reference_time_s": 1533151606.012404,
+      "relative_sequence_time_s": 2.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151606012404.jpg",
+      "image_sha256": "85b1b0937c423c393e4a79cfd755d31d6dc3711ca42d778514091b0f507a3b17",
+      "ego_speed_mps": 8.550189127700655,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          618.6568104859755,
+          1635.6420336275953
+        ],
+        "yaw_world_rad": -0.6248202686915516,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 6,
+      "sample_token": "6832e717621341568c759151b5974512",
+      "frame_id": "a1e3e016cc5442b7b9c84652615b24f7",
+      "reference_time_id": "nusc_us_1533151606512404",
+      "reference_time_s": 1533151606.512404,
+      "relative_sequence_time_s": 3.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151606512404.jpg",
+      "image_sha256": "5e4d9975dcf69a7533a68e760b7cd0194ae64d9dd8665efb6c6e740ff5f714bb",
+      "ego_speed_mps": 8.698383977895483,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_006",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          622.1066795182289,
+          1632.9936580199887
+        ],
+        "yaw_world_rad": -0.6557124023327378,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 7,
+      "sample_token": "c59e60042a8643e899008da2e446acca",
+      "frame_id": "054c2431ba324912bb4799b9217f5b7b",
+      "reference_time_id": "nusc_us_1533151607012404",
+      "reference_time_s": 1533151607.012404,
+      "relative_sequence_time_s": 3.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151607012404.jpg",
+      "image_sha256": "d3af1fcf714ea2e40e874f69adb6e2abfb4fc7eff5827e016b8b50b4f5f2f500",
+      "ego_speed_mps": 8.925792623127293,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          625.5830592182018,
+          1630.195041744024
+        ],
+        "yaw_world_rad": -0.6766760247715584,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 8,
+      "sample_token": "fa65a298c01f44e7a182bbf9e5fe3697",
+      "frame_id": "94449679456646028efd31ec73c6ae47",
+      "reference_time_id": "nusc_us_1533151607512404",
+      "reference_time_s": 1533151607.512404,
+      "relative_sequence_time_s": 4.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151607512404.jpg",
+      "image_sha256": "3b2a7c953923f91f569523d45d2b670bddf2b90b483bfeeee1ee323e8fce6101",
+      "ego_speed_mps": 8.960528436760628,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_008",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          629.0159660176887,
+          1627.3159901069946
+        ],
+        "yaw_world_rad": -0.6907471742397612,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 9,
+      "sample_token": "a98fba72bde9433fb882032d18aedb2e",
+      "frame_id": "350b563e0523486391eba9d010337e2d",
+      "reference_time_id": "nusc_us_1533151608012404",
+      "reference_time_s": 1533151608.012404,
+      "relative_sequence_time_s": 4.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151608012404.jpg",
+      "image_sha256": "081173c3a683512349f94905fa8bbb07c5b5e181cabf53d10812412c3a108a4e",
+      "ego_speed_mps": 8.992496697431145,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          632.4479233824239,
+          1624.4109995332005
+        ],
+        "yaw_world_rad": -0.6952163863620938,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 10,
+      "sample_token": "b6b0d9f2f2e14a3aaa2c8aedeb1edb69",
+      "frame_id": "3d1b68481c894b0c84291b7d923e2e23",
+      "reference_time_id": "nusc_us_1533151608512404",
+      "reference_time_s": 1533151608.512404,
+      "relative_sequence_time_s": 5.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151608512404.jpg",
+      "image_sha256": "f4cb74ce2a03facad9490b4ae1da64581eb5ae7982151b0e76236f527e4e5b28",
+      "ego_speed_mps": 8.818051208710106,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_010",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          635.80540623103,
+          1621.5526438141726
+        ],
+        "yaw_world_rad": -0.6920821836073021,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 11,
+      "sample_token": "796b1988dd254f74bf2fb19ba9c5b8c6",
+      "frame_id": "579c17cec3f94f0cbb84b8b95590841c",
+      "reference_time_id": "nusc_us_1533151609012404",
+      "reference_time_s": 1533151609.012404,
+      "relative_sequence_time_s": 5.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151609012404.jpg",
+      "image_sha256": "e8275a4c6eae82284334d554b31abd979c3e1ba137e73ab2f158854627684423",
+      "ego_speed_mps": 7.877042172243981,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          638.8139693978476,
+          1619.010522249956
+        ],
+        "yaw_world_rad": -0.6905358262302514,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 12,
+      "sample_token": "0d0700a2284e477db876c3ee1d864668",
+      "frame_id": "f9b9612d1bec41cf974eb41c202759f7",
+      "reference_time_id": "nusc_us_1533151609512404",
+      "reference_time_s": 1533151609.512404,
+      "relative_sequence_time_s": 6.0,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151609512404.jpg",
+      "image_sha256": "d7b1f0040c5afe17c663de394815309bb54818fbe599483430d049e3cc5eda9b",
+      "ego_speed_mps": 6.630763441388242,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_012",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          641.3447798356973,
+          1616.8686018514688
+        ],
+        "yaw_world_rad": -0.6925048814922469,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 13,
+      "sample_token": "de7593d76648450e947ba0c203dee1b0",
+      "frame_id": "c6de74ea1ed34b1fa6e084304bfdc184",
+      "reference_time_id": "nusc_us_1533151609912404",
+      "reference_time_s": 1533151609.9124038,
+      "relative_sequence_time_s": 6.3999999999999995,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151609912404.jpg",
+      "image_sha256": "edd64756f7f6ef188c353ae788d82107dedc409e1b6b0815cee2b63ca03d1167",
+      "ego_speed_mps": 5.4914917919977055,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          642.9682139968734,
+          1615.4866501792849
+        ],
+        "yaw_world_rad": -0.6942202304188834,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 14,
+      "sample_token": "f753d3f87e5b40af87ff2cbf7c8e7082",
+      "frame_id": "562a992ab3724ba1873439cb5aa79c5f",
+      "reference_time_id": "nusc_us_1533151610412404",
+      "reference_time_s": 1533151610.4124038,
+      "relative_sequence_time_s": 6.8999999999999995,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151610412404.jpg",
+      "image_sha256": "90f7d983bc7edae9684b4d2b2445e340bc785020fa863c2ccf905d77fa306774",
+      "ego_speed_mps": 4.14344172149067,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_014",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          644.550283857643,
+          1614.148981972146
+        ],
+        "yaw_world_rad": -0.6938970678123668,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 15,
+      "sample_token": "b22fa0b3c34f47b6a360b60f35d5d567",
+      "frame_id": "a1c59120cae444969fe633dce315bfaf",
+      "reference_time_id": "nusc_us_1533151610912404",
+      "reference_time_s": 1533151610.9124038,
+      "relative_sequence_time_s": 7.3999999999999995,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151610912404.jpg",
+      "image_sha256": "be4b3c376a48a06f9474f046e40fef41455d29c83b97ab9479d6fd13464c114b",
+      "ego_speed_mps": 2.927727031890749,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          645.6671581783905,
+          1613.2025772028508
+        ],
+        "yaw_world_rad": -0.6934540366849665,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 16,
+      "sample_token": "0a0d6b8c2e884134a3b48df43d54c36a",
+      "frame_id": "46424bca0dce47e4b112431ecf260696",
+      "reference_time_id": "nusc_us_1533151611412404",
+      "reference_time_s": 1533151611.4124038,
+      "relative_sequence_time_s": 7.8999999999999995,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151611412404.jpg",
+      "image_sha256": "2a41bc321c6dc966f328e2a9d8c625adf7e2e2660f6bac60329c54166000c7e6",
+      "ego_speed_mps": 1.8803502103880014,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_016",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          646.3835168655717,
+          1612.5935808919498
+        ],
+        "yaw_world_rad": -0.6930614173663641,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 17,
+      "sample_token": "8e9c2cba0ee74056aa3746e8391d54a9",
+      "frame_id": "d05e01e43df24e35a7b4f11647e250f6",
+      "reference_time_id": "nusc_us_1533151611862404",
+      "reference_time_s": 1533151611.8624039,
+      "relative_sequence_time_s": 8.35,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151611862404.jpg",
+      "image_sha256": "2c5607f97ed00d0fb33dac42c41c6d04f19490ae71105eb9a448980d5c8591e0",
+      "ego_speed_mps": 1.6626121348682261,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          646.9532716352529,
+          1612.1047022479122
+        ],
+        "yaw_world_rad": -0.6937006976564674,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 18,
+      "sample_token": "fdc39b23ab4242eda6ec5e1e6574fe33",
+      "frame_id": "c78c89d264e64b1f9f8542e5817fc6f1",
+      "reference_time_id": "nusc_us_1533151612362404",
+      "reference_time_s": 1533151612.3624039,
+      "relative_sequence_time_s": 8.85,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151612362404.jpg",
+      "image_sha256": "c5cdfab356bbce58abe7b71aba9ca03bcca3be94b8009efce419650008260a41",
+      "ego_speed_mps": 1.6788874394898199,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_018",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          647.5884758857649,
+          1611.5557162538596
+        ],
+        "yaw_world_rad": -0.6956929805970777,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 19,
+      "sample_token": "9ee4020153674b9e9943d395ff8cfdf3",
+      "frame_id": "d9a8ad39503a411a8eb7501846d8dfc9",
+      "reference_time_id": "nusc_us_1533151612862404",
+      "reference_time_s": 1533151612.8624039,
+      "relative_sequence_time_s": 9.35,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151612862404.jpg",
+      "image_sha256": "2deba14ca5b5009dee6d1176d73a5f88748b870a7db93e3dbce6cb363ea8035c",
+      "ego_speed_mps": 1.8312337448102813,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          648.28106335966,
+          1610.9566559511688
+        ],
+        "yaw_world_rad": -0.697810556424122,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 20,
+      "sample_token": "5b03af7a953245b5a3b23191ed4da62a",
+      "frame_id": "30f3278766a040469851546a499aeddd",
+      "reference_time_id": "nusc_us_1533151613362404",
+      "reference_time_s": 1533151613.3624039,
+      "relative_sequence_time_s": 9.85,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151613362404.jpg",
+      "image_sha256": "1ba630cbdbb6a7fda55b3cdc40225da0cf828a7b1be4061f2960d54f24c4e72a",
+      "ego_speed_mps": 2.057992468871302,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_020",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          649.0631027718933,
+          1610.2877803485555
+        ],
+        "yaw_world_rad": -0.6957802557756467,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 21,
+      "sample_token": "d0ecf474e0e64950aa265cd44b9c9d75",
+      "frame_id": "45b3945365d04b589a4e3d9d9588b934",
+      "reference_time_id": "nusc_us_1533151613912404",
+      "reference_time_s": 1533151613.9124038,
+      "relative_sequence_time_s": 10.4,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151613912404.jpg",
+      "image_sha256": "114f5c20eb361097a23e6cdcc8a713f7c0328afb6a25e196b774d2ff4cf39422",
+      "ego_speed_mps": 2.4820311682631475,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          650.1034893933846,
+          1609.4076302958204
+        ],
+        "yaw_world_rad": -0.6944667120914186,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 22,
+      "sample_token": "456ec36cb4a44ca78f36fbd90c0c34fa",
+      "frame_id": "aaeca9b158db49e697a4fc155f783dfa",
+      "reference_time_id": "nusc_us_1533151614412404",
+      "reference_time_s": 1533151614.4124038,
+      "relative_sequence_time_s": 10.9,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151614412404.jpg",
+      "image_sha256": "10442fdafa2e579645cc5fc7c89b4017111f575c9f45a7e28467205b6c17e8ec",
+      "ego_speed_mps": 2.7654201659987554,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_022",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          651.1587791326997,
+          1608.5141053510383
+        ],
+        "yaw_world_rad": -0.694144664663581,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 23,
+      "sample_token": "6bfd42cf0aba4f1a94ec11fa43e2dd92",
+      "frame_id": "4d56d35168514019a3f2f6f39b1b54d5",
+      "reference_time_id": "nusc_us_1533151614912404",
+      "reference_time_s": 1533151614.9124038,
+      "relative_sequence_time_s": 11.4,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151614912404.jpg",
+      "image_sha256": "7c945996a910625e76943f4c5baa91c2fecaf8c023c2a2b64c5c7bc5a23f88e8",
+      "ego_speed_mps": 3.309988925600011,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          652.4218982047082,
+          1607.4446393199378
+        ],
+        "yaw_world_rad": -0.6935909253295596,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 24,
+      "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+      "frame_id": "47bac577996844c78919b53fa36cf1ed",
+      "reference_time_id": "nusc_us_1533151615412404",
+      "reference_time_s": 1533151615.4124038,
+      "relative_sequence_time_s": 11.899999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151615412404.jpg",
+      "image_sha256": "2d5067f739fea593caa3151b62be7be17cde665c998992d7b9ef63476ea2da4a",
+      "ego_speed_mps": 3.7359487922185,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_024",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          653.8434868280997,
+          1606.2326371571312
+        ],
+        "yaw_world_rad": -0.6936004197801257,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 25,
+      "sample_token": "61d9340c5ad8418dafe7a4af1b96e6b9",
+      "frame_id": "3152f3fe99a545b3a7af4019965f4973",
+      "reference_time_id": "nusc_us_1533151615912404",
+      "reference_time_s": 1533151615.9124038,
+      "relative_sequence_time_s": 12.399999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151615912404.jpg",
+      "image_sha256": "d223c94572fc7758e1d54c5d501b86499bb49ff08d74b2dd7b53ced44d888f70",
+      "ego_speed_mps": 4.172906475656373,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          655.4325153644206,
+          1604.8803246706127
+        ],
+        "yaw_world_rad": -0.6946619510636428,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 26,
+      "sample_token": "9e7683e8586542a1b6032980c45f15ce",
+      "frame_id": "2548b0212b9b4356b3754f9aff505fba",
+      "reference_time_id": "nusc_us_1533151616412404",
+      "reference_time_s": 1533151616.4124038,
+      "relative_sequence_time_s": 12.899999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151616412404.jpg",
+      "image_sha256": "9fb9a0f7db6a3f180d349f8efdc206552e84bb7b27a4664b692f77850a3c07e6",
+      "ego_speed_mps": 4.690550527315022,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_026",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          657.2161739204714,
+          1603.3573725637239
+        ],
+        "yaw_world_rad": -0.6971362365531879,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 27,
+      "sample_token": "cc57c1ea80fe46a7abddfdb15654c872",
+      "frame_id": "8464c748ca5f460dba24b50a233692e4",
+      "reference_time_id": "nusc_us_1533151616912404",
+      "reference_time_s": 1533151616.9124038,
+      "relative_sequence_time_s": 13.399999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151616912404.jpg",
+      "image_sha256": "82ef56fcece6e1ad147f4908bdc6aa5e10409dc61299349a860215e2792fad64",
+      "ego_speed_mps": 5.1942995674842285,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          659.1877206614315,
+          1601.6666210147143
+        ],
+        "yaw_world_rad": -0.7007051240144693,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 28,
+      "sample_token": "4cf5d6c3f6ab42aab23f67b5a9782d1a",
+      "frame_id": "43690f8cf9e8472eae04d06de838217a",
+      "reference_time_id": "nusc_us_1533151617362404",
+      "reference_time_s": 1533151617.3624039,
+      "relative_sequence_time_s": 13.85,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151617362404.jpg",
+      "image_sha256": "75346c8769eb309384284a29ea8213b22c685d67020fc69d784e0474bb6772b7",
+      "ego_speed_mps": 5.590941980236011,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_028",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          661.10405834405,
+          1600.018756653736
+        ],
+        "yaw_world_rad": -0.7039849305460835,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 29,
+      "sample_token": "6d9984d09d52479e837da2fd09e192cc",
+      "frame_id": "883020ef0286455bbb4b91bc12f642ac",
+      "reference_time_id": "nusc_us_1533151617912404",
+      "reference_time_s": 1533151617.9124038,
+      "relative_sequence_time_s": 14.399999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151617912404.jpg",
+      "image_sha256": "c2ad14ad703281099f6ecd187aa2f3add015d64b7fe09297ec9b568af83cd0fa",
+      "ego_speed_mps": 5.957654385926286,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          663.578902217954,
+          1597.8711110703805
+        ],
+        "yaw_world_rad": -0.7085835509798376,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 30,
+      "sample_token": "38a28a3aaf2647f2a8c0e90e31267bf8",
+      "frame_id": "6d2aceca30d140c2ada255c5289f2589",
+      "reference_time_id": "nusc_us_1533151618412404",
+      "reference_time_s": 1533151618.4124038,
+      "relative_sequence_time_s": 14.899999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151618412404.jpg",
+      "image_sha256": "034a749af6a3be55e2090125947b3bd90fb1a632df8bc77add9176438f36ceb7",
+      "ego_speed_mps": 6.378119172559608,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_030",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          665.9742701620472,
+          1595.765607538164
+        ],
+        "yaw_world_rad": -0.7120423943742528,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 31,
+      "sample_token": "6402fd1ffaf041d0b9162bd92a7ba0a2",
+      "frame_id": "16c0e0687dda444285817f7ccd3387b5",
+      "reference_time_id": "nusc_us_1533151618912404",
+      "reference_time_s": 1533151618.9124038,
+      "relative_sequence_time_s": 15.399999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151618912404.jpg",
+      "image_sha256": "d882235f91332358de2d476d10a9a0d115e26f7802b56123c848b68f0d96fb07",
+      "ego_speed_mps": 6.79324913820449,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          668.5182737424462,
+          1593.5147538175918
+        ],
+        "yaw_world_rad": -0.7139763282510525,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 32,
+      "sample_token": "ce94ef7a0522468e81c0e2b3a2f1e12d",
+      "frame_id": "059ffc35578745c3b625011b0479a4fa",
+      "reference_time_id": "nusc_us_1533151619412404",
+      "reference_time_s": 1533151619.4124038,
+      "relative_sequence_time_s": 15.899999999999999,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151619412404.jpg",
+      "image_sha256": "1a730ed673722d97cd907d369fa150a2f4ff0f1314fa28759ef1ccf1fe4d3366",
+      "ego_speed_mps": 7.073323162171006,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 1.9,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_032",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          671.1810808601917,
+          1591.1871814773906
+        ],
+        "yaw_world_rad": -0.7147505811745356,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 33,
+      "sample_token": "9fcdc52b791045e99c623c5fc643331f",
+      "frame_id": "ae6645e8bf474b65b19a69bf71fe90a3",
+      "reference_time_id": "nusc_us_1533151619912458",
+      "reference_time_s": 1533151619.912458,
+      "relative_sequence_time_s": 16.400054,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151619912458.jpg",
+      "image_sha256": "a08fdf1245e38528db954e5f25a1cc3568de61d3b0fd7221c96687060ffc7ef7",
+      "ego_speed_mps": 7.489461066208808,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 1.900054,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          673.9833135045967,
+          1588.7023224516045
+        ],
+        "yaw_world_rad": -0.7170143487765158,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 34,
+      "sample_token": "1c9a906c40f6417bbe1cea06d6e55501",
+      "frame_id": "87723668b00f419ba263ab062d14bd13",
+      "reference_time_id": "nusc_us_1533151620412404",
+      "reference_time_s": 1533151620.4124038,
+      "relative_sequence_time_s": 16.9,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151620412404.jpg",
+      "image_sha256": "16edd345f4ec2b4efced32db2cd4fc2cc59bacc9646fc9cf9981eeb0fdfeb8f6",
+      "ego_speed_mps": 7.764614687182739,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_034",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          676.8758205702393,
+          1586.1129156697466
+        ],
+        "yaw_world_rad": -0.7171054359074441,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 35,
+      "sample_token": "a771effa2a2648d78096c3e92b95b129",
+      "frame_id": "d5061556971945c2afc03dbfdc3bc1a6",
+      "reference_time_id": "nusc_us_1533151621012404",
+      "reference_time_s": 1533151621.012404,
+      "relative_sequence_time_s": 17.5,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151621012404.jpg",
+      "image_sha256": "c75689e6160a3dd1e06a57f4af64fa551ccdd30f87c992cc9b2e0a7df47f9806",
+      "ego_speed_mps": 7.9242392706705465,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          680.4244709717948,
+          1582.9721666454523
+        ],
+        "yaw_world_rad": -0.7133674237108464,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 36,
+      "sample_token": "b9ea04a6121d4a8bb00199b885aa5ef0",
+      "frame_id": "2d3b48e3840244c7b681cb6e63e2c123",
+      "reference_time_id": "nusc_us_1533151621412404",
+      "reference_time_s": 1533151621.4124038,
+      "relative_sequence_time_s": 17.9,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151621412404.jpg",
+      "image_sha256": "f0ee220c09d197c1e4d3ce45fb75781e044ab9dfd76b383cd41c7655a523fe14",
+      "ego_speed_mps": 8.09472584030216,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_036",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          682.8486148898575,
+          1580.816492536123
+        ],
+        "yaw_world_rad": -0.7128594932380529,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 37,
+      "sample_token": "87e772078a494d42bd34cd16172808bc",
+      "frame_id": "0f4c0e7301424f2996d87a86902aafe9",
+      "reference_time_id": "nusc_us_1533151621912404",
+      "reference_time_s": 1533151621.9124038,
+      "relative_sequence_time_s": 18.4,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151621912404.jpg",
+      "image_sha256": "c1ef805b133d23e57032ea9ab27a5cc0139b7b2ff67b69c1d28e8e56ee9826f0",
+      "ego_speed_mps": 8.168102605290931,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 1.999946,
+      "role": "OBSERVATION_ONLY",
+      "planning_case_id": null,
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          685.9247079751707,
+          1578.1298716182705
+        ],
+        "yaw_world_rad": -0.7109663789717758,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 38,
+      "sample_token": "f40544fd4f5d42abbcfa948eeaf86850",
+      "frame_id": "aeffd15cbe594a9a81b26d8bb8d15f3d",
+      "reference_time_id": "nusc_us_1533151622412404",
+      "reference_time_s": 1533151622.4124038,
+      "relative_sequence_time_s": 18.9,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151622412404.jpg",
+      "image_sha256": "9a86254a9b20c186e62ccb4ac7c20432f01b30795d23b6b10deb7f354113fbc1",
+      "ego_speed_mps": 8.23578326234749,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_038",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          689.0097744219439,
+          1575.402022420486
+        ],
+        "yaw_world_rad": -0.7138218263051872,
+        "center_offset_m": 1.2
+      }
+    },
+    {
+      "raw_index": 39,
+      "sample_token": "281b92269fd648d4b52d06ac06ca6d65",
+      "frame_id": "1afba7064f794174a68582db8e099c80",
+      "reference_time_id": "nusc_us_1533151622912404",
+      "reference_time_s": 1533151622.9124038,
+      "relative_sequence_time_s": 19.4,
+      "image_path": "/data/nuscenes_dataset/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151622912404.jpg",
+      "image_sha256": "1fc64221853acb75b1714cfff2e3f6001da5e6adc1930871dac8a48f71386c22",
+      "ego_speed_mps": 8.33631098479838,
+      "speed_source": "causal_backward_difference_localization_0.5s; not CAN",
+      "complete_input_available": true,
+      "history_span_s": 2.0,
+      "role": "PLANNING_REFERENCE",
+      "planning_case_id": "frame_039",
+      "display_only_ego_pose": {
+        "center_xy_world_m": [
+          692.1407562909714,
+          1572.6501558343396
+        ],
+        "yaw_world_rad": -0.7095452059905902,
+        "center_offset_m": 1.2
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "frame_004",
+      "frame_index": 4,
+      "raw_index": 4,
+      "planning_reference_index": 0,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "747aa46b9a4641fe90db05d97db2acea",
+      "relative_sequence_time_s": 2.0,
+      "reference_time_s": 1533151605.512404,
+      "ego_speed_mps": 8.348395306568168,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_004/capture.json",
+      "capture_sha256": "a209c45bd57d3d4a232913d0971d293305fbf45278f2be8dad196ae8649ff78b",
+      "image_sha256": {
+        "4f5e35aa6c6a426ca945e206fb2f4921": "0e2067a1618c4424050c45c393ada8c9dbf130fff8d6015004fce901dc07984d",
+        "ba01f58b926a472b9d146cb5a54e9a2e": "d5624fcecf12310c3d0760362e097c38cdcdce987e032aaf2883071cd14e2732",
+        "a4f0ea2892094f4586a0e2c84f456d8e": "0bb82b89f9e6ce47d9e1bcd747b01fe3fd342ccc67eb7a9c693a3fc3fc73a6bc",
+        "78c6783107c4461e830783480eeda657": "54384bc8c4896f349bdc643b573f398fbb03ee842ac2af2af2c602a62f48f79d",
+        "bfdb17386ee849b9ab30c0b7a3bb436d": "3d9fa24cf63b1be2131716356e1f10e5da46009448e72cd1f50901d77d475ebc",
+        "adb6bb25465941bf8ab5ea353d978172": "a7272fb52becddf5d8aeebe9891a74eeb8a5d9137694688b7df25c593de89765",
+        "77c34ff4e79a487aa8cd1d0f1654815f": "187e57fa07efa0d7fc46be5941b2e2f51038f0a7b294b4d0a68d168248d6d113",
+        "ea53d9644bda4a8b8a550fd1ecd9a643": "c3ef2d6dcb5f7844653fafc6692d4dc16904bb83934cec9194cbe0001b4b3fe1",
+        "7cb571f327f64fd4ac5f5bbf205cb742": "417117d65825f15981d10cab99f8bc9ce415f3dd614adcbad0ecc141108e01c8",
+        "fa18edcec56e4a87a5cbd9e04a2f3a09": "fc82f0d43b5c2d93b5f5aedc3ef491e7a2d5e3c5ac86be4918d8a0b991205ce5"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_006",
+      "frame_index": 6,
+      "raw_index": 6,
+      "planning_reference_index": 1,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "6832e717621341568c759151b5974512",
+      "relative_sequence_time_s": 3.0,
+      "reference_time_s": 1533151606.512404,
+      "ego_speed_mps": 8.698383977895483,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_006/capture.json",
+      "capture_sha256": "450f6a4d013702b7c11ece2f3a9688aeb2f8f03725d96d621b9149d80f8f396e",
+      "image_sha256": {
+        "a4f0ea2892094f4586a0e2c84f456d8e": "0bb82b89f9e6ce47d9e1bcd747b01fe3fd342ccc67eb7a9c693a3fc3fc73a6bc",
+        "78c6783107c4461e830783480eeda657": "54384bc8c4896f349bdc643b573f398fbb03ee842ac2af2af2c602a62f48f79d",
+        "fa18edcec56e4a87a5cbd9e04a2f3a09": "fc82f0d43b5c2d93b5f5aedc3ef491e7a2d5e3c5ac86be4918d8a0b991205ce5",
+        "42563f19747741318b4983bbc61a47b1": "85b1b0937c423c393e4a79cfd755d31d6dc3711ca42d778514091b0f507a3b17",
+        "0449097aceae4edbb29a8c55f45e29a2": "9729efa525eef0966a30a4ce746eeba87b06b11b3d77c64a5e2dfd84f79e2add",
+        "ce13af234094404694358514f2ea0fa8": "2d408999b13b665d37a6eec4204b145cd2b2636c97a2b79018b191c014dd2569",
+        "afe5267095d14bafa9a8e548174e7468": "131a18ecc25fc018d0eeef3f5518e83b8b3e031a62e237ff809963b8fd262449",
+        "cd4d779b982e4b939a246f2ca38a9e28": "df1b81d82b7018528997c944192b2db53aac07177a856326f45a72dcef80a350",
+        "3d7f25032bbc4fdbaedf2ef1edbfa147": "c02f107e5613cd32f8d07ae3ae3948e2a94f106b28bfdce33ffb344f88a228f7",
+        "a1e3e016cc5442b7b9c84652615b24f7": "5e4d9975dcf69a7533a68e760b7cd0194ae64d9dd8665efb6c6e740ff5f714bb"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_008",
+      "frame_index": 8,
+      "raw_index": 8,
+      "planning_reference_index": 2,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "fa65a298c01f44e7a182bbf9e5fe3697",
+      "relative_sequence_time_s": 4.0,
+      "reference_time_s": 1533151607.512404,
+      "ego_speed_mps": 8.960528436760628,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_008/capture.json",
+      "capture_sha256": "7faa7f60e59d203d133a87f96cdcdd9a47a6a04339c8c255b975859cfd8e7822",
+      "image_sha256": {
+        "fa18edcec56e4a87a5cbd9e04a2f3a09": "fc82f0d43b5c2d93b5f5aedc3ef491e7a2d5e3c5ac86be4918d8a0b991205ce5",
+        "42563f19747741318b4983bbc61a47b1": "85b1b0937c423c393e4a79cfd755d31d6dc3711ca42d778514091b0f507a3b17",
+        "a1e3e016cc5442b7b9c84652615b24f7": "5e4d9975dcf69a7533a68e760b7cd0194ae64d9dd8665efb6c6e740ff5f714bb",
+        "054c2431ba324912bb4799b9217f5b7b": "d3af1fcf714ea2e40e874f69adb6e2abfb4fc7eff5827e016b8b50b4f5f2f500",
+        "6288a230ebde40aca354bafffab8bcbf": "4c4c94936fe765eb6b10204f0d4f19fa20e7e28e5e78ee8fdf45f424ece60444",
+        "be0aeca9c36349bda8e48b3573742861": "4f6bfa3e7ba218f251c354ebafe46c2a09f6c69a0daff211fc03b061898502ff",
+        "186458272c41496bbeddd9dbd70ebf1b": "a324a1bed9088114a1634f926ea734ade5c0853394e9c62ad6141e54bd3d6f00",
+        "4b5e53fcae784bd589f8c882a8247dc8": "276051c31459beaba175cd348d4d2681e9a902b5dc50bc79c62cab0abbaf024b",
+        "3a2e3a3c36954ef686e7155d300a2f48": "d7b9d3c039ea99db5e3562df6bd8f6f98964d529f68097a1878bdd0e72f84496",
+        "94449679456646028efd31ec73c6ae47": "3b2a7c953923f91f569523d45d2b670bddf2b90b483bfeeee1ee323e8fce6101"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_010",
+      "frame_index": 10,
+      "raw_index": 10,
+      "planning_reference_index": 3,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "b6b0d9f2f2e14a3aaa2c8aedeb1edb69",
+      "relative_sequence_time_s": 5.0,
+      "reference_time_s": 1533151608.512404,
+      "ego_speed_mps": 8.818051208710106,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_010/capture.json",
+      "capture_sha256": "af41de3fb290129fd18f3b65dcf1717ee858dc9952c64628f59c6a8c017550c8",
+      "image_sha256": {
+        "a1e3e016cc5442b7b9c84652615b24f7": "5e4d9975dcf69a7533a68e760b7cd0194ae64d9dd8665efb6c6e740ff5f714bb",
+        "054c2431ba324912bb4799b9217f5b7b": "d3af1fcf714ea2e40e874f69adb6e2abfb4fc7eff5827e016b8b50b4f5f2f500",
+        "94449679456646028efd31ec73c6ae47": "3b2a7c953923f91f569523d45d2b670bddf2b90b483bfeeee1ee323e8fce6101",
+        "350b563e0523486391eba9d010337e2d": "081173c3a683512349f94905fa8bbb07c5b5e181cabf53d10812412c3a108a4e",
+        "f74763c46264498087a8c51ca7d5e359": "9edbbd183b3b27a5e2648e9d5bfc41c749ad1a8849c08dda844d0489b9d4081e",
+        "e0fcba689f59476c91dc71878d60f4f3": "2863e084966b427525da6fafec112068cf5148c17b025704c0db4f0b0ae09ca7",
+        "42b1d037cfb141f39c0f9588701d2e26": "dda788f65c91adf33975fc95b8ee1bb474c3f6cb6f07e4d7e8be070b7bdf71b4",
+        "7c6016c453e649128c4f40de4b2dd465": "297f65fbca587b3e28fa47ac66f151fc35fe5626dd46e2936f55a0195445379e",
+        "427df7b0c79a4bce90a38d5429cc2080": "7c4da926f7485cf48869ceed43ab1c4f14f2e5221c5547fd266820e2fe09abce",
+        "3d1b68481c894b0c84291b7d923e2e23": "f4cb74ce2a03facad9490b4ae1da64581eb5ae7982151b0e76236f527e4e5b28"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_012",
+      "frame_index": 12,
+      "raw_index": 12,
+      "planning_reference_index": 4,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "0d0700a2284e477db876c3ee1d864668",
+      "relative_sequence_time_s": 6.0,
+      "reference_time_s": 1533151609.512404,
+      "ego_speed_mps": 6.630763441388242,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_012/capture.json",
+      "capture_sha256": "c856f9e78bd012625e02e4ac2f1f77d833c71fb14f2a4a01eca50af6c5f58265",
+      "image_sha256": {
+        "94449679456646028efd31ec73c6ae47": "3b2a7c953923f91f569523d45d2b670bddf2b90b483bfeeee1ee323e8fce6101",
+        "350b563e0523486391eba9d010337e2d": "081173c3a683512349f94905fa8bbb07c5b5e181cabf53d10812412c3a108a4e",
+        "3d1b68481c894b0c84291b7d923e2e23": "f4cb74ce2a03facad9490b4ae1da64581eb5ae7982151b0e76236f527e4e5b28",
+        "579c17cec3f94f0cbb84b8b95590841c": "e8275a4c6eae82284334d554b31abd979c3e1ba137e73ab2f158854627684423",
+        "1e43e220e01c42ce811f2622ff7ecc22": "4b31257dccde76ed4a75042355056ea74b581e0047406118b655ac85a4425381",
+        "0392857505a04468b30e7d27351cef18": "a2478c485c72e760342a94886988ec347c160f2de226a04b737cfe0e9fe182c0",
+        "abdbccd3db1e4eae841b04009349c8a4": "404a896ac6e5c4f2ee9a8b5b5f449008e05012f6bf07e2acf763422e06aba554",
+        "a30fce16922e462a84471b9d163f66e8": "97efe500de5d501b8b1418c493f5db64142fa6e3704cb1c94f43f5eaba5d09d5",
+        "eef95e82ebf447e690c9ecc057a43af8": "733e7fbb336deb1516ce95998da6c724812e96f80b56f7e529a95bdb06fd0fe6",
+        "f9b9612d1bec41cf974eb41c202759f7": "d7b1f0040c5afe17c663de394815309bb54818fbe599483430d049e3cc5eda9b"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_014",
+      "frame_index": 14,
+      "raw_index": 14,
+      "planning_reference_index": 5,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "f753d3f87e5b40af87ff2cbf7c8e7082",
+      "relative_sequence_time_s": 6.8999999999999995,
+      "reference_time_s": 1533151610.4124038,
+      "ego_speed_mps": 4.14344172149067,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_014/capture.json",
+      "capture_sha256": "3c2129e6d229b31b1bbfe85a1b391ced7252fd41396964cfa776cc93236ee365",
+      "image_sha256": {
+        "6de3bdc3744e499d8276055e47b02b60": "91d3960c89850a273daedf5c31bc110b0137c38da9e91ce0d3faa403aff5128b",
+        "73b619f3591c46d8b3dbb43e12a66bb5": "0888fe396ce9162f52ae93a151cb293badefd84576a28dba154b2acdd3407757",
+        "ebd58e7e08be4703804024a56316c340": "aefcc74eb0008f18595d4ba91e88666e8ba4a82cf0217e85aa14d2fda2529458",
+        "c6de74ea1ed34b1fa6e084304bfdc184": "edd64756f7f6ef188c353ae788d82107dedc409e1b6b0815cee2b63ca03d1167",
+        "26006ce685264dfcb733101b95fce2ef": "b21c1551f24d00b679a470ea36159c13194e987cf07b4e5877340d0a65b986db",
+        "6c317adb226a416c98a73531c502db62": "6095121a87fb7e5801547fe5112438e96513f410d7812ebc36e743404dcee3d5",
+        "3fd75e90eb814a69af661aa1f0c5e0d2": "7434de5554c508179c2832c92fe5f530f85c72850ab433bbbae118efff8d2954",
+        "a6f39e04dea64761b896b1054110ee45": "11386ad4a80743df8965a8bf930e2150e48df25a528d8699b749c8dbf28a2c6c",
+        "e193e3756bda4cf2b04ab6e4a2b656e0": "bd97c07e8026a858cfa37c678f0fb3c23b188cc1271d228e49a782dd43cc1be5",
+        "562a992ab3724ba1873439cb5aa79c5f": "90f7d983bc7edae9684b4d2b2445e340bc785020fa863c2ccf905d77fa306774"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_016",
+      "frame_index": 16,
+      "raw_index": 16,
+      "planning_reference_index": 6,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "0a0d6b8c2e884134a3b48df43d54c36a",
+      "relative_sequence_time_s": 7.8999999999999995,
+      "reference_time_s": 1533151611.4124038,
+      "ego_speed_mps": 1.8803502103880014,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_016/capture.json",
+      "capture_sha256": "8ad1af1bb9d28e7dad3a28ceac1ed22e4e46ffe312a5caa76e195147dcccebc4",
+      "image_sha256": {
+        "ebd58e7e08be4703804024a56316c340": "aefcc74eb0008f18595d4ba91e88666e8ba4a82cf0217e85aa14d2fda2529458",
+        "c6de74ea1ed34b1fa6e084304bfdc184": "edd64756f7f6ef188c353ae788d82107dedc409e1b6b0815cee2b63ca03d1167",
+        "562a992ab3724ba1873439cb5aa79c5f": "90f7d983bc7edae9684b4d2b2445e340bc785020fa863c2ccf905d77fa306774",
+        "a1c59120cae444969fe633dce315bfaf": "be4b3c376a48a06f9474f046e40fef41455d29c83b97ab9479d6fd13464c114b",
+        "4bc35fc18e20460f94f59fc5829893c1": "75d06486f9ffa74877ff850f3d3a8af9a063cf02492e64609a757d7f4479503c",
+        "7e5ea4eb8f1a44c89beec372ed101d56": "86d74abfeff6f9f37defb92d92891b1ab63523cd51964956c9c7c92cd46c1efc",
+        "1a02bcc8c378410ca0ff2f154c989d1f": "a9e22993ae3865b56d4611d4d1aad74394ef3d08a10ad39ba5746b43ca77648c",
+        "be9e48e17beb423dad8b2affdfad3a55": "618d74b4b19ccb278467364b2aa3604e0f4b927984b5e5919b09ab05a19d0f6c",
+        "94cf617cdf3843cc8d0e6b7fdcc84a43": "680723efecc641fd6c2e2189022ca5cab5f34947f5a80512641c1020ea15b641",
+        "46424bca0dce47e4b112431ecf260696": "2a41bc321c6dc966f328e2a9d8c625adf7e2e2660f6bac60329c54166000c7e6"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_018",
+      "frame_index": 18,
+      "raw_index": 18,
+      "planning_reference_index": 7,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "fdc39b23ab4242eda6ec5e1e6574fe33",
+      "relative_sequence_time_s": 8.85,
+      "reference_time_s": 1533151612.3624039,
+      "ego_speed_mps": 1.6788874394898199,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_018/capture.json",
+      "capture_sha256": "2f3efac9359d242ba0a2dd0888abdafef9f7f5bc5a749cb66ef07d5b40ddaa20",
+      "image_sha256": {
+        "28a10a4d6be847fea8e5dc6bb1411413": "26e2a3f5496f606879537d026cf2866b8977fc9ccb421762b3f9ea47e84a51dc",
+        "34e49cbc025e4148a926fb9bfcdee716": "561cef011ef66e1ad69617b4649cf6baedb5593cb5551a35b49fec876cd612ca",
+        "42c18a2c0bdc45208dfeae03f9611567": "4de1a525f7db656c08198e14c01eea6d7f6ec65248ea1127cb12e8269d0eaae9",
+        "d05e01e43df24e35a7b4f11647e250f6": "2c5607f97ed00d0fb33dac42c41c6d04f19490ae71105eb9a448980d5c8591e0",
+        "6400a532dcca45a4bd8ed45d442dacdd": "f1dab2d22b0ef2ef99386b9ca4df13b3e5c108a1a583a5a7cbadd9044e65cea4",
+        "33a69ec3104148a7a0b6110f7194d953": "e8c6d50b65cfacf18a1c8b7dd4916d6cfa79bf52aba93ec0dc0b52abba23b756",
+        "347c784c21d147e39470a6f8c3f23dfb": "b3d2c66819a8acbbc7d5bec1d2315ca9fa3bb4664f2e9eb8d5b0ba4ee924b244",
+        "75d41bc6f7f64cb884b491bd90786453": "8cf6b861fe889bf573a595570366512b255ad5fc14e52e6e1502ad14de8c9a1b",
+        "754daa242dcd410f9c63430ef1e168fb": "3842c9b8e145a30824493b905b1dd6d840178f6957b990b284a3e925e0707e6e",
+        "c78c89d264e64b1f9f8542e5817fc6f1": "c5cdfab356bbce58abe7b71aba9ca03bcca3be94b8009efce419650008260a41"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_020",
+      "frame_index": 20,
+      "raw_index": 20,
+      "planning_reference_index": 8,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "5b03af7a953245b5a3b23191ed4da62a",
+      "relative_sequence_time_s": 9.85,
+      "reference_time_s": 1533151613.3624039,
+      "ego_speed_mps": 2.057992468871302,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_020/capture.json",
+      "capture_sha256": "391fd917aa90bf2185d2b5461931b6a50405824360009536bf054d8f23c947e4",
+      "image_sha256": {
+        "42c18a2c0bdc45208dfeae03f9611567": "4de1a525f7db656c08198e14c01eea6d7f6ec65248ea1127cb12e8269d0eaae9",
+        "d05e01e43df24e35a7b4f11647e250f6": "2c5607f97ed00d0fb33dac42c41c6d04f19490ae71105eb9a448980d5c8591e0",
+        "c78c89d264e64b1f9f8542e5817fc6f1": "c5cdfab356bbce58abe7b71aba9ca03bcca3be94b8009efce419650008260a41",
+        "d9a8ad39503a411a8eb7501846d8dfc9": "2deba14ca5b5009dee6d1176d73a5f88748b870a7db93e3dbce6cb363ea8035c",
+        "18c56930ce1c437082ab7e21fc11f0d5": "a715c0f3b306f6b61a032a009c6b705e3de3f71b0ea2a2abbdc7fc1cb236f3d6",
+        "a56f1e73bfb24207a34c1d8a9816135d": "1ddfd6fdebff365cd2c01d5d617e9592ea320744da7d9135e5de2c18862ede8a",
+        "1b5502910edd46cfae51947e2dd6cc1e": "a3eee63fed4ee07bcd26a7c898d8843c6498359b1aa921c280f1b3261af9ed9a",
+        "b4c59c2c2b634adb86e685077fc81b94": "118417952c0de70e17617bb944ceba0a7438d64520577e3fb66b70dd53630ed8",
+        "5461d311bf9e46eda09771a1ff6baf8c": "2933f33d2933183eb930b152d932ee08e0eb6c5f35c36f8dd80d436f71092f2e",
+        "30f3278766a040469851546a499aeddd": "1ba630cbdbb6a7fda55b3cdc40225da0cf828a7b1be4061f2960d54f24c4e72a"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_022",
+      "frame_index": 22,
+      "raw_index": 22,
+      "planning_reference_index": 9,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "456ec36cb4a44ca78f36fbd90c0c34fa",
+      "relative_sequence_time_s": 10.9,
+      "reference_time_s": 1533151614.4124038,
+      "ego_speed_mps": 2.7654201659987554,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_022/capture.json",
+      "capture_sha256": "7f0a678c5e52288622c1debac2ca83aa9af8b21eda5f0fb3fa9f549d403a4cff",
+      "image_sha256": {
+        "c10658658d5b421eb879428fac2e1322": "277c448d644c2e206c5dca3d311ff27c88e1912a6156ba3f9b832fc125b7b005",
+        "e68472a6a8164e47a3aff65c7ca68bc3": "eaf187790e8e80702f36e043af400eac6463d7a4d794771f0c70b2424ccc2e12",
+        "5f11080b7d174752942c65f8fca8bec1": "b600a3d0ff29fe1740a61787825f621ab4e24bafe9f0f490ce9e8009ef8e5c4f",
+        "45b3945365d04b589a4e3d9d9588b934": "114f5c20eb361097a23e6cdcc8a713f7c0328afb6a25e196b774d2ff4cf39422",
+        "975b14e1c7dd4d3e862815a05c733300": "4862637bef2ef9f1c62561b42edc680d1b688d576ae30aa1ae9334fc5e4d5dba",
+        "a19517e88a864232b10b13abe97da422": "f0f918c9efb18cf12dca972c91bb632d45e545f779c78558ccbc7099d91e71a9",
+        "8c3f0b28dcf240d68d738fef2c7a5de8": "d8e38705b3e861fdfcdd853cc0feb41f5d6f639253cd20ba409e42e13f174e2a",
+        "edd5459769c8479f8d87c73cc3bfc2e5": "25ad3139ce780477a97bf253be80cd1a72756afeacadc82bb263c051344d0714",
+        "37bca5438e674d1e936dc81473e6563d": "b321bb62d3971e042497186b77f4e314a5e37d693bf2b39c4e6752993839cc97",
+        "aaeca9b158db49e697a4fc155f783dfa": "10442fdafa2e579645cc5fc7c89b4017111f575c9f45a7e28467205b6c17e8ec"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_024",
+      "frame_index": 24,
+      "raw_index": 24,
+      "planning_reference_index": 10,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+      "relative_sequence_time_s": 11.899999999999999,
+      "reference_time_s": 1533151615.4124038,
+      "ego_speed_mps": 3.7359487922185,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_024/capture.json",
+      "capture_sha256": "df132e3cd61e89d7a25cc178978e9a2a3159d5c9c956a72892f85735b06fb3cb",
+      "image_sha256": {
+        "5f11080b7d174752942c65f8fca8bec1": "b600a3d0ff29fe1740a61787825f621ab4e24bafe9f0f490ce9e8009ef8e5c4f",
+        "45b3945365d04b589a4e3d9d9588b934": "114f5c20eb361097a23e6cdcc8a713f7c0328afb6a25e196b774d2ff4cf39422",
+        "aaeca9b158db49e697a4fc155f783dfa": "10442fdafa2e579645cc5fc7c89b4017111f575c9f45a7e28467205b6c17e8ec",
+        "4d56d35168514019a3f2f6f39b1b54d5": "7c945996a910625e76943f4c5baa91c2fecaf8c023c2a2b64c5c7bc5a23f88e8",
+        "4c8380aaf43e4723b4ce90b15b799346": "c62f00c27b0073c16ce0c0455b9a7ec811c248c559fb2a9db62741c3dc47b32f",
+        "cfa5776d9512401697d068393ea4b4ca": "283ce993e49fc712e1235bbfab4baef405629e2a4a9d746e6a60033e32635278",
+        "50238b09b2604dfebd9db4a85c3d06f5": "b00670983010c73f2a04a27f27047487d836cf7f6c6223602e3e15a44563941a",
+        "f19a470abb1c43bba302f5a8893d374f": "86379f3f734b85eb4cda63ce53daa8ffff3fc62cb0f83bc864bc68e4c91e2ecb",
+        "13f531d217804be7a3e0ccbb5d30e3eb": "6b622cdbd18a523c6a89f7c6fb951a613ad1828ea258a95c139fc5fabbfaa795",
+        "47bac577996844c78919b53fa36cf1ed": "2d5067f739fea593caa3151b62be7be17cde665c998992d7b9ef63476ea2da4a"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_026",
+      "frame_index": 26,
+      "raw_index": 26,
+      "planning_reference_index": 11,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "9e7683e8586542a1b6032980c45f15ce",
+      "relative_sequence_time_s": 12.899999999999999,
+      "reference_time_s": 1533151616.4124038,
+      "ego_speed_mps": 4.690550527315022,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_026/capture.json",
+      "capture_sha256": "ccc7a7bc01837c6b1956ca1a3745dcd185747ced8fafa032d62867eaea32ae73",
+      "image_sha256": {
+        "aaeca9b158db49e697a4fc155f783dfa": "10442fdafa2e579645cc5fc7c89b4017111f575c9f45a7e28467205b6c17e8ec",
+        "4d56d35168514019a3f2f6f39b1b54d5": "7c945996a910625e76943f4c5baa91c2fecaf8c023c2a2b64c5c7bc5a23f88e8",
+        "47bac577996844c78919b53fa36cf1ed": "2d5067f739fea593caa3151b62be7be17cde665c998992d7b9ef63476ea2da4a",
+        "3152f3fe99a545b3a7af4019965f4973": "d223c94572fc7758e1d54c5d501b86499bb49ff08d74b2dd7b53ced44d888f70",
+        "87ba0ca032dd49cbac7ccc72c16d209e": "bb7b2b96868334befcd0a5f208734878c522afb4cda3029e85bc4789791c2221",
+        "14c7bcd0ca524827979404631a7ed7b7": "997ead862c5736688f2e1a5cc8ec217796979077542f2a2a2590d24ba09afda6",
+        "47d19f29bf434fc597f9a006ef764306": "5f859dd6b55cf6117f1f4f0a73810310b826abdd1c6c2fdd7fed2e97c1b7c083",
+        "88e7b7ba774b4164bd95cf88b95f0380": "3adc9be5f5da9310295c21b60df56e27c1e0ee5f2ef1850f488d19ef9c61e97e",
+        "fede36c4c5ab4c3d910c1211ecbe7f32": "afc1a8173304e299b675867ca12b2b88aaa967dded3a04f18831e303c6675b8b",
+        "2548b0212b9b4356b3754f9aff505fba": "9fb9a0f7db6a3f180d349f8efdc206552e84bb7b27a4664b692f77850a3c07e6"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_028",
+      "frame_index": 28,
+      "raw_index": 28,
+      "planning_reference_index": 12,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "4cf5d6c3f6ab42aab23f67b5a9782d1a",
+      "relative_sequence_time_s": 13.85,
+      "reference_time_s": 1533151617.3624039,
+      "ego_speed_mps": 5.590941980236011,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_028/capture.json",
+      "capture_sha256": "60d07a38110bcb8a3ffef2f6de074bdb95156f20e4a99fceae16bdbc0f2e79a1",
+      "image_sha256": {
+        "00d1ab5a82bb4829bcd3048b6def25e2": "bfcd1a84f99f64e8d7741e478e7241291e4844ed1198eebe3ad177c5fc6dfe07",
+        "92ddb50c87014abe9f9a9f4b6cf2cf86": "52dd91b7fdbb97d03a40d7f53af67eda4313de51a1064611e4d4a132c91bdd53",
+        "e3f5588a74d34d00b66651a1039ebfc2": "0603b52a278cecca050c86466e443c5b5a1b998000df8d5058db1c7fb1c916bb",
+        "4e5612568c0c42ecae40fdc97da8814c": "64cd69f7898e9625fb4620306c56ad926e698aaf9310afca4093d66e41c50e9e",
+        "e1586b1c822f429ab6173d13c2e08e6d": "f1625b64254f3f649351c1b709c38ef15ebd5ebe5ba6a06b058ae7137570c73a",
+        "e65fe163db6f4a41aabf5ae944ada756": "8615ab2ccfaced3cebce3a771bc2b07ff3deea6d4a51086d9cb67fc458dbcf16",
+        "869135140a20490bb02b21ef35065342": "3437892469e020e84d82612de6ae97aa80a52853ff487541c3060d32b480c8b4",
+        "faa83240f8814cc1b99d09b98abbe862": "ec7cd7e6459ca2a86f3985f014dae3be3d827ca77a6891c080ce7675c5a56071",
+        "61b09a2e2a0248a6991eb746a1bd4cf8": "8696a8c9f8d3b8403cffb0439aa480fe9d6b2f31d4deb01e9648ab9170cc7fdc",
+        "43690f8cf9e8472eae04d06de838217a": "75346c8769eb309384284a29ea8213b22c685d67020fc69d784e0474bb6772b7"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_030",
+      "frame_index": 30,
+      "raw_index": 30,
+      "planning_reference_index": 13,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "38a28a3aaf2647f2a8c0e90e31267bf8",
+      "relative_sequence_time_s": 14.899999999999999,
+      "reference_time_s": 1533151618.4124038,
+      "ego_speed_mps": 6.378119172559608,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_030/capture.json",
+      "capture_sha256": "12df59b1d4e77b49fa3a1c570f6f791d9436c9c0fc79cea6e457139eb7bb2168",
+      "image_sha256": {
+        "2548b0212b9b4356b3754f9aff505fba": "9fb9a0f7db6a3f180d349f8efdc206552e84bb7b27a4664b692f77850a3c07e6",
+        "8464c748ca5f460dba24b50a233692e4": "82ef56fcece6e1ad147f4908bdc6aa5e10409dc61299349a860215e2792fad64",
+        "43690f8cf9e8472eae04d06de838217a": "75346c8769eb309384284a29ea8213b22c685d67020fc69d784e0474bb6772b7",
+        "883020ef0286455bbb4b91bc12f642ac": "c2ad14ad703281099f6ecd187aa2f3add015d64b7fe09297ec9b568af83cd0fa",
+        "05ae899323f7484281d786d604cabb71": "b667361779699e25947f2b53a5cb41e750350ccbda0ad7b042dc391876078769",
+        "0d04568a43c8434e82e687e4860790a1": "8de4eb913956491ab683957b14503c68f78ad393c8c5c2b5edcc8027872ac0b6",
+        "18181ea4550546cbadbdd9ac7532710f": "37ee0480f2f686ed90eed5649dcc4d36309c3e1a5e8367c13026b8708eeaa937",
+        "4b5216c4ff0b4d94956bea22650d8769": "3990601c8c549eaf347cb56a2577b28c87a9064386531d7bac97442b5da7c0da",
+        "fabec399ec1c4e68a26e4a31f73daeb9": "4ee4aba8f7b9672f932129ae26a2861dc684606715adda6a0d479b45d33f978e",
+        "6d2aceca30d140c2ada255c5289f2589": "034a749af6a3be55e2090125947b3bd90fb1a632df8bc77add9176438f36ceb7"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_032",
+      "frame_index": 32,
+      "raw_index": 32,
+      "planning_reference_index": 14,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "ce94ef7a0522468e81c0e2b3a2f1e12d",
+      "relative_sequence_time_s": 15.899999999999999,
+      "reference_time_s": 1533151619.4124038,
+      "ego_speed_mps": 7.073323162171006,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_032/capture.json",
+      "capture_sha256": "2fe5905650078ac44ae5f9548f1cf656ba5908f2a6dbbd0a432115ee633bbccd",
+      "image_sha256": {
+        "8a13cfe3605e47c480359379bfa2d348": "3f546afce6b46f98007b87cbdd1daa082da5eb17515897c7769acac2c71c2e4f",
+        "883020ef0286455bbb4b91bc12f642ac": "c2ad14ad703281099f6ecd187aa2f3add015d64b7fe09297ec9b568af83cd0fa",
+        "6d2aceca30d140c2ada255c5289f2589": "034a749af6a3be55e2090125947b3bd90fb1a632df8bc77add9176438f36ceb7",
+        "16c0e0687dda444285817f7ccd3387b5": "d882235f91332358de2d476d10a9a0d115e26f7802b56123c848b68f0d96fb07",
+        "e5279feb6df84317a9a08b856c278bec": "63d18369503960d9a34630c37cc1ff6f78dc5a708112d930fa62009202484da4",
+        "3bcf8290639f4551b9144eda712bdc53": "6d1aa796cf58456d19d04d7d4a8aa2eb3f4d45e9c051c1a3b9bd842dc7652f02",
+        "d6ea9c40a9f14fe88d9d297c3324238f": "cf3f040ee00ff1bb9720ceffa0a5ebe49741ada04e2ed66ed17b0409550fa0d7",
+        "91800df20ae34a898663301de90f7144": "02f0537108b86afa1aafd9e25241a87bbe956cac18a5ea8d17e2786862ee7232",
+        "f26efbc190dd4f0ebea5617c8728ff0c": "b5a46446b2a1597ba531801a574b2bc7596cbaefd259939e6b08dd7ce869dfda",
+        "059ffc35578745c3b625011b0479a4fa": "1a730ed673722d97cd907d369fa150a2f4ff0f1314fa28759ef1ccf1fe4d3366"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_034",
+      "frame_index": 34,
+      "raw_index": 34,
+      "planning_reference_index": 15,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "1c9a906c40f6417bbe1cea06d6e55501",
+      "relative_sequence_time_s": 16.9,
+      "reference_time_s": 1533151620.4124038,
+      "ego_speed_mps": 7.764614687182739,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_034/capture.json",
+      "capture_sha256": "31ccaf7e7ca5cd0049039afee1022bb49339bfd38dd00a1c3d5d795bbc288af5",
+      "image_sha256": {
+        "6d2aceca30d140c2ada255c5289f2589": "034a749af6a3be55e2090125947b3bd90fb1a632df8bc77add9176438f36ceb7",
+        "16c0e0687dda444285817f7ccd3387b5": "d882235f91332358de2d476d10a9a0d115e26f7802b56123c848b68f0d96fb07",
+        "059ffc35578745c3b625011b0479a4fa": "1a730ed673722d97cd907d369fa150a2f4ff0f1314fa28759ef1ccf1fe4d3366",
+        "ae6645e8bf474b65b19a69bf71fe90a3": "a08fdf1245e38528db954e5f25a1cc3568de61d3b0fd7221c96687060ffc7ef7",
+        "481b67f535994d0e869746b6684b9989": "419498cac3c8750e2ef0d5ec4604eb49bdbf6f0c44b02b9c6cf36f2ea71db970",
+        "6009d9b7a94d4c1283f4300c8787bb6c": "de8cc4924c9c6b09a123d89784ed38d82e169c32daaf7d5582a5f3e8e3aa5091",
+        "cd3a519cf2a04e5aa1dbd15c5854f047": "8f0b2304c9a08280e6cd3462deeb14b04fe1f49816da8a5d36cf51d2176b707f",
+        "856ce8c818144833a0e555d436036a4a": "e24fb4fa0f7fb12f39e7015bba09695a0b432d1a7518040a7ef8c656f0421391",
+        "7a87c7be93b243bfab73b04d35e45e6d": "58f6d2fcc7edf6794b448a69f9420134e459eec94ab45608b5834a446379083a",
+        "87723668b00f419ba263ab062d14bd13": "16edd345f4ec2b4efced32db2cd4fc2cc59bacc9646fc9cf9981eeb0fdfeb8f6"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_036",
+      "frame_index": 36,
+      "raw_index": 36,
+      "planning_reference_index": 16,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "b9ea04a6121d4a8bb00199b885aa5ef0",
+      "relative_sequence_time_s": 17.9,
+      "reference_time_s": 1533151621.4124038,
+      "ego_speed_mps": 8.09472584030216,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_036/capture.json",
+      "capture_sha256": "5e3f6ba4df7b34dbdf3c9cc12eda68cfede366622d121f8abc7cf17bf81e3ac7",
+      "image_sha256": {
+        "059ffc35578745c3b625011b0479a4fa": "1a730ed673722d97cd907d369fa150a2f4ff0f1314fa28759ef1ccf1fe4d3366",
+        "ae6645e8bf474b65b19a69bf71fe90a3": "a08fdf1245e38528db954e5f25a1cc3568de61d3b0fd7221c96687060ffc7ef7",
+        "87723668b00f419ba263ab062d14bd13": "16edd345f4ec2b4efced32db2cd4fc2cc59bacc9646fc9cf9981eeb0fdfeb8f6",
+        "6360146be8954685a5f9bfa3e87bcbd4": "b3e1caa080b1d7b699cd4f11fe113c6ac70cb2c3fe974da0cf968d09a8e17383",
+        "1dfbecc23a0247878e0265059af377b4": "aaa620589c86ec57a065aa48e01ad280549b76d6f4f6f39709e9eb85f781c58e",
+        "f4f890a311d746778557aa218a1a1000": "869ea1392a4f67f3a7b37be5aa76c69c1c881bae05dbad842c063e2098f82590",
+        "8ab0e957c03f4b2c9327ca2d02f1dc7a": "bafef5961d0c3d156b90edce9a125216688bfa200a94be4f93cde8880af8ade2",
+        "4c6e9c86c50b4350b638a97b2e99ee6e": "2fb7ff1d68ffdac4984adb196035764b721282a09b523a0ce8b0eb02ec977f61",
+        "2e104cf5a14349b99fcdd6c88b03c4f1": "b6235a640bd25c1e63563930657136fae75c83329f224326d3fd620dd659f119",
+        "2d3b48e3840244c7b681cb6e63e2c123": "f0ee220c09d197c1e4d3ce45fb75781e044ab9dfd76b383cd41c7655a523fe14"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_038",
+      "frame_index": 38,
+      "raw_index": 38,
+      "planning_reference_index": 17,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "f40544fd4f5d42abbcfa948eeaf86850",
+      "relative_sequence_time_s": 18.9,
+      "reference_time_s": 1533151622.4124038,
+      "ego_speed_mps": 8.23578326234749,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_038/capture.json",
+      "capture_sha256": "b9890c335f9ca7bacdc02a2e9d5a8523acc8a260186801b27784dbfcbcdbedc8",
+      "image_sha256": {
+        "87723668b00f419ba263ab062d14bd13": "16edd345f4ec2b4efced32db2cd4fc2cc59bacc9646fc9cf9981eeb0fdfeb8f6",
+        "6360146be8954685a5f9bfa3e87bcbd4": "b3e1caa080b1d7b699cd4f11fe113c6ac70cb2c3fe974da0cf968d09a8e17383",
+        "2d3b48e3840244c7b681cb6e63e2c123": "f0ee220c09d197c1e4d3ce45fb75781e044ab9dfd76b383cd41c7655a523fe14",
+        "0f4c0e7301424f2996d87a86902aafe9": "c1ef805b133d23e57032ea9ab27a5cc0139b7b2ff67b69c1d28e8e56ee9826f0",
+        "f381ec5079964c0aa87a2e2ef4e361a3": "4f65a00ae8f3b6ecc7710800bfda32712a16e552fda0fe63ec8810e46c4a325d",
+        "76de40ffe1024119aa909beb025e302a": "a44613536131e2145b9db2d879981bce496435892ff09c9d48a66a95a5fcde52",
+        "5de9c59f74d847d29657ce677dbfa4b4": "8af00c4118a1c668861be135ac661f6d60e81e4b5efe2900f4508d5e8b37d354",
+        "98869f298415440bb74d87980c2d692e": "4097cb08d5012dd016d3340dafc0a098a77bfceaeff9f55c93e2d415efb63af8",
+        "d725731f2b9a461c8f8e6de239556650": "dca63d05510ecec7c0951e580e2c6c8e277743efae4f3e89b1ffb959bfcb3abf",
+        "aeffd15cbe594a9a81b26d8bb8d15f3d": "9a86254a9b20c186e62ccb4ac7c20432f01b30795d23b6b10deb7f354113fbc1"
+      },
+      "require_turn": false
+    },
+    {
+      "case_id": "frame_039",
+      "frame_index": 39,
+      "raw_index": 39,
+      "planning_reference_index": 18,
+      "scene_name": "scene-0103",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "sample_token": "281b92269fd648d4b52d06ac06ca6d65",
+      "relative_sequence_time_s": 19.4,
+      "reference_time_s": 1533151622.9124038,
+      "ego_speed_mps": 8.33631098479838,
+      "capture": "implementation/results/long_clips_20261029_v1/following_deceleration/inputs/frame_039/capture.json",
+      "capture_sha256": "38d22e3bdaff7f8b84d32b82d3cf99291c51143252f1e8d1078e2337b0e98911",
+      "image_sha256": {
+        "6360146be8954685a5f9bfa3e87bcbd4": "b3e1caa080b1d7b699cd4f11fe113c6ac70cb2c3fe974da0cf968d09a8e17383",
+        "2d3b48e3840244c7b681cb6e63e2c123": "f0ee220c09d197c1e4d3ce45fb75781e044ab9dfd76b383cd41c7655a523fe14",
+        "0f4c0e7301424f2996d87a86902aafe9": "c1ef805b133d23e57032ea9ab27a5cc0139b7b2ff67b69c1d28e8e56ee9826f0",
+        "aeffd15cbe594a9a81b26d8bb8d15f3d": "9a86254a9b20c186e62ccb4ac7c20432f01b30795d23b6b10deb7f354113fbc1",
+        "ef0192f0292643bfb64a7bd47b534e5e": "76af5f744297ddd6be6dc9333ff05c0774296e5c92ceb96c35ffb344e2ad7947",
+        "983e6072a44c4439ba115652c8a1347e": "87eda7537d30dc2ad87af88609bc3b3d6f18b753a55c4110cae2e6523fc32bc5",
+        "7506cbdd40b74f38be18b331aa4fdcac": "5e3613a733f12cb47ccfbc265e55ea28e3b945809026607111283a5134caffe2",
+        "d2cdb09c7bc346eababb760f9b3c866f": "97095e73a37350fec6f9fe5cefbee4eecfb04a94dc4e379dcb12c866208ac00f",
+        "232913e77b7f4a02aac1244debd28da5": "f5b74c4c0a0070f6d9a045946362cbc9dee7a04807ee19dc804db5f2df436b7a",
+        "1afba7064f794174a68582db8e099c80": "1fc64221853acb75b1714cfff2e3f6001da5e6adc1930871dac8a48f71386c22"
+      },
+      "require_turn": false
+    }
+  ],
+  "frame_count": 19,
+  "raw_frame_count": 40,
+  "full_clip_duration_s": 19.4,
+  "first_planning_time_s": 2.0,
+  "raw_input_gif_final_hold_ms": 500,
+  "input_preview": "input_contactsheet.jpg",
+  "raw_input_gif": "raw_input.gif"
+}
