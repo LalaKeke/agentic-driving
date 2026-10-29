@@ -1,5 +1,7 @@
 # Agentic Driving
 
+[六场景摸底：场景清单、原图预览与运行计划](implementation/results/six_scene_scout_preparation_20261029_v1/README.md)：6个不同scene、2个预留验证scene，固定现有2秒原型；建议独立上限12次，当前仅准备、真实调用0。
+
 [2秒原型施工改进与前后对照](implementation/results/construction_recovery_20261029_v1/README.md)：新增有限候选、分段航向带及种子初始化；公交/停车场离线链路通过，施工推进到T3但仍不可行。新请求2/4后遇连接故障停止，红灯未调用。
 
 [流程修复与真实分组复测](implementation/results/process_recovery/README.md)：已修复工程误拒并新增严格成功判定；本轮真实完整链路仍未通过，不以软件测试代替。

@@ -1,0 +1,278 @@
+{
+  "experiment_id": "six_scene_scout_2s_20261029_v1",
+  "status": "PREPARED_NOT_LAUNCHED",
+  "launched": false,
+  "execution_authorized": false,
+  "baseline_commit": "4336dca2572f6afa3d139c2387621ac70f72597e",
+  "preparation_source_commit": "e84e355",
+  "selection_sha256": "bfd7bd80d55da31b8fb1b01bdb7feeb58152e4cb454da09727c7c8f268d559ec",
+  "input_registration_sha256": "e1055996caa5b1a32cf4a94d803174300a557cb8fbe10ab7a1fedfbcee0aafac",
+  "main_unique_scene_count": 6,
+  "main_window_count": 6,
+  "reserved_validation_window_count": 2,
+  "budget": {
+    "proposed_request_limit": 12,
+    "authorized_calls": 0,
+    "actual_calls": 0,
+    "per_window_initial": 1,
+    "per_window_tool_feedback_revision_max": 1,
+    "maximum_parallel_requests": 1,
+    "failed_requests_consume_budget": true,
+    "generation_compatibility_probes_consume_budget": true,
+    "automatic_transport_retries": 0,
+    "old_unused_budget_inherited": 0,
+    "successful_initial_stops_window": true,
+    "unused_slots_not_redistributed": true
+  },
+  "fixed": {
+    "prompt_version": "driving_prototype_v1",
+    "business_contract": "3.0.0-exp2",
+    "coverage_profile": "whole_interval_sources_v3_exp2",
+    "wire_version": "so_const_string_enum_type_v2",
+    "wire_bundle": "implementation/results/exp2_wire_enum_day_pilot_20261028_v1/registration/wire_bundle",
+    "planner_profile": "bounded_seed_candidates_v1",
+    "candidate_ids": [
+      "original",
+      "brake_straight",
+      "brake_right",
+      "brake_left",
+      "brake_right_strong"
+    ],
+    "model_requested": "gpt-6.1-sol",
+    "actual_server_model_id": null,
+    "client_version": "0.164.0",
+    "reasoning_effort": "medium",
+    "history_s": 2,
+    "horizon_s": 2,
+    "step_s": 0.2,
+    "prefix_s": 0.2,
+    "input_images": 10,
+    "front_history_images": 5,
+    "other_cameras_current_images": 5,
+    "crop_or_extra_history": false,
+    "vehicle": {
+      "front_m": 2.3,
+      "rear_m": 2.3,
+      "half_width_m": 0.9,
+      "center_to_rear_axle_m": 1.2,
+      "wheelbase_m": 2.7,
+      "max_speed_mps": 12.0,
+      "max_accel_mps2": 2.0,
+      "max_brake_mps2": 3.0,
+      "max_steer_rad": 0.5,
+      "max_curvature_per_m": 0.2
+    },
+    "safety": {
+      "margin_m": 1.0,
+      "prefix_s": 0.2
+    },
+    "navigation_intent": "Continue along the visible drivable road when permissible; obey visible signals and yield as needed. No map or future ego route is supplied.",
+    "initial_feedback": null,
+    "timeout_per_request_s": 450,
+    "proposed_total_wall_s": 7200
+  },
+  "source_pins": "prepared_inputs/preparation.json#/source_pins",
+  "runtime_inputs": [
+    {
+      "case_id": "ordinary_straight",
+      "group": "main",
+      "scene_token": "c5224b9b454b4ded9b5d2d2634bbda8a",
+      "scene_name": "scene-0796",
+      "sample_token": "7df1288fed8a403b8e7a35112b392d7c",
+      "capture": "main/ordinary_straight/capture.json",
+      "capture_sha256": "90d707352340e2c3af5bfe727b9900e76df37bce7f8ccc6c134aa6ba3530303d",
+      "image_count": 10,
+      "ego_speed_mps": 11.880634934422835,
+      "preview": "main/ordinary_straight/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case_id": "following_deceleration",
+      "group": "main",
+      "scene_token": "de7d80a1f5fb4c3e82ce8a4f213b450a",
+      "scene_name": "scene-1094",
+      "sample_token": "0915646e387b484785ae2b847ffdee2f",
+      "capture": "main/following_deceleration/capture.json",
+      "capture_sha256": "70c47b07867935d7a302d886835f8d3d264d3468c2930f3b67ce582067477d7f",
+      "image_count": 10,
+      "ego_speed_mps": 2.539109931106168,
+      "preview": "main/following_deceleration/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case_id": "signal_wait",
+      "group": "main",
+      "scene_token": "6f83169d067343658251f72e1dd17dbc",
+      "scene_name": "scene-0553",
+      "sample_token": "6dabc0fb1df045558f802246dd186b3f",
+      "capture": "main/signal_wait/capture.json",
+      "capture_sha256": "843a56f131ff75babc3dc5b34a20fca3ec422c20fa8310cf6d3925991d01636a",
+      "image_count": 10,
+      "ego_speed_mps": 0.0,
+      "preview": "main/signal_wait/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case_id": "neighbor_bend",
+      "group": "main",
+      "scene_token": "325cef682f064c55a255f2625c533b75",
+      "scene_name": "scene-0916",
+      "sample_token": "a19a80c905674faab7203a3a4e0f5246",
+      "capture": "main/neighbor_bend/capture.json",
+      "capture_sha256": "70739e51be5d2e6aab4fd775b1259a9b59cf8d03b3411562b05c60d4ccaeca8f",
+      "image_count": 10,
+      "ego_speed_mps": 3.9194524872779035,
+      "preview": "main/neighbor_bend/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case_id": "pedestrian_interaction",
+      "group": "main",
+      "scene_token": "fcbccedd61424f1b85dcbf8f897f9754",
+      "scene_name": "scene-0103",
+      "sample_token": "0af0feb5b1394b928dd13d648de898f5",
+      "capture": "main/pedestrian_interaction/capture.json",
+      "capture_sha256": "df132e3cd61e89d7a25cc178978e9a2a3159d5c9c956a72892f85735b06fb3cb",
+      "image_count": 10,
+      "ego_speed_mps": 3.7359487922185,
+      "preview": "main/pedestrian_interaction/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "case_id": "night_straight",
+      "group": "main",
+      "scene_token": "d25718445d89453381c659b9c8734939",
+      "scene_name": "scene-1077",
+      "sample_token": "1ddf7a48af3d43be8763f154974f09ce",
+      "capture": "main/night_straight/capture.json",
+      "capture_sha256": "6478cc0b07d8d1e3b81dfce9431499b9e2d32a4320a8e4695c57fdf6d9c2a8c2",
+      "image_count": 10,
+      "ego_speed_mps": 10.503984580449083,
+      "preview": "main/night_straight/input_preview.jpg",
+      "status": "NOT_ATTEMPTED"
+    }
+  ],
+  "execution_order": [
+    "ordinary_straight",
+    "following_deceleration",
+    "signal_wait",
+    "neighbor_bend",
+    "pedestrian_interaction",
+    "night_straight"
+  ],
+  "revision_policy": "Use the unchanged runner feedback payload from this window: concrete tool failure, previous native output and initial BODY-envelope conflicts. At most one semantic/tool revision. No GT, selection labels or earlier-window answers are injected; no filling/coercion/occupancy repair.",
+  "frozen_batch_policy": "Keep prompt, input organization, Schema/wire, physical limits and planner unchanged through all six windows. If execution is interrupted, retain all results and report the incomplete batch; do not tune on the partial batch or replace failed windows.",
+  "activation_before_any_generation": [
+    "Create a separate execution record after user authorization; do not overwrite this preparation.",
+    "Check all source/input/image SHA against the frozen registration.",
+    "Specify a new common deadline explicitly; the existing CLI default deadline is expired.",
+    "Only then read current rateLimits if supported; unavailable quota or 429 stops external requests.",
+    "Record actual requested/resolved model identity; unexposed server snapshot remains unknown."
+  ],
+  "stop_conditions": [
+    "Schema-interface, authentication, quota, service or model-alias mismatch stops the batch; do not spend a semantic revision fixing the interface.",
+    "Evidence/source/input pin mismatch or runtime access to GT stops the batch.",
+    "Per-window2/global12 or wall limit ends requests without hidden retry, reset or replacement.",
+    "Native normal T1/T2/T3/T4 rejection may receive only the one preregistered tool-feedback revision.",
+    "Do not change algorithms or prompts mid-batch, switch account/model, or inherit old budgets."
+  ],
+  "known_limitations": [
+    "Current frozen prompt still describes the old circumscribed-disk corridor, while actual selected planner is oriented-body with segment yaw bands. Preserve the text and disclose this mismatch; assess its impact after the batch, not presume it is a top problem.",
+    "Scene/category labels are human selection metadata only; signal state/ownership, lead relation and pedestrian interaction must come from the model.",
+    "Nominal2s front history has actual1.900011s span in night_straight due to recorded frame cadence; keep raw timestamps, no padding or invented frames.",
+    "Initial straight speed11.8806m/s is near fixed12m/s limit; do not clip the observed initial state.",
+    "Curated mini windows and historical exposure are not blind/unseen evaluation."
+  ],
+  "result_columns": [
+    "scene_token",
+    "sample_token",
+    "first_attempt_full_chain_pass",
+    "revision_full_chain_pass",
+    "native_schema_valid",
+    "T1",
+    "candidate_T2_T3_T4_counts",
+    "independent_acceptor",
+    "prefix_receipt_and_integration",
+    "final_failure_stage_and_reason",
+    "motion_class",
+    "displacement_m",
+    "end_speed_mps",
+    "behavior_reasonableness_and_evidence",
+    "conditional_clearance_lower_bound_m",
+    "max_acceleration_mps2",
+    "discrete_jerk_proxy_mps3",
+    "calls",
+    "service_errors",
+    "offline_key_object_metrics_and_missing"
+  ],
+  "success_definition": "Native real-image/model record plus T1-T4, independent acceptor, verified simulated0.2s prefix receipt/integration. Separately judge task behavior; JSON or unjustified stationary hold is not moving-task completion. Stationary waiting may be appropriate when model image evidence supports an applicable restriction/conflict.",
+  "gt_offline_review": {
+    "objects_per_window": "1-2 decisive objects chosen from model/geometry evidence, with visible identity association; record missing/ambiguous/incomparable.",
+    "measurement_semantics": "Fixed3.0.0-exp2 BODY-box center groundXY, dimensions and yaw, reference epoch and axes. No posthoc definition switching.",
+    "metrics": [
+      "center_error_m",
+      "length_width_error_m",
+      "yaw_parameter_difference_rad_or_not_comparable",
+      "future_body_surrogate_coverage",
+      "future_area_inflation",
+      "planning_usability"
+    ],
+    "truth_boundary": "Separate offline evaluation after runtime outputs are saved. No future images, maps, annotations, identities or GT numbers into runtime/feedback. Annotation interpolation is a surrogate, not continuous truth.",
+    "no_score_without_comparable_truth": true
+  },
+  "after_batch": {
+    "failure_distribution": "Two panels: final terminal status per unique window, and affected unique windows per diagnosed problem class across attempts. The latter may overlap. NOT_ATTEMPTED is neither failure nor success; revisions never add windows.",
+    "candidate_failure_rule": "Read every candidate_ledger row. If someT2PASS but noT3PASS, labelT3; if someT3PASS but noT4PASS labelT4. Never infer the whole-window stage from failures[-1]. Preserve each candidate reason.",
+    "top_two_selection": "Rank confirmed problem classes by affected unique-window count after the fixed batch. Retain service problems; external quota is not an algorithm fix. Ties use final blocking-window count, then evidence clarity. Do not invent two selected changes before observations.",
+    "minimal_changes": "One focused change per leading class with an explicit mechanism, counterexample and necessary regression. Planner-only changes use exactly the original nativeJSON for zero-call before/after, preserving all geometry/adverse modes/residuals/1m margin.",
+    "preserve_successes": [
+      "moving_prototype_2s_20261028_v1/runtime/attempt_02/record.json",
+      "varied_prototypes_2s_20261028_v1/parking_bend/runtime/attempt_02/record.json"
+    ],
+    "prompt_input_changes": "Separate configuration/group and real validation required; JSON replay cannot establish benefit of a changed prompt/input."
+  },
+  "reserved_validation": {
+    "launched": false,
+    "execution_authorized": false,
+    "proposed_separate_request_limit": 4,
+    "authorized_calls": 0,
+    "actual_calls": 0,
+    "inherits_main_budget": false,
+    "cases": [
+      {
+        "case_id": "heldout_intersection",
+        "group": "held_out",
+        "scene_token": "2fc3753772e241f2ab2cd16a784cc680",
+        "scene_name": "scene-0757",
+        "sample_token": "e122a34ec57c4edf8311b40c3f85f863",
+        "capture": "held_out/heldout_intersection/capture.json",
+        "capture_sha256": "7c3ae956ce867f7829f57b100855e09cb07d42d9202ec6f453aeb993a77a0277",
+        "image_count": 10,
+        "ego_speed_mps": 3.556168267951951,
+        "preview": "held_out/heldout_intersection/input_preview.jpg",
+        "status": "HELD_OUT_NOT_LAUNCHED"
+      },
+      {
+        "case_id": "heldout_night_pedestrian",
+        "group": "held_out",
+        "scene_token": "e233467e827140efa4b42d2b4c435855",
+        "scene_name": "scene-1100",
+        "sample_token": "8e5512a630dc44c08d3e3f692b34f808",
+        "capture": "held_out/heldout_night_pedestrian/capture.json",
+        "capture_sha256": "6ab014bb3842516f9efc6a0e46455288a7d0db713969099d3763f76de08985ed",
+        "image_count": 10,
+        "ego_speed_mps": 0.4701194938221912,
+        "preview": "held_out/heldout_night_pedestrian/input_preview.jpg",
+        "status": "HELD_OUT_NOT_LAUNCHED"
+      }
+    ],
+    "policy": "Fixed now, different scene tokens from all main windows; never substitutes a failed main window. After the two modifications, compare old/new planner with same returned JSON when applicable; at most initial+one revision per new window if separately authorized. No guaranteed pass and no unseen/blind claim."
+  },
+  "planned_outputs": {
+    "window_table": "window_results.md",
+    "machine_table": "window_results.json",
+    "failure_distribution_figure": "failure_distribution.png (generated only after actual runs; currently absent)",
+    "two_change_decisions": "two_minimal_changes.md (selected only from completed batch evidence)",
+    "validation_plan": "this execution_plan.json#/reserved_validation"
+  }
+}
