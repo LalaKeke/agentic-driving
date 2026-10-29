@@ -40,7 +40,7 @@ def _check_capture(cap, provenance, output, allow_synthetic):
     need(provenance.get('agent_output_contract') == VERSION, 'MODEL_CONTRACT', 'v3 requires explicit provenance contract version')
     need(provenance.get('source') == 'online_model' or (allow_synthetic and provenance.get('source') == 'synthetic_fixture'), 'SOURCE', 'Synthetic input requires explicit test mode')
     prototype = provenance.get('experiment_profile') == 'local_conditional_2s_prototype_v1'
-    prototype_prompts=('driving_prototype_v1','driving_prototype_v2')
+    prototype_prompts=('driving_prototype_v1','driving_prototype_v2','driving_prototype_v3')
     need(provenance.get('prompt_version') not in prototype_prompts or prototype,
          'PROMPT_CONTRACT', 'Prototype prompt cannot masquerade as the strict profile')
     if prototype:

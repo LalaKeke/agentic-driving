@@ -122,8 +122,8 @@ def main(args):
     require_turn=getattr(args,'require_turn',False)
     prompt=getattr(args,'prompt_version','driving_prototype_v1')
     if args.replay:prompt=read(args.replay)['provenance']['prompt_version']
-    need(prompt in ('driving_prototype_v1','driving_prototype_v2'),'PROMPT_CONTRACT','Explicit prototype prompt version required')
-    need(args.replay or prompt!='driving_prototype_v2' or planner==t2.SEARCH_PROFILE_V2,
+    need(prompt in ('driving_prototype_v1','driving_prototype_v2','driving_prototype_v3'),'PROMPT_CONTRACT','Explicit prototype prompt version required')
+    need(args.replay or prompt not in ('driving_prototype_v2','driving_prototype_v3') or planner==t2.SEARCH_PROFILE_V2,
          'PROTOTYPE_PLANNER','The corrected v2 prompt requires the actual v2 planner for online execution')
     need(planner in ('legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2),'PROTOTYPE_PLANNER','Explicit planner profile required')
     policy='moving_seed' if planner=='legacy_disk_v2' else planner
@@ -199,7 +199,7 @@ if __name__=='__main__':
     p.add_argument('--out',required=True,type=Path);p.add_argument('--wire',required=True,type=Path)
     p.add_argument('--replay',type=Path);p.add_argument('--timeout-s',type=float,default=300)
     p.add_argument('--initial-feedback',type=Path,help='Explicit evidence-based feedback from a saved response; recorded verbatim')
-    p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2'],default='driving_prototype_v1')
+    p.add_argument('--prompt-version',choices=['driving_prototype_v1','driving_prototype_v2','driving_prototype_v3'],default='driving_prototype_v1')
     p.add_argument('--require-turn',action='store_true',help='Require registered nonzero turning evidence before simulated prefix consumption')
     p.add_argument('--max-requests',type=int,default=4)
     p.add_argument('--planner-profile',choices=['legacy_disk_v2','yaw_bounded_box_v1',t2.SEARCH_PROFILE,t2.SEARCH_PROFILE_V2],default='legacy_disk_v2')
