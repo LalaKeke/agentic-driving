@@ -1,0 +1,482 @@
+{
+  "type": "object",
+  "properties": {
+    "decision": {
+      "type": "object",
+      "properties": {
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "behavior": {
+          "enum": [
+            "stop_yield",
+            "hold_lane",
+            "resume"
+          ]
+        },
+        "target_region": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 3
+        },
+        "desired_speed_mps": {
+          "type": "number",
+          "minimum": 0
+        },
+        "yield_to": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "stop": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "center_x_max_m": {
+                  "type": "number"
+                },
+                "deadline_s": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "center_x_max_m",
+                "deadline_s"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "valid_until_s": {
+          "type": "number"
+        },
+        "hard_requirements": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "target_region",
+              "stop",
+              "yield",
+              "vehicle_limits",
+              "collision_free",
+              "road"
+            ]
+          },
+          "minItems": 1
+        },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "speed_weight": {
+              "type": "number",
+              "minimum": 0
+            },
+            "acceleration_weight": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "steering_weight": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "smoothness_weight": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "speed_weight",
+            "acceleration_weight",
+            "steering_weight",
+            "smoothness_weight"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "scene_id",
+        "revision",
+        "behavior",
+        "target_region",
+        "desired_speed_mps",
+        "yield_to",
+        "stop",
+        "priority",
+        "valid_until_s",
+        "hard_requirements",
+        "preferences"
+      ],
+      "additionalProperties": false
+    },
+    "hypotheses": {
+      "type": "object",
+      "properties": {
+        "coordinate_frame": {
+          "const": "ego_at_reference"
+        },
+        "reference_time_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "units": {
+          "const": "m_s_rad"
+        },
+        "scale_basis": {
+          "enum": [
+            "model_metric_hypothesis",
+            "calibrated_ground_plane",
+            "unknown"
+          ]
+        },
+        "road": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "polygon_m": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "minItems": 3
+                },
+                "uncertainty_m": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "frame_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                },
+                "time_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "polygon_m",
+                "uncertainty_m",
+                "frame_ids",
+                "time_ids"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "position_m": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "velocity_mps": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "uncertainty_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "occupancy": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "start_s": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "end_s": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "kind": {
+                          "const": "whole_interval_envelope"
+                        },
+                        "alternatives_m": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              },
+                              "minItems": 2,
+                              "maxItems": 2
+                            },
+                            "minItems": 3
+                          },
+                          "minItems": 1
+                        }
+                      },
+                      "required": [
+                        "start_s",
+                        "end_s",
+                        "kind",
+                        "alternatives_m"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frame_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "time_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "position_m",
+              "velocity_mps",
+              "uncertainty_m",
+              "occupancy",
+              "frame_ids",
+              "time_ids"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "unknown_regions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "polygon_m": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 3
+              },
+              "uncertainty_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frame_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "time_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "polygon_m",
+              "uncertainty_m",
+              "frame_ids",
+              "time_ids"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "traffic_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule": {
+                "type": "string",
+                "minLength": 1
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frame_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "time_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "rule",
+              "state",
+              "frame_ids",
+              "time_ids"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "unbounded_unknown": {
+          "type": "boolean"
+        },
+        "confidence_note": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "coordinate_frame",
+        "reference_time_id",
+        "units",
+        "scale_basis",
+        "road",
+        "objects",
+        "unknown_regions",
+        "traffic_evidence",
+        "unbounded_unknown",
+        "confidence_note"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "decision",
+    "hypotheses"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://driving-v1.local/schemas/agent_output_v2_1.schema.json"
+}

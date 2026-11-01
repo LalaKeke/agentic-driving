@@ -11,6 +11,9 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
     defaults:
       run:
         working-directory: implementation
@@ -20,13 +23,15 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: implementation/requirements.txt
+          cache-dependency-path: implementation/requirements.lock.txt
       - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements.lock.txt
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
       - name: Run synthetic pedestrian crossing
         run: python run_demo.py
+      - name: Run v2 closed loop with IPOPT and simulated prefixes
+        run: python -m agentic.cli demo --runs ../runs
       - name: Check HPC entrypoints
         run: |
           bash -n ../hpc/bootstrap_env.sh ../hpc/submit_smoke.sh ../hpc/smoke.sbatch ../hpc/use_proxy.sh ../hpc/proxy_probe.sbatch

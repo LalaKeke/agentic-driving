@@ -1,0 +1,78 @@
+"""Strict v2 contracts; v1 fields retain their original meaning."""
+from copy import deepcopy
+import hashlib
+import json
+import math
+from pathlib import Path
+from jsonschema import Draft7Validator
+
+ROOT=Path(__file__).resolve().parents[1]
+PROFILE='convex_disk_bicycle_v2'
+class Failure(Exception):
+    def __init__(self, code, message, category='interface_error', **details):
+        super().__init__(message)
+        self.record=dict(code=code,message=message,category=category,details=details,
+                         repair_request='Revise decision or evidence-backed hypotheses; never relax safety silently.')
+def need(ok,code,message,category='interface_error',**kw):
+    if not ok: raise Failure(code,message,category,**kw)
+def finite(x):
+    if isinstance(x,float):need(math.isfinite(x),'NONFINITE','Nonfinite number')
+    elif isinstance(x,dict):
+        for v in x.values():finite(v)
+    elif isinstance(x,list):
+        for v in x:finite(v)
+def validate(name,data):
+    finite(data)
+    schema=json.loads((ROOT/'schemas'/name).read_text())
+    errors=list(Draft7Validator(schema).iter_errors(data))
+    need(not errors,'SCHEMA_ERROR','Invalid '+name,paths=['/'.join(map(str,e.path)) for e in errors[:5]])
+def digest(data):return hashlib.sha256(json.dumps(data,sort_keys=True,allow_nan=False).encode()).hexdigest()
+def identity(scene,artifact):
+    need(artifact['metadata']==scene['metadata'] and artifact['scene_digest']==digest(scene),
+         'SCENE_VERSION_MISMATCH','Scene, revision, coordinate frame or content changed')
+def artifact(scene,**kw):return dict(metadata=deepcopy(scene['metadata']),scene_digest=digest(scene),**kw)
+def grid(meta):
+    q=meta['horizon_s']/meta['step_s']
+    need(abs(q-round(q))<1e-8 and 1<=q<=500,'TIME_GRID','Horizon must be an integer number of steps (1..500)')
+    return [i*meta['step_s'] for i in range(round(q)+1)]
+
+
+def model_contract(version='2.0.0'):
+    if version=='3.0.0-exp2':return 'agent_output_v3_exp2.schema.json','driving_v3_exp2'
+    need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown explicit model output contract')
+    return ('agent_output_v2.schema.json','driving_v2') if version=='2.0.0' else ('agent_output_v2_1.schema.json','driving_v2_1')
+
+
+def resolve_prompt(version='2.0.0',requested=None):
+    """Explicit prompt-only revision; the selected output schema stays unchanged."""
+    schema,default=model_contract(version)
+    allowed={'2.0.0':('driving_v2',),'2.1.0':('driving_v2_1','driving_v2_2','driving_v2_3'),'3.0.0-exp2':('driving_v3_exp2',)}
+    prompt=requested or default
+    need(prompt in allowed[version],'PROMPT_CONTRACT','Prompt and output contract are incompatible')
+    return schema,prompt
+
+
+def planning_contract(capture,version='2.0.0'):
+    """Deterministic tool requirements, never additional environment facts."""
+    if version=='3.0.0-exp2':
+        from .metric_contract import MEASUREMENT_SEMANTICS,COVERAGE_PROFILE
+        result=planning_contract(capture)
+        result['refinement_grid']=result.pop('occupancy_grid')
+        result['source_coverage_profile']=COVERAGE_PROFILE
+        result['source_coverage_kind']='whole_interval_body_envelope'
+        result['measurement_semantics']=deepcopy(MEASUREMENT_SEMANTICS)
+        result['metric_scale_requirement']='A scale_basis label alone is insufficient. Supply metric_scale_support with conditional_body_dimension_prior, actual paired actor image/time citations, scoped premise IDs, positive length_m/width_m anchors matching the native actor body hypothesis, per-anchor rationale and model-native metric reasoning. This is a falsifiable conditional prior, not certified scale. Null, unrelated evidence or missing prior support still blocks planning; tools do not infer scale or project pixels from the prior.'
+        result['coverage_requirement']='Sources may span coarse whole intervals. Each declared scenario must cover the entire horizon without gaps. Each source must already enclose the complete actor BODY throughout its closed source interval. The tools retain all closed-intersecting source sets during refinement and never forecast from velocity. Null, placeholders and missing adverse modes remain failures.'
+        result['alignment_requirement']='Actor state_time_id equals the trusted reference. frame_ids/time_ids are index-paired original observations of that actor, not state epochs. Asynchronous evidence requires model-proposed evidence positions, motion bounds covering all declared scenarios, explicit scoped premises and a residual included in the one total actor residual; no small-dt or ego-only exemption.'
+        result['unknown_requirement']='Bind unknown kind/object/space/time and premises/scenarios explicitly. No information, inexpressible coverage or no finite bound still blocks planning. No relevance pruning or arbitrary distance cutoff is enabled.'
+        return result
+    need(version in ('2.0.0','2.1.0'),'MODEL_CONTRACT','Unknown planning contract version')
+    m=capture['metadata'];times=grid(m)
+    return dict(target_region_semantics='Allowed vehicle CENTER region for the entire planning horizon, including initial center; not a terminal goal box',
+                initial_center_m=[capture['ego']['x_m'],capture['ego']['y_m']],
+                decision_valid_until_min_s=m['reference_time_s']+m['horizon_s'],
+                supplied_valid_until_s=m['valid_until_s'],execution_prefix_s=capture['safety']['prefix_s'],
+                occupancy_grid=[dict(start_s=a,end_s=b,kind='whole_interval_envelope') for a,b in zip(times,times[1:])],
+                supported_native_metric_scale_labels=['model_metric_hypothesis','unknown'],
+                calibration_limitation='Intrinsics/extrinsics alone do not verify a ground plane or pixel contact. Do not relabel unsupported scale as a supported metric hypothesis.',
+                coverage_requirement='Each non-null actor occupancy must support every whole interval. Use null for unsupported coverage; never fill placeholders.')

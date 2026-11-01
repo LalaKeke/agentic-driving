@@ -1,0 +1,140 @@
+"""CasADi/IPOPT constrained multiple shooting; no hard constraint relaxation."""
+import os
+# Bound linear algebra threads before importing CasADi/NumPy.
+os.environ.setdefault('OMP_NUM_THREADS','1')
+os.environ.setdefault('OPENBLAS_NUM_THREADS','1')
+import math
+import casadi as ca
+from .contracts import artifact,identity,grid,need,Failure,validate
+from .geometry import rear_state,center_state
+
+def solve(scene,corridor,max_iter=700):
+    box=corridor.get('planner_profile')=='yaw_bounded_box_v1'
+    search='search_profile' in corridor
+    temporal=corridor.get('search_profile')=='bounded_seed_candidates_v4'
+    adaptive=corridor.get('search_profile') in ('bounded_seed_candidates_v3','bounded_seed_candidates_v4')
+    epigraph=corridor.get('search_profile') in ('bounded_seed_candidates_v2','bounded_seed_candidates_v3','bounded_seed_candidates_v4')
+    validate('scene_v2.schema.json',scene)
+    validate('corridor_seed_candidates_v4.schema.json' if temporal else ('corridor_seed_candidates_v3.schema.json' if adaptive else ('corridor_seed_candidates_v2.schema.json' if epigraph else ('corridor_seed_candidates_v1.schema.json' if search else ('corridor_yaw_box_v1.schema.json' if box else 'corridor_v2.schema.json')))),corridor)
+    identity(scene,corridor)
+    cap=scene['capture'];v=cap['vehicle'];d=scene['decision'];times=grid(scene['metadata']);N=len(times)-1;dt=times[1]
+    substeps=corridor['corridor_substeps'] if temporal else 1
+    if temporal:
+        need(len(corridor['cells'])==N*substeps,'CORRIDOR_COVERAGE','Temporal cells do not cover the original control grid')
+        for j,cell in enumerate(corridor['cells']):
+            need(abs(cell['start_s']-dt*j/substeps)<1e-8 and abs(cell['end_s']-dt*(j+1)/substeps)<1e-8,
+                 'CORRIDOR_COVERAGE','Temporal cell boundaries differ from the registered original grid')
+    opt=ca.Opti();X=opt.variable(4,N+1);U=opt.variable(2,N)
+    if epigraph:
+        # A smooth epigraph of |curvature| avoids the 1e10 second derivative
+        # of sqrt(curvature**2 + 1e-20) at a straight segment. This changes
+        # neither the physical chord-error bound nor the control limits.
+        K=opt.variable(1,N)
+        opt.subject_to(opt.bounded(0,K,v['max_curvature_per_m']))
+    initial=rear_state(cap['ego'],v);opt.subject_to(X[:,0]==initial)
+    if box:
+        # With nonnegative speed and constant curvature yaw is monotone inside
+        # each interval; endpoint bounds therefore cover its entire duration.
+        bound=corridor['heading_bound_rad']
+        opt.subject_to(opt.bounded(-bound,X[2,:],bound))
+    opt.subject_to(opt.bounded(0,X[3,:],v['max_speed_mps']))
+    opt.subject_to(opt.bounded(-v['max_brake_mps2'],U[0,:],v['max_accel_mps2']))
+    opt.subject_to(opt.bounded(-v['max_steer_rad'],U[1,:],v['max_steer_rad']))
+    weights=d['preferences'];cost=0
+    for k in range(N):
+        if search and substeps==1:
+            lo,hi=corridor['cells'][k]['heading_band_rad']
+            need(lo<=hi,'CORRIDOR_HEADING_BOUND','Reversed candidate yaw band')
+            if adaptive and k==0 and lo==hi:
+                # X[:,0] is already fixed above. Do not add the same initial
+                # yaw equality twice; preserve membership and constrain only
+                # the new endpoint of the exact first-interval yaw band.
+                need(lo<=initial[2]<=hi,'CORRIDOR_HEADING_BOUND','Initial yaw outside exact first candidate band')
+                opt.subject_to(X[2,k+1]==lo)
+            else:
+                opt.subject_to(opt.bounded(lo,X[2,k:k+2],hi))
+        x,y,p,speed=ca.vertsplit(X[:,k]);a,delta=ca.vertsplit(U[:,k]);curv=ca.tan(delta)/v['wheelbase_m']
+        opt.subject_to(opt.bounded(-v['max_curvature_per_m'],curv,v['max_curvature_per_m']))
+        travel=speed*dt+.5*a*dt*dt;z=curv*travel/2
+        # Series at zero, safe denominator in inactive branch. Error < 1e-16 for |z|<1e-4.
+        sinc=ca.if_else(ca.fabs(z)<1e-4,1-z*z/6+z**4/120,ca.sin(z)/ca.if_else(ca.fabs(z)<1e-4,1,z))
+        nxt=ca.vertcat(x+travel*sinc*ca.cos(p+z),y+travel*sinc*ca.sin(p+z),p+2*z,speed+a*dt)
+        opt.subject_to(X[:,k+1]==nxt)
+        # Arc-length interpolation: ||d^2 rear_position / ds^2|| = |curv|.
+        # The rear arc is within |curv| * travel^2 / 8 of its endpoint chord,
+        # for the entire interval, including nonuniform time from acceleration.
+        # sqrt(curv^2 + eps^2) >= |curv| is a smooth conservative upper bound;
+        # eps=1e-10 (1/m). The closed physical half-space remains unchanged.
+        if epigraph:
+            opt.subject_to(K[0,k]>=curv)
+            opt.subject_to(K[0,k]>=-curv)
+            arc_pad=K[0,k]*travel*travel/8
+        else:
+            arc_pad=ca.sqrt(curv*curv+1e-20)*travel*travel/8
+        if substeps==1:
+            for nx,ny,b in corridor['cells'][k]['halfplanes']:
+                # Respect the declared closed half-space. An extra shrink rejects valid
+                # stationary states on a stop boundary; physical margins are already in T2.
+                for j in (k,k+1):opt.subject_to(nx*X[0,j]+ny*X[1,j]+arc_pad<=b)
+        else:
+            def substate(elapsed):
+                # Exact state under THIS original 0.2s control, never a new
+                # control knot or linear interpolation of optimized positions.
+                distance=speed*elapsed+.5*a*elapsed*elapsed;angle=curv*distance/2
+                sinc_part=ca.if_else(ca.fabs(angle)<1e-4,1-angle*angle/6+angle**4/120,
+                    ca.sin(angle)/ca.if_else(ca.fabs(angle)<1e-4,1,angle))
+                return ca.vertcat(x+distance*sinc_part*ca.cos(p+angle),
+                    y+distance*sinc_part*ca.sin(p+angle),p+2*angle,speed+a*elapsed)
+            for j in range(substeps):
+                cell=corridor['cells'][k*substeps+j];lo,hi=cell['heading_band_rad']
+                need(lo<=hi,'CORRIDOR_HEADING_BOUND','Reversed temporal yaw band')
+                left,right=dt*j/substeps,dt*(j+1)/substeps
+                qa,qb=substate(left),substate(right)
+                # Nonnegative speed and constant rear curvature make yaw
+                # monotone within each child; endpoint bands cover its whole time.
+                opt.subject_to(opt.bounded(lo,ca.horzcat(qa[2],qb[2]),hi))
+                distance=(qa[3]+qb[3])*.5*(right-left)
+                child_pad=K[0,k]*distance*distance/8
+                for nx,ny,b in cell['halfplanes']:
+                    opt.subject_to(nx*qa[0]+ny*qa[1]+child_pad<=b)
+                    opt.subject_to(nx*qb[0]+ny*qb[1]+child_pad<=b)
+        if d['stop']:
+            deadline=d['stop']['deadline_s']
+            if times[k]>=deadline-1e-8:opt.subject_to(X[3,k]==0)
+            if times[k]<deadline<=times[k+1]+1e-8:
+                opt.subject_to(speed+a*(deadline-times[k])==0)
+                opt.subject_to(X[3,k+1]==0)
+        cost+=dt*(weights['speed_weight']*(speed-d['desired_speed_mps'])**2+weights['acceleration_weight']*a*a+weights['steering_weight']*delta*delta)
+        if k:cost+=weights['smoothness_weight']*ca.sumsqr(U[:,k]-U[:,k-1])
+    if d['stop'] and d['stop']['deadline_s']<=times[-1]:opt.subject_to(X[3,N]==0)
+    opt.minimize(cost)
+    for k,t in enumerate(times):
+        brake=min(v['max_brake_mps2'],cap['ego']['speed_mps']/max(d['stop']['deadline_s'],dt)) if d['stop'] else 0
+        q=min(t,cap['ego']['speed_mps']/brake) if brake else t
+        opt.set_initial(X[:,k],[initial[0]+initial[3]*q-.5*brake*q*q,initial[1],initial[2],max(0,initial[3]-brake*t)])
+    opt.set_initial(U,0)
+    if search:
+        # Exact corresponding ego reference, including braking and steering.
+        seed=corridor['construction']['seed_points']
+        need(len(seed)==N*substeps+1,'CORRIDOR_SEED','Incomplete candidate initialization')
+        for k,p in enumerate(seed[::substeps]):
+            opt.set_initial(X[:,k],[p[n] for n in ('rear_x_m','rear_y_m','yaw_rad','speed_mps')])
+            if k<N:
+                opt.set_initial(U[:,k],[p['acceleration_mps2'],p['steer_rad']])
+                if epigraph:opt.set_initial(K[0,k],abs(math.tan(p['steer_rad'])/v['wheelbase_m']))
+    opt.solver('ipopt',{'print_time':False},{'print_level':0,'sb':'yes','max_iter':max_iter,'tol':1e-8,'acceptable_tol':1e-7})
+    try:sol=opt.solve()
+    except RuntimeError:
+        raise Failure('OPTIMIZATION_FAILED','IPOPT did not produce a feasible solution; no constraints relaxed','tool_infeasible',solver_status=opt.stats().get('return_status','unknown')) from None
+    points=[]
+    for k,t in enumerate(times):
+        q=sol.value(X[:,k]).tolist();a=float(sol.value(U[0,min(k,N-1)]));steer=float(sol.value(U[1,min(k,N-1)]));center=center_state(q,v)
+        points.append(dict(time_s=t,rear_x_m=q[0],rear_y_m=q[1],x_m=center[0],y_m=center[1],yaw_rad=q[2],speed_mps=q[3],acceleration_mps2=a,steer_rad=steer,curvature_per_m=math.tan(steer)/v['wheelbase_m']))
+    extra=dict(planner_profile='yaw_bounded_box_v1',verification_profile='continuous_oriented_body_adaptive_v1' if adaptive else 'continuous_oriented_body_v1') if box else {}
+    if search:extra.update(search_profile=corridor['search_profile'],heading_bands_rad=[c['heading_band_rad'] for c in corridor['cells']])
+    if temporal:extra['corridor_substeps']=substeps
+    solver=dict(name='casadi_ipopt_multiple_shooting',version=ca.__version__,status=sol.stats()['return_status'],objective=float(sol.value(cost)))
+    if epigraph:
+        solver.update(arc_bound='curvature_epigraph_v1',iterations=int(sol.stats()['iter_count']),
+                      curvature_magnitude_bounds_per_m=[float(sol.value(K[0,k])) for k in range(N)])
+    return artifact(scene,points=points,interpolation='exact_constant_acceleration_constant_rear_curvature',requested_prefix_s=cap['safety']['prefix_s'],solver=solver,**extra)

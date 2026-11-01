@@ -1,5 +1,43 @@
 # Agentic Driving
 
+[单clip完整连续前视＋BEV动画](implementation/results/continuous_urban_clip_20261030_v1/README.md)：scene-0103完整229张前视图、19.4秒，19个已验证规划参考，提供GIF/MP4；相机帧连续播放、历史轨迹明确未重新核验。另17个0.5秒加密参考因代理TLS预检失败尚未调用，新增模型生成0。
+
+[剩余失败帧修复与当前案例动画](implementation/results/failure_followup_20261030_v1/README.md)：原JSON固定比较17/21→18/21、无退化；沿用两份绑定修订及新12图组后，21个原参考位置当前均有条件式轨迹与模拟消费记录。分开披露混合来源、2次新请求和偏急转向的质量边界，不改原基线统计。
+
+[三条困难clip与工具链优化](implementation/results/hard_clip_optimization_20261030_v1/README.md)：施工、雨夜、城市交互共21个固定参考，同一真实JSON完整链路由15/21增至17/21，无退化；另列7次新请求的验证、三条前视+BEV动画及关键对象离线对照，明确保留失败与条件结论。
+
+[各模块完整输入输出与具体参数](implementation/results/module_io_reference_20261029_v1/README.md)：以跟车frame_004/attempt_02为完整实例，提供采集、模型、T1–T4、五候选、模拟执行和独立接受器的实参/输出JSON、中文参数说明及CSV；纯离线整理。
+
+[前视轨迹 + 右侧俯视场景 GIF](implementation/results/planning_front_bev_gifs_20261029_v1/README.md)：完整保留前视GIF信息，逐规划帧拼接对应原BEV图，道路、目标、未来占用、走廊和轨迹同步展示；零新增模型、规划和执行调用。
+
+[规划帧前视轨迹GIF](implementation/results/planning_front_gifs_20261029_v2/README.md)：跟车、公交和停车区弯道各19个规划参考帧，按相机标定投影已核验的2秒轨迹，保留8个拒绝时刻；近场不可见短轨迹另标俯视小窗。新增模型/规划/执行调用均为0。
+
+[三条完整场景clip与失败补跑后的展示](implementation/results/long_clips_visual_20261029_v2/README.md)：每条约20秒，完整前向相机视频共706帧，57个固定规划参考。原始41/57通过；按用户要求对16个失败时刻全部补跑27次，新增8个通过，当前49/57（跟车16/19、公交14/19、停车区弯道19/19）。全部通过都实际模拟消费0.2秒移动前缀；原失败、未知在途及原阶段报告保留，不称连续反事实驾驶或真实世界安全证明。
+
+[正式API连续转弯结果v3](implementation/results/api_continuous_bend_20261029_v3/README.md)：frame005在连接恢复后一次真实生成完成全链，六个固定时刻现均已有T1–T4及模拟移动转弯前缀通过证据；前五帧未重跑。驾驶POST累计10次含2次连接失败，另保留原预检失败和2次短诊断；旧v2结果原样保留。图、动画、PDF与全部失败账本已交付，不称多轮反事实闭环、G2或长期网络稳定。
+
+[原订阅通道连续转弯六帧回放](implementation/results/continuous_bend_20261029_v1/README.md)：旧批逐帧图/JSON、动画、PDF及统一坐标汇总保留；首帧服务断连后1/12停止，模型输出0、其余5帧未调用。
+
+[弯道验证与曲线重规划](implementation/results/bend_validation_20261029_v1/README.md)：新在线试验2/4后断连停止；改进任务候选筛选，旧真实输出零调用得到−8.60°右转计划并消费−2.73°前缀，404项回归通过，明确不计新在线成功。
+
+[新四场景扩展与最小优化](implementation/results/scene_expansion_20261029_v1/README.md)：6/8次真实请求，3窗工具链及模拟移动前缀通过、1窗T2拒绝；披露两窗旧提示文义冲突，修正新提示并增强T2具体反馈，400项回归通过。
+
+[T1–T4零调用局部优化](implementation/results/toolchain_optimization_20261029_v1/README.md)：更具体的T1反馈、原生时间覆盖和光滑曲率约束；停车场恢复一个可行候选，已有3窗通过保留，未宣称在线成功率提高。
+
+[连接配置修补与验证](implementation/results/connection_repair_20261029_v1/README.md)：显式项目代理/可信CA、预检与RPC共用环境，文本和10图两次独立GPT-6.1连接诊断通过；未续跑驾驶批次。
+
+[六场景摸底实际执行与结果](implementation/results/six_scene_scout_run_20261029_v1/README.md)：6/12次请求后服务连接错误停止，3窗已尝试，1窗修订后全链及模拟移动前缀通过；其余3窗未调用，算法保持冻结。
+
+[六场景摸底：场景清单、原图预览与运行计划](implementation/results/six_scene_scout_preparation_20261029_v1/README.md)：6个不同scene、2个预留验证scene，固定现有2秒原型；建议独立上限12次，当前仅准备、真实调用0。
+
+[2秒原型施工改进与前后对照](implementation/results/construction_recovery_20261029_v1/README.md)：新增有限候选、分段航向带及种子初始化；公交/停车场离线链路通过，施工推进到T3但仍不可行。新请求2/4后遇连接故障停止，红灯未调用。
+
+[流程修复与真实分组复测](implementation/results/process_recovery/README.md)：已修复工程误拒并新增严格成功判定；本轮真实完整链路仍未通过，不以软件测试代替。
+
+[案例、四工具输入输出与轨迹叠加](implementation/results/casebook/index.html)：官方 nuScenes 相机渲染、真实拒绝链路、人工停车/恢复完整链路，附十三页 PDF。
+
+实验可视化：[离线交互报告](implementation/results/visual_report/index.html)，含真实图像与工具拒绝链路、G2 点位对比及单独标注的人工轨迹回放。
+
 Agentic Semantic-to-Physical Driving V1.0：由多模态驾驶智能体持续输出驾驶决策和环境假设，四个确定性工具将其转化为可核验的物理轨迹。
 
 ## 工具链
@@ -40,7 +78,11 @@ python run_demo.py
 
 服务器部署与运行见 [HPC 使用说明](hpc/README.md)。登录节点仅准备环境，测试通过 Slurm CPU 作业执行。
 
-## 当前阶段
+## 新增可运行 v2 剖面
+
+独立环境、实际 CasADi/IPOPT 自行车优化、在线多模态适配、失败反馈闭环、短前缀模拟执行和 G2 入口见 [v2 运行说明](implementation/README_V2.md)。原数据契约和枚举基线保留。已实际使用 ChatGPT 会员路径调用 GPT-6.1 并评价 nuScenes 样例，见 [真实试验报告](implementation/results/gpt61_live/README.md)：图像调用跑通，但尺度与未来占用不足，完整物理闭环未验证通过。
+
+## 原 v1 基线边界
 
 已实现严格 JSON Schema 与直道矩形场景的纵向候选求解、独立核验。测试使用人工场景及智能体脚本替身，没有真实图像处理、在线模型调用或车辆控制。尚未完成 G2 模型米制 grounding 可行性验证，也未实现任意道路几何或一般非线性轨迹优化。
 
