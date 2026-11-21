@@ -1,0 +1,8 @@
+{
+  "kind":"post-primary engineering and control ablations on the same 24 exposed windows",
+  "decision_inputs":"Only online road and all predicted obstacle modes, original rectangle/initial reference, guidance if present, causal CAN, constraint and optimization rejection histories. No annotation or recorded future for solver or ranking.",
+  "reason":"Five old-guidance rejections with supported initial road and CAN, including line-search failures at the archived native seed, interval road or object failures and body rectangular containment. Only one optimizer reached its iteration cap. Test a different seed and global bounded geometry proposal instead of lengthening all searches.",
+  "deterministic_keep":{"model_calls":0,"guidance":"constant KEEP, zero task windows; native reference retained; 3 nonlinear solves maximum; third seed used if still needed; same additional hard motion limits and continuous release gate"},
+  "body_refinement":{"applies":"After unchanged primary search fails despite observable steering and supported initial footprint; extra compute measured separately. Both old and new real Astra guidance cohorts.","additional_control_solves_max":2,"first_seed":"rule from guidance and route; search on full predicted road/objects/dynamics and speed, without learned rectangles. Seed cannot be released.","refit":"all six orientations, centers and widths fit together to seed footprint with original bounds. Entire original release gate and windows on reintegrated candidate."},
+  "low_speed":"Original steering physical range +/-1 rad and 0.25 rad first-step slew imply empty robust first-control intersection without a narrower initial angle interval; no imputed steering."
+}

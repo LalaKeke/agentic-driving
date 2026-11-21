@@ -1,0 +1,10 @@
+{
+  "name": "whole_horizon_corridor_v1", "cohort": "existing frozen expansion 24; previously exposed development cases",
+  "inputs": "Current learned rectangles, learned nominal trajectory, Astra oriented windows, online visual boundary and object predictions, navigation and causal CAN only. No future ego, annotations or evaluation scores.",
+  "geometry": "All six 0.5s rectangles solved as bounded whole-horizon least squares on center, modulo-pi longitudinal axis and short axis width. Anchor changes to original. No disjoint region union. Preserve long sides. Short side additions <=1.85 m. Mathematical trial rectangles are independently clipped against predicted road and objects at every knot.",
+  "guidance": "Move nominal BODY reference minimally toward the nearest point inside each oriented window. Smooth the six-knot displacement with start anchor and separate first/second differences. Window angle specifies region axes, not forced vehicle yaw.",
+  "dynamics": "12 x 0.25s bicycle controls; original control/steering/slew limits and nonnegative speed retained; longitudinal jerk <=5 m/s^3 between observed controls; |v^2*tan(delta)/L| <=3 m/s^2 at both ends of every constant-control interval; controls and reference smoothing also penalized in objective.",
+  "selection": "Try archived native if it already meets physical, task, continuous predicted road/object and additional smoothness limits. Else original-size fixed corridor, global corrected corridor, then optional closest-window with <=1m position miss and HARD original speed bounds. Keep canonical diagnostic fixed clearance floor. No GT-ranking, no automatic unsafe fallback. Stop at first exact eligible result. Missing causal steering remains unknown.",
+  "metrics": "Report no-output denominator, matched-pair recorded collision, ADE/FDE, longitudinal jerk and lateral acceleration. No safety/generalization claims. No clearance weakening.",
+  "search_budget": {"max_slsqp_per_case":3, "max_iterations_per_solve":80}
+}

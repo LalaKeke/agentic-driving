@@ -1,0 +1,12 @@
+{
+  "version": "witnessed_body_menu_v1",
+  "timing": "Frozen before executing this portfolio on any of the six previously exposed scenes. The known 0963 rejection motivated the new interface.",
+  "template_basis": "Use only the same causal final native BODY centre knots/heading and their interval speeds. Longitudinal easing subtracts 0.5*0.70*t^2 metres of arc travel, clipped at zero; lateral offsets grow quadratically to -0.8, 0 or +0.8 metres at 3 s in the local left normal. Enumerate track, ease, left, right, ease-left, ease-right in this order.",
+  "shaping": "For each template, supply a seed guidance on cruise (lateral for a shift) windows at 1.5s and 3s, with interval speed expanded by 1 m/s; fit using existing global corridor planner. These deterministic preferences are not the offered task or future observations. The actual offered task uses the achieved forward body centre, yaw and instantaneous speed.",
+  "budget": "One native-control check if the original QP emitted controls. Up to three old smooth.solve_controls calls (fixed corridor, warm free corridor, fitted corridor) and at most two fully audited trajectories per template. Try refinement when a raw-corridor candidate fails or duplicates a menu choice. No release of a warm start.",
+  "verify": "Same initial CAN steering, cases, learned corridor, road and secondary head, all predicted object modes, fixed reference clearance floor, control and smooth bounds, continuous primary road/object and original RK4 checks. No alternate road chart. Recheck advertised goal exactly on RK4 and analytic trajectories: cruise 2x1 or near_stop 1x1 at speed<0.5 m/s, centered on analytic witness with its yaw in ego degrees; speed interval +/-0.25 m/s clipped at zero lower bound. At most one admitted witness per template. A candidate within 0.15 m in all 13 knots and 0.20 m/s of all speeds of a prior option is redundant.",
+  "selection": "Frozen option ID maps to the exact candidate controls, path and certificate. The option's two regions are correlated by this one trajectory. No claim that arbitrary pairs of points in the regions are feasible. No evidence from recorded future or scoring data enters planning.",
+  "empty": "If there is no verified offer, preserve native as a separately labelled default if the policy requests it; assign no new certificate.",
+  "candidate_templates": ["native_controls","track","ease","left","right","ease_left","ease_right"],
+  "maximum_advertised_options": 7
+}
