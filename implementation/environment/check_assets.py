@@ -1,9 +1,12 @@
 """Check local CorDriver assets without loading weights, pickles or model credentials."""
 import argparse
 import hashlib
-import json
 import subprocess
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
+from cordriver_paths import load_asset_manifest
 
 
 def digest(path):
@@ -20,7 +23,7 @@ def main():
     parser.add_argument("--data", type=Path, required=True, help="Licensed nuScenes v1.0-trainval with CAN and maps")
     parser.add_argument("--sparse", type=Path, help="Check the secondary map exports against this study")
     args = parser.parse_args()
-    spec = json.loads(Path(__file__).with_name("assets.json").read_text())
+    spec = load_asset_manifest()
     upstream = args.tools / "cordriver"
     revision = subprocess.run(
         ["git", "-C", str(upstream), "rev-parse", "HEAD"], capture_output=True, text=True,

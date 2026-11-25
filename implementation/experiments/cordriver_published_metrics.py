@@ -6,9 +6,9 @@ import mmcv
 import numpy as np
 import torch
 from mmdet3d.datasets import build_dataset
-from cordriver_paths import TOOLS
+from cordriver_paths import TOOLS, load_asset_manifest
 from cordriver_astra_packet import NATIVE_R, NATIVE_T
-from cordriver_reachable_options import sha, load
+from cordriver_reachable_options import sha
 UPSTREAM=TOOLS/"cordriver"
 sys.path.insert(0,str(UPSTREAM))
 from projects.mmdet3d_plugin.VAD.VAD import VAD
@@ -21,7 +21,7 @@ class Published:
     def __init__(self, data):
         self.config = UPSTREAM/'projects/configs/VAD/Corridor_stage_2.py'
         self.pkl = TOOLS/'cordriver_assets/corridor_nuscenes_infos_temporal_val.pkl'
-        release = load(Path(__file__).resolve().parents[1] / "environment/assets.json")["cordriver"]
+        release = load_asset_manifest()["cordriver"]
         files = {"upstream_head_sha": UPSTREAM / "projects/mmdet3d_plugin/VAD/VAD.py",
                  "metric_sha": UPSTREAM / "projects/mmdet3d_plugin/VAD/planner/metric_bp.py",
                  "upstream_dataset_sha": UPSTREAM / "projects/mmdet3d_plugin/datasets/nuscenes_vad_dataset.py",
