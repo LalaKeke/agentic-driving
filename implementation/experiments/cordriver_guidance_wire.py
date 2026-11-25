@@ -112,7 +112,26 @@ def build(path):
         raise ValueError("MISSING_CAUSAL_ROUTE")
     expected, raw = build_request(path)
     body = json.loads(raw)
-    body.update(instructions=PROMPT)
+    if ctx.get("trajectory_contract") == "fast_return_body_sweep_v1":
+        body["instructions"] = PROMPT.replace("learned pre-optimization proposal","actual fast-system return").replace(
+            "Inspect the images and the initial trajectory.",
+            "Inspect the timed body center and its full nominal width on the actual fast return. "
+            "Check curb/road boundary cutting and overlap with moving participants. "
+            "Use the raw views to interpret the overlay; a hidden or out-of-view corner is unknown. "
+            "KEEP an appropriate path. When a visible risk warrants ADJUST, start from the shown "
+            "positions and speeds at each node and request the smallest adequate correction consistent "
+            "with the measured motion, navigation and usable space. A window yaw follows the road tangent. "
+            "KEEP delivers this exact fast path; an unresolved adjustment defaults to the same path.")
+    else:
+        body.update(instructions=PROMPT)
+    if ctx["navigation"].get("polyline_source") == "official_pre_qp":
+        body["instructions"] = body["instructions"].replace(
+            "The navigation polyline is a recommended path sampled by\n"
+            "distance; it does not specify where the car must be at a future time, a target speed,\n"
+            "obstacle clearance or road permission.",
+            "The only navigation input is the benchmark high-level command. The magenta "
+            "polyline is the model's own pre-QP prediction, not an independent route, "
+            "a target, obstacle clearance or road permission.")
     body["text"]["format"].update(name="oriented_trajectory_guidance",schema=schema())
     wire = encode(body)
     expected.update(body_sha256=sha(wire),body_bytes=len(wire))
@@ -153,6 +172,40 @@ def native_text(data):
     return "".join(p["text"] for p in parts)
 
 
+def ready_http_client(httpx, output, token):
+    """Optional zero-cost, same-client TLS readiness check before reserving this token."""
+    if os.environ.get("CORDRIVER_VERIFY_PROXY") != "1":
+        return httpx.Client(timeout=450, follow_redirects=False)
+    from urllib.parse import urlsplit
+    probe_url = urlsplit(ENDPOINT)._replace(path="/v1/models").geturl()
+    if probe_url != "https://api.openai.com/v1/models":
+        raise ValueError("Unexpected official API destination")
+    delay = 2
+    while True:
+        for port in (17891, 17890):
+            client = httpx.Client(proxy=f"http://127.0.0.1:{port}", trust_env=False,
+                                  verify="/etc/ssl/certs/ca-certificates.crt", timeout=450,
+                                  follow_redirects=False)
+            event = dict(token=token, at=time.time(), port=port, paid=False)
+            try:
+                response = client.get(probe_url, timeout=12)
+                ok = (response.status_code == 401 and
+                      response.headers.get("content-type", "").startswith("application/json") and
+                      response.json().get("error") is not None and
+                      response.headers.get("connection", "").lower() != "close")
+                event.update(http=response.status_code, ready=ok)
+            except (httpx.RequestError, ValueError) as exc:
+                ok = False
+                event.update(ready=False, error=type(exc).__name__)
+            with (output.parent / "readiness.jsonl").open("a") as stream:
+                stream.write(json.dumps(event) + "\n")
+            if ok:
+                return client
+            client.close()
+        time.sleep(delay)
+        delay = min(delay * 2, 60)
+
+
 def obtain(packet, responses, output, live):
     """No dispatch occurs in archive mode. Compare the complete wire, including all image bytes."""
     token = json.loads(packet.read_bytes())["token"]
@@ -176,27 +229,28 @@ def obtain(packet, responses, output, live):
         key = Path(os.environ["DRIVING_API_KEY_FILE"]).expanduser().read_text().strip()
     if not key or any(char.isspace() for char in key):
         raise ValueError("Configure a single OPENAI_API_KEY or DRIVING_API_KEY_FILE for --live")
-    source = output / token
-    source.mkdir(parents=True, exist_ok=False)
-    (source / "request.json").write_bytes(wire)
-    save(source / "precharge.json", {"token":token, "body_sha256":binding["body_sha256"], "limit":1})
-    receipt = dict(token=token, requested_model=MODEL, client_post_attempts=1, returned_model=None,
-                   status="STOP", dispatch="UNKNOWN", http=None, usage=None)
-    start = time.monotonic()
-    try:
-        with httpx.Client(timeout=450, follow_redirects=False) as client:
+    from contextlib import closing
+    with closing(ready_http_client(httpx, output, token)) as client:
+        source = output / token
+        source.mkdir(parents=True, exist_ok=False)
+        (source / "request.json").write_bytes(wire)
+        save(source / "precharge.json", {"token":token, "body_sha256":binding["body_sha256"], "limit":1})
+        receipt = dict(token=token, requested_model=MODEL, client_post_attempts=1, returned_model=None,
+                       status="STOP", dispatch="UNKNOWN", http=None, usage=None)
+        start = time.monotonic()
+        try:
             res = client.post(ENDPOINT, content=wire, headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"})
-        receipt.update(dispatch="HTTP_RESPONSE_RECEIVED", http=res.status_code, request_id=res.headers.get("x-request-id"))
-        res.raise_for_status()
-        envelope = res.json()
-        save(source / "native_envelope.json", envelope)
-        receipt.update(returned_model=envelope.get("model"), usage=envelope.get("usage"))
-        answer = parse(envelope)
-        save(source / "native_output.json", answer)
-        receipt.update(status="COMPLETE", decision=answer["decision"])
-    finally:
-        receipt["elapsed_s"] = time.monotonic() - start
-        save(source / "receipt.json", receipt)
+            receipt.update(dispatch="HTTP_RESPONSE_RECEIVED", http=res.status_code, request_id=res.headers.get("x-request-id"))
+            res.raise_for_status()
+            envelope = res.json()
+            save(source / "native_envelope.json", envelope)
+            receipt.update(returned_model=envelope.get("model"), usage=envelope.get("usage"))
+            answer = parse(envelope)
+            save(source / "native_output.json", answer)
+            receipt.update(status="COMPLETE", decision=answer["decision"])
+        finally:
+            receipt["elapsed_s"] = time.monotonic() - start
+            save(source / "receipt.json", receipt)
     return output, answer
 
 def bind_frozen(packet, receipt):

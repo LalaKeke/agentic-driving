@@ -50,12 +50,13 @@ def separator(body, geometry):
     return normal
 
 
-def build_planes(trial, road, body, floor):
+def build_planes(trial, road, body, floor, *, objects_only=False):
     edges, objects = [], []
-    initial = min(Polygon(body[0]).distance(e.line) for e in road.edges.values())
+    road_edges = () if objects_only else tuple(road.edges.values())
+    initial = min((Polygon(body[0]).distance(e.line) for e in road_edges), default=0.)
     for i, b in enumerate(body):
         polygon = Polygon(b)
-        for edge in road.edges.values():
+        for edge in road_edges:
             if polygon.distance(edge.line) > 3.0:
                 continue
             # A nonconvex line is a collection of finite segments, not a single half-plane.

@@ -60,12 +60,12 @@ def unwrap_rect_axes(angle):
     return np.r_[seed, seed + np.cumsum(principal_axis_difference(np.diff(angle)))]
 
 
-def fit_corridor(raw, context, nodes, width_ego):
+def fit_corridor(raw, context, nodes, width_ego, soft_mid=None):
     ref = np.array([[t['x_forward_m'], t['y_left_m']] for t in context['trajectory']])
     if ref.shape != (7, 2) or not np.allclose([t['t_s'] for t in context['trajectory']], TIMES):
         raise ValueError("REFERENCE_TIME_GRID")
     corrections = {}
-    for index, center, basis, half, _ in nodes:
+    for index, center, basis, half, _ in (*nodes, *((soft_mid,) if soft_mid is not None else ())):
         k = index // 2
         local_xy = (ref[k] - center) @ basis
         target = center + np.clip(local_xy, -half, half) @ basis.T
@@ -74,7 +74,8 @@ def fit_corridor(raw, context, nodes, width_ego):
     target_path = ref.copy()
     for axis, bound in enumerate(core.SHIFT[:2]):
         obs = [(k, 0., .9) for k in range(1, 7)]
-        obs += [(k, diff[axis], 4.) for k, diff in corrections.items()]
+        obs += [(k, diff[axis], 2. if soft_mid is not None and k == soft_mid[0] // 2 else 4.)
+                for k, diff in corrections.items()]
         displacement = fit_signal(0., obs, -bound, bound, .8, 3.0)
         target_path[1:, axis] += displacement
         # Keep the learned offset between the BODY reference and each road rectangle.
@@ -115,7 +116,21 @@ def added_margins(states, controls, dt, wheelbase):
     return np.concatenate((LAT_MAX - lat, LAT_MAX + lat, JERK_MAX - jerk, JERK_MAX + jerk), axis=1)
 
 
-def solve_controls(tr, seed, nodes, soft, road, target_path, free_seed=False):
+def guide_penalty(centers, states, node):
+    """Squared distance outside the oriented soft position and speed windows at a knot."""
+    i, center, basis, half, speeds = node
+    offset = (centers[:, i] - center) @ basis
+    # Keep the imaginary component for the optimizer's complex-step derivatives.
+    def positive(v):
+        return np.where(v.real > 0., v, 0.)
+    displacement = positive(offset - half) + positive(-offset - half)
+    v = states[:, i, 3]
+    speed_error = positive(v - speeds[1]) + positive(speeds[0] - v)
+    return (displacement ** 2).sum(axis=1) + speed_error ** 2
+
+
+def solve_controls(tr, seed, nodes, soft, road, target_path, free_seed=False, clearance_floor=None,
+                   minimize_change=False, soft_mid=None):
     size = 24 + 4 * soft
     start = np.zeros(size)
     start[:24] = seed[:24]
@@ -125,6 +140,15 @@ def solve_controls(tr, seed, nodes, soft, road, target_path, free_seed=False):
         error = np.concatenate([r['signed_outside_long_lat_m'] for r in core.node_report(nodes, xy[0], initial_state[0])])
         start[-4:] = np.clip(np.abs(error) + .002, 0., MISS_MAX)
     nearby = local.candidate_obstacles(tr, body[0], limit=8)
+    planes = None
+    if clearance_floor is not None and any(v is not None for v in clearance_floor):
+        from cordriver_clearance_refit import half_states, build_planes, plane_margins
+        knot_floor, dense_floor = (float(v or 0.) for v in clearance_floor)
+        _, sampled = half_states(tr, start[None])
+        _, footprint = core.geometry(sampled, tr.m['origin'], tr.p)
+        _, planes, _ = build_planes(tr, road, footprint[0], max(knot_floor, dense_floor), objects_only=True)
+        threshold = np.full(25, dense_floor)
+        threshold[::2] = max(knot_floor, dense_floor)
     perturb = np.eye(size) * 1e-20j
     bounds = [(-tr.p.a_max, tr.p.a_max), (-tr.p.delta_max, tr.p.delta_max)] * 12
     bounds.extend([(0., MISS_MAX)] * (4 * soft))
@@ -141,7 +165,11 @@ def solve_controls(tr, seed, nodes, soft, road, target_path, free_seed=False):
         ay = states[:, :-1, 3]**2 * np.tan(steer) / tr.p.L
         lat_change = np.diff(ay, axis=1) / tr.p.dt
         native = (.5 * np.einsum('bi,ij,bj->b', z[:, :24], q, z[:, :24]) + z[:, :24] @ p) / qp_scale
-        cost = (np.mean(np.sum(error**2, axis=2), axis=1) + .05 * native + .035 * np.mean(jerk**2, axis=1)
+        mid_cost = 0. if soft_mid is None else guide_penalty(centers, states, soft_mid)
+        if minimize_change:
+            return (mid_cost + np.mean(np.sum(error**2, axis=2), axis=1)
+                    + .004 * np.mean(jerk**2, axis=1) + .02 * np.mean(delta_rate**2, axis=1))
+        cost = (mid_cost + np.mean(np.sum(error**2, axis=2), axis=1) + .05 * native + .035 * np.mean(jerk**2, axis=1)
                 + .3 * np.mean(delta_rate**2, axis=1) + .04 * np.mean(ay**2, axis=1)
                 + .018 * np.mean(lat_change**2, axis=1))
         if soft:
@@ -154,8 +182,13 @@ def solve_controls(tr, seed, nodes, soft, road, target_path, free_seed=False):
         native = tr.calc(z, nodes, False, soft, [])
         if free_seed:
             native = native[:, 16 * len(tr.m["rect"]):]
-        return np.column_stack((native, local.signed_gap(b, nearby) - .015,
-                                local.route_support_constraint(b, road), added_margins(states, z, tr.p.dt, tr.p.L)))
+        margins = [native, local.signed_gap(b, nearby) - .015,
+                   local.route_support_constraint(b, road), added_margins(states, z, tr.p.dt, tr.p.L)]
+        if planes is not None:
+            _, sampled = half_states(tr, z)
+            _, footprint = core.geometry(sampled, tr.m['origin'], tr.p)
+            margins.append(plane_margins(footprint, planes, threshold))
+        return np.column_stack(margins)
 
     res = minimize(lambda z: objective(z[None])[0], start, method='SLSQP', bounds=bounds,
                    jac=lambda z: objective(z[None] + perturb).imag / 1e-20,
@@ -300,24 +333,48 @@ def bind_final_guidance_packet(path, original_path, sample_path, original, sampl
     return actual, [path, proof_path, state_path, front_path]
 
 
-def run_case(args, *, guidance_packet=None, frozen_response=None):
+def solve_from_verified(tr, option, exact, nodes, road, target, clearance_floor=None, soft_mid=None):
+    """Reuse exactly matching controls or fit the new request in a certified seed corridor."""
+    certified = core.read(Path(option["candidate_path"]))
+    rect = np.asarray(certified["rectangles_ego_body_xy_yaw_l_w"])
+    tr.m["rect"] = rect.copy()
+    controls = np.asarray(certified["controls_accel_steer"]).ravel()
+    info = dict(source="RECHECK_EXISTING_CONTROLS_FOR_NEW_NODES", certificate_sha256=option["certificate_sha256"])
+    if not exact:
+        controls, solver_info = solve_controls(tr, controls, nodes, False, road, target, clearance_floor=clearance_floor, soft_mid=soft_mid)
+        info.update(solver_info, source="EXACT_SOLVE_FROM_NEAREST_CERTIFIED_CONTROLS")
+    return controls, rect, info
+
+
+def run_case(args, *, guidance_packet=None, fast_return=None, frozen_response=None, guided_search="verified"):
     study, guidance, out, model, case, data, weight, refine, dual_chart, finite_atlas = args
     fixed_keep = model == "DETERMINISTIC_KEEP"
     arm = "diagnostic" if fixed_keep else "astra"
     token = case['token']
     folder = out / 'planning' / arm / token
     if (folder / 'result.json').exists():
+        cached = core.read(folder / 'result.json')
+        if fast_return and cached.get("guided_search") != guided_search:
+            raise ValueError("CACHED_GUIDED_SEARCH_MISMATCH")
         if guidance_packet is not None:
             old_inputs = core.read(folder/'inputs.json')['files']
-            for item in (guidance_packet, guidance/token/'native_output.json', guidance/token/'request.json',
-                         Path(__file__)):
+            evidence=[guidance_packet, Path(__file__)]
+            if frozen_response is None:
+                evidence.extend((guidance/token/'native_output.json', guidance/token/'request.json'))
+            else:
+                evidence.append(frozen_response)
+            if fast_return is not None:
+                evidence.append(fast_return)
+            for item in evidence:
                 if old_inputs.get(str(item.resolve())) != legacy.sha(item):
                     raise ValueError('CACHED_GUIDANCE_BINDING_MISMATCH')
-        return core.read(folder / 'result.json')
+        return cached
     started = time.monotonic()
     folder.mkdir(parents=True, exist_ok=False)
     root = dict(scene=case['name'], token=token, arm=arm, selected_path=None, selected_method=None,
                 selected_task=None, candidates=[], eligible=False, reasons=[], control_solves=0, fitted_seed_solves=0)
+    if fast_return:
+        root["guided_search"] = guided_search
     guide_file = guidance / token / 'native_output.json'
     try:
         reg = study / 'selection/registration.json'
@@ -349,7 +406,31 @@ def run_case(args, *, guidance_packet=None, frozen_response=None):
         if guidance_packet is not None:
             if fixed_keep:
                 raise ValueError('FIXED_KEEP_HAS_NO_MODEL_PACKET')
-            model_packet, bound_files = bind_final_guidance_packet(guidance_packet, pkt, frontend, packet, row)
+            if fast_return is None:
+                model_packet, bound_files = bind_final_guidance_packet(guidance_packet, pkt, frontend, packet, row)
+            else:
+                from cordriver_fast_review import CONTRACT, fast_path
+                origin = pkt.resolve().parents[2]
+                _, _, poses, speeds, _ = fast_path(origin, token, fast_return)
+                model_packet = core.read(guidance_packet)
+                proof_file = guidance_packet.with_name("provenance.json")
+                proof = core.read(proof_file)
+                shown = model_packet["model_context"]
+                from cordriver_astra_packet import CHANNELS
+                originals = [(im["label"], im["sha256"]) for im in packet["images"]
+                             if im["label"].endswith(" original RGB")]
+                sent = [(im["label"], im["sha256"]) for im in model_packet["images"][:-1]]
+                series = np.array([[r[k] for k in ("t_s","x_forward_m","y_left_m","nominal_yaw_rad","speed_mps")]
+                                   for r in shown["trajectory"]])
+                if (proof["token"] != token or proof["packet_sha256"] != legacy.sha(guidance_packet)
+                        or proof["fast_return_sha256"] != legacy.sha(fast_return) or proof["original_packet_sha256"] != legacy.sha(pkt)
+                        or proof["overlay_sha256"] != model_packet["images"][-1]["sha256"] or shown["trajectory_contract"] != CONTRACT
+                        or any(shown[k] != context[k] for k in ("sample_token","reference_time_us","navigation","measured_ego_state","cameras","guidance_frame"))
+                        or len(originals) != len(CHANNELS) or {label for label, _ in originals} != {
+                            ch + " original RGB" for ch in CHANNELS} or originals != sent
+                        or not np.array_equal(series, np.column_stack((TIMES,poses,speeds)))):
+                    raise ValueError("FAST_RETURN_GUIDANCE_MISMATCH")
+                bound_files = [fast_return, guidance_packet, proof_file]
             sources += bound_files
         if frozen_response is not None:
             sources.append(frozen_response)
@@ -368,150 +449,240 @@ def run_case(args, *, guidance_packet=None, frozen_response=None):
             if image_hashes != [img['sha256'] for img in model_packet['images']]:
                 raise ValueError('NATIVE_REQUEST_FRAME_DIGEST_MISMATCH')
             sources += [receipt_file, guide_file, envelope_file, request_file]
-        nodes = core.parse_nodes(guide)
         core.save(folder / 'inputs.json', dict(token=token, scene=case['name'], arm=arm, model=model,
                                               guidance=guide, qp_weight=weight,
                                               files={str(p.resolve()): legacy.sha(p) for p in sources}))
-        root['decision'] = guide['decision']
-        can = data / 'can_bus' / (case['name'] + '_pose.json')
-        try:
-            steering, history = legacy.derive(can, row)
-        except (FileNotFoundError, ValueError) as exc:
-            root.update(status='NO_RELEASE', reasons=['CAN_INITIAL_STEERING_UNOBSERVABLE', str(exc)])
-            return finish(folder, root, started)
-        root['initial_steering'] = dict(value_rad=steering, count=len(history), latest_us=history[-1]['utime'],
-                                        pose_file=str(can), sha256=legacy.sha(can))
-        planner, native = core.compose_native(row, weight, 'cpu')
-        tr = core.Trial(planner, native, row, visual)
-        legacy.bind_initial_assumption(tr, steering)
-        raw = tr.m['rect'].copy()
-        road = legacy.build_road(context['navigation']['polyline_guidance_m'], legacy.edges_from_features(visual['map_features']))
-        initial = Polygon(legacy.BODY_CORNERS)
-        needs_chart = not road.support.covers(initial) or any(e.line.intersects(initial) for e in road.edges.values())
-        if needs_chart and not dual_chart:
-            root.update(status='NO_RELEASE', reasons=['INITIAL_BODY_LACKS_ROAD_SUPPORT'])
-            return finish(folder, root, started)
-        secondary = None
-        ext = study / 'secondary_primary'
-        segment, = [r for r in core.read(ext / 'sources.json')['cases'] if r['token'] == token]
-        assert segment['admitted'] == (ext / (token + '.json')).exists()
-        if segment['admitted']:
-            secondary_payload = core.read(ext / (token + '.json'))
-            assert (segment['same_primary_detection_matches'] and segment['latest_exposure_minus_decision_us'] <= 0
-                    and secondary_payload['token'] == token and secondary_payload['cameras'] == segment['current_cameras'])
-            secondary = legacy.build_road(road.route, legacy.edges_from_features(secondary_payload['features']))
-        if dual_chart and needs_chart:
-            if secondary is None:
-                root.update(status='NO_RELEASE', reasons=['MISSING_SECOND_VISUAL_HEAD_FOR_EGO_CHART'])
-                return finish(folder, root, started)
-            if any(edge.line.intersects(initial) for head in (road,secondary) for edge in head.edges.values()):
-                root.update(status='NO_RELEASE', reasons=['MEASURED_BOUNDARY_INTERSECTS_INITIAL_FOOTPRINT'])
-                return finish(folder, root, started)
-            chart = [[0.,0.],[15.,0.]]
-            primary_chart = legacy.build_road(chart,road.edges)
-            secondary_chart = legacy.build_road(chart,secondary.edges)
-            if finite_atlas:
-                learned_ref = [[r['x_forward_m'], r['y_left_m']] for r in context['trajectory']]
-                curves = [chart, context['navigation']['polyline_guidance_m'], learned_ref]
-                primary_chart.support, primary_meta = chart_atlas(curves, road.edges)
-                secondary_chart.support, secondary_meta = chart_atlas(curves, secondary.edges)
-                root['finite_atlas'] = dict(primary=primary_meta, secondary=secondary_meta)
-            joint = primary_chart.support.intersection(secondary_chart.support)
-            root['dual_chart'] = dict(primary_source_sha256=legacy.sha(vis_file),
-                    secondary_source_sha256=legacy.sha(ext / (token + '.json')),
-                    primary_area_m2=primary_chart.support.area,secondary_area_m2=secondary_chart.support.area,
-                    joint_area_m2=joint.area,joint_covers_initial=joint.covers(initial),chart_xy_m=chart)
-            if not joint.covers(initial):
-                root.update(status='NO_RELEASE', reasons=['BOTH_MEASURED_ROAD_CHARTS_LACK_JOINT_SUPPORT'])
-                return finish(folder, root, started)
-            # Use every boundary from both heads in the interval certificate. IDs can coincide.
-            primary_chart.support = joint
-            primary_chart.edges = {**{'primary_'+str(i):e for i,e in road.edges.items()},
-                                   **{'secondary_'+str(i):e for i,e in secondary.edges.items()}}
-            road = primary_chart
-        road_file = folder / 'road.json'
-        core.save(road_file, dict(support=mapping(road.support), edges=[mapping(e.line) for e in road.edges.values()],
-                                  area_m2=road.support.area, edge_ranks=list(road.edges)))
-        corrected, target = fit_corridor(raw, context, nodes, tr.p.w)
-        native_ref = np.array([[r['x_forward_m'], r['y_left_m']] for r in context['trajectory']])
-        core.save(folder / 'fitted_corridor.json', dict(original=raw.tolist(), global_fit=corrected.tolist(),
-                  learned_reference_xy_m=native_ref.tolist(), soft_reference_xy_m=target.tolist(),
-                  units='BODY center ego x forward/y left, radians, side lengths meters; time 0.5:0.5:3'))
-        # The stored floor depends only on the verified fixed-corridor reference-rule controls
-        # and front-end predicted obstacles. It is never a recorded-world clearance.
-        diagnostic = study / 'planning/diagnostic' / token / 'result.json'
-        original = core.read(diagnostic)
-        assert original['token'] == token and original['arm'] == 'diagnostic'
-        floor = original['fixed_clearance_knot_dense_m']
-        root.update(fixed_clearance_knot_dense_m=floor, clearance_floor_sha256=legacy.sha(diagnostic))
-        native_ok = bool(row['verified_qp_output'] and row['fallback'] is False and row.get('qp_controls_accel_steer') is not None)
-        seed = np.asarray(row['qp_controls_accel_steer']).ravel() if native_ok else core.secondary_seed(tr, nodes)
-        assert seed.shape == (24,) and np.isfinite(seed).all()
-        methods = (['native_eligible'] if native_ok else []) + ['fixed_smooth_controls', 'global_smooth_corridor']
-        if nodes:
-            methods.append('global_smooth_closest')
-        elif fixed_keep:
-            methods.append('global_smooth_alternate')
-        if refine:
-            methods.append('global_body_refinement')
-        for method in methods:
-            fitted = method.startswith('global_')
-            rect = corrected if fitted else raw
-            extra = {}
-            if method == 'global_body_refinement':
-                tr.m['rect'] = corrected.copy()
-                seed = core.secondary_seed(tr, nodes)
-                root['control_solves'] += 1
-                root['fitted_seed_solves'] += 1
-                seed, warm = solve_controls(tr, seed, nodes, bool(nodes), road, target, free_seed=True)
-                rect, placement = fit_to_seed(raw, corrected, tr, seed)
-                extra = dict(warm_start=dict(source='synthetic seed; no-release search ignoring learned rectangles only',
-                                             controls=seed.reshape(12,2).tolist(), **warm), placement=placement)
-            if method == 'global_smooth_alternate':
-                seed = core.secondary_seed(tr, nodes)
-            tr.m['rect'] = rect.copy()
-            if method == 'native_eligible':
-                z, info = seed, dict(source='FROZEN_NATIVE_GPU_CONTROLS')
-            else:
-                soft = method in ('global_smooth_closest','global_body_refinement') and bool(nodes)
-                root['control_solves'] += 1
-                z, info = solve_controls(tr, seed, nodes, soft, road, target if fitted else native_ref)
-                seed = z
-            shifts = rect[:, :3] - raw[:, :3]
-            width_add = np.max(rect[:, 3:] - raw[:, 3:], axis=1)
-            meta = dict(**info, **extra, original_rectangles_ego=raw.tolist(), rectangle_delta_xy_yaw=shifts.tolist(),
-                        expanded_short_dimension_m=width_add.tolist(), max_correction_m=float(np.max(np.linalg.norm(shifts[:, :2], axis=1))),
-                        max_correction_deg=float(np.rad2deg(np.max(np.abs(shifts[:, 2])))),
-                        original_short_dimension_m=np.min(raw[:, 3:], axis=1).tolist(),
-                        corridor_basis='global smooth fit' if fitted else 'unmodified network prediction')
-            # Supply the final envelope to the legacy clipping routine as both its geometry and cap.
-            # This keeps the fitted width fixed; the metadata above records the change vs original.
-            r = legacy.audit(tr, steering, z, False, True, rect, nodes, road, secondary,
-                             road_file, vis_file, context, method, folder, meta)
-            plan = core.read(Path(r['candidate_path']))
-            # Audit both the analytic constant controls and the native RK4 sampler independently.
-            smooth_margin = min(float(added_margins(states, z[None], tr.p.dt, tr.p.L).min())
-                                for states in (tr.states(z[None]), np.asarray(plan['state_xy_yaw_v'])[None]))
-            miss = r['steering_motion']['max_window_miss_m']
-            quality = r['steering_motion']['window_quality']
-            fit_ok = quality != 'APPROXIMATE' or (method in ('global_smooth_closest','global_body_refinement') and miss <= MISS_MAX + core.TOL)
-            floor_ok = legacy.fixed_floor_check(r, floor)
-            passed = bool(r['eligible_before_fixed_clearance'] and smooth_margin >= -core.TOL and fit_ok and floor_ok)
-            item = dict(method=method, candidate_path=r['candidate_path'], sha256=r['sha256'], eligible=passed,
-                        smooth_margin=smooth_margin, clearance_floor_pass=floor_ok, window_policy_pass=fit_ok,
-                        gates_without_clearance_floor=r['eligible_before_fixed_clearance'],
-                        full_receipt_path=str((Path(r['candidate_path']).parent / 'receipt.json').resolve()))
-            root['candidates'].append(item)
-            if passed:
-                root.update(selected_path=r['candidate_path'], selected_method=method, selected_task=quality,
-                            selected_sha256=r['sha256'], eligible=True, selected_window_miss_m=miss)
-                break
-        root['status'] = 'CONDITIONAL_PASS' if root['eligible'] else 'NO_RELEASE'
-        if not root['eligible']:
-            root['reasons'].append('NO_VERIFIED_CANDIDATE_WITHIN_SEARCH_BUDGET')
+        portfolio = fast_return.parent / "menus" / token / "portfolio.json" if fast_return and guided_search!="original" else None
+        search_world(study, folder, root, data, guide, weight, refine=refine, dual_chart=dual_chart,
+                     finite_atlas=finite_atlas, fixed_keep=fixed_keep, portfolio=portfolio,
+                     floor_aware=bool(fast_return and guided_search in ("floor","minimal")),
+                     minimum_change_base=fast_return if guided_search=="minimal" else None)
     except Exception as exc:
         root.update(status='COMPUTATION_ERROR', exception=type(exc).__name__, message=str(exc), traceback=traceback.format_exc())
     return finish(folder, root, started)
+
+
+def search_world(study, folder, root, data, guide, weight, *, refine=True, dual_chart=False,
+                 finite_atlas=False, fixed_keep=False, portfolio=None, exclude_sha=None, floor_aware=False,
+                 minimum_change_base=None, exact_anchors=False, soft_mid=None):
+    """Search the bound model world. Callers supply either authenticated guidance or a labeled offline task."""
+    token = root["token"]
+    case = {"name": root["scene"]}
+    frontend = study/"frontend"/token/"sample.json"
+    vis_file = frontend.with_name("visual_map.json")
+    row, visual = core.read(frontend), core.read(vis_file)
+    context = core.read(study/"packets"/token/"packet.json")["model_context"]
+    if (token != row["token"] or token != visual["token"] or token != context["sample_token"]
+            or row["scene_name"] != root["scene"] or row["timestamp_us"] != context["reference_time_us"]):
+        raise ValueError("OFFLINE_WORLD_BINDING_MISMATCH")
+    nodes = core.parse_nodes(guide)
+    if soft_mid is not None and (not exact_anchors or len(nodes) != 2 or (nodes[0][0], soft_mid[0], nodes[1][0]) not in ((4, 8, 12), (6, 10, 12))):
+        raise ValueError("INVALID_HARD_AND_SOFT_WINDOW_SCHEDULE")
+    root['decision'] = guide['decision']
+    can = data / 'can_bus' / (case['name'] + '_pose.json')
+    try:
+        steering, history = legacy.derive(can, row)
+    except (FileNotFoundError, ValueError) as exc:
+        root.update(status='NO_RELEASE', reasons=['CAN_INITIAL_STEERING_UNOBSERVABLE', str(exc)])
+        return root
+    root['initial_steering'] = dict(value_rad=steering, count=len(history), latest_us=history[-1]['utime'],
+                                    pose_file=str(can), sha256=legacy.sha(can))
+    planner, native = core.compose_native(row, weight, 'cpu')
+    tr = core.Trial(planner, native, row, visual)
+    legacy.bind_initial_assumption(tr, steering)
+    raw = tr.m['rect'].copy()
+    road = legacy.build_road(context['navigation']['polyline_guidance_m'], legacy.edges_from_features(visual['map_features']))
+    initial = Polygon(legacy.BODY_CORNERS)
+    needs_chart = not road.support.covers(initial) or any(e.line.intersects(initial) for e in road.edges.values())
+    if needs_chart and not dual_chart:
+        root.update(status='NO_RELEASE', reasons=['INITIAL_BODY_LACKS_ROAD_SUPPORT'])
+        return root
+    secondary = None
+    ext = study / 'secondary_primary'
+    segment, = [r for r in core.read(ext / 'sources.json')['cases'] if r['token'] == token]
+    assert segment['admitted'] == (ext / (token + '.json')).exists()
+    if segment['admitted']:
+        secondary_payload = core.read(ext / (token + '.json'))
+        assert (segment['same_primary_detection_matches'] and segment['latest_exposure_minus_decision_us'] <= 0
+                and secondary_payload['token'] == token and secondary_payload['cameras'] == segment['current_cameras'])
+        secondary = legacy.build_road(road.route, legacy.edges_from_features(secondary_payload['features']))
+    if dual_chart and needs_chart:
+        if secondary is None:
+            root.update(status='NO_RELEASE', reasons=['MISSING_SECOND_VISUAL_HEAD_FOR_EGO_CHART'])
+            return root
+        if any(edge.line.intersects(initial) for head in (road,secondary) for edge in head.edges.values()):
+            root.update(status='NO_RELEASE', reasons=['MEASURED_BOUNDARY_INTERSECTS_INITIAL_FOOTPRINT'])
+            return root
+        chart = [[0.,0.],[15.,0.]]
+        primary_chart = legacy.build_road(chart,road.edges)
+        secondary_chart = legacy.build_road(chart,secondary.edges)
+        if finite_atlas:
+            learned_ref = [[r['x_forward_m'], r['y_left_m']] for r in context['trajectory']]
+            curves = [chart, context['navigation']['polyline_guidance_m'], learned_ref]
+            primary_chart.support, primary_meta = chart_atlas(curves, road.edges)
+            secondary_chart.support, secondary_meta = chart_atlas(curves, secondary.edges)
+            root['finite_atlas'] = dict(primary=primary_meta, secondary=secondary_meta)
+        joint = primary_chart.support.intersection(secondary_chart.support)
+        root['dual_chart'] = dict(primary_source_sha256=legacy.sha(vis_file),
+                secondary_source_sha256=legacy.sha(ext / (token + '.json')),
+                primary_area_m2=primary_chart.support.area,secondary_area_m2=secondary_chart.support.area,
+                joint_area_m2=joint.area,joint_covers_initial=joint.covers(initial),chart_xy_m=chart)
+        if not joint.covers(initial):
+            root.update(status='NO_RELEASE', reasons=['BOTH_MEASURED_ROAD_CHARTS_LACK_JOINT_SUPPORT'])
+            return root
+        # Use every boundary from both heads in the interval certificate. IDs can coincide.
+        primary_chart.support = joint
+        primary_chart.edges = {**{'primary_'+str(i):e for i,e in road.edges.items()},
+                               **{'secondary_'+str(i):e for i,e in secondary.edges.items()}}
+        road = primary_chart
+    road_file = folder / 'road.json'
+    core.save(road_file, dict(support=mapping(road.support), edges=[mapping(e.line) for e in road.edges.values()],
+                              area_m2=road.support.area, edge_ranks=list(road.edges)))
+    corrected, target = fit_corridor(raw, context, nodes, tr.p.w, soft_mid=soft_mid)
+    native_ref = np.array([[r['x_forward_m'], r['y_left_m']] for r in context['trajectory']])
+    core.save(folder / 'fitted_corridor.json', dict(original=raw.tolist(), global_fit=corrected.tolist(),
+              learned_reference_xy_m=native_ref.tolist(), soft_reference_xy_m=target.tolist(),
+              units='BODY center ego x forward/y left, radians, side lengths meters; time 0.5:0.5:3'))
+    # The stored floor depends only on the verified fixed-corridor reference-rule controls
+    # and front-end predicted obstacles. It is never a recorded-world clearance.
+    diagnostic = study / 'planning/diagnostic' / token / 'result.json'
+    original = core.read(diagnostic)
+    assert original['token'] == token and original['arm'] == 'diagnostic'
+    floor = original['fixed_clearance_knot_dense_m']
+    root.update(fixed_clearance_knot_dense_m=floor, clearance_floor_sha256=legacy.sha(diagnostic))
+    native_ok = bool(row['verified_qp_output'] and row['fallback'] is False and row.get('qp_controls_accel_steer') is not None)
+    seed = np.asarray(row['qp_controls_accel_steer']).ravel() if native_ok else core.secondary_seed(tr, nodes)
+    assert seed.shape == (24,) and np.isfinite(seed).all()
+    methods = (['native_eligible'] if native_ok else []) + ['fixed_smooth_controls', 'global_smooth_corridor']
+    if nodes:
+        methods.append('global_smooth_closest')
+    elif fixed_keep:
+        methods.append('global_smooth_alternate')
+    if refine:
+        methods.append('global_body_refinement')
+    reused = {}
+    if portfolio is not None and nodes:
+        from cordriver_fast_review import ranked_menu_controls
+        ranked = ranked_menu_controls(portfolio, frontend, nodes, exclude_sha=exclude_sha, trial=tr)
+        reused = {"verified_menu_" + key: opt for exact, _, key, opt in ranked if exact}
+        root["exact_menu_options"] = list(reused)
+        if ranked and not reused:
+            _, _, key, opt = ranked[0]
+            reused["warm_menu_" + key] = opt
+            methods.remove("fixed_smooth_controls")  # Substitute one hard solve within the original cap.
+    ordered = list(reused) + methods
+    if floor_aware and native_ok:
+        ordered.remove('native_eligible')
+        ordered.insert(0,'native_eligible')
+    search_floor = floor if floor_aware else None
+    root['search_includes_object_floor'] = bool(floor_aware)
+    for method in ordered:
+        fitted = method.startswith('global_')
+        rect = corrected if fitted else raw
+        extra = {}
+        if method == 'global_body_refinement':
+            tr.m['rect'] = corrected.copy()
+            seed = core.secondary_seed(tr, nodes)
+            root['control_solves'] += 1
+            root['fitted_seed_solves'] += 1
+            seed, warm = solve_controls(tr, seed, nodes, bool(nodes), road, target, free_seed=True, clearance_floor=search_floor, soft_mid=soft_mid)
+            rect, placement = fit_to_seed(raw, corrected, tr, seed)
+            extra = dict(warm_start=dict(source='synthetic seed; no-release search ignoring learned rectangles only',
+                                         controls=seed.reshape(12,2).tolist(), **warm), placement=placement)
+        if method == 'global_smooth_alternate':
+            seed = core.secondary_seed(tr, nodes)
+        tr.m['rect'] = rect.copy()
+        if method in reused:
+            option = reused[method]
+            exact = method.startswith("verified_menu_")
+            z, rect, info = solve_from_verified(tr, option, exact, nodes, road, target, clearance_floor=search_floor, soft_mid=soft_mid)
+            root["control_solves"] += int(not exact)
+        elif method == 'native_eligible':
+            z, info = seed, dict(source='FROZEN_NATIVE_GPU_CONTROLS')
+        else:
+            soft = method in ('global_smooth_closest','global_body_refinement') and bool(nodes)
+            root['control_solves'] += 1
+            z, info = solve_controls(tr, seed, nodes, soft, road, target if fitted else native_ref, clearance_floor=search_floor, soft_mid=soft_mid)
+            seed = z
+        shifts = rect[:, :3] - raw[:, :3]
+        width_add = np.max(rect[:, 3:] - raw[:, 3:], axis=1)
+        meta = dict(**info, **extra, original_rectangles_ego=raw.tolist(), rectangle_delta_xy_yaw=shifts.tolist(),
+                    expanded_short_dimension_m=width_add.tolist(), max_correction_m=float(np.max(np.linalg.norm(shifts[:, :2], axis=1))),
+                    max_correction_deg=float(np.rad2deg(np.max(np.abs(shifts[:, 2])))),
+                    original_short_dimension_m=np.min(raw[:, 3:], axis=1).tolist(),
+                    corridor_basis=('certified option rectangles' if method in reused else
+                                    'global smooth fit' if fitted else 'unmodified network prediction'))
+        # Supply the final envelope to the legacy clipping routine as both its geometry and cap.
+        # This keeps the fitted width fixed; the metadata above records the change vs original.
+        r = legacy.audit(tr, steering, z, False, True, rect, nodes, road, secondary,
+                         road_file, vis_file, context, method, folder, meta)
+        plan = core.read(Path(r['candidate_path']))
+        # Audit both the analytic constant controls and the native RK4 sampler independently.
+        smooth_margin = min(float(added_margins(states, z[None], tr.p.dt, tr.p.L).min())
+                            for states in (tr.states(z[None]), np.asarray(plan['state_xy_yaw_v'])[None]))
+        miss = r['steering_motion']['max_window_miss_m']
+        quality = r['steering_motion']['window_quality']
+        fit_ok = quality != 'APPROXIMATE' or (method in ('global_smooth_closest','global_body_refinement') and miss <= MISS_MAX + core.TOL)
+        if exact_anchors:
+            fit_ok = quality == "EXACT"
+        floor_ok = legacy.fixed_floor_check(r, floor)
+        passed = bool(r['eligible_before_fixed_clearance'] and smooth_margin >= -core.TOL and fit_ok and floor_ok)
+        item = dict(method=method, candidate_path=r['candidate_path'], sha256=r['sha256'], eligible=passed,
+                    smooth_margin=smooth_margin, clearance_floor_pass=floor_ok, window_policy_pass=fit_ok,
+                    gates_without_clearance_floor=r['eligible_before_fixed_clearance'],
+                    full_receipt_path=str((Path(r['candidate_path']).parent / 'receipt.json').resolve()))
+        root['candidates'].append(item)
+        if passed:
+            root.update(selected_path=r['candidate_path'], selected_method=method, selected_task=quality,
+                        selected_sha256=r['sha256'], eligible=True, selected_window_miss_m=miss)
+            if minimum_change_base is not None and nodes:
+                from cordriver_edge_gate import edge_clearance
+                from cordriver_fast_review import fast_path
+                _, _, reference, _, _ = fast_path(frontend.resolve().parents[2], token, minimum_change_base)
+                if reference is None:
+                    break
+                tr.m['rect'] = rect.copy()
+                improved, detail = solve_controls(tr,z,nodes,False,road,reference[:,:2],clearance_floor=floor,
+                                                  minimize_change=True, soft_mid=soft_mid)
+                root['control_solves'] += 1
+                name = 'minimum_fast_deviation'
+                changed = legacy.audit(tr,steering,improved,False,True,rect,nodes,road,secondary,road_file,
+                                       vis_file,context,name,folder,dict(meta,minimum_change_fit=detail))
+                other = core.read(Path(changed['candidate_path']))
+                margin = min(float(added_margins(st,improved[None],tr.p.dt,tr.p.L).min()) for st in
+                             (tr.states(improved[None]),np.asarray(other['state_xy_yaw_v'])[None]))
+                comparisons = []
+                heads = [visual['map_features']]
+                if secondary is not None:
+                    heads.append(secondary_payload['features'])
+                for candidate in (plan,other):
+                    poses=np.column_stack((candidate['body_xy_m'], np.asarray(candidate['state_xy_yaw_v'])[:,2]))[::2]
+                    comparisons.append(dict(
+                        deviation_m2=float(np.mean(np.sum((poses[1:,:2]-reference[1:,:2])**2,axis=1))),
+                        edges_m=[edge_clearance(poses,head)['min_clearance_lower_bound_m'] for head in heads]))
+                    if soft_mid is not None:
+                        comparisons[-1]["soft_window_penalty"] = float(guide_penalty(
+                            np.asarray(candidate["body_xy_m"])[None], np.asarray(candidate["state_xy_yaw_v"])[None], soft_mid)[0])
+                old,new=comparisons
+                edges_ok=all(a is None or (b is not None and b+1e-6>=min(a,.30))
+                             for a,b in zip(old['edges_m'],new['edges_m']))
+                quality=changed['steering_motion']['window_quality']
+                accepted=bool(quality=='EXACT' and changed['eligible_before_fixed_clearance']
+                              and legacy.fixed_floor_check(changed,floor) and margin>=-core.TOL
+                              and edges_ok and new['deviation_m2'] + new.get('soft_window_penalty', 0.)
+                              < old['deviation_m2'] + old.get('soft_window_penalty', 0.) - 1e-6)
+                root['minimum_change']=dict(parent=method,old=old,new=new,adopted=accepted,
+                    candidate_path=changed['candidate_path'],candidate_sha256=changed['sha256'],quality=quality,
+                    environment_motion_pass=changed['eligible_before_fixed_clearance'],smooth_margin=margin,
+                    fixed_floor_pass=legacy.fixed_floor_check(changed,floor),edges_pass=edges_ok)
+                if accepted:
+                    root.update(selected_path=changed['candidate_path'],selected_method=name,selected_task=quality,
+                                selected_sha256=changed['sha256'],selected_window_miss_m=changed['steering_motion']['max_window_miss_m'])
+            break
+    root['status'] = 'CONDITIONAL_PASS' if root['eligible'] else 'NO_RELEASE'
+    if not root['eligible']:
+        root['reasons'].append('NO_VERIFIED_CANDIDATE_WITHIN_SEARCH_BUDGET')
+    return root
 
 
 def finish(folder, result, started):

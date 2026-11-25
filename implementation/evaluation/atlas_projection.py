@@ -10,6 +10,58 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 from cordriver_astra_packet import clip_segment, sha
 
 
+def transfer_front(root, token, out):
+    """Draw the actual fast and minimum-change trajectories in the same recorded view."""
+    import json
+    from PIL import Image, ImageFont
+    from cordriver_fast_review import fast_path
+    from cordriver_nav_solver import parse_nodes
+
+    def load(path):
+        return json.loads(path.read_text())
+    archive = root/"archived"
+    study = archive/"study"
+    packet_file = study/"packets"/token/"packet.json"
+    packet = load(packet_file)
+    ctx = packet["model_context"]
+    front, = [im for im in packet["images"] if im["label"]=="CAM_FRONT original RGB"]
+    path = packet_file.parent/front["path"]
+    if sha(path)!=front["sha256"]:
+        raise ValueError("CAM_FRONT_DIGEST_MISMATCH")
+    original = Image.open(path).convert("RGB")
+    _, _, fast, _, _ = fast_path(study,token,archive/"fast"/token/"return.json")
+    chosen = load(archive/"window_minimal"/token/"minimal/result.json")
+    candidate = Path(chosen["selected_path"])
+    if sha(candidate)!=chosen["selected_sha256"]:
+        raise ValueError("RETURNED_TRACK_CHANGED")
+    plan = load(candidate)
+    guidance=load(archive/"window_minimal"/token/"task.json")["guidance"]
+    scored, = [r for r in load(archive/"minimal_scores.json") if r["token"]==token]
+    head=ImageFont.truetype("DejaVuSans.ttf",22)
+    small=ImageFont.truetype("DejaVuSans.ttf",17)
+    board=Image.new("RGB",(1600,548),PAPER)
+    pen=ImageDraw.Draw(board)
+    for j,(arm,xy,style,label) in enumerate((("fast",fast[:,:2],"qp","Fast system"),
+                ("minimal",plan["body_xy_m"],"astra","Astra targets + refined trajectory"))):
+        canvas=original.copy()
+        trace=project(dict(time_s=np.linspace(0.,3.,len(xy)),xy=xy),ctx)
+        _layer(canvas,style,trace,1.5)
+        if arm=="minimal":
+            for _,center,basis,half,_ in parse_nodes(guidance):
+                corners=np.array([[1,1],[1,-1],[-1,-1],[-1,1],[1,1]])*half @ basis.T + center
+                for seg in project(dict(time_s=range(5),xy=corners),ctx)["segments"]:
+                    ImageDraw.Draw(canvas).line((tuple(seg["start_uv"]),tuple(seg["end_uv"])),fill="#ffdd44",width=4)
+        x=800*j
+        pen.text((x+12,8),label,font=head,fill=INK)
+        board.paste(canvas.resize((800,450),Image.Resampling.LANCZOS if hasattr(Image,"Resampling") else Image.LANCZOS),(x,42))
+        numbers=scored[arm]
+        pen.text((x+10,498),f"3 s    ACR {numbers['ACR_3s']}    CCR {numbers['CCR_3s']}    L2 {numbers['L2_3s']:.3f} m",
+                 font=small,fill=INK)
+    pen.text((10,524),f"{scored['scene']}   {token[:8]}    Same CAM_FRONT exposure   |   Yellow outlines: target regions at 1.5 s and 3 s   |   Display-plane projection",font=small,fill=MUTED)
+    out.parent.mkdir(parents=True,exist_ok=True)
+    board.save(out)
+
+
 def project(layer, ctx):
     meta = ctx["overlay_geometry"]
     cam = ctx["cameras"]["CAM_FRONT"]
