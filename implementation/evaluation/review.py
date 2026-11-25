@@ -1,5 +1,6 @@
 """Review frozen CorDriver open-loop scores or render a front-camera example."""
 import argparse
+from collections import Counter
 import csv
 import hashlib
 import json
@@ -119,6 +120,235 @@ def method_scores(rows, method):
         results[f"{h}s"] = {**totals, "mean_L2_m": mean(errors)}
     results["mean_of_three_L2_m"] = mean(results[f"{h}s"]["mean_L2_m"] for h in (1, 2, 3))
     return results
+
+
+def full_validation(paths, source):
+    """Aggregate archived upstream metrics or paired records from cordriver_pipeline score."""
+    horizons = (1, 2, 3)
+    names = {"ACR": "plan_obj_box_col", "CCR": "plan_obj_box_map_intersect", "L2": "plan_L2"}
+    arms = ("official",) if source == "official" else ("native", "dual")
+    totals = {arm: {key: [0, 0, 0] for key in names} for arm in arms}
+    seen, valid = set(), set()
+    for path in paths:
+        with path.open(encoding="utf-8") as stream:
+            records = (json.loads(line) for line in stream) if path.suffix == ".jsonl" else [json.load(stream)]
+            for row in records:
+                token = row["token"]
+                if token in seen:
+                    raise ValueError(f"Duplicate validation token: {token}")
+                seen.add(token)
+                if source == "official":
+                    if type(row["fut_valid_flag"]) is not bool:
+                        raise ValueError(f"Invalid upstream validity flag: {token}")
+                    if not row["fut_valid_flag"]:
+                        continue
+                else:
+                    if row["evaluation"] != "PUBLISHED_NUSCENES_OPEN_LOOP":
+                        raise ValueError(f"Unexpected scoring protocol: {token}")
+                    if row.get("status") == "UNAVAILABLE_EVALUATION_FUTURE":
+                        continue
+                valid.add(token)
+                for arm in arms:
+                    scores = row["metrics"] if source == "official" else row[arm]
+                    for key, upstream in names.items():
+                        prefix = upstream if source == "official" else key
+                        for index, horizon in enumerate(horizons):
+                            value = scores[f"{prefix}_{horizon}s"]
+                            if not math.isfinite(value) or value < 0 or (key != "L2" and value not in (0, 1)):
+                                raise ValueError(f"Invalid {arm} {key} at {horizon}s: {token}")
+                            totals[arm][key][index] += value
+
+    # Digests of sorted tokens from the release validation infos, one ASCII token per line.
+    groups = [(valid, 5119, "53be6dce4b6c2118746d890a0cbd51a22cfb7c5b4d1d39e36749a8522d7c6a76")]
+    if seen != valid:
+        groups.append((seen - valid, 900, "ba482ae3e9c895e46719dd4afba73090a22274ee75b1bea770916e94ac3251d2"))
+    for tokens, count, digest in groups:
+        actual = hashlib.sha256(("\n".join(sorted(tokens)) + "\n").encode("ascii")).hexdigest()
+        if len(tokens) != count or actual != digest:
+            raise ValueError(f"Full validation split mismatch: expected {count} tokens ({digest}), got {len(tokens)} ({actual})")
+
+    result = {"n_scored": len(valid), "n_invalid_in_input": len(seen - valid), "methods": {}}
+    for arm, metrics in totals.items():
+        result["methods"][arm] = {}
+        for key, sums in metrics.items():
+            factor = 1 if key == "L2" else 100
+            values = [factor * total / len(valid) for total in sums]
+            summary = {"unit": "m" if key == "L2" else "%", "values_1_2_3s": values, "avg": mean(values)}
+            if key != "L2":
+                summary["hits_1_2_3s"] = [int(total) for total in sums]
+            result["methods"][arm][key] = summary
+    return result
+
+
+def log_flip_test(rows, before, after):
+    """Two-sided exact paired sign-flip test on 3 s ANY counts per recording log."""
+    delta = Counter()
+    for row in rows:
+        delta[row["log_token"]] += int(row[after+"_ANY_3s"]) - int(row[before+"_ANY_3s"])
+    observed = sum(delta.values())
+    distribution = Counter({0: 1})
+    for difference in delta.values():
+        updated = Counter()
+        for total, count in distribution.items():
+            updated[total + difference] += count
+            updated[total - difference] += count
+        distribution = updated
+    p = sum(count for value, count in distribution.items() if abs(value) >= abs(observed)) / sum(distribution.values())
+    return dict(logs=len(delta), nonzero_logs=sum(v!=0 for v in delta.values()), delta=observed, p_two_sided=p)
+
+
+def fast_default_report():
+    replay_dispatch(None)
+    records = json.loads((HERE/"dispatch_inputs.json").read_text())["frames"]
+    outputs = {}
+    for frame in records:
+        slow = select_slow(frame["slow"]) if "slow" in frame else None
+        outputs[frame["token"]] = "dual" if slow else "fast"
+    paired = [r for r in read_table("per_frame.csv") if r["causal_status"] == "AVAILABLE"]
+    if set(outputs) != {r["token"] for r in paired}:
+        raise ValueError("ARCHIVE_SCORE_BINDING_MISMATCH")
+    for row in paired:
+        method = outputs[row["token"]]
+        for h in (1,2,3):
+            for metric in ("ACR","CCR","ANY","L2"):
+                key = f"{metric}_{h}s"
+                row["replay_"+key] = row[method+"_"+key]
+    return dict(scope="Retrospective routing of frozen decisions and previously scored paths",
+                scores={arm:method_scores(paired,arm) for arm in ("native","fast","dual","replay")},
+                transitions={kind:sum((int(row["fast_ANY_3s"]),int(row["replay_ANY_3s"]))==values for row in paired)
+                             for kind,values in (("cleared",(1,0)),("introduced",(0,1)))},
+                vs_fast=log_flip_test(paired,"fast","replay"), vs_native=log_flip_test(paired,"native","replay"))
+
+
+def transfer_report(run, out):
+    """Join independently scored outputs. Open recorded future labels only on the scoring side."""
+    def load(path):
+        return json.loads((run/path).read_text())
+
+    def flatten(scores, arm, row):
+        for k,v in scores.items():
+            row[arm+"_"+k] = v
+
+    archive = {r["token"]: r for r in load("archived/archive_scores.json")}
+    minimal = {r["token"]: r for r in load("archived/minimal_scores.json")}
+    decisions = {r["token"]:r["arms"]["minimal"] for r in load("archived/window_minimal/summary.json") if "arms" in r}
+    original = {r["token"]:r["arms"]["original"] for r in load("archived/window_comparison/summary.json") if "arms" in r}
+    arms = ("native","fast","original","verified_seed","floor_aware","minimal")
+    whole, adjusted, missing = [], [], []
+    for frozen in read_table("per_frame.csv"):
+        if frozen["causal_status"] != "AVAILABLE":
+            continue
+        token = frozen["token"]
+        row = {k:frozen[k] for k in ("scene","frame_idx","log_token","token","astra_decision")}
+        if frozen["astra_decision"] == "ADJUST":
+            if archive[token]["status"]!="SCORED" or minimal[token]["status"]!="SCORED":
+                missing.append(dict(row, reason=archive[token]["status"]))
+                continue
+            for arm in arms:
+                source = minimal[token] if arm=="minimal" else archive[token]
+                flatten(source[arm],arm,row)
+            final=decisions[token]
+            row["case_outcome"]=final["selected_task"] or final["reasons"][0]
+            adjusted.append(row)
+        else:
+            row["case_outcome"]=frozen["astra_decision"] or "NO_TRIGGER"
+            for arm in arms:
+                baseline = "native" if arm=="native" else "fast"
+                for h in (1,2,3):
+                    for k in ("ACR","CCR","ANY","L2"):
+                        suffix=f"_{k}_{h}s"
+                        row[arm+suffix]=frozen[baseline+suffix]
+        whole.append(row)
+    def summarize(rows):
+        return dict(scores={a:method_scores(rows,a) for a in arms},
+                    vs_fast={a:log_flip_test(rows,"fast",a) for a in arms if a not in ("fast","native")},
+                    minimal_vs_native=log_flip_test(rows,"native","minimal"),
+                    transitions={a:dict(cleared=sum(int(r["fast_ANY_3s"])>int(r[a+"_ANY_3s"]) for r in rows),
+                                        introduced=sum(int(r["fast_ANY_3s"])<int(r[a+"_ANY_3s"]) for r in rows))
+                                 for a in arms if a not in ("fast","native")})
+    fresh = load("scores_after_stop.json")["scores"]
+    membership = {r["token"]:r for r in load("study/selection/registration.json")["cases"]}
+    offers = {r["token"]:r for r in load("offers.json")["rows"]}
+    prospective=[]
+    for score in fresh:
+        case=membership[score["token"]]
+        row=dict(token=score["token"],scene=case["name"],frame=case["frame"],log_token=case["log_token"],
+                 panel=case["panel"],status=score["status"],actual_return=score.get("source"),
+                 reason=offers[score["token"]].get("reason"))
+        if row["status"]=="REVIEW":
+            receipt=run/"live_batch"/row["token"]/"receipt.json"
+            row["model_status"]="NOT_SENT_AFTER_BATCH_STOP"
+            if receipt.is_file():
+                service=json.loads(receipt.read_text())
+                row.update(model_status=service["status"],dispatch=service["dispatch"],http=service["http"],
+                           model_returned=service["returned_model"],usage=service["usage"])
+        for arm in ("native","fast","dual"):
+            if arm in score:
+                flatten(score[arm],arm,row)
+        prospective.append(row)
+    stats = dict(archive_adjust=summarize(adjusted), historical_routing=summarize(whole), missing=missing,
+                 residuals={k:dict(frames=sum(r["case_outcome"]==k for r in whole),
+                                   any_3s=sum(int(r["minimal_ANY_3s"]) for r in whole if r["case_outcome"]==k))
+                            for k in sorted({r["case_outcome"] for r in whole})},
+                 new_registered=len(prospective), new_results={a:method_scores(
+                     [r for r in prospective if a+"_ANY_3s" in r],a) for a in ("native","fast","dual")})
+    out.mkdir(parents=True,exist_ok=False)
+    solver=[]
+    for row in adjusted:
+        t=row["token"]
+        trace={k:row[k] for k in ("token","scene","frame_idx","log_token")}
+        for arm,entry in (("original",original[t]),("minimal",decisions[t])):
+            trace[arm+"_quality"]=entry["selected_task"] or "NO_RELEASE"
+            trace[arm+"_fits"]=entry["control_solves"]
+            trace[arm+"_method"]=entry["selected_method"]
+            trace[arm+"_reason"]="; ".join(entry["reasons"])
+        solver.append(trace)
+    for name, rows in (("historical_frames",whole),("new_frames",prospective),("solver_by_frame",solver)):
+        with (out/(name+".csv")).open("x",newline="") as stream:
+            writer=csv.DictWriter(stream,fieldnames=list(dict.fromkeys(k for r in rows for k in r)))
+            writer.writeheader()
+            writer.writerows(rows)
+    (out/"metrics.json").write_text(json.dumps(stats,indent=2,allow_nan=False)+"\n")
+    return {k:len(v) for k,v in (("adjusted",adjusted),("historical",whole),("prospective",prospective),("missing",missing))}
+
+
+def routing_report(run):
+    decisions=json.loads((run/"gate_decisions.json").read_text())
+    frozen={r["token"]: r for r in json.loads((HERE/"dispatch_inputs.json").read_text())["frames"] if "slow" not in r}
+    if set(frozen)!={r["token"] for r in decisions["rows"]}:
+        raise ValueError("ROUTING_COHORT_CHANGED")
+    labels={r["token"]:r for r in read_table("per_frame.csv")}
+    rows=[]
+    for item in decisions["rows"]:
+        token=item["token"]
+        row=dict(token=token,scene=item["scene"],frame=item["frame"],status=item["status"])
+        rows.append(row)
+        if item["status"] in ("NO_FRONTEND","NO_BOUND_POSES") or item["native_poses"] is None:
+            continue
+        source=frozen[token]
+        fast=select_fast(source)
+        native=source["native_halfsecond_xy_yaw"]
+        original=fast["xy_m"][::2] if fast else [p[:2] for p in native]
+        returned=[p[:2] for p in item["fast_poses"]]
+        def max_delta(a,b):
+            if len(a)!=7 or len(b)!=7 or any(len(x)!=len(y) for x,y in zip(a,b)):
+                raise ValueError("INVALID_TRAJECTORY_BINDING")
+            return max(abs(u-v) for x,y in zip(a,b) for u,v in zip(x,y))
+        row["native_max_delta"]=max_delta(native,item["native_poses"])
+        row["fast_max_delta_m"]=max_delta(original,returned)
+        if max(row["native_max_delta"],row["fast_max_delta_m"]) > .0005:
+            row["status"]="ARCHIVE_TRAJECTORY_MISMATCH"
+            continue
+        row.update(status="BOUND",review=item["status"]=="REVIEW",extra=item["extra_review"],
+                   fast_ANY_3s=int(labels[token]["fast_ANY_3s"]),fast_CCR_3s=int(labels[token]["fast_CCR_3s"]),
+                   fast_ACR_3s=int(labels[token]["fast_ACR_3s"]))
+    bound=[r for r in rows if r["status"]=="BOUND"]
+    selected=[r for r in bound if r["review"]]
+    extra=[r for r in bound if r["extra"]]
+    def counts(group):
+        return {"frames":len(group),**{k:sum(r["fast_"+k+"_3s"] for r in group) for k in ("ACR","CCR","ANY")}}
+    return dict(registered=len(rows),bound=counts(bound),review=counts(selected),extra_only=counts(extra),
+                withheld=counts([r for r in bound if not r["review"] and not r["extra"]]),rows=rows)
 
 
 def score_report():
@@ -246,6 +476,19 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="action", required=True)
     commands.add_parser("metrics", help="Recompute statistics from saved per-frame scores")
+    full = commands.add_parser("full-val", help="Official full-validation aggregation with exact token coverage")
+    full.add_argument("--source", choices=("official", "paired"), required=True)
+    full.add_argument("scores", nargs="+", type=Path, help="Upstream rows.jsonl shards or single-token score JSONs/JSONL")
+    commands.add_parser("fast-default", help="Evaluate keeping the actual fast return when no guided replacement passed")
+    transfer = commands.add_parser("transfer", help="Summarize the bound solver and prospective cohorts")
+    transfer.add_argument("--run",type=Path,required=True)
+    transfer.add_argument("--out",type=Path,required=True)
+    overlay = commands.add_parser("transfer-front", help="Compare the returned fast path with the archived guided replan")
+    overlay.add_argument("--run",type=Path,required=True)
+    overlay.add_argument("--token",required=True)
+    overlay.add_argument("--out",type=Path,required=True)
+    routing = commands.add_parser("routing",help="Bind frozen returns and evaluate the expanded review gate")
+    routing.add_argument("--run",type=Path,required=True)
     dispatch = commands.add_parser("dispatch", help="Replay causal routing and select actual paths from frozen receipts")
     dispatch.add_argument("--out", type=Path, help="Write both arms' returned trajectories to a new JSON file")
     front = commands.add_parser("front", help="Render frozen trajectories on the locally licensed CAM_FRONT image")
@@ -255,6 +498,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.action == "metrics":
         print(json.dumps(score_report(), indent=2, allow_nan=False))
+    elif args.action == "full-val":
+        print(json.dumps(full_validation(args.scores, args.source), indent=2, allow_nan=False))
+    elif args.action == "fast-default":
+        print(json.dumps(fast_default_report(), indent=2, allow_nan=False))
+    elif args.action == "transfer":
+        print(json.dumps(transfer_report(args.run,args.out)))
+    elif args.action == "transfer-front":
+        from atlas_projection import transfer_front
+        transfer_front(args.run.resolve(),args.token,args.out)
+    elif args.action == "routing":
+        print(json.dumps(routing_report(args.run),indent=2,allow_nan=False))
     elif args.action == "dispatch":
         print(json.dumps(replay_dispatch(args.out), indent=2, allow_nan=False))
     else:

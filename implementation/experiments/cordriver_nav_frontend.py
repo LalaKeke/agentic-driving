@@ -196,8 +196,10 @@ def main(args):
             "ego2global_translation","ego2global_rotation")
     with base.INFOS.open("rb") as f:
         rows={s["token"]:{k:s[k] for k in fields} for s in pickle.load(f)["infos"]}
+    unavailable_exposures = {}
     if args.exposures:
         fixes=json.loads(args.exposures.read_bytes())
+        unavailable_exposures = fixes.get("unavailable_samples", {})
         for fix in fixes["patches"]:
             row=rows[fix["sample"]]
             channel=fix["channel"]
@@ -225,6 +227,9 @@ def main(args):
         assert scenes[row["scene_token"]]["name"]==case["name"]
         timeline=[rows[t] for t in case["history"]]+[row]
         try:
+            missing={r["token"]:unavailable_exposures[r["token"]] for r in timeline if r["token"] in unavailable_exposures}
+            if missing:
+                raise ValueError("NO_PREVIOUS_CAMERA_EXPOSURE: "+str(missing))
             nav,audit=navigation(row,args.data/"can_bus"/(case["name"]+"_route.json"))
             save(folder/"navigation.json",dict(navigation=nav,alignment=audit))
             loc=logs[scenes[row["scene_token"]]["log_token"]]["location"]

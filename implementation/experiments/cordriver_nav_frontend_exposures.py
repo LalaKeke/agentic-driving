@@ -31,7 +31,7 @@ def load_tokens(path,tokens):
     return found
 
 
-def main(reg_path,infos,data,out):
+def main(reg_path,infos,data,out, *, allow_partial=False):
     cases=json.loads(reg_path.read_bytes())["cases"]
     tokens={t for c in cases for t in c["history"]+[c["token"]]}
     with infos.open("rb") as f:
@@ -40,6 +40,7 @@ def main(reg_path,infos,data,out):
     fixes=[(r,c,channel) for r in rows.values() for channel,c in r["cams"].items() if c["timestamp"]>r["timestamp"]]
     db=data/"v1.0-trainval"
     sd={}
+    unavailable={}
     missing={c['sample_data_token'] for _,c,_ in fixes}
     while missing:
         sd.update(load_tokens(db/"sample_data.json",missing))
@@ -48,7 +49,10 @@ def main(reg_path,infos,data,out):
             row=sd[c['sample_data_token']]
             while row["timestamp"]>r["timestamp"]:
                 if not row["prev"]:
-                    raise ValueError("NO_PREVIOUS_CAMERA_EXPOSURE")
+                    if not allow_partial:
+                        raise ValueError("NO_PREVIOUS_CAMERA_EXPOSURE")
+                    unavailable.setdefault(r["token"],{})[c["type"]]="NO_PREVIOUS_CAMERA_EXPOSURE"
+                    break
                 if row["prev"] not in sd:
                     missing.add(row["prev"])
                     break
@@ -60,6 +64,8 @@ def main(reg_path,infos,data,out):
     sensors={r["token"]:r for r in json.loads((db/"sensor.json").read_bytes())}
     patches=[]
     for row,c,channel in fixes:
+        if row["token"] in unavailable:
+            continue
         orig=sd[c["sample_data_token"]]
         picked=orig
         chain=[orig["token"]]
@@ -84,6 +90,6 @@ def main(reg_path,infos,data,out):
              new_delta_us=picked["timestamp"]-row["timestamp"],new_ego_pose_token=picked["ego_pose_token"],
              new_calibration_token=picked["calibrated_sensor_token"],new_native_camera=native))
     with out.open("x") as f:
-        json.dump(dict(rule="Follow same physical camera prev pointers to nearest exposure at or before original LiDAR reference. Recalculate camera-to-reference-LiDAR SE3 with its own exposure ego pose and calibration.",input_samples=len(rows),patches=patches),f,indent=2,allow_nan=False)
+        json.dump(dict(rule="Follow same physical camera prev pointers to nearest exposure at or before original LiDAR reference. Recalculate camera-to-reference-LiDAR SE3 with its own exposure ego pose and calibration.",input_samples=len(rows),patches=patches,**({"unavailable_samples":unavailable} if unavailable else {})),f,indent=2,allow_nan=False)
         f.write("\n")
     print(len(rows),"sensor samples,",len(patches),"late camera bindings replaced")

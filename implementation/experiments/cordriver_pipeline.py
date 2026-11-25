@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import pickle
 import re
+import shutil
 from types import SimpleNamespace
 
 from cordriver_paths import TOOLS
@@ -30,8 +31,6 @@ def register(data, infos, token):
 
 def prepare(a):
     import cordriver_nav_frontend as frontend
-    import cordriver_nav_frontend_exposures as exposures
-    import cordriver_expansion_native_states as states
 
     a.study.mkdir(parents=True, exist_ok=False)
     selection = a.study / "selection/registration.json"
@@ -40,8 +39,22 @@ def prepare(a):
     save(selection, {"cases":[case]})
     if not case["history"]:
         raise ValueError("INSUFFICIENT_PRE_REFERENCE_HISTORY")
+    prepare_registered(a)
+
+
+def prepare_registered(a):
+    """Share one frozen network and one secondary export across pre-registered frames."""
+    import cordriver_nav_frontend as frontend
+    import cordriver_nav_frontend_exposures as exposures
+    import cordriver_expansion_native_states as states
+
+    selection = a.study / "selection/registration.json"
+    cases = load(selection)["cases"]
+    tokens = [c["token"] for c in cases]
+    if not tokens or len(tokens) != len(set(tokens)):
+        raise ValueError("EXPECTED_UNIQUE_REGISTERED_CASES")
     fixes = a.study / "exposures.json"
-    exposures.main(selection, frontend.base.INFOS, a.data, fixes)
+    exposures.main(selection, frontend.base.INFOS, a.data, fixes, allow_partial=len(tokens)>1)
     frontend.main(SimpleNamespace(out=a.study/"frontend", registration=selection, packets=a.study/"packets",
                                   data=a.data, exposures=fixes, feature_encoding=PIN["feature_encoding"]))
     summary = a.study / "frontend/frontend.json"
@@ -57,8 +70,8 @@ def prepare(a):
         export(selection, a.sparse, second)
     else:
         second.mkdir()
-        save(second / "sources.json", {"cases":[dict(token=a.token, admitted=False,
-                                                   reason="SECONDARY_MODEL_NOT_PROVIDED")]})
+        save(second / "sources.json", {"cases":[dict(token=t, admitted=False,
+                                                   reason="SECONDARY_MODEL_NOT_PROVIDED") for t in tokens]})
 
 
 def prepare_planning_inputs(a, inputs, case, weight):
@@ -113,6 +126,8 @@ def plan(a):
             raise ValueError("UNBOUND_SECONDARY_INPUT")
         second_gate = edge_clearance(poses, observed["features"])
     record = dict(token=a.token, scene=case["name"], native_sha256=sha(native_file), map_sha256=sha(visual_file),
+                  secondary_sources_sha256=sha(second/"sources.json"),
+                  secondary_input_sha256=sha(aux) if srow["admitted"] else None,
                   packet_sha256=sha(packet), policy="fast" if a.fast_only else "dual", gate=gate, secondary_gate=second_gate, decision=None,
                   returned_xy_lidar_m=sample["final_xy_lidar_m"], source="NATIVE", candidate=None)
     inputs = a.out / "inputs"
@@ -121,20 +136,49 @@ def plan(a):
     secondary = bool(second_gate and second_gate["triggered"])
     save(a.out / "gate.json", dict(native_trigger=slow, primary=primary, secondary=secondary))
     proposed = {}
+    reviewed = None
+    fast_return = getattr(a, "fast_return", None)
+    if fast_return is not None:
+        from cordriver_fast_review import fast_path, review_packet, review_edges, approaching_boundary
+        baseline, fallback_candidate, fast_poses, _, _ = fast_path(a.study, a.token, fast_return)
+        review_trigger,fast_primary,fast_secondary=review_edges(slow,fast_poses,visual["map_features"],
+                                                                 observed["features"] if srow["admitted"] else None)
+        use_approach=bool(getattr(a,"review_approach",False))
+        approach=use_approach and approaching_boundary(fast_primary,fast_secondary)
+        review_trigger=review_trigger or approach
+        record.update(policy="review_fast_v1", guided_search=getattr(a,"guided_search",None) or "minimal",
+                      fast_return_sha256=sha(fast_return), review_trigger=review_trigger,
+                      approach_enabled=use_approach, approach_trigger=approach,
+                      reviewed_primary=fast_primary, reviewed_secondary=fast_secondary,
+                      source="FAST_DEFAULT", returned_xy_lidar_m=baseline["returned_xy_lidar_m"])
+        if fallback_candidate is not None:
+            copy = a.out / "default" / "candidate.json"
+            copy.parent.mkdir()
+            for item in (fallback_candidate, fallback_candidate.with_name("receipt.json")):
+                shutil.copyfile(item, copy.parent / item.name)
+            record.update(candidate=str(copy.relative_to(a.out)), candidate_sha256=sha(copy))
+        if not review_trigger or fast_poses is None:
+            record["reason"] = "NO_TRIGGER" if not review_trigger else "NO_BOUND_FAST_POSES"
+            save(a.out/"return.json",record)
+            return record
+        reviewed = review_packet(a.study, a.token, fast_return, a.out / "review")
+        record["review_packet_sha256"] = sha(reviewed)
+        slow = True
     if slow and not a.fast_only:
         if a.frozen_response is not None:
-            receipt, answer = bind_frozen(packet, a.frozen_response)
+            receipt, answer = bind_frozen(reviewed or packet, a.frozen_response)
             guidance = a.out
             record["response_sha256"] = receipt["native_output_sha256"]
             record["frozen_response_sha256"] = sha(a.frozen_response)
         else:
-            guidance, answer = obtain(packet, a.responses, a.out/"astra_live", a.live)
+            guidance, answer = obtain(reviewed or packet, a.responses, a.out/"astra_live", a.live)
             record["response_sha256"] = sha(guidance/a.token/"native_output.json")
         record["decision"] = answer["decision"]
         if answer["decision"] == "ADJUST":
             prepare_planning_inputs(a, inputs, case, ident["qp_weight"])
             proposed = smooth.run_case((inputs, guidance, a.out, MODEL, case, a.data, ident["qp_weight"],
-                                        True, False, False), frozen_response=a.frozen_response)
+                                        True, False, False), guidance_packet=reviewed, fast_return=fast_return,
+                                      frozen_response=a.frozen_response,guided_search=record.get("guided_search","original"))
             if proposed["status"] == "COMPUTATION_ERROR":
                 raise RuntimeError(proposed.get("message"))
             record["source"] = "ASTRA_ADJUST" if proposed["selected_path"] else "NATIVE_ADJUST_UNRESOLVED"
@@ -157,6 +201,8 @@ def plan(a):
                 if magnitude > .925:
                     proposed = {**proposed, "selected_path":None, "reason":"SECONDARY_PROGRESS_VETO"}
         record["source"] = "FAST_REFIT" if proposed["selected_path"] else "NATIVE_FAST_UNRESOLVED"
+    if reviewed is not None and not proposed.get("selected_path"):
+        record["source"] = "FAST_DEFAULT_KEEP" if answer["decision"] == "KEEP" else "FAST_DEFAULT_ADJUST_UNRESOLVED"
     if proposed:
         record["planner_status"] = proposed["status"]
         record["reason"] = proposed.get("reason") or proposed.get("reasons")
@@ -168,18 +214,18 @@ def plan(a):
                       candidate_sha256=sha(p))
     save(a.out/"return.json", record)
     print(record["scene"], a.token, record["source"], a.out/"return.json")
+    return record
 
 
-def score(a):
-    from cordriver_published_metrics import Published, rescore
-    r = load(a.plan)
-    sf = a.study / "frontend" / a.token / "sample.json"
-    if r["token"] != a.token or load(sf)["token"] != a.token or r["native_sha256"] != sha(sf):
+def checked_return(study, token, plan_path):
+    r = load(plan_path)
+    sf = study / "frontend" / token / "sample.json"
+    if r["token"] != token or load(sf)["token"] != token or r["native_sha256"] != sha(sf):
         raise ValueError("SCORE_BINDING_MISMATCH")
     from cordriver_published_xy import published_xy
     if r.get("candidate"):
-        candidate = a.plan.parent / r["candidate"]
-        if a.plan.parent not in candidate.resolve().parents:
+        candidate = plan_path.parent / r["candidate"]
+        if plan_path.parent.resolve() not in candidate.resolve().parents:
             raise ValueError("CANDIDATE_OUTSIDE_RUN")
         expected = sha(candidate)
         receipt = load(candidate.with_name("receipt.json"))
@@ -190,14 +236,20 @@ def score(a):
         points = load(sf)["final_xy_lidar_m"]
     if points != r["returned_xy_lidar_m"]:
         raise ValueError("RETURN_COORDINATES_CHANGED")
+    return load(sf)["final_xy_lidar_m"], points
+
+
+def score(a):
+    from cordriver_published_metrics import Published, rescore
+    native, returned = checked_return(a.study, a.token, a.plan)
     published = Published(a.data)
     truth = published.inputs(a.token)
     result = dict(token=a.token, return_sha256=sha(a.plan), evaluation="PUBLISHED_NUSCENES_OPEN_LOOP")
     if truth is None:
         result["status"] = "UNAVAILABLE_EVALUATION_FUTURE"
     else:
-        result["native"] = rescore(published,truth,load(sf)["final_xy_lidar_m"])
-        result["dual"] = rescore(published,truth,r["returned_xy_lidar_m"])
+        result["native"] = rescore(published,truth,native)
+        result["dual"] = rescore(published,truth,returned)
     save(a.out,result)
     print(json.dumps(result))
 
@@ -205,16 +257,20 @@ def score(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     subs = ap.add_subparsers(dest="stage", required=True)
-    for name in ("prepare","plan","score"):
+    for name in ("prepare","prepare-registered","plan","score"):
         sub = subs.add_parser(name)
         sub.add_argument("--study", required=True, type=Path)
-        sub.add_argument("--token", required=True)
+        sub.add_argument("--token", required=name != "prepare-registered")
         sub.add_argument("--data", required=True, type=Path)
-        if name == "prepare":
+        if name in ("prepare", "prepare-registered"):
             sub.add_argument("--sparse",type=Path,help="Same-token SparseDrive stage-2 prediction export")
         else:
             sub.add_argument("--out",type=Path,required=True)
         if name == "plan":
+            sub.add_argument("--fast-return",type=Path,help="Review the actual same-study fast-only return and retain it on KEEP or unresolved adjustment")
+            sub.add_argument("--guided-search",choices=("original","verified","floor","minimal"),
+                             help="Search with original stages, certified seeds, explicit floor, or extra minimal-deviation fit")
+            sub.add_argument("--review-approach",action="store_true",help="Also review shrinking curb clearance supported by both map heads")
             group = sub.add_mutually_exclusive_group()
             group.add_argument("--fast-only",action="store_true",help="Run the paired deterministic fast planner without Astra")
             group.add_argument("--responses",type=Path,help="Archived per-token Responses records")
@@ -223,14 +279,20 @@ def main():
         if name == "score":
             sub.add_argument("--plan",type=Path,required=True,help="Frozen return.json from plan")
     a = ap.parse_args()
-    if not re.fullmatch(r"[a-f0-9]{32}",a.token):
+    if a.token is not None and not re.fullmatch(r"[a-f0-9]{32}",a.token):
         ap.error("expected one 32-character lowercase hexadecimal nuScenes sample token")
     for k,v in list(vars(a).items()):
         if isinstance(v,Path):
             setattr(a,k,v.expanduser().resolve())
+    if getattr(a,"fast_only",False) and getattr(a,"fast_return",None):
+        ap.error("--fast-return requires a dual-system run")
+    if getattr(a,"guided_search",None) and not getattr(a,"fast_return",None):
+        ap.error("--guided-search requires --fast-return")
+    if getattr(a,"review_approach",False) and not getattr(a,"fast_return",None):
+        ap.error("--review-approach requires --fast-return")
     if not __debug__:
         ap.error("Run without -O to retain upstream source-binding checks")
-    {"prepare":prepare,"plan":plan,"score":score}[a.stage](a)
+    {"prepare":prepare,"prepare-registered":prepare_registered,"plan":plan,"score":score}[a.stage](a)
 
 
 if __name__ == "__main__":

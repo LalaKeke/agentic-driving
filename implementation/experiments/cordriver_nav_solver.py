@@ -39,15 +39,16 @@ def rotation(angle):
 
 
 def parse_nodes(guidance):
-    if set(guidance) != {"decision","at_1_5s","at_3_0s"}:
+    first = "at_1_0s" if "at_1_0s" in guidance else "at_1_5s"
+    if set(guidance) != {"decision", first, "at_3_0s"}:
         raise ValueError("INVALID_GUIDANCE_STRUCTURE")
-    raw = [guidance["at_1_5s"],guidance["at_3_0s"]]
+    raw = [guidance[first],guidance["at_3_0s"]]
     if guidance["decision"] == "KEEP" and raw == [None,None]:
         return []
     if guidance["decision"] != "ADJUST":
         raise ValueError("INVALID_GUIDANCE_DECISION")
     nodes = []
-    for i, item in zip((6,12),raw):
+    for i, item in zip((4 if first == "at_1_0s" else 6, 12), raw):
         if set(item) != {"region_type","center_xy_m","region_yaw_deg","speed_range_mps"}:
             raise ValueError("INVALID_GUIDANCE_NODE")
         center = native_api.numeric_pair(item["center_xy_m"])
@@ -426,15 +427,18 @@ def secondary_seed(trial,nodes):
     targets=[w[1] for w in nodes] if nodes else [trial.m["reference"][2],trial.m["reference"][5]]
     route=np.asarray(trial.row.get("navigation",{}).get("polyline_guidance_m",[]),dtype=float)
     seed=[]
-    for j,(target,a) in enumerate(zip(targets,[(v1-v0)/1.5,(v2-v1)/1.5])):
+    first_knot = nodes[0][0] if nodes else 6
+    intervals = (first_knot, 12-first_knot)
+    for j, (target, dv, count) in enumerate(zip(targets, (v1-v0, v2-v1), intervals)):
+        a = dv / (count * trial.p.dt)
         delta = np.arctan2(2*trial.p.L*target[1],max(1.,np.dot(target,target)))
         if route.ndim==2 and route.shape[1]==2:
             # Use the navigation tangent at the initial speed's lookahead station for this knot.
             ix=int(np.argmin(np.linalg.norm(route-target,axis=1)))
             tang=route[min(ix+1,len(route)-1)]-route[max(0,ix-1)]
             if np.linalg.norm(tang)>1e-3:
-                delta=.5*(delta+np.arctan2(trial.p.L*np.arctan2(tang[1],tang[0]),max(1.,v0*(j+1)*1.5)))
-        seed.extend([np.clip(a,-trial.p.a_max,trial.p.a_max),np.clip(delta,-.25,.25)]*6)
+                delta=.5*(delta+np.arctan2(trial.p.L*np.arctan2(tang[1],tang[0]),max(1.,v0*sum(intervals[:j+1])*trial.p.dt)))
+        seed.extend([np.clip(a,-trial.p.a_max,trial.p.a_max),np.clip(delta,-.25,.25)]*count)
     return np.array(seed)
 
 

@@ -9,6 +9,7 @@ CorDriver 从相机、标定、导航和实测自车信息生成初轨与分时�
 | 从原图重跑单帧 | [输入准备、模型回放或真实调用、规划、独立评分](implementation/experiments/CORDRIVER.md) |
 | 配置模型和数据 | [环境、上游代码、发布权重、数据文件与 SHA-256](implementation/environment/README.md) |
 | 核对冻结对照 | [99 帧快慢系统的选择回放和 119 帧指标](implementation/evaluation/README.md) |
+| 比较目标框求解与碰撞收益 | [实际快轨迹审阅、98 帧历史配对与新场景测试](implementation/evaluation/transfer_20261122.md) |
 | 重跑 0018/31 路缘修复 | [五次控制求解、原门槛及最终轨迹](implementation/case_study/README.md) |
 | 查看前视投影 | [使用本地 nuScenes 图像重画 Astra 案例](implementation/evaluation/README.md#前视图) |
 
@@ -32,3 +33,5 @@ python3 -B implementation/evaluation/review.py dispatch
 双系统相对纯快系统消除 2 帧碰撞，同时新引入 2 帧。0018/31 的后续开发修复单独报告。两个结果都限定于当前开环样本。
 
 从原图重跑需要使用者本地的 nuScenes 数据及发布权重。0221/23 可使用已绑定的 Astra 回答复验；新的付费请求由 `plan --live` 显式启用。建议把运行输出放在本地 `outputs/` 目录。推理与评分分别由不同的命令执行。
+
+[2026-11-24 官方全验证集双行测评：5,119 个有效帧，5,118 个实测配对](implementation/evaluation/results/official_val_20261124/RESULTS.md)

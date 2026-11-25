@@ -110,7 +110,7 @@ def certify(tr,controls,method,context,folder,raw,rect,road,secondary,steering,f
     return plan, rec, checks, nodes, smooth_margin
 
 
-def _build(study, token, folder, data):
+def _build(study, token, folder, data, templates):
     import numpy as np
     from shapely.geometry import mapping, Polygon
     from cordriver_edge_gate import native_body_knots
@@ -209,7 +209,7 @@ def _build(study, token, folder, data):
 
     if native_ok:
         check(native_controls,'native_controls',raw,dict(source='NATIVE_CONTROLS_REINTEGRATED'))
-    for style,brake,lateral in TEMPLATES:
+    for style,brake,lateral in templates:
         target,template=target_curve(poses,brake,lateral)
         shape=core.parse_nodes(template)
         tr.m['rect']=raw.copy()
@@ -236,11 +236,13 @@ def _build(study, token, folder, data):
     return table
 
 
-def build_portfolio(study, token, dest, data):
+def build_portfolio(study, token, dest, data, *, templates=None):
     folder=Path(dest).resolve()/token
     folder.mkdir(parents=True,exist_ok=False)
     start=time.monotonic()
-    table=_build(Path(study).resolve(),token,folder,data)
+    table=_build(Path(study).resolve(),token,folder,data,TEMPLATES if templates is None else templates)
+    if templates is not None:
+        table['search_templates'] = list(templates)
     table['wall_seconds']=time.monotonic()-start
     portfolio=folder/'portfolio.json'
     save(portfolio,table)

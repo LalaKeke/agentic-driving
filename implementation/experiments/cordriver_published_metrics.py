@@ -21,6 +21,20 @@ class Published:
     def __init__(self, data):
         self.config = UPSTREAM/'projects/configs/VAD/Corridor_stage_2.py'
         self.pkl = TOOLS/'cordriver_assets/corridor_nuscenes_infos_temporal_val.pkl'
+        release = load(Path(__file__).resolve().parents[1] / "environment/assets.json")["cordriver"]
+        files = {"upstream_head_sha": UPSTREAM / "projects/mmdet3d_plugin/VAD/VAD.py",
+                 "metric_sha": UPSTREAM / "projects/mmdet3d_plugin/VAD/planner/metric_bp.py",
+                 "upstream_dataset_sha": UPSTREAM / "projects/mmdet3d_plugin/datasets/nuscenes_vad_dataset.py",
+                 "object_filter_sha": UPSTREAM / "projects/mmdet3d_plugin/datasets/pipelines/transform_3d.py",
+                 "config_sha": self.config}
+        self.scope = {}
+        for key, path in files.items():
+            self.scope[key] = sha(path)
+            if self.scope[key] != release["source_sha256"][str(path.relative_to(UPSTREAM))]:
+                raise ValueError(f"CorDriver release evaluator mismatch: {path}")
+        self.scope["validation_infos_sha"] = sha(self.pkl)
+        if self.scope["validation_infos_sha"] != release["assets"][self.pkl.name]["sha256"]:
+            raise ValueError(f"CorDriver release validation index mismatch: {self.pkl}")
         cfg=mmcv.Config.fromfile(str(self.config))
         spec=cfg.data.test.copy()
         spec.pop("samples_per_gpu",None)
@@ -30,10 +44,6 @@ class Published:
         self.metric=SimpleNamespace(planning_metric=PlanningMetric())
         self.rf=CustomObjectRangeFilter(cfg.point_cloud_range)
         self.lf=CustomObjectNameFilter(cfg.class_names)
-        self.scope={"upstream_head_sha":sha(UPSTREAM/'projects/mmdet3d_plugin/VAD/VAD.py'),
-                    "metric_sha":sha(UPSTREAM/'projects/mmdet3d_plugin/VAD/planner/metric_bp.py'),
-                    "upstream_dataset_sha":sha(UPSTREAM/'projects/mmdet3d_plugin/datasets/nuscenes_vad_dataset.py'),
-                    "config_sha":sha(self.config),"validation_infos_sha":sha(self.pkl)}
 
     def inputs(self,token):
         i=self.index[token]
