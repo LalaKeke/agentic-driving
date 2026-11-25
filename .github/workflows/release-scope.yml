@@ -1,0 +1,34 @@
+name: Main release scope
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scope:
+    name: release-scope
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check paths against the base branch policy
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -eu
+          policy=.github/scripts/release_scope.py
+          if git cat-file -e "$BASE_SHA:$policy"; then
+            git show "$BASE_SHA:$policy" > "$RUNNER_TEMP/release_scope.py"
+          else
+            # Bootstrap the first PR that introduces this check.
+            git show "$HEAD_SHA:$policy" > "$RUNNER_TEMP/release_scope.py"
+          fi
+          python -I "$RUNNER_TEMP/release_scope.py" "$BASE_SHA" "$HEAD_SHA"
+      - name: Test the proposed release policy
+        run: python -B -m unittest discover -s .github/scripts -p 'test_release_scope.py'
