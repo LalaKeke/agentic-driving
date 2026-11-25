@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 import numpy as np
 
-from cordriver_paths import TOOLS
+from cordriver_paths import TOOLS, load_asset_manifest
 from cordriver_validate import sha256
 
 UP = TOOLS / "cordriver"
@@ -128,7 +128,7 @@ def main():
     out.mkdir(exist_ok=True, parents=True)
     (out / "frontend").mkdir(exist_ok=True)
     (out / "evaluation").mkdir(exist_ok=True)
-    release = json.loads((Path(__file__).resolve().parents[1] / "environment/assets.json").read_bytes())["cordriver"]
+    release = load_asset_manifest()["cordriver"]
     for path, digest in [(UP / k,v) for k,v in release["source_sha256"].items()] + [
             (p,release["assets"][p.name]["sha256"]) for p in (INFO, WEIGHTS)]:
         if sha256(path) != digest:

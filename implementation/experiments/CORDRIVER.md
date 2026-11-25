@@ -35,9 +35,3 @@ RUN="$(mktemp -d)"
 将 `TOKEN` 换为验证集中相应的 sample token，使用全新的 study 与 plan 目录。在相同 study 上另用新输出目录和 `--fast-only` 可运行同输入纯快基线，不读模型回执。对未触发慢系统的 token，`plan` 可直接运行。对需要慢系统的 token，可以用 `--responses /path/to/private/astra_live` 提供原请求、服务原生返回及逐帧收据，入口会核对实际图像字节、整包和模型身份。需要重新生成时，显式给 `--live` 并通过环境变量 `OPENAI_API_KEY` 或独立的 `DRIVING_API_KEY_FILE` 提供有权访问 `gpt-6.2-astra` 的凭据。一次 plan 对同一 token 最多一次 POST，在发送前持久化预扣记录，错误后退出。新服务采样可能给出不同指令。
 
 不使用预置收据的跨帧研究应在发请求前登记 token、研究分母与预算，分别报告原生、纯快系统以及双系统的实际返回。本入口保存方法的逐帧结果。原 99 帧的发布汇总另以冻结评价表复算，重做一帧不改变该表。
-
-## 让 Astra 审阅实际快轨迹
-
-先用 `plan --fast-only` 保存快系统实际返回，再将其 `return.json` 传入同一 study 和 token 的 `plan --fast-return /path/to/fast/return.json`。KEEP 和未获核验的 ADJUST 均沿用这条快轨迹。若需离线重放，`--responses` 应指向与新请求（包括投影图）逐字节相符的真实回执目录。
-
-在这一入口，`--guided-search original` 用原分阶段求解，`verified` 可重用已核验的控制与走廊，`floor` 再将原障碍净距纳入求解约束，`minimal` 额外允许一次贴近快轨迹的求解并重新验收。`minimal` 是新审阅入口的默认值。运行时不读取碰撞评分或录制未来；独立评分仍使用 `score`。[实验范围、对照及复算](../evaluation/transfer_20261122.md)
